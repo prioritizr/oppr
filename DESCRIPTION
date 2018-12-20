@@ -1,0 +1,51 @@
+Package: ppr
+Type: Package
+Version: 0.0.0.1
+Title: Project Prioritization
+Description: Prioritize conservation projects for funding.
+    To identify optimal solutions, the 'Gurobi' optimizer will need to
+    be installed (available from <https://www.gurobi.com>).
+Authors@R: c(person(c('Jeffrey', 'O'), 'Hanson',
+               email='jeffrey.hanson@uqconnect.edu.au', role = c('aut', 'cre')),
+             person(c('Richard'), 'Schuster',
+               email='mail@richard-schuster.com', role = c('aut')),
+             person(c('Matthew'), 'Strimas-Mackey',
+               email='mstrimas@gmail.com', role = c('aut')),
+             person(c('Joeseph'), 'Bennett',
+               email='joseph.bennett@carleton.ca', role = c('aut')))
+Imports:
+    utils,
+    methods,
+    stats,
+    Matrix,
+    proto (>= 1.0.0),
+    assertthat(>= 0.2.0),
+    tibble(>= 1.4.2),
+    ape(>= 5.2),
+    tidytree(>= 0.1.9),
+    ggplot2(>= 3.0.0),
+    viridisLite(>= 0.3.0)
+Suggests:
+    testthat(>= 2.0.0),
+    knitr(>= 1.20),
+    roxygen2(>= 6.1.0),
+    rmarkdown(>= 1.10),
+    gurobi(>= 8.0.0),
+    ggtree(>= 1.8.2)
+Depends:
+    R(>= 3.4.0)
+LinkingTo: Rcpp(>= 0.12.19), RcppArmadillo(>= 0.9.100.5.0)
+License: GPL-3
+LazyData: true
+SystemRequirements: C++11
+URL: https://github.com/prioritizr/ppr
+BugReports: https://github.com/prioritizr/ppr/issues
+VignetteBuilder: knitr
+RoxygenNote: 6.1.1
+Collate:
+    'RcppExports.R'
+    'internal.R'
+    'branch_matrix.R'
+    'data.R'
+    'package.R'
+    'star_phylogeny.R'

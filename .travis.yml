@@ -1,0 +1,54 @@
+# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
+
+language: r
+
+sudo: required
+
+dist: trusty
+
+warnings_are_errors: true
+
+r:
+  - release
+  - devel
+
+r_build_args: --no-build-vignettes
+
+os:
+  - linux
+  - osx
+
+matrix:
+  exclude:
+    - os: osx
+      r: devel
+
+env:
+  global:
+    - _R_CHECK_FORCE_SUGGESTS_=FALSE
+
+apt_packages:
+  - curl
+  - qpdf
+
+before_script:
+  - Rscript -e "if (!requireNamespace('devtools', quietly = TRUE)) install.packages('devtools'); devtools::install_bioc('ggtree')"
+
+before_install:
+  - echo "TRAVIS_OS_NAME = $TRAVIS_OS_NAME"
+  - echo "options(repos = c(CRAN='http://cran.rstudio.com'))" > ~/.Rprofile
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install Caskroom/cask/xquartz; fi;
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install ghostscript; fi;
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then sudo tlmgr update --self; fi;
+
+install:
+  - R -e "install.packages('remotes'); suppressWarnings(remotes::install_deps(dependencies = TRUE))"
+  - R -e "install.packages(c('covr', 'rmarkdown', 'testthat'))"
+
+after_success:
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then Rscript -e 'covr::codecov()'; fi;
+
+notifications:
+  email:
+    on_success: change
+    on_failure: change

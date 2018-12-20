@@ -1,0 +1,42 @@
+---
+title: "Project Prioritization"
+output:
+  rmarkdown::html_vignette:
+    toc: true
+    fig_caption: true
+    self_contained: yes
+fontsize: 11pt
+bibliography: references.bib
+csl: reference-style.csl
+documentclass: article
+vignette: >
+  %\VignetteIndexEntry{ppr}
+  %\VignetteEngine{knitr::rmarkdown_notangle}
+---
+
+```{r, include = FALSE}
+# define fig sizes
+fw <- 7.0
+fh <- 4.5
+
+# disable running vignette code during R CMD check
+is_check <- ("CheckExEnv" %in% search()) || any(c("_R_CHECK_TIMINGS_",
+             "_R_CHECK_LICENSE_") %in% names(Sys.getenv()))
+knitr::opts_chunk$set(fig.align = "center", eval = !is_check)
+```
+
+## Overview
+
+The _ppr R_ package is a decision support tool for prioritizing conservation projects for funding. Prioritizations can be developed by maximizing expected species richness, expected phylogenetic diversity, the number of species that meet persistence targets, or identifying a set of projects that meet persistence targets for minimal cost. After defining the optimization problem, prioritizations can be generated using exact algorithms---which are guaranteed to find optimal solutions---or conventional heuristic algorithms. Finally, this package provides methods for comparing different prioritizations and evaluating their benefits.
+
+## Tutorial
+
+## Citation
+
+Please use the following citation to cite the _ppr R_ package in publications:
+
+```{r, echo = FALSE, results = "asis", comment = ""}
+cat(paste0("Hanson JO, Schuster R, Strimas-Mackey M, Bennett J, (",format(Sys.time(), "%Y"),"). ppr: Project Prioritization. R package version ",packageDescription("ppr")$Version,". Available at https://github.com/prioritizr/ppr.\n"))
+```
+
+## References
