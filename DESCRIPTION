@@ -18,6 +18,7 @@ Imports:
     methods,
     stats,
     Matrix,
+    uuid (>= 0.1.2),
     proto (>= 1.0.0),
     assertthat(>= 0.2.0),
     tibble(>= 1.4.2),
@@ -43,9 +44,37 @@ BugReports: https://github.com/prioritizr/ppr/issues
 VignetteBuilder: knitr
 RoxygenNote: 6.1.1
 Collate:
-    'RcppExports.R'
     'internal.R'
+    'pproto.R'
+    'Parameter-proto.R'
+    'ArrayParameter-proto.R'
+    'MiscParameter-proto.R'
+    'Parameters-proto.R'
+    'ScalarParameter-proto.R'
+    'parameters.R'
+    'waiver.R'
+    'ProjectModifier-proto.R'
+    'Constraint-proto.R'
+    'Collection-proto.R'
+    'Decision-proto.R'
+    'Id.R'
+    'Objective-proto.R'
+    'OptimizationProblem-proto.R'
+    'ProjectProblem-proto.R'
+    'RcppExports.R'
+    'Solver-proto.R'
+    'Target-proto.R'
     'branch_matrix.R'
+    'constraints.R'
     'data.R'
+    'decisions.R'
+    'misc.R'
+    'new_optimization_problem.R'
+    'objectives.R'
     'package.R'
+    'print.R'
+    'show.R'
+    'solvers.R'
     'star_phylogeny.R'
+    'targets.R'
+    'zzz.R'

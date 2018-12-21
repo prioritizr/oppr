@@ -1,0 +1,172 @@
+#' Check
+#'
+#' Check that the output from \code{\link[assert_that]{see_if}}
+#' is valid.
+#'
+#' @param x \code{character} or \code{object}
+#'
+#' @details This object will return an error if the argument to \code{x}
+#'   is \code{FALSE}, and for the error message, will show the error
+#'   message attached to the object.
+#'
+#' @return invisible \code{TRUE}.
+#'
+#' @noRd
+check_that <- function(x) {
+  if (!isTRUE(x))
+    stop(attr(x, "msg")[1])
+  invisible(TRUE)
+}
+
+#' Convert sparse matrix to triplet data.frame
+#'
+#' Convert a sparse matrix to a triplet \code{data.frame}.
+#'
+#' @param x \code{Matrix} object.
+#'
+#' @noRd
+matrix_to_triplet_dataframe <- function(x) {
+  if (inherits(x, c("dsCMatrix")))
+    x <- methods::as(x, "dsTMatrix")
+  if (inherits(x, c("dgCMatrix", "matrix")))
+    x <- methods::as(x, "dgTMatrix")
+  data.frame(i = x@i + 1, j = x@j + 1, x = x@x)
+}
+
+#' Convert a triplet data.frame to a matrix
+#'
+#' Convert a triplet data.framr object to a sparse matrix.
+#'
+#' @param x \code{data.frame} object. The first column contains the row
+#'   numbers, the second column contains the column numbers, and the
+#'   third column contains the cell values.
+#
+#' @return \code{\link[Matrix]{dgCMatrix-class}} object.
+#'
+#' @noRd
+triplet_dataframe_to_matrix <- function(x, forceSymmetric=FALSE, ...) {
+  assertthat::assert_that(inherits(x, "data.frame"), isTRUE(ncol(x) == 3),
+    isTRUE(all(x[[1]] == round(x[[1]]))), isTRUE(all(x[[2]] == round(x[[2]]))))
+  # create sparse amtrix
+  m <- Matrix::sparseMatrix(i = x[[1]], j = x[[2]], x = x[[3]],
+                            giveCsparse = FALSE, ...)
+  if (forceSymmetric) {
+    # force the matrix to be symmetric
+    # we cannot gurantee that the cells that are filled in belong to either
+    # the upper or the lower diagonal
+    m2 <- matrix(c(m@j + 1, m@i + 1, m@x), ncol = 3)
+    m2 <- m2[m2[, 1] != m2[, 2], ]
+    m[m2[, 1:2]] <- m2[, 3]
+    return(Matrix::forceSymmetric(m))
+  } else {
+    # return matrix in compressed format
+    return(methods::as(m, "dgCMatrix"))
+  }
+}
+
+#' Align text
+#'
+#' Format text by adding a certain number of spaces after new line characters.
+#'
+#' @param x \code{character} text.
+#'
+#' @param n \code{integer} number of spaces.
+#'
+#' @return \code{character}.
+#'
+#' @examples
+#' # make some text
+#' original_text <- "animals: horse\npig\nbear"
+#'
+#' # print text
+#' message(original_text)
+#'
+#' # this look really ugly so we will align it
+#' aligned_text <- align_text(original_text, 9)
+#'
+#' # print aligned text
+#' message(aligned_text)
+#'
+#' @noRd
+align_text <- function(x, n) {
+  assertthat::assert_that(assertthat::is.string(x), assertthat::is.count(n))
+  if (!grepl("\n", x))
+    return(x)
+  return(gsub("\n", paste0("\n", paste(rep(" ", n), collapse = "")), x,
+              fixed = TRUE))
+}
+
+#' Atomic representation
+#'
+#' Return a pretty character representation of an object with elements and
+#  names.
+#'
+#' @param x \code{object}.
+#'
+#' @return \code{character} object.
+#'
+#' @examples
+#' repr_atomic(letters)
+#' repr_atomic(letters, "characters")
+#' @noRd
+repr_atomic <- function(x, description = "") {
+  n <- length(x)
+  if (nchar(description) > 0)
+    description <- paste0(" ", description)
+  if (length(x) <= 4) {
+    x <- x[seq_len(min(length(x), 4))]
+  } else {
+    x <- c(x[seq_len(min(length(x), 3))], "...")
+  }
+  paste0(paste(x, collapse = ", "), " (", n, description, ")")
+}
+
+#' No extra arguments
+#'
+#' Check that no additional unused arguments have been supplied to a function
+#' through the \code{...}.
+#'
+#' @param ... arguments that are not used.
+#'
+#' @return \code{logical} indicating success.
+#'
+#' @noRd
+no_extra_arguments <- function(...) {
+  return(length(list(...)) == 0)
+}
+
+assertthat::on_failure(no_extra_arguments) <- function(call, env) {
+  call_list <- as.list(call)[-1]
+  format_args <- function(i) {
+    if (names(call_list)[i] == "")
+     return(deparse(call_list[[i]]))
+    paste0(names(call_list)[i], "=", deparse(call_list[[i]]))
+  }
+  msg <- paste(vapply(seq_along(call_list), format_args, character(1)),
+               collapse = ", ")
+  if (length(call_list) > 1) {
+    msg <- paste0("unused arguments (", msg, ")")
+  } else {
+    msg <- paste0("unused argument (", msg, ")")
+  }
+  msg
+}
+
+#' Verify if assertion is met
+#'
+#' Verify if an assertion is tmet and throw a \code{\link{warning}} if it
+#' is not. This function is equivalent to \code{\link[assertthat]{assert_that}}
+#' except that it throws warnings and not errors.
+#'
+#' @param x \code{logical} condition.
+#'
+#' @return \code{logical} if assertion is met and a \code{warning} if it is not.
+#'
+#' @noRd
+verify_that <- function(..., env = parent.frame()) {
+  res <- assertthat::validate_that(..., env = env)
+  if (isTRUE(res))
+      return(TRUE)
+  warning(res)
+  FALSE
+}
