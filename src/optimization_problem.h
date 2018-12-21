@@ -24,9 +24,9 @@ class OPTIMIZATIONPROBLEM
       _row_ids.reserve(nrow);
     };
     OPTIMIZATIONPROBLEM(std::string modelsense,
+                        std::size_t number_of_projects,
+                        std::size_t number_of_actions,
                         std::size_t number_of_features,
-                        std::size_t number_of_planning_units,
-                        std::size_t number_of_zones,
                         std::vector<std::size_t> A_i,
                         std::vector<std::size_t> A_j,
                         std::vector<double> A_x,
@@ -37,12 +37,11 @@ class OPTIMIZATIONPROBLEM
                         std::vector<std::string> sense,
                         std::vector<std::string> vtype,
                         std::vector<std::string> row_ids,
-                        std::vector<std::string> col_ids,
-                        bool compressed_formulation) :
+                        std::vector<std::string> col_ids) :
                         _modelsense(modelsense),
+                        _number_of_projects(number_of_projects),
+                        _number_of_actions(number_of_actions),
                         _number_of_features(number_of_features),
-                        _number_of_planning_units(number_of_planning_units),
-                        _number_of_zones(number_of_zones),
                         _A_i(A_i),
                         _A_j(A_j),
                         _A_x(A_x),
@@ -53,17 +52,16 @@ class OPTIMIZATIONPROBLEM
                         _sense(sense),
                         _vtype(vtype),
                         _row_ids(row_ids),
-                        _col_ids(col_ids),
-                        _compressed_formulation(compressed_formulation)
+                        _col_ids(col_ids)
     {};
     // deconstructor
     ~OPTIMIZATIONPROBLEM(){};
     // fields
     std::string _modelsense;
 
+    std::size_t _number_of_projects;
+    std::size_t _number_of_actions;
     std::size_t _number_of_features;
-    std::size_t _number_of_planning_units;
-    std::size_t _number_of_zones;
 
     std::vector<std::size_t> _A_i;
     std::vector<std::size_t> _A_j;
@@ -78,8 +76,6 @@ class OPTIMIZATIONPROBLEM
 
     std::vector<std::string> _row_ids;
     std::vector<std::string> _col_ids;
-
-    bool _compressed_formulation;
 
     // methods
     inline const std::size_t nrow() const {

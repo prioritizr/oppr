@@ -12,7 +12,11 @@ problem. Data are stored in memory and accessed using an external pointer.
 \section{Fields}{
 
 \describe{
+
 \item{$ptr}{\code{externalptr} object.}
+
+\item{$data}{\code{list} object.}
+
 }
 }
 
@@ -46,17 +50,17 @@ problem. Data are stored in memory and accessed using an external pointer.
 
 \code{x$ub()}
 
-\code{x$number_of_planning_units()}
+\code{x$number_of_projects()}
+
+\code{x$number_of_actions()}
 
 \code{x$number_of_features()}
-
-\code{x$number_of_zones()}
 
 \code{x$row_ids()}
 
 \code{x$col_ids()}
 
-\code{x$compressed_formulation()}
+\code{x$get_data()}
 }
 
 \section{Arguments}{
@@ -98,13 +102,11 @@ problem. Data are stored in memory and accessed using an external pointer.
 
 \item{ub}{\code{numeric} vector of upper bounds for each decision variable.}
 
+\item{number_of_projects}{\code{integer} number of projects in the problem.}
+
+\item{number_of_actions}{\code{integer} number of actions in the problem.}
+
 \item{number_of_features}{\code{integer} number of features in the problem.}
-
-\item{number_of_planning_units}{\code{integer} number of planning units in
-  the problem.}
-
-\item{number_of_zones}{\code{integer} number of zones in the
-  problem.}
 
 \item{col_ids}{\code{character} names describing each decision variable
   (column) in the model matrix.}
@@ -112,12 +114,7 @@ problem. Data are stored in memory and accessed using an external pointer.
 \item{row_ids}{\code{character} names describing each constraint (row) in
   in the model matrix.}
 
-\item{compressed_formulation}{is the optimization problem formulated
-  using a compressed version of the rij matrix?}
-
-\item{shuffle_columns}{randomly shuffle the columns in the problem. This
-  should almost never be called manually and only should only be called
- after the optimization problem has been fully constructed.}
+\item{get_data}{\code{list} containing additional data.}
 
 }
 }

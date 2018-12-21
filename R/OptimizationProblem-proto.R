@@ -13,7 +13,11 @@ NULL
 #'
 #' @section Fields:
 #' \describe{
+#'
 #' \item{$ptr}{\code{externalptr} object.}
+#'
+#' \item{$data}{\code{list} object.}
+#'
 #' }
 #'
 #' @section Usage:
@@ -45,17 +49,17 @@ NULL
 #'
 #' \code{x$ub()}
 #'
-#' \code{x$number_of_planning_units()}
+#' \code{x$number_of_projects()}
+#'
+#' \code{x$number_of_actions()}
 #'
 #' \code{x$number_of_features()}
-#'
-#' \code{x$number_of_zones()}
 #'
 #' \code{x$row_ids()}
 #'
 #' \code{x$col_ids()}
 #'
-#' \code{x$compressed_formulation()}
+#' \code{x$get_data()}
 #'
 #' @section Arguments:
 #' \describe{
@@ -93,13 +97,11 @@ NULL
 #'
 #' \item{ub}{\code{numeric} vector of upper bounds for each decision variable.}
 #'
+#' \item{number_of_projects}{\code{integer} number of projects in the problem.}
+#'
+#' \item{number_of_actions}{\code{integer} number of actions in the problem.}
+#'
 #' \item{number_of_features}{\code{integer} number of features in the problem.}
-#'
-#' \item{number_of_planning_units}{\code{integer} number of planning units in
-#'   the problem.}
-#'
-#' \item{number_of_zones}{\code{integer} number of zones in the
-#'   problem.}
 #'
 #' \item{col_ids}{\code{character} names describing each decision variable
 #'   (column) in the model matrix.}
@@ -107,12 +109,7 @@ NULL
 #' \item{row_ids}{\code{character} names describing each constraint (row) in
 #'   in the model matrix.}
 #'
-#' \item{compressed_formulation}{is the optimization problem formulated
-#'   using a compressed version of the rij matrix?}
-#'
-#' \item{shuffle_columns}{randomly shuffle the columns in the problem. This
-#'   should almost never be called manually and only should only be called
-#'  after the optimization problem has been fully constructed.}
+#' \item{get_data}{\code{list} containing additional data.}
 #'
 #' }
 #'
@@ -125,6 +122,7 @@ NULL
 OptimizationProblem <- pproto(
   "OptimizationProblem",
   ptr = NULL,
+  data = list(),
   print = function(self) {
     if (self$ncol() > 0) {
     cv <- table(self$vtype())
@@ -181,11 +179,11 @@ OptimizationProblem <- pproto(
   number_of_features = function(self) {
     rcpp_get_optimization_problem_number_of_features(self$ptr)
   },
-  number_of_planning_units = function(self) {
-    rcpp_get_optimization_problem_number_of_planning_units(self$ptr)
+  number_of_actions = function(self) {
+    rcpp_get_optimization_problem_number_of_actions(self$ptr)
   },
-  number_of_zones = function(self) {
-    rcpp_get_optimization_problem_number_of_zones(self$ptr)
+  number_of_projects = function(self) {
+    rcpp_get_optimization_problem_number_of_projects(self$ptr)
   },
   col_ids = function(self) {
     rcpp_get_optimization_problem_col_ids(self$ptr)
@@ -193,9 +191,7 @@ OptimizationProblem <- pproto(
   row_ids = function(self) {
     rcpp_get_optimization_problem_row_ids(self$ptr)
   },
-  compressed_formulation = function(self) {
-    rcpp_get_optimization_problem_compressed_formulation(self$ptr)
-  },
-  shuffle_columns = function(self) {
-    rcpp_set_optimization_problem_shuffled(self$ptr)
-})
+  get_data = function(self) {
+    self$data
+  }
+)

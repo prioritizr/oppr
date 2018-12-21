@@ -33,16 +33,16 @@ rcpp_get_optimization_problem_modelsense <- function(x) {
     .Call(`_ppr_rcpp_get_optimization_problem_modelsense`, x)
 }
 
-rcpp_get_optimization_problem_number_of_planning_units <- function(x) {
-    .Call(`_ppr_rcpp_get_optimization_problem_number_of_planning_units`, x)
+rcpp_get_optimization_problem_number_of_projects <- function(x) {
+    .Call(`_ppr_rcpp_get_optimization_problem_number_of_projects`, x)
+}
+
+rcpp_get_optimization_problem_number_of_actions <- function(x) {
+    .Call(`_ppr_rcpp_get_optimization_problem_number_of_actions`, x)
 }
 
 rcpp_get_optimization_problem_number_of_features <- function(x) {
     .Call(`_ppr_rcpp_get_optimization_problem_number_of_features`, x)
-}
-
-rcpp_get_optimization_problem_number_of_zones <- function(x) {
-    .Call(`_ppr_rcpp_get_optimization_problem_number_of_zones`, x)
 }
 
 rcpp_get_optimization_problem_vtype <- function(x) {
@@ -75,14 +75,6 @@ rcpp_get_optimization_problem_col_ids <- function(x) {
 
 rcpp_get_optimization_problem_row_ids <- function(x) {
     .Call(`_ppr_rcpp_get_optimization_problem_row_ids`, x)
-}
-
-rcpp_get_optimization_problem_compressed_formulation <- function(x) {
-    .Call(`_ppr_rcpp_get_optimization_problem_compressed_formulation`, x)
-}
-
-rcpp_set_optimization_problem_shuffled <- function(x) {
-    .Call(`_ppr_rcpp_set_optimization_problem_shuffled`, x)
 }
 
 rcpp_branch_matrix <- function(x) {
