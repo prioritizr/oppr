@@ -45,11 +45,133 @@ test_that("valid arguments", {
 })
 
 test_that("invalid arguments", {
+  # verify that function works using built-in dataset
   data(sim_projects, sim_actions, sim_features)
-
-
-})
-
-test_that("inheritance", {
-  data(sim_projects, sim_actions, sim_features)
+  expect_is(problem(sim_projects, sim_actions, sim_features,
+                    "name", "success", "name", "cost", "name"),
+                    "ProjectProblem")
+  # invalid names
+  expect_error({
+    data(sim_projects, sim_actions, sim_features)
+    problem(sim_projects, sim_actions, sim_features,
+            "name1", "success", "name", "cost", "name")
+  })
+  expect_error({
+    data(sim_projects, sim_actions, sim_features)
+    problem(sim_projects, sim_actions, sim_features,
+            "name", "success1", "name", "cost", "name")
+  })
+  expect_error({
+    data(sim_projects, sim_actions, sim_features)
+    problem(sim_projects, sim_actions, sim_features,
+            "name", "success", "name1", "cost", "name")
+  })
+  expect_error({
+    data(sim_projects, sim_actions, sim_features)
+    problem(sim_projects, sim_actions, sim_features,
+            "name", "success", "name", "cost1", "name")
+  })
+  expect_error({
+    data(sim_projects, sim_actions, sim_features)
+    problem(sim_projects, sim_actions, sim_features,
+            "name", "success", "name", "cost", "name1")
+  })
+  # invalid success
+  expect_error({
+    data(sim_projects, sim_actions, sim_features)
+    sim_projects$success[1] <- NA_real_
+    problem(sim_projects, sim_actions, sim_features,
+            "name", "success", "name", "cost", "name")
+  })
+  expect_error({
+    data(sim_projects, sim_actions, sim_features)
+    sim_projects$success[1] <- -1
+    problem(sim_projects, sim_actions, sim_features,
+            "name", "success", "name", "cost", "name")
+  })
+  expect_error({
+    data(sim_projects, sim_actions, sim_features)
+    sim_projects$success[1] <- 2
+    problem(sim_projects, sim_actions, sim_features,
+            "name", "success", "name", "cost", "name")
+  })
+  expect_error({
+    data(sim_projects, sim_actions, sim_features)
+    sim_projects$success <- as.character(sim_projects$success)
+    problem(sim_projects, sim_actions, sim_features,
+            "name", "success", "name", "cost", "name")
+  })
+  # invalid costs
+  expect_error({
+    data(sim_projects, sim_actions, sim_features)
+    sim_actions$cost[1] <- NA_real_
+    problem(sim_projects, sim_actions, sim_features,
+            "name", "success", "name", "cost", "name")
+  })
+  expect_error({
+    data(sim_projects, sim_actions, sim_features)
+    sim_actions$cost[1] <- -5
+    problem(sim_projects, sim_actions, sim_features,
+            "name", "success", "name", "cost", "name")
+  })
+  expect_error({
+    data(sim_projects, sim_actions, sim_features)
+    sim_actions$cost <- "2"
+    problem(sim_projects, sim_actions, sim_features,
+            "name", "success", "name", "cost", "name")
+  })
+  # invalid species probabilities
+  expect_error({
+    data(sim_projects, sim_actions, sim_features)
+    sim_projects$F1[1] <- NA_real_
+    problem(sim_projects, sim_actions, sim_features,
+            "name", "success", "name", "cost", "name")
+  })
+  expect_error({
+    data(sim_projects, sim_actions, sim_features)
+    sim_projects$F1[1] <- -1
+    problem(sim_projects, sim_actions, sim_features,
+            "name", "success", "name", "cost", "name")
+  })
+  expect_error({
+    data(sim_projects, sim_actions, sim_features)
+    sim_projects$F1[1] <- 2
+    problem(sim_projects, sim_actions, sim_features,
+            "name", "success", "name", "cost", "name")
+  })
+  expect_error({
+    data(sim_projects, sim_actions, sim_features)
+    sim_projects$F1 <- as.character(sim_projects$F1)
+    problem(sim_projects, sim_actions, sim_features,
+            "name", "success", "name", "cost", "name")
+  })
+  expect_error({
+    data(sim_projects, sim_actions, sim_features)
+    problem(sim_projects[, -3], sim_actions, sim_features,
+            "name", "success", "name", "cost", "name")
+  })
+  expect_error({
+    data(sim_projects, sim_actions, sim_features)
+    problem(sim_projects[, -8], sim_actions, sim_features,
+            "name", "success", "name", "cost", "name")
+  })
+  # feature columns
+  expect_error({
+    data(sim_projects, sim_actions, sim_features)
+    sim_features$name[1] <- NA_character_
+    problem(sim_projects, sim_actions, sim_features,
+            "name", "success", "name", "cost", "name")
+  })
+  expect_error({
+    data(sim_projects, sim_actions, sim_features)
+    sim_features$name <- 5
+    problem(sim_projects, sim_actions, sim_features,
+            "name", "success", "name", "cost", "name")
+  })
+  expect_error({
+    data(sim_projects, sim_actions, sim_features)
+    sim_features$name <- TRUE
+    problem(sim_projects, sim_actions, sim_features,
+            "name", "success", "name", "cost", "name")
+  })
 })

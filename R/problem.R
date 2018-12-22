@@ -157,6 +157,8 @@ problem <- function(projects, actions, features, project_name_column,
     anyDuplicated(actions[[action_name_column]]) == 0,
     inherits(actions[[action_name_column]], c("character", "factor")),
     all(assertthat::has_name(projects, actions[[action_name_column]])),
+    assertthat::noNA(unlist(projects, actions[[action_name_column]])),
+    is.logical(as.matrix(projects[, actions[[action_name_column]]])),
     assertthat::is.string(action_cost_column),
     assertthat::has_name(actions, action_cost_column),
     is.numeric(actions[[action_cost_column]]),
@@ -167,7 +169,11 @@ problem <- function(projects, actions, features, project_name_column,
     assertthat::noNA(features[[feature_name_column]]),
     anyDuplicated(features[[feature_name_column]]) == 0,
     inherits(features[[feature_name_column]], c("character", "factor")),
-    all(assertthat::has_name(projects, features[[feature_name_column]])))
+    all(assertthat::has_name(projects, features[[feature_name_column]])),
+    is.numeric(as.matrix(projects[, features[[feature_name_column]]])),
+    min(as.matrix(projects[, features[[feature_name_column]]])) >= 0,
+    max(as.matrix(projects[, features[[feature_name_column]]])) <= 1,
+    assertthat::noNA(unlist(projects, features[[feature_name_column]])))
   assertthat::assert_that(min(actions[[action_cost_column]]) == 0,
                           msg = "zero cost baseline project missing.")
   # create ProjectProblem object
