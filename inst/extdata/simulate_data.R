@@ -1,10 +1,10 @@
 # Initialization
 ## set seed for reproducibility
-source("R/ppp_simulate_data.R")
+source("R/simulate_ppp_data.R")
 set.seed(600)
 
 ## set simulation parameters
-number_species <- 5
+number_features <- 5
 cost_mean <- 100
 cost_sd <- 5
 success_min_probability <- 0.7
@@ -17,7 +17,7 @@ locked_in_proportion <- 0.01
 locked_out_proportion <- 0.01
 
 # Simulate data
-sim <- ppp_simulate_data(number_species,
+sim <- simulate_ppp_data(number_features,
                          cost_mean,
                          cost_sd,
                          success_min_probability,
@@ -33,8 +33,8 @@ sim <- ppp_simulate_data(number_species,
 sim_project_data <- sim$project_data
 sim_action_data <- sim$action_data
 sim_tree <- sim$tree
-sim_species_data <- sim$species_data
+sim_feature_data <- sim$feature_data
 save(sim_project_data, file = "data/sim_project_data.rda", compress = "xz")
 save(sim_action_data, file = "data/sim_action_data.rda", compress = "xz")
-save(sim_species_data, file = "data/sim_species_data.rda", compress = "xz")
+save(sim_feature_data, file = "data/sim_feature_data.rda", compress = "xz")
 save(sim_tree, file = "data/sim_tree.rda", compress = "xz")
