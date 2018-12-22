@@ -7,15 +7,15 @@
 Targets are used to specify the minimum probability of persistence required
 for each feature. \strong{Please note that only some objectives require
 targets, and attempting to solve a problem that requires targets will throw
-an error if targets are not supplied.}
+an error if targets are not supplied, and attempting to solve a problem that
+does not require targets will throw a warning if targets are supplied.}
 }
 \details{
 Please note that only one type of target is currently supported:
 
   \describe{
 
-  \item{\code{\link{add_persistence_targets}}}{Set minimum persistence
-     targets.}
+  \item{\code{\link{add_persistence_targets}}}{Set persistence targets.}
 
   }
 }
