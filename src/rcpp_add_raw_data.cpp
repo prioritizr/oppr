@@ -73,8 +73,8 @@ bool rcpp_add_raw_data(SEXP x, arma::sp_mat pa_matrix, arma::sp_mat pf_matrix) {
       ptr->_A_x.push_back(1.0);
     }
     ptr->_sense.push_back("=");
-    ptr->_rhs.push_back(1.0);
     ptr->_row_ids.push_back("c3");
+    ptr->_rhs.push_back(1.0);
   }
 
   /// constraints for persistence probabilities for features
