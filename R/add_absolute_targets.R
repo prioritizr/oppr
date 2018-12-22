@@ -1,9 +1,13 @@
+
  #' @include internal.R pproto.R ProjectProblem-proto.R
 NULL
 
-#' Add persistence targets
+#' Add absolute targets
 #'
-#' Set persistence targets for a project prioritization \code{\link{problem}}.
+#' Set targets for a project prioritization \code{\link{problem}} by
+#' specifying exactly what probability of persistence is required
+#' for each feature. For instance, setting an absolute target of 10\%
+#' (i.e. \code{0.1}) corresponds to a threshold 10\% probability of persisting.
 #'
 #' @param x \code{\link{ProjectProblem-class}} object.
 #'
@@ -36,76 +40,51 @@ NULL
 #'
 #'   }
 #'
+#' @seealso \code{\link{targets}}.
+#'
 #' @examples
 #' #TODO
 #'
-#' @name add_persistence_targets
+#' @name add_absolute_targets
 #'
 NULL
 
-#' @name add_persistence_targets
-#' @rdname add_persistence_targets
-#' @exportMethod add_persistence_targets
+#' @name add_absolute_targets
+#' @rdname add_absolute_targets
+#' @exportMethod add_absolute_targets
 #' @export
 methods::setGeneric(
-  "add_persistence_targets",
+  "add_absolute_targets",
   signature = methods::signature("x", "targets"),
-  function(x, targets) standardGeneric("add_persistence_targets"))
+  function(x, targets) standardGeneric("add_absolute_targets"))
 
-#' @name add_persistence_targets
-#' @rdname add_persistence_targets
-#' @usage \S4method{add_persistence_targets}{ProjectProblem,numeric}(x, targets)
+#' @name add_absolute_targets
+#' @rdname add_absolute_targets
+#' @usage \S4method{add_absolute_targets}{ProjectProblem,numeric}(x, targets)
 methods::setMethod(
-  "add_persistence_targets",
+  "add_absolute_targets",
   methods::signature("ProjectProblem", "numeric"),
   function(x, targets) {
     # assert that arguments are valid
     assertthat::assert_that(
       inherits(x, "ProjectProblem"),
       length(targets) %in% c(1, number_of_features(x)),
-      is.numeric(x$data$features[[targets]]),
-      assertthat::noNA(x$data$features[[targets]]),
-      min(x$data$features[[targets]]) >= 0,
-      max(x$data$features[[targets]]) <= 1)
-    # create targets
-   target_data <- tibble::tibble(feature = x$feature_names(), sense = ">=",
-                                 value = targets)
-    # define function to validate changes to the targets object
-    vfun <- function(x) !inherits(try(validate_targets(x), silent = TRUE),
-                                  "try-error")
-    # define function to render targets object
-    rfun <- function(x)
-      utils::getFromNamespace("rHandsontableOutput", "rhandsontable")(x)
-    # add targets to problem
-    x$add_targets(pproto(
-      "PersistenceTargets",
-      Target,
-      name = "Targets",
-      parameters = parameters(misc_parameter("Targets", target_data, vfun,
-                                             rfun)),
-      data = list(feature_names = x$feature_names()),
-      repr = function(self) {
-        targets <- self$parameters$get("Targets")
-        out <- paste0(out, " targets [targets (min: ", min(targets$target),
-                      ", max: ", max(targets$target), ")]")
-        return(out)
-       },
-       output = function(self) {
-         # get data
-         targets <- self$parameters$get("Targets")
-         # convert feature names to indices
-         targets$feature <- match(targets$feature, feature_names)
-         # return tibble
-         targets
-       }
-    ))
+      is.numeric(targets),
+      assertthat::noNA(targets),
+      min(targets) >= 0,
+      max(targets) <= 1)
+    # add targets
+    add_manual_targets(x, tibble::tibble(feature = x$feature_names(),
+                                         type = "absolute",
+                                         sense = ">=",
+                                         target = targets))
 })
 
-#' @name add_persistence_targets
-#' @rdname add_persistence_targets
-#' @usage \S4method{add_persistence_targets}{ProjectProblem,character}(x, targets)
+#' @name add_absolute_targets
+#' @rdname add_absolute_targets
+#' @usage \S4method{add_absolute_targets}{ProjectProblem,character}(x, targets)
 methods::setMethod(
-  "add_persistence_targets",
+  "add_absolute_targets",
   methods::signature("ProjectProblem", "character"),
   function(x, targets) {
     # assert that arguments are valid
@@ -119,5 +98,5 @@ methods::setMethod(
       min(x$data$features[[targets]]) >= 0,
       max(x$data$features[[targets]]) <= 1)
     # add targets to problem
-    add_persistence_targets(x, x$data$features[[targets]])
+    add_absolute_targets(x, x$data$features[[targets]])
 })

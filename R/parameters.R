@@ -110,7 +110,7 @@ proportion_parameter <- function(name, value) {
 #' @export
 binary_parameter <- function(name, value) {
   assertthat::assert_that(assertthat::is.string(name),
-    assertthat::is.number(value), isTRUE(value == 1 | value == 0),
+    assertthat::is.scalar(value), isTRUE(value == 1 | value == 0),
     is.finite(value))
   pproto("BinaryParameter", ScalarParameter, id = new_id(), name = name,
     value = as.integer(value), default = as.integer(value), class = "integer",
