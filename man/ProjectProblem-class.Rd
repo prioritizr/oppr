@@ -15,7 +15,7 @@ and features. Features are the biological entities that need to
 be conserved (e.g. species, populations, eco-systems). Actions are
 real-world management actions that can be implemented for conservation
 purposes (e.g. habitat restoration, monitoring, pest eradication). Each
-action should have a known implementation, and this usually means that each
+action should have a known cost, and this usually means that each
 action should have a defined spatial extent and time period (though this
 is not necessary). Conservation projects are groups of management actions
 (they can also comprise a singular action too), and each project is
