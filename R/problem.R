@@ -168,7 +168,7 @@ problem <- function(projects, actions, features, project_name_column,
     anyDuplicated(features[[feature_name_column]]) == 0,
     inherits(features[[feature_name_column]], c("character", "factor")),
     all(assertthat::has_name(projects, features[[feature_name_column]])))
-  assertthat::assert_that(min(y[[action_cost_column]]) == 0,
+  assertthat::assert_that(min(actions[[action_cost_column]]) == 0,
                           msg = "zero cost baseline project missing.")
   # create ProjectProblem object
   pproto(NULL, ProjectProblem,

@@ -91,9 +91,9 @@ NULL
 #'
 #' \code{project_success_probabilities()}
 #'
-#' \code{feature_persistences_for_funding_projects()}
+#' \code{pf_matrix()}
 #'
-#' \code{project_action_membership()}
+#' \code{pa_matrix()}
 #'
 #' \code{x$add_objective(obj)}
 #'
@@ -186,11 +186,11 @@ NULL
 #' \item{project_success_probabilities}{\code{numeric} probability that
 #'   each project will succeed.}
 #'
-#' \item{feature_persistences_for_funding_projects}{
+#' \item{pf_matrix}{
 #'   \code{\link[Matrix]{dgCMatrix-class}} object denoting the enhanced
 #'   probability that features will persist if different projects are funded.}
 #'
-#' \item{project_action_membership}{
+#' \item{pa_matrix}{
 #'   \code{\link[Matrix]{dgCMatrix-class}} object indicating which actions are
 #'   associated with which projects.}
 #'
@@ -328,17 +328,17 @@ ProjectProblem <- pproto(
              self$action_names())
   },
   project_success_probabilities = function(self) {
-    setNames(self$data$projects[[self$data$project_name_column]],
-             self$action_names())
+    setNames(self$data$projects[[self$data$project_success_column]],
+             self$project_names())
   },
-  feature_persistences_for_funding_projects = function(self) {
+  pf_matrix = function(self) {
     m <- methods::as(as.matrix(
       self$data$projects[, self$data$features[[self$data$feature_name_column]],
                          drop = FALSE]), "dgCMatrix")
     rownames(m) <- self$data$projects[[self$data$project_name_column]]
     m
   },
-  project_action_membership = function(self) {
+  pa_matrix = function(self) {
     m <- methods::as(as.matrix(
       self$data$projects[, self$data$actions[[self$data$action_name_column]],
                          drop = FALSE]), "dgCMatrix")
