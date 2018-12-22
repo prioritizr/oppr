@@ -62,7 +62,7 @@ compile.ProjectProblem <- function(x, ...) {
     targets <- x$feature_targets()
   }
   # add raw data to optimization problem
-  rcpp_add_raw_data(op$ptr, x$get_data("pa_matrix"), x$get_data("pf_matrix"))
+  rcpp_add_raw_data(op$ptr, x$pa_matrix(), x$pf_matrix())
   # add decision types to optimization problem
   x$decisions$calculate(x)
   x$decisions$apply(op)
