@@ -77,6 +77,18 @@ rcpp_get_optimization_problem_row_ids <- function(x) {
     .Call(`_ppr_rcpp_get_optimization_problem_row_ids`, x)
 }
 
+rcpp_add_raw_data <- function(x, pa_matrix, pf_matrix) {
+    .Call(`_ppr_rcpp_add_raw_data`, x, pa_matrix, pf_matrix)
+}
+
+rcpp_apply_decisions <- function(x, vtype, default_lower, default_upper) {
+    .Call(`_ppr_rcpp_apply_decisions`, x, vtype, default_lower, default_upper)
+}
+
+rcpp_apply_min_set_objective <- function(x, targets_list, costs) {
+    .Call(`_ppr_rcpp_apply_min_set_objective`, x, targets_list, costs)
+}
+
 rcpp_branch_matrix <- function(x) {
     .Call(`_ppr_rcpp_branch_matrix`, x)
 }

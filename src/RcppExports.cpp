@@ -217,6 +217,46 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// rcpp_add_raw_data
+bool rcpp_add_raw_data(SEXP x, arma::sp_mat pa_matrix, arma::sp_mat pf_matrix);
+RcppExport SEXP _ppr_rcpp_add_raw_data(SEXP xSEXP, SEXP pa_matrixSEXP, SEXP pf_matrixSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
+    Rcpp::traits::input_parameter< arma::sp_mat >::type pa_matrix(pa_matrixSEXP);
+    Rcpp::traits::input_parameter< arma::sp_mat >::type pf_matrix(pf_matrixSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_add_raw_data(x, pa_matrix, pf_matrix));
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_apply_decisions
+bool rcpp_apply_decisions(SEXP x, std::string vtype, double default_lower, double default_upper);
+RcppExport SEXP _ppr_rcpp_apply_decisions(SEXP xSEXP, SEXP vtypeSEXP, SEXP default_lowerSEXP, SEXP default_upperSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
+    Rcpp::traits::input_parameter< std::string >::type vtype(vtypeSEXP);
+    Rcpp::traits::input_parameter< double >::type default_lower(default_lowerSEXP);
+    Rcpp::traits::input_parameter< double >::type default_upper(default_upperSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_apply_decisions(x, vtype, default_lower, default_upper));
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_apply_min_set_objective
+bool rcpp_apply_min_set_objective(SEXP x, Rcpp::List targets_list, Rcpp::NumericVector costs);
+RcppExport SEXP _ppr_rcpp_apply_min_set_objective(SEXP xSEXP, SEXP targets_listSEXP, SEXP costsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
+    Rcpp::traits::input_parameter< Rcpp::List >::type targets_list(targets_listSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type costs(costsSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_apply_min_set_objective(x, targets_list, costs));
+    return rcpp_result_gen;
+END_RCPP
+}
 // rcpp_branch_matrix
 arma::sp_mat rcpp_branch_matrix(Rcpp::List x);
 RcppExport SEXP _ppr_rcpp_branch_matrix(SEXP xSEXP) {
