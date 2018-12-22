@@ -30,11 +30,11 @@ sim <- simulate_ppp_data(number_features,
                          locked_out_proportion)
 
 # Exports
-sim_project_data <- sim$project_data
-sim_action_data <- sim$action_data
+sim_projects <- sim$projects
+sim_actions <- sim$actions
+sim_features <- sim$features
 sim_tree <- sim$tree
-sim_feature_data <- sim$feature_data
-save(sim_project_data, file = "data/sim_project_data.rda", compress = "xz")
-save(sim_action_data, file = "data/sim_action_data.rda", compress = "xz")
-save(sim_feature_data, file = "data/sim_feature_data.rda", compress = "xz")
+save(sim_projects, file = "data/sim_projects.rda", compress = "xz")
+save(sim_actions, file = "data/sim_actions.rda", compress = "xz")
+save(sim_features, file = "data/sim_features.rda", compress = "xz")
 save(sim_tree, file = "data/sim_tree.rda", compress = "xz")

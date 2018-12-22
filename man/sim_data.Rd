@@ -3,23 +3,23 @@
 \docType{data}
 \name{sim_data}
 \alias{sim_data}
-\alias{sim_project_data}
-\alias{sim_action_data}
+\alias{sim_projects}
+\alias{sim_actions}
+\alias{sim_features}
 \alias{sim_tree}
-\alias{sim_feature_data}
 \title{Simulated data}
 \format{\describe{
-  \item{sim_project_data}{\code{\link[tibble]{tibble}} object.}
-  \item{sim_action_data}{\code{\link[tibble]{tibble}} object.}
-  \item{sim_feature_data}{\code{\link[tibble]{tibble}} object.}
+  \item{sim_projects}{\code{\link[tibble]{tibble}} object.}
+  \item{sim_actions}{\code{\link[tibble]{tibble}} object.}
+  \item{sim_features}{\code{\link[tibble]{tibble}} object.}
   \item{sim_tree}{\code{\link[ape]{phylo}} object.}
 }}
 \usage{
-data(sim_project_data)
+data(sim_projects)
 
-data(sim_action_data)
+data(sim_actions)
 
-data(sim_feature_data)
+data(sim_features)
 
 data(sim_tree)
 }
@@ -31,7 +31,7 @@ The data set contains the following objects:
 
 \describe{
 
-  \item{\code{sim_project_data}}{A \code{\link[tibble]{tibble}} containing
+  \item{\code{sim_projects}}{A \code{\link[tibble]{tibble}} containing
     data for six simulated conservation projects. Each row corresponds to a
     different project and each column contains information about the
     projects. This table contains the following columns:
@@ -57,7 +57,7 @@ The data set contains the following objects:
 
     }}
 
-  \item{\code{sim_action_data}}{A \code{\link[tibble]{tibble}} containing
+  \item{\code{sim_actions}}{A \code{\link[tibble]{tibble}} containing
     data for six simulated actions. Each row corresponds to a
     different action and each column contains information about the
     actions. This table contains the following columns:
@@ -76,7 +76,7 @@ The data set contains the following objects:
 
     }}
 
-  \item{\code{sim_feature_data}}{A \code{\link[tibble]{tibble}} containing
+  \item{\code{sim_features}}{A \code{\link[tibble]{tibble}} containing
     data for six simulated species. Each row corresponds to a
     different species and each column contains information about the
     species. This table contains the following columns:
@@ -95,18 +95,15 @@ The data set contains the following objects:
 }
 \examples{
 # load data
-data(sim_project_data, sim_action_data, sim_feature_data, sim_tree)
+data(sim_projects, sim_actions, sim_features, sim_tree)
 
 # print project data
-print(sim_project_data)
+print(sim_projects)
 # print action data
-print(sim_action_data)
+print(sim_actions)
 
-# print species data
-print(sim_feature_data)
-# print phylogenetic tree
-print(sim_tree)
-
+# print feature data
+print(sim_features)
 # plot phylogenetic tree
 plot(sim_tree)
 

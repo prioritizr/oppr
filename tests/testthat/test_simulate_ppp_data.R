@@ -5,86 +5,86 @@ test_that("valid arguments", {
                          0.01)
   # verify object structure
   expect_is(s, "list")
-  expect_is(s$project_data, "tbl_df")
-  expect_is(s$action_data, "tbl_df")
-  expect_is(s$feature_data, "tbl_df")
+  expect_is(s$projects, "tbl_df")
+  expect_is(s$actions, "tbl_df")
+  expect_is(s$features, "tbl_df")
   expect_is(s$tree, "phylo")
   # project data
   ## dimensions
-  expect_equal(nrow(s$project_data), 6)
-  expect_equal(ncol(s$project_data), 13)
+  expect_equal(nrow(s$projects), 6)
+  expect_equal(ncol(s$projects), 13)
   ## name column
-  expect_is(s$project_data$name, "character")
-  expect_equal(anyDuplicated(s$project_data$name), 0)
-  expect_equal(s$project_data$name[nrow(s$project_data)], "baseline_project")
-  expect_equal(s$project_data$name[-nrow(s$project_data)],
+  expect_is(s$projects$name, "character")
+  expect_equal(anyDuplicated(s$projects$name), 0)
+  expect_equal(s$projects$name[nrow(s$projects)], "baseline_project")
+  expect_equal(s$projects$name[-nrow(s$projects)],
                paste0("F", seq_len(5), "_project"))
   ## success column
-  expect_is(s$project_data$success, "numeric")
-  expect_true(all(s$project_data$success >= 0.7))
-  expect_true(all(s$project_data$success[-nrow(s$action_data)] <= 0.99))
-  expect_equal(s$project_data$success[nrow(s$action_data)], 1)
-  expect_true(all(is.finite(s$project_data$success)))
+  expect_is(s$projects$success, "numeric")
+  expect_true(all(s$projects$success >= 0.7))
+  expect_true(all(s$projects$success[-nrow(s$actions)] <= 0.99))
+  expect_equal(s$projects$success[nrow(s$actions)], 1)
+  expect_true(all(is.finite(s$projects$success)))
   ## species persistence columns
-  expect_equal(unique(vapply(s$project_data[, paste0("F", seq_len(5)),
+  expect_equal(unique(vapply(s$projects[, paste0("F", seq_len(5)),
                                             drop = FALSE], class,
                                             character(1))), "numeric")
-  expect_equal(rowSums(as.matrix(s$project_data[, paste0("F", seq_len(5)),
+  expect_equal(rowSums(as.matrix(s$projects[, paste0("F", seq_len(5)),
                                                 drop = FALSE]) > 0),
                c(rep(1, 5), 5))
-  expect_gte(min(as(as.matrix(s$project_data[-6,
+  expect_gte(min(as(as.matrix(s$projects[-6,
                                              paste0("F", seq_len(5)),
                                              drop = FALSE]), "dgCMatrix")@x),
                                              0.5)
-  expect_lte(max(as.matrix(s$project_data[-6,
+  expect_lte(max(as.matrix(s$projects[-6,
                                           paste0("F", seq_len(5)),
                                           drop = FALSE])), 0.9)
-  expect_gte(min(as.matrix(s$project_data[6,
+  expect_gte(min(as.matrix(s$projects[6,
                                           paste0("F", seq_len(5)),
                                           drop = FALSE])), 0.01)
-  expect_lte(max(as.matrix(s$project_data[6,
+  expect_lte(max(as.matrix(s$projects[6,
                                           paste0("F", seq_len(5)),
                                           drop = FALSE])), 0.4)
   ## organization data
   expect_true(all(vapply(
-    s$project_data[, grepl("action", names(s$project_data))], inherits,
+    s$projects[, grepl("action", names(s$projects))], inherits,
     logical(1), "logical")))
   expect_true(all(vapply(
-    s$project_data[, grepl("action", names(s$project_data))], sum,
+    s$projects[, grepl("action", names(s$projects))], sum,
     numeric(1)) == 1))
   # action data
   ## dimensions
-  expect_equal(ncol(s$action_data), 4)
-  expect_equal(nrow(s$action_data), 6)
+  expect_equal(ncol(s$actions), 4)
+  expect_equal(nrow(s$actions), 6)
   ## name column
-  expect_is(s$action_data$name, "character")
-  expect_equal(anyDuplicated(s$action_data$name), 0)
-  expect_equal(s$action_data$name, c(paste0("F", seq_len(5), "_action"),
+  expect_is(s$actions$name, "character")
+  expect_equal(anyDuplicated(s$actions$name), 0)
+  expect_equal(s$actions$name, c(paste0("F", seq_len(5), "_action"),
                                      "baseline_action"))
   ## locked in column
-  expect_is(s$action_data$locked_in, "logical")
-  expect_equal(sum(s$action_data$locked_in), 1L)
-  expect_true(assertthat::noNA(s$action_data$locked_in))
+  expect_is(s$actions$locked_in, "logical")
+  expect_equal(sum(s$actions$locked_in), 1L)
+  expect_true(assertthat::noNA(s$actions$locked_in))
   ## locked out column
-  expect_is(s$action_data$locked_out, "logical")
-  expect_equal(sum(s$action_data$locked_out), 1L)
-  expect_true(assertthat::noNA(s$action_data$locked_out))
+  expect_is(s$actions$locked_out, "logical")
+  expect_equal(sum(s$actions$locked_out), 1L)
+  expect_true(assertthat::noNA(s$actions$locked_out))
   ## cost column
-  expect_is(s$action_data$cost, "numeric")
-  expect_true(all(s$action_data$cost >= 0))
-  expect_true(all(is.finite(s$action_data$cost)))
+  expect_is(s$actions$cost, "numeric")
+  expect_true(all(s$actions$cost >= 0))
+  expect_true(all(is.finite(s$actions$cost)))
   # species
   ## structure
 
-  expect_equal(ncol(s$feature_data), 2)
-  expect_equal(nrow(s$feature_data), 5)
+  expect_equal(ncol(s$features), 2)
+  expect_equal(nrow(s$features), 5)
   ## name column
-  expect_is(s$feature_data$name, "character")
-  expect_equal(anyDuplicated(s$feature_data$name), 0)
-  expect_equal(sort(s$feature_data$name), paste0("F", seq_len(5)))
+  expect_is(s$features$name, "character")
+  expect_equal(anyDuplicated(s$features$name), 0)
+  expect_equal(sort(s$features$name), paste0("F", seq_len(5)))
   # tree
   ## structure
-  expect_equal(length(s$tree$tip.label), nrow(s$project_data) - 1)
+  expect_equal(length(s$tree$tip.label), nrow(s$projects) - 1)
 })
 
 test_that("invalid arguments", {

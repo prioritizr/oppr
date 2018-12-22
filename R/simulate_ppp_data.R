@@ -93,7 +93,7 @@ NULL
 #'
 #'   \describe{
 #'
-#'     \item{\code{"project_data"}}{A \code{\link[tibble]{tibble}} containing
+#'     \item{\code{"projects"}}{A \code{\link[tibble]{tibble}} containing
 #'       the data for the conservation projects. It contains the following
 #'       columns:
 #'
@@ -118,7 +118,7 @@ NULL
 #'
 #'     }}
 #'
-#'     \item{\code{"action_data"}}{A \code{\link[tibble]{tibble}} containing
+#'     \item{\code{"actions"}}{A \code{\link[tibble]{tibble}} containing
 #'       the data for the conservation actions. It contains the following
 #'       columns:
 #'
@@ -136,7 +136,7 @@ NULL
 #'
 #'     }}
 #'
-#'     \item{\code{"feature_data"}}{A \code{\link[tibble]{tibble}} containing
+#'     \item{\code{"features"}}{A \code{\link[tibble]{tibble}} containing
 #'       the data for the conservation features (i.e. species). It contains the
 #'       following columns:
 #'
@@ -238,13 +238,13 @@ simulate_ppp_data <- function(number_features, cost_mean = 100, cost_sd = 5,
                   "exceeds the total number of projects."))
 
   # create action data
-  action_data <- tibble::tibble(
+  actions <- tibble::tibble(
     name = c(paste0("F", seq_len(number_features), "_action"),
              "baseline_action"),
     cost = c(stats::rnorm(number_features, cost_mean, cost_sd), 0),
     locked_in = FALSE,
     locked_out = FALSE)
-  assertthat::assert_that(all(action_data$cost >= 0),
+  assertthat::assert_that(all(actions$cost >= 0),
   msg = paste("some projects have subzero costs, increase the argument to",
               "cost_mean and try again"))
 
@@ -252,15 +252,15 @@ simulate_ppp_data <- function(number_features, cost_mean = 100, cost_sd = 5,
   if (locked_in_proportion > 1e-10) {
     l <- sample.int(number_features, ceiling(number_features *
                                             locked_in_proportion))
-    action_data$locked_in[l] <- TRUE
+    actions$locked_in[l] <- TRUE
   }
 
   # assign locked out actions
   if (locked_out_proportion > 1e-10) {
-    l <- sample(which(!action_data$locked_in &
-                      seq_len(nrow(action_data)) != nrow(action_data)),
+    l <- sample(which(!actions$locked_in &
+                      seq_len(nrow(actions)) != nrow(actions)),
                 ceiling(number_features * locked_out_proportion))
-    action_data$locked_out[l] <- TRUE
+    actions$locked_out[l] <- TRUE
   }
 
   # phylogenetic tree
@@ -268,7 +268,7 @@ simulate_ppp_data <- function(number_features, cost_mean = 100, cost_sd = 5,
                      tip.label = paste0("F", seq_len(number_features)))
 
   # create project data
-  project_data <- tibble::tibble(
+  projects <- tibble::tibble(
     name = c(paste0("F", seq_len(number_features), "_project"),
                     "baseline_project"),
     success = c(stats::runif(number_features, success_min_probability,
@@ -284,24 +284,24 @@ simulate_ppp_data <- function(number_features, cost_mean = 100, cost_sd = 5,
   spp_prob_matrix[nrow(spp_prob_matrix), ] <-
     stats::runif(number_features, not_funded_min_persistence_probability,
                  not_funded_max_persistence_probability)
-  project_data <- cbind(project_data, as.data.frame(spp_prob_matrix))
+  projects <- cbind(projects, as.data.frame(spp_prob_matrix))
 
   ## organization data
   organization_data <- matrix(FALSE, ncol = number_features + 1,
                               nrow = number_features + 1,
-                              dimnames = list(NULL, action_data$name))
+                              dimnames = list(NULL, actions$name))
   diag(organization_data) <- TRUE
-  project_data <- cbind(project_data, as.data.frame(organization_data))
+  projects <- cbind(projects, as.data.frame(organization_data))
 
   ## feature data
-  feature_data <- tibble::tibble(
+  features <- tibble::tibble(
     name = tree$tip.label,
     weight = tree$edge.length[match(seq_along(tree$tip.label),
                                     tree$edge[, 2])])
 
   ## return result
-  list(project_data = tibble::as_tibble(project_data),
-       action_data = action_data,
-       feature_data = feature_data,
+  list(projects = tibble::as_tibble(projects),
+       actions = actions,
+       features = features,
        tree = tree)
 }

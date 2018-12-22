@@ -54,7 +54,7 @@ A \code{list} object containing the elements:
 
   \describe{
 
-    \item{\code{"project_data"}}{A \code{\link[tibble]{tibble}} containing
+    \item{\code{"projects"}}{A \code{\link[tibble]{tibble}} containing
       the data for the conservation projects. It contains the following
       columns:
 
@@ -79,7 +79,7 @@ A \code{list} object containing the elements:
 
     }}
 
-    \item{\code{"action_data"}}{A \code{\link[tibble]{tibble}} containing
+    \item{\code{"actions"}}{A \code{\link[tibble]{tibble}} containing
       the data for the conservation actions. It contains the following
       columns:
 
@@ -97,7 +97,7 @@ A \code{list} object containing the elements:
 
     }}
 
-    \item{\code{"feature_data"}}{A \code{\link[tibble]{tibble}} containing
+    \item{\code{"features"}}{A \code{\link[tibble]{tibble}} containing
       the data for the conservation features (i.e. species). It contains the
       following columns:
 
