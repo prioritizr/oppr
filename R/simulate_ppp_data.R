@@ -1,11 +1,13 @@
 #' @include internal.R
 NULL
 
-#' Simulate species prioritization data
+#' Simulate data for the 'Project Prioritization Protocol'
 #'
-#' Simulate data for species-based prioritizations.
+#' Simulate data for developing project prioritizations. Here, data are
+#' simulated such that each feature has its own conservation project,
+#' similar to species-based prioritizations (e.g. Bennett \emph{et al.} 2014).
 #'
-#' @param number_species \code{numeric} number of species.
+#' @param number_features \code{numeric} number of features.
 #'
 #' @param cost_mean \code{numeric} average cost for the actions. Defaults to
 #'   \code{100}.
@@ -20,19 +22,19 @@ NULL
 #'   projects succeeding if they are funded. Defaults to \code{0.99}.
 #'
 #' @param funded_min_persistence_probability \code{numeric} minimum probability
-#'   of the species persisting if their projects are funded and successful.
+#'   of the features persisting if their projects are funded and successful.
 #'   Defaults to \code{0.5}.
 #'
 #' @param funded_max_persistence_probability \code{numeric} maximum probability
-#'   of the species persisting if their projects are funded and successful.
+#'   of the features persisting if their projects are funded and successful.
 #'   Defaults to \code{0.9}.
 #'
 #' @param not_funded_min_persistence_probability \code{numeric} minimum
-#'   probability of the species persisting if their projects are not funded.
+#'   probability of the features persisting if their projects are not funded.
 #'   Defaults to \code{0.01}.
 #'
 #' @param not_funded_max_persistence_probability \code{numeric} maximum
-#'   probability of the species persisting if their projects are not funded.
+#'   probability of the features persisting if their projects are not funded.
 #'   Defaults to \code{0.4}.
 #'
 #' @param locked_in_proportion \code{numeric} of actions that are locked
@@ -42,15 +44,15 @@ NULL
 #'   into the solution. Defaults to \code{0}.
 #'
 #' @details The simulated data set will contain one conservation project for
-#'   each species and a "baseline" (do nothing) project to reflect species'
-#'   persistence when none of their conservation projects are not funded. Each
-#'   conservation project is associated with a single action, and no
-#'   conservation projects share any actions. Specifically, the data are
+#'   each features, and also a "baseline" (do nothing) project to reflect
+#'   features' persistence when their conservation project is not
+#'   funded. Each conservation project is associated with a single action, and
+#'   no conservation projects share any actions. Specifically, the data are
 #'   simulated as follows:
 #'
 #'   \enumerate{
 #'
-#'     \item A conservation project is created for each species, and each
+#'     \item A conservation project is created for each feature, and each
 #'       project is associated with its own single action.
 #'
 #'     \item Cost data for each action are simulated using a normal
@@ -65,25 +67,25 @@ NULL
 #'       the upper and lower bounds set as the \code{success_min_probability}
 #'       and \code{success_max_probability} arguments.
 #'
-#'     \item The probability of each species persisting if its project is funded
+#'     \item The probability of each feature persisting if its project is funded
 #'       and is successful is simulated by drawing probabilities from a uniform
 #'       distribution with the upper and lower bounds set as the
 #'       \code{funded_min_persistence_probability} and
 #'       \code{funded_max_persistence_probability} arguments.
 #'
 #'     \item An additional project is created which represents the "baseline"
-#'       (do nothing) scenario. The probability of each species persisting
+#'       (do nothing) scenario. The probability of each feature persisting
 #'       when managed under this project is simulated by drawing probabilities
 #'       from a uniform distribution with the upper and lower bounds
 #'       set as the \code{not_funded_min_persistence_probability}
 #'       and \code{not_funded_max_persistence_probability} arguments.
 #'
-#'     \item A phylogenetic tree is simulated for the species using
+#'     \item A phylogenetic tree is simulated for the features using
 #'       \code{\link[ape]{rcoal}}.
 #'
-#'     \item Species data are created from the phylogenetic tree. The
+#'     \item feature data are created from the phylogenetic tree. The
 #'       weights are calculated as the amount of evolutionary history
-#'       that has elapsed between each species and its last common ancestor.
+#'       that has elapsed between each feature and its last common ancestor.
 #'
 #'  }
 #'
@@ -102,15 +104,15 @@ NULL
 #'         \item{\code{"success"}}{\code{numeric} probability of each project
 #'           succeeding if it is funded.}
 #'
-#'         \item{\code{"S1"} ... \code{"SN"}}{\code{numeric} columns for each
-#'           species, ranging from \code{"S1"} to \code{"SN"} where \code{N}
-#'           is the number of species, indicating the enhanced probability that
-#'           each species will persist if it funded.}
+#'         \item{\code{"F1"} ... \code{"FN"}}{\code{numeric} columns for each
+#'           feature, ranging from \code{"F1"} to \code{"FN"} where \code{N}
+#'           is the number of features, indicating the enhanced probability that
+#'           each feature will persist if it funded.}
 #'
-#'         \item{\code{"S1_action"} ... \code{"SN_action"}}{\code{logical}
-#'           columns for each action, ranging from \code{"S1_action"} to
-#'           \code{"SN_action"} where \code{N} is
-#'           the number of actions (equal to the number of species in this
+#'         \item{\code{"F1_action"} ... \code{"FN_action"}}{\code{logical}
+#'           columns for each action, ranging from \code{"F1_action"} to
+#'           \code{"FN_action"} where \code{N} is
+#'           the number of actions (equal to the number of features in this
 #'           simulated data), indicating if an action is associated with a
 #'           project (\code{TRUE}) or not (\code{FALSE}).}
 #'
@@ -134,28 +136,37 @@ NULL
 #'
 #'     }}
 #'
-#'     \item{\code{"species_data"}}{A \code{\link[tibble]{tibble}} containing
-#'       the data for the species. It contains the following columns:
+#'     \item{\code{"feature_data"}}{A \code{\link[tibble]{tibble}} containing
+#'       the data for the conservation features (i.e. species). It contains the
+#'       following columns:
 #'
 #'       \describe{
 #'
-#'        \item{\code{"name"}}{\code{character} name for each species.}
+#'        \item{\code{"name"}}{\code{character} name for each feature.}
 #'
-#'         \item{\code{"weight"}}{\code{numeric} weight for each species.
-#'           For each species, this is calculated as the amount of time that
-#'           elapsed between the present and the species' last common ancestor.
+#'         \item{\code{"weight"}}{\code{numeric} weight for each feature.
+#'           For each feature, this is calculated as the amount of time that
+#'           elapsed between the present and the features' last common ancestor.
 #'           In other words, the weights are calculated as the unique amount
-#'           of evolutionary history that each species has experienced.}
+#'           of evolutionary history that each feature has experienced.}
 #'
 #'     }}
 #'
-#'    \item{"tree"}{\code{\link[ape]{phylo}} phylogenetic tree for the species.}
+#'    \item{"tree"}{\code{\link[ape]{phylo}} phylogenetic tree for the
+#'      features.}
 #'
 #'  }
 #'
+#' @references
+#' Bennett JR, Elliott G, Mellish B, Joseph LN, Tulloch AI,
+#' Probert WJ, ... & Maloney R (2014) Balancing phylogenetic diversity
+#' and species numbers in conservation prioritization, using a case study of
+#' threatened species in New Zealand. \emph{Biological Conservation},
+#' \strong{174}: 47--54.
+#'
 #' @examples
 #' # create a simulated data set
-#' s <- ppp_simulate_data(number_species = 5,
+#' s <- simulate_ppp_data(number_features = 5,
 #'                        cost_mean = 100,
 #'                        cost_sd = 5,
 #'                        success_min_probability = 0.7,
@@ -171,7 +182,7 @@ NULL
 #' print(s)
 #'
 #' @export
-simulate_spp_data <- function(number_species, cost_mean = 100, cost_sd = 5,
+simulate_ppp_data <- function(number_features, cost_mean = 100, cost_sd = 5,
                               success_min_probability = 0.7,
                               success_max_probability = 0.99,
                               funded_min_persistence_probability = 0.5,
@@ -182,8 +193,8 @@ simulate_spp_data <- function(number_species, cost_mean = 100, cost_sd = 5,
                               locked_out_proportion = 0) {
   # assert that arguments are valid
   assertthat::assert_that(
-    assertthat::is.count(number_species),
-    isTRUE(is.finite(number_species)),
+    assertthat::is.count(number_features),
+    isTRUE(is.finite(number_features)),
     assertthat::is.number(cost_mean),
     isTRUE(cost_mean > 0),
     assertthat::is.number(cost_sd),
@@ -220,17 +231,17 @@ simulate_spp_data <- function(number_species, cost_mean = 100, cost_sd = 5,
     isTRUE(locked_out_proportion >= 0),
     isTRUE(locked_out_proportion <= 1))
     assertthat::assert_that(
-      isTRUE(number_species >
-             (ceiling(number_species * locked_in_proportion) +
-             ceiling(number_species * locked_out_proportion))),
+      isTRUE(number_features >
+             (ceiling(number_features * locked_in_proportion) +
+             ceiling(number_features * locked_out_proportion))),
       msg = paste("combined number of locked in and locked out projects",
                   "exceeds the total number of projects."))
 
   # create action data
   action_data <- tibble::tibble(
-    name = c(paste0("S", seq_len(number_species), "_action"),
+    name = c(paste0("F", seq_len(number_features), "_action"),
              "baseline_action"),
-    cost = c(stats::rnorm(number_species, cost_mean, cost_sd), 0),
+    cost = c(stats::rnorm(number_features, cost_mean, cost_sd), 0),
     locked_in = FALSE,
     locked_out = FALSE)
   assertthat::assert_that(all(action_data$cost >= 0),
@@ -239,7 +250,7 @@ simulate_spp_data <- function(number_species, cost_mean = 100, cost_sd = 5,
 
   # assign locked in actions
   if (locked_in_proportion > 1e-10) {
-    l <- sample.int(number_species, ceiling(number_species *
+    l <- sample.int(number_features, ceiling(number_features *
                                             locked_in_proportion))
     action_data$locked_in[l] <- TRUE
   }
@@ -248,42 +259,42 @@ simulate_spp_data <- function(number_species, cost_mean = 100, cost_sd = 5,
   if (locked_out_proportion > 1e-10) {
     l <- sample(which(!action_data$locked_in &
                       seq_len(nrow(action_data)) != nrow(action_data)),
-                ceiling(number_species * locked_out_proportion))
+                ceiling(number_features * locked_out_proportion))
     action_data$locked_out[l] <- TRUE
   }
 
   # phylogenetic tree
-  tree <- ape::rcoal(n = number_species,
-                     tip.label = paste0("S", seq_len(number_species)))
+  tree <- ape::rcoal(n = number_features,
+                     tip.label = paste0("F", seq_len(number_features)))
 
   # create project data
   project_data <- tibble::tibble(
-    name = c(paste0("S", seq_len(number_species), "_project"),
+    name = c(paste0("F", seq_len(number_features), "_project"),
                     "baseline_project"),
-    success = c(stats::runif(number_species, success_min_probability,
+    success = c(stats::runif(number_features, success_min_probability,
                            success_max_probability), 1))
 
-  ## species persistence probabilities
-  spp_prob_matrix <- matrix(0, ncol = number_species,
-                            nrow = number_species + 1,
+  ## feature persistence probabilities
+  spp_prob_matrix <- matrix(0, ncol = number_features,
+                            nrow = number_features + 1,
                             dimnames = list(NULL, sort(tree$tip.label)))
-   diag(spp_prob_matrix) <- stats::runif(number_species,
+   diag(spp_prob_matrix) <- stats::runif(number_features,
                                          funded_min_persistence_probability,
                                          funded_max_persistence_probability)
   spp_prob_matrix[nrow(spp_prob_matrix), ] <-
-    stats::runif(number_species, not_funded_min_persistence_probability,
+    stats::runif(number_features, not_funded_min_persistence_probability,
                  not_funded_max_persistence_probability)
   project_data <- cbind(project_data, as.data.frame(spp_prob_matrix))
 
   ## organization data
-  organization_data <- matrix(FALSE, ncol = number_species + 1,
-                              nrow = number_species + 1,
+  organization_data <- matrix(FALSE, ncol = number_features + 1,
+                              nrow = number_features + 1,
                               dimnames = list(NULL, action_data$name))
   diag(organization_data) <- TRUE
   project_data <- cbind(project_data, as.data.frame(organization_data))
 
-  ## species data
-  species_data <- tibble::tibble(
+  ## feature data
+  feature_data <- tibble::tibble(
     name = tree$tip.label,
     weight = tree$edge.length[match(seq_along(tree$tip.label),
                                     tree$edge[, 2])])
@@ -291,6 +302,6 @@ simulate_spp_data <- function(number_species, cost_mean = 100, cost_sd = 5,
   ## return result
   list(project_data = tibble::as_tibble(project_data),
        action_data = action_data,
-       species_data = species_data,
+       feature_data = feature_data,
        tree = tree)
 }

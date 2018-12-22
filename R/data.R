@@ -54,7 +54,7 @@ NULL
 #'
 #'     }}
 #'
-#'   \item{\code{sim_species_data}}{A \code{\link[tibble]{tibble}} containing
+#'   \item{\code{sim_feature_data}}{A \code{\link[tibble]{tibble}} containing
 #'     data for six simulated species. Each row corresponds to a
 #'     different species and each column contains information about the
 #'     species. This table contains the following columns:
@@ -70,12 +70,12 @@ NULL
 #'     \item{tree}{\code{\link[ape]{phylo}} phylogenetic tree for the species.}
 #'
 #' }
-#' @aliases sim_project_data sim_action_data sim_organization_data sim_tree sim_species_data
+#' @aliases sim_project_data sim_action_data sim_tree sim_feature_data
 #'
 #' @format \describe{
 #'   \item{sim_project_data}{\code{\link[tibble]{tibble}} object.}
 #'   \item{sim_action_data}{\code{\link[tibble]{tibble}} object.}
-#'   \item{sim_species_data}{\code{\link[tibble]{tibble}} object.}
+#'   \item{sim_feature_data}{\code{\link[tibble]{tibble}} object.}
 #'   \item{sim_tree}{\code{\link[ape]{phylo}} object.}
 #' }
 #'
@@ -83,7 +83,7 @@ NULL
 #'
 #' @examples
 #' # load data
-#' data(sim_project_data, sim_action_data, sim_species_data, sim_tree)
+#' data(sim_project_data, sim_action_data, sim_feature_data, sim_tree)
 #'
 #' # print project data
 #' print(sim_project_data)
@@ -92,7 +92,7 @@ NULL
 #' print(sim_action_data)
 #'
 #' # print species data
-#' print(sim_species_data)
+#' print(sim_feature_data)
 #
 #' # print phylogenetic tree
 #' print(sim_tree)
@@ -112,7 +112,7 @@ NULL
 "sim_action_data"
 
 #' @rdname sim_data
-#' @usage data(sim_species_data)
+#' @usage data(sim_feature_data)
 "sim_action_data"
 
 #' @rdname sim_data

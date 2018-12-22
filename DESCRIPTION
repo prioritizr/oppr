@@ -80,7 +80,7 @@ Collate:
     'print.R'
     'problem.R'
     'show.R'
-    'simulate_spp_data.R'
+    'simulate_ppp_data.R'
     'solvers.R'
     'star_phylogeny.R'
     'targets.R'
