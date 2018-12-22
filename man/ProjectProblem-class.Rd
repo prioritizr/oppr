@@ -96,9 +96,9 @@ experts should use this class directly.}
 
 \code{project_success_probabilities()}
 
-\code{feature_persistences_for_funding_projects()}
+\code{pf_matrix()}
 
-\code{project_action_membership()}
+\code{pa_matrix()}
 
 \code{x$add_objective(obj)}
 
@@ -195,11 +195,11 @@ experts should use this class directly.}
 \item{project_success_probabilities}{\code{numeric} probability that
   each project will succeed.}
 
-\item{feature_persistences_for_funding_projects}{
+\item{pf_matrix}{
   \code{\link[Matrix]{dgCMatrix-class}} object denoting the enhanced
   probability that features will persist if different projects are funded.}
 
-\item{project_action_membership}{
+\item{pa_matrix}{
   \code{\link[Matrix]{dgCMatrix-class}} object indicating which actions are
   associated with which projects.}
 
