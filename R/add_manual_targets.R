@@ -97,6 +97,7 @@ methods::setMethod(
     validate_targets <- function(targets) {
       assertthat::assert_that(
         inherits(targets, "tbl_df"),
+        nrow(targets) > 0, ncol(targets) > 0,
         assertthat::has_name(targets, "feature"),
         assertthat::has_name(targets, "target"),
         assertthat::has_name(targets, "type"),
@@ -156,9 +157,10 @@ methods::setMethod(
        missing_features <- setdiff(feature_names,
                                    as.character(targets$feature))
        if (length(missing_features) > 0) {
-         targets <- rbind(targets, tibble::tbl_df(feature = missing_features,
+         targets <- rbind(targets, tibble::tibble(feature = missing_features,
                                                   type = "absolute",
                                                   sense = ">=", target = -1))
+         targets <- tibble::as.tibble(targets)
        }
        # convert feature names to indices
        targets$feature <- match(targets$feature, feature_names)
@@ -167,8 +169,7 @@ methods::setMethod(
        relative_rows <- which(targets$type == "relative")
        for (i in seq_along(relative_rows)) {
           feature_id <- targets$feature[[relative_rows[[i]]]]
-          abund_mtx <- as.matrix(data.frame(feature_id, zone_id))
-          targets$value[relative_rows[i]] <- max_persistences *
+          targets$value[relative_rows[i]] <- max_persistences[feature_id] *
                                              targets$target[relative_rows[i]]
        }
        # return tibble
