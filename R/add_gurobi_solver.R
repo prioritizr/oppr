@@ -16,6 +16,24 @@ NULL
 #'   value of 0.01 will result in the optimizer stopping when the difference
 #'   between the bounds is 1 percent of the upper bound.
 #'
+#' @param number_solutions \code{integer} number of solutions desired.
+#'   Defaults to 1. Note that the number of returned solutions can sometimes
+#'   be less than the argument to \code{number_solutions} depending on the
+#'   argument to \code{solution_pool_method}, for example if 100
+#'   solutions are requested but only 10 unique solutions exist, then only 10
+#'   solutions will be returned.
+#'
+#' @param solution_pool_method \code{numeric} search method identifier that
+#'   determines how multiple solutions should be generated. Available search
+#'   modes for generating a portfolio of solutions include: \code{0}
+#'   recording all solutions identified whilst trying to find
+#'   a solution that is within the specified optimality gap, \code{1} finding
+#'   one solution within the optimality gap and a number of additional
+#'   solutions that are of any level of quality (such that the total number of
+#'   solutions is equal to \code{number_solutions}), and \code{2} finding a
+#'   specified number of solutions that are nearest to optimality. For more
+#'   information, see the \emph{Gurobi} manual (i.e. \url{http://www.gurobi.com/documentation/8.0/refman/poolsearchmode.html#parameter:PoolSearchMode}). Defaults to 0.
+#'
 #' @param time_limit \code{numeric} time limit in seconds to run the optimizer.
 #'   The solver will return the current best solution when this time limit is
 #'   exceeded.
@@ -64,13 +82,21 @@ methods::setClass("GurobiSolver", contains = "Solver")
 
 #' @rdname add_gurobi_solver
 #' @export
-add_gurobi_solver <- function(x, gap = 0.1, time_limit = .Machine$integer.max,
+add_gurobi_solver <- function(x, gap = 0.1, number_solutions = 1,
+                              solution_pool_method = 0,
+                              time_limit = .Machine$integer.max,
                               presolve = 2, threads = 1, first_feasible = 0,
                               verbose = TRUE) {
   # assert that arguments are valid
   assertthat::assert_that(inherits(x, "ProjectProblem"),
                           isTRUE(all(is.finite(gap))),
-                          assertthat::is.scalar(gap),
+                          assertthat::is.number(gap),
+                          assertthat::is.count(number_solutions),
+                          assertthat::noNA(number_solutions),
+                          assertthat::is.count(solution_pool_method + 1),
+                          assertthat::noNA(solution_pool_method),
+                          solution_pool_method >= 0,
+                          solution_pool_method <= 2,
                           isTRUE(gap >= 0), isTRUE(all(is.finite(time_limit))),
                           assertthat::is.count(time_limit),
                           isTRUE(all(is.finite(presolve))),
@@ -78,7 +104,7 @@ add_gurobi_solver <- function(x, gap = 0.1, time_limit = .Machine$integer.max,
                           isTRUE(all(is.finite(threads))),
                           assertthat::is.count(threads),
                           isTRUE(threads <= parallel::detectCores(TRUE)),
-                          assertthat::is.scalar(first_feasible),
+                          assertthat::is.number(first_feasible),
                           isTRUE(first_feasible == 1 | first_feasible == 0),
                           assertthat::is.flag(verbose),
                           requireNamespace("gurobi", quietly = TRUE))
@@ -89,6 +115,12 @@ add_gurobi_solver <- function(x, gap = 0.1, time_limit = .Machine$integer.max,
     name = "Gurobi",
     parameters = parameters(
       numeric_parameter("gap", gap, lower_limit = 0),
+      integer_parameter("number_solutions", number_solutions, lower_limit = 0L,
+                        upper_limit = as.integer(.Machine$integer.max)),
+      integer_parameter("solution_pool_method", solution_pool_method,
+                        lower_limit = 0L, upper_limit = 2L),
+      integer_parameter("time_limit", time_limit, lower_limit = -1L,
+                        upper_limit = as.integer(.Machine$integer.max)),
       integer_parameter("time_limit", time_limit, lower_limit = -1L,
                         upper_limit = as.integer(.Machine$integer.max)),
       integer_parameter("presolve", presolve, lower_limit = 0L,
@@ -108,42 +140,42 @@ add_gurobi_solver <- function(x, gap = 0.1, time_limit = .Machine$integer.max,
         sense = x$sense(),
         lb = x$lb(),
         ub = x$ub())
+      # add pwl objective if present
+      if (!identical(x$pwlobj(), list()))
+        model$pwlobj <- x$pwlobj()
       # create parameters
       p <- list(LogToConsole = as.numeric(self$parameters$get("verbose")),
                 Presolve = self$parameters$get("presolve"),
                 MIPGap = self$parameters$get("gap"),
                 TimeLimit = self$parameters$get("time_limit"),
                 Threads = self$parameters$get("threads"),
-                SolutionLimit = self$parameters$get("first_feasible"))
+                LogFile = "",
+                SolutionLimit = self$parameters$get("first_feasible"),
+                PoolSolutions = self$parameters$get("number_solutions"),
+                PoolSearchMode = self$parameters$get("solution_pool_method"))
       if (p$SolutionLimit == 0)
         p$SolutionLimit <- NULL
-      # add extra parameters from portfolio if needed
-      p2 <- list(...)
-      if (length(p2) > 0)
-        p <- append(p, p2)
       # solve problem
       x <- gurobi::gurobi(model = model, params = p)
       # round binary variables because default precision is 1e-5
       b <- model$vtype == "B"
       if (is.numeric(x$x))
         x$x[b] <- round(x$x[b])
-      # remove log
-      if (file.exists("gurobi.log")) unlink("gurobi.log")
-      # extract solutions
-      out <- list(x = x$x, objective = x$objval, status = x$status,
-                 runtime = x$runtime)
-      # add pool if required
-      if (!is.null(p$PoolSearchMode) && is.numeric(x$x) &&
-          isTRUE(length(x$pool) > 1)) {
-        out$pool <- x$pool[-1]
-        for (i in seq_len(length(out$pool))) {
-          out$pool[[i]]$xn[b] <- round(out$pool[[i]]$xn[b])
-          out$pool[[i]]$status <- ifelse(abs(out$pool[[i]]$objval -
-                                             x$objval) < 1e-5,
-                                         "OPTIMAL", "SUBOPTIMAL")
-        }
+      # extract solution
+      out <- list(list(x = x$x, objective = x$objval, status = x$status,
+                       runtime = x$runtime))
+      # add solutions from solution pool if required
+      if (is.numeric(x$x) && isTRUE(length(x$pool) > 1) &&
+          isTRUE(number_solutions > 1)) {
+        out <- append(out,
+          lapply(x$pool, function(z)
+            list(x = z$xn, objective = z$objval,
+                 status = ifelse((x$status == "OPTIMAL") &&
+                                 (abs(x$objval - z$objval) < 1e-5),
+                                 "OPTIMAL", "SUBOPTIMAL"),
+                 runtime = x$runtime)))
       }
       # return solution
-      return(out)
+      out
     }))
 }

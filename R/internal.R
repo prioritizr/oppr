@@ -170,3 +170,40 @@ verify_that <- function(..., env = parent.frame()) {
   warning(res)
   FALSE
 }
+
+#' Any solvers installed?
+#'
+#' Test if any solvers are installed.
+#'
+#' @details This function tests if any of the following packages are installed:
+#'   \pkg{Rsymphony}, \pkg{lpsymphony}, \pkg{gurobi}.
+#'
+#' @return \code{logical} value indicating if any solvers are installed.
+#'
+#' @noRd
+any_solvers_installed <- function() {
+  !is.null(default_solver_name())
+}
+
+#' Default solver name
+#'
+#' This function returns the name of the default solver. If no solvers are
+#' detected on the system, then a \code{NULL} object is returned.
+#'
+#' @details This function tests if any of the following packages are installed:
+#'   \pkg{Rsymphony}, \pkg{lpsymphony}, \pkg{gurobi}.
+#'
+#' @return \code{character} indicating the name of the default solver.
+#'
+#' @noRd
+default_solver_name <- function() {
+  if (requireNamespace("gurobi", quietly = TRUE)) {
+    return("gurobi")
+  } else if (requireNamespace("Rsymphony", quietly = TRUE)) {
+    return("Rsymphony")
+  } else if (requireNamespace("lpsymphony", quietly = TRUE)) {
+    return("lpsymphony")
+  } else {
+    return(NULL)
+  }
+}

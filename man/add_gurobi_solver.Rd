@@ -4,7 +4,8 @@
 \alias{add_gurobi_solver}
 \title{Add a \pkg{Gurobi} solver}
 \usage{
-add_gurobi_solver(x, gap = 0.1, time_limit = .Machine$integer.max,
+add_gurobi_solver(x, gap = 0.1, number_solutions = 1,
+  solution_pool_method = 0, time_limit = .Machine$integer.max,
   presolve = 2, threads = 1, first_feasible = 0, verbose = TRUE)
 }
 \arguments{
@@ -16,6 +17,24 @@ terminate when the difference between the upper and lower objective
 function bounds is less than the gap times the upper bound. For example, a
 value of 0.01 will result in the optimizer stopping when the difference
 between the bounds is 1 percent of the upper bound.}
+
+\item{number_solutions}{\code{integer} number of solutions desired.
+Defaults to 1. Note that the number of returned solutions can sometimes
+be less than the argument to \code{number_solutions} depending on the
+argument to \code{solution_pool_method}, for example if 100
+solutions are requested but only 10 unique solutions exist, then only 10
+solutions will be returned.}
+
+\item{solution_pool_method}{\code{numeric} search method identifier that
+determines how multiple solutions should be generated. Available search
+modes for generating a portfolio of solutions include: \code{0}
+recording all solutions identified whilst trying to find
+a solution that is within the specified optimality gap, \code{1} finding
+one solution within the optimality gap and a number of additional
+solutions that are of any level of quality (such that the total number of
+solutions is equal to \code{number_solutions}), and \code{2} finding a
+specified number of solutions that are nearest to optimality. For more
+information, see the \emph{Gurobi} manual (i.e. \url{http://www.gurobi.com/documentation/8.0/refman/poolsearchmode.html#parameter:PoolSearchMode}). Defaults to 0.}
 
 \item{time_limit}{\code{numeric} time limit in seconds to run the optimizer.
 The solver will return the current best solution when this time limit is

@@ -8,8 +8,7 @@ bool rcpp_apply_decisions(SEXP x, std::string vtype, double default_lower,
   // determine how many variables to assign decisions to based on formulation
   std::size_t n = (ptr->_number_of_actions) +
                   (ptr->_number_of_projects) +
-                  (ptr->_number_of_projects * ptr->_number_of_features) +
-                  (ptr->_number_of_features);
+                  (ptr->_number_of_projects * ptr->_number_of_features);
   // assign decisions
   for (std::size_t i = 0; i < n; ++i)
     ptr->_vtype.push_back(vtype);

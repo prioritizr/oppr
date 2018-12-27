@@ -36,8 +36,6 @@ bool rcpp_add_raw_data(SEXP x, arma::sp_mat pa_matrix, arma::sp_mat pf_matrix,
   for (std::size_t i = 0;
        i < ((ptr->_number_of_features) *(ptr->_number_of_projects)); ++i)
     ptr->_col_ids.push_back("fj");
-  for (std::size_t i = 0; i < (ptr->_number_of_features); ++i)
-    ptr->_col_ids.push_back("f");
 
   //// constraints to ensure that projects can only be funded if all of their
   //// actions are funded
@@ -105,15 +103,6 @@ bool rcpp_add_raw_data(SEXP x, arma::sp_mat pa_matrix, arma::sp_mat pf_matrix,
                             pitr.row());
         ptr->_A_x.push_back(*pitr);
     }
-    ptr->_A_i.push_back(r);
-    ptr->_A_j.push_back(
-      (ptr->_number_of_actions) +
-      (ptr->_number_of_projects) +
-      ((ptr->_number_of_features) * (ptr->_number_of_projects)) +
-      f);
-    ptr->_A_x.push_back(-1.0);
-    ptr->_sense.push_back("=");
-    ptr->_rhs.push_back(0.0);
     ptr->_row_ids.push_back("c4");
   }
 
@@ -148,15 +137,7 @@ bool rcpp_add_raw_data(SEXP x, arma::sp_mat pa_matrix, arma::sp_mat pf_matrix,
           ptr->_A_x.push_back(std::log(1.0 - (*pitr)));
         }
       }
-      ptr->_A_i.push_back(r);
-      ptr->_A_j.push_back(
-        (ptr->_number_of_actions) +
-        (ptr->_number_of_projects) +
-        (ptr->_number_of_features * ptr->_number_of_projects) +
-         *bitr);
-      ptr->_A_x.push_back(-1.0);
-      ptr->_sense.push_back("=");
-      ptr->_rhs.push_back(0.0);
+      ptr->_row_ids.push_back("c5");
 
       /// apply piecewise linear approximation constraints
       /// calculate extinction probabilities for each spp and project

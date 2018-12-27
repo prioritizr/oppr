@@ -41,13 +41,13 @@ add_lpsymphony_solver <- function(x, gap = 0.1, time_limit = -1,
   # assert that arguments are valid
   assertthat::assert_that(inherits(x, "ProjectProblem"),
                           isTRUE(all(is.finite(gap))),
-                          assertthat::is.scalar(gap),
+                          assertthat::is.number(gap),
                           isTRUE(gap >= 0), isTRUE(all(is.finite(time_limit))),
-                          assertthat::is.scalar(time_limit),
+                          assertthat::is.number(time_limit),
                           assertthat::is.count(time_limit) || isTRUE(time_limit
                             == -1),
                           assertthat::is.flag(verbose),
-                          assertthat::is.scalar(first_feasible),
+                          assertthat::is.number(first_feasible),
                           isTRUE(first_feasible == 1 || isTRUE(first_feasible
                             == 0)),
                           requireNamespace("lpsymphony", quietly = TRUE))
@@ -68,6 +68,8 @@ add_lpsymphony_solver <- function(x, gap = 0.1, time_limit = -1,
       binary_parameter("first_feasible", first_feasible),
       binary_parameter("verbose", verbose)),
     solve = function(self, x) {
+      assertthat::assert_that(!identical(x$pwlobj(), list()),
+        msg = "gurobi solver is required to solve problems with this objective")
       model <- list(
         obj = x$obj(),
         mat = as.matrix(x$A()),
@@ -92,9 +94,9 @@ add_lpsymphony_solver <- function(x, gap = 0.1, time_limit = -1,
       if (is.null(s$solution) ||
           names(s$status) %in% c("TM_NO_SOLUTION", "PREP_NO_SOLUTION"))
         return(NULL)
-      return(list(x = s$solution, objective = s$objval,
-                  status = as.character(s$status),
-                  runtime = as.double(end_time - start_time,
-                                      format = "seconds")))
+      list(list(x = s$solution, objective = s$objval,
+                status = as.character(s$status),
+                runtime = as.double(end_time - start_time,
+                                    format = "seconds")))
     }))
 }

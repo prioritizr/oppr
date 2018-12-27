@@ -82,7 +82,8 @@ methods::setMethod(
       a <- add_default_solver(a)
     # compile and solve optimisation problem
     opt <- compile.ProjectProblem(a, ...)
-    sol <- a$portfolio$run(opt, a$solver)
+    sol <- a$solver$solve(opt)
+    o1 <<- sol
     # check that solution is valid
     if (is.null(sol) || is.null(sol[[1]]$x)) {
       stop("project prioritization problem is infeasible")
@@ -90,7 +91,7 @@ methods::setMethod(
     ## format solutions
     # extract actions
     action_status <- lapply(sol,
-      function(x) matrix(x[[1]][seq_len(a$number_of_actions)], nrow = 1))
+      function(x) matrix(x[[1]][seq_len(a$number_of_actions())], nrow = 1))
     if (length(action_status) == 1) {
       action_status <- action_status[[1]]
     } else {
@@ -108,7 +109,7 @@ methods::setMethod(
     ## add solution columns
     s <- tibble::as.tibble(as.data.frame(action_status))
     names(s) <- a$action_names()
-    out <- tibble::as.tibble(rbind(out, s))
+    out <- tibble::as.tibble(cbind(out, s))
 
     # return result
     out
