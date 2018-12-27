@@ -1,5 +1,4 @@
-
- #' @include internal.R pproto.R ProjectProblem-proto.R
+#' @include internal.R pproto.R ProjectProblem-proto.R
 NULL
 
 #' Add absolute targets
