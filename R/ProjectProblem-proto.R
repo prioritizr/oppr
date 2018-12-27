@@ -87,6 +87,8 @@ NULL
 #'
 #' \code{feature_names()}
 #'
+#' \code{feature_phylogeny()}
+#'
 #' \code{action_costs()}
 #'
 #' \code{project_success_probabilities()}
@@ -180,6 +182,8 @@ NULL
 #' \item{project_names}{\code{character} names of projects in the problem.}
 #'
 #' \item{feature_names}{\code{character} names of features in the problem.}
+#'
+#' \item{feature_phylogeny}{\code[ape]{phylo} phylogenetic tree object.}
 #'
 #' \item{action_costs}{\code{numeric} costs for each action.}
 #'
@@ -322,6 +326,11 @@ ProjectProblem <- pproto(
   },
   feature_names = function(self) {
     as.character(self$data$features[[self$data$feature_name_column]])
+  },
+  feature_phylogeny = function(self) {
+    if (is.Waiver(self$objective))
+      stop("problem is missing objective")
+    self$objective$feature_phylogeny()
   },
   action_costs = function(self) {
     setNames(self$data$actions[[self$data$action_cost_column]],

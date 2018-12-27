@@ -25,7 +25,11 @@ NULL
 #'   binary (\code{"B"}), semi-continuous (\code{"S"}), or continuous
 #'   (\code{"C"})}
 #'
-#' \item{obj}{\code{numeric} vector specifying the objective function.}
+#' \item{obj}{\code{numeric} vector defining the linear components of the
+#'   objective function.}
+#'
+#' \item{pwlobj}{\code{list} object defining the piece-wise linear components
+#'   of the objective function.}
 #'
 #' \item{A}{\code{\link[Matrix]{dgCMatrix-class}} matrix object defining the
 #'   problem matrix.}
@@ -55,7 +59,7 @@ NULL
 #'
 #' @name OptimizationProblem-methods
 #'
-#' @aliases nrow ncol ncell modelsense vtype obj A rhs sense lb ub col_ids row_ids get_data ncell,OptimizationProblem-method A,OptimizationProblem-method col_ids,OptimizationProblem-method lb,OptimizationProblem-method modelsense,OptimizationProblem-method ncol,OptimizationProblem-method nrow,OptimizationProblem-method obj,OptimizationProblem-method rhs,OptimizationProblem-method row_ids,OptimizationProblem-method sense,OptimizationProblem-method ub,OptimizationProblem-method vtype,OptimizationProblem-method get_data,OptimizationProblem-method
+#' @aliases nrow ncol ncell modelsense vtype obj pwlobj A rhs sense lb ub col_ids row_ids get_data ncell,OptimizationProblem-method A,OptimizationProblem-method col_ids,OptimizationProblem-method lb,OptimizationProblem-method modelsense,OptimizationProblem-method ncol,OptimizationProblem-method nrow,OptimizationProblem-method obj,OptimizationProblem-method pwlobj,OptimizationProblem-method rhs,OptimizationProblem-method row_ids,OptimizationProblem-method sense,OptimizationProblem-method ub,OptimizationProblem-method vtype,OptimizationProblem-method get_data,OptimizationProblem-method
 NULL
 
 #' @name OptimizationProblem-methods
@@ -151,6 +155,22 @@ methods::setGeneric("obj", function(x) standardGeneric("obj"))
 #'
 #' @usage \S4method{obj}{OptimizationProblem}(x)
 methods::setMethod("obj", "OptimizationProblem", function(x) x$obj())
+
+#' @name OptimizationProblem-methods
+#'
+#' @rdname OptimizationProblem-methods
+#'
+#' @exportMethod pwlobj
+#'
+#' @usage pwlobj(x)
+methods::setGeneric("pwlobj", function(x) standardGeneric("pwlobj"))
+
+#' @name OptimizationProblem-methods
+#'
+#' @rdname OptimizationProblem-methods
+#'
+#' @usage \S4method{pwlobj}{OptimizationProblem}(x)
+methods::setMethod("pwlobj", "OptimizationProblem", function(x) x$pwlobj())
 
 #' @name OptimizationProblem-methods
 #'

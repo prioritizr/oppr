@@ -151,6 +151,17 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// rcpp_get_optimization_problem_pwlobj
+Rcpp::List rcpp_get_optimization_problem_pwlobj(SEXP x);
+RcppExport SEXP _ppr_rcpp_get_optimization_problem_pwlobj(SEXP xSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_get_optimization_problem_pwlobj(x));
+    return rcpp_result_gen;
+END_RCPP
+}
 // rcpp_get_optimization_problem_rhs
 std::vector<double> rcpp_get_optimization_problem_rhs(SEXP x);
 RcppExport SEXP _ppr_rcpp_get_optimization_problem_rhs(SEXP xSEXP) {

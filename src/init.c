@@ -23,6 +23,7 @@ extern SEXP _ppr_rcpp_get_optimization_problem_number_of_actions(SEXP);
 extern SEXP _ppr_rcpp_get_optimization_problem_number_of_features(SEXP);
 extern SEXP _ppr_rcpp_get_optimization_problem_number_of_projects(SEXP);
 extern SEXP _ppr_rcpp_get_optimization_problem_obj(SEXP);
+extern SEXP _ppr_rcpp_get_optimization_problem_pwlobj(SEXP);
 extern SEXP _ppr_rcpp_get_optimization_problem_rhs(SEXP);
 extern SEXP _ppr_rcpp_get_optimization_problem_row_ids(SEXP);
 extern SEXP _ppr_rcpp_get_optimization_problem_sense(SEXP);
@@ -48,6 +49,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_ppr_rcpp_get_optimization_problem_number_of_features", (DL_FUNC) &_ppr_rcpp_get_optimization_problem_number_of_features, 1},
     {"_ppr_rcpp_get_optimization_problem_number_of_projects", (DL_FUNC) &_ppr_rcpp_get_optimization_problem_number_of_projects, 1},
     {"_ppr_rcpp_get_optimization_problem_obj",                (DL_FUNC) &_ppr_rcpp_get_optimization_problem_obj,                1},
+    {"_ppr_rcpp_get_optimization_problem_pwlobj",             (DL_FUNC) &_ppr_rcpp_get_optimization_problem_pwlobj,             1},
     {"_ppr_rcpp_get_optimization_problem_rhs",                (DL_FUNC) &_ppr_rcpp_get_optimization_problem_rhs,                1},
     {"_ppr_rcpp_get_optimization_problem_row_ids",            (DL_FUNC) &_ppr_rcpp_get_optimization_problem_row_ids,            1},
     {"_ppr_rcpp_get_optimization_problem_sense",              (DL_FUNC) &_ppr_rcpp_get_optimization_problem_sense,              1},

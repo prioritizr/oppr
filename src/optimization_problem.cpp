@@ -5,8 +5,8 @@ SEXP rcpp_new_optimization_problem(std::size_t nrow = 1000000,
                                    std::size_t ncol = 1000000,
                                    std::size_t ncell = 100000) {
   OPTIMIZATIONPROBLEM* x = new OPTIMIZATIONPROBLEM(nrow, ncol, ncell);
-  Rcpp::XPtr<OPTIMIZATIONPROBLEM> ptr = Rcpp::XPtr<OPTIMIZATIONPROBLEM>(x,
-                                                                        true);
+  Rcpp::XPtr<OPTIMIZATIONPROBLEM> ptr =
+    Rcpp::XPtr<OPTIMIZATIONPROBLEM>(x, true);
   return(ptr);
 }
 
@@ -23,6 +23,7 @@ SEXP rcpp_predefined_optimization_problem(Rcpp::List l) {
   std::vector<std::size_t> A_j = Rcpp::as<std::vector<std::size_t>>(l["A_j"]);
   std::vector<double> A_x = Rcpp::as<std::vector<double>>(l["A_x"]);
   std::vector<double> obj = Rcpp::as<std::vector<double>>(l["obj"]);
+  Rcpp::List pwlobj = Rcpp::as<Rcpp::List>(l["pwlobj"]);
   std::vector<double> lb = Rcpp::as<std::vector<double>>(l["lb"]);
   std::vector<double> ub = Rcpp::as<std::vector<double>>(l["ub"]);
   std::vector<double> rhs = Rcpp::as<std::vector<double>>(l["rhs"]);
@@ -36,9 +37,9 @@ SEXP rcpp_predefined_optimization_problem(Rcpp::List l) {
     Rcpp::as<std::vector<std::string>>(l["col_ids"]);
   OPTIMIZATIONPROBLEM* x = new OPTIMIZATIONPROBLEM(modelsense,
    number_of_projects, number_of_actions, number_of_features,
-   A_i, A_j, A_x, obj, lb, ub, rhs, sense, vtype, row_ids, col_ids);
-  Rcpp::XPtr<OPTIMIZATIONPROBLEM> ptr = Rcpp::XPtr<OPTIMIZATIONPROBLEM>(x,
-                                                                        true);
+   A_i, A_j, A_x, obj, pwlobj, lb, ub, rhs, sense, vtype, row_ids, col_ids);
+  Rcpp::XPtr<OPTIMIZATIONPROBLEM> ptr =
+    Rcpp::XPtr<OPTIMIZATIONPROBLEM>(x, true);
   return(ptr);
 }
 
@@ -59,6 +60,7 @@ Rcpp::List rcpp_optimization_problem_as_list(SEXP x) {
                                              ptr->_A_j.end()),
     Rcpp::Named("A_x") = ptr->_A_x,
     Rcpp::Named("obj") = ptr->_obj,
+    Rcpp::Named("pwlobj") = ptr->_pwlobj,
     Rcpp::Named("lb") = ptr->_lb,
     Rcpp::Named("ub") = ptr->_ub,
     Rcpp::Named("rhs") = ptr->_rhs,
@@ -116,6 +118,11 @@ std::vector<std::string> rcpp_get_optimization_problem_vtype(SEXP x) {
 // [[Rcpp::export]]
 std::vector<double> rcpp_get_optimization_problem_obj(SEXP x) {
   return(Rcpp::as<Rcpp::XPtr<OPTIMIZATIONPROBLEM>>(x)->_obj);
+}
+
+// [[Rcpp::export]]
+Rcpp::List rcpp_get_optimization_problem_pwlobj(SEXP x) {
+  return(Rcpp::as<Rcpp::XPtr<OPTIMIZATIONPROBLEM>>(x)->_pwlobj);
 }
 
 // [[Rcpp::export]]

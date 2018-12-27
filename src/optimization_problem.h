@@ -31,6 +31,7 @@ class OPTIMIZATIONPROBLEM
                         std::vector<std::size_t> A_j,
                         std::vector<double> A_x,
                         std::vector<double> obj,
+                        Rcpp::List pwlobj,
                         std::vector<double> lb,
                         std::vector<double> ub,
                         std::vector<double> rhs,
@@ -46,6 +47,7 @@ class OPTIMIZATIONPROBLEM
                         _A_j(A_j),
                         _A_x(A_x),
                         _obj(obj),
+                        _pwlobj(pwlobj),
                         _lb(lb),
                         _ub(ub),
                         _rhs(rhs),
@@ -66,7 +68,9 @@ class OPTIMIZATIONPROBLEM
     std::vector<std::size_t> _A_i;
     std::vector<std::size_t> _A_j;
     std::vector<double> _A_x;
+
     std::vector<double> _obj;
+    Rcpp::List _pwlobj;
 
     std::vector<double> _lb;
     std::vector<double> _ub;

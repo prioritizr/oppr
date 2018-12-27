@@ -40,6 +40,8 @@ problem. Data are stored in memory and accessed using an external pointer.
 
 \code{x$obj()}
 
+\code{x$pwlobj()}
+
 \code{x$A()}
 
 \code{x$rhs()}
@@ -90,7 +92,11 @@ problem. Data are stored in memory and accessed using an external pointer.
 
 \item{vtype}{\code{character} vector of variable types.}
 
-\item{obj}{\code{numeric} vector of objective function.}
+\item{obj}{\code{numeric} vector containing the linear components of the
+  objective function.}
+
+\item{pwlobj}{\code{list} object containing the piece-wise linear components
+  of the objective function.}
 
 \item{A}{\code{\link[Matrix]{dgCMatrix-class}} model matrix }
 

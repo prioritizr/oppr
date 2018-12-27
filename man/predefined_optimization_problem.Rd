@@ -34,7 +34,11 @@ The argument to \code{x} must be a list that contains the following
 
   \item{A_x}{\code{numeric} values for problem matrix.}
 
-  \item{obj}{\code{numeric} objective function values.}
+  \item{obj}{\code{numeric} vector defining the linear components of the
+    objective function.}
+
+  \item{pwlobj}{\code{list} object defining the piece-wise linear components
+     of the objective function.}
 
   \item{lb}{\code{numeric} lower bound for decision values.}
 
@@ -62,7 +66,7 @@ l <- list(modelsense = "min", number_of_projects = 2,
           number_of_actions = 3, number_of_features = 1,
           A_i = c(0L, 1L, 0L, 1L, 0L, 1L), A_j = c(0L, 0L, 1L, 1L, 2L, 2L),
           A_x = c(2, 10, 1, 10, 1, 10), obj = c(1, 2, 2), lb = c(0, 1, 0),
-          ub = c(0, 1, 1), rhs = c(2, 10), compressed_formulation = TRUE,
+          pwlobj = list(1), ub = c(0, 1, 1), rhs = c(2, 10),
           sense = c(">=", ">="), vtype = c("B", "B", "B"),
           row_ids = c("spp_target", "spp_target"),
           col_ids = c("pu", "pu", "pu"))

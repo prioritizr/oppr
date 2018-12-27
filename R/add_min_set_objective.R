@@ -1,4 +1,4 @@
-#' @include internal.R pproto.R Objective-proto.R
+#' @include internal.R pproto.R Objective-proto.R star_phylogeny.R
 NULL
 
 #' Add minimum set objective
@@ -121,6 +121,10 @@ add_min_set_objective <- function(x) {
     "MinimumSetObjective",
     Objective,
     name = "Minimum set objective",
+    data = list(feature_names = feature_names(x)),
+    feature_phylogeny = function(self) {
+      star_phylogeny(self$data$feature_names)
+    },
     apply = function(self, x, y) {
       assertthat::assert_that(inherits(x, "OptimizationProblem"),
                               inherits(y, "ProjectProblem"))

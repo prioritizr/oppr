@@ -53,6 +53,10 @@ rcpp_get_optimization_problem_obj <- function(x) {
     .Call(`_ppr_rcpp_get_optimization_problem_obj`, x)
 }
 
+rcpp_get_optimization_problem_pwlobj <- function(x) {
+    .Call(`_ppr_rcpp_get_optimization_problem_pwlobj`, x)
+}
+
 rcpp_get_optimization_problem_rhs <- function(x) {
     .Call(`_ppr_rcpp_get_optimization_problem_rhs`, x)
 }

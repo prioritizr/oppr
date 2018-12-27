@@ -92,6 +92,8 @@ experts should use this class directly.}
 
 \code{feature_names()}
 
+\code{feature_phylogeny()}
+
 \code{action_costs()}
 
 \code{project_success_probabilities()}
@@ -189,6 +191,8 @@ experts should use this class directly.}
 \item{project_names}{\code{character} names of projects in the problem.}
 
 \item{feature_names}{\code{character} names of features in the problem.}
+
+\item{feature_phylogeny}{\code[ape]{phylo} phylogenetic tree object.}
 
 \item{action_costs}{\code{numeric} costs for each action.}
 

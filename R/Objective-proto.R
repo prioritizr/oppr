@@ -19,4 +19,6 @@ NULL
 NULL
 
 #' @export
-Objective <- pproto("Objective", ProjectModifier)
+Objective <- pproto("Objective", ProjectModifier,
+                    feature_phylogeny = function(self)
+                      stop("no phylogeny defined"))

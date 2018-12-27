@@ -39,6 +39,8 @@ NULL
 #'
 #' \code{x$obj()}
 #'
+#' \code{x$pwlobj()}
+#'
 #' \code{x$A()}
 #'
 #' \code{x$rhs()}
@@ -85,7 +87,11 @@ NULL
 #'
 #' \item{vtype}{\code{character} vector of variable types.}
 #'
-#' \item{obj}{\code{numeric} vector of objective function.}
+#' \item{obj}{\code{numeric} vector containing the linear components of the
+#'   objective function.}
+#'
+#' \item{pwlobj}{\code{list} object containing the piece-wise linear components
+#'   of the objective function.}
 #'
 #' \item{A}{\code{\link[Matrix]{dgCMatrix-class}} model matrix }
 #'
@@ -129,6 +135,8 @@ OptimizationProblem <- pproto(
     cv <- paste(paste(unname(cv), paste0("(", names(cv), ")")),
           collapse = ", ")
     message("optimization problem",
+      "\n objective:    ", ifelse(length(self$pwlobj()) == 0, "linear",
+                           "piece-wise linear"),
       "\n  model sense: ", self$modelsense(),
       "\n  dimensions:  ", self$nrow(), ", ", self$ncol(), ", ", self$ncell(),
                           " (nrow, ncol, ncell)",
@@ -157,6 +165,9 @@ OptimizationProblem <- pproto(
   },
   obj = function(self) {
     rcpp_get_optimization_problem_obj(self$ptr)
+  },
+  pwlobj = function(self) {
+    rcpp_get_optimization_problem_pwlobj(self$ptr)
   },
   A = function(self) {
     x <- rcpp_get_optimization_problem_A(self$ptr)

@@ -28,7 +28,11 @@ NULL
 #'
 #'   \item{A_x}{\code{numeric} values for problem matrix.}
 #'
-#'   \item{obj}{\code{numeric} objective function values.}
+#'   \item{obj}{\code{numeric} vector defining the linear components of the
+#'     objective function.}
+#'
+#'   \item{pwlobj}{\code{list} object defining the piece-wise linear components
+#'      of the objective function.}
 #'
 #'   \item{lb}{\code{numeric} lower bound for decision values.}
 #'
@@ -56,7 +60,7 @@ NULL
 #'           number_of_actions = 3, number_of_features = 1,
 #'           A_i = c(0L, 1L, 0L, 1L, 0L, 1L), A_j = c(0L, 0L, 1L, 1L, 2L, 2L),
 #'           A_x = c(2, 10, 1, 10, 1, 10), obj = c(1, 2, 2), lb = c(0, 1, 0),
-#'           ub = c(0, 1, 1), rhs = c(2, 10), compressed_formulation = TRUE,
+#'           pwlobj = list(1), ub = c(0, 1, 1), rhs = c(2, 10),
 #'           sense = c(">=", ">="), vtype = c("B", "B", "B"),
 #'           row_ids = c("spp_target", "spp_target"),
 #'           col_ids = c("pu", "pu", "pu"))
@@ -83,6 +87,7 @@ predefined_optimization_problem <- function(x, data = list()) {
   is.numeric(x$obj), all(is.finite(x$obj)),
   is.numeric(x$lb), all(is.finite(x$lb)), length(x$obj) == length(x$lb),
   is.numeric(x$ub), all(is.finite(x$ub)), length(x$obj) == length(x$ub),
+  is.list(x$pwlobj),
   all(x$lb <= x$ub),
   is.character(x$vtype), all(!is.na(x$vtype)),
   all(x$vtype %in% c("B", "S", "C")),

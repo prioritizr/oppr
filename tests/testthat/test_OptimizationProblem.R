@@ -15,6 +15,7 @@ test_that("get methods", {
     A_j = c(0L, 1L, 2L),
     A_x = c(7, 8, 9),
     obj = c(9, 10, 11),
+    pwlobj = list(1),
     lb = c(12, 13, 14),
     ub = c(15, 16, 17),
     rhs = c(18, 19),
@@ -34,6 +35,7 @@ test_that("get methods", {
                                           index1 = FALSE))
   expect_equal(modelsense(x), l$modelsense)
   expect_equal(obj(x), l$obj)
+  expect_equal(pwlobj(x), l$pwlobj)
   expect_equal(rhs(x), l$rhs)
   expect_equal(sense(x), l$sense)
   expect_equal(lb(x), l$lb)
@@ -54,6 +56,7 @@ test_that("as.list", {
     A_j = c(0L, 1L, 2L),
     A_x = c(7, 8, 9),
     obj = c(9, 10, 11),
+    pwlobj = list(500),
     lb = c(12, 13, 14),
     ub = c(15, 16, 17),
     rhs = c(18, 19),
@@ -71,6 +74,7 @@ test_that("as.list", {
   expect_equal(l$A_j, l2$A_j)
   expect_equal(l$A_x, l2$A_x)
   expect_equal(l$obj, l2$obj)
+  expect_equal(l$pwlobj, l2$pwlobj)
   expect_equal(l$lb, l2$lb)
   expect_equal(l$ub, l2$ub)
   expect_equal(l$rhs, l2$rhs)

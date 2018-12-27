@@ -8,6 +8,7 @@
 \alias{modelsense}
 \alias{vtype}
 \alias{obj}
+\alias{pwlobj}
 \alias{A}
 \alias{rhs}
 \alias{sense}
@@ -24,6 +25,7 @@
 \alias{ncol,OptimizationProblem-method}
 \alias{nrow,OptimizationProblem-method}
 \alias{obj,OptimizationProblem-method}
+\alias{pwlobj,OptimizationProblem-method}
 \alias{rhs,OptimizationProblem-method}
 \alias{row_ids,OptimizationProblem-method}
 \alias{sense,OptimizationProblem-method}
@@ -55,6 +57,10 @@ vtype(x)
 obj(x)
 
 \S4method{obj}{OptimizationProblem}(x)
+
+pwlobj(x)
+
+\S4method{pwlobj}{OptimizationProblem}(x)
 
 A(x)
 
@@ -118,7 +124,11 @@ The functions return the following data:
   binary (\code{"B"}), semi-continuous (\code{"S"}), or continuous
   (\code{"C"})}
 
-\item{obj}{\code{numeric} vector specifying the objective function.}
+\item{obj}{\code{numeric} vector defining the linear components of the
+  objective function.}
+
+\item{pwlobj}{\code{list} object defining the piece-wise linear components
+  of the objective function.}
 
 \item{A}{\code{\link[Matrix]{dgCMatrix-class}} matrix object defining the
   problem matrix.}
