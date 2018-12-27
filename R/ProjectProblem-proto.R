@@ -87,6 +87,8 @@ NULL
 #'
 #' \code{feature_names()}
 #'
+#' \code{feature_weights()}
+#'
 #' \code{feature_phylogeny()}
 #'
 #' \code{action_costs()}
@@ -141,6 +143,8 @@ NULL
 #'
 #' \item{obj}{\code{\link{Objective-class}} object.}
 #'
+#' \item{wt}{\code{\link{Weight-class}} object.}
+#'
 #' \item{dec}{\code{\link{Decision-class}} object.}
 #'
 #' \item{con}{\code{\link{Constraint-class}} object.}
@@ -182,6 +186,8 @@ NULL
 #' \item{project_names}{\code{character} names of projects in the problem.}
 #'
 #' \item{feature_names}{\code{character} names of features in the problem.}
+#'
+#' \item{feature_weights}{\code{character} feature weights.}
 #'
 #' \item{feature_phylogeny}{\code[ape]{phylo} phylogenetic tree object.}
 #'
@@ -239,6 +245,18 @@ NULL
 #' \item{render_all_objective_parameters}{generate a \emph{shiny} \code{div}
 #'   containing all the parameters' widgets.}
 #'
+#' \item{get_weight_parameter}{get the value of a parameter (specified by
+#'   argument \code{id}) used in the object's weights.}
+#'
+#' \item{set_weight_parameter}{set the value of a parameter (specified by
+#'   argument \code{id}) used in the object's weights to \code{value}.}
+#'
+#' \item{render_weight_parameter}{generate a \emph{shiny} widget to modify
+#'   the value of a parameter (specified by argument \code{id}).}
+#'
+#' \item{render_all_weight_parameters}{generate a \emph{shiny} \code{div}
+#'   containing all the parameters' widgets.}
+#'
 #' \item{get_solver_parameter}{get the value of a parameter (specified by
 #'   argument \code{id}) used in the object's solver.}
 #'
@@ -263,6 +281,7 @@ ProjectProblem <- pproto(
   "ProjectProblem",
   data = list(),
   objective = new_waiver(),
+  weights = new_waiver(),
   decisions = new_waiver(),
   targets = new_waiver(),
   constraints = pproto(NULL, Collection),
@@ -273,7 +292,7 @@ ProjectProblem <- pproto(
         return("none")
       return(x$repr())
     }, character(1))
-    d <- vapply(list(self$solver, self$decisions), function(x) {
+    d <- vapply(list(self$weights, self$decisions, self$solver), function(x) {
       if (is.Waiver(x))
         return("default")
       return(x$repr())
@@ -288,9 +307,10 @@ ProjectProblem <- pproto(
     "\n  features     ", repr_atomic(self$feature_names(), "features"),
     "\n  objective:   ", r[1],
     "\n  targets:     ", r[2],
+    "\n  weights:     ", d[1],
     "\n  decisions    ", d[2],
     "\n  constraints: ", align_text(self$constraints$repr(), 19),
-    "\n  solver:      ", d[1]))
+    "\n  solver:      ", d[3]))
   },
   show = function(self) {
     self$print()
@@ -326,6 +346,11 @@ ProjectProblem <- pproto(
   },
   feature_names = function(self) {
     as.character(self$data$features[[self$data$feature_name_column]])
+  },
+  feature_weights = function(self) {
+    if (is.Waiver(self$objective))
+      stop("problem is missing feature weights")
+    self$weights$output()
   },
   feature_phylogeny = function(self) {
     if (is.Waiver(self$objective))
