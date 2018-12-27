@@ -33,9 +33,9 @@ NULL
 #'     Additionally, for convenience, this type of argument can be a single
 #'     value to assign the same target to each feature.}
 #'
-#'   \item{\code{character}}{containing the names of columns in the
+#'   \item{\code{character}}{specifying the name of column in the
 #'     feature data (i.e. the argument to \code{features} in the
-#'     \code{\link{problem}} function)that contain persistence targets.}
+#'     \code{\link{problem}} function) that contains the persistence targets.}
 #'
 #'   }
 #'
