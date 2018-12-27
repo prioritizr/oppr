@@ -140,7 +140,7 @@ OptimizationProblem <- pproto(
     cv <- paste(paste(unname(cv), paste0("(", names(cv), ")")),
           collapse = ", ")
     message("optimization problem",
-      "\n objective:    ", ifelse(length(self$pwlobj()) == 0, "linear",
+      "\n  objective:    ", ifelse(length(self$pwlobj()) == 0, "linear",
                            "piece-wise linear"),
       "\n  model sense: ", self$modelsense(),
       "\n  dimensions:  ", self$nrow(), ", ", self$ncol(), ", ", self$ncell(),
