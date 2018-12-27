@@ -18,7 +18,6 @@ NULL
 #' @param targets \code{data.frame} or \code{\link[tibble]{tibble}} object. See
 #'   the Details section for more information.
 #'
-
 #' @details Targets are used to specify the minimum probability of persistence
 #'   for each feature in solutions. For minimum set objectives
 #'   (i.e. \code{\link{add_min_set_objective}}, these targets
