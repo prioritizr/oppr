@@ -131,9 +131,10 @@ bool rcpp_add_raw_data(SEXP x, arma::sp_mat pa_matrix, arma::sp_mat pf_matrix,
         for (auto pitr = pf_matrix.begin_col(sitr.row());
              pitr != pf_matrix.end_col(sitr.row()); ++pitr) {
           ptr->_A_i.push_back(r);
-          ptr->_A_j.push_back(ptr->_number_of_actions + ptr->_number_of_projects +
-                             (sitr.row() * ptr->_number_of_projects) +
-                             pitr.row());
+          ptr->_A_j.push_back(ptr->_number_of_actions +
+                              ptr->_number_of_projects +
+                              (sitr.row() * ptr->_number_of_projects) +
+                              pitr.row());
           ptr->_A_x.push_back(std::log(1.0 - (*pitr)));
         }
       }
@@ -159,7 +160,8 @@ bool rcpp_add_raw_data(SEXP x, arma::sp_mat pa_matrix, arma::sp_mat pf_matrix,
       curr_min_value *= 0.99;
       curr_max_value *= 1.01;
       /// add pwl constraints
-      model_pwl_var.push_back(1 + ptr->_number_of_actions + ptr->_number_of_projects +
+      model_pwl_var.push_back(ptr->_number_of_actions +
+                              ptr->_number_of_projects +
                               (ptr->_number_of_features * ptr->_number_of_projects) + *bitr);
       curr_frac = (curr_max_value - curr_min_value) /
                   static_cast<double>(n_approx_points - 1);

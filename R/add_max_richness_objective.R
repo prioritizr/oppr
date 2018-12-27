@@ -1,14 +1,19 @@
 #' @include internal.R pproto.R Objective-proto.R star_phylogeny.R
 NULL
 
-#' Add minimum set objective
+#' Add maximum richness objective
 #'
 #' Set the objective of a project prioritization \code{\link{problem}} to
-#' minimize the cost of the solution whilst ensuring that all targets are met.
-#' This objective is conceptually similar to that used in \emph{Marxan}
-#' (Ball, Possingham & Watts 2009).
+#' maximize the total number of features that are expected to persist whilst
+#' ensuring that the cost of the solution is within a pre-specified budget
+#' (Joseph, Maloney & Possingham 2009). This objective is conceptually similar
+#' to maximizing species richness in a study area. Furthermore, weights can
+#' also be used to specify the relative importance of conserving different
+#' features (see \code{\link{add_feature_weights}}).
 #'
 #' @param x \code{\link{ProjectProblem-class}} object.
+#'
+#' @param budget \code{numeric} budget for funding actions.
 #'
 #' @details A problem objective is used to specify the overall goal of the
 #'   project prioritization problem. Please note that all project
@@ -17,15 +22,17 @@ NULL
 #'   message when attempting to solve problem.
 #'
 #' @section: Formulation:
-#'   Here, the minimum set objective seeks to find the set of actions that
-#'   minimizes the overall cost of the prioritization, while ensuring that the
-#'   funded projects meet a set of persistence targets for the conservation
-#'   features (e.g. populations, species, eco-systems). Let \eqn{I} represent
-#'   the set of conservation actions (indexed by \eqn{i}). Let \eqn{C_i} denote
-#'   the cost for funding action \eqn{i}. Also, let \eqn{F} represent each
-#'   feature (indexed by \eqn{f}), \eqn{T_f} represent the persistence target
-#'   for feature \eqn{f}, and \code{E_f} denote the probability that each
-#'   feature will go extinct given the funded conservation projects.
+#'   Here, the maximum richness objective seeks to find the set of actions that
+#'   maximizes the the total number of features  (e.g. populations, species,
+#'   eco-systems) that is expected to persist within a pre-specified budget.
+#'   Let \eqn{I} represent the set of conservation actions (indexed by
+#'   \eqn{i}). Let \eqn{C_i} denote the cost for funding action \eqn{i}, and
+#'   let \eqn{m} denote the maximum expenditure (i.e. the budget). Also,
+#'   let \eqn{F} represent each feature (indexed by \eqn{f}), \eqn{W_f}
+#'   represent the weight for each feature \eqn{f} (defaults to one for
+#'   each feature unless specified otherwise), and \code{E_f} denote the
+#'   probability that each feature will go extinct given the funded
+#'   conservation projects.
 #'
 #'   To guide the prioritization, the conservation actions are organized into
 #'   conservation projects. Let \eqn{J} denote the set of conservation projects
@@ -53,11 +60,10 @@ NULL
 #'   represent the set of ten features and also the number ten).
 #'
 #' \deqn{
-#'   \mathrm{Minimize} \space \sum_{i = 0}^{I} C_i X_i \space
+#'   \mathrm{Maximize} \space \sum_{f = 0}^{F} (1 - E_f) W_b \space
 #'   \mathrm{(eqn \space 1a)} \\
-#'   \mathrm{Subject \space to} \space  \\
-#'   (1 - E_f) \geq T_f \space \forall f \in F \space
-#'   \mathrm{(eqn \space 1b)} \\
+#'   \mathrm{Subject \space to}
+#'   \sum_{i = 0}^{I} C_i \leq m \space \mathrm{(eqn \space 1b)} \\
 #'   E_f = 1 - \sum_{j = 0}^{J} Z_{fj} P_j B_{fj} \space \forall \space f \in F
 #'   \space \mathrm{(eqn \space 1c)} \\
 #'   Z_{fj} \leq Y_{j} \space \forall \space j \in J \space \mathrm{(eqn \space
@@ -71,8 +77,8 @@ NULL
 #'   X_{i}, Y_{j}, Z_{fj} \in [0, 1] \space \forall \space i \in I, j \in J, f
 #'   \in F \space \mathrm{(eqn \space 1h)}
 #'   }{
-#'   Maximize sum_i^I C_i X_i (eqn 1a); Subject to:
-#'   E_f <= T_f for all f in F (eqn 1b),
+#'   Maximize sum_f^F (1 - E_f) W_f (eqn 1a); Subject to:
+#'   sum_i^I C_i X_i <= m for all f in F (eqn 1b),
 #'   E_f = 1 - sum_j^J Y_{fj} P_j B_{fj} for all f in F (eqn 1c),
 #'   Z_{fj} <= Y_j for all j in J (eqn 1d),
 #'   sum_j^J Z_{fj} = 1 for all f in F (eqn 1e),
@@ -81,8 +87,9 @@ NULL
 #'   X_i, Y_j, Z_{fj} in [0, 1] for all i in I, j in J, f in F (eqn 1h)
 #'   }
 #'
-#' The objective (eqn 1a) is to minimize the cost of the funded actions.
-#' Constraints (eqn 1b) ensure that the persistence targets are met.
+#' The objective (eqn 1a) is to maximize the weighted persistence of all the
+#' species. Constraint (eqn 1b) limits the maximum expenditure (i.e. ensures
+#' that the cost of the funded actions do not exceed the budget).
 #' Constraints (eqn 1c) calculate the probability that each feature
 #' will go extinct according to their allocated project.
 #' Constraints (eqn 1d) ensure that feature can only be allocated to projects
@@ -95,12 +102,11 @@ NULL
 #' allocation (\eqn{Z_{fj}}) variables are binary.
 #'
 #' @references
-#' Ball IR, Possingham HP & Watts M (2009) Marxan and relatives: software for
-#' spatial conservation prioritisation.
-#' \emph{Spatial conservation prioritisation: Quantitative methods and
-#' computational tools}, 185-195.
+#' Joseph LN, Maloney RF & Possingham HP (2009) Optimal allocation of
+#' resources among threatened species: A project prioritization protocol.
+#' \emph{Conservation Biology}, \strong{23}, 328--338.
 #'
-#' @seealso \code{\link{objectives}}, \code{\link{targets}}.
+#' @seealso \code{\link{objectives}}, \code{\link{add_feature_weights}}.
 #'
 #' @return \code{\link{ProjectProblem-class}} object with the objective
 #'   added to it.
@@ -108,27 +114,32 @@ NULL
 #' @examples
 #' #TODO
 #'
-#' @name add_min_set_objective
+#' @name add_max_richness_objective
 NULL
 
-#' @rdname add_min_set_objective
+#' @rdname add_max_richness_objective
 #' @export
-add_min_set_objective <- function(x) {
+add_max_richness_objective <- function(x, budget) {
   # assert argument is valid
-  assertthat::assert_that(inherits(x, "ProjectProblem"))
+  assertthat::assert_that(inherits(x, "ProjectProblem"),
+                          assertthat::is.number(budget),
+                          assertthat::noNA(budget),
+                          isTRUE(budget >= 0))
   # add objective to problem
   x$add_objective(pproto(
-    "MinimumSetObjective",
+    "MaximumRichnessObjective",
     Objective,
-    name = "Minimum set objective",
+    name = "Maximum richness objective",
     data = list(feature_names = feature_names(x)),
+    parameters = parameters(numeric_parameter("budget", budget,
+                                              lower_limit = 0)),
     feature_phylogeny = function(self) {
       star_phylogeny(self$data$feature_names)
     },
     apply = function(self, x, y) {
       assertthat::assert_that(inherits(x, "OptimizationProblem"),
                               inherits(y, "ProjectProblem"))
-      invisible(rcpp_apply_min_set_objective(x$ptr, y$feature_targets(),
-                                             y$action_costs()))
+      invisible(rcpp_apply_max_phylo_objective(x$ptr, y$action_costs(),
+                                                self$parameters$get("budget")))
     }))
 }

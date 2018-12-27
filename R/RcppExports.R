@@ -93,6 +93,10 @@ rcpp_apply_decisions <- function(x, vtype, default_lower, default_upper) {
     .Call(`_ppr_rcpp_apply_decisions`, x, vtype, default_lower, default_upper)
 }
 
+rcpp_apply_max_phylo_objective <- function(x, costs, budget) {
+    .Call(`_ppr_rcpp_apply_max_phylo_objective`, x, costs, budget)
+}
+
 rcpp_apply_min_set_objective <- function(x, targets_list, costs) {
     .Call(`_ppr_rcpp_apply_min_set_objective`, x, targets_list, costs)
 }

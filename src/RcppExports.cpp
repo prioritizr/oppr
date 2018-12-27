@@ -269,6 +269,19 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// rcpp_apply_max_phylo_objective
+bool rcpp_apply_max_phylo_objective(SEXP x, Rcpp::NumericVector costs, double budget);
+RcppExport SEXP _ppr_rcpp_apply_max_phylo_objective(SEXP xSEXP, SEXP costsSEXP, SEXP budgetSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type costs(costsSEXP);
+    Rcpp::traits::input_parameter< double >::type budget(budgetSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_apply_max_phylo_objective(x, costs, budget));
+    return rcpp_result_gen;
+END_RCPP
+}
 // rcpp_apply_min_set_objective
 bool rcpp_apply_min_set_objective(SEXP x, Rcpp::List targets_list, Rcpp::NumericVector costs);
 RcppExport SEXP _ppr_rcpp_apply_min_set_objective(SEXP xSEXP, SEXP targets_listSEXP, SEXP costsSEXP) {

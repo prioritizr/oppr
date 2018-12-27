@@ -54,7 +54,6 @@ compile.ProjectProblem <- function(x, ...) {
     # to initialize the problem data
     targets <- tibble::as.tibble(expand.grid(
       feature = seq_along(x$feature_names()),
-      zone = seq_along(x$zone_names()),
       sense = "?",
       value = 0))
   } else {

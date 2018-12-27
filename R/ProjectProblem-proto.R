@@ -348,8 +348,6 @@ ProjectProblem <- pproto(
     as.character(self$data$features[[self$data$feature_name_column]])
   },
   feature_weights = function(self) {
-    if (is.Waiver(self$objective))
-      stop("problem is missing feature weights")
     self$weights$output()
   },
   feature_phylogeny = function(self) {
