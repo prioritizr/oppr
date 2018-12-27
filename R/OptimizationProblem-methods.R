@@ -49,7 +49,10 @@ NULL
 #'
 #' \item{number_of_actions}{\code{integer} number of actions in the problem.}
 #'
-#' \item{number_of_features}{\code{integer} number of features the problem.}
+#' \item{number_of_features}{\code{integer} number of features in the problem.}
+#'
+#' \item{number_of_branches}{\code{integer} number of phylogenetic branches in
+#'   the problem.}
 #'
 #' }
 #'
@@ -59,7 +62,7 @@ NULL
 #'
 #' @name OptimizationProblem-methods
 #'
-#' @aliases nrow ncol ncell modelsense vtype obj pwlobj A rhs sense lb ub col_ids row_ids get_data ncell,OptimizationProblem-method A,OptimizationProblem-method col_ids,OptimizationProblem-method lb,OptimizationProblem-method modelsense,OptimizationProblem-method ncol,OptimizationProblem-method nrow,OptimizationProblem-method obj,OptimizationProblem-method pwlobj,OptimizationProblem-method rhs,OptimizationProblem-method row_ids,OptimizationProblem-method sense,OptimizationProblem-method ub,OptimizationProblem-method vtype,OptimizationProblem-method get_data,OptimizationProblem-method
+#' @aliases nrow ncol ncell modelsense vtype obj pwlobj A rhs sense lb ub col_ids row_ids get_data ncell,OptimizationProblem-method A,OptimizationProblem-method col_ids,OptimizationProblem-method lb,OptimizationProblem-method modelsense,OptimizationProblem-method ncol,OptimizationProblem-method nrow,OptimizationProblem-method obj,OptimizationProblem-method pwlobj,OptimizationProblem-method rhs,OptimizationProblem-method row_ids,OptimizationProblem-method sense,OptimizationProblem-method ub,OptimizationProblem-method vtype,OptimizationProblem-method number_of_branches,OptimizationProblem-method get_data,OptimizationProblem-method
 NULL
 
 #' @name OptimizationProblem-methods
@@ -285,6 +288,25 @@ methods::setGeneric("row_ids", function(x) standardGeneric("row_ids"))
 #'
 #' @usage \S4method{row_ids}{OptimizationProblem}(x)
 methods::setMethod("row_ids", "OptimizationProblem", function(x) x$row_ids())
+
+#' @name OptimizationProblem-methods
+#'
+#' @rdname OptimizationProblem-methods
+#'
+#' @exportMethod number_of_branches
+#'
+#' @usage number_of_branches(x)
+#'
+methods::setGeneric("number_of_branches", function(x)
+  standardGeneric("number_of_branches"))
+
+#' @name OptimizationProblem-methods
+#'
+#' @rdname OptimizationProblem-methods
+#'
+#' @usage \S4method{number_of_branches}{OptimizationProblem}(x)
+methods::setMethod("number_of_branches", "OptimizationProblem", function(x)
+  x$number_of_branches())
 
 #' @name OptimizationProblem-methods
 #'

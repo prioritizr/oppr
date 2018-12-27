@@ -31,6 +31,7 @@
 \alias{sense,OptimizationProblem-method}
 \alias{ub,OptimizationProblem-method}
 \alias{vtype,OptimizationProblem-method}
+\alias{number_of_branches,OptimizationProblem-method}
 \alias{get_data,OptimizationProblem-method}
 \title{Optimization problem methods}
 \usage{
@@ -90,6 +91,10 @@ row_ids(x)
 
 \S4method{row_ids}{OptimizationProblem}(x)
 
+number_of_branches(x)
+
+\S4method{number_of_branches}{OptimizationProblem}(x)
+
 get_data(x)
 
 \S4method{get_data}{OptimizationProblem}(x)
@@ -148,7 +153,10 @@ The functions return the following data:
 
 \item{number_of_actions}{\code{integer} number of actions in the problem.}
 
-\item{number_of_features}{\code{integer} number of features the problem.}
+\item{number_of_features}{\code{integer} number of features in the problem.}
+
+\item{number_of_branches}{\code{integer} number of phylogenetic branches in
+  the problem.}
 
 }
 }

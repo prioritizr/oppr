@@ -129,6 +129,17 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// rcpp_get_optimization_problem_number_of_branches
+std::size_t rcpp_get_optimization_problem_number_of_branches(SEXP x);
+RcppExport SEXP _ppr_rcpp_get_optimization_problem_number_of_branches(SEXP xSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_get_optimization_problem_number_of_branches(x));
+    return rcpp_result_gen;
+END_RCPP
+}
 // rcpp_get_optimization_problem_vtype
 std::vector<std::string> rcpp_get_optimization_problem_vtype(SEXP x);
 RcppExport SEXP _ppr_rcpp_get_optimization_problem_vtype(SEXP xSEXP) {
@@ -229,15 +240,18 @@ BEGIN_RCPP
 END_RCPP
 }
 // rcpp_add_raw_data
-bool rcpp_add_raw_data(SEXP x, arma::sp_mat pa_matrix, arma::sp_mat pf_matrix);
-RcppExport SEXP _ppr_rcpp_add_raw_data(SEXP xSEXP, SEXP pa_matrixSEXP, SEXP pf_matrixSEXP) {
+bool rcpp_add_raw_data(SEXP x, arma::sp_mat pa_matrix, arma::sp_mat pf_matrix, arma::sp_mat branch_matrix, Rcpp::NumericVector branch_lengths, std::size_t n_approx_points);
+RcppExport SEXP _ppr_rcpp_add_raw_data(SEXP xSEXP, SEXP pa_matrixSEXP, SEXP pf_matrixSEXP, SEXP branch_matrixSEXP, SEXP branch_lengthsSEXP, SEXP n_approx_pointsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
     Rcpp::traits::input_parameter< arma::sp_mat >::type pa_matrix(pa_matrixSEXP);
     Rcpp::traits::input_parameter< arma::sp_mat >::type pf_matrix(pf_matrixSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_add_raw_data(x, pa_matrix, pf_matrix));
+    Rcpp::traits::input_parameter< arma::sp_mat >::type branch_matrix(branch_matrixSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type branch_lengths(branch_lengthsSEXP);
+    Rcpp::traits::input_parameter< std::size_t >::type n_approx_points(n_approx_pointsSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_add_raw_data(x, pa_matrix, pf_matrix, branch_matrix, branch_lengths, n_approx_points));
     return rcpp_result_gen;
 END_RCPP
 }

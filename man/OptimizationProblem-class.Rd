@@ -58,6 +58,8 @@ problem. Data are stored in memory and accessed using an external pointer.
 
 \code{x$number_of_features()}
 
+\code{x$number_of_branches()}
+
 \code{x$row_ids()}
 
 \code{x$col_ids()}
@@ -113,6 +115,9 @@ problem. Data are stored in memory and accessed using an external pointer.
 \item{number_of_actions}{\code{integer} number of actions in the problem.}
 
 \item{number_of_features}{\code{integer} number of features in the problem.}
+
+\item{number_of_branches}{\code{integer} number of phylogenetic branches in
+  the problem.}
 
 \item{col_ids}{\code{character} names describing each decision variable
   (column) in the model matrix.}

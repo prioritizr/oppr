@@ -27,6 +27,7 @@ class OPTIMIZATIONPROBLEM
                         std::size_t number_of_projects,
                         std::size_t number_of_actions,
                         std::size_t number_of_features,
+                        std::size_t number_of_branches,
                         std::vector<std::size_t> A_i,
                         std::vector<std::size_t> A_j,
                         std::vector<double> A_x,
@@ -43,6 +44,7 @@ class OPTIMIZATIONPROBLEM
                         _number_of_projects(number_of_projects),
                         _number_of_actions(number_of_actions),
                         _number_of_features(number_of_features),
+                        _number_of_branches(number_of_branches),
                         _A_i(A_i),
                         _A_j(A_j),
                         _A_x(A_x),
@@ -64,6 +66,7 @@ class OPTIMIZATIONPROBLEM
     std::size_t _number_of_projects;
     std::size_t _number_of_actions;
     std::size_t _number_of_features;
+    std::size_t _number_of_branches;
 
     std::vector<std::size_t> _A_i;
     std::vector<std::size_t> _A_j;

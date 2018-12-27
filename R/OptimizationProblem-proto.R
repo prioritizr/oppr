@@ -57,6 +57,8 @@ NULL
 #'
 #' \code{x$number_of_features()}
 #'
+#' \code{x$number_of_branches()}
+#'
 #' \code{x$row_ids()}
 #'
 #' \code{x$col_ids()}
@@ -108,6 +110,9 @@ NULL
 #' \item{number_of_actions}{\code{integer} number of actions in the problem.}
 #'
 #' \item{number_of_features}{\code{integer} number of features in the problem.}
+#'
+#' \item{number_of_branches}{\code{integer} number of phylogenetic branches in
+#'   the problem.}
 #'
 #' \item{col_ids}{\code{character} names describing each decision variable
 #'   (column) in the model matrix.}
@@ -189,6 +194,9 @@ OptimizationProblem <- pproto(
   },
   number_of_features = function(self) {
     rcpp_get_optimization_problem_number_of_features(self$ptr)
+  },
+  number_of_branches = function(self) {
+    rcpp_get_optimization_problem_number_of_branches(self$ptr)
   },
   number_of_actions = function(self) {
     rcpp_get_optimization_problem_number_of_actions(self$ptr)

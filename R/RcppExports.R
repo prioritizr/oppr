@@ -45,6 +45,10 @@ rcpp_get_optimization_problem_number_of_features <- function(x) {
     .Call(`_ppr_rcpp_get_optimization_problem_number_of_features`, x)
 }
 
+rcpp_get_optimization_problem_number_of_branches <- function(x) {
+    .Call(`_ppr_rcpp_get_optimization_problem_number_of_branches`, x)
+}
+
 rcpp_get_optimization_problem_vtype <- function(x) {
     .Call(`_ppr_rcpp_get_optimization_problem_vtype`, x)
 }
@@ -81,8 +85,8 @@ rcpp_get_optimization_problem_row_ids <- function(x) {
     .Call(`_ppr_rcpp_get_optimization_problem_row_ids`, x)
 }
 
-rcpp_add_raw_data <- function(x, pa_matrix, pf_matrix) {
-    .Call(`_ppr_rcpp_add_raw_data`, x, pa_matrix, pf_matrix)
+rcpp_add_raw_data <- function(x, pa_matrix, pf_matrix, branch_matrix, branch_lengths, n_approx_points) {
+    .Call(`_ppr_rcpp_add_raw_data`, x, pa_matrix, pf_matrix, branch_matrix, branch_lengths, n_approx_points)
 }
 
 rcpp_apply_decisions <- function(x, vtype, default_lower, default_upper) {
