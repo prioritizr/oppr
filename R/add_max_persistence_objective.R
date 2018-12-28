@@ -11,7 +11,7 @@ NULL
 #' objective tends to favor solutions which spread resources across
 #' many features---instead of triaging features---because each feature is
 #' treated as an independent "backup". Furthermore, weights can
-#' also be used to specify the relative importance of conserving different
+#' also be used to specify the relative importance of conserving specific
 #' features (see \code{\link{add_feature_weights}}).
 #'
 #' @param x \code{\link{ProjectProblem-class}} object.
@@ -51,11 +51,12 @@ NULL
 #'
 #'   The binary control variables \eqn{X_i} in this problem indicate whether
 #'   each project \eqn{i \in I}{i in I} is funded or not. The decision
-#'   variables in this problem are the \eqn{Y_{j}}, \eqn{Z_{fj}}, and \eqn{E_f}.
+#'   variables in this problem are the \eqn{Y_{j}}, \eqn{Z_{fj}}, and \eqn{E_f}
+#'   variables.
 #'   Specifically, the binary \eqn{Y_{j}} variables indicate if project \eqn{j}
 #'   is funded or not based on which actions are funded; the binary
 #'   \eqn{Z_{sj}} variables indicate if project \eqn{j} is used to manage
-#'   feature \eqn{s} or not; and the semi-continuous \eqn{E_s} variables
+#'   feature \eqn{s} or not; and the semi-continuous \eqn{E_f} variables
 #'   denote the probability that feature \eqn{f} will go extinct.
 #'
 #'   Now that we have defined all the data and variables, we can formulate
