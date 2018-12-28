@@ -109,10 +109,7 @@ NULL
 #'  that the action funding (\eqn{X_j}), project funding (\eqn{Y_j}), and
 #'  project allocation (\eqn{Z_{fj}}) variables are binary.
 #'
-#' @seealso \code{\link{objectives}}, \code{\link{add_feature_weights}}.
-#'
-#' @return \code{\link{ProjectProblem-class}} object with the objective
-#'   added to it.
+#' @inherit add_min_set_objective seealso return
 #'
 #' @examples
 #' #TODO

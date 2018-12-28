@@ -107,10 +107,7 @@ NULL
 #' resources among threatened species: A project prioritization protocol.
 #' \emph{Conservation Biology}, \strong{23}, 328--338.
 #'
-#' @seealso \code{\link{objectives}}, \code{\link{add_feature_weights}}.
-#'
-#' @return \code{\link{ProjectProblem-class}} object with the objective
-#'   added to it.
+#' @inherit add_min_set_objective seealso return
 #'
 #' @examples
 #' #TODO
