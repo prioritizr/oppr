@@ -9,6 +9,10 @@ bool rcpp_apply_max_phylo_objective(SEXP x,
   // initialization
   Rcpp::XPtr<OPTIMIZATIONPROBLEM> ptr = Rcpp::as<Rcpp::XPtr<OPTIMIZATIONPROBLEM>>(x);
 
+  // calculate number of non-tip branches
+  std::size_t n_nontip_branches = ptr->_number_of_branches -
+                                  ptr->_number_of_features;
+
   // add objective function
   for (std::size_t i = 0;
        i < (ptr->_number_of_actions) +
@@ -50,25 +54,45 @@ bool rcpp_apply_max_phylo_objective(SEXP x,
   for (std::size_t f = 0; f < (ptr->_number_of_features); ++f)
     ptr->_vtype.push_back("S");
 
-  // add constraints for non-tip branches if they exist
-  if (ptr->_number_of_branches > ptr->_number_of_features) {
+  // add variables and constraints for non-tip branches if they exist
+  if (n_nontip_branches > 0) {
+
+    /// add additional zeros to the linear component of the objective function
+    // for the new branch variables
+    for (std::size_t b = 0; b < n_nontip_branches; ++b)
+      ptr->_obj.push_back(0.0);
+
+    /// add bounds for the new branch variables
+    for (std::size_t b = 0; b < n_nontip_branches; ++b)
+      ptr->_lb.push_back(-std::numeric_limits<double>::infinity());
+
+    for (std::size_t b = 0; b < n_nontip_branches; ++b)
+      ptr->_ub.push_back(std::numeric_limits<double>::infinity());
+
+    /// add types for the new branch variables
+    for (std::size_t b = 0; b < n_nontip_branches; ++b)
+      ptr->_vtype.push_back("C");
+
+    /// add names for the new branch variables
+    for (std::size_t b = 0; b < n_nontip_branches; ++b)
+      ptr->_col_ids.push_back("b");
+
     /// find row to start adding constraints
     std::size_t r = std::find(ptr->_row_ids.begin(), ptr->_row_ids.end(),
-                              "c5") - (ptr->_row_ids.begin()) - 1;
+                              "c5") - (ptr->_row_ids.begin());
 
     /// add new constraints for non-tip branches
-    for (std::size_t b = 0;
-         b < (ptr->_number_of_branches > ptr->_number_of_features); ++b) {
+    for (std::size_t b = 0; b < n_nontip_branches; ++b) {
       ptr->_A_i.push_back(r);
       ptr->_A_j.push_back((ptr->_number_of_actions) +
                           (ptr->_number_of_projects) +
                           (ptr->_number_of_features *
                            ptr->_number_of_projects) +
                           (ptr->_number_of_features) + b);
-      ptr->_A_x.push_back(0.0);
+      ptr->_A_x.push_back(-1.0);
       ptr->_sense.push_back("=");
       ptr->_rhs.push_back(0.0);
-      ptr->_vtype.push_back("C");
+
     }
   }
 

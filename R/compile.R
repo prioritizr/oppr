@@ -66,7 +66,7 @@ compile.ProjectProblem <- function(x, ...) {
         methods::as(matrix(x$project_success_probabilities(),
                     ncol = x$number_of_features(),
                     nrow = x$number_of_projects()), "dgCMatrix")
-  rcpp_add_raw_data(op$ptr, x$pa_matrix(), pf, branch_matrix(fp),
+  rcpp_add_raw_data(op$ptr, x$pa_matrix(), pf, branch_matrix(fp, FALSE),
                     fp$edge.length, 1000)
   # add decision types to optimization problem
   x$decisions$calculate(x)
@@ -74,6 +74,11 @@ compile.ProjectProblem <- function(x, ...) {
   # add objective to optimization problem
   x$objective$calculate(x)
   x$objective$apply(op, x)
+  # add weights to optimization problem
+  if (!is.Waiver(x$weights)) {
+    x$weights$calculate(x)
+    x$weights$apply(op, x)
+  }
   # add constraints to optimization problem
   for (i in x$constraints$ids()) {
     x$constraints[[i]]$calculate(x)

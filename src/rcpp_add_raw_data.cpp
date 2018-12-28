@@ -160,9 +160,11 @@ bool rcpp_add_raw_data(SEXP x, arma::sp_mat pa_matrix, arma::sp_mat pf_matrix,
       curr_min_value *= 0.99;
       curr_max_value *= 1.01;
       /// add pwl constraints
-      model_pwl_var.push_back(ptr->_number_of_actions +
-                              ptr->_number_of_projects +
-                              (ptr->_number_of_features * ptr->_number_of_projects) + *bitr);
+      model_pwl_var.push_back((ptr->_number_of_actions) +
+                              (ptr->_number_of_projects) +
+                              (ptr->_number_of_features) *
+                              (ptr->_number_of_projects) +
+                              (*bitr) + 1);
       curr_frac = (curr_max_value - curr_min_value) /
                   static_cast<double>(n_approx_points - 1);
       for (std::size_t i = 0; i < n_approx_points; ++i)
@@ -177,10 +179,10 @@ bool rcpp_add_raw_data(SEXP x, arma::sp_mat pa_matrix, arma::sp_mat pf_matrix,
   // store pwl data
   ptr->_pwlobj = Rcpp::List(n_branch_nontips);
   for (std::size_t i = 0; i < n_branch_nontips; ++i)
-    ptr->_pwlobj[i] = Rcpp::List::create(Rcpp::Named("var") = model_pwl_var[i],
-                                      Rcpp::Named("x") = model_pwl_x[i],
-                                      Rcpp::Named("y") = model_pwl_y[i]);
-
+    ptr->_pwlobj[i] = Rcpp::List::create(
+      Rcpp::Named("var") = model_pwl_var[i],
+      Rcpp::Named("x") = model_pwl_x[i],
+      Rcpp::Named("y") = model_pwl_y[i]);
 
   // return result
   return true;
