@@ -19,6 +19,7 @@ NULL
 #' @inherit add_locked_out_constraints details seealso return
 #'
 #' @examples
+#' #TODO
 #'
 #' @name add_locked_out_constraints
 #'

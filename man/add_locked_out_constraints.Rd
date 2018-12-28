@@ -29,5 +29,6 @@ optimal funding scheme. If specific actions should be locked in to a
 solution, use \code{\link{add_locked_in_constraints}}.
 }
 \examples{
+#TODO
 
 }

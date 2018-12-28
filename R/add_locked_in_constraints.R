@@ -45,6 +45,7 @@ NULL
 #' @seealso \code{\link{constraints}}.
 #'
 #' @examples
+#' #TODO
 #'
 #' @name add_locked_in_constraints
 #'
