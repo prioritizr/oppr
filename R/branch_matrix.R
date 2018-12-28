@@ -13,6 +13,13 @@ NULL
 #'
 #' @param x \code{\link[ape]{phylo}} tree object.
 #'
+#' @param assert_validity \code{logical} value (i.e. \code{TRUE} or \code{FALSE}
+#'   indicating if the argument to \code{x} should be checked for validity.
+#'   Defaults to \code{TRUE}.
+#'
+#' @param ... not used.
+#'
+#'
 #' @return \code{\link[Matrix]{dgCMatrix-class}} sparse matrix object. Each row
 #'   corresponds to a different species. Each column corresponds to a different
 #'   branch. Species that inherit from a given branch are indicated with a one.
@@ -37,22 +44,22 @@ NULL
 #' image(m, main = "branch matrix")
 #'
 #' @export
-branch_matrix <- function(x) UseMethod("branch_matrix")
+branch_matrix <- function(x, ...) UseMethod("branch_matrix")
 
 #' @rdname branch_matrix
 #' @method branch_matrix default
 #' @export
-branch_matrix.default <- function(x)
+branch_matrix.default <- function(x, ...)
   rcpp_branch_matrix(methods::as(x, "phylo"))
 
 #' @rdname branch_matrix
 #' @method branch_matrix phylo
 #' @export
-branch_matrix.phylo <- function(x) {
+branch_matrix.phylo <- function(x, assert_validity = TRUE, ...) {
   # check that tree is valid and return error if not
-  msg <- utils::capture.output(ape::checkValidPhylo(x))
-  if (any(grepl("FATAL", msg)) || any(grepl("MODERATE", msg)))
-    stop(paste(msg, collapse = "\n"))
+  assertthat::assert_that(assertthat::is.flag(assert_validity))
+  if (assert_validity)
+    assertthat::assert_that(is_valid_phylo(x))
   # generate matrix
   rcpp_branch_matrix(x)
 }

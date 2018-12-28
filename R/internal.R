@@ -207,3 +207,23 @@ default_solver_name <- function() {
     return(NULL)
   }
 }
+
+#' Is valid phylogeny?
+#'
+#' Check that a phylogeny is valid.
+#'
+#' @param x object.
+#'
+#' @return \code{logical} indicating success.
+#'
+#' @noRd
+is_valid_phylo <- function(x) {
+    msg <- utils::capture.output(ape::checkValidPhylo(x))
+    !((any(grepl("FATAL", msg)) || any(grepl("MODERATE", msg))))
+}
+
+assertthat::on_failure(is_valid_phylo) <- function(call, env) {
+  x <- eval(as.list(call)$x, env)
+  msg <- utils::capture.output(ape::checkValidPhylo(x))
+  paste(msg, collapse = "\n")
+}

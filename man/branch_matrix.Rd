@@ -6,14 +6,20 @@
 \alias{branch_matrix.phylo}
 \title{Branch matrix}
 \usage{
-branch_matrix(x)
+branch_matrix(x, ...)
 
-\method{branch_matrix}{default}(x)
+\method{branch_matrix}{default}(x, ...)
 
-\method{branch_matrix}{phylo}(x)
+\method{branch_matrix}{phylo}(x, assert_validity = TRUE, ...)
 }
 \arguments{
 \item{x}{\code{\link[ape]{phylo}} tree object.}
+
+\item{...}{not used.}
+
+\item{assert_validity}{\code{logical} value (i.e. \code{TRUE} or \code{FALSE}
+indicating if the argument to \code{x} should be checked for validity.
+Defaults to \code{TRUE}.}
 }
 \value{
 \code{\link[Matrix]{dgCMatrix-class}} sparse matrix object. Each row
