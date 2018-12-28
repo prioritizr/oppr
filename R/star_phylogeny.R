@@ -16,16 +16,16 @@ NULL
 #' @seealso \code{\link[ape]{stree}}.
 #'
 #' @examples
-#' # create star phylogney with five species and equal weights
+#' # create star phylogeny with five species and equal weights
 #' p1 <- star_phylogeny(letters[1:5])
 #'
-#' # plot the phylogenys
+#' # plot the phylogeny
 #' plot(p1)
 #'
 #' # create star phylogeny with five species and varying weights
 #' p2 <- star_phylogeny(letters[1:5], weights = seq(1, 5))
 #'
-#' # plot the phylogenys
+#' # plot the phylogeny
 #' plot(p2)
 #'
 #' @export
@@ -34,7 +34,7 @@ star_phylogeny <- function(x, weights = rep(1, length(x))) {
   assertthat::assert_that(is.character(x), length(x) > 0,
                           assertthat::noNA(x), anyDuplicated(x) == 0,
                           is.numeric(weights), length(weights) == length(x),
-                          assertthat::noNA(weights), all(weights > 0))
+                          assertthat::noNA(weights), all(weights >= 0))
 
   # create star phylogeny
   out <- ape::stree(length(x), type = "star", tip.label = x)

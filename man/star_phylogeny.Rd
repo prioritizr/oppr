@@ -20,16 +20,16 @@ each species.}
 Make a star phylogeny using species names and, optionally, species weights.
 }
 \examples{
-# create star phylogney with five species and equal weights
+# create star phylogeny with five species and equal weights
 p1 <- star_phylogeny(letters[1:5])
 
-# plot the phylogenys
+# plot the phylogeny
 plot(p1)
 
 # create star phylogeny with five species and varying weights
 p2 <- star_phylogeny(letters[1:5], weights = seq(1, 5))
 
-# plot the phylogenys
+# plot the phylogeny
 plot(p2)
 
 }
