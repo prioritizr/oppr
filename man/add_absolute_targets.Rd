@@ -2,6 +2,8 @@
 % Please edit documentation in R/add_absolute_targets.R
 \name{add_absolute_targets}
 \alias{add_absolute_targets}
+\alias{add_absolute_targets,ProjectProblem,numeric-method}
+\alias{add_absolute_targets,ProjectProblem,character-method}
 \title{Add absolute targets}
 \usage{
 \S4method{add_absolute_targets}{ProjectProblem,numeric}(x, targets)

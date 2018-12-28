@@ -47,6 +47,8 @@ NULL
 #' @examples
 #' #TODO
 #'
+#' @aliases add_feature_weights,ProjectProblem,numeric-method add_feature_weights,ProjectProblem,character-method
+#'
 #' @name add_feature_weights
 #'
 NULL

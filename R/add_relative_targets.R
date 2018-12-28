@@ -19,6 +19,8 @@ NULL
 #' @examples
 #' #TODO
 #'
+#' @aliases add_relative_targets,ProjectProblem,numeric-method add_relative_targets,ProjectProblem,character-method
+#'
 #' @name add_relative_targets
 NULL
 

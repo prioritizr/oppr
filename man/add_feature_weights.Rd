@@ -2,6 +2,8 @@
 % Please edit documentation in R/add_feature_weights.R
 \name{add_feature_weights}
 \alias{add_feature_weights}
+\alias{add_feature_weights,ProjectProblem,numeric-method}
+\alias{add_feature_weights,ProjectProblem,character-method}
 \title{Add weights}
 \usage{
 \S4method{add_feature_weights}{ProjectProblem,numeric}(x, weights)

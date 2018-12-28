@@ -2,6 +2,8 @@
 % Please edit documentation in R/add_relative_targets.R
 \name{add_relative_targets}
 \alias{add_relative_targets}
+\alias{add_relative_targets,ProjectProblem,numeric-method}
+\alias{add_relative_targets,ProjectProblem,character-method}
 \title{Add relative targets}
 \usage{
 \S4method{add_relative_targets}{ProjectProblem,numeric}(x, targets)

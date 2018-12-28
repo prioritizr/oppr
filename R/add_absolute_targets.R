@@ -44,6 +44,8 @@ NULL
 #' @examples
 #' #TODO
 #'
+#' @aliases add_absolute_targets,ProjectProblem,numeric-method add_absolute_targets,ProjectProblem,character-method
+#'
 #' @name add_absolute_targets
 #'
 NULL
