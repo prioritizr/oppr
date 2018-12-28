@@ -161,6 +161,7 @@ NULL
 #'
 #' @section Details:
 #' \describe{
+#'
 #' \item{print}{print the object.}
 #'
 #' \item{show}{show the object.}
@@ -189,7 +190,7 @@ NULL
 #'
 #' \item{feature_weights}{\code{character} feature weights.}
 #'
-#' \item{feature_phylogeny}{\code[ape]{phylo} phylogenetic tree object.}
+#' \item{feature_phylogeny}{\code{\link[ape]{phylo}} phylogenetic tree object.}
 #'
 #' \item{action_costs}{\code{numeric} costs for each action.}
 #'
