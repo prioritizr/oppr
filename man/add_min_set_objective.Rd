@@ -82,7 +82,8 @@ A problem objective is used to specify the overall goal of the
   X_{i}, Y_{j}, Z_{fj} \in [0, 1] \space \forall \space i \in I, j \in J, f
   \in F \space \mathrm{(eqn \space 1h)}
   }{
-  Maximize sum_i^I C_i X_i (eqn 1a); Subject to:
+  Maximize sum_i^I C_i X_i (eqn 1a);
+  Subject to:
   E_f <= T_f for all f in F (eqn 1b),
   E_f = 1 - sum_j^J Y_{fj} P_j B_{fj} for all f in F (eqn 1c),
   Z_{fj} <= Y_j for all j in J (eqn 1d),
