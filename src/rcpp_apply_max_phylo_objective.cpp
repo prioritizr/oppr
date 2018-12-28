@@ -3,8 +3,9 @@
 
 // [[Rcpp::export]]
 bool rcpp_apply_max_phylo_objective(SEXP x,
-                                        Rcpp::NumericVector costs,
-                                        double budget) {
+                                    Rcpp::NumericVector costs,
+                                    double budget,
+                                    double default_feature_weight) {
   // initialization
   Rcpp::XPtr<OPTIMIZATIONPROBLEM> ptr = Rcpp::as<Rcpp::XPtr<OPTIMIZATIONPROBLEM>>(x);
 
@@ -16,7 +17,7 @@ bool rcpp_apply_max_phylo_objective(SEXP x,
     ptr->_obj.push_back(0.0);
   }
   for (std::size_t i = 0; i < (ptr->_number_of_features); ++i)
-    ptr->_obj.push_back(1.0);
+    ptr->_obj.push_back(default_feature_weight);
 
   // add constraints for feature variables
   std::size_t r = std::find(ptr->_row_ids.begin(), ptr->_row_ids.end(), "c4") -
