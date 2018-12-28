@@ -62,7 +62,7 @@ NULL
 #'
 #' @name OptimizationProblem-methods
 #'
-#' @aliases nrow ncol ncell modelsense vtype obj pwlobj A rhs sense lb ub col_ids row_ids get_data ncell,OptimizationProblem-method A,OptimizationProblem-method col_ids,OptimizationProblem-method lb,OptimizationProblem-method modelsense,OptimizationProblem-method ncol,OptimizationProblem-method nrow,OptimizationProblem-method obj,OptimizationProblem-method pwlobj,OptimizationProblem-method rhs,OptimizationProblem-method row_ids,OptimizationProblem-method sense,OptimizationProblem-method ub,OptimizationProblem-method vtype,OptimizationProblem-method number_of_branches,OptimizationProblem-method get_data,OptimizationProblem-method
+#' @aliases nrow ncol ncell modelsense vtype obj pwlobj A rhs sense lb ub col_ids row_ids get_data number_of_branches ncell,OptimizationProblem-method A,OptimizationProblem-method col_ids,OptimizationProblem-method lb,OptimizationProblem-method modelsense,OptimizationProblem-method ncol,OptimizationProblem-method nrow,OptimizationProblem-method obj,OptimizationProblem-method pwlobj,OptimizationProblem-method rhs,OptimizationProblem-method row_ids,OptimizationProblem-method sense,OptimizationProblem-method ub,OptimizationProblem-method vtype,OptimizationProblem-method number_of_branches,OptimizationProblem-method get_data,OptimizationProblem-method
 NULL
 
 #' @name OptimizationProblem-methods

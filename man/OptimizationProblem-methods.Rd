@@ -17,6 +17,7 @@
 \alias{col_ids}
 \alias{row_ids}
 \alias{get_data}
+\alias{number_of_branches}
 \alias{ncell,OptimizationProblem-method}
 \alias{A,OptimizationProblem-method}
 \alias{col_ids,OptimizationProblem-method}
