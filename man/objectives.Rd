@@ -32,7 +32,7 @@ The following objectives can be added to a conservation planning
   \item{\code{\link{add_max_persistence_objective}}}{Maximize the probability
     that at a single feature will persist into the future.}
 
-  \item{\code{\link{add_max_phylo_objective}}}{Maximize the expected
+  \item{\code{\link{add_max_phylo_div_objective}}}{Maximize the expected
     phylogenetic diversity of the features.}
 
   \item{\code{\link{add_max_richness_objective}}}{Maximize the expected

@@ -28,7 +28,7 @@ NULL
 #'   not use weights. Currently, all objectives---except for the minimum
 #'   set (i.e. \code{\link{add_min_set_objective}} and the
 #'   the maximum expected phylogenetic diversity (i.e.
-#'   \code{\link{add_max_phylo_objective}}) objectives---can use weights.
+#'   \code{\link{add_max_phylo_div_objective}}) objectives---can use weights.
 #'
 #'   The weights for a problem can be specified in several different ways:
 #'

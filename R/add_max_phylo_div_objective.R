@@ -144,12 +144,12 @@ NULL
 #' @examples
 #' #TODO
 #'
-#' @name add_max_phylo_objective
+#' @name add_max_phylo_div_objective
 NULL
 
-#' @rdname add_max_phylo_objective
+#' @rdname add_max_phylo_div_objective
 #' @export
-add_max_phylo_objective <- function(x, budget, tree) {
+add_max_phylo_div_objective <- function(x, budget, tree) {
   # assert argument is valid
   assertthat::assert_that(inherits(x, "ProjectProblem"),
                           assertthat::is.number(budget),

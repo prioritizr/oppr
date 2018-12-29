@@ -1,4 +1,4 @@
-context("add_max_phylo_objective")
+context("add_max_phylo_div_objective")
 
 r_mip_formulation <- function(project_data, action_data, tree, budget,
                               n_approx_points) {
@@ -207,7 +207,7 @@ test_that("compile", {
   # make problem
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
                "name") %>%
-       add_max_phylo_objective(0.16, tree) %>%
+       add_max_phylo_div_objective(0.16, tree) %>%
        add_binary_decisions()
   # create optimization problem
   o1 <- compile(p)
@@ -243,15 +243,15 @@ test_that("solve", {
   # make problems
   p1 <- problem(projects, actions, features, "name", "success", "name", "cost",
                "name") %>%
-       add_max_phylo_objective(0.16, tree) %>%
+       add_max_phylo_div_objective(0.16, tree) %>%
        add_binary_decisions()
   p2 <- problem(projects, actions, features, "name", "success", "name", "cost",
                "name") %>%
-       add_max_phylo_objective(0.21, tree) %>%
+       add_max_phylo_div_objective(0.21, tree) %>%
        add_binary_decisions()
   p3 <- problem(projects, actions, features, "name", "success", "name", "cost",
                "name") %>%
-       add_max_phylo_objective(0.11, tree2) %>%
+       add_max_phylo_div_objective(0.11, tree2) %>%
        add_binary_decisions()
   # solve problems
   s1 <- solve(p1)
