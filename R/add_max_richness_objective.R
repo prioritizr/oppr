@@ -140,6 +140,6 @@ add_max_richness_objective <- function(x, budget) {
                               inherits(y, "ProjectProblem"))
       invisible(rcpp_apply_max_phylo_objective(x$ptr, y$action_costs(),
                                                self$parameters$get("budget"),
-                                               1))
+                                               rep(1, y$number_of_features())))
     }))
 }

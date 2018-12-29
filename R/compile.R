@@ -60,14 +60,17 @@ compile.ProjectProblem <- function(x, ...) {
     # generate "real" targets
     targets <- x$feature_targets()
   }
-  # add raw data to optimization problem
+  # decompose and re-order phylogenetic data
   fp <- x$feature_phylogeny()
+  bm <- branch_matrix(fp, FALSE)
+  bo <- rcpp_branch_order(bm)
+  # add raw data to optimization problem
   pf <- x$pf_matrix()[, fp$tip.label] *
         methods::as(matrix(x$project_success_probabilities(),
                     ncol = x$number_of_features(),
                     nrow = x$number_of_projects()), "dgCMatrix")
-  rcpp_add_raw_data(op$ptr, x$pa_matrix(), pf, branch_matrix(fp, FALSE),
-                    fp$edge.length, 1000)
+  rcpp_add_raw_data(op$ptr, x$pa_matrix(), pf, bm[, bo, drop = FALSE],
+                    fp$edge.length[bo], 1000)
   # add decision types to optimization problem
   x$decisions$calculate(x)
   x$decisions$apply(op)

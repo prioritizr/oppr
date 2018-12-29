@@ -93,8 +93,8 @@ rcpp_apply_decisions <- function(x, vtype, default_lower, default_upper) {
     .Call(`_ppr_rcpp_apply_decisions`, x, vtype, default_lower, default_upper)
 }
 
-rcpp_apply_max_phylo_objective <- function(x, costs, budget, default_feature_weight) {
-    .Call(`_ppr_rcpp_apply_max_phylo_objective`, x, costs, budget, default_feature_weight)
+rcpp_apply_max_phylo_objective <- function(x, costs, budget, feature_weights) {
+    .Call(`_ppr_rcpp_apply_max_phylo_objective`, x, costs, budget, feature_weights)
 }
 
 rcpp_apply_min_set_objective <- function(x, targets_list, costs) {
@@ -103,5 +103,9 @@ rcpp_apply_min_set_objective <- function(x, targets_list, costs) {
 
 rcpp_branch_matrix <- function(x) {
     .Call(`_ppr_rcpp_branch_matrix`, x)
+}
+
+rcpp_branch_order <- function(x) {
+    .Call(`_ppr_rcpp_branch_order`, x)
 }
 

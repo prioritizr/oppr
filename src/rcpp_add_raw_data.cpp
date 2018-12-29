@@ -16,14 +16,12 @@ bool rcpp_add_raw_data(SEXP x, arma::sp_mat pa_matrix, arma::sp_mat pf_matrix,
   ptr->_number_of_features = static_cast<std::size_t>(pf_matrix.n_cols);
   ptr->_number_of_branches = branch_lengths.size();
 
-  // cache calculations
-  std::size_t n_branch_nontips = ptr->_number_of_branches -
-                                 ptr->_number_of_features;
-
   /// identify branches that are not tips
+  std::size_t n_branch_nontips = (ptr->_number_of_branches) -
+                                 (ptr->_number_of_features);
   std::vector<std::size_t> branch_nontip_indices(n_branch_nontips);
   std::iota(branch_nontip_indices.begin(), branch_nontip_indices.end(),
-            ptr->_number_of_features);
+            (ptr->_number_of_features));
 
   // set up problem with raw data
   std::size_t r = -1;
@@ -131,9 +129,9 @@ bool rcpp_add_raw_data(SEXP x, arma::sp_mat pa_matrix, arma::sp_mat pf_matrix,
         for (auto pitr = pf_matrix.begin_col(sitr.row());
              pitr != pf_matrix.end_col(sitr.row()); ++pitr) {
           ptr->_A_i.push_back(r);
-          ptr->_A_j.push_back(ptr->_number_of_actions +
-                              ptr->_number_of_projects +
-                              (sitr.row() * ptr->_number_of_projects) +
+          ptr->_A_j.push_back((ptr->_number_of_actions) +
+                              (ptr->_number_of_projects) +
+                              (sitr.row() * (ptr->_number_of_projects)) +
                               pitr.row());
           ptr->_A_x.push_back(std::log(1.0 - (*pitr)));
         }
@@ -145,15 +143,15 @@ bool rcpp_add_raw_data(SEXP x, arma::sp_mat pa_matrix, arma::sp_mat pf_matrix,
       curr_min_value = 0.0;
       curr_max_value = 0.0;
       for (auto sitr = branch_matrix.begin_col(*bitr);
-          sitr != branch_matrix.end_col(*bitr);
-          ++sitr) {
-          curr_min_value += std::log(1.0 - (pf_matrix.col(sitr.row()).max()));
-          curr_tmp_value = 100.0;
-          for (auto pitr = pf_matrix.begin_col(sitr.row());
-               pitr != pf_matrix.end_col(sitr.row()); ++pitr)
-            if (*pitr < curr_tmp_value)
-              curr_tmp_value = *pitr;
-          curr_max_value += std::log(1.0 - curr_tmp_value);
+           sitr != branch_matrix.end_col(*bitr);
+           ++sitr) {
+        curr_min_value += std::log(1.0 - (pf_matrix.col(sitr.row()).max()));
+        curr_tmp_value = 100.0;
+        for (auto pitr = pf_matrix.begin_col(sitr.row());
+             pitr != pf_matrix.end_col(sitr.row()); ++pitr)
+          if (*pitr < curr_tmp_value)
+            curr_tmp_value = *pitr;
+        curr_max_value += std::log(1.0 - curr_tmp_value);
       }
       /// inflate the range slightly to account for floating point precision
       /// issues
@@ -162,9 +160,9 @@ bool rcpp_add_raw_data(SEXP x, arma::sp_mat pa_matrix, arma::sp_mat pf_matrix,
       /// add pwl constraints
       model_pwl_var.push_back((ptr->_number_of_actions) +
                               (ptr->_number_of_projects) +
-                              (ptr->_number_of_features) *
-                              (ptr->_number_of_projects) +
-                              (*bitr) + 1);
+                              (ptr->_number_of_features *
+                              (ptr->_number_of_projects)) +
+                              (*bitr) + 1.0);
       curr_frac = (curr_max_value - curr_min_value) /
                   static_cast<double>(n_approx_points - 1);
       for (std::size_t i = 0; i < n_approx_points; ++i)

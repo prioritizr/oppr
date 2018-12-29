@@ -1,22 +1,22 @@
-#' @include internal.R pproto.R Objective-proto.R star_phylogeny.R
+#' @include internal.R pproto.R Objective-proto.R
 NULL
 
-#' Add maximum persistence objective
+#' Add maximum phylogenetic diversity objective
 #'
 #' Set the objective of a project prioritization \code{\link{problem}} to
-#' maximize the chance that at least one feature will persist into the future,
-#' whilst ensuring that the cost of the solution is within a pre-specified
-#' budget. This objective is conceptually similar to maximizing feature
-#' richness (i.e. \code{\link{add_max_persistence_objective}}), except that this
-#' objective tends to favor solutions which spread resources across
-#' many features---instead of triaging features---because each feature is
-#' treated as an independent "backup". Furthermore, weights can
-#' also be used to specify the relative importance of conserving specific
-#' features (see \code{\link{add_feature_weights}}).
+#' maximize the phylogenetic diversity that is expected to persist into the
+#' future, whilst ensuring that the cost of the solution is within a
+#' pre-specified budget (Bennett \emph{et al.} 2014, Faith 2008). Furthermore,
+#' weights can also be used to specify the relative importance of conserving
+#' specific features (see \code{\link{add_feature_weights}}).
 #'
 #' @param x \code{\link{ProjectProblem-class}} object.
 #'
 #' @param budget \code{numeric} budget for funding actions.
+#'
+#' @param tree \code{\link[ape]{phylo}} phylogenetic tree describing the
+#'   evolutionary relationships between the features. Note that every
+#'   feature must be accounted for in the argument to \code{tree}.
 #'
 #' @details A problem objective is used to specify the overall goal of the
 #'   project prioritization problem. Please note that all project
@@ -25,11 +25,11 @@ NULL
 #'   message when attempting to solve problem.
 #'
 #' @section: Formulation:
-#'   Here, the maximum persistence objective seeks to find the set of actions
-#'   that maximizes the chance that at least a single feature (e.g.
-#'   populations, species, eco-systems) will persist into the future, whilst
-#'   ensuring that the total cost of the actions remains within a pre-specified
-#'   budget. Let \eqn{I} represent the set of conservation actions (indexed by
+#'   Here, the maximum phylogenetic diversity objective seeks to find the set
+#'   of actions that maximizes the expected amount of evolutionary history
+#'   that is expected to persist into the future given the evolutionary
+#'   relationships between the features (e.g. populations, species).
+#'    Let \eqn{I} represent the set of conservation actions (indexed by
 #'   \eqn{i}). Let \eqn{C_i} denote the cost for funding action \eqn{i}, and
 #'   let \eqn{m} denote the maximum expenditure (i.e. the budget). Also,
 #'   let \eqn{F} represent each feature (indexed by \eqn{f}), \eqn{W_f}
@@ -37,6 +37,18 @@ NULL
 #'   each feature unless specified otherwise), and \code{E_f}
 #'   denote the probability that each feature will go extinct given the funded
 #'   conservation projects.
+#'
+#'   To describe the
+#'   evolutionary relationships between the features \eqn{f \in F}{f in F},
+#'   consider a phylogenetic tree that contains features \eqn{f \in F}{f in F}
+#'   with branches of known lengths. This tree can be described using
+#'   mathematical notation by letting \eqn{B} represent the branches (indexed by
+#'   \eqn{b}) with lengths \eqn{L_b} and letting \eqn{T_{bf}} indicate which
+#'   features \eqn{f \in F}{f in F} are associated with which phylogenetic
+#'   branches \eqn{b \in B}{b in B} using zeros and ones. Ideally, the set of
+#'   features \eqn{F} would contain all of the species in the study
+#'   area---including non-threatened species---to fully account for the benefits
+#'   for funding different actions.
 #'
 #'   To guide the prioritization, the conservation actions are organized into
 #'   conservation projects. Let \eqn{J} denote the set of conservation projects
@@ -51,13 +63,15 @@ NULL
 #'
 #'   The binary control variables \eqn{X_i} in this problem indicate whether
 #'   each project \eqn{i \in I}{i in I} is funded or not. The decision
-#'   variables in this problem are the \eqn{Y_{j}}, \eqn{Z_{fj}}, and \eqn{E_f}
-#'   variables.
+#'   variables in this problem are the \eqn{Y_{j}}, \eqn{Z_{fj}}, \eqn{E_f},
+#'   and \eqn{R_b} variables.
 #'   Specifically, the binary \eqn{Y_{j}} variables indicate if project \eqn{j}
 #'   is funded or not based on which actions are funded; the binary
 #'   \eqn{Z_{sj}} variables indicate if project \eqn{j} is used to manage
-#'   feature \eqn{s} or not; and the semi-continuous \eqn{E_f} variables
-#'   denote the probability that feature \eqn{f} will go extinct.
+#'   feature \eqn{s} or not; the semi-continuous \eqn{E_f} variables
+#'   denote the probability that feature \eqn{f} will go extinct; and
+#'   the semi-continuous \eqn{R_b} variables denote the probability that
+#'   phylogenetic branch \eqn{b} will remain in the future.
 #'
 #'   Now that we have defined all the data and variables, we can formulate
 #'   the problem. For convenience, let the symbol used to denote each set also
@@ -65,32 +79,35 @@ NULL
 #'   represent the set of ten features and also the number ten).
 #'
 #' \deqn{
-#'   \mathrm{Maximize} (1 - \prod_{f = 0}^{F} E_f W_f) + \sum_{f}^{F}
+#'   \mathrm{Maximize} \space (\sum_{b = 0}^{B} L_b R_b) + \sum_{f}^{F}
 #'   (1 - E_f) W_f \space \mathrm{(eqn \space 1a)} \\
-#'   \mathrm{Subject \space to}
+#'   \mathrm{Subject \space to} \space
 #'   \sum_{i = 0}^{I} C_i \leq m \space \mathrm{(eqn \space 1b)} \\
+#'   R_b = 1 - \prod_{f = 0}^{F} ifelse(T_{bf} == 1, \space E_f, \space
+#'   1) \space \forall \space b \in B \space \mathrm{(eqn \space 1c)} \\
 #'   E_f = 1 - \sum_{j = 0}^{J} Z_{fj} P_j B_{fj} \space \forall \space f \in F
-#'   \space \mathrm{(eqn \space 1c)} \\
+#'   \space \mathrm{(eqn \space 1d)} \\
 #'   Z_{fj} \leq Y_{j} \space \forall \space j \in J \space \mathrm{(eqn \space
-#'   1d)} \\
+#'   1e)} \\
 #'   \sum_{j = 0}^{J} Z_{fj} = 1 \space \forall \space f \in F \space
-#'   \mathrm{(eqn \space 1e)} \\
-#'   A_{ij} Y_{j} \leq X_{i} \space \forall \space i \in I, j \in J \space
 #'   \mathrm{(eqn \space 1f)} \\
-#'   E_{f} \geq 0, E_{f} \leq 1 \space \forall \space b \in B \space
+#'   A_{ij} Y_{j} \leq X_{i} \space \forall \space i \in I, j \in J \space
 #'   \mathrm{(eqn \space 1g)} \\
+#'   E_{f} \geq 0, E_{f} \leq 1 \space \forall \space b \in B \space
+#'   \mathrm{(eqn \space 1h)} \\
 #'   X_{i}, Y_{j}, Z_{fj} \in [0, 1] \space \forall \space i \in I, j \in J, f
-#'   \in F \space \mathrm{(eqn \space 1h)}
+#'   \in F \space \mathrm{(eqn \space 1i)}
 #'   }{
-#'   Maximize (1 - prod_f^F E_f W_f) + sum_f^F (1 - E_f) W_f (eqn 1a);
+#'   Maximize (sum_b^B L_b R_b) + sum_f^F (1 - E_f) W_f (eqn 1a);
 #'   Subject to:
 #'   sum_i^I C_i X_i <= m for all f in F (eqn 1b),
-#'   E_f = 1 - sum_j^J Y_{fj} P_j B_{fj} for all f in F (eqn 1c),
-#'   Z_{fj} <= Y_j for all j in J (eqn 1d),
-#'   sum_j^J Z_{fj} = 1 for all f in F (eqn 1e),
-#'   A_{ij} Y_{j} <= X_{i} for all i I, j in J (eqn 1f),
-#'   E_f >= 0, E_f >= 1 for all f in F (eqn 1g),
-#'   X_i, Y_j, Z_{fj} in [0, 1] for all i in I, j in J, f in F (eqn 1h)
+#'   R_b = 1 - prod_f^F ifelse(T_{bf} == 1, E_f, 1) for all b in B (eqn 1c),
+#'   E_f = 1 - sum_j^J Y_{fj} P_j B_{fj} for all f in F (eqn 1d),
+#'   Z_{fj} <= Y_j for all j in J (eqn 1e),
+#'   sum_j^J Z_{fj} = 1 for all f in F (eqn 1f),
+#'   A_{ij} Y_{j} <= X_{i} for all i I, j in J (eqn 1g),
+#'   E_f >= 0, E_f >= 1 for all f in F (eqn 1h),
+#'   X_i, Y_j, Z_{fj} in [0, 1] for all i in I, j in J, f in F (eqn 1i)
 #'   }
 #'
 #'  The objective (eqn 1a) is to maximize the probability that at least one
@@ -112,37 +129,53 @@ NULL
 #'
 #' @inherit add_min_set_objective seealso return
 #'
+#' @references
+#' Bennett JR, Elliott G, Mellish B, Joseph LN, Tulloch AI,
+#' Probert WJ, ... & Maloney R (2014) Balancing phylogenetic diversity
+#' and species numbers in conservation prioritization, using a case study of
+#' threatened species in New Zealand. \emph{Biological Conservation},
+#' \strong{174}: 47--54.
+#'
+#' Faith DP (2008) Threatened species and the potential loss of
+#' phylogenetic diversity: conservation scenarios based on estimated extinction
+#' probabilities and phylogenetic risk analysis. \emph{Conservation Biology},
+#' \strong{22}: 1461--1470.
+
 #' @examples
 #' #TODO
 #'
-#' @name add_max_persistence_objective
+#' @name add_max_phylo_objective
 NULL
 
-#' @rdname add_max_persistence_objective
+#' @rdname add_max_phylo_objective
 #' @export
-add_max_persistence_objective <- function(x, budget) {
+add_max_phylo_objective <- function(x, budget, tree) {
   # assert argument is valid
   assertthat::assert_that(inherits(x, "ProjectProblem"),
                           assertthat::is.number(budget),
                           assertthat::noNA(budget),
-                          isTRUE(budget >= 0))
+                          isTRUE(budget >= 0),
+                          inherits(tree, "phylo"),
+                          is_valid_phylo(tree),
+                          setequal(tree$tip.label, x$feature_names()))
   # add objective to problem
   x$add_objective(pproto(
-    "MaximumPersistenceObjective",
+    "MaximumPhyloObjective",
     Objective,
-    name = "Maximum persistence objective",
-    data = list(feature_names = feature_names(x)),
+    name = "Maximum phylogenetic diversity objective",
+    data = list(feature_names = feature_names(x), tree = tree),
     parameters = parameters(numeric_parameter("budget", budget,
                                               lower_limit = 0)),
     feature_phylogeny = function(self) {
-      rake_phylogeny(self$data$feature_names,
-                     rep(0, length(self$data$feature_names)), 1)
+      self$get_data("tree")
     },
     apply = function(self, x, y) {
       assertthat::assert_that(inherits(x, "OptimizationProblem"),
                               inherits(y, "ProjectProblem"))
+      fp <- y$feature_phylogeny()
+      bo <- rcpp_branch_order(branch_matrix(fp, FALSE))
       invisible(rcpp_apply_max_phylo_objective(x$ptr, y$action_costs(),
                                                self$parameters$get("budget"),
-                                               rep(0, y$number_of_features())))
+                                               fp$edge.length[bo]))
     }))
 }

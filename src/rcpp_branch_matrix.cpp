@@ -44,7 +44,7 @@ arma::sp_mat rcpp_branch_matrix(Rcpp::List x) {
   // compile sparse matrix
   m_i.shrink_to_fit();
   m_j.shrink_to_fit();
-  arma::umat m_ij(2,m_i.size());
+  arma::umat m_ij(2, m_i.size());
   m_ij.row(0) = arma::conv_to<arma::urowvec>::from(m_i);
   m_ij.row(1) = arma::conv_to<arma::urowvec>::from(m_j);
   arma::colvec m_x(m_i.size());

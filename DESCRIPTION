@@ -80,6 +80,7 @@ Collate:
     'add_manual_locked_constraints.R'
     'star_phylogeny.R'
     'add_max_persistence_objective.R'
+    'add_max_phylo_objective.R'
     'add_max_richness_objective.R'
     'add_min_set_objective.R'
     'add_relative_targets.R'

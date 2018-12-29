@@ -13,6 +13,7 @@ extern SEXP _ppr_rcpp_apply_decisions(SEXP, SEXP, SEXP, SEXP);
 extern SEXP _ppr_rcpp_apply_max_phylo_objective(SEXP, SEXP, SEXP, SEXP);
 extern SEXP _ppr_rcpp_apply_min_set_objective(SEXP, SEXP, SEXP);
 extern SEXP _ppr_rcpp_branch_matrix(SEXP);
+extern SEXP _ppr_rcpp_branch_order(SEXP);
 extern SEXP _ppr_rcpp_get_optimization_problem_A(SEXP);
 extern SEXP _ppr_rcpp_get_optimization_problem_col_ids(SEXP);
 extern SEXP _ppr_rcpp_get_optimization_problem_lb(SEXP);
@@ -41,6 +42,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_ppr_rcpp_apply_max_phylo_objective",                   (DL_FUNC) &_ppr_rcpp_apply_max_phylo_objective,                   4},
     {"_ppr_rcpp_apply_min_set_objective",                     (DL_FUNC) &_ppr_rcpp_apply_min_set_objective,                     3},
     {"_ppr_rcpp_branch_matrix",                               (DL_FUNC) &_ppr_rcpp_branch_matrix,                               1},
+    {"_ppr_rcpp_branch_order",                                (DL_FUNC) &_ppr_rcpp_branch_order,                                1},
     {"_ppr_rcpp_get_optimization_problem_A",                  (DL_FUNC) &_ppr_rcpp_get_optimization_problem_A,                  1},
     {"_ppr_rcpp_get_optimization_problem_col_ids",            (DL_FUNC) &_ppr_rcpp_get_optimization_problem_col_ids,            1},
     {"_ppr_rcpp_get_optimization_problem_lb",                 (DL_FUNC) &_ppr_rcpp_get_optimization_problem_lb,                 1},
