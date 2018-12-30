@@ -24,7 +24,8 @@ A problem objective is used to specify the overall goal of the
   project prioritization problem. Please note that all project
   prioritization problems formulated in the \pkg{ppr} package require
   the addition of objectives---failing to do so will return an error
-  message when attempting to solve problem.
+  message when attempting to solve problem. Also, please note that
+  problems that contain this objective require feature targets.
 }
 \section{}{
  Formulation:

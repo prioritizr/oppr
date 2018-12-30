@@ -109,4 +109,5 @@ Collate:
     'solve.R'
     'solvers.R'
     'targets.R'
+    'weights.R'
     'zzz.R'

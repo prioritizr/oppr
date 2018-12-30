@@ -97,6 +97,10 @@ rcpp_apply_max_phylo_objective <- function(x, costs, budget, feature_weights) {
     .Call(`_ppr_rcpp_apply_max_phylo_objective`, x, costs, budget, feature_weights)
 }
 
+rcpp_apply_max_targets_met_objective <- function(x, targets_list, costs, budget, feature_weights) {
+    .Call(`_ppr_rcpp_apply_max_targets_met_objective`, x, targets_list, costs, budget, feature_weights)
+}
+
 rcpp_apply_min_set_objective <- function(x, targets_list, costs) {
     .Call(`_ppr_rcpp_apply_min_set_objective`, x, targets_list, costs)
 }

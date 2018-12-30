@@ -20,7 +20,8 @@ NULL
 #'   }
 #'
 #' @seealso \code{\link{constraints}}, \code{\link{objectives}},
-#'  \code{\link{problem}}, \code{\link{solvers}}, \code{\link{targets}}.
+#'  \code{\link{problem}}, \code{\link{solvers}}, \code{\link{targets}},
+#'  \code{\link{weights}}.
 #'
 #' @examples
 #' #TODO

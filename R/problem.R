@@ -8,9 +8,9 @@ NULL
 #' the management actions, and the features (e.g. species, ecosystems) that need
 #' to be conserved. After constructing this \code{ProjectProblem-class} object,
 #' it can be customized to meet specific goals using \code{\link{objectives}},
-#' \code{\link{targets}}, \code{\link{constraints}}, and
-#' \code{\link{penalties}}. After building the problem, the
-#'  \code{\link{solve}} function can be used to identify solutions.
+#' \code{\link{targets}}, \code{\link{weights}},
+#' and code{\link{constraints}}. After building the problem, the
+#' \code{\link{solve}} function can be used to identify solutions.
 #'
 #' @param projects \code{\link[base]{data.frame}} or
 #'   \code{\link[tibble]{tibble}} table containing project data. Here, each row
@@ -114,7 +114,8 @@ NULL
 #'
 #' @seealso \code{\link{constraints}}, \code{\link{decisions}},
 #'  \code{\link{objectives}}, \code{\link{solvers}}, \code{\link{targets}},
-#'  \code{\link{evaluate}}, \code{\link{plot.ProjectProblem}}.
+#'  \code{\link{weights}}, \code{\link{evaluate}},
+#'  \code{\link{plot.ProjectProblem}}.
 #'
 #' @name problem
 #'

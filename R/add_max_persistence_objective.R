@@ -141,8 +141,10 @@ add_max_persistence_objective <- function(x, budget) {
     apply = function(self, x, y) {
       assertthat::assert_that(inherits(x, "OptimizationProblem"),
                               inherits(y, "ProjectProblem"))
+      fp <- y$feature_phylogeny()
+      bo <- rcpp_branch_order(branch_matrix(fp, FALSE))
       invisible(rcpp_apply_max_phylo_objective(x$ptr, y$action_costs(),
                                                self$parameters$get("budget"),
-                                               rep(0, y$number_of_features())))
+                                               fp$edge.length[bo]))
     }))
 }

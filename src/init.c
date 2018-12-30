@@ -11,6 +11,7 @@
 extern SEXP _ppr_rcpp_add_raw_data(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
 extern SEXP _ppr_rcpp_apply_decisions(SEXP, SEXP, SEXP, SEXP);
 extern SEXP _ppr_rcpp_apply_max_phylo_objective(SEXP, SEXP, SEXP, SEXP);
+extern SEXP _ppr_rcpp_apply_max_targets_met_objective(SEXP, SEXP, SEXP, SEXP, SEXP);
 extern SEXP _ppr_rcpp_apply_min_set_objective(SEXP, SEXP, SEXP);
 extern SEXP _ppr_rcpp_branch_matrix(SEXP);
 extern SEXP _ppr_rcpp_branch_order(SEXP);
@@ -40,6 +41,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_ppr_rcpp_add_raw_data",                                (DL_FUNC) &_ppr_rcpp_add_raw_data,                                6},
     {"_ppr_rcpp_apply_decisions",                             (DL_FUNC) &_ppr_rcpp_apply_decisions,                             4},
     {"_ppr_rcpp_apply_max_phylo_objective",                   (DL_FUNC) &_ppr_rcpp_apply_max_phylo_objective,                   4},
+    {"_ppr_rcpp_apply_max_targets_met_objective",             (DL_FUNC) &_ppr_rcpp_apply_max_targets_met_objective,             5},
     {"_ppr_rcpp_apply_min_set_objective",                     (DL_FUNC) &_ppr_rcpp_apply_min_set_objective,                     3},
     {"_ppr_rcpp_branch_matrix",                               (DL_FUNC) &_ppr_rcpp_branch_matrix,                               1},
     {"_ppr_rcpp_branch_order",                                (DL_FUNC) &_ppr_rcpp_branch_order,                                1},

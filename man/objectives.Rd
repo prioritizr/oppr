@@ -30,22 +30,18 @@ The following objectives can be added to a conservation planning
     for conservation.}
 
   \item{\code{\link{add_max_persistence_objective}}}{Maximize the probability
-    that at a single feature will persist into the future.}
+    that at last one feature will persist into the future.}
+
+  \item{\code{\link{add_max_richness_objective}}}{Maximize the expected
+    richness of the features. In other words, maximize the total
+    number of species that are expected to persist.}
+
+
+  \item{\code{\link{add_max_targets_met_objective}}}{Maximize the
+    number of persistence targets that are met for the features.}
 
   \item{\code{\link{add_max_phylo_div_objective}}}{Maximize the expected
     phylogenetic diversity of the features.}
-
-  \item{\code{\link{add_max_richness_objective}}}{Maximize the expected
-    species richness of the features. In other words, maximize the total
-    number of species that are expected to persist.}
-
-  \item{\code{\link{add_max_target_phylo_objective}}}{Maximize the
-    phylogenetic diversity of the features, and counting only the
-    phylogenetic contributions of features that meet persistence targets.}
-
-  \item{\code{\link{add_max_target_richness_objective}}}{Maximize the
-    expected species richness of the features, and counting only the
-    species which meet persistence targets.}
 
   }
 }
@@ -54,6 +50,6 @@ The following objectives can be added to a conservation planning
 }
 \seealso{
 \code{\link{constraints}}, \code{\link{decisions}},
-  \code{\link{penalties}}, \code{\link{portfolios}}, \code{\link{problem}},
-  \code{\link{solvers}}, \code{\link{targets}}.
+  \code{\link{problem}}, \code{\link{solvers}}, \code{\link{targets}},
+  \code{\link{weights}}.
 }

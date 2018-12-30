@@ -283,6 +283,21 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// rcpp_apply_max_targets_met_objective
+bool rcpp_apply_max_targets_met_objective(SEXP x, Rcpp::List targets_list, Rcpp::NumericVector costs, double budget, Rcpp::NumericVector feature_weights);
+RcppExport SEXP _ppr_rcpp_apply_max_targets_met_objective(SEXP xSEXP, SEXP targets_listSEXP, SEXP costsSEXP, SEXP budgetSEXP, SEXP feature_weightsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
+    Rcpp::traits::input_parameter< Rcpp::List >::type targets_list(targets_listSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type costs(costsSEXP);
+    Rcpp::traits::input_parameter< double >::type budget(budgetSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type feature_weights(feature_weightsSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_apply_max_targets_met_objective(x, targets_list, costs, budget, feature_weights));
+    return rcpp_result_gen;
+END_RCPP
+}
 // rcpp_apply_min_set_objective
 bool rcpp_apply_min_set_objective(SEXP x, Rcpp::List targets_list, Rcpp::NumericVector costs);
 RcppExport SEXP _ppr_rcpp_apply_min_set_objective(SEXP xSEXP, SEXP targets_listSEXP, SEXP costsSEXP) {

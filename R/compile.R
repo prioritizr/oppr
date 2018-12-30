@@ -30,18 +30,18 @@ compile.ProjectProblem <- function(x, ...) {
   assertthat::assert_that(inherits(x, "ProjectProblem"),
                           no_extra_arguments(...))
   # list objectives that do not use targets
-  not_target_based_obj <- c("MaximumPhyloObjective",
+  not_target_based_obj <- c("MaximumPhyloDivObjective",
                             "MaximumRichnessObjective",
                             "MaximumPersistenceObjective")
   # sanity checks
-  if (inherits(x$objective, not_target_based_obj) &
-      !is.Waiver(x$targets))
+  if (!is.Waiver(x$targets) &&
+      inherits(x$objective, not_target_based_obj))
     warning(paste("ignoring targets since the specified objective",
                   "function doesn't use targets"))
   # replace waivers with defaults
   if (is.Waiver(x$objective))
     x <- add_default_objective(x)
-  if (is.Waiver(x$targets) & !inherits(x$objective, not_target_based_obj))
+  if (is.Waiver(x$targets) && !inherits(x$objective, not_target_based_obj))
     x <- add_default_targets(x)
   if (is.Waiver(x$decisions))
     x <- add_default_decisions(x)

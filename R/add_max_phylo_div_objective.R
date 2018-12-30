@@ -160,7 +160,7 @@ add_max_phylo_div_objective <- function(x, budget, tree) {
                           setequal(tree$tip.label, x$feature_names()))
   # add objective to problem
   x$add_objective(pproto(
-    "MaximumPhyloObjective",
+    "MaximumPhyloDivObjective",
     Objective,
     name = "Maximum phylogenetic diversity objective",
     data = list(feature_names = feature_names(x), tree = tree),

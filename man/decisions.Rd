@@ -26,5 +26,6 @@ Please note that only one type of decision is currently supported:
 }
 \seealso{
 \code{\link{constraints}}, \code{\link{objectives}},
- \code{\link{problem}}, \code{\link{solvers}}, \code{\link{targets}}.
+ \code{\link{problem}}, \code{\link{solvers}}, \code{\link{targets}},
+ \code{\link{weights}}.
 }
