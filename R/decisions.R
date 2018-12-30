@@ -28,3 +28,5 @@ NULL
 #'
 #' @name decisions
 NULL
+
+add_default_decisions <- add_binary_decisions

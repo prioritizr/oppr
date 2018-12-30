@@ -44,7 +44,7 @@ methods::setMethod("add_locked_out_constraints",
       inherits(locked_out, c("integer", "numeric")),
       isTRUE(all(is.finite(locked_out))),
       isTRUE(all(round(locked_out) == locked_out)),
-      isTRUE(max(locked_out) <= number_actions(x)),
+      isTRUE(max(locked_out) <= number_of_actions(x)),
       isTRUE(min(locked_out) >= 1))
     # add constraints
     add_manual_locked_constraints(x,
@@ -60,7 +60,8 @@ methods::setMethod("add_locked_out_constraints",
     # assert valid arguments
     assertthat::assert_that(inherits(x, "ProjectProblem"),
       inherits(locked_out, "logical"),
-      assertthat::noNA(locked_out))
+      assertthat::noNA(locked_out),
+      length(locked_out) == x$number_of_actions())
       # add constraints
       add_locked_out_constraints(x, which(locked_out))
 })
