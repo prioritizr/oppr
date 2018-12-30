@@ -59,6 +59,9 @@ experts should use this class directly.}
 \item{$targets}{\code{\link{Target-class}} object used to represent
   representation targets for features.}
 
+\item{$weights}{\code{\link{Weight-class}} object used to represent
+  feature weights.}
+
 \item{$constraints}{\code{\link{Collection-class}} object used to represent
   additional \code{\link{constraints}} that the problem is subject to.}
 
@@ -114,6 +117,8 @@ experts should use this class directly.}
 
 \code{x$add_targets(targ)}
 
+\code{x$add_weights(wt)}
+
 \code{x$get_constraint_parameter(id)}
 
 \code{x$set_constraint_parameter(id, value)}
@@ -159,6 +164,8 @@ experts should use this class directly.}
 \item{sol}{\code{\link{Solver-class}} object.}
 
 \item{targ}{\code{\link{Target-class}} object.}
+
+\item{wt}{\code{\link{Weight-class}} object.}
 
 \item{id}{\code{Id} object that refers to a specific parameter.}
 

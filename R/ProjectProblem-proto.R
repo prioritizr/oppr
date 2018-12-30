@@ -56,6 +56,9 @@ NULL
 #' \item{$targets}{\code{\link{Target-class}} object used to represent
 #'   representation targets for features.}
 #'
+#' \item{$weights}{\code{\link{Weight-class}} object used to represent
+#'   feature weights.}
+#'
 #' \item{$constraints}{\code{\link{Collection-class}} object used to represent
 #'   additional \code{\link{constraints}} that the problem is subject to.}
 #'
@@ -109,6 +112,8 @@ NULL
 #'
 #' \code{x$add_targets(targ)}
 #'
+#' \code{x$add_weights(wt)}
+#'
 #' \code{x$get_constraint_parameter(id)}
 #'
 #' \code{x$set_constraint_parameter(id, value)}
@@ -152,6 +157,8 @@ NULL
 #' \item{sol}{\code{\link{Solver-class}} object.}
 #'
 #' \item{targ}{\code{\link{Target-class}} object.}
+#'
+#' \item{wt}{\code{\link{Weight-class}} object.}
 #'
 #' \item{id}{\code{Id} object that refers to a specific parameter.}
 #'
@@ -293,11 +300,17 @@ ProjectProblem <- pproto(
         return("none")
       return(x$repr())
     }, character(1))
-    d <- vapply(list(self$weights, self$decisions, self$solver), function(x) {
+    d <- vapply(list(self$decisions, self$solver), function(x) {
       if (is.Waiver(x))
         return("default")
       return(x$repr())
     }, character(1))
+    if (is.Waiver(self$weights)) {
+      w <- "default"
+    } else {
+      w <- round(self$feature_weights(), 5)
+      w <- paste0("min: ", min(w), ", max: ", max(w))
+    }
     pr <- round(range(self$project_success_probabilities(), na.rm = TRUE), 5)
     cs <- round(range(self$action_costs(), na.rm = TRUE), 5)
     message(paste0("Project Prioritization Problem",
@@ -308,10 +321,10 @@ ProjectProblem <- pproto(
     "\n  features     ", repr_atomic(self$feature_names(), "features"),
     "\n  objective:   ", r[1],
     "\n  targets:     ", r[2],
-    "\n  weights:     ", d[1],
-    "\n  decisions    ", d[2],
+    "\n  weights:     ", w,
+    "\n  decisions    ", d[1],
     "\n  constraints: ", align_text(self$constraints$repr(), 19),
-    "\n  solver:      ", d[3]))
+    "\n  solver:      ", d[2]))
   },
   show = function(self) {
     self$print()
@@ -394,6 +407,12 @@ ProjectProblem <- pproto(
     if (!is.Waiver(self$targets))
       warning("overwriting previously defined targets")
     pproto(NULL, self, targets = x)
+  },
+  add_weights = function(self, x) {
+    assertthat::assert_that(inherits(x, "Weight"))
+    if (!is.Waiver(self$weights))
+      warning("overwriting previously defined weights")
+    pproto(NULL, self, weights = x)
   },
   add_objective = function(self, x) {
     assertthat::assert_that(inherits(x, "Objective"))

@@ -19,17 +19,10 @@ NULL
 #'
 #' @seealso \code{\link{constraints}}, \code{\link{decisions}},
 #'  \code{\link{objectives}}, \code{\link{problem}},
-#'  \code{\link{solvers}}.
+#'  \code{\link{solvers}}, \code{\link{targets}}.
 #'
 #' @examples
 #' #TODO
 #'
-#' @name targets
+#' @name weights
 NULL
-
-add_default_targets <- function(x) {
-  # assert arguments are valid
-  assertthat::assert_that(inherits(x, "ProjectProblem"))
-  # throw error because targets must be chosen by the user
-  stop("problem is missing targets and they must be explicitly defined")
-}

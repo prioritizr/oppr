@@ -76,16 +76,19 @@ methods::setMethod(
       length(weights) == number_of_features(x),
       assertthat::noNA(weights))
     # add weights
-    x$add_penalty(pproto(
+    x$add_weights(pproto(
       "FeatureWeights",
-      Penalty,
+      Weight,
       name = "Feature weights",
       parameters = parameters(numeric_parameter_array("weights", weights,
                               x$feature_names(), lower_limit = 0)),
+      output = function(self) {
+        self$parameters$get("weights")[[1]]
+      },
       apply = function(self, x, y) {
         assertthat::assert_that(inherits(x, "OptimizationProblem"),
           inherits(y, "ProjectProblem"))
-          weights <- c(as.matrix(self$parameters$get("weights")))
+          weights <- self$parameters$get("weights")[[1]]
           assertthat::assert_that(length(weights) == y$number_of_features(),
               msg = paste0("the number of weights must correspond to ",
                            "the number of features in the problem"))
