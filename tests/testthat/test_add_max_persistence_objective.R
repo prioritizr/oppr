@@ -252,7 +252,7 @@ test_that("compile (weights)", {
 
 test_that("solve", {
   skip_on_cran()
-  skip_if_not(any_solvers_installed())
+  skip_if_not_installed("gurobi", "8.0.0")
   # make data
   projects <- tibble::tibble(name = c("P1", "P2", "P3", "P4"),
                              success =  c(0.95, 0.96, 0.94, 1.00),
