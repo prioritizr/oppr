@@ -1,6 +1,6 @@
 context("add_feature_weights")
 
-test_that("add_feature_weights (numeric(5))", {
+test_that("numeric(5)", {
   # load data
   data(sim_projects, sim_actions, sim_features)
   # create problem
@@ -14,7 +14,7 @@ test_that("add_feature_weights (numeric(5))", {
   expect_equal(weights, seq_len(5))
 })
 
-test_that("add_feature_weights (character(1))", {
+test_that("character(1)", {
   # load data
   data(sim_projects, sim_actions, sim_features)
   # create problem
@@ -28,7 +28,7 @@ test_that("add_feature_weights (character(1))", {
   expect_equal(weights, sim_features$weight)
 })
 
-test_that("add_feature_weights (invalid input)", {
+test_that("invalid input", {
   data(sim_projects, sim_actions, sim_features)
   p <- problem(sim_projects, sim_actions, sim_features,
                "name", "success", "name", "cost", "name")
