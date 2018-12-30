@@ -285,3 +285,35 @@ test_that("solve", {
   expect_equal(s3$A3, 0)
   expect_equal(s3$A4, 1)
 })
+
+test_that("invalid inputs", {
+  data(sim_projects, sim_actions, sim_features, sim_tree)
+  p <- problem(sim_projects, sim_actions, sim_features,
+               "name", "success", "name", "cost", "name")
+  ## budgets
+  expect_error({
+    add_max_phylo_div_objective(p, NA_real_, sim_tree)
+  })
+  expect_error({
+    add_max_phylo_div_objective(p, c(1, 1), sim_tree)
+  })
+  expect_error({
+    add_max_phylo_div_objective(p, "a", sim_tree)
+  })
+  expect_error({
+    add_max_phylo_div_objective(p, TRUE, sim_tree)
+  })
+  ## tree
+  expect_error({
+    add_max_phylo_div_objective(p, 1e+5, 1)
+  })
+  expect_error({
+    sim_tree2 <- sim_tree
+    sim_tree2$Nnode <- 1
+    add_max_phylo_div_objective(p, 1e+5, sim_tree2)
+  })
+  expect_error({
+    sim_tree2 <- ape::drop.tip(sim_tree, "F1")
+    add_max_phylo_div_objective(p, 1e+5, sim_tree2)
+  })
+})

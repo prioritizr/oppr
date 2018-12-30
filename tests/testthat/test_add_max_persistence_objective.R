@@ -294,3 +294,21 @@ test_that("solve", {
   expect_equal(s2$A3, 0)
   expect_equal(s2$A4, 1)
 })
+
+test_that("invalid inputs", {
+  data(sim_projects, sim_actions, sim_features)
+  p <- problem(sim_projects, sim_actions, sim_features,
+               "name", "success", "name", "cost", "name")
+  expect_error({
+    add_max_persistence_objective(p, NA_real_)
+  })
+  expect_error({
+    add_max_persistence_objective(p, c(1, 1))
+  })
+  expect_error({
+    add_max_persistence_objective(p, "a")
+  })
+  expect_error({
+    add_max_persistence_objective(p, TRUE)
+  })
+})

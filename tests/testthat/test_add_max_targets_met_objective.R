@@ -261,3 +261,21 @@ test_that("solve", {
   expect_equal(s3$A3, 1)
   expect_equal(s3$A4, 1)
 })
+
+test_that("invalid inputs", {
+  data(sim_projects, sim_actions, sim_features)
+  p <- problem(sim_projects, sim_actions, sim_features,
+               "name", "success", "name", "cost", "name")
+  expect_error({
+    add_max_targets_met_objective(p, NA_real_)
+  })
+  expect_error({
+    add_max_targets_met_objective(p, c(1, 1))
+  })
+  expect_error({
+    add_max_targets_met_objective(p, "a")
+  })
+  expect_error({
+    add_max_targets_met_objective(p, TRUE)
+  })
+})
