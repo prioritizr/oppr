@@ -26,7 +26,7 @@ test_that("phylo input", {
   expect_true(all(m == s))
 })
 
-test_that("invalid input", {
+test_that("invalid arguments", {
   tr <- ape::rtree(3)
   tr$edge[1] <- 0
   expect_error(branch_matrix(tr))

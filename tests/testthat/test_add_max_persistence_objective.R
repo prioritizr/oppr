@@ -295,7 +295,7 @@ test_that("solve", {
   expect_equal(s2$A4, 1)
 })
 
-test_that("invalid inputs", {
+test_that("invalid arguments", {
   data(sim_projects, sim_actions, sim_features)
   p <- problem(sim_projects, sim_actions, sim_features,
                "name", "success", "name", "cost", "name")

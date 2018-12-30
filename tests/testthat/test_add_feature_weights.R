@@ -28,7 +28,7 @@ test_that("character(1)", {
   expect_equal(weights, sim_features$weight)
 })
 
-test_that("invalid input", {
+test_that("invalid arguments", {
   data(sim_projects, sim_actions, sim_features)
   p <- problem(sim_projects, sim_actions, sim_features,
                "name", "success", "name", "cost", "name")
