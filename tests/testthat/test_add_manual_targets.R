@@ -1,6 +1,6 @@
 context("add_manual_targets")
 
-test_that("add_manual_targets", {
+test_that("valid input", {
   # load data
   data(sim_projects, sim_actions, sim_features)
   # create problem
@@ -22,7 +22,7 @@ test_that("add_manual_targets", {
   expect_equal(targets$sense, rep(">=", nrow(sim_features)))
 })
 
-test_that("add_manual_targets (invalid input)", {
+test_that("invalid input", {
   data(sim_projects, sim_actions, sim_features)
   p <- problem(sim_projects, sim_actions, sim_features,
                "name", "success", "name", "cost", "name")

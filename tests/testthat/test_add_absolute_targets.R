@@ -1,6 +1,6 @@
 context("add_absolute_targets")
 
-test_that("add_absolute_targets (numeric(1))", {
+test_that("numeric(1)", {
   # load data
   data(sim_projects, sim_actions, sim_features)
   # create problem
@@ -20,7 +20,7 @@ test_that("add_absolute_targets (numeric(1))", {
   expect_equal(targets$sense, rep(">=", nrow(sim_features)))
 })
 
-test_that("add_absolute_targets (numeric(4))", {
+test_that("numeric(4)", {
   # load data
   data(sim_projects, sim_actions, sim_features)
   # create problem
@@ -40,7 +40,7 @@ test_that("add_absolute_targets (numeric(4))", {
   expect_equal(targets$sense, rep(">=", nrow(sim_features)))
 })
 
-test_that("add_absolute_targets (character)", {
+test_that("character(1)", {
   # load data
   data(sim_projects, sim_actions, sim_features)
   sim_features$target <- seq_len(5) * 0.1
@@ -61,7 +61,7 @@ test_that("add_absolute_targets (character)", {
   expect_equal(targets$sense, rep(">=", nrow(sim_features)))
 })
 
-test_that("add_absolute_targets (invalid input)", {
+test_that("invalid input", {
   data(sim_projects, sim_actions, sim_features)
   p <- problem(sim_projects, sim_actions, sim_features,
                "name", "success", "name", "cost", "name")
