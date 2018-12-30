@@ -88,13 +88,9 @@ methods::setMethod(
       apply = function(self, x, y) {
         assertthat::assert_that(inherits(x, "OptimizationProblem"),
           inherits(y, "ProjectProblem"))
-          weights <- self$parameters$get("weights")[[1]]
-          assertthat::assert_that(length(weights) == y$number_of_features(),
-              msg = paste0("the number of weights must correspond to ",
-                           "the number of features in the problem"))
-          names(weights) < y$feature_names()
-        invisible(rcpp_apply_feature_weights(
-          x$ptr, weights[x$feature_phylogeny()$tip.label]))
+          weights <- as.matrix(self$parameters$get("weights"))[, 1, drop = TRUE]
+          invisible(rcpp_apply_feature_weights(
+            x$ptr, weights[y$feature_phylogeny()$tip.label]))
       }))
 })
 
