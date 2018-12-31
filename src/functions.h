@@ -34,4 +34,22 @@ inline std::string num2str(T number, int precision=10) {
   return(ss.str());
 }
 
+Rcpp::NumericVector evaluate_max_phylo_div_objective(
+  Rcpp::NumericVector, arma::sp_mat, arma::sp_mat, arma::sp_mat,
+  Rcpp::NumericVector, Rcpp::NumericVector, Rcpp::NumericVector,
+  arma::sp_mat);
+
+Rcpp::NumericVector evaluate_max_targets_met_objective(
+  Rcpp::NumericVector, arma::sp_mat, arma::sp_mat, arma::sp_mat,
+  Rcpp::NumericVector, Rcpp::NumericVector, Rcpp::NumericVector,
+  arma::sp_mat);
+
+Rcpp::NumericVector evaluate_min_set_objective(
+  Rcpp::NumericVector, arma::sp_mat, arma::sp_mat, arma::sp_mat,
+  Rcpp::NumericVector, Rcpp::NumericVector, Rcpp::NumericVector,
+  arma::sp_mat);
+
+arma::mat expected_persistences(
+  arma::sp_mat, arma::sp_mat, arma::sp_mat, arma::sp_mat);
+
 #endif

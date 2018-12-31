@@ -127,6 +127,6 @@ A project prioritization problem has actions, projects,
 \seealso{
 \code{\link{constraints}}, \code{\link{decisions}},
  \code{\link{objectives}}, \code{\link{solvers}}, \code{\link{targets}},
- \code{\link{weights}}, \code{\link{evaluate}},
+ \code{\link{weights}}, \code{\link{solution_statistics}},
  \code{\link{plot.ProjectProblem}}.
 }

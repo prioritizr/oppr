@@ -135,13 +135,34 @@ add_max_richness_objective <- function(x, budget) {
     feature_phylogeny = function(self) {
       star_phylogeny(self$data$feature_names)
     },
+    default_feature_weights = function(self) {
+      setNames(rep(1, length(self$data$feature_names)),
+               self$data$feature_names)
+    },
+    replace_feature_weights = function(self) {
+      TRUE
+    },
+    evaluate = function(self, y, solution) {
+      assertthat::assert_that(inherits(y, "ProjectProblem"),
+                              inherits(solution, "tbl_df"))
+      fp <- y$feature_phylogeny()
+      bm <- branch_matrix(fp, FALSE)
+      bo <- rcpp_branch_order(bm)
+      w <- y$feature_weights()[y$feature_phylogeny()$tip.label]
+      rcpp_evaluate_max_phylo_div_objective(
+        y$action_costs(), y$pa_matrix(),
+        y$epf_matrix()[, y$feature_phylogeny()$tip.label, drop = FALSE],
+        bm[, bo, drop = FALSE], rep(0, ncol(bm)),
+        rep(0, y$number_of_features()), w,
+        as(as.matrix(solution), "dgCMatrix"))
+    },
     apply = function(self, x, y) {
       assertthat::assert_that(inherits(x, "OptimizationProblem"),
                               inherits(y, "ProjectProblem"))
       fp <- y$feature_phylogeny()
       bo <- rcpp_branch_order(branch_matrix(fp, FALSE))
-      invisible(rcpp_apply_max_phylo_objective(x$ptr, y$action_costs(),
-                                               self$parameters$get("budget"),
-                                               fp$edge.length[bo]))
+      invisible(rcpp_apply_max_phylo_div_objective(
+        x$ptr, y$action_costs(), self$parameters$get("budget"),
+        fp$edge.length[bo]))
     }))
 }

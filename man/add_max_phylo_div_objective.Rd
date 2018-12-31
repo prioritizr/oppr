@@ -23,9 +23,7 @@ feature must be accounted for in the argument to \code{tree}.}
 Set the objective of a project prioritization \code{\link{problem}} to
 maximize the phylogenetic diversity that is expected to persist into the
 future, whilst ensuring that the cost of the solution is within a
-pre-specified budget (Bennett \emph{et al.} 2014, Faith 2008). Furthermore,
-weights can also be used to specify the relative importance of conserving
-specific features (see \code{\link{add_feature_weights}}).
+pre-specified budget (Bennett \emph{et al.} 2014, Faith 2008).
 }
 \details{
 A problem objective is used to specify the overall goal of the
@@ -43,9 +41,7 @@ A problem objective is used to specify the overall goal of the
    Let \eqn{I} represent the set of conservation actions (indexed by
   \eqn{i}). Let \eqn{C_i} denote the cost for funding action \eqn{i}, and
   let \eqn{m} denote the maximum expenditure (i.e. the budget). Also,
-  let \eqn{F} represent each feature (indexed by \eqn{f}), \eqn{W_f}
-  represent the weight for each feature \eqn{f} (defaults to zero for
-  each feature unless specified otherwise), and \code{E_f}
+  let \eqn{F} represent each feature (indexed by \eqn{f}), and \code{E_f}
   denote the probability that each feature will go extinct given the funded
   conservation projects.
 
@@ -90,8 +86,8 @@ A problem objective is used to specify the overall goal of the
   represent the set of ten features and also the number ten).
 
 \deqn{
-  \mathrm{Maximize} \space (\sum_{b = 0}^{B} L_b R_b) + \sum_{f}^{F}
-  (1 - E_f) W_f \space \mathrm{(eqn \space 1a)} \\
+  \mathrm{Maximize} \space (\sum_{b = 0}^{B} L_b R_b)
+  \space \mathrm{(eqn \space 1a)} \\
   \mathrm{Subject \space to} \space
   \sum_{i = 0}^{I} C_i \leq m \space \mathrm{(eqn \space 1b)} \\
   R_b = 1 - \prod_{f = 0}^{F} ifelse(T_{bf} == 1, \space E_f, \space
@@ -109,7 +105,7 @@ A problem objective is used to specify the overall goal of the
   X_{i}, Y_{j}, Z_{fj} \in [0, 1] \space \forall \space i \in I, j \in J, f
   \in F \space \mathrm{(eqn \space 1i)}
   }{
-  Maximize (sum_b^B L_b R_b) + sum_f^F (1 - E_f) W_f (eqn 1a);
+  Maximize (sum_b^B L_b R_b) (eqn 1a);
   Subject to:
   sum_i^I C_i X_i <= m for all f in F (eqn 1b),
   R_b = 1 - prod_f^F ifelse(T_{bf} == 1, E_f, 1) for all b in B (eqn 1c),

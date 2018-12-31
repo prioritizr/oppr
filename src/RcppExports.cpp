@@ -270,14 +270,15 @@ BEGIN_RCPP
 END_RCPP
 }
 // rcpp_apply_feature_weights
-bool rcpp_apply_feature_weights(SEXP x, Rcpp::NumericVector weights);
-RcppExport SEXP _ppr_rcpp_apply_feature_weights(SEXP xSEXP, SEXP weightsSEXP) {
+bool rcpp_apply_feature_weights(SEXP x, Rcpp::NumericVector weights, bool replace);
+RcppExport SEXP _ppr_rcpp_apply_feature_weights(SEXP xSEXP, SEXP weightsSEXP, SEXP replaceSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type weights(weightsSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_apply_feature_weights(x, weights));
+    Rcpp::traits::input_parameter< bool >::type replace(replaceSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_apply_feature_weights(x, weights, replace));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -294,9 +295,9 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// rcpp_apply_max_phylo_objective
-bool rcpp_apply_max_phylo_objective(SEXP x, Rcpp::NumericVector costs, double budget, Rcpp::NumericVector feature_weights);
-RcppExport SEXP _ppr_rcpp_apply_max_phylo_objective(SEXP xSEXP, SEXP costsSEXP, SEXP budgetSEXP, SEXP feature_weightsSEXP) {
+// rcpp_apply_max_phylo_div_objective
+bool rcpp_apply_max_phylo_div_objective(SEXP x, Rcpp::NumericVector costs, double budget, Rcpp::NumericVector feature_weights);
+RcppExport SEXP _ppr_rcpp_apply_max_phylo_div_objective(SEXP xSEXP, SEXP costsSEXP, SEXP budgetSEXP, SEXP feature_weightsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -304,7 +305,7 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type costs(costsSEXP);
     Rcpp::traits::input_parameter< double >::type budget(budgetSEXP);
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type feature_weights(feature_weightsSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_apply_max_phylo_objective(x, costs, budget, feature_weights));
+    rcpp_result_gen = Rcpp::wrap(rcpp_apply_max_phylo_div_objective(x, costs, budget, feature_weights));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -355,6 +356,74 @@ BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< arma::sp_mat >::type x(xSEXP);
     rcpp_result_gen = Rcpp::wrap(rcpp_branch_order(x));
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_evaluate_max_phylo_div_objective
+Rcpp::NumericVector rcpp_evaluate_max_phylo_div_objective(Rcpp::NumericVector costs, arma::sp_mat pa_matrix, arma::sp_mat pf_matrix, arma::sp_mat branch_matrix, Rcpp::NumericVector branch_lengths, Rcpp::NumericVector targets, Rcpp::NumericVector weights, arma::sp_mat solutions);
+RcppExport SEXP _ppr_rcpp_evaluate_max_phylo_div_objective(SEXP costsSEXP, SEXP pa_matrixSEXP, SEXP pf_matrixSEXP, SEXP branch_matrixSEXP, SEXP branch_lengthsSEXP, SEXP targetsSEXP, SEXP weightsSEXP, SEXP solutionsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type costs(costsSEXP);
+    Rcpp::traits::input_parameter< arma::sp_mat >::type pa_matrix(pa_matrixSEXP);
+    Rcpp::traits::input_parameter< arma::sp_mat >::type pf_matrix(pf_matrixSEXP);
+    Rcpp::traits::input_parameter< arma::sp_mat >::type branch_matrix(branch_matrixSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type branch_lengths(branch_lengthsSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type targets(targetsSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type weights(weightsSEXP);
+    Rcpp::traits::input_parameter< arma::sp_mat >::type solutions(solutionsSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_evaluate_max_phylo_div_objective(costs, pa_matrix, pf_matrix, branch_matrix, branch_lengths, targets, weights, solutions));
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_evaluate_min_set_objective
+Rcpp::NumericVector rcpp_evaluate_min_set_objective(Rcpp::NumericVector costs, arma::sp_mat pa_matrix, arma::sp_mat pf_matrix, arma::sp_mat branch_matrix, Rcpp::NumericVector branch_lengths, Rcpp::NumericVector targets, Rcpp::NumericVector weights, arma::sp_mat solutions);
+RcppExport SEXP _ppr_rcpp_evaluate_min_set_objective(SEXP costsSEXP, SEXP pa_matrixSEXP, SEXP pf_matrixSEXP, SEXP branch_matrixSEXP, SEXP branch_lengthsSEXP, SEXP targetsSEXP, SEXP weightsSEXP, SEXP solutionsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type costs(costsSEXP);
+    Rcpp::traits::input_parameter< arma::sp_mat >::type pa_matrix(pa_matrixSEXP);
+    Rcpp::traits::input_parameter< arma::sp_mat >::type pf_matrix(pf_matrixSEXP);
+    Rcpp::traits::input_parameter< arma::sp_mat >::type branch_matrix(branch_matrixSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type branch_lengths(branch_lengthsSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type targets(targetsSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type weights(weightsSEXP);
+    Rcpp::traits::input_parameter< arma::sp_mat >::type solutions(solutionsSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_evaluate_min_set_objective(costs, pa_matrix, pf_matrix, branch_matrix, branch_lengths, targets, weights, solutions));
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_evaluate_max_targets_met_objective
+Rcpp::NumericVector rcpp_evaluate_max_targets_met_objective(Rcpp::NumericVector costs, arma::sp_mat pa_matrix, arma::sp_mat pf_matrix, arma::sp_mat branch_matrix, Rcpp::NumericVector branch_lengths, Rcpp::NumericVector targets, Rcpp::NumericVector weights, arma::sp_mat solutions);
+RcppExport SEXP _ppr_rcpp_evaluate_max_targets_met_objective(SEXP costsSEXP, SEXP pa_matrixSEXP, SEXP pf_matrixSEXP, SEXP branch_matrixSEXP, SEXP branch_lengthsSEXP, SEXP targetsSEXP, SEXP weightsSEXP, SEXP solutionsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type costs(costsSEXP);
+    Rcpp::traits::input_parameter< arma::sp_mat >::type pa_matrix(pa_matrixSEXP);
+    Rcpp::traits::input_parameter< arma::sp_mat >::type pf_matrix(pf_matrixSEXP);
+    Rcpp::traits::input_parameter< arma::sp_mat >::type branch_matrix(branch_matrixSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type branch_lengths(branch_lengthsSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type targets(targetsSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type weights(weightsSEXP);
+    Rcpp::traits::input_parameter< arma::sp_mat >::type solutions(solutionsSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_evaluate_max_targets_met_objective(costs, pa_matrix, pf_matrix, branch_matrix, branch_lengths, targets, weights, solutions));
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_expected_persistences
+Rcpp::NumericMatrix rcpp_expected_persistences(arma::sp_mat pa_matrix, arma::sp_mat pf_matrix, arma::sp_mat branch_matrix, arma::sp_mat solutions);
+RcppExport SEXP _ppr_rcpp_expected_persistences(SEXP pa_matrixSEXP, SEXP pf_matrixSEXP, SEXP branch_matrixSEXP, SEXP solutionsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::sp_mat >::type pa_matrix(pa_matrixSEXP);
+    Rcpp::traits::input_parameter< arma::sp_mat >::type pf_matrix(pf_matrixSEXP);
+    Rcpp::traits::input_parameter< arma::sp_mat >::type branch_matrix(branch_matrixSEXP);
+    Rcpp::traits::input_parameter< arma::sp_mat >::type solutions(solutionsSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_expected_persistences(pa_matrix, pf_matrix, branch_matrix, solutions));
     return rcpp_result_gen;
 END_RCPP
 }

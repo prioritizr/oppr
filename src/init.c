@@ -10,13 +10,17 @@
 /* .Call calls */
 extern SEXP _ppr_rcpp_add_raw_data(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
 extern SEXP _ppr_rcpp_apply_decisions(SEXP, SEXP, SEXP, SEXP);
-extern SEXP _ppr_rcpp_apply_feature_weights(SEXP, SEXP);
+extern SEXP _ppr_rcpp_apply_feature_weights(SEXP, SEXP, SEXP);
 extern SEXP _ppr_rcpp_apply_locked_constraints(SEXP, SEXP, SEXP);
-extern SEXP _ppr_rcpp_apply_max_phylo_objective(SEXP, SEXP, SEXP, SEXP);
+extern SEXP _ppr_rcpp_apply_max_phylo_div_objective(SEXP, SEXP, SEXP, SEXP);
 extern SEXP _ppr_rcpp_apply_max_targets_met_objective(SEXP, SEXP, SEXP, SEXP, SEXP);
 extern SEXP _ppr_rcpp_apply_min_set_objective(SEXP, SEXP, SEXP);
 extern SEXP _ppr_rcpp_branch_matrix(SEXP);
 extern SEXP _ppr_rcpp_branch_order(SEXP);
+extern SEXP _ppr_rcpp_evaluate_max_phylo_div_objective(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
+extern SEXP _ppr_rcpp_evaluate_max_targets_met_objective(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
+extern SEXP _ppr_rcpp_evaluate_min_set_objective(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
+extern SEXP _ppr_rcpp_expected_persistences(SEXP, SEXP, SEXP, SEXP);
 extern SEXP _ppr_rcpp_get_optimization_problem_A(SEXP);
 extern SEXP _ppr_rcpp_get_optimization_problem_col_ids(SEXP);
 extern SEXP _ppr_rcpp_get_optimization_problem_lb(SEXP);
@@ -42,13 +46,17 @@ extern SEXP _ppr_rcpp_predefined_optimization_problem(SEXP);
 static const R_CallMethodDef CallEntries[] = {
     {"_ppr_rcpp_add_raw_data",                                (DL_FUNC) &_ppr_rcpp_add_raw_data,                                6},
     {"_ppr_rcpp_apply_decisions",                             (DL_FUNC) &_ppr_rcpp_apply_decisions,                             4},
-    {"_ppr_rcpp_apply_feature_weights",                       (DL_FUNC) &_ppr_rcpp_apply_feature_weights,                       2},
+    {"_ppr_rcpp_apply_feature_weights",                       (DL_FUNC) &_ppr_rcpp_apply_feature_weights,                       3},
     {"_ppr_rcpp_apply_locked_constraints",                    (DL_FUNC) &_ppr_rcpp_apply_locked_constraints,                    3},
-    {"_ppr_rcpp_apply_max_phylo_objective",                   (DL_FUNC) &_ppr_rcpp_apply_max_phylo_objective,                   4},
+    {"_ppr_rcpp_apply_max_phylo_div_objective",               (DL_FUNC) &_ppr_rcpp_apply_max_phylo_div_objective,               4},
     {"_ppr_rcpp_apply_max_targets_met_objective",             (DL_FUNC) &_ppr_rcpp_apply_max_targets_met_objective,             5},
     {"_ppr_rcpp_apply_min_set_objective",                     (DL_FUNC) &_ppr_rcpp_apply_min_set_objective,                     3},
     {"_ppr_rcpp_branch_matrix",                               (DL_FUNC) &_ppr_rcpp_branch_matrix,                               1},
     {"_ppr_rcpp_branch_order",                                (DL_FUNC) &_ppr_rcpp_branch_order,                                1},
+    {"_ppr_rcpp_evaluate_max_phylo_div_objective",            (DL_FUNC) &_ppr_rcpp_evaluate_max_phylo_div_objective,            8},
+    {"_ppr_rcpp_evaluate_max_targets_met_objective",          (DL_FUNC) &_ppr_rcpp_evaluate_max_targets_met_objective,          8},
+    {"_ppr_rcpp_evaluate_min_set_objective",                  (DL_FUNC) &_ppr_rcpp_evaluate_min_set_objective,                  8},
+    {"_ppr_rcpp_expected_persistences",                       (DL_FUNC) &_ppr_rcpp_expected_persistences,                       4},
     {"_ppr_rcpp_get_optimization_problem_A",                  (DL_FUNC) &_ppr_rcpp_get_optimization_problem_A,                  1},
     {"_ppr_rcpp_get_optimization_problem_col_ids",            (DL_FUNC) &_ppr_rcpp_get_optimization_problem_col_ids,            1},
     {"_ppr_rcpp_get_optimization_problem_lb",                 (DL_FUNC) &_ppr_rcpp_get_optimization_problem_lb,                 1},

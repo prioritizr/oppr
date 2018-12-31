@@ -105,6 +105,8 @@ experts should use this class directly.}
 
 \code{pf_matrix()}
 
+\code{epf_matrix()}
+
 \code{pa_matrix()}
 
 \code{x$add_objective(obj)}
@@ -216,6 +218,12 @@ experts should use this class directly.}
 \item{pf_matrix}{
   \code{\link[Matrix]{dgCMatrix-class}} object denoting the enhanced
   probability that features will persist if different projects are funded.}
+
+\item{epf_matrix}{
+  \code{\link[Matrix]{dgCMatrix-class}} object denoting the enhanced
+  probability that features is expected to persist if different projects are
+ funded. This is calculated as the \code{pf_matrix} multiplied by the
+ project success probabilities.}
 
 \item{pa_matrix}{
   \code{\link[Matrix]{dgCMatrix-class}} object indicating which actions are

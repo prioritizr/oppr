@@ -25,26 +25,30 @@ NULL
 #'
 #'   \describe{
 #'
-#'   \item{\code{"solution"}}{}
-#'
 #'   \item{\code{"solution"}}{\code{integer} solution identifier.}
 #'
 #'   \item{\code{"status"}}{\code{character} describing each solution.
 #'    For example, is the solution optimal, suboptimal, or was it returned
 #'    because the solver ran out of time?}
 #'
+#'   \item{\code{"obj"}}{\code{numeric} objective value for each solution.
+#'     This is calculated using the objective function defined for the
+#'     argument to \code{x}.}
+#'
 #'   \item{\code{"cost"}}{\code{numeric} total cost associated with each
 #'     solution.}
 #'
-#'   \item{code{...}}{columns for each action which \code{logical}} values
-#'     (i.e. \code{TRUE} or \code{FALSE}) that indicate if each action
-#'     action was funded in each solution.
+#'   \item{code{x$action_names()}}{\code{numeric} column for each action
+#'     indicating if they were funded in each solution or not.}
+#'
+#'   \item{\code{x$feature_names()}}{\code{numeric} column for each
+#'     feature indicating the probability that it will persist into
+#'     the future given each solution.}
 #'
 #'   }
 #'
-#'
-#' @seealso \code{\link{evaluate}}, \code{\link{problem}},
-#'   \code{\link{solvers}}.
+#' @seealso \code{\link{problem}}, \code{\link{solution_statistics}},
+#'   \code{\link{solvers}}, .
 #'
 #' @examples
 #' #TODO
@@ -83,7 +87,6 @@ methods::setMethod(
     # compile and solve optimisation problem
     opt <- compile.ProjectProblem(a, ...)
     sol <- a$solver$solve(opt)
-    o1 <<- sol
     # check that solution is valid
     if (is.null(sol) || is.null(sol[[1]]$x)) {
       stop("project prioritization problem is infeasible")
@@ -102,15 +105,15 @@ methods::setMethod(
     out <- tibble::tibble(solution = seq_len(nrow(action_status)))
     ## add status column
     out$status <- vapply(sol, `[[`, character(1), 3)
-    ## add cost column
-    out$cost <- rowSums(action_status * matrix(a$action_costs(), byrow = TRUE,
-                                               nrow = nrow(action_status),
-                                               ncol = ncol(action_status)))
     ## add solution columns
     s <- tibble::as.tibble(as.data.frame(action_status))
     names(s) <- a$action_names()
     out <- tibble::as.tibble(cbind(out, s))
-
+    ### add remaining columns
+    out <- tibble::as.tibble(cbind(out, solution_statistics(a, s)))
+    ### reorder columns
+    out <- out[, c("solution", "status", "obj", "cost", a$action_names(),
+                   a$feature_names())]
     # return result
     out
   }

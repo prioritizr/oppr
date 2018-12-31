@@ -152,6 +152,28 @@ add_max_targets_met_objective <- function(x, budget) {
     feature_phylogeny = function(self) {
       star_phylogeny(self$data$feature_names)
     },
+    replace_feature_weights = function(self) {
+      TRUE
+    },
+    default_feature_weights = function(self) {
+      setNames(rep(1, length(self$data$feature_names)),
+               self$data$feature_names)
+    },
+    evaluate = function(self, y, solution) {
+      assertthat::assert_that(inherits(y, "ProjectProblem"),
+                              inherits(solution, "tbl_df"))
+      if (is.Waiver(y$targets))
+        y <- add_default_targets(y)
+      fp <- y$feature_phylogeny()
+      bm <- branch_matrix(fp, FALSE)
+      bo <- rcpp_branch_order(bm)
+      w <- y$feature_weights()[y$feature_phylogeny()$tip.label]
+      rcpp_evaluate_max_targets_met_objective(
+        y$action_costs(), y$pa_matrix(), y$epf_matrix(),
+        bm[, bo, drop = FALSE], fp$edge.length[bo],
+        y$targets$output()$value, w,
+        as(as.matrix(solution), "dgCMatrix"))
+    },
     apply = function(self, x, y) {
       assertthat::assert_that(inherits(x, "OptimizationProblem"),
                               inherits(y, "ProjectProblem"))

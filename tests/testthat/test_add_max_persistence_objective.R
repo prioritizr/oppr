@@ -279,20 +279,30 @@ test_that("solve", {
   s1 <- solve(p1)
   s2 <- solve(p2)
   # tests
+  ## s1
   expect_equal(s1$solution, 1L)
   expect_equal(s1$status, "OPTIMAL")
+  expect_equal(s1$obj, 1 - ((1 - s1$F1) * (1 - s1$F2) * (1 - s1$F3)))
   expect_equal(s1$cost, 0.15)
   expect_equal(s1$A1, 0)
   expect_equal(s1$A2, 0)
   expect_equal(s1$A3, 1)
   expect_equal(s1$A4, 1)
+  expect_equal(s1$F1, 0.94 * 0.8)
+  expect_equal(s1$F2, 0.94 * 0.8)
+  expect_equal(s1$F3, 1 * 0.1)
+  ## s2
   expect_equal(s2$solution, 1L)
   expect_equal(s2$status, "OPTIMAL")
+  expect_equal(s2$obj, 1 - ((1 - s2$F1) * (1 - s2$F2) * (1 - s2$F3)))
   expect_equal(s2$cost, 0.2)
   expect_equal(s2$A1, 1)
   expect_equal(s2$A2, 1)
   expect_equal(s2$A3, 0)
   expect_equal(s2$A4, 1)
+  expect_equal(s2$F1, 0.95 * 0.91)
+  expect_equal(s2$F2, 0.96 * 0.92)
+  expect_equal(s2$F3, 1 * 0.1)
 })
 
 test_that("invalid arguments", {
@@ -311,4 +321,53 @@ test_that("invalid arguments", {
   expect_error({
     add_max_persistence_objective(p, TRUE)
   })
+})
+
+test_that("solution_statistics", {
+  # create data
+  projects <- tibble::tibble(name = c("P1", "P2", "P3", "P4"),
+                             success =  c(0.95, 0.96, 0.94, 1.00),
+                             F1 =       c(0.91, 0.00, 0.80, 0.10),
+                             F2 =       c(0.00, 0.92, 0.80, 0.10),
+                             F3 =       c(0.00, 0.00, 0.00, 0.10),
+                             A1 =       c(TRUE, FALSE, FALSE, FALSE),
+                             A2 =       c(FALSE, TRUE, FALSE, FALSE),
+                             A3 =       c(FALSE, FALSE, TRUE, FALSE),
+                             A4 =       c(FALSE, FALSE, FALSE, TRUE))
+  actions <- tibble::tibble(name =      c("A1", "A2", "A3", "A4"),
+                            cost =      c(0.10, 0.10, 0.15, 0))
+  features <- tibble::tibble(name = c("F1", "F2", "F3"),
+                             weight = c(100, 4, 9))
+  # create problem
+  p <- problem(projects, actions, features, "name", "success", "name", "cost",
+               "name") %>%
+       add_max_persistence_objective(budget = 0.16) %>%
+       add_feature_weights("weight") %>%
+       add_binary_decisions()
+  # create solutions
+  s <- data.frame(A1 = c(1, 0, 0, 1),
+                  A2 = c(1, 1, 0, 1),
+                  A3 = c(0, 0, 1, 1),
+                  A4 = c(1, 1, 1, 1))
+  # evaluate solutions
+  ss <- solution_statistics(p, s)
+  # tests
+  expect_equal(ss$cost, c(0.1 + 0.1 + 0,
+                          0.1 + 0,
+                          0.15 + 0,
+                          0.1 + 0.1 + 0.15 + 0))
+  expect_equal(ss$obj, (1 - ((1 - ss$F1) * (1 - ss$F2) * (1 - ss$F3))) +
+                       (ss$F1 * 100) + (ss$F2 * 4) + (ss$F3 * 9))
+  expect_equal(ss$F1, c(0.95 * 0.91,
+                        0.1 * 1,
+                        0.94 * 0.8,
+                        0.95 * 0.91))
+  expect_equal(ss$F2, c(0.96 * 0.92,
+                        0.96 * 0.92,
+                        0.94 * 0.8,
+                        0.96 * 0.92))
+  expect_equal(ss$F3, c(0.1 * 1,
+                        0.1 * 1,
+                        0.1 * 1,
+                        0.1 * 1))
 })

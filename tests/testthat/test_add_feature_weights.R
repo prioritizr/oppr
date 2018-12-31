@@ -11,7 +11,7 @@ test_that("numeric(5)", {
   weights <- p$feature_weights()
   # run tests
   expect_is(weights, "numeric")
-  expect_equal(weights, seq_len(5))
+  expect_equal(weights, setNames(seq_len(5), sim_features$name))
 })
 
 test_that("character(1)", {
@@ -25,7 +25,7 @@ test_that("character(1)", {
   weights <- p$feature_weights()
   # run tests
   expect_is(weights, "numeric")
-  expect_equal(weights, sim_features$weight)
+  expect_equal(weights, setNames(sim_features$weight, sim_features$name))
 })
 
 test_that("invalid arguments", {

@@ -6,9 +6,7 @@ NULL
 #' Set the objective of a project prioritization \code{\link{problem}} to
 #' maximize the phylogenetic diversity that is expected to persist into the
 #' future, whilst ensuring that the cost of the solution is within a
-#' pre-specified budget (Bennett \emph{et al.} 2014, Faith 2008). Furthermore,
-#' weights can also be used to specify the relative importance of conserving
-#' specific features (see \code{\link{add_feature_weights}}).
+#' pre-specified budget (Bennett \emph{et al.} 2014, Faith 2008).
 #'
 #' @param x \code{\link{ProjectProblem-class}} object.
 #'
@@ -32,9 +30,7 @@ NULL
 #'    Let \eqn{I} represent the set of conservation actions (indexed by
 #'   \eqn{i}). Let \eqn{C_i} denote the cost for funding action \eqn{i}, and
 #'   let \eqn{m} denote the maximum expenditure (i.e. the budget). Also,
-#'   let \eqn{F} represent each feature (indexed by \eqn{f}), \eqn{W_f}
-#'   represent the weight for each feature \eqn{f} (defaults to zero for
-#'   each feature unless specified otherwise), and \code{E_f}
+#'   let \eqn{F} represent each feature (indexed by \eqn{f}), and \code{E_f}
 #'   denote the probability that each feature will go extinct given the funded
 #'   conservation projects.
 #'
@@ -79,8 +75,8 @@ NULL
 #'   represent the set of ten features and also the number ten).
 #'
 #' \deqn{
-#'   \mathrm{Maximize} \space (\sum_{b = 0}^{B} L_b R_b) + \sum_{f}^{F}
-#'   (1 - E_f) W_f \space \mathrm{(eqn \space 1a)} \\
+#'   \mathrm{Maximize} \space (\sum_{b = 0}^{B} L_b R_b)
+#'   \space \mathrm{(eqn \space 1a)} \\
 #'   \mathrm{Subject \space to} \space
 #'   \sum_{i = 0}^{I} C_i \leq m \space \mathrm{(eqn \space 1b)} \\
 #'   R_b = 1 - \prod_{f = 0}^{F} ifelse(T_{bf} == 1, \space E_f, \space
@@ -98,7 +94,7 @@ NULL
 #'   X_{i}, Y_{j}, Z_{fj} \in [0, 1] \space \forall \space i \in I, j \in J, f
 #'   \in F \space \mathrm{(eqn \space 1i)}
 #'   }{
-#'   Maximize (sum_b^B L_b R_b) + sum_f^F (1 - E_f) W_f (eqn 1a);
+#'   Maximize (sum_b^B L_b R_b) (eqn 1a);
 #'   Subject to:
 #'   sum_i^I C_i X_i <= m for all f in F (eqn 1b),
 #'   R_b = 1 - prod_f^F ifelse(T_{bf} == 1, E_f, 1) for all b in B (eqn 1c),
@@ -169,13 +165,34 @@ add_max_phylo_div_objective <- function(x, budget, tree) {
     feature_phylogeny = function(self) {
       self$get_data("tree")
     },
+    default_feature_weights = function(self) {
+      setNames(rep(0, length(self$data$feature_names)),
+               self$data$feature_names)
+    },
+    replace_feature_weights = function(self) {
+      FALSE
+    },
+    evaluate = function(self, y, solution) {
+      assertthat::assert_that(inherits(y, "ProjectProblem"),
+                              inherits(solution, "tbl_df"))
+      fp <- y$feature_phylogeny()
+      bm <- branch_matrix(fp, FALSE)
+      bo <- rcpp_branch_order(bm)
+      w <- y$feature_weights()[y$feature_phylogeny()$tip.label]
+      rcpp_evaluate_max_phylo_div_objective(
+        y$action_costs(), y$pa_matrix(), y$epf_matrix(),
+        bm[, bo, drop = FALSE], fp$edge.length[bo],
+        rep(0, y$number_of_features()),
+        w,
+        as(as.matrix(solution), "dgCMatrix"))
+    },
     apply = function(self, x, y) {
       assertthat::assert_that(inherits(x, "OptimizationProblem"),
                               inherits(y, "ProjectProblem"))
       fp <- y$feature_phylogeny()
       bo <- rcpp_branch_order(branch_matrix(fp, FALSE))
-      invisible(rcpp_apply_max_phylo_objective(x$ptr, y$action_costs(),
-                                               self$parameters$get("budget"),
-                                               fp$edge.length[bo]))
+      invisible(rcpp_apply_max_phylo_div_objective(
+        x$ptr, y$action_costs(), self$parameters$get("budget"),
+        fp$edge.length[bo]))
     }))
 }

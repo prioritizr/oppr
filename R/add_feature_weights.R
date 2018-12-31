@@ -83,14 +83,15 @@ methods::setMethod(
       parameters = parameters(numeric_parameter_array("weights", weights,
                               x$feature_names(), lower_limit = 0)),
       output = function(self) {
-        self$parameters$get("weights")[[1]]
+        as.matrix(self$parameters$get("weights"))[, 1, drop = TRUE]
       },
       apply = function(self, x, y) {
         assertthat::assert_that(inherits(x, "OptimizationProblem"),
           inherits(y, "ProjectProblem"))
           weights <- as.matrix(self$parameters$get("weights"))[, 1, drop = TRUE]
           invisible(rcpp_apply_feature_weights(
-            x$ptr, weights[y$feature_phylogeny()$tip.label]))
+            x$ptr, weights[y$feature_phylogeny()$tip.label],
+            y$objective$replace_feature_weights()))
       }))
 })
 

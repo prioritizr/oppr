@@ -2,10 +2,10 @@
 #include "optimization_problem.h"
 
 // [[Rcpp::export]]
-bool rcpp_apply_max_phylo_objective(SEXP x,
-                                    Rcpp::NumericVector costs,
-                                    double budget,
-                                    Rcpp::NumericVector feature_weights) {
+bool rcpp_apply_max_phylo_div_objective(SEXP x,
+                                        Rcpp::NumericVector costs,
+                                        double budget,
+                                        Rcpp::NumericVector feature_weights) {
   // initialization
   Rcpp::XPtr<OPTIMIZATIONPROBLEM> ptr = Rcpp::as<Rcpp::XPtr<OPTIMIZATIONPROBLEM>>(x);
 

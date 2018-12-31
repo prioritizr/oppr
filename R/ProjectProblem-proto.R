@@ -100,6 +100,8 @@ NULL
 #'
 #' \code{pf_matrix()}
 #'
+#' \code{epf_matrix()}
+#'
 #' \code{pa_matrix()}
 #'
 #' \code{x$add_objective(obj)}
@@ -207,6 +209,12 @@ NULL
 #' \item{pf_matrix}{
 #'   \code{\link[Matrix]{dgCMatrix-class}} object denoting the enhanced
 #'   probability that features will persist if different projects are funded.}
+#'
+#' \item{epf_matrix}{
+#'   \code{\link[Matrix]{dgCMatrix-class}} object denoting the enhanced
+#'   probability that features is expected to persist if different projects are
+#'  funded. This is calculated as the \code{pf_matrix} multiplied by the
+#'  project success probabilities.}
 #'
 #' \item{pa_matrix}{
 #'   \code{\link[Matrix]{dgCMatrix-class}} object indicating which actions are
@@ -362,6 +370,8 @@ ProjectProblem <- pproto(
     as.character(self$data$features[[self$data$feature_name_column]])
   },
   feature_weights = function(self) {
+    if (is.Waiver(self$weights))
+      return(self$objective$default_feature_weights())
     self$weights$output()
   },
   feature_phylogeny = function(self) {
@@ -381,7 +391,17 @@ ProjectProblem <- pproto(
     m <- methods::as(as.matrix(
       self$data$projects[, self$data$features[[self$data$feature_name_column]],
                          drop = FALSE]), "dgCMatrix")
-    rownames(m) <- self$data$projects[[self$data$project_name_column]]
+    rownames(m) <- self$project_names()
+    colnames(m) <- self$feature_names()
+    m
+  },
+  epf_matrix = function(self) {
+    m <- as(self$pf_matrix() * matrix(self$project_success_probabilities(),
+                                      ncol = self$number_of_features(),
+                                      nrow = self$number_of_actions()),
+                                      "dgCMatrix")
+    rownames(m) <- self$project_names()
+    colnames(m) <- self$feature_names()
     m
   },
   pa_matrix = function(self) {

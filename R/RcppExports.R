@@ -93,16 +93,16 @@ rcpp_apply_decisions <- function(x, vtype, default_lower, default_upper) {
     .Call(`_ppr_rcpp_apply_decisions`, x, vtype, default_lower, default_upper)
 }
 
-rcpp_apply_feature_weights <- function(x, weights) {
-    .Call(`_ppr_rcpp_apply_feature_weights`, x, weights)
+rcpp_apply_feature_weights <- function(x, weights, replace) {
+    .Call(`_ppr_rcpp_apply_feature_weights`, x, weights, replace)
 }
 
 rcpp_apply_locked_constraints <- function(x, actions, status) {
     .Call(`_ppr_rcpp_apply_locked_constraints`, x, actions, status)
 }
 
-rcpp_apply_max_phylo_objective <- function(x, costs, budget, feature_weights) {
-    .Call(`_ppr_rcpp_apply_max_phylo_objective`, x, costs, budget, feature_weights)
+rcpp_apply_max_phylo_div_objective <- function(x, costs, budget, feature_weights) {
+    .Call(`_ppr_rcpp_apply_max_phylo_div_objective`, x, costs, budget, feature_weights)
 }
 
 rcpp_apply_max_targets_met_objective <- function(x, targets_list, costs, budget, feature_weights) {
@@ -119,5 +119,21 @@ rcpp_branch_matrix <- function(x) {
 
 rcpp_branch_order <- function(x) {
     .Call(`_ppr_rcpp_branch_order`, x)
+}
+
+rcpp_evaluate_max_phylo_div_objective <- function(costs, pa_matrix, pf_matrix, branch_matrix, branch_lengths, targets, weights, solutions) {
+    .Call(`_ppr_rcpp_evaluate_max_phylo_div_objective`, costs, pa_matrix, pf_matrix, branch_matrix, branch_lengths, targets, weights, solutions)
+}
+
+rcpp_evaluate_min_set_objective <- function(costs, pa_matrix, pf_matrix, branch_matrix, branch_lengths, targets, weights, solutions) {
+    .Call(`_ppr_rcpp_evaluate_min_set_objective`, costs, pa_matrix, pf_matrix, branch_matrix, branch_lengths, targets, weights, solutions)
+}
+
+rcpp_evaluate_max_targets_met_objective <- function(costs, pa_matrix, pf_matrix, branch_matrix, branch_lengths, targets, weights, solutions) {
+    .Call(`_ppr_rcpp_evaluate_max_targets_met_objective`, costs, pa_matrix, pf_matrix, branch_matrix, branch_lengths, targets, weights, solutions)
+}
+
+rcpp_expected_persistences <- function(pa_matrix, pf_matrix, branch_matrix, solutions) {
+    .Call(`_ppr_rcpp_expected_persistences`, pa_matrix, pf_matrix, branch_matrix, solutions)
 }
 

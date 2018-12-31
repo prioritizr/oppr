@@ -128,6 +128,23 @@ add_min_set_objective <- function(x) {
     feature_phylogeny = function(self) {
       star_phylogeny(self$data$feature_names)
     },
+    default_feature_weights = function(self) {
+      setNames(rep(NA_real_, length(self$data$feature_names)),
+               self$data$feature_names)
+    },
+    evaluate = function(self, y, solution) {
+      assertthat::assert_that(inherits(y, "ProjectProblem"),
+                              inherits(solution, "tbl_df"))
+      fp <- y$feature_phylogeny()
+      bm <- branch_matrix(fp, FALSE)
+      bo <- rcpp_branch_order(bm)
+      rcpp_evaluate_min_set_objective(
+        y$action_costs(), y$pa_matrix(),
+        y$epf_matrix()[, y$feature_phylogeny()$tip.label, drop = FALSE],
+        bm[, bo, drop = FALSE], fp$edge.length[bo],
+        rep(0, y$number_of_features()), rep(0, y$number_of_features()),
+        as(as.matrix(solution), "dgCMatrix"))
+    },
     apply = function(self, x, y) {
       assertthat::assert_that(inherits(x, "OptimizationProblem"),
                               inherits(y, "ProjectProblem"))

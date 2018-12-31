@@ -33,11 +33,16 @@ compile.ProjectProblem <- function(x, ...) {
   not_target_based_obj <- c("MaximumPhyloDivObjective",
                             "MaximumRichnessObjective",
                             "MaximumPersistenceObjective")
+  not_weight_based_obj <- c("MinimumSetObjective")
   # sanity checks
   if (!is.Waiver(x$targets) &&
       inherits(x$objective, not_target_based_obj))
     warning(paste("ignoring targets since the specified objective",
                   "function doesn't use targets"))
+  if (!is.Waiver(x$weights) &&
+      inherits(x$objective, not_weight_based_obj))
+    warning(paste("ignoring weights since the specified objective",
+                  "function doesn't use weights"))
   # replace waivers with defaults
   if (is.Waiver(x$objective))
     x <- add_default_objective(x)
@@ -65,11 +70,9 @@ compile.ProjectProblem <- function(x, ...) {
   bm <- branch_matrix(fp, FALSE)
   bo <- rcpp_branch_order(bm)
   # add raw data to optimization problem
-  pf <- x$pf_matrix()[, fp$tip.label] *
-        methods::as(matrix(x$project_success_probabilities(),
-                    ncol = x$number_of_features(),
-                    nrow = x$number_of_projects()), "dgCMatrix")
-  rcpp_add_raw_data(op$ptr, x$pa_matrix(), pf, bm[, bo, drop = FALSE],
+  rcpp_add_raw_data(op$ptr, x$pa_matrix(),
+                    x$epf_matrix()[, fp$tip.label, drop = FALSE],
+                    bm[, bo, drop = FALSE],
                     fp$edge.length[bo], 1000)
   # add decision types to optimization problem
   x$decisions$calculate(x)
@@ -78,7 +81,7 @@ compile.ProjectProblem <- function(x, ...) {
   x$objective$calculate(x)
   x$objective$apply(op, x)
   # add weights to optimization problem
-  if (!is.Waiver(x$weights)) {
+  if (!is.Waiver(x$weights) && !inherits(x$objective, not_weight_based_obj)) {
     x$weights$calculate(x)
     x$weights$apply(op, x)
   }

@@ -27,20 +27,25 @@ The object returned from this function depends on the argument to
 
   \describe{
 
-  \item{\code{"solution"}}{}
-
   \item{\code{"solution"}}{\code{integer} solution identifier.}
 
   \item{\code{"status"}}{\code{character} describing each solution.
    For example, is the solution optimal, suboptimal, or was it returned
    because the solver ran out of time?}
 
+  \item{\code{"obj"}}{\code{numeric} objective value for each solution.
+    This is calculated using the objective function defined for the
+    argument to \code{x}.}
+
   \item{\code{"cost"}}{\code{numeric} total cost associated with each
     solution.}
 
-  \item{code{...}}{columns for each action which \code{logical}} values
-    (i.e. \code{TRUE} or \code{FALSE}) that indicate if each action
-    action was funded in each solution.
+  \item{code{x$action_names()}}{\code{numeric} column for each action
+    indicating if they were funded in each solution or not.}
+
+  \item{\code{x$feature_names()}}{\code{numeric} column for each
+    feature indicating the probability that it will persist into
+    the future given each solution.}
 
   }
 }
@@ -52,6 +57,6 @@ Solve a conservation planning \code{\link{problem}}.
 
 }
 \seealso{
-\code{\link{evaluate}}, \code{\link{problem}},
-  \code{\link{solvers}}.
+\code{\link{problem}}, \code{\link{solution_statistics}},
+  \code{\link{solvers}}, .
 }
