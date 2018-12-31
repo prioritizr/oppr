@@ -17,9 +17,30 @@ be named according to a different action in \code{x}.
 Cell values indicate if an action is funded in a given solution or not,
 and should be either zero or one.}
 }
+\value{
+A \code{\link[tibble]{tibble}} table containing the following
+  columns:
+
+  \describe{
+
+  \item{\code{"cost"}}{\code{numeric} cost of each solution.}
+
+  \item{\code{"obj"}}{\code{numeric} objective value for each solution.
+    This is calculated using the objective function defined for the
+    argument to \code{x}.}
+
+  \item{\code{x$feature_names()}}{\code{numeric} column for each
+    feature indicating the probability that it will persist into
+    the future given each solution.}
+
+  }
+}
 \description{
 Calculate statistics describing the performance of solutions to a project
 prioritization \code{\link{problem}}.
+}
+\examples{
+#TODO
 }
 \seealso{
 \code{\link{objectives}}.

@@ -21,7 +21,7 @@ NULL
 #'
 #'   \describe{
 #'
-#'   \item{\code{"cost"}{\code{numeric} cost of each solution.}
+#'   \item{\code{"cost"}}{\code{numeric} cost of each solution.}
 #'
 #'   \item{\code{"obj"}}{\code{numeric} objective value for each solution.
 #'     This is calculated using the objective function defined for the
@@ -35,6 +35,9 @@ NULL
 #'
 #' @seealso \code{\link{objectives}}.
 #'
+#' @examples
+#' #TODO
+#
 #' @export
 solution_statistics <- function(x, solution) {
   # assert arguments are valid
