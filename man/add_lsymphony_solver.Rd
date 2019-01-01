@@ -34,9 +34,6 @@ optimization problems? Defaults to \code{TRUE}.}
 \value{
 \code{\link{ProjectProblem-class}} object with the solver added
   to it.
-
-\code{\link{ProjectProblem-class}} object with the solver added
-  to it.
 }
 \description{
 Specify that the \emph{SYMPHONY} software should be used to solve a
