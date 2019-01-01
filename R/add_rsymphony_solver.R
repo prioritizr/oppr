@@ -4,9 +4,9 @@ NULL
 #' Add a SYMPHONY solver with \pkg{Rsymphony}
 #'
 #' Specify that the \emph{SYMPHONY} software should be used to solve a
-#' conservation planning problem using the \pkg{Rsymphony} package. This
-#' function can also be used to customize the behavior of the solver.
-#' It requires the \pkg{Rsymphony} package.
+#' project prioritization \code{\link{problem}} using the \pkg{Rsymphony}
+#' package. This function can also be used to customize the behavior of the
+#' solver. It requires the \pkg{Rsymphony} package.
 #'
 #' @param x \code{\link{ProjectProblem-class}} object.
 #'

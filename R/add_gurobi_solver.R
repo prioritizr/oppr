@@ -4,8 +4,10 @@ NULL
 #' Add a \pkg{Gurobi} solver
 #'
 #' Specify that the \emph{Gurobi} software should be used to solve a
-#' conservation planning problem. This function can also be used to
-#' customize the behavior of the solver. It requires the \pkg{gurobi} package.
+#' project prioritization \code{\link{problem}}. This function can also be
+#' used to customize the behavior of the solver. In addition to the
+#' \emph{Gurobi} software suite, it also requires the \pkg{gurobi} package to
+#' be installed.
 #'
 #' @param x \code{\link{ProjectProblem-class}} object.
 #'

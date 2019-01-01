@@ -33,12 +33,15 @@ optimization problems? Defaults to \code{TRUE}.}
 \value{
 \code{\link{ProjectProblem-class}} object with the solver added
   to it.
+
+\code{\link{ProjectProblem-class}} object with the solver added
+  to it.
 }
 \description{
 Specify that the \emph{SYMPHONY} software should be used to solve a
-conservation planning problem using the \pkg{Rsymphony} package. This
-function can also be used to customize the behavior of the solver.
-It requires the \pkg{Rsymphony} package.
+project prioritization \code{\link{problem}} using the \pkg{Rsymphony}
+package. This function can also be used to customize the behavior of the
+solver. It requires the \pkg{Rsymphony} package.
 }
 \details{
 \href{https://projects.coin-or.org/SYMPHONY}{\emph{SYMPHONY}} is an
@@ -54,5 +57,7 @@ It requires the \pkg{Rsymphony} package.
 
 }
 \seealso{
+\code{\link{solvers}}.
+
 \code{\link{solvers}}.
 }
