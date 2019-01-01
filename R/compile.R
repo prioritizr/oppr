@@ -97,7 +97,7 @@ compile.ProjectProblem <- function(x, ...) {
   if (all(op$ub()[seq_len(x$number_of_actions())] == 0))
     warning("all planning units are locked out.")
   # add data to optimization problem object
-  op$data <- x$data
+  op$data <- x
   # return optimization problem object
   op
 }

@@ -137,3 +137,11 @@ rcpp_expected_persistences <- function(pa_matrix, pf_matrix, branch_matrix, solu
     .Call(`_ppr_rcpp_expected_persistences`, pa_matrix, pf_matrix, branch_matrix, solutions)
 }
 
+rcpp_random_max_benefit_solution <- function(costs, locked_in, locked_out, budget, n_solutions, verbose) {
+    .Call(`_ppr_rcpp_random_max_benefit_solution`, costs, locked_in, locked_out, budget, n_solutions, verbose)
+}
+
+rcpp_random_min_set_solution <- function(costs, pa_matrix, pf_matrix, targets_list, locked_in, locked_out, n_solutions, verbose) {
+    .Call(`_ppr_rcpp_random_min_set_solution`, costs, pa_matrix, pf_matrix, targets_list, locked_in, locked_out, n_solutions, verbose)
+}
+

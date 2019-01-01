@@ -49,6 +49,10 @@ Rcpp::NumericVector evaluate_min_set_objective(
   Rcpp::NumericVector, Rcpp::NumericVector, Rcpp::NumericVector,
   arma::sp_mat);
 
+// calculate shortfall in expected persistences
+arma::mat expected_persistences_shortfalls(
+  arma::sp_mat, arma::sp_mat, Rcpp::NumericVector, arma::sp_mat);
+
 arma::mat expected_persistences(
   arma::sp_mat, arma::sp_mat, arma::sp_mat, arma::sp_mat);
 

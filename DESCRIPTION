@@ -37,7 +37,10 @@ Suggests:
     lpsymphony(>= 1.10.0)
 Depends:
     R(>= 3.4.0)
-LinkingTo: Rcpp(>= 0.12.19), RcppArmadillo(>= 0.9.100.5.0)
+LinkingTo:
+    Rcpp(>= 0.12.19),
+    RcppArmadillo(>= 0.9.100.5.0),
+    RcppProgress(>= 0.4.1)
 License: GPL-3
 LazyData: true
 SystemRequirements: C++11
@@ -86,6 +89,7 @@ Collate:
     'add_max_richness_objective.R'
     'add_max_targets_met_objective.R'
     'add_min_set_objective.R'
+    'add_random_solver.R'
     'add_relative_targets.R'
     'add_rsymphony_solver.R'
     'branch_matrix.R'

@@ -54,7 +54,25 @@ Rcpp::NumericVector evaluate_min_set_objective(
     return out;
 }
 
-// calculate expected weighted persistence
+// calculate shortfall in expected persistences
+arma::mat expected_persistences_shortfalls(
+  arma::sp_mat pa_matrix, arma::sp_mat pf_matrix, Rcpp::NumericVector targets,
+  arma::sp_mat solutions) {
+  // create dummy branch matrix
+  arma::sp_mat bm(pf_matrix.n_cols, pf_matrix.n_cols);
+  bm.eye();
+  // calculate persistences
+  arma::mat p = expected_persistences(pa_matrix, pf_matrix, bm, solutions);
+  // calculate shortfall for each feature
+  arma::mat out(solutions.n_rows, pf_matrix.n_cols);
+  for (std::size_t f = 0; f < p.n_cols; ++f)
+    for (std::size_t i = 0; i < solutions.n_rows; ++i)
+      out(i, f) = targets[f] - p(i, f);
+  // return shortfall
+  return out;
+}
+
+// calculate expected persistence
 arma::mat expected_persistences(
   arma::sp_mat pa_matrix, arma::sp_mat pf_matrix, arma::sp_mat branch_matrix,
   arma::sp_mat solutions) {
