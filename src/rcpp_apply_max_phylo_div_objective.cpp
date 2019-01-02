@@ -28,7 +28,7 @@ bool rcpp_apply_max_phylo_div_objective(SEXP x,
       (ptr->_row_ids.begin());
   --r;
   for (std::size_t f = 0; f < (ptr->_number_of_features); ++f) {
-    r += 1;
+    ++r;
     ptr->_A_i.push_back(r);
     ptr->_A_j.push_back((ptr->_number_of_actions) +
                        (ptr->_number_of_projects) +
@@ -80,9 +80,10 @@ bool rcpp_apply_max_phylo_div_objective(SEXP x,
     /// find row to start adding constraints
     std::size_t r = std::find(ptr->_row_ids.begin(), ptr->_row_ids.end(),
                               "c5") - (ptr->_row_ids.begin());
-
+    --r;
     /// add new constraints for non-tip branches
     for (std::size_t b = 0; b < n_nontip_branches; ++b) {
+      ++r;
       ptr->_A_i.push_back(r);
       ptr->_A_j.push_back((ptr->_number_of_actions) +
                           (ptr->_number_of_projects) +
