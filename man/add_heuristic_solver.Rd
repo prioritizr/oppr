@@ -98,7 +98,7 @@ For objectives which minimize cost subject to biodiversity constraints
     action \eqn{l}, \eqn{B_l} is the benefit
    associated with funding action \eqn{l}, \eqn{P(L)} is probability
    that each feature is expected to persist when the remaining actions
-   (\eqn(L)) are funded, and \eqn{P(L - l)} is the probability that
+   (\eqn{L}) are funded, and \eqn{P(L - l)} is the probability that
    each feature is expected to persist when all the remaining actions and
    the action \code{l} are funded.
 
