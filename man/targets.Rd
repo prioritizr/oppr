@@ -29,8 +29,9 @@ The following functions can be used to specify targets for a
     10\% (i.e. \code{0.1}) corresponds to a threshold 10\% probability of
     persisting.}
 
-  \item{\code{\link{add_manual_targets}}}{Set targets manually using
-    a \code{data.frame} which specifies the precise nature of the target.}
+  \item{\code{\link{add_manual_targets}}}{
+    Set targets by manually specifying all the required information for each
+    target.}
 
   }
 }
