@@ -49,13 +49,19 @@ The type of plot that this function creates depends on the
   persistence, and the width of the bars indicate each feature's weight.
 
   Features that directly benefit from at least a single
-  completely funded project with a non-zero cost are denoted with an
+  completely funded project with a non-zero cost are depicted with an
   asterisk symbol. Additionally, features that indirectly benefit from funded
   projects---because they are associated with partially funded projects that
   have non-zero costs and share actions with at least one funded
-  project---are denoted with an open circle symbols.
+  project---are depicted with an open circle symbol.
+}
+\examples{
+#TODO
+
 }
 \seealso{
-\code{\link{plot_feature_persistence}},
-  \code{\link{plot_phylo_persistence}}.
+This function is essentially a wrapper for
+  \code{\link{plot_feature_persistence}} and
+  \code{\link{plot_phylo_persistence}}, so refer to the documentation
+  for these functions for more information.
 }

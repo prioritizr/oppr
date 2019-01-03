@@ -3,8 +3,8 @@ NULL
 
 #' Solution statistics
 #'
-#' Calculate statistics describing the performance of solutions to a project
-#' prioritization \code{\link{problem}}.
+#' Calculate statistics describing a solution to a project prioritization
+#' \code{\link{problem}}.
 #'
 #' @param x project prioritization \code{\link{problem}}.
 #'

@@ -41,9 +41,13 @@ In this plot, each bar corresponds to a different feature.
   will persist into the future, and the color of each bar indicates
   the weight for a given feature.
   Features that directly benefit from at least a single completely funded
-  project with a non-zero cost are denoted with an asterisk symbol.
+  project with a non-zero cost are depicted with an asterisk symbol.
   Additionally, features that indirectly benefit from funded
   projects---because they are associated with partially funded
   projects that have non-zero costs and share actions with at least one
-  completely funded project---are denoted with an open circle symbols.
+  completely funded project---are depicted with an open circle symbol.
+}
+\examples{
+#TODO
+
 }

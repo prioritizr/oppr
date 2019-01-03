@@ -21,11 +21,11 @@ NULL
 #'   In this plot, each phylogenetic branch is colored according to probability
 #'   that it is expected to persist into the future (see Faith 2008).
 #'   Features that directly benefit from at least a single
-#'   completely funded project with a non-zero cost are denoted with an
+#'   completely funded project with a non-zero cost are depicted with an
 #'   asterisk symbol. Additionally, features that indirectly benefit from funded
 #'   projects---because they are associated with partially funded projects that
 #'   have non-zero costs and share actions with at least one completely funded
-#'   project---are denoted with an open circle symbols.
+#'   project---are depicted with an open circle symbol.
 #'
 #' @references
 #' Faith DP (2008) Threatened species and the potential loss of
