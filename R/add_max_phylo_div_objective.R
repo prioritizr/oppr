@@ -124,6 +124,14 @@ NULL
 #'  that the action funding (\eqn{X_i}), project funding (\eqn{Y_j}), and
 #'  project allocation (\eqn{Z_{fj}}) variables are binary.
 #'
+#'  Although this formulation is a mixed integer quadratically constrained
+#'  programming problem (due to eqn 1c), it can be approximated using
+#'  linear terms and then solved using commercial mixed integer programming
+#'  solvers. This can be achieved by substituting the product of the feature
+#'  extinction probabilities (eqn 1c) with the sum of the log feature extinction
+#'  probabilities and using piecewise linear approximations (described in
+#'  Hillier & Price 2005 pp. 390--392) to approximate the exponent of this term.
+#'
 #' @inherit add_max_richness_objective seealso return
 #'
 #' @references
@@ -138,6 +146,9 @@ NULL
 #' phylogenetic diversity: conservation scenarios based on estimated extinction
 #' probabilities and phylogenetic risk analysis. \emph{Conservation Biology},
 #' \strong{22}: 1461--1470.
+#'
+#' Hillier FS & Price CC (2005) \emph{International series in operations
+#' research & management science}. Springer.
 #'
 #' @examples
 #' #TODO

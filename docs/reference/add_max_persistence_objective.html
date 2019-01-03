@@ -227,6 +227,18 @@ features (see <code><a href='add_feature_weights.html'>add_feature_weights</a></
  (\(E_f\)) are bounded between zero and one. Constraints (eqns 1h) ensure
  that the action funding (\(X_i\)), project funding (\(Y_j\)), and
  project allocation (\(Z_{fj}\)) variables are binary.</p>
+<p>Although this formulation is a mixed integer quadratically constrained
+ programming problem (due to eqn 1c), it can be approximated using
+ linear terms and then solved using commercial mixed integer programming
+ solvers. This can be achieved by substituting the product of the feature
+ extinction probabilities (eqn 1c) with the sum of the log feature extinction
+ probabilities and using piecewise linear approximations (described in
+ Hillier &amp; Price 2005 pp. 390--392) to approximate the exponent of this term.</p>
+    
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>Hillier FS &amp; Price CC (2005) <em>International series in operations
+research &amp; management science</em>. Springer.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -246,6 +258,8 @@ features (see <code><a href='add_feature_weights.html'>add_feature_weights</a></
       <li><a href="#value">Value</a></li>
 
       <li><a href="#details">Details</a></li>
+
+      <li><a href="#references">References</a></li>
 
       <li><a href="#see-also">See also</a></li>
       

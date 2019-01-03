@@ -114,10 +114,22 @@ A problem objective is used to specify the overall goal of the
  (\eqn{E_f}) are bounded between zero and one. Constraints (eqns 1h) ensure
  that the action funding (\eqn{X_i}), project funding (\eqn{Y_j}), and
  project allocation (\eqn{Z_{fj}}) variables are binary.
+
+ Although this formulation is a mixed integer quadratically constrained
+ programming problem (due to eqn 1c), it can be approximated using
+ linear terms and then solved using commercial mixed integer programming
+ solvers. This can be achieved by substituting the product of the feature
+ extinction probabilities (eqn 1c) with the sum of the log feature extinction
+ probabilities and using piecewise linear approximations (described in
+ Hillier & Price 2005 pp. 390--392) to approximate the exponent of this term.
 }
 \examples{
 #TODO
 
+}
+\references{
+Hillier FS & Price CC (2005) \emph{International series in operations
+research & management science}. Springer.
 }
 \seealso{
 \code{\link{objectives}}.

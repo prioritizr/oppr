@@ -62,11 +62,24 @@ NULL
 #'
 #' @details \href{http://gurobi.com}{\emph{Gurobi}} is a
 #'   state-of-the-art commercial optimization software with an R package
-#'   interface. It is by far the fastest of the solvers available in this
+#'   interface. It is by far the fastest of the solvers supported by this
 #'   package, however, it is also the only solver that is not freely
 #'   available. That said, licenses are available to academics at no cost. The
 #'   \pkg{gurobi} package is distributed with the \emph{Gurobi} software suite.
 #'   This solver uses the \pkg{gurobi} package to solve problems.
+#'
+#'   To install the \pkg{gurobi} package, the
+#'   \href{https://www.gurobi.com}{Gurobi} optimization suite will first need to
+#'   be installed (see instructions for \href{http://www.gurobi.com/documentation/8.1/quickstart_linux/software_installation_guid.html}{Linux},
+#'   \href{http://www.gurobi.com/documentation/8.1/quickstart_mac/software_installation_guid.html}{Mac OSX}, and
+#'   \href{http://www.gurobi.com/documentation/8.1/quickstart_windows/software_installation_guid.html}{Windows} operating systems). Although
+#'   \href{https://www.gurobi.com}{Gurobi} is a commercial software, academics
+#'   can obtain a
+#'   \href{https://user.gurobi.com/download/licenses/free-academic}{special license for no cost}. After installing the
+#'   \href{https://www.gurobi.com}{Gurobi} optimization suite, the \pkg{gurobi}
+#'   package can then be installed (see instructions for \href{http://www.gurobi.com/documentation/8.1/quickstart_linux/r_installing_the_r_package.html}{Linux},
+#'   \href{http://www.gurobi.com/documentation/8.1/quickstart_mac/r_installing_the_r_package.html}{Mac OSX}, and
+#'   \href{http://www.gurobi.com/documentation/8.1/quickstart_windows/r_installing_the_r_package.html}{Windows} operating systems).
 #'
 #' @return \code{\link{ProjectProblem-class}} object with the solver added
 #'   to it.
