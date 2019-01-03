@@ -159,24 +159,24 @@ optimization problems?</p></td>
  <code><a href='problem.html'>problem</a></code>.</p>
 <p>For objectives which maximize benefit subject to budgetary constraints
  (e.g. <code><a href='add_max_richness_objective.html'>add_max_richness_objective</a></code>):</p>
-<p></p><ul>
+<p></p><ol>
 <li><p>All actions are initially selected for funding (excepting actions
    which are locked out).</p></li>
-<li><p>An action is randomly selected and defunded (excepting actions which
+<li><p>An action is randomly deselected for funding (excepting actions which
    are locked in or actions which have zero cost).</p></li>
 <li><p>The previous step is repeated until the total cost of the remaining
-  actions that are prioritized for funding is within the budget.</p></li>
-</ul>
+  actions that are prioritized for funding falls within the budget.</p></li>
+</ol>
     <p>For objectives which minimize cost subject to biodiversity constraints
 (i.e. <code><a href='add_min_set_objective.html'>add_min_set_objective</a></code>:</p>
-<p></p><ul>
+<p></p><ol>
 <li><p>All actions are initially not selected for funding (excepting actions
    which are locked in or actions which have zero cost).</p></li>
 <li><p>An action is randomly selected for funding (excepting actions which
    are locked out.</p></li>
 <li><p>The previous step is repeated until all of the persistence targets
   are met.</p></li>
-</ul>
+</ol>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 

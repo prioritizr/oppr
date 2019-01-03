@@ -4,22 +4,22 @@ NULL
 #' Problem solvers
 #'
 #' Specify the software and configuration used to solve a project prioritization
-#' \code{\link{problem}}. By default, the best available software currently
-#' installed on the system will be used.
+#' \code{\link{problem}}. By default, the best available exact algorithm
+#' solver will be used.
 #'
 #' @details The following solvers can be used to find solutions for a
 #'   project prioritization \code{\link{problem}}:
 #'
 #'   \describe{
 #'
-#'   \item{\code{add_default_solver}}{This solver uses the best software
+#'   \item{\code{\link{add_default_solver}}}{This solver uses the best software
 #'     currently installed on the system.}
 #'
 #' \item{\code{\link{add_gurobi_solver}}}{
 #'     \href{http://gurobi.com}{\emph{Gurobi}}
 #'     is a state-of-the-art commercial optimization software with an R package
-#'     interface. It is by far the fastest of the solvers available in this
-#'     package, however, it is also the only solver that is not freely
+#'     interface. It is by far the fastest solver that can be used by
+#'     this package, however, it is also the only solver that is not freely
 #'     available. That said, licenses are available to academics at no cost. The
 #'     \pkg{gurobi} package is distributed with the \emph{Gurobi} software
 #'     suite. This solver uses the \pkg{gurobi} package to solve problems.}
@@ -44,7 +44,8 @@ NULL
 #'   \item{\code{\link{add_heuristic_solver}}}{Generate solutions using
 #'     a backwards heuristic algorithm. Although these types of algorithms have
 #'     conventionally been used to solve project prioritization problems,
-#'     they are extremely unlikely to identify optimal solutions.}
+#'     they are extremely unlikely to identify optimal solutions and provide
+#'     no guarantees concerning solution quality.}
 #'
 #'   \item{\code{\link{add_random_solver}}}{Generate solutions by
 #'     randomly funding actions. This can be useful when evaluating the

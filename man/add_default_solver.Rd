@@ -2,7 +2,7 @@
 % Please edit documentation in R/add_default_solver.R
 \name{add_default_solver}
 \alias{add_default_solver}
-\title{Default solver}
+\title{Add a default solver}
 \usage{
 add_default_solver(x, ...)
 }
@@ -14,11 +14,20 @@ add_default_solver(x, ...)
 \description{
 Identify the best solver currently installed on the system and specify that
 it should be used to solve a project prioritization \code{\link{problem}}.
-Ranked from best to worst, the available solvers that can be used are:
-\pkg{gurobi},
-(\code{\link{add_gurobi_solver}}),
-\pkg{Rsymphony} (\code{\link{add_rsymphony_solver}}), \pkg{lpsymphony}
-(\code{\link{add_lpsymphony_solver}}).
+}
+\details{
+Ranked from best to worst, the solvers that can be used are:
+  \pkg{gurobi}, (\code{\link{add_gurobi_solver}}),
+  \pkg{Rsymphony} (\code{\link{add_rsymphony_solver}}), and \pkg{lpsymphony}
+  (\code{\link{add_lpsymphony_solver}}). This function does not consider
+  solvers that generate solutions using heuristic algorithms (i.e.
+  \code{\link{add_heuristic_solver}}) or random processes
+  (i.e. \code{\link{add_random_solver}}) because they cannot provide
+  any guarantees on solution quality.
+}
+\examples{
+#TODO
+
 }
 \seealso{
 \code{\link{solvers}}.

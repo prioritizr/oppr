@@ -37,23 +37,23 @@ The algorithm used to randomly generate solutions depends on the
  For objectives which maximize benefit subject to budgetary constraints
  (e.g. \code{\link{add_max_richness_objective}}):
 
- \itemize{
+ \enumerate{
 
  \item All actions are initially selected for funding (excepting actions
    which are locked out).
 
- \item An action is randomly selected and defunded (excepting actions which
+ \item An action is randomly deselected for funding (excepting actions which
    are locked in or actions which have zero cost).
 
 \item The previous step is repeated until the total cost of the remaining
-  actions that are prioritized for funding is within the budget.
+  actions that are prioritized for funding falls within the budget.
 
  }
 
 For objectives which minimize cost subject to biodiversity constraints
 (i.e. \code{\link{add_min_set_objective}}:
 
- \itemize{
+ \enumerate{
 
  \item All actions are initially not selected for funding (excepting actions
    which are locked in or actions which have zero cost).

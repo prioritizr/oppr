@@ -25,9 +25,10 @@ optimization problems?}
 }
 \description{
 Specify that solutions should be generated using a backwards step-wise
-heuristic algorithm (inspired by Cabeza \emph{et al.} 2004). Ideally,
+heuristic algorithm (inspired by Cabeza \emph{et al.} 2004,
+Korte & Vygen 2000). Ideally,
 solutions should be generated using exact algorithm solvers (e.g.
-\code{\link{add_rsymphony_solver}} or \code{\link{add_gurobi_solver}}
+\code{\link{add_rsymphony_solver}} or \code{\link{add_gurobi_solver}})
 because they can guaranteably identify optimal solutions (Rodrigues & Gaston
 2002).
 }
@@ -39,7 +40,7 @@ The specific algorithm used to generate solutions depends on the
  For objectives which maximize benefit subject to budgetary constraints
  (e.g. \code{\link{add_max_richness_objective}}):
 
- \itemize{
+ \enumerate{
 
  \item All actions are initially selected for funding (excepting actions
    which are locked out).
@@ -51,8 +52,8 @@ The specific algorithm used to generate solutions depends on the
  \item Each of the remaining actions that are currently selected for
    funding (excepting actions which are locked in or actions which have zero
    cost) are evaluated according to how much the performance of the
-   solution decreases when the action is defunded, relative to the cost
-   of the action. This can be expressed mathematically as:
+   solution decreases when the action is deselected for funding, relative to
+   the cost of the action. This can be expressed mathematically as:
 
    \deqn{B_l = \frac{V(L) - V(L - l)}{C_l}}{B_l = (V(L) - V(L - l)) / C_l}
 
@@ -64,33 +65,33 @@ The specific algorithm used to generate solutions depends on the
    solution where all remaining actions except for the action \eqn{l} are
    funded, and \eqn{C_l} is the cost of action \eqn{l}.
 
-   The action with the smallest benefit (i.e. \code{B_l} value) is then
-   defunded.
+   The action with the smallest benefit (i.e. \eqn{B_l} value) is then
+   deselected for funding.
 
  }
 
 For objectives which minimize cost subject to biodiversity constraints
-(i.e. \code{\link{add_min_set_objective}}:
+(i.e. \code{\link{add_min_set_objective}}):
 
- \itemize{
+ \enumerate{
 
  \item All actions are initially selected for funding (excepting actions
    which are locked out).
 
  \item The next step is repeated until (i) the number of desired
-   solutions is obtained or (ii) no action can be defunded
-   without the probability of any feature expecting to persist into
-   the future falling below its target probability of persistence..
+   solutions is obtained or (ii) no action can be deselected for funding
+   without the probability of any feature expecting to persist falling below
+   its target probability of persistence.
 
  \item Each of the remaining actions that are currently selected for
    funding (excepting actions which are locked in or actions which have zero
    cost) are evaluated according to how much the performance of the
-   solution decreases when the action is defunded, relative to the cost
-   of the action. This can be expressed mathematically as:
+   solution decreases when the action is deselected for funding, relative to
+   the cost of the action. This can be expressed mathematically as:
 
-   \deqn{B_l = \frac{\sum_{f}^{F} P_f(L) - T_f -
-   \sum_{f}^{F} P_f(L - l) - T_f}{C_l}}{
-   B_l = ((sum_f^F P_f(L) - T_f) - sum_f^F P_f(L - 1) - T_f)) / C_l}
+   \deqn{B_l = \frac{\big(\sum_{f}^{F} P_f(L) - T_f \big) -
+   \big( \sum_{f}^{F} P_f(L - l) - T_f \big)}{C_l}}{
+   B_l = ((sum_f^F P_f(L) - T_f) - (sum_f^F P_f(L - 1) - T_f)) / C_l}
 
    Where \eqn{F} is the set of features (indexed by \eqn{f}),
    \eqn{T_f} is the target for feature \eqn{f}, \eqn{L} is the set of
@@ -99,11 +100,11 @@ For objectives which minimize cost subject to biodiversity constraints
    associated with funding action \eqn{l}, \eqn{P(L)} is probability
    that each feature is expected to persist when the remaining actions
    (\eqn{L}) are funded, and \eqn{P(L - l)} is the probability that
-   each feature is expected to persist when all the remaining actions and
-   the action \code{l} are funded.
+   each feature is expected to persist when all the remaining actions except
+   for action \eqn{l} are funded.
 
-   The action with the smallest benefit (i.e. \code{B_l} value) is then
-   defunded.
+   The action with the smallest benefit (i.e. \eqn{B_l} value) is then
+   deselected for funding.
 
  }
 }
@@ -119,6 +120,10 @@ procedures---why not? \emph{Biological Conservation}, \strong{107},
 Cabeza M, Araujo MB, Wilson RJ, Thomas CD, Cowley MJ & Moilanen A (2004)
 Combining probabilities of occurrence with spatial reserve design.
 \emph{Journal of Applied Ecology}, \strong{41}, 252--262.
+
+Korte B & Vygen J (2000)
+\emph{Combinatorial Optimization. Theory and Algorithms}. Springer-Verlag,
+Berlin, Germany.
 }
 \seealso{
 \code{\link{solvers}}.
