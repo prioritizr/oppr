@@ -4,9 +4,8 @@
 \alias{decisions}
 \title{Specify the type of decisions}
 \description{
-Project prioritization problems involve making decisions on how
-actions will be funded. If no decision is explicitly added to a
-\code{\link{problem}}, then binary decisions will be used by default.
+Project prioritization problems involve making decisions about
+how funding will be allocated to management actions.
 }
 \details{
 Please note that only one type of decision is currently supported:

@@ -4,13 +4,13 @@ NULL
 #' Add binary decisions
 #'
 #' Add a binary decision to a project prioritization \code{\link{problem}}.
-#' This is the classic decision of either funding or not funding a management
-#' action.
+#' This is the conventional decision of either prioritizing funding
+#' for a management action or not.
 #'
 #' @param x \code{\link{ProjectProblem-class}} object.
 #'
 #' @details Project prioritization problems involve making decisions on
-#'   management actions that are grouped into projects.Only a
+#'   about which management actions should be funded or not. Only a
 #'   single decision should be added to a \code{ProjectProblem} object.
 #'   If no decision is added to a problem then this decision class will
 #'   be used by default. Currently, this is the only supported decision type.
