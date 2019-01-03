@@ -117,10 +117,10 @@ does not require targets will throw a warning if targets are supplied." />
     <div class="ref-description">
     
     <p>Targets are used to specify the minimum probability of persistence required
-for each feature. <strong>Please note that only some objectives require
+for each feature. Please note that only some objectives require
 targets, and attempting to solve a problem that requires targets will throw
 an error if targets are not supplied, and attempting to solve a problem that
-does not require targets will throw a warning if targets are supplied.</strong></p>
+does not require targets will throw a warning if targets are supplied.</p>
     
     </div>
 
@@ -131,16 +131,16 @@ does not require targets will throw a warning if targets are supplied.</strong><
   project prioritization <code><a href='problem.html'>problem</a></code>:</p>
 <p></p><dl class='dl-horizontal'>
     <dt><code><a href='add_relative_targets.html'>add_relative_targets</a></code></dt><dd><p>Set targets as a proportion (between 0 and 1) of the maximum probability
-    of persistence associated with the best project for feature. For
+    of persistence associated with the best project for each feature. For
     instance, if the best project for a feature has an 80% probability of
     persisting, setting a 50% (i.e. <code>0.5</code>) relative target will
     correspond to a 40% threshold probability of persisting.</p></dd>
-    <dt><code><a href='add_absolute_targets.html'>add_absolute_targets</a></code></dt><dd><p>Set targets for a project prioritization <code><a href='problem.html'>problem</a></code> by
-    specifying exactly what probability of persistence is required
-    for each feature. For instance, setting an absolute target of 10<!-- % -->
-    (i.e. <code>0.1</code>) corresponds to a threshold 10% probability of
+    <dt><code><a href='add_absolute_targets.html'>add_absolute_targets</a></code></dt><dd><p>Set targets by specifying exactly what probability of persistence is
+    required for each feature. For instance, setting an absolute target of
+    10% (i.e. <code>0.1</code>) corresponds to a threshold 10% probability of
     persisting.</p></dd>
-    <dt><code><a href='add_manual_targets.html'>add_manual_targets</a></code></dt><dd><p>Set targets manually.</p></dd>
+    <dt><code><a href='add_manual_targets.html'>add_manual_targets</a></code></dt><dd><p>Set targets manually using
+    a <code>data.frame</code> which specifies the precise nature of the target.</p></dd>
     </dl>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>

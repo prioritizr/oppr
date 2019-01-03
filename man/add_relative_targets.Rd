@@ -40,6 +40,8 @@ Targets are used to specify the minimum probability of persistence
   \describe{
 
   \item{\code{numeric}}{\code{vector} of target values for each feature.
+    The order of the target values should correspond to the order
+    of the features in the data used to create the argument to \code{x}.
     Additionally, for convenience, this type of argument can be a single
     value to assign the same target to each feature.}
 
