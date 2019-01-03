@@ -40,7 +40,10 @@ species that are expected to persist into the future whilst ensuring that
 the total cost of the funded actions does not exceed a budget.
 Alternatively, the planner may require a solution that ensures that
 each species meets a target level of persistence whilst minimizing the cost
-of  the funded actions." />
+of  the funded actions. A project prioritization
+problem must have a specified objective before it can
+be solved, and attempting to solve a problem which does not have
+a specified objective will throw an error." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -128,33 +131,58 @@ species that are expected to persist into the future whilst ensuring that
 the total cost of the funded actions does not exceed a budget.
 Alternatively, the planner may require a solution that ensures that
 each species meets a target level of persistence whilst minimizing the cost
-of  the funded actions.</p>
+of  the funded actions. A project prioritization
+<code><a href='problem.html'>problem</a></code> <strong>must</strong> have a specified objective before it can
+be solved, and attempting to solve a problem which does not have
+a specified objective will throw an error.</p>
     
     </div>
 
         
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><strong>Please note that failing to specify an objective before attempting
-to solve a problem will return an error.</strong></p>
-<p>The following objectives can be added to a conservation planning
+    <p>The following objectives can be added to a conservation planning
   <code><a href='problem.html'>problem</a></code>:</p>
 <p></p><dl class='dl-horizontal'>
-    <dt><code><a href='add_min_set_objective.html'>add_min_set_objective</a></code></dt><dd><p>Minimize the cost of the
-    solution whilst ensuring that all targets are met. This objective is
-    conceptually similar to that used in <em>Marxan</em>---except that
-    decisions are made on funding actions instead of purchasing areas
-    for conservation.</p></dd>
-    <dt><code><a href='add_max_persistence_objective.html'>add_max_persistence_objective</a></code></dt><dd><p>Maximize the probability
-    that at last one feature will persist into the future.</p></dd>
-    <dt><code><a href='add_max_richness_objective.html'>add_max_richness_objective</a></code></dt><dd><p>Maximize the expected
-    richness of the features. In other words, maximize the total
-    number of species that are expected to persist.</p></dd>
-    <dt><code><a href='add_max_targets_met_objective.html'>add_max_targets_met_objective</a></code></dt><dd><p>Maximize the
-    number of persistence targets that are met for the features.</p></dd>
-    <dt><code><a href='add_max_phylo_div_objective.html'>add_max_phylo_div_objective</a></code></dt><dd><p>Maximize the expected
-    phylogenetic diversity of the features.</p></dd>
+    <dt><code><a href='add_min_set_objective.html'>add_min_set_objective</a></code></dt><dd><p>Minimize the cost of the solution whilst ensuring that all targets are
+    met. This objective is conceptually similar to that used in <em>Marxan</em>
+    (Ball, Possingham &amp; Watts 2009).</p></dd>
+    <dt><code><a href='add_max_persistence_objective.html'>add_max_persistence_objective</a></code></dt><dd><p>Maximize the chance that at least one feature will persist into the
+    future, whilst ensuring that the cost of the solution is within a
+    pre-specified budget.</p></dd>
+    <dt><code><a href='add_max_richness_objective.html'>add_max_richness_objective</a></code></dt><dd><p>Maximize the total number of features that are expected to persist,
+    whilst ensuring that the cost of the solution is within a pre-specified
+    budget (Joseph, Maloney &amp; Possingham 2009).</p></dd>
+    <dt><code><a href='add_max_targets_met_objective.html'>add_max_targets_met_objective</a></code></dt><dd><p>Maximize the total number of persistence targets met for the features,
+    whilst ensuring that the cost of the solution is within a pre-specified
+    budget (Chades <em>et al.</em> 2015).</p></dd>
+    <dt><code><a href='add_max_phylo_div_objective.html'>add_max_phylo_div_objective</a></code></dt><dd><p>Maximize the phylogenetic diversity that is expected to persist into the
+    future, whilst ensuring that the cost of the solution is within a
+    pre-specified budget (Bennett <em>et al.</em> 2014, Faith 2008).</p></dd>
     </dl>
+    
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>Ball IR, Possingham HP &amp; Watts M (2009) Marxan and relatives: software for
+spatial conservation prioritisation.
+<em>Spatial conservation prioritisation: Quantitative methods and
+computational tools</em>, 185-195.</p>
+<p>Bennett JR, Elliott G, Mellish B, Joseph LN, Tulloch AI,
+Probert WJ, Di Fonzo MMI, Monks JM, Possingham HP &amp; Maloney R (2014)
+Balancing phylogenetic diversity
+and species numbers in conservation prioritization, using a case study of
+threatened species in New Zealand. <em>Biological Conservation</em>,
+<strong>174</strong>: 47--54.</p>
+<p>Chades I, Nicol S, van Leeuwen S, Walters B, Firn J, Reeson A, Martin TG &amp;
+Carwardine J (2015) Benefits of integrating complementarity into priority
+threat management. <em>Conservation Biology</em>, <strong>29</strong>, 525--536.</p>
+<p>Faith DP (2008) Threatened species and the potential loss of
+phylogenetic diversity: conservation scenarios based on estimated extinction
+probabilities and phylogenetic risk analysis. <em>Conservation Biology</em>,
+<strong>22</strong>: 1461--1470.</p>
+<p>Joseph LN, Maloney RF &amp; Possingham HP (2009) Optimal allocation of
+resources among threatened species: A project prioritization protocol.
+<em>Conservation Biology</em>, <strong>23</strong>, 328--338.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -172,6 +200,8 @@ to solve a problem will return an error.</strong></p>
     <ul class="nav nav-pills nav-stacked">
       
       <li><a href="#details">Details</a></li>
+
+      <li><a href="#references">References</a></li>
 
       <li><a href="#see-also">See also</a></li>
       

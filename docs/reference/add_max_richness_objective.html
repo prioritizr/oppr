@@ -151,14 +151,7 @@ features (see <code><a href='add_feature_weights.html'>add_feature_weights</a></
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>A problem objective is used to specify the overall goal of the
-  project prioritization problem. Please note that all project
-  prioritization problems formulated in the <span class="pkg">ppr</span> package require
-  the addition of objectives---failing to do so will return an error
-  message when attempting to solve problem.</p>
-    
-    <h2 class="hasAnchor" id=""><a class="anchor" href="#"></a></h2>
-
-    <p>Formulation:
+  project prioritization problem.
   Here, the maximum richness objective seeks to find the set of actions that
   maximizes the total number of features  (e.g. populations, species,
   eco-systems) that is expected to persist within a pre-specified budget.
@@ -167,7 +160,7 @@ features (see <code><a href='add_feature_weights.html'>add_feature_weights</a></
   let \(m\) denote the maximum expenditure (i.e. the budget). Also,
   let \(F\) represent each feature (indexed by \(f\)), \(W_f\)
   represent the weight for each feature \(f\) (defaults to one for
-  each feature unless specified otherwise), and <code>E_f</code> denote the
+  each feature unless specified otherwise), and \(E_f\) denote the
   probability that each feature will go extinct given the funded
   conservation projects.</p>
 <p>To guide the prioritization, the conservation actions are organized into
@@ -177,7 +170,7 @@ features (see <code><a href='add_feature_weights.html'>add_feature_weights</a></
   \(j \in J\) using zeros and ones. Next, let \(P_j\) represent
   the probability of project \(j\) being successful if it is funded. Also,
   let \(B_{fj}\) denote the enhanced probability that each feature
-  \(s \in S\) associated with the project \(j \in J\)
+  \(f \in F\) associated with the project \(j \in J\)
   will persist if all of the actions that comprise project \(j\) are funded
   and that project is allocated to feature \(f\).</p>
 <p>The binary control variables \(X_i\) in this problem indicate whether
@@ -186,8 +179,8 @@ features (see <code><a href='add_feature_weights.html'>add_feature_weights</a></
   variables.
   Specifically, the binary \(Y_{j}\) variables indicate if project \(j\)
   is funded or not based on which actions are funded; the binary
-  \(Z_{sj}\) variables indicate if project \(j\) is used to manage
-  feature \(s\) or not; and the semi-continuous \(E_f\) variables
+  \(Z_{fj}\) variables indicate if project \(j\) is used to manage
+  feature \(f\) or not; and the semi-continuous \(E_f\) variables
   denote the probability that feature \(f\) will go extinct.</p>
 <p>Now that we have defined all the data and variables, we can formulate
   the problem. For convenience, let the symbol used to denote each set also
@@ -196,8 +189,8 @@ features (see <code><a href='add_feature_weights.html'>add_feature_weights</a></
 <p>$$
   \mathrm{Maximize} \space \sum_{f = 0}^{F} (1 - E_f) W_f \space
   \mathrm{(eqn \space 1a)} \\
-  \mathrm{Subject \space to}
-  \sum_{i = 0}^{I} C_i \leq m \space \mathrm{(eqn \space 1b)} \\
+  \mathrm{Subject \space to} \sum_{i = 0}^{I} C_i \leq m \space
+  \mathrm{(eqn \space 1b)} \\
   E_f = 1 - \sum_{j = 0}^{J} Z_{fj} P_j B_{fj} \space \forall \space f \in F
   \space \mathrm{(eqn \space 1c)} \\
   Z_{fj} \leq Y_{j} \space \forall \space j \in J \space \mathrm{(eqn \space
@@ -221,8 +214,8 @@ that have all of their actions funded. Constraints (eqn 1e) state that each
 feature can only be allocated to a single project. Constraints (eqn 1f)
 ensure that a project cannot be funded unless all of its actions are funded.
 Constraints (eqns 1g) ensure that the probability variables
-\(E_s\)) are bounded between zero and one. Constraints (eqns 1h) ensure
-that the action funding (\(X_j\)), project funding (\(Y_j\)), and project
+(\(E_f\)) are bounded between zero and one. Constraints (eqns 1h) ensure
+that the action funding (\(X_i\)), project funding (\(Y_j\)), and project
 allocation (\(Z_{fj}\)) variables are binary.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
@@ -233,7 +226,7 @@ resources among threatened species: A project prioritization protocol.
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='objectives.html'>objectives</a></code>, <code><a href='targets.html'>targets</a></code>.</p></div>
+    <div class='dont-index'><p><code><a href='objectives.html'>objectives</a></code>.</p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -249,8 +242,6 @@ resources among threatened species: A project prioritization protocol.
       <li><a href="#value">Value</a></li>
 
       <li><a href="#details">Details</a></li>
-
-      <li><a href="#"></a></li>
 
       <li><a href="#references">References</a></li>
 

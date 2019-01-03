@@ -141,15 +141,7 @@ This objective is conceptually similar to that used in <em>Marxan</em>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>A problem objective is used to specify the overall goal of the
-  project prioritization problem. Please note that all project
-  prioritization problems formulated in the <span class="pkg">ppr</span> package require
-  the addition of objectives---failing to do so will return an error
-  message when attempting to solve problem. Also, please note that
-  problems that contain this objective require feature targets.</p>
-    
-    <h2 class="hasAnchor" id=""><a class="anchor" href="#"></a></h2>
-
-    <p>Formulation:
+  project prioritization problem.
   Here, the minimum set objective seeks to find the set of actions that
   minimizes the overall cost of the prioritization, while ensuring that the
   funded projects meet a set of persistence targets for the conservation
@@ -157,7 +149,7 @@ This objective is conceptually similar to that used in <em>Marxan</em>
   the set of conservation actions (indexed by \(i\)). Let \(C_i\) denote
   the cost for funding action \(i\). Also, let \(F\) represent each
   feature (indexed by \(f\)), \(T_f\) represent the persistence target
-  for feature \(f\), and <code>E_f</code> denote the probability that each
+  for feature \(f\), and \(E_f\) denote the probability that each
   feature will go extinct given the funded conservation projects.</p>
 <p>To guide the prioritization, the conservation actions are organized into
   conservation projects. Let \(J\) denote the set of conservation projects
@@ -166,7 +158,7 @@ This objective is conceptually similar to that used in <em>Marxan</em>
   \(j \in J\) using zeros and ones. Next, let \(P_j\) represent
   the probability of project \(j\) being successful if it is funded. Also,
   let \(B_{fj}\) denote the enhanced probability that each feature
-  \(s \in S\) associated with the project \(j \in J\)
+  \(f \in F\) associated with the project \(j \in J\)
   will persist if all of the actions that comprise project \(j\) are funded
   and that project is allocated to feature \(f\).</p>
 <p>The binary control variables \(X_i\) in this problem indicate whether
@@ -175,8 +167,8 @@ This objective is conceptually similar to that used in <em>Marxan</em>
   variables.
   Specifically, the binary \(Y_{j}\) variables indicate if project \(j\)
   is funded or not based on which actions are funded; the binary
-  \(Z_{sj}\) variables indicate if project \(j\) is used to manage
-  feature \(s\) or not; and the semi-continuous \(E_f\) variables
+  \(Z_{fj}\) variables indicate if project \(j\) is used to manage
+  feature \(f\) or not; and the semi-continuous \(E_f\) variables
   denote the probability that feature \(f\) will go extinct.</p>
 <p>Now that we have defined all the data and variables, we can formulate
   the problem. For convenience, let the symbol used to denote each set also
@@ -202,17 +194,17 @@ This objective is conceptually similar to that used in <em>Marxan</em>
   \in F \space \mathrm{(eqn \space 1h)}
   $$</p>
 <p>The objective (eqn 1a) is to minimize the cost of the funded actions.
-Constraints (eqn 1b) ensure that the persistence targets are met.
-Constraints (eqn 1c) calculate the probability that each feature
-will go extinct according to their allocated project.
-Constraints (eqn 1d) ensure that feature can only be allocated to projects
-that have all of their actions funded. Constraints (eqn 1e) state that each
-feature can only be allocated to a single project. Constraints (eqn 1f)
-ensure that a project cannot be funded unless all of its actions are funded.
-Constraints (eqns 1g) ensure that the probability variables
-\(E_s\)) are bounded between zero and one. Constraints (eqns 1h) ensure
-that the action funding (\(X_j\)), project funding (\(Y_j\)), and project
-allocation (\(Z_{fj}\)) variables are binary.</p>
+  Constraints (eqn 1b) ensure that the persistence targets are met.
+  Constraints (eqn 1c) calculate the probability that each feature
+  will go extinct according to their allocated project.
+  Constraints (eqn 1d) ensure that feature can only be allocated to projects
+  that have all of their actions funded. Constraints (eqn 1e) state that each
+  feature can only be allocated to a single project. Constraints (eqn 1f)
+  ensure that a project cannot be funded unless all of its actions are
+  funded. Constraints (eqns 1g) ensure that the probability variables
+  (\(E_f\)) are bounded between zero and one. Constraints (eqns 1h) ensure
+  that the action funding (\(X_i\)), project funding (\(Y_j\)), and
+  project allocation (\(Z_{fj}\)) variables are binary.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -239,8 +231,6 @@ computational tools</em>, 185-195.</p>
       <li><a href="#value">Value</a></li>
 
       <li><a href="#details">Details</a></li>
-
-      <li><a href="#"></a></li>
 
       <li><a href="#references">References</a></li>
 

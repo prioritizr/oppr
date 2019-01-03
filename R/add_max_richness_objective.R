@@ -16,12 +16,7 @@ NULL
 #' @param budget \code{numeric} budget for funding actions.
 #'
 #' @details A problem objective is used to specify the overall goal of the
-#'   project prioritization problem. Please note that all project
-#'   prioritization problems formulated in the \pkg{ppr} package require
-#'   the addition of objectives---failing to do so will return an error
-#'   message when attempting to solve problem.
-#'
-#' @section: Formulation:
+#'   project prioritization problem.
 #'   Here, the maximum richness objective seeks to find the set of actions that
 #'   maximizes the total number of features  (e.g. populations, species,
 #'   eco-systems) that is expected to persist within a pre-specified budget.
@@ -30,7 +25,7 @@ NULL
 #'   let \eqn{m} denote the maximum expenditure (i.e. the budget). Also,
 #'   let \eqn{F} represent each feature (indexed by \eqn{f}), \eqn{W_f}
 #'   represent the weight for each feature \eqn{f} (defaults to one for
-#'   each feature unless specified otherwise), and \code{E_f} denote the
+#'   each feature unless specified otherwise), and \eqn{E_f} denote the
 #'   probability that each feature will go extinct given the funded
 #'   conservation projects.
 #'
@@ -41,7 +36,7 @@ NULL
 #'   \eqn{j \in J}{j in J} using zeros and ones. Next, let \eqn{P_j} represent
 #'   the probability of project \eqn{j} being successful if it is funded. Also,
 #'   let \eqn{B_{fj}} denote the enhanced probability that each feature
-#'   \eqn{s \in S}{s in S} associated with the project \eqn{j \in J}{j in J}
+#'   \eqn{f \in F}{f in F} associated with the project \eqn{j \in J}{j in J}
 #'   will persist if all of the actions that comprise project \eqn{j} are funded
 #'   and that project is allocated to feature \eqn{f}.
 #'
@@ -51,8 +46,8 @@ NULL
 #'   variables.
 #'   Specifically, the binary \eqn{Y_{j}} variables indicate if project \eqn{j}
 #'   is funded or not based on which actions are funded; the binary
-#'   \eqn{Z_{sj}} variables indicate if project \eqn{j} is used to manage
-#'   feature \eqn{s} or not; and the semi-continuous \eqn{E_f} variables
+#'   \eqn{Z_{fj}} variables indicate if project \eqn{j} is used to manage
+#'   feature \eqn{f} or not; and the semi-continuous \eqn{E_f} variables
 #'   denote the probability that feature \eqn{f} will go extinct.
 #'
 #'   Now that we have defined all the data and variables, we can formulate
@@ -63,8 +58,8 @@ NULL
 #' \deqn{
 #'   \mathrm{Maximize} \space \sum_{f = 0}^{F} (1 - E_f) W_f \space
 #'   \mathrm{(eqn \space 1a)} \\
-#'   \mathrm{Subject \space to}
-#'   \sum_{i = 0}^{I} C_i \leq m \space \mathrm{(eqn \space 1b)} \\
+#'   \mathrm{Subject \space to} \sum_{i = 0}^{I} C_i \leq m \space
+#'   \mathrm{(eqn \space 1b)} \\
 #'   E_f = 1 - \sum_{j = 0}^{J} Z_{fj} P_j B_{fj} \space \forall \space f \in F
 #'   \space \mathrm{(eqn \space 1c)} \\
 #'   Z_{fj} \leq Y_{j} \space \forall \space j \in J \space \mathrm{(eqn \space
@@ -85,7 +80,7 @@ NULL
 #'   Z_{fj} <= Y_j for all j in J (eqn 1d),
 #'   sum_j^J Z_{fj} = 1 for all f in F (eqn 1e),
 #'   A_{ij} Y_{j} <= X_{i} for all i I, j in J (eqn 1f),
-#'   E_f >= 0, E_f >= 1 for all f in F (eqn 1g),
+#'   E_f >= 0, E_f <= 1 for all f in F (eqn 1g),
 #'   X_i, Y_j, Z_{fj} in [0, 1] for all i in I, j in J, f in F (eqn 1h)
 #'   }
 #'
@@ -99,8 +94,8 @@ NULL
 #' feature can only be allocated to a single project. Constraints (eqn 1f)
 #' ensure that a project cannot be funded unless all of its actions are funded.
 #' Constraints (eqns 1g) ensure that the probability variables
-#' \eqn{E_s}) are bounded between zero and one. Constraints (eqns 1h) ensure
-#' that the action funding (\eqn{X_j}), project funding (\eqn{Y_j}), and project
+#' (\eqn{E_f}) are bounded between zero and one. Constraints (eqns 1h) ensure
+#' that the action funding (\eqn{X_i}), project funding (\eqn{Y_j}), and project
 #' allocation (\eqn{Z_{fj}}) variables are binary.
 #'
 #' @references
@@ -108,7 +103,10 @@ NULL
 #' resources among threatened species: A project prioritization protocol.
 #' \emph{Conservation Biology}, \strong{23}, 328--338.
 #'
-#' @inherit add_min_set_objective seealso return
+#' @return \code{\link{ProjectProblem-class}} object with the objective
+#'   added to it.
+#'
+#' @seealso \code{\link{objectives}}.
 #'
 #' @examples
 #' #TODO

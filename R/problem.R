@@ -5,11 +5,12 @@ NULL
 #'
 #' Create a project prioritization problem. This function is used to
 #' specify the underlying data used in a prioritization problem: the projects,
-#' the management actions, and the features (e.g. species, ecosystems) that need
-#' to be conserved. After constructing this \code{ProjectProblem-class} object,
-#' it can be customized to meet specific goals using \code{\link{objectives}},
-#' \code{\link{targets}}, \code{\link{weights}},
-#' and code{\link{constraints}}. After building the problem, the
+#' the management actions, and the features that need
+#' to be conserved (e.g. species, ecosystems). After constructing this
+#' \code{ProjectProblem-class} object,
+#' it can be customized using \code{\link{objectives}}, \code{\link{targets}},
+#' \code{\link{weights}}, \code{\link{constraints}} and
+#' \code{\link{solvers}}. After building the problem, the
 #' \code{\link{solve}} function can be used to identify solutions.
 #'
 #' @param projects \code{\link[base]{data.frame}} or
@@ -21,16 +22,16 @@ NULL
 #'   \code{project_name_column}), (ii) the
 #'   probability that each project will succeed if all of its actions are funded
 #'   (specified in the argument to \code{project_success_column}), (iii)
-#'   the enhanced probability that each species will persist if it
-#'   is funded,
+#'   the enhanced probability that each feature will persist if it
+#'   is funded (using a column for each feature),
 #'   and (iv) and which actions are associated with which projects
-#'   (specified in the action names in the argument to \code{actions}).
-#'   To account for the combined benefits of multiple actions (e.g. baiting
-#'   and trapping different invasive species in the same area), additional
+#'   (using a column for each action).
+#'   To account for the combined benefits of multiple projects (e.g.
+#'   habitat restoration and trapping invasive species projects), additional
 #'   projects should be created that indicate the combined cost and
-#'   corresponding species' persistence probabilities. Furthermore, this object
-#'   must have a baseline project, with a zero cost, that represents the
-#'   probability that each species will persist if no other conservation
+#'   corresponding features' persistence probabilities. Furthermore, this object
+#'   must have a baseline project, with a zero cost value, that represents the
+#'   probability that each feature will persist if no other conservation
 #'   project is funded.
 #'
 #' @param actions \code{\link[base]{data.frame}} or \code{\link[tibble]{tibble}}
@@ -99,18 +100,22 @@ NULL
 #'
 #'   The goal of a project prioritization exercise is then to identify which
 #'   management actions---and as a consequence which conservation
-#'   projects---should be funded given limited resources. In general, the goal
-#'   of an optimization problem is to minimize an objective function over a set
-#'   of decision variables, subject to a series of constraints. The decision
-#'   variables are what we control, usually there is one binary variable for
-#'   each planning unit specifying whether or not to protect that unit (but
-#'   other approaches are available, see \code{\link{decisions}}). The
-#'   constraints can be thought of as rules that need to be followed, for
-#'   example, that the priority actions must not exceed within a certain budget
-#'   or meet representation targets.
+#'   projects---should be funded. Broadly speaking, the goal
+#'   of an optimization problem is to minimize (or maximize) an objective
+#'   function given a set of control variables and decision variables that are
+#'   subject to a series of constraints. In the context of project
+#'   prioritization problems, the
+#'   objective is usually some measure of utility (e.g. the net
+#'   probability of each feature persisting into the future), the
+#'   control variables determine which actions should be funded or not,
+#'   the decision variables contain additional information needed to
+#'   ensure correct calculations,  and the
+#'   constraints impose limits such as the total budget available for funding
+#'   management actions. For more information on the mathematical
+#'   formulations used in this package, please refer to the manual entries for
+#'   the available objectives (listed in \code{\link{objectives}}).
 #'
-#' @return A \code{\link{ProjectProblem-class}} object containing the
-#'   basic data used to build a prioritization problem.
+#' @return A fresh \code{\link{ProjectProblem-class}} object.
 #'
 #' @seealso \code{\link{constraints}}, \code{\link{decisions}},
 #'  \code{\link{objectives}}, \code{\link{solvers}}, \code{\link{targets}},

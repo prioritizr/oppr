@@ -26,23 +26,29 @@ reference:
       - problem
       - solve
 
+  - title: Evaluate solutions
+    desc: Functions for evaluating and visualizing solutions to a problem
+    contents:
+      - starts_with("plot")
+      - solution_statistics
+
   - title: Objectives
     desc: Functions for adding an objective to a problem
     contents:
       - objectives
       - ends_with("_objective")
 
-  - title: Targets
-    desc: Functions for adding targets to a problem
-    contents:
-      - targets
-      - ends_with("_targets")
-
   - title: Weights
     desc: Functions for adding weights to a problem
     contents:
       - weights
       - add_feature_weights
+
+  - title: Targets
+    desc: Functions for adding targets to a problem
+    contents:
+      - targets
+      - ends_with("_targets")
 
   - title: Constraints
     desc: Functions for adding constraints to a problem
@@ -72,11 +78,6 @@ reference:
     contents:
       - starts_with("simulate_")
 
-  - title: Visualization
-    desc: Functions for plotting solutions to a problem
-    contents:
-      - starts_with("plot")
-
   - title: Problem manipulation functions
     desc: Functions for extracting information from problems
     contents:
@@ -98,7 +99,6 @@ reference:
       - as
       - compile
       - branch_matrix
-      - summary_statistics
 
   - title: Class definitions and methods
     desc: >

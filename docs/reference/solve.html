@@ -138,11 +138,12 @@
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>The object returned from this function depends on the argument to
-  <code>a</code>. If the argument to <code>a</code> is an
+    <p>The type of object returned from this function depends on the
+  argument to <code>a</code>. If the argument to <code>a</code> is an
   <code><a href='OptimizationProblem-class.html'>OptimizationProblem-class</a></code> object, then the
-  solution is returned as a <code>logical</code> <code>vector</code> indicating which
-  actions are funded or not. On the other hand, if the argument
+  solution is returned as a <code>list</code> containing the prioritization and
+  additional information (e.g. run time, solver status). On the other hand,
+  if the argument
   to <code>a</code> is an <code><a href='ProjectProblem-class.html'>ProjectProblem-class</a></code> object,
   then a <code><a href='https://www.rdocumentation.org/packages/tibble/topics/tibble'>tibble</a></code> table object will be returned. In this
   table, each row row corresponds to a different solution and each column
@@ -162,7 +163,7 @@
   <dt><code>"cost"</code></dt><dd><p><code>numeric</code> total cost associated with each
     solution.</p></dd>
 
-  <dt>codex$action_names()</dt><dd><p><code>numeric</code> column for each action
+  <dt><code>x$action_names()</code></dt><dd><p><code>numeric</code> column for each action
     indicating if they were funded in each solution or not.</p></dd>
 
   <dt><code>x$feature_names()</code></dt><dd><p><code>numeric</code> column for each

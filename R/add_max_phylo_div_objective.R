@@ -13,16 +13,12 @@ NULL
 #' @param budget \code{numeric} budget for funding actions.
 #'
 #' @param tree \code{\link[ape]{phylo}} phylogenetic tree describing the
-#'   evolutionary relationships between the features. Note that every
-#'   feature must be accounted for in the argument to \code{tree}.
+#'   evolutionary relationships between the features. Note that the
+#'   argument to \code{tree} must contain every feature, and only the
+#'   features, present in the argument to \code{x}.
 #'
 #' @details A problem objective is used to specify the overall goal of the
-#'   project prioritization problem. Please note that all project
-#'   prioritization problems formulated in the \pkg{ppr} package require
-#'   the addition of objectives---failing to do so will return an error
-#'   message when attempting to solve problem.
-#'
-#' @section: Formulation:
+#'   project prioritization problem.
 #'   Here, the maximum phylogenetic diversity objective seeks to find the set
 #'   of actions that maximizes the expected amount of evolutionary history
 #'   that is expected to persist into the future given the evolutionary
@@ -30,7 +26,9 @@ NULL
 #'    Let \eqn{I} represent the set of conservation actions (indexed by
 #'   \eqn{i}). Let \eqn{C_i} denote the cost for funding action \eqn{i}, and
 #'   let \eqn{m} denote the maximum expenditure (i.e. the budget). Also,
-#'   let \eqn{F} represent each feature (indexed by \eqn{f}), and \code{E_f}
+#'   let \eqn{F} represent each feature (indexed by \eqn{f}), \eqn{W_f}
+#'   represent the weight for each feature \eqn{f} (defaults to zero for
+#'   each feature unless specified otherwise), and \eqn{E_f}
 #'   denote the probability that each feature will go extinct given the funded
 #'   conservation projects.
 #'
@@ -53,7 +51,7 @@ NULL
 #'   \eqn{j \in J}{j in J} using zeros and ones. Next, let \eqn{P_j} represent
 #'   the probability of project \eqn{j} being successful if it is funded. Also,
 #'   let \eqn{B_{fj}} denote the enhanced probability that each feature
-#'   \eqn{s \in S}{s in S} associated with the project \eqn{j \in J}{j in J}
+#'   \eqn{f \in F}{f in F} associated with the project \eqn{j \in J}{j in J}
 #'   will persist if all of the actions that comprise project \eqn{j} are funded
 #'   and that project is allocated to feature \eqn{f}.
 #'
@@ -63,8 +61,8 @@ NULL
 #'   and \eqn{R_b} variables.
 #'   Specifically, the binary \eqn{Y_{j}} variables indicate if project \eqn{j}
 #'   is funded or not based on which actions are funded; the binary
-#'   \eqn{Z_{sj}} variables indicate if project \eqn{j} is used to manage
-#'   feature \eqn{s} or not; the semi-continuous \eqn{E_f} variables
+#'   \eqn{Z_{fj}} variables indicate if project \eqn{j} is used to manage
+#'   feature \eqn{f} or not; the semi-continuous \eqn{E_f} variables
 #'   denote the probability that feature \eqn{f} will go extinct; and
 #'   the semi-continuous \eqn{R_b} variables denote the probability that
 #'   phylogenetic branch \eqn{b} will remain in the future.
@@ -75,8 +73,8 @@ NULL
 #'   represent the set of ten features and also the number ten).
 #'
 #' \deqn{
-#'   \mathrm{Maximize} \space (\sum_{b = 0}^{B} L_b R_b)
-#'   \space \mathrm{(eqn \space 1a)} \\
+#'   \mathrm{Maximize} \space (\sum_{b = 0}^{B} L_b R_b) + \sum_{f}^{F}
+#'   (1 - E_f) W_f \space \mathrm{(eqn \space 1a)} \\
 #'   \mathrm{Subject \space to} \space
 #'   \sum_{i = 0}^{I} C_i \leq m \space \mathrm{(eqn \space 1b)} \\
 #'   R_b = 1 - \prod_{f = 0}^{F} ifelse(T_{bf} == 1, \space E_f, \space
@@ -89,8 +87,8 @@ NULL
 #'   \mathrm{(eqn \space 1f)} \\
 #'   A_{ij} Y_{j} \leq X_{i} \space \forall \space i \in I, j \in J \space
 #'   \mathrm{(eqn \space 1g)} \\
-#'   E_{f} \geq 0, E_{f} \leq 1 \space \forall \space b \in B \space
-#'   \mathrm{(eqn \space 1h)} \\
+#'   E_{f}, R_{b} \geq 0, E_{f}, R_{b} \leq 1 \space \forall \space b \in B
+#'    \space f \in F \space \mathrm{(eqn \space 1h)} \\
 #'   X_{i}, Y_{j}, Z_{fj} \in [0, 1] \space \forall \space i \in I, j \in J, f
 #'   \in F \space \mathrm{(eqn \space 1i)}
 #'   }{
@@ -102,32 +100,36 @@ NULL
 #'   Z_{fj} <= Y_j for all j in J (eqn 1e),
 #'   sum_j^J Z_{fj} = 1 for all f in F (eqn 1f),
 #'   A_{ij} Y_{j} <= X_{i} for all i I, j in J (eqn 1g),
-#'   E_f >= 0, E_f >= 1 for all f in F (eqn 1h),
+#'   E_f, R_b >= 0, E_f, R_b <= 1 for all b in B, f in F (eqn 1h),
 #'   X_i, Y_j, Z_{fj} in [0, 1] for all i in I, j in J, f in F (eqn 1i)
 #'   }
 #'
-#'  The objective (eqn 1a) is to maximize the probability that at least one
-#'  feature will remain---given the probability that each feature will
-#'  become extinct---plus the probability each feature will remain multiplied
+#'  The objective (eqn 1a) is to maximize the expected phylogenetic diversity
+#'  (Faith 2008) plus the probability each feature will remain multiplied
 #'  by their weights (noting that the feature weights default to zero).
 #'  Constraint (eqn 1b) limits the maximum expenditure (i.e.
 #'  ensures that the cost of the funded actions do not exceed the budget).
-#'  Constraints (eqn 1c) calculate the probability that each feature
+#'  Constraints (eqn 1c) calculate the probability that each branch
+#'  (including tips that correspond to a single feature) will go extinct
+#'  according to the probability that the features which share a given
+#'   branch will go extinct.
+#'  Constraints (eqn 1d) calculate the probability that each feature
 #'  will go extinct according to their allocated project.
-#'  Constraints (eqn 1d) ensure that feature can only be allocated to projects
-#'  that have all of their actions funded. Constraints (eqn 1e) state that each
-#'  feature can only be allocated to a single project. Constraints (eqn 1f)
+#'  Constraints (eqn 1e) ensure that feature can only be allocated to projects
+#'  that have all of their actions funded. Constraints (eqn 1f) state that each
+#'  feature can only be allocated to a single project. Constraints (eqn 1g)
 #'  ensure that a project cannot be funded unless all of its actions are funded.
-#'  Constraints (eqns 1g) ensure that the probability variables
-#'  \eqn{E_s}) are bounded between zero and one. Constraints (eqns 1h) ensure
-#'  that the action funding (\eqn{X_j}), project funding (\eqn{Y_j}), and
+#'  Constraints (eqns 1h) ensure that the probability variables
+#'  (\eqn{E_f}) are bounded between zero and one. Constraints (eqns 1i) ensure
+#'  that the action funding (\eqn{X_i}), project funding (\eqn{Y_j}), and
 #'  project allocation (\eqn{Z_{fj}}) variables are binary.
 #'
-#' @inherit add_min_set_objective seealso return
+#' @inherit add_max_richness_objective seealso return
 #'
 #' @references
 #' Bennett JR, Elliott G, Mellish B, Joseph LN, Tulloch AI,
-#' Probert WJ, ... & Maloney R (2014) Balancing phylogenetic diversity
+#' Probert WJ, Di Fonzo MMI, Monks JM, Possingham HP & Maloney R (2014)
+#' Balancing phylogenetic diversity
 #' and species numbers in conservation prioritization, using a case study of
 #' threatened species in New Zealand. \emph{Biological Conservation},
 #' \strong{174}: 47--54.
@@ -136,7 +138,7 @@ NULL
 #' phylogenetic diversity: conservation scenarios based on estimated extinction
 #' probabilities and phylogenetic risk analysis. \emph{Conservation Biology},
 #' \strong{22}: 1461--1470.
-
+#'
 #' @examples
 #' #TODO
 #'

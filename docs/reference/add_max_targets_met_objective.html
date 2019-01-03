@@ -38,13 +38,14 @@ ensuring that the cost of the solution is within a pre-specified budget
 (Chades et al. 2015). In some project prioritization exercises,
 decision makers may have a target level of persistence for each feature
 (e.g. a 90% persistence target corresponding to a 90% chance for the
-feature persisting into the future). In such exercises, the decision makers
+features persisting into the future). In such exercises, the decision makers
 do not perceive any benefit when a target is not met (e.g. if a feature
 has a persistence target of 90% and a solution only secures a 70% chance
-of persistence then no benefit is accrued) or when a target is surpassed
-(e.g. if a feature has a persistence target of 50%, then a solution which
+of persistence then no benefit is accrued for that feature) or when a target
+is surpassed (e.g. if a feature has a persistence target of 50%, then a
+solution which
 secures a 95% chance of persistence will accrue the same benefit as a
-solution which secures a 51% chance of persistence). Furthermore, weights
+solution which secures a 50% chance of persistence). Furthermore, weights
 can also be used to specify the relative importance of meeting targets
 for specific features (see add_feature_weights)." />
 <meta name="twitter:card" content="summary" />
@@ -132,13 +133,14 @@ ensuring that the cost of the solution is within a pre-specified budget
 (Chades <em>et al.</em> 2015). In some project prioritization exercises,
 decision makers may have a target level of persistence for each feature
 (e.g. a 90% persistence target corresponding to a 90% chance for the
-feature persisting into the future). In such exercises, the decision makers
+features persisting into the future). In such exercises, the decision makers
 do not perceive any benefit when a target is not met (e.g. if a feature
 has a persistence target of 90% and a solution only secures a 70% chance
-of persistence then no benefit is accrued) or when a target is surpassed
-(e.g. if a feature has a persistence target of 50%, then a solution which
+of persistence then no benefit is accrued for that feature) or when a target
+is surpassed (e.g. if a feature has a persistence target of 50%, then a
+solution which
 secures a 95% chance of persistence will accrue the same benefit as a
-solution which secures a 51% chance of persistence). Furthermore, weights
+solution which secures a 50% chance of persistence). Furthermore, weights
 can also be used to specify the relative importance of meeting targets
 for specific features (see <code><a href='add_feature_weights.html'>add_feature_weights</a></code>).</p>
     
@@ -167,15 +169,7 @@ for specific features (see <code><a href='add_feature_weights.html'>add_feature_
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>A problem objective is used to specify the overall goal of the
-  project prioritization problem. Please note that all project
-  prioritization problems formulated in the <span class="pkg">ppr</span> package require
-  the addition of objectives---failing to do so will return an error
-  message when attempting to solve problem. Also, please note that
-  problems that contain this objective require feature targets.</p>
-    
-    <h2 class="hasAnchor" id=""><a class="anchor" href="#"></a></h2>
-
-    <p>Formulation:
+  project prioritization problem.
   Here, the maximum targets met objective seeks to find the set of actions
   that maximizes the total number of features (e.g. populations, species,
   eco-systems) that have met their persistence targets within a
@@ -185,7 +179,7 @@ for specific features (see <code><a href='add_feature_weights.html'>add_feature_
   budget). Also, let \(F\) represent each feature (indexed by \(f\)),
   \(W_f\) represent the weight for each feature \(f\) (defaults to one
   for each feature unless specified otherwise), \(T_f\) represent the
-  persistence target for each feature \(f\), and <code>E_f</code> denote the
+  persistence target for each feature \(f\), and \(E_f\) denote the
   probability that each feature will go extinct given the funded
   conservation projects.</p>
 <p>To guide the prioritization, the conservation actions are organized into
@@ -195,17 +189,17 @@ for specific features (see <code><a href='add_feature_weights.html'>add_feature_
   \(j \in J\) using zeros and ones. Next, let \(P_j\) represent
   the probability of project \(j\) being successful if it is funded. Also,
   let \(B_{fj}\) denote the enhanced probability that each feature
-  \(s \in S\) associated with the project \(j \in J\)
+  \(f \in F\) associated with the project \(j \in J\)
   will persist if all of the actions that comprise project \(j\) are funded
   and that project is allocated to feature \(f\).</p>
 <p>The binary control variables \(X_i\) in this problem indicate whether
   each project \(i \in I\) is funded or not. The decision
   variables in this problem are the \(Y_{j}\), \(Z_{fj}\), \(E_f\),
-  and \(A_f\) variables.
+  and \(G_f\) variables.
   Specifically, the binary \(Y_{j}\) variables indicate if project \(j\)
   is funded or not based on which actions are funded; the binary
-  \(Z_{sj}\) variables indicate if project \(j\) is used to manage
-  feature \(s\) or not; the semi-continuous \(E_f\) variables
+  \(Z_{fj}\) variables indicate if project \(j\) is used to manage
+  feature \(f\) or not; the semi-continuous \(E_f\) variables
   denote the probability that feature \(f\) will go extinct; and the
   \(G_f\) variables indicate if the persistence target for feature
   \(f\) is met.</p>
@@ -218,7 +212,7 @@ for specific features (see <code><a href='add_feature_weights.html'>add_feature_
   \mathrm{(eqn \space 1a)} \\
   \mathrm{Subject \space to}
   \sum_{i = 0}^{I} C_i \leq m \space \mathrm{(eqn \space 1b)} \\
-  G_f E_f \geq T_f \space \forall \space f \in F \space
+  G_f (1 - E_f) \geq T_f \space \forall \space f \in F \space
   \mathrm{(eqn \space 1c)} \\
   E_f = 1 - \sum_{j = 0}^{J} Z_{fj} P_j B_{fj} \space \forall \space f \in F
   \space \mathrm{(eqn \space 1d)} \\
@@ -245,8 +239,8 @@ for specific features (see <code><a href='add_feature_weights.html'>add_feature_
  feature can only be allocated to a single project. Constraints (eqn 1g)
  ensure that a project cannot be funded unless all of its actions are funded.
  Constraints (eqns 1h) ensure that the probability variables
- \(E_s\)) are bounded between zero and one. Constraints (eqns 1i) ensure
- that the target met (\(G_f\)), action funding (\(X_j\)), project funding
+ (\(E_f\)) are bounded between zero and one. Constraints (eqns 1i) ensure
+ that the target met (\(G_f\)), action funding (\(X_i\)), project funding
  (\(Y_j\)), and project allocation (\(Z_{fj}\)) variables are binary.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
@@ -273,8 +267,6 @@ threat management. <em>Conservation Biology</em>, <strong>29</strong>, 525--536.
       <li><a href="#value">Value</a></li>
 
       <li><a href="#details">Details</a></li>
-
-      <li><a href="#"></a></li>
 
       <li><a href="#references">References</a></li>
 

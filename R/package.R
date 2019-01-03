@@ -11,15 +11,19 @@ NULL
 #' \pkg{ppr}: Project Prioritization
 #'
 #' @section Description:
-#' The \pkg{ppr} \emph{R} package is a decision support tool for prioritizing
-#' conservation projects for funding. Prioritizations can be developed by
-#' maximizing expected species richness, expected phylogenetic diversity, the
-#' number of species that meet persistence targets, or identifying a set of
-#' projects that meet persistence targets for minimal cost. After defining the
-#' optimization problem, prioritizations can be generated using exact
-#' algorithms---which are guaranteed to find optimal solutions---or
-#' conventional heuristic algorithms. Finally, this package provides methods
-#' for comparing different prioritizations and evaluating their benefits.
+#'   The \pkg{ppr} \emph{R} package a decision support tool for prioritizing
+#'   conservation projects. Prioritizations can be developed by maximizing
+#'   expected species richness, expected phylogenetic diversity, the number of
+#'   species that meet persistence targets, or identifying a set of projects
+#'   that meet persistence targets for minimal cost. Constraints (e.g. lock in
+#'   specific actions) and feature weights can also be specified to further
+#'   customize prioritizations. After defining a project prioritization
+#'   problem, solutions can be obtained using exact algorithms, heuristic
+#'   algorithms, or using random processes. In particular, it is recommended to
+#'   install the 'Gurobi' optimizer (available from <https://www.gurobi.com>)
+#'   because it can identify optimal solutions very quickly. Finally, methods
+#'   are provided for comparing different prioritizations and evaluating their
+#'   benefits.
 #'
 #' @section Installation:
 #' To make the most of this package, the \href{https://bioconductor.org/packages/release/bioc/html/ggtree.html}{\pkg{ggtree}} and

@@ -15,11 +15,12 @@
 \item{...}{arguments passed to \code{\link{compile}}.}
 }
 \value{
-The object returned from this function depends on the argument to
-  \code{a}. If the argument to \code{a} is an
+The type of object returned from this function depends on the
+  argument to \code{a}. If the argument to \code{a} is an
   \code{\link{OptimizationProblem-class}} object, then the
-  solution is returned as a \code{logical} \code{vector} indicating which
-  actions are funded or not. On the other hand, if the argument
+  solution is returned as a \code{list} containing the prioritization and
+  additional information (e.g. run time, solver status). On the other hand,
+  if the argument
   to \code{a} is an \code{\link{ProjectProblem-class}} object,
   then a \code{\link[tibble]{tibble}} table object will be returned. In this
   table, each row row corresponds to a different solution and each column
@@ -40,7 +41,7 @@ The object returned from this function depends on the argument to
   \item{\code{"cost"}}{\code{numeric} total cost associated with each
     solution.}
 
-  \item{code{x$action_names()}}{\code{numeric} column for each action
+  \item{\code{x$action_names()}}{\code{numeric} column for each action
     indicating if they were funded in each solution or not.}
 
   \item{\code{x$feature_names()}}{\code{numeric} column for each
@@ -58,5 +59,5 @@ Solve a conservation planning \code{\link{problem}}.
 }
 \seealso{
 \code{\link{problem}}, \code{\link{solution_statistics}},
-  \code{\link{solvers}}, .
+  \code{\link{solvers}}.
 }
