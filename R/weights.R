@@ -4,9 +4,9 @@ NULL
 #' Weights
 #'
 #' Weights are used to specify the relative importance for specific
-#' features persisting into the future. \strong{Please note that only some
+#' features persisting into the future. Please note that only some
 #' objectives require weights, and attempting to solve a problem that does not
-#' require weights will throw a warning and the weights will be ignored.}
+#' require weights will throw a warning and the weights will be ignored.
 #'
 #' @details Currently, only one function can be used to specify weights:
 #'
