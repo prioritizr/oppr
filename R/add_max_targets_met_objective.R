@@ -156,8 +156,8 @@ add_max_targets_met_objective <- function(x, budget) {
       TRUE
     },
     default_feature_weights = function(self) {
-      setNames(rep(1, length(self$data$feature_names)),
-               self$data$feature_names)
+      stats::setNames(rep(1, length(self$data$feature_names)),
+                      self$data$feature_names)
     },
     evaluate = function(self, y, solution) {
       assertthat::assert_that(inherits(y, "ProjectProblem"),
@@ -172,7 +172,7 @@ add_max_targets_met_objective <- function(x, budget) {
         y$action_costs(), y$pa_matrix(), y$epf_matrix(),
         bm[, bo, drop = FALSE], fp$edge.length[bo],
         y$targets$output()$value, w,
-        as(as.matrix(solution), "dgCMatrix"))
+        methods::as(as.matrix(solution), "dgCMatrix"))
     },
     apply = function(self, x, y) {
       assertthat::assert_that(inherits(x, "OptimizationProblem"),

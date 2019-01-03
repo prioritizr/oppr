@@ -22,13 +22,16 @@ NULL
 #' @seealso \code{\link[ape]{stree}}.
 #'
 #' @examples
+#' # load ape package
+#' library(ape)
+#'
 #' # create rake phylogeny with five species and equal weights
 #' p <- rake_phylogeny(letters[1:5])
 #'
 #' # plot the phylogeny, note that the "stick" of the rake is not depicted
 #' plot(p)
 #'
-#' @export
+#' @noRd
 rake_phylogeny <- function(x, species_weights = rep(1, length(x)),
                            branch_weight = 1) {
   # assert that arguments are valid

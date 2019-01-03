@@ -55,11 +55,11 @@ solution_statistics <- function(x, solution) {
                           nrow = nrow(solution))),
     obj = x$objective$evaluate(x, solution[, x$action_names()]))
   # add in columns for feature persistences
-  out <- tibble::as_tibble(cbind(out, setNames(as.data.frame(
+  out <- tibble::as_tibble(cbind(out, stats::setNames(as.data.frame(
     rcpp_expected_persistences(
       x$pa_matrix(), x$epf_matrix(),
-      as(diag(x$number_of_features()), "dgCMatrix"),
-      as(as.matrix(solution[, x$action_names()]), "dgCMatrix"))),
+      methods::as(diag(x$number_of_features()), "dgCMatrix"),
+      methods::as(as.matrix(solution[, x$action_names()]), "dgCMatrix"))),
       x$feature_names())))
   # return output
   out

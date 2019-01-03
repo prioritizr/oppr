@@ -16,6 +16,9 @@ NULL
 #' @seealso \code{\link[ape]{stree}}.
 #'
 #' @examples
+#' # load ape package
+#' library(ape)
+#'
 #' # create star phylogeny with five species and equal weights
 #' p1 <- star_phylogeny(letters[1:5])
 #'
@@ -28,7 +31,7 @@ NULL
 #' # plot the phylogeny
 #' plot(p2)
 #'
-#' @export
+#' @noRd
 star_phylogeny <- function(x, weights = rep(1, length(x))) {
   # assert that arguments are valid
   assertthat::assert_that(is.character(x), length(x) > 0,

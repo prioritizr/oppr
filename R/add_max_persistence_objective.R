@@ -139,8 +139,8 @@ add_max_persistence_objective <- function(x, budget) {
                      rep(0, length(self$data$feature_names)), 1)
     },
     default_feature_weights = function(self) {
-      setNames(rep(0, length(self$data$feature_names)),
-               self$data$feature_names)
+      stats::setNames(rep(0, length(self$data$feature_names)),
+                      self$data$feature_names)
     },
     replace_feature_weights = function(self) {
       TRUE
@@ -157,7 +157,7 @@ add_max_persistence_objective <- function(x, budget) {
         y$epf_matrix()[, y$feature_phylogeny()$tip.label, drop = FALSE],
         bm[, bo, drop = FALSE], fp$edge.length[bo],
         rep(0, y$number_of_features()), w,
-        as(as.matrix(solution), "dgCMatrix"))
+        methods::as(as.matrix(solution), "dgCMatrix"))
     },
     apply = function(self, x, y) {
       assertthat::assert_that(inherits(x, "OptimizationProblem"),

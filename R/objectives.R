@@ -51,3 +51,10 @@ NULL
 #' #TODO
 #' @name objectives
 NULL
+
+add_default_objective <- function(x) {
+  # assert argument is valid
+  assertthat::assert_that(inherits(x, "ProjectProblem"))
+  # throw error because objectives must be explicitly defined
+  stop("problem is missing an objective and this must be explicitly defined")
+}

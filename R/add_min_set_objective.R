@@ -129,8 +129,8 @@ add_min_set_objective <- function(x) {
       star_phylogeny(self$data$feature_names)
     },
     default_feature_weights = function(self) {
-      setNames(rep(NA_real_, length(self$data$feature_names)),
-               self$data$feature_names)
+      stats::setNames(rep(NA_real_, length(self$data$feature_names)),
+                      self$data$feature_names)
     },
     evaluate = function(self, y, solution) {
       assertthat::assert_that(inherits(y, "ProjectProblem"),
@@ -143,7 +143,7 @@ add_min_set_objective <- function(x) {
         y$epf_matrix()[, y$feature_phylogeny()$tip.label, drop = FALSE],
         bm[, bo, drop = FALSE], fp$edge.length[bo],
         rep(0, y$number_of_features()), rep(0, y$number_of_features()),
-        as(as.matrix(solution), "dgCMatrix"))
+        methods::as(as.matrix(solution), "dgCMatrix"))
     },
     apply = function(self, x, y) {
       assertthat::assert_that(inherits(x, "OptimizationProblem"),

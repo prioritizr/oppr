@@ -22,6 +22,8 @@ NULL
 #'
 #'   \item{number_of_features}{\code{integer} number of features in problem.}
 #'
+#'   \item{number_of_branches}{\code{integer} number of branches in problem.}
+#'
 #'   \item{A_i}{\code{integer} row indices for problem matrix.}
 #'
 #'   \item{A_j}{\code{integer} column indices for problem matrix.}
@@ -58,6 +60,7 @@ NULL
 #' # create list with problem data
 #' l <- list(modelsense = "min", number_of_projects = 2,
 #'           number_of_actions = 3, number_of_features = 1,
+#'           number_of_branches = 5,
 #'           A_i = c(0L, 1L, 0L, 1L, 0L, 1L), A_j = c(0L, 0L, 1L, 1L, 2L, 2L),
 #'           A_x = c(2, 10, 1, 10, 1, 10), obj = c(1, 2, 2), lb = c(0, 1, 0),
 #'           pwlobj = list(1), ub = c(0, 1, 1), rhs = c(2, 10),
@@ -73,14 +76,14 @@ NULL
 #'
 #' # print new object
 #' print(x)
-#' @name predefined_optimization_problem
 #'
-#' @export
+#' @noRd
 predefined_optimization_problem <- function(x, data = list()) {
   assertthat::assert_that(inherits(x, "list"),
   assertthat::is.string(x$modelsense),
   identical(x$modelsense, "min") || identical(x$modelsense, "max"),
   assertthat::is.count(x$number_of_features), is.finite(x$number_of_features),
+  assertthat::is.count(x$number_of_branches), is.finite(x$number_of_branches),
   assertthat::is.count(x$number_of_projects),
   is.finite(x$number_of_projects),
   assertthat::is.count(x$number_of_actions), is.finite(x$number_of_actions),

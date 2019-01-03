@@ -172,8 +172,8 @@ add_max_phylo_div_objective <- function(x, budget, tree) {
       self$get_data("tree")
     },
     default_feature_weights = function(self) {
-      setNames(rep(0, length(self$data$feature_names)),
-               self$data$feature_names)
+      stats::setNames(rep(0, length(self$data$feature_names)),
+                      self$data$feature_names)
     },
     replace_feature_weights = function(self) {
       FALSE
@@ -190,7 +190,7 @@ add_max_phylo_div_objective <- function(x, budget, tree) {
         bm[, bo, drop = FALSE], fp$edge.length[bo],
         rep(0, y$number_of_features()),
         w,
-        as(as.matrix(solution), "dgCMatrix"))
+        methods::as(as.matrix(solution), "dgCMatrix"))
     },
     apply = function(self, x, y) {
       assertthat::assert_that(inherits(x, "OptimizationProblem"),

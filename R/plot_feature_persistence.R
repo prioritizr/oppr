@@ -90,7 +90,7 @@ plot_feature_persistence <- function(x, solution, n = 1, symbol_hjust = 0.007) {
   feature_probs <- rcpp_expected_persistences(
     x$pa_matrix(),
     x$epf_matrix()[, x$feature_names(), drop = FALSE],
-    as(diag(x$number_of_features()), "dgCMatrix"),
+    methods::as(diag(x$number_of_features()), "dgCMatrix"),
     methods::as(as.matrix(solution), "dgCMatrix"))[1, ]
 
   ## create plotting data
