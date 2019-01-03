@@ -264,8 +264,8 @@ simulate_ppp_data <- function(number_features, cost_mean = 100, cost_sd = 5,
   }
 
   # phylogenetic tree
-  tree <- ape::rcoal(n = number_features,
-                     tip.label = paste0("F", seq_len(number_features)))
+  tree <- ape::rcoal(n = number_features)
+  tree$tip.label <- paste0("F", seq_len(number_features))
 
   # create project data
   projects <- tibble::tibble(
