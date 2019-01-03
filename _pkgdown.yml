@@ -20,6 +20,12 @@ reference:
     contents:
       - ppr
 
+  - title: Data
+    desc: Simulated datasets and data simulation functions
+    contents:
+      - sim_data
+      - starts_with("simulate_")
+
   - title: Create and solve problems
     desc: Functions for creating new problems and solving them
     contents:
@@ -67,16 +73,6 @@ reference:
     contents:
       - solvers
       - ends_with("_solver")
-
-  - title: Data
-    desc: Simulated data sets distributed with the package
-    contents:
-      - sim_data
-
-  - title: Data simulation
-    desc: Functions for simulating new data sets
-    contents:
-      - starts_with("simulate_")
 
   - title: Problem manipulation functions
     desc: Functions for extracting information from problems

@@ -77,6 +77,12 @@ A \code{list} object containing the elements:
           simulated data), indicating if an action is associated with a
           project (\code{TRUE}) or not (\code{FALSE}).}
 
+       \item{\code{"baseline_action"}}{\code{logical}
+         column indicating if a project is associated with the baseline
+         action (\code{TRUE}) or not (\code{FALSE}). This action is only
+         associated with the baseline project.}
+
+
     }}
 
     \item{\code{"actions"}}{A \code{\link[tibble]{tibble}} containing
@@ -98,7 +104,7 @@ A \code{list} object containing the elements:
     }}
 
     \item{\code{"features"}}{A \code{\link[tibble]{tibble}} containing
-      the data for the conservation features (i.e. species). It contains the
+      the data for the conservation features (e.g. species). It contains the
       following columns:
 
       \describe{
@@ -164,7 +170,7 @@ The simulated data set will contain one conservation project for
     \item A phylogenetic tree is simulated for the features using
       \code{\link[ape]{rcoal}}.
 
-    \item feature data are created from the phylogenetic tree. The
+    \item Feature data are created from the phylogenetic tree. The
       weights are calculated as the amount of evolutionary history
       that has elapsed between each feature and its last common ancestor.
 
