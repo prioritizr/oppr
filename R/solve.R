@@ -100,6 +100,12 @@ methods::setMethod(
     } else {
       action_status <- do.call(rbind, action_status)
     }
+    ### remove duplicate solutions if not using random solver
+    if (!inherits(a$solver, "RandomSolver")) {
+      not_dups <- !duplicated(apply(action_status, 1, paste, collapse = "_"))
+      action_status <- action_status[not_dups, , drop = FALSE]
+      sol <- sol[not_dups]
+    }
     # create solution data
     ## initialize and add solution column
     out <- tibble::tibble(solution = seq_len(nrow(action_status)))

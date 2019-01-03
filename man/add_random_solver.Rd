@@ -10,10 +10,14 @@ add_random_solver(x, number_solutions = 1, verbose = TRUE)
 \item{x}{\code{\link{ProjectProblem-class}} object.}
 
 \item{number_solutions}{\code{integer} number of solutions desired.
-Defaults to 1.}
+Defaults to 1. Note that the number of returned solutions can sometimes
+be less than the argument to \code{number_solutions} depending on the
+argument to \code{solution_pool_method}, for example if 100
+solutions are requested but only 10 unique solutions exist, then only 10
+solutions will be returned.}
 
-\item{verbose}{\code{logical} should information be printed while generating
-the solutions? Defaults to \code{TRUE}.}
+\item{verbose}{\code{logical} should information be printed while solving
+optimization problems?}
 }
 \value{
 \code{\link{ProjectProblem-class}} object with the solver added

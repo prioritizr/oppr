@@ -34,7 +34,7 @@ NULL
 #'   solutions that are of any level of quality (such that the total number of
 #'   solutions is equal to \code{number_solutions}), and \code{2} finding a
 #'   specified number of solutions that are nearest to optimality. For more
-#'   information, see the \emph{Gurobi} manual (i.e. \url{http://www.gurobi.com/documentation/8.0/refman/poolsearchmode.html#parameter:PoolSearchMode}). Defaults to 0.
+#'   information, see the \emph{Gurobi} manual (i.e. \url{http://www.gurobi.com/documentation/8.0/refman/poolsearchmode.html#parameter:PoolSearchMode}). Defaults to 2.
 #'
 #' @param time_limit \code{numeric} time limit in seconds to run the optimizer.
 #'   The solver will return the current best solution when this time limit is
@@ -85,7 +85,7 @@ methods::setClass("GurobiSolver", contains = "Solver")
 #' @rdname add_gurobi_solver
 #' @export
 add_gurobi_solver <- function(x, gap = 0.1, number_solutions = 1,
-                              solution_pool_method = 0,
+                              solution_pool_method = 2,
                               time_limit = .Machine$integer.max,
                               presolve = 2, threads = 1, first_feasible = 0,
                               verbose = TRUE) {
@@ -168,10 +168,10 @@ add_gurobi_solver <- function(x, gap = 0.1, number_solutions = 1,
                        runtime = x$runtime))
       # add solutions from solution pool if required
       if (is.numeric(x$x) && isTRUE(length(x$pool) > 1) &&
-          isTRUE(number_solutions > 1)) {
+          isTRUE(self$parameters$get("number_solutions") > 1)) {
         out <- append(out,
           lapply(x$pool, function(z)
-            list(x = z$xn, objective = z$objval,
+            list(x = replace(z$xn, b, round(z$xn[b])), objective = z$objval,
                  status = ifelse((x$status == "OPTIMAL") &&
                                  (abs(x$objval - z$objval) < 1e-5),
                                  "OPTIMAL", "SUBOPTIMAL"),

@@ -322,17 +322,17 @@ ProjectProblem <- pproto(
     pr <- round(range(self$project_success_probabilities(), na.rm = TRUE), 5)
     cs <- round(range(self$action_costs(), na.rm = TRUE), 5)
     message(paste0("Project Prioritization Problem",
-    "\n  actions      ", repr_atomic(self$action_names(), "actions"),
-    "\n  projects     ", repr_atomic(self$project_names(), "projects"),
-    "\n  cost:        min: ", cs[1], ", max: ", cs[2],
-    "\n  success:     min: ", pr[1], ", max: ", pr[2],
-    "\n  features     ", repr_atomic(self$feature_names(), "features"),
-    "\n  objective:   ", r[1],
-    "\n  targets:     ", r[2],
-    "\n  weights:     ", w,
-    "\n  decisions    ", d[1],
-    "\n  constraints: ", align_text(self$constraints$repr(), 19),
-    "\n  solver:      ", d[2]))
+    "\n  actions          ", repr_atomic(self$action_names(), "actions"),
+    "\n  projects         ", repr_atomic(self$project_names(), "projects"),
+    "\n  features         ", repr_atomic(self$feature_names(), "features"),
+    "\n  action costs:    min: ", cs[1], ", max: ", cs[2],
+    "\n  project success: min: ", pr[1], ", max: ", pr[2],
+    "\n  objective:       ", r[1],
+    "\n  targets:         ", r[2],
+    "\n  weights:         ", w,
+    "\n  decisions        ", d[1],
+    "\n  constraints:     ", align_text(self$constraints$repr(), 20),
+    "\n  solver:          ", d[2]))
   },
   show = function(self) {
     self$print()

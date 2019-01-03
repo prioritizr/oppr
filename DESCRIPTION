@@ -77,6 +77,7 @@ Collate:
     'add_default_solver.R'
     'add_feature_weights.R'
     'add_gurobi_solver.R'
+    'add_heuristic_solver.R'
     'add_locked_in_constraints.R'
     'add_locked_out_constraints.R'
     'add_lpsymphony_solver.R'

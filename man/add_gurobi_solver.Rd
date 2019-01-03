@@ -5,7 +5,7 @@
 \title{Add a \pkg{Gurobi} solver}
 \usage{
 add_gurobi_solver(x, gap = 0.1, number_solutions = 1,
-  solution_pool_method = 0, time_limit = .Machine$integer.max,
+  solution_pool_method = 2, time_limit = .Machine$integer.max,
   presolve = 2, threads = 1, first_feasible = 0, verbose = TRUE)
 }
 \arguments{
@@ -34,7 +34,7 @@ one solution within the optimality gap and a number of additional
 solutions that are of any level of quality (such that the total number of
 solutions is equal to \code{number_solutions}), and \code{2} finding a
 specified number of solutions that are nearest to optimality. For more
-information, see the \emph{Gurobi} manual (i.e. \url{http://www.gurobi.com/documentation/8.0/refman/poolsearchmode.html#parameter:PoolSearchMode}). Defaults to 0.}
+information, see the \emph{Gurobi} manual (i.e. \url{http://www.gurobi.com/documentation/8.0/refman/poolsearchmode.html#parameter:PoolSearchMode}). Defaults to 2.}
 
 \item{time_limit}{\code{numeric} time limit in seconds to run the optimizer.
 The solver will return the current best solution when this time limit is

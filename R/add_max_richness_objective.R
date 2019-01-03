@@ -133,7 +133,8 @@ add_max_richness_objective <- function(x, budget) {
     parameters = parameters(numeric_parameter("budget", budget,
                                               lower_limit = 0)),
     feature_phylogeny = function(self) {
-      star_phylogeny(self$data$feature_names)
+      star_phylogeny(self$data$feature_names,
+                     rep(0, length(self$data$feature_names)))
     },
     default_feature_weights = function(self) {
       setNames(rep(1, length(self$data$feature_names)),

@@ -8,27 +8,7 @@ NULL
 #' package. This function can also be used to customize the behavior of the
 #' solver. It requires the \pkg{Rsymphony} package.
 #'
-#' @param x \code{\link{ProjectProblem-class}} object.
-#'
-#' @param gap \code{numeric} gap to optimality. This gap is absolute and
-#'   expresses the acceptable deviance from the optimal objective. For example,
-#'   solving a minimum set objective problem with a gap of 5 will cause the
-#'   solver to terminate when the cost of the solution is within 5 cost units
-#'   from the optimal solution.
-#'
-#' @param time_limit \code{numeric} time limit in seconds to run the optimizer.
-#'   The solver will return the current best solution when this time limit is
-#'   exceeded.
-#'
-#' @param first_feasible \code{logical} should the first feasible solution be
-#'   be returned? If \code{first_feasible} is set to \code{TRUE}, the solver
-#'   will return the first solution it encounters that meets all the
-#'   constraints, regardless of solution quality. Note that the first feasible
-#'   solution is not an arbitrary solution, rather it is derived from the
-#'   relaxed solution, and is therefore often reasonably close to optimality.
-#'
-#' @param verbose \code{logical} should information be printed while solving
-#'  optimization problems? Defaults to \code{TRUE}.
+#' @inheritParams add_gurobi_solver
 #'
 #' @details \href{https://projects.coin-or.org/SYMPHONY}{\emph{SYMPHONY}} is an
 #'   open-source integer programming solver that is part of the Computational

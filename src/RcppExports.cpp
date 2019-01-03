@@ -427,6 +427,29 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// rcpp_heuristic_solution
+Rcpp::LogicalMatrix rcpp_heuristic_solution(Rcpp::NumericVector costs, arma::sp_mat pa_matrix, arma::sp_mat pf_matrix, arma::sp_mat branch_matrix, Rcpp::NumericVector branch_lengths, Rcpp::NumericVector targets, Rcpp::NumericVector weights, double budget, Rcpp::IntegerVector locked_in, Rcpp::IntegerVector locked_out, std::size_t number_solutions, bool verbose, const std::string obj_name);
+RcppExport SEXP _ppr_rcpp_heuristic_solution(SEXP costsSEXP, SEXP pa_matrixSEXP, SEXP pf_matrixSEXP, SEXP branch_matrixSEXP, SEXP branch_lengthsSEXP, SEXP targetsSEXP, SEXP weightsSEXP, SEXP budgetSEXP, SEXP locked_inSEXP, SEXP locked_outSEXP, SEXP number_solutionsSEXP, SEXP verboseSEXP, SEXP obj_nameSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type costs(costsSEXP);
+    Rcpp::traits::input_parameter< arma::sp_mat >::type pa_matrix(pa_matrixSEXP);
+    Rcpp::traits::input_parameter< arma::sp_mat >::type pf_matrix(pf_matrixSEXP);
+    Rcpp::traits::input_parameter< arma::sp_mat >::type branch_matrix(branch_matrixSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type branch_lengths(branch_lengthsSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type targets(targetsSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type weights(weightsSEXP);
+    Rcpp::traits::input_parameter< double >::type budget(budgetSEXP);
+    Rcpp::traits::input_parameter< Rcpp::IntegerVector >::type locked_in(locked_inSEXP);
+    Rcpp::traits::input_parameter< Rcpp::IntegerVector >::type locked_out(locked_outSEXP);
+    Rcpp::traits::input_parameter< std::size_t >::type number_solutions(number_solutionsSEXP);
+    Rcpp::traits::input_parameter< bool >::type verbose(verboseSEXP);
+    Rcpp::traits::input_parameter< const std::string >::type obj_name(obj_nameSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_heuristic_solution(costs, pa_matrix, pf_matrix, branch_matrix, branch_lengths, targets, weights, budget, locked_in, locked_out, number_solutions, verbose, obj_name));
+    return rcpp_result_gen;
+END_RCPP
+}
 // rcpp_random_max_benefit_solution
 Rcpp::LogicalMatrix rcpp_random_max_benefit_solution(Rcpp::NumericVector costs, Rcpp::IntegerVector locked_in, Rcpp::IntegerVector locked_out, double budget, std::size_t n_solutions, bool verbose);
 RcppExport SEXP _ppr_rcpp_random_max_benefit_solution(SEXP costsSEXP, SEXP locked_inSEXP, SEXP locked_outSEXP, SEXP budgetSEXP, SEXP n_solutionsSEXP, SEXP verboseSEXP) {

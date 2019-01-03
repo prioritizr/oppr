@@ -8,13 +8,7 @@ NULL
 #' a portfolio of randomly generated solutions can be useful for evaluating
 #' the effectiveness of solutions.
 #'
-#' @param x \code{\link{ProjectProblem-class}} object.
-#'
-#' @param number_solutions \code{integer} number of solutions desired.
-#'   Defaults to 1.
-#'
-#' @param verbose \code{logical} should information be printed while generating
-#'  the solutions? Defaults to \code{TRUE}.
+#' @inheritParams add_gurobi_solver
 #'
 #' @details The algorithm used to randomly generate solutions depends on the
 #'  the objective specified for the project prioritization
@@ -52,10 +46,7 @@ NULL
 #'
 #'  }
 #'
-#' @return \code{\link{ProjectProblem-class}} object with the solver added
-#'   to it.
-#'
-#' @seealso \code{\link{solvers}}.
+#' @inherit add_gurobi_solver seealso return
 #'
 #' @examples
 #' #TODO

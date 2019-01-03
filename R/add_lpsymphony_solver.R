@@ -8,7 +8,7 @@ NULL
 #' package. This function can also be used to customize the behavior of the
 #' solver. It requires the \pkg{lpsymphony} package.
 #'
-#' @inheritParams add_rsymphony_solver
+#' @inheritParams add_gurobi_solver
 #'
 #' @details \href{https://projects.coin-or.org/SYMPHONY}{\emph{SYMPHONY}} is an
 #'   open-source integer programming solver that is part of the Computational
@@ -21,7 +21,7 @@ NULL
 #'   be easier to install to install on Windows and Mac OSX systems than the
 #'   \pkg{Rsymphony} package.
 #'
-#' @inherit add_rsymphony_solver seealso return
+#' @inherit add_gurobi_solver seealso return
 #'
 #' @seealso \code{\link{solvers}}.
 #'

@@ -22,3 +22,10 @@ NULL
 
 #' @export
 Weight <- pproto("Weight", ProjectModifier)
+
+add_default_weights <- function(x) {
+  # assert arguments are valid
+  assertthat::assert_that(inherits(x, "ProjectProblem"),
+                          !is.Waiver(x$objective))
+  add_feature_weights(x, x$objective$default_feature_weights())
+}

@@ -154,6 +154,12 @@ add_max_phylo_div_objective <- function(x, budget, tree) {
                           inherits(tree, "phylo"),
                           is_valid_phylo(tree),
                           setequal(tree$tip.label, x$feature_names()))
+  # add edge lengths if missing
+  if (is.null(tree$edge.length)) {
+    tree$edge.length <- rep(1, nrow(tree$edge))
+    warning(paste("argument to tree is missing edge length data, so each",
+                  "branch is assumed to have a length of 1."))
+  }
   # add objective to problem
   x$add_objective(pproto(
     "MaximumPhyloDivObjective",

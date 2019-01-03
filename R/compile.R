@@ -52,6 +52,8 @@ compile.ProjectProblem <- function(x, ...) {
     x <- add_default_decisions(x)
   if (is.Waiver(x$solver))
     x <- add_default_solver(x)
+  if (is.Waiver(x$weights) && !inherits(x$objective, not_weight_based_obj))
+    x <- add_default_weights(x)
   op <- new_optimization_problem()
   # generate targets
   if (is.Waiver(x$targets)) {
