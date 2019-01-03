@@ -4,10 +4,9 @@ NULL
 #' Add locked in constraints
 #'
 #' Add constraints to a project prioritization \code{\link{problem}} to ensure
-#' that specific actions are funded in the solution. For example, it may be
-#' desirable to lock in actions for conserving culturally or taxonomically
-#' important species. If specific actions should be locked out of a solution,
-#' use \code{\link{add_locked_out_constraints}}.
+#' that specific actions are prioritized for funding in the solution. For
+#' example, it may be desirable to lock in actions for conserving culturally or
+#' taxonomically important species.
 #'
 #' @usage add_locked_in_constraints(x, locked_in)
 #'

@@ -23,10 +23,9 @@ locked out. See the Details section for more information.}
 }
 \description{
 Add constraints to a project prioritization \code{\link{problem}} to ensure
-that specific actions are not funded in the solution. For example, it may be
-desirable to lock out specific actions to examine their importance to the
-optimal funding scheme. If specific actions should be locked in to a
-solution, use \code{\link{add_locked_in_constraints}}.
+that specific actions are not prioritized for funding in the solution. For
+example, it may be desirable to lock out specific actions to examine their
+importance to the optimal funding scheme.
 }
 \examples{
 #TODO
