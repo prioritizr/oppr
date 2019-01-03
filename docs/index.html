@@ -86,11 +86,108 @@
 devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"prioritizr/ppr"</span>)
 <span class="cf">if</span> (<span class="op">!</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">require</a></span>(ggtree))
   devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_bioc</a></span>(<span class="st">"ggtree"</span>)</code></pre></div>
-<p>Please note that you will also need to install the <a href="http://www.gurobi.com/">Gurobi optimization suite</a> and <a href="https://www.gurobi.com/documentation/8.1/refman/r_api_overview.html"><em>gurobi R</em> package</a>. For instructions on installing these software packages, please refer to <a href="https://cran.r-project.org/web/packages/prioritizr/vignettes/gurobi_installation.html">this installation guide</a>.</p>
+<p>We also recommend installing the <a href="http://www.gurobi.com/">Gurobi optimization suite</a> and <a href="https://www.gurobi.com/documentation/8.1/refman/r_api_overview.html"><em>gurobi R</em> package</a> to obtain solutions very quickly. For instructions on installing these software packages, please refer to <a href="https://cran.r-project.org/web/packages/prioritizr/vignettes/gurobi_installation.html">this installation guide</a>.</p>
 </div>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
+<p>Here we will provide a short example showing how the <em>optimalppp R</em> package can be used to prioritize funding for conservation projects. To start off, we will set the seed for the random number generator to ensure you get the same results as shown here, and load the <em>ppr R</em> package.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">500</span>)
+<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ppr)</code></pre></div>
+<p>Now we will load some data sets that are distributed with the package. First, we will load the <code>sim_features</code> object. This table contains information on the conservation features (e.g. species). Specifically, each row corresponds to a different feature, and each column contains information associated with the features. In this table, the <code>"name"</code> column contains the name of each feature, and the <code>"weight"</code> column denotes the relative importance for each feature.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load data</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(sim_features)
+
+<span class="co"># print table</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/as.data.frame">as.data.frame</a></span>(sim_features))</code></pre></div>
+<pre><code>##   name    weight
+## 1   F1 0.2113582
+## 2   F2 0.2113582
+## 3   F3 0.2211805
+## 4   F4 0.6296374
+## 5   F5 1.5916703</code></pre>
+<p>Next, we will load the <code>sim_actions</code> object. This table stores information about the various management actions (i.e. <code>tibble</code>). Each row corresponds to a different action, and each column describes different properties associated with the actions. These actions correspond to specific management actions that have known costs. For example, they may relate to pest eradication activities in sites of conservation importance. In this table, the <code>"name"</code> column contains the name of each action, and the <code>"cost"</code> action denotes the cost of funding each project. It also contains additional columns for customizing the solutions, but we will ignore them for now. Note that the last project—the <code>"baseline_action"</code>—has a zero cost and is used subsequently to represent the baseline probability for species when no conservation actions are funded for them.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load data</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(sim_actions)
+
+<span class="co"># print table</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/as.data.frame">as.data.frame</a></span>(sim_actions))</code></pre></div>
+<pre><code>##              name      cost locked_in locked_out
+## 1       F1_action  94.39929     FALSE      FALSE
+## 2       F2_action 100.99137     FALSE      FALSE
+## 3       F3_action 103.22583      TRUE      FALSE
+## 4       F4_action  99.24274     FALSE      FALSE
+## 5       F5_action  99.90791     FALSE       TRUE
+## 6 baseline_action   0.00000     FALSE      FALSE</code></pre>
+<p>Additionally, we will load the <code>sim_projects</code> object. This table stores information about various conservation projects. Each row corresponds to a different project, and each column describes various properties associated with the projects. These projects correspond to groups of conservation actions. For example, a conservation project may pertain to a set of conservation actions that relate to a single species or single geographic locality. In this table, the <code>"name"</code> column contains the name of each project, the <code>"success"</code> column denotes the probability of each project succeeding if it is funded, the <code>"F1"</code>–<code>"FN"</code> columns show the enhanced probability of each species persisting if the project is funded, and the <code>"F1_action"</code>–<code>"FN_action"</code> columns indicate which actions are associated with which project. Note that the last project—the <code>"baseline_project"</code>—is associated with the <code>"baseline_action"</code> action. This project has a zero cost and represents the baseline probability of each species persisting if no other project is funded. Finally, although most projects in this example directly relate to a single species, you can input projects that directly affect the persistence of multiple species.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load data</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(sim_projects)
+
+<span class="co"># print table</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/as.data.frame">as.data.frame</a></span>(sim_projects))</code></pre></div>
+<pre><code>##               name   success        F1        F2        F3        F4
+## 1       F1_project 0.9190985 0.7905800 0.0000000 0.0000000 0.0000000
+## 2       F2_project 0.9232556 0.0000000 0.8881011 0.0000000 0.0000000
+## 3       F3_project 0.8293499 0.0000000 0.0000000 0.5020887 0.0000000
+## 4       F4_project 0.8475053 0.0000000 0.0000000 0.0000000 0.6899938
+## 5       F5_project 0.8137868 0.0000000 0.0000000 0.0000000 0.0000000
+## 6 baseline_project 1.0000000 0.2977965 0.2500224 0.0864612 0.2489246
+##          F5 F1_action F2_action F3_action F4_action F5_action
+## 1 0.0000000      TRUE     FALSE     FALSE     FALSE     FALSE
+## 2 0.0000000     FALSE      TRUE     FALSE     FALSE     FALSE
+## 3 0.0000000     FALSE     FALSE      TRUE     FALSE     FALSE
+## 4 0.0000000     FALSE     FALSE     FALSE      TRUE     FALSE
+## 5 0.6166465     FALSE     FALSE     FALSE     FALSE      TRUE
+## 6 0.1820005     FALSE     FALSE     FALSE     FALSE     FALSE
+##   baseline_action
+## 1           FALSE
+## 2           FALSE
+## 3           FALSE
+## 4           FALSE
+## 5           FALSE
+## 6            TRUE</code></pre>
+<p>After loading the data, we can begin formulating the project prioritization problem. Here our goal is to maximize the overall probability that each feature is expected to persist into the future (i.e. the feature richness), whilst also accounting for the relative importance of each feature and the fact that our resources are limited such that we can only spend at most $400 on funding management actions. Now, let’s build a project prioritization problem object that represents our goal.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># build problem</span>
+p &lt;-<span class="st"> </span><span class="kw"><a href="reference/problem.html">problem</a></span>(<span class="dt">projects =</span> sim_projects, <span class="dt">actions =</span> sim_actions,
+             <span class="dt">features =</span>  sim_features, <span class="dt">project_name_column =</span> <span class="st">"name"</span>,
+             <span class="dt">project_success_column =</span> <span class="st">"success"</span>, <span class="dt">action_name_column =</span> <span class="st">"name"</span>,
+             <span class="dt">action_cost_column =</span> <span class="st">"cost"</span>, <span class="dt">feature_name_column =</span> <span class="st">"name"</span>) <span class="op">%&gt;%</span>
+<span class="st">     </span><span class="kw"><a href="reference/add_max_richness_objective.html">add_max_richness_objective</a></span>(<span class="dt">budget =</span> <span class="dv">400</span>) <span class="op">%&gt;%</span>
+<span class="st">     </span><span class="kw"><a href="reference/add_feature_weights.html">add_feature_weights</a></span>(<span class="dt">weight =</span> <span class="st">"weight"</span>) <span class="op">%&gt;%</span>
+<span class="st">     </span><span class="kw"><a href="reference/add_binary_decisions.html">add_binary_decisions</a></span>() <span class="op">%&gt;%</span>
+<span class="st">     </span><span class="kw"><a href="reference/add_default_solver.html">add_default_solver</a></span>(<span class="dt">verbose =</span> <span class="ot">FALSE</span>)
+
+<span class="co"># print problem</span>
+<span class="kw"><a href="reference/print.html">print</a></span>(p)</code></pre></div>
+<pre><code>## Project Prioritization Problem
+##   actions          F1_action, F2_action, F3_action, ... (6 actions)
+##   projects         F1_project, F2_project, F3_project, ... (6 projects)
+##   features         F1, F2, F3, ... (5 features)
+##   action costs:    min: 0, max: 103.22583
+##   project success: min: 0.81379, max: 1
+##   objective:       Maximum richness objective [budget (400)]
+##   targets:         none
+##   weights:         min: 0.21136, max: 1.59167
+##   decisions        Binary decision 
+##   constraints:     &lt;none&gt;
+##   solver:          Gurobi [first_feasible (0), gap (0.1), number_solutions (1), presolve (2), solution_pool_method (2), threads (1), time_limit (2147483647), time_limit (2147483647), verbose (0)]</code></pre>
+<p>Next, we can solve this problem to obtain a solution. By default, we will obtain the optimal solution to our problem using an exact algorithm solver (e.g. using <a href="http://www.gurobi.com/">Gurobi</a> or <a href="https://cran.r-project.org/package=Rsymphony">Rsymphony</a>).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># solve problem</span>
+s &lt;-<span class="st"> </span><span class="kw"><a href="reference/solve.html">solve</a></span>(p)
+
+<span class="co"># print solution</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/as.data.frame">as.data.frame</a></span>(s))</code></pre></div>
+<pre><code>##   solution  status      obj     cost F1_action F2_action F3_action
+## 1        1 OPTIMAL 1.512928 394.5413         1         1         0
+##   F4_action F5_action baseline_action        F1        F2        F3
+## 1         1         1               1 0.7266208 0.8199443 0.0864612
+##          F4        F5
+## 1 0.5847734 0.5018188</code></pre>
+<p>The <code>s</code> table contains the solution and also various statistics associated with the solution. Here, each row corresponds to a different solution. Specifically, the <code>"solution"</code> column contains an identifier for the solution (which may be useful for methods that output multiple solutions), the <code>"obj"</code> column contains the objective value (i.e. the expected feature richness for this problem), the <code>"cost"</code> column stores the cost of the solution, and the <code>"status"</code> column contains information from the solver about the solution. Additionally, it contains columns for each action (<code>"F1_action"</code>, <code>"F2_actions"</code>, <code>"F3_actions"</code>, …, <code>"baseline_action"</code>) which indicate if each action was prioritized for funding in the solution. Furthermore, it contains column for each feature (<code>"F1</code>, <code>"F2"</code>, <code>"F3</code>, …) which indicate the probability that each feature is expected to persist into the future under each solution. Since tabular data can be difficult to understand, let’s visualize how well this solution would conserve the features. Note that features which benefit from fully funded projects, excepting the baseline project, are denoted with an asterisk.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># visualize solution</span>
+<span class="kw"><a href="reference/plot_feature_persistence.html">plot_feature_persistence</a></span>(p, s)</code></pre></div>
+<p><img src="reference/figures/README-readme-plot-1.png" width="700" style="display: block; margin: auto;"></p>
+<p>This has just been a taster of the <em>ppr R</em> package. For more information, see the <a href="https://prioritizr.github.io/ppr/articles/optimalppp.html">package website</a>.</p>
 </div>
 <div id="citation" class="section level2">
 <h2 class="hasAnchor">

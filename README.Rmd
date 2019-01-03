@@ -41,9 +41,87 @@ if (!require(ggtree))
   devtools::install_bioc("ggtree")
 ```
 
-Please note that you will also need to install the [Gurobi optimization suite](http://www.gurobi.com/) and [_gurobi R_ package](https://www.gurobi.com/documentation/8.1/refman/r_api_overview.html). For instructions on installing these software packages, please refer to [this installation guide](https://cran.r-project.org/web/packages/prioritizr/vignettes/gurobi_installation.html).
+We also recommend installing the [Gurobi optimization suite](http://www.gurobi.com/) and [_gurobi R_ package](https://www.gurobi.com/documentation/8.1/refman/r_api_overview.html) to obtain solutions very quickly. For instructions on installing these software packages, please refer to [this installation guide](https://cran.r-project.org/web/packages/prioritizr/vignettes/gurobi_installation.html).
 
 ## Usage
+
+Here we will provide a short example showing how the _optimalppp R_ package can be used to prioritize funding for conservation projects. To start off, we will set the seed for the random number generator to ensure you get the same results as shown here, and load the _ppr R_ package.
+
+```{r, eval = FALSE}
+set.seed(500)
+library(ppr)
+```
+
+```{r, include= FALSE}
+set.seed(500)
+library(ppr)
+```
+
+Now we will load some data sets that are distributed with the package. First, we will load the `sim_features` object. This table contains information on the conservation features (e.g. species). Specifically, each row corresponds to a different feature, and each column contains information associated with the features. In this table, the `"name"` column contains the name of each feature, and the `"weight"` column denotes the relative importance for each feature.
+
+```{r, message = FALSE, warning = FALSE}
+# load data
+data(sim_features)
+
+# print table
+head(as.data.frame(sim_features))
+```
+
+Next, we will load the `sim_actions` object. This table stores information about the various management actions (i.e. `tibble`). Each row corresponds to a different action, and each column describes different properties associated with the actions. These actions correspond to specific management actions that have known costs. For example, they may relate to pest eradication activities in sites of conservation importance. In this table, the `"name"` column contains the name of each action, and the `"cost"` action denotes the cost of funding each project. It also contains additional columns for customizing the solutions, but we will ignore them for now. Note that the last project---the `"baseline_action"`---has a zero cost and is used subsequently to represent the baseline probability for species when no conservation actions are funded for them.
+
+```{r}
+# load data
+data(sim_actions)
+
+# print table
+head(as.data.frame(sim_actions))
+```
+
+Additionally, we will load the `sim_projects` object. This table stores information about various conservation projects. Each row corresponds to a different project, and each column describes various properties associated with the projects. These projects correspond to groups of conservation actions. For example, a conservation project may pertain to a set of conservation actions that relate to a single species or single geographic locality. In this table, the `"name"` column contains the name of each project, the `"success"` column denotes the probability of each project succeeding if it is funded, the `"F1"`--`"FN"` columns show the enhanced probability of each species persisting if the project is funded, and the `"F1_action"`--`"FN_action"` columns indicate which actions are associated with which project. Note that the last project---the `"baseline_project"`---is associated with the `"baseline_action"` action. This project has a zero cost and represents the baseline probability of each species persisting if no other project is funded. Finally, although most projects in this example directly relate to a single species, you can input projects that directly affect the persistence of multiple species.
+
+```{r}
+# load data
+data(sim_projects)
+
+# print table
+head(as.data.frame(sim_projects))
+```
+
+After loading the data, we can begin formulating the project prioritization problem. Here our goal is to maximize the overall probability that each feature is expected to persist into the future (i.e. the feature richness), whilst also accounting for the relative importance of each feature and the fact that our resources are limited such that we can only spend at most $400 on funding management actions. Now, let's build a project prioritization problem object that represents our goal.
+
+```{r}
+# build problem
+p <- problem(projects = sim_projects, actions = sim_actions,
+             features =  sim_features, project_name_column = "name",
+             project_success_column = "success", action_name_column = "name",
+             action_cost_column = "cost", feature_name_column = "name") %>%
+     add_max_richness_objective(budget = 400) %>%
+     add_feature_weights(weight = "weight") %>%
+     add_binary_decisions() %>%
+     add_default_solver(verbose = FALSE)
+
+# print problem
+print(p)
+```
+
+Next, we can solve this problem to obtain a solution. By default, we will obtain the optimal solution to our problem using an exact algorithm solver (e.g. using [Gurobi](http://www.gurobi.com/) or [Rsymphony](https://cran.r-project.org/package=Rsymphony)).
+
+```{r, message = FALSE, warning = FALSE}
+# solve problem
+s <- solve(p)
+
+# print solution
+head(as.data.frame(s))
+```
+
+The `s` table contains the solution and also various statistics associated with the solution. Here, each row corresponds to a different solution. Specifically, the `"solution"` column contains an identifier for the solution (which may be useful for methods that output multiple solutions), the `"obj"` column contains the objective value (i.e. the expected feature richness for this problem), the `"cost"` column stores the cost of the solution, and the `"status"` column contains information from the solver about the solution. Additionally, it contains columns for each action (`"F1_action"`, `"F2_actions"`, `"F3_actions"`, ..., `"baseline_action"`) which indicate if each action was prioritized for funding in the solution. Furthermore, it contains column for each feature (`"F1`, `"F2"`, `"F3`, ...) which indicate the probability that each feature is expected to persist into the future under each solution. Since tabular data can be difficult to understand, let's visualize how well this solution would conserve the features. Note that features which benefit from fully funded projects, excepting the baseline project, are denoted with an asterisk.
+
+```{r "readme-plot"}
+# visualize solution
+plot_feature_persistence(p, s)
+```
+
+This has just been a taster of the _ppr R_ package. For more information, see the [package website](https://prioritizr.github.io/ppr/articles/optimalppp.html).
 
 ## Citation
 
