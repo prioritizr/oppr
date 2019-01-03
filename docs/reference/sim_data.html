@@ -145,16 +145,19 @@
     <dt><code>"name"</code></dt><dd><p><code>character</code> name for each project.</p></dd>
     <dt><code>"success"</code></dt><dd><p><code>numeric</code> probability of each project
         succeeding if it is funded.</p></dd>
-    <dt><code>"S1"</code> ... <code>"S5"</code></dt><dd><p><code>numeric</code> columns for each
-        species (i.e. <code>"S1"</code>, <code>"S2"</code>, <code>"S3"</code>, <code>"S4"</code>,
-        <code>"S5"</code>, indicating the enhanced probability that each
-        species will survive if it funded.</p></dd>
-    <dt><code>"S1_action"</code> ... <code>"SN_action"</code></dt><dd><p><code>logical</code>
-        columns for each action, ranging from <code>"S1_action"</code> to
-        <code>"SN_action"</code> where <code>N</code> is
-        the number of actions (equal to the number of species in this
-        simulated data), indicating if an action is associated with a
-        project (<code>TRUE</code>) or not (<code>FALSE</code>).</p></dd>
+    <dt><code>"F1"</code> ... <code>"F5"</code></dt><dd><p><code>numeric</code> columns for each
+        feature (i.e. <code>"F1"</code>, <code>"F2"</code>, <code>"F3"</code>, <code>"F4"</code>,
+        <code>"F5"</code>, indicating the enhanced probability that each
+        feature will survive if it funded.</p></dd>
+    <dt><code>"F1_action"</code> ... <code>"F5_action"</code></dt><dd><p><code>logical</code>
+        columns for each action, ranging from <code>"F1_action"</code> to
+        <code>"F5_action"</code> indicating if
+        an action is associated with a project (<code>TRUE</code>) or not
+        (<code>FALSE</code>).</p></dd>
+    <dt><code>"baseline_action"</code></dt><dd><p><code>logical</code>
+        column indicating if a project is associated with the baseline
+        action (<code>TRUE</code>) or not (<code>FALSE</code>). This action is only
+        associated with the baseline project.</p></dd>
     </dl></p></dd>
     <dt><code>sim_actions</code></dt><dd><p>A <code><a href='https://www.rdocumentation.org/packages/tibble/topics/tibble'>tibble</a></code> containing
     data for six simulated actions. Each row corresponds to a
@@ -169,14 +172,14 @@
         actions should be locked out of the solution.</p></dd>
     </dl></p></dd>
     <dt><code>sim_features</code></dt><dd><p>A <code><a href='https://www.rdocumentation.org/packages/tibble/topics/tibble'>tibble</a></code> containing
-    data for six simulated species. Each row corresponds to a
-    different species and each column contains information about the
-    species. This table contains the following columns:
+    data for five simulated features. Each row corresponds to a
+    different feature and each column contains information about the
+    features. This table contains the following columns:
     <dl class='dl-horizontal'>
-    <dt><code>"name"</code></dt><dd><p><code>character</code> name for each species.</p></dd>
-    <dt><code>"weight"</code></dt><dd><p><code>numeric</code> weight for each species.</p></dd>
+    <dt><code>"name"</code></dt><dd><p><code>character</code> name for each feature.</p></dd>
+    <dt><code>"weight"</code></dt><dd><p><code>numeric</code> weight for each feature.</p></dd>
     </dl></p></dd>
-    <dt>tree</dt><dd><p><code><a href='https://www.rdocumentation.org/packages/ape/topics/read.tree'>phylo</a></code> phylogenetic tree for the species.</p></dd>
+    <dt>tree</dt><dd><p><code><a href='https://www.rdocumentation.org/packages/ape/topics/read.tree'>phylo</a></code> phylogenetic tree for the features.</p></dd>
     </dl>
     
 
@@ -209,11 +212,11 @@
 <span class='fu'><a href='print.html'>print</a></span>(<span class='no'>sim_features</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 5 x 2</span><span>
 #&gt;   name  weight
 #&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> F3     0.211
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> F1     0.211
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> F5     0.221
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> F2     0.630
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> F4     1.59 </div><div class='input'><span class='co'># plot phylogenetic tree</span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> F1     0.211
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> F2     0.211
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> F3     0.221
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> F4     0.630
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> F5     1.59 </div><div class='input'><span class='co'># plot phylogenetic tree</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>sim_tree</span>)</div><div class='img'><img src='sim_data-1.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></span></pre>
   </div>

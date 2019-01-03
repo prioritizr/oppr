@@ -21,17 +21,21 @@ NULL
 #'       \item{\code{"success"}}{\code{numeric} probability of each project
 #'         succeeding if it is funded.}
 #'
-#'       \item{\code{"S1"} ... \code{"S5"}}{\code{numeric} columns for each
-#'         species (i.e. \code{"S1"}, \code{"S2"}, \code{"S3"}, \code{"S4"},
-#'         \code{"S5"}, indicating the enhanced probability that each
-#'         species will survive if it funded.}
+#'       \item{\code{"F1"} ... \code{"F5"}}{\code{numeric} columns for each
+#'         feature (i.e. \code{"F1"}, \code{"F2"}, \code{"F3"}, \code{"F4"},
+#'         \code{"F5"}, indicating the enhanced probability that each
+#'         feature will survive if it funded.}
 #'
-#'       \item{\code{"S1_action"} ... \code{"SN_action"}}{\code{logical}
-#'         columns for each action, ranging from \code{"S1_action"} to
-#'         \code{"SN_action"} where \code{N} is
-#'         the number of actions (equal to the number of species in this
-#'         simulated data), indicating if an action is associated with a
-#'         project (\code{TRUE}) or not (\code{FALSE}).}
+#'       \item{\code{"F1_action"} ... \code{"F5_action"}}{\code{logical}
+#'         columns for each action, ranging from \code{"F1_action"} to
+#'         \code{"F5_action"} indicating if
+#'         an action is associated with a project (\code{TRUE}) or not
+#'         (\code{FALSE}).}
+#'
+#'       \item{\code{"baseline_action"}}{\code{logical}
+#'         column indicating if a project is associated with the baseline
+#'         action (\code{TRUE}) or not (\code{FALSE}). This action is only
+#'         associated with the baseline project.}
 #'
 #'     }}
 #'
@@ -55,19 +59,19 @@ NULL
 #'     }}
 #'
 #'   \item{\code{sim_features}}{A \code{\link[tibble]{tibble}} containing
-#'     data for six simulated species. Each row corresponds to a
-#'     different species and each column contains information about the
-#'     species. This table contains the following columns:
+#'     data for five simulated features. Each row corresponds to a
+#'     different feature and each column contains information about the
+#'     features. This table contains the following columns:
 #'
 #'     \describe{
 #'
-#'       \item{\code{"name"}}{\code{character} name for each species.}
+#'       \item{\code{"name"}}{\code{character} name for each feature.}
 #'
-#'       \item{\code{"weight"}}{\code{numeric} weight for each species.}
+#'       \item{\code{"weight"}}{\code{numeric} weight for each feature.}
 #'
 #'     }}
 #'
-#'     \item{tree}{\code{\link[ape]{phylo}} phylogenetic tree for the species.}
+#'     \item{tree}{\code{\link[ape]{phylo}} phylogenetic tree for the features.}
 #'
 #' }
 #' @aliases sim_projects sim_actions sim_features sim_tree
