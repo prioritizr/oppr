@@ -8,10 +8,8 @@ NULL
 #' is useful because it can be used to customize all aspects of a target. For
 #' most cases, targets can be specified using the
 #' \code{link{add_absolute_targets}} and \code{\link{add_relative_targets}}
-#' functions. However, this function can be used to (i) mix absolute and
-#' relative targets for different features, and (ii)
-#' set targets that require different senses (e.g. targets which specify the
-#' solution should not exceed a certain quantity using \code{"<="} values).
+#' functions. However, this function can be used to mix absolute and
+#' relative targets for different features.
 #'
 #' @param x \code{\link{ProjectProblem-class}} object.
 #'
@@ -41,8 +39,8 @@ NULL
 #'     These values correspond to \code{\link{add_absolute_targets}},
 #'     and \code{\link{add_relative_targets}} respectively.}
 #'
-#'   \item{\code{"sense"}}{\code{character} sense of the target. Acceptable
-#'     values include: \code{">="}, \code{"<="}, and \code{"="}. This field
+#'   \item{\code{"sense"}}{\code{character} sense of the target. The
+#'     only acceptable value currently supported is: \code{">="}. This field
 #'     (column) is optional and if it is missing then target senses will
 #'     default to \code{">="} values.}
 #'
@@ -110,7 +108,7 @@ methods::setMethod(
       if (assertthat::has_name(targets, "sense"))
        assertthat::assert_that(
          is.character(targets$sense) || is.factor(targets$sense),
-         all(as.character(targets$sense) %in% c(">=", "<=", "=")))
+         all(as.character(targets$sense) %in% c(">=")))
       return(TRUE)
     }
     validate_targets(targets)
