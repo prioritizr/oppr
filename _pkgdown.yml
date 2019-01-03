@@ -13,3 +13,112 @@ authors:
 template:
   params:
     bootswatch: flatly
+
+reference:
+  - title: Summary
+    desc: Summary of the package
+    contents:
+      - ppr
+
+  - title: Create and solve problems
+    desc: Functions for creating new problems and solving them
+    contents:
+      - problem
+      - solve
+
+  - title: Objectives
+    desc: Functions for adding an objective to a problem
+    contents:
+      - objectives
+      - ends_with("_objective")
+
+  - title: Targets
+    desc: Functions for adding targets to a problem
+    contents:
+      - targets
+      - ends_with("_targets")
+
+  - title: Weights
+    desc: Functions for adding weights to a problem
+    contents:
+      - weights
+      - add_feature_weights
+
+  - title: Constraints
+    desc: Functions for adding constraints to a problem
+    contents:
+      - constraints
+      - ends_with("_constraints")
+
+  - title: Decisions
+    desc: Functions for specifying the type of decisions in a problem
+    contents:
+      - decisions
+      - ends_with("_decisions")
+
+  - title: Solvers
+    desc: Functions for specifying how a problem should be solved
+    contents:
+      - solvers
+      - ends_with("_solver")
+
+  - title: Data
+    desc: Simulated data sets distributed with the package
+    contents:
+      - sim_data
+
+  - title: Data simulation
+    desc: Functions for simulating new data sets
+    contents:
+      - starts_with("simulate_")
+
+  - title: Visualization
+    desc: Functions for plotting solutions to a problem
+    contents:
+      - starts_with("plot")
+
+  - title: Problem manipulation functions
+    desc: Functions for extracting information from problems
+    contents:
+      - feature_names
+      - action_names
+      - project_names
+      - number_of_features
+      - number_of_actions
+      - number_of_projects
+
+  - title: Miscellaneous functions
+    desc: Assorted functions distributed with the package
+    contents:
+      - print
+      - show
+      - pipe
+      - tee
+      - is
+      - as
+      - compile
+      - branch_matrix
+      - summary_statistics
+
+  - title: Class definitions and methods
+    desc: >
+     These pages document the package's internal data structures and functions
+     for manipulating them---they contain information that is really only
+     useful when adding new functionality to the package
+    contents:
+      - new_id
+      - new_waiver
+      - pproto
+      - new_optimization_problem
+      - as.list.OptimizationProblem
+      - ends_with("-class")
+      - ends_with("-methods")
+
+  - title: Parameter definitions
+    desc: >
+      These pages document the package's internal data structures for
+      representing different types of variables---they contain information that
+      is really only useful when adding new functionality to the package
+    contents:
+      - contains("_parameter")
+      - parameters
