@@ -4,7 +4,7 @@
 \alias{add_feature_weights}
 \alias{add_feature_weights,ProjectProblem,numeric-method}
 \alias{add_feature_weights,ProjectProblem,character-method}
-\title{Add weights}
+\title{Add feature weights}
 \usage{
 \S4method{add_feature_weights}{ProjectProblem,numeric}(x, weights)
 
@@ -17,18 +17,19 @@
 Details section for more information.}
 }
 \description{
-Set feature weights for a project prioritization \code{\link{problem}}.
+Set weights for conserving features in a project prioritization
+\code{\link{problem}}.
 }
 \details{
 Weights are used to specify the relative importance for
-  maintaining the persistence of different features. For budget constrained
-  problems (e.g. \code{\link{add_max_richness_objective}}, these weights
+  maintaining the persistence of specific features. For budget constrained
+  problems (e.g. \code{\link{add_max_richness_objective}}), these weights
   could be used to specify which features are more important than other
   features according to evolutionary or cultural metrics. Specifically,
   features with a higher weight value are considered more important. It is
   generally best to ensure that the feature weights range between 0.0001 and
-  10,000 to reduce the time required to solve problems using integer
-  programming. As a consequence, you might have to rescale the feature
+  10,000 to reduce the time required to solve problems using exact
+  algorithm solvers. As a consequence, you might have to rescale the feature
   weights if the largest or smallest values occur outside this range
   (excluding zeros). If you want to ensure that certain features conserved
   in the solutions, it is strongly recommended to lock in the actions for
@@ -36,9 +37,7 @@ Weights are used to specify the relative importance for
   Please note that a warning will be thrown if you attempt to solve
   problems with weights when an objective has been specified that does
   not use weights. Currently, all objectives---except for the minimum
-  set (i.e. \code{\link{add_min_set_objective}} and the
-  the maximum expected phylogenetic diversity (i.e.
-  \code{\link{add_max_phylo_div_objective}}) objectives---can use weights.
+  set objective (i.e. \code{\link{add_min_set_objective}})---can use weights.
 
   The weights for a problem can be specified in several different ways:
 
