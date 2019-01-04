@@ -179,9 +179,225 @@ locked in. See the Details section for more information.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>#TODO
+    <pre class="examples"><div class='input'><span class='co'># load data</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_features</span>, <span class='no'>sim_actions</span>)
 
-</div></pre>
+<span class='co'># print action data</span>
+<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>sim_actions</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 4</span><span>
+#&gt;   name             cost locked_in locked_out
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>     
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> F1_action        94.4 FALSE     FALSE     
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> F2_action       101.  FALSE     FALSE     
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> F3_action       103.  TRUE      FALSE     
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> F4_action        99.2 FALSE     FALSE     
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> F5_action        99.9 FALSE     TRUE      
+#&gt; </span><span style='color: #BCBCBC;'>6</span><span> baseline_action   0   FALSE     FALSE     </div><div class='input'>
+<span class='co'># build problem with maximum richness objective and $150 budget</span>
+<span class='no'>p1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_actions</span>, <span class='no'>sim_features</span>,
+             <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span>) <span class='kw'>%&gt;%</span>
+     <span class='fu'><a href='add_max_richness_objective.html'>add_max_richness_objective</a></span>(<span class='kw'>budget</span> <span class='kw'>=</span> <span class='fl'>150</span>) <span class='kw'>%&gt;%</span>
+     <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span>()
+
+<span class='co'># print problem</span>
+<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>p1</span>)</div><div class='output co'>#&gt; <span class='message'>Project Prioritization Problem</span>
+#&gt; <span class='message'>  actions          F1_action, F2_action, F3_action, ... (6 actions)</span>
+#&gt; <span class='message'>  projects         F1_project, F2_project, F3_project, ... (6 projects)</span>
+#&gt; <span class='message'>  features         F1, F2, F3, ... (5 features)</span>
+#&gt; <span class='message'>  action costs:    min: 0, max: 103.22583</span>
+#&gt; <span class='message'>  project success: min: 0.81379, max: 1</span>
+#&gt; <span class='message'>  objective:       Maximum richness objective [budget (150)]</span>
+#&gt; <span class='message'>  targets:         none</span>
+#&gt; <span class='message'>  weights:         default</span>
+#&gt; <span class='message'>  decisions        Binary decision </span>
+#&gt; <span class='message'>  constraints:     &lt;none&gt;</span>
+#&gt; <span class='message'>  solver:          default</span></div><div class='input'>
+<span class='co'># build another problem, and lock in the 3rd action using numeric inputs</span>
+<span class='no'>p2</span> <span class='kw'>&lt;-</span> <span class='no'>p1</span> <span class='kw'>%&gt;%</span>
+      <span class='fu'>add_locked_in_constraints</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>3</span>))
+
+<span class='co'># print problem</span>
+<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>p2</span>)</div><div class='output co'>#&gt; <span class='message'>Project Prioritization Problem</span>
+#&gt; <span class='message'>  actions          F1_action, F2_action, F3_action, ... (6 actions)</span>
+#&gt; <span class='message'>  projects         F1_project, F2_project, F3_project, ... (6 projects)</span>
+#&gt; <span class='message'>  features         F1, F2, F3, ... (5 features)</span>
+#&gt; <span class='message'>  action costs:    min: 0, max: 103.22583</span>
+#&gt; <span class='message'>  project success: min: 0.81379, max: 1</span>
+#&gt; <span class='message'>  objective:       Maximum richness objective [budget (150)]</span>
+#&gt; <span class='message'>  targets:         none</span>
+#&gt; <span class='message'>  weights:         default</span>
+#&gt; <span class='message'>  decisions        Binary decision </span>
+#&gt; <span class='message'>  constraints:     &lt;Locked in actions [1 locked units]&gt;</span>
+#&gt; <span class='message'>  solver:          default</span></div><div class='input'>
+<span class='co'># build another problem, and lock in the actions using logical inputs from</span>
+<span class='co'># the sim_actions table</span>
+<span class='no'>p3</span> <span class='kw'>&lt;-</span> <span class='no'>p1</span> <span class='kw'>%&gt;%</span>
+      <span class='fu'>add_locked_in_constraints</span>(<span class='no'>sim_actions</span>$<span class='no'>locked_in</span>)
+
+<span class='co'># print problem</span>
+<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>p3</span>)</div><div class='output co'>#&gt; <span class='message'>Project Prioritization Problem</span>
+#&gt; <span class='message'>  actions          F1_action, F2_action, F3_action, ... (6 actions)</span>
+#&gt; <span class='message'>  projects         F1_project, F2_project, F3_project, ... (6 projects)</span>
+#&gt; <span class='message'>  features         F1, F2, F3, ... (5 features)</span>
+#&gt; <span class='message'>  action costs:    min: 0, max: 103.22583</span>
+#&gt; <span class='message'>  project success: min: 0.81379, max: 1</span>
+#&gt; <span class='message'>  objective:       Maximum richness objective [budget (150)]</span>
+#&gt; <span class='message'>  targets:         none</span>
+#&gt; <span class='message'>  weights:         default</span>
+#&gt; <span class='message'>  decisions        Binary decision </span>
+#&gt; <span class='message'>  constraints:     &lt;Locked in actions [1 locked units]&gt;</span>
+#&gt; <span class='message'>  solver:          default</span></div><div class='input'>
+<span class='co'># build another problem, and lock in the actions using the column name</span>
+<span class='co'># "locked_in" in the sim_actions table</span>
+<span class='co'># the sim_actions table</span>
+<span class='no'>p4</span> <span class='kw'>&lt;-</span> <span class='no'>p1</span> <span class='kw'>%&gt;%</span>
+      <span class='fu'>add_locked_in_constraints</span>(<span class='st'>"locked_in"</span>)
+
+<span class='co'># print problem</span>
+<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>p4</span>)</div><div class='output co'>#&gt; <span class='message'>Project Prioritization Problem</span>
+#&gt; <span class='message'>  actions          F1_action, F2_action, F3_action, ... (6 actions)</span>
+#&gt; <span class='message'>  projects         F1_project, F2_project, F3_project, ... (6 projects)</span>
+#&gt; <span class='message'>  features         F1, F2, F3, ... (5 features)</span>
+#&gt; <span class='message'>  action costs:    min: 0, max: 103.22583</span>
+#&gt; <span class='message'>  project success: min: 0.81379, max: 1</span>
+#&gt; <span class='message'>  objective:       Maximum richness objective [budget (150)]</span>
+#&gt; <span class='message'>  targets:         none</span>
+#&gt; <span class='message'>  weights:         default</span>
+#&gt; <span class='message'>  decisions        Binary decision </span>
+#&gt; <span class='message'>  constraints:     &lt;Locked in actions [1 locked units]&gt;</span>
+#&gt; <span class='message'>  solver:          default</span></div><div class='input'>
+<span class='co'># solve problems</span>
+<span class='no'>s1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p1</span>)</div><div class='output co'>#&gt; Optimize a model with 47 rows, 47 columns and 122 nonzeros
+#&gt; Variable types: 0 continuous, 42 integer (42 binary)
+#&gt; Semi-Variable types: 5 continuous, 0 integer
+#&gt; Coefficient statistics:
+#&gt;   Matrix range     [9e-02, 1e+02]
+#&gt;   Objective range  [1e+00, 1e+00]
+#&gt;   Bounds range     [1e+00, 1e+00]
+#&gt;   RHS range        [1e+00, 2e+02]
+#&gt; Found heuristic solution: objective 0.8199443
+#&gt; Presolve removed 3 rows and 3 columns
+#&gt; Presolve time: 0.00s
+#&gt; Presolved: 44 rows, 44 columns, 113 nonzeros
+#&gt; Variable types: 2 continuous, 42 integer (42 binary)
+#&gt; Presolved: 44 rows, 44 columns, 113 nonzeros
+#&gt; 
+#&gt; 
+#&gt; Root relaxation: objective 1.635127e+00, 16 iterations, 0.00 seconds
+#&gt; 
+#&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
+#&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+#&gt; 
+#&gt; *    0     0               0       1.6351271    1.63513  0.00%     -    0s
+#&gt; 
+#&gt; Explored 0 nodes (16 simplex iterations) in 0.00 seconds
+#&gt; Thread count was 1 (of 4 available processors)
+#&gt; 
+#&gt; Solution count 1: 1.63513 
+#&gt; 
+#&gt; Optimal solution found (tolerance 1.00e-01)
+#&gt; Best objective 1.635127074511e+00, best bound 1.635127074511e+00, gap 0.0000%</div><div class='input'><span class='no'>s2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p2</span>)</div><div class='output co'>#&gt; Optimize a model with 47 rows, 47 columns and 122 nonzeros
+#&gt; Variable types: 0 continuous, 42 integer (42 binary)
+#&gt; Semi-Variable types: 5 continuous, 0 integer
+#&gt; Coefficient statistics:
+#&gt;   Matrix range     [9e-02, 1e+02]
+#&gt;   Objective range  [1e+00, 1e+00]
+#&gt;   Bounds range     [1e+00, 1e+00]
+#&gt;   RHS range        [1e+00, 2e+02]
+#&gt; Found heuristic solution: objective 0.7142037
+#&gt; Presolve removed 36 rows and 39 columns
+#&gt; Presolve time: 0.00s
+#&gt; Presolved: 11 rows, 8 columns, 22 nonzeros
+#&gt; Variable types: 0 continuous, 8 integer (8 binary)
+#&gt; Presolved: 11 rows, 8 columns, 22 nonzeros
+#&gt; 
+#&gt; 
+#&gt; Root relaxation: objective 1.395151e+00, 3 iterations, 0.00 seconds
+#&gt; 
+#&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
+#&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+#&gt; 
+#&gt; *    0     0               0       1.3951511    1.39515  0.00%     -    0s
+#&gt; 
+#&gt; Explored 0 nodes (3 simplex iterations) in 0.00 seconds
+#&gt; Thread count was 1 (of 4 available processors)
+#&gt; 
+#&gt; Solution count 1: 1.39515 
+#&gt; 
+#&gt; Optimal solution found (tolerance 1.00e-01)
+#&gt; Best objective 1.395151147860e+00, best bound 1.395151147860e+00, gap 0.0000%</div><div class='input'><span class='no'>s3</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p3</span>)</div><div class='output co'>#&gt; Optimize a model with 47 rows, 47 columns and 122 nonzeros
+#&gt; Variable types: 0 continuous, 42 integer (42 binary)
+#&gt; Semi-Variable types: 5 continuous, 0 integer
+#&gt; Coefficient statistics:
+#&gt;   Matrix range     [9e-02, 1e+02]
+#&gt;   Objective range  [1e+00, 1e+00]
+#&gt;   Bounds range     [1e+00, 1e+00]
+#&gt;   RHS range        [1e+00, 2e+02]
+#&gt; Found heuristic solution: objective 0.7142037
+#&gt; Presolve removed 36 rows and 39 columns
+#&gt; Presolve time: 0.00s
+#&gt; Presolved: 11 rows, 8 columns, 22 nonzeros
+#&gt; Variable types: 0 continuous, 8 integer (8 binary)
+#&gt; Presolved: 11 rows, 8 columns, 22 nonzeros
+#&gt; 
+#&gt; 
+#&gt; Root relaxation: objective 1.395151e+00, 3 iterations, 0.00 seconds
+#&gt; 
+#&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
+#&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+#&gt; 
+#&gt; *    0     0               0       1.3951511    1.39515  0.00%     -    0s
+#&gt; 
+#&gt; Explored 0 nodes (3 simplex iterations) in 0.00 seconds
+#&gt; Thread count was 1 (of 4 available processors)
+#&gt; 
+#&gt; Solution count 1: 1.39515 
+#&gt; 
+#&gt; Optimal solution found (tolerance 1.00e-01)
+#&gt; Best objective 1.395151147860e+00, best bound 1.395151147860e+00, gap 0.0000%</div><div class='input'><span class='no'>s4</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p4</span>)</div><div class='output co'>#&gt; Optimize a model with 47 rows, 47 columns and 122 nonzeros
+#&gt; Variable types: 0 continuous, 42 integer (42 binary)
+#&gt; Semi-Variable types: 5 continuous, 0 integer
+#&gt; Coefficient statistics:
+#&gt;   Matrix range     [9e-02, 1e+02]
+#&gt;   Objective range  [1e+00, 1e+00]
+#&gt;   Bounds range     [1e+00, 1e+00]
+#&gt;   RHS range        [1e+00, 2e+02]
+#&gt; Found heuristic solution: objective 0.7142037
+#&gt; Presolve removed 36 rows and 39 columns
+#&gt; Presolve time: 0.00s
+#&gt; Presolved: 11 rows, 8 columns, 22 nonzeros
+#&gt; Variable types: 0 continuous, 8 integer (8 binary)
+#&gt; Presolved: 11 rows, 8 columns, 22 nonzeros
+#&gt; 
+#&gt; 
+#&gt; Root relaxation: objective 1.395151e+00, 3 iterations, 0.00 seconds
+#&gt; 
+#&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
+#&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+#&gt; 
+#&gt; *    0     0               0       1.3951511    1.39515  0.00%     -    0s
+#&gt; 
+#&gt; Explored 0 nodes (3 simplex iterations) in 0.00 seconds
+#&gt; Thread count was 1 (of 4 available processors)
+#&gt; 
+#&gt; Solution count 1: 1.39515 
+#&gt; 
+#&gt; Optimal solution found (tolerance 1.00e-01)
+#&gt; Best objective 1.395151147860e+00, best bound 1.395151147860e+00, gap 0.0000%</div><div class='input'>
+<span class='co'># print the actions selected for funding in each of the solutions</span>
+<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s1</span>[, <span class='no'>sim_actions</span>$<span class='no'>name</span>])</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 6</span><span>
+#&gt;   F1_action F2_action F3_action F4_action F5_action baseline_action
+#&gt;       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>         0         1         0         0         0               1</div><div class='input'><span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s2</span>[, <span class='no'>sim_actions</span>$<span class='no'>name</span>])</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 6</span><span>
+#&gt;   F1_action F2_action F3_action F4_action F5_action baseline_action
+#&gt;       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>         0         0         1         0         0               1</div><div class='input'><span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s3</span>[, <span class='no'>sim_actions</span>$<span class='no'>name</span>])</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 6</span><span>
+#&gt;   F1_action F2_action F3_action F4_action F5_action baseline_action
+#&gt;       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>         0         0         1         0         0               1</div><div class='input'><span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s4</span>[, <span class='no'>sim_actions</span>$<span class='no'>name</span>])</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 6</span><span>
+#&gt;   F1_action F2_action F3_action F4_action F5_action baseline_action
+#&gt;       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>         0         0         1         0         0               1</div><div class='input'>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
