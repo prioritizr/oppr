@@ -30,10 +30,11 @@ Defaults to \code{TRUE}.}
 Phylogenetic trees depict the evolutionary relationships between different
 species. Each branch in a phylogenetic tree represents a period of
 evolutionary history. Species that are connected to the same branch
-both share that same period of evolutionary history. This function creates
+share the same period of evolutionary history represented by the branch.
+This function creates
 a matrix that shows which species are connected with which branches. In
 other words, it creates a matrix that shows which periods of evolutionary
-history different species have experienced.
+history each species has experienced.
 }
 \examples{
 # load Matrix package to plot matrices
