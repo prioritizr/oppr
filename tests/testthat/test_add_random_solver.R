@@ -99,7 +99,7 @@ test_that("maximum benefit objective (1 solution)", {
   # create problem
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
                "name") %>%
-       add_max_richness_objective(budget = 0.15) %>%
+       add_max_sum_persistence_objective(budget = 0.15) %>%
        add_binary_decisions() %>%
        add_locked_in_constraints(1) %>%
        add_locked_out_constraints(2) %>%
@@ -141,7 +141,7 @@ test_that("maximum benefit objective (100 solutions)", {
   # create problem
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
                "name") %>%
-       add_max_richness_objective(budget = 0.15) %>%
+       add_max_sum_persistence_objective(budget = 0.15) %>%
        add_binary_decisions() %>%
        add_locked_out_constraints(2) %>%
        add_random_solver(100, verbose = FALSE)

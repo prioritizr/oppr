@@ -1,14 +1,14 @@
 #' @include internal.R pproto.R Objective-proto.R star_phylogeny.R
 NULL
 
-#' Add maximum persistence objective
+#' Add maximum probability of persistence objective
 #'
 #' Set the objective of a project prioritization \code{\link{problem}} to
 #' maximize the chance that at least one feature will persist into the future,
 #' whilst ensuring that the cost of the solution is within a pre-specified
-#' budget. This objective is conceptually similar to maximizing feature
-#' richness (i.e. \code{\link{add_max_richness_objective}}), except that this
-#' objective tends to favor solutions which spread resources across
+#' budget. This objective is conceptually similar to maximizing sum feature
+#' persistence (i.e. \code{\link{add_max_sum_persistence_objective}}), except
+#' that this objective tends to favor solutions which spread resources across
 #' many features---instead of triaging features---because each feature is
 #' treated as an independent "backup". Furthermore, weights can
 #' also be used to specify the relative importance of conserving specific
@@ -118,17 +118,17 @@ NULL
 #' Hillier FS & Price CC (2005) \emph{International series in operations
 #' research & management science}. Springer.
 #'
-#' @inherit add_max_richness_objective seealso return
+#' @inherit add_max_sum_persistence_objective seealso return
 #'
 #' @examples
 #' #TODO
 #'
-#' @name add_max_persistence_objective
+#' @name add_max_prob_persistence_objective
 NULL
 
-#' @rdname add_max_persistence_objective
+#' @rdname add_max_prob_persistence_objective
 #' @export
-add_max_persistence_objective <- function(x, budget) {
+add_max_prob_persistence_objective <- function(x, budget) {
   # assert argument is valid
   assertthat::assert_that(inherits(x, "ProjectProblem"),
                           assertthat::is.number(budget),

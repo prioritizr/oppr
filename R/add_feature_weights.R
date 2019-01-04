@@ -13,7 +13,8 @@ NULL
 #'
 #' @details Weights are used to specify the relative importance for
 #'   maintaining the persistence of specific features. For budget constrained
-#'   problems (e.g. \code{\link{add_max_richness_objective}}), these weights
+#'   problems (e.g. \code{\link{add_max_sum_persistence_objective}}), these
+#'   weights
 #'   could be used to specify which features are more important than other
 #'   features according to evolutionary or cultural metrics. Specifically,
 #'   features with a higher weight value are considered more important. It is

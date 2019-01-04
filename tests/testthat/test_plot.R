@@ -20,7 +20,7 @@ test_that("no phylogenetic data", {
   # make problem
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
                "name") %>%
-       add_max_richness_objective(0.16) %>%
+       add_max_sum_persistence_objective(0.16) %>%
        add_binary_decisions()
   # make plot
   g <- plot(p, solution)
@@ -79,7 +79,7 @@ test_that("invalid arguments", {
   data(sim_projects, sim_actions, sim_features)
   p <- problem(sim_projects, sim_actions, sim_features, "name", "success",
                "name", "cost", "name") %>%
-       add_max_richness_objective(0.16) %>%
+       add_max_sum_persistence_objective(0.16) %>%
        add_binary_decisions()
   solution <- as.data.frame(matrix(rep(1, p$number_of_actions()), nrow = 1,
                                    dimnames = list(NULL, p$action_names())))

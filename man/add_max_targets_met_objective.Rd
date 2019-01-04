@@ -135,5 +135,5 @@ Carwardine J (2015) Benefits of integrating complementarity into priority
 threat management. \emph{Conservation Biology}, \strong{29}, 525--536.
 }
 \seealso{
-\code{\link{objectives}}, \code{\link{targets}}.
+\code{\link{objectives}}.
 }

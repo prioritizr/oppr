@@ -120,7 +120,7 @@ NULL
 #' Carwardine J (2015) Benefits of integrating complementarity into priority
 #' threat management. \emph{Conservation Biology}, \strong{29}, 525--536.
 #'
-#' @inherit add_min_set_objective seealso return
+#' @inherit add_max_sum_persistence_objective seealso return
 #'
 #' @examples
 #' #TODO

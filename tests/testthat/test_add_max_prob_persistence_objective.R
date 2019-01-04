@@ -1,4 +1,4 @@
-context("add_max_persistence_objective")
+context("add_max_prob_persistence_objective")
 
 test_that("compile (no weights)", {
   # create data
@@ -17,7 +17,7 @@ test_that("compile (no weights)", {
   # create problem
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
                "name") %>%
-       add_max_persistence_objective(budget = 0.16) %>%
+       add_max_prob_persistence_objective(budget = 0.16) %>%
        add_binary_decisions()
   # create optimization problem
   o <- compile(p)
@@ -141,7 +141,7 @@ test_that("compile (weights)", {
   # create problem
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
                "name") %>%
-       add_max_persistence_objective(budget = 0.16) %>%
+       add_max_prob_persistence_objective(budget = 0.16) %>%
        add_feature_weights("weight") %>%
        add_binary_decisions()
   # create optimization problem
@@ -269,11 +269,11 @@ test_that("exact solver (simple problem, single solution)", {
   # create problem
   p1 <- problem(projects, actions, features, "name", "success", "name", "cost",
                "name") %>%
-        add_max_persistence_objective(budget = 0.16) %>%
+        add_max_prob_persistence_objective(budget = 0.16) %>%
         add_binary_decisions()
   p2 <- problem(projects, actions, features, "name", "success", "name", "cost",
                "name") %>%
-        add_max_persistence_objective(budget = 0.26) %>%
+        add_max_prob_persistence_objective(budget = 0.26) %>%
         add_binary_decisions()
   # solve problem
   s1 <- solve(p1)
@@ -329,7 +329,7 @@ test_that("exact solver (simple problem, multiple solutions)", {
   # create problem
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
                "name") %>%
-       add_max_persistence_objective(budget = 0.16) %>%
+       add_max_prob_persistence_objective(budget = 0.16) %>%
        add_binary_decisions() %>%
        add_gurobi_solver(number_solutions = 100)
   # solve problem
@@ -373,7 +373,7 @@ test_that("exact solver (locked constraints, multiple solutions)", {
   # create problem
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
                "name") %>%
-       add_max_persistence_objective(budget = 100) %>%
+       add_max_prob_persistence_objective(budget = 100) %>%
        add_locked_in_constraints(1) %>%
        add_locked_out_constraints(2) %>%
        add_binary_decisions() %>%
@@ -420,12 +420,12 @@ test_that("heuristic solver (simple problem, single solution)", {
   # create problem
   p1 <- problem(projects, actions, features, "name", "success", "name", "cost",
                "name") %>%
-       add_max_persistence_objective(budget = 0.16) %>%
+       add_max_prob_persistence_objective(budget = 0.16) %>%
        add_binary_decisions() %>%
        add_heuristic_solver(verbose = FALSE)
   p2 <- problem(projects, actions, features, "name", "success", "name", "cost",
                "name") %>%
-       add_max_persistence_objective(budget = 0.26) %>%
+       add_max_prob_persistence_objective(budget = 0.26) %>%
        add_binary_decisions() %>%
        add_heuristic_solver(verbose = FALSE)
   # solve problem
@@ -479,7 +479,7 @@ test_that("heuristic solver (locked constraints, multiple solutions)", {
   # create problem
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
                "name") %>%
-       add_max_persistence_objective(budget = 100) %>%
+       add_max_prob_persistence_objective(budget = 100) %>%
        add_locked_in_constraints(1) %>%
        add_locked_out_constraints(2) %>%
        add_binary_decisions() %>%
@@ -513,20 +513,20 @@ test_that("invalid arguments", {
   p <- problem(sim_projects, sim_actions, sim_features,
                "name", "success", "name", "cost", "name")
   expect_error({
-    add_max_persistence_objective(p, NA_real_)
+    add_max_prob_persistence_objective(p, NA_real_)
   })
   expect_error({
-    add_max_persistence_objective(p, c(1, 1))
+    add_max_prob_persistence_objective(p, c(1, 1))
   })
   expect_error({
-    add_max_persistence_objective(p, "a")
+    add_max_prob_persistence_objective(p, "a")
   })
   expect_error({
-    add_max_persistence_objective(p, TRUE)
+    add_max_prob_persistence_objective(p, TRUE)
   })
   expect_error({
     p %>%
-    add_max_persistence_objective(100) %>%
+    add_max_prob_persistence_objective(100) %>%
     add_rsymphony_solver() %>%
     solve()
   })
@@ -550,7 +550,7 @@ test_that("solution_statistics", {
   # create problem
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
                "name") %>%
-       add_max_persistence_objective(budget = 0.16) %>%
+       add_max_prob_persistence_objective(budget = 0.16) %>%
        add_feature_weights("weight") %>%
        add_binary_decisions()
   # create solutions

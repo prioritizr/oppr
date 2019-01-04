@@ -26,12 +26,12 @@ NULL
 #'     met. This objective is conceptually similar to that used in \emph{Marxan}
 #'     (Ball, Possingham & Watts 2009).}
 #'
-#'   \item{\code{\link{add_max_persistence_objective}}}{
+#'   \item{\code{\link{add_max_prob_persistence_objective}}}{
 #'     Maximize the chance that at least one feature will persist into the
 #'     future, whilst ensuring that the cost of the solution is within a
 #'     pre-specified budget.}
 #'
-#'   \item{\code{\link{add_max_richness_objective}}}{
+#'   \item{\code{\link{add_max_sum_persistence_objective}}}{
 #'     Maximize the total number of features that are expected to persist,
 #'     whilst ensuring that the cost of the solution is within a pre-specified
 #'     budget (Joseph, Maloney & Possingham 2009).}

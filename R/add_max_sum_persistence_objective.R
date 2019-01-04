@@ -111,12 +111,12 @@ NULL
 #' @examples
 #' #TODO
 #'
-#' @name add_max_richness_objective
+#' @name add_max_sum_persistence_objective
 NULL
 
-#' @rdname add_max_richness_objective
+#' @rdname add_max_sum_persistence_objective
 #' @export
-add_max_richness_objective <- function(x, budget) {
+add_max_sum_persistence_objective <- function(x, budget) {
   # assert argument is valid
   assertthat::assert_that(inherits(x, "ProjectProblem"),
                           assertthat::is.number(budget),

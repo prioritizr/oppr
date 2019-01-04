@@ -35,7 +35,7 @@ The algorithm used to randomly generate solutions depends on the
  \code{\link{problem}}.
 
  For objectives which maximize benefit subject to budgetary constraints
- (e.g. \code{\link{add_max_richness_objective}}):
+ (e.g. \code{\link{add_max_sum_persistence_objective}}):
 
  \enumerate{
 
