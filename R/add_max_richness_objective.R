@@ -109,7 +109,36 @@ NULL
 #' @seealso \code{\link{objectives}}.
 #'
 #' @examples
-#' #TODO
+#' # load data
+#' data(sim_projects, sim_features, sim_actions)
+#'
+#' # build problem with maximum richness objective and $300 budget
+#' p1 <- problem(sim_projects, sim_actions, sim_features,
+#'              "name", "success", "name", "cost", "name") %>%
+#'      add_max_richness_objective(budget = 200) %>%
+#'      add_binary_decisions()
+#'
+#' # solve problem
+#' s1 <- solve(p1)
+#'
+#' # print solution
+#' print(s1)
+#'
+#' # plot solution
+#' plot(p1, s1)
+#'
+#' # build another problem that includes feature weights
+#' p2 <- p1 %>%
+#'      add_feature_weights("weight")
+#'
+#' # solve problem with feature weights
+#' s2 <- solve(p2)
+#'
+#' # print solution based on feature weights
+#' print(s2)
+#'
+#' # plot solution based on feature weights
+#' plot(p2, s2)
 #'
 #' @name add_max_richness_objective
 NULL

@@ -169,13 +169,13 @@ plot(p1, s1)
 p2 <- p1 \%>\%
       add_feature_weights("weight")
 
-# solve problem
+# solve problem with feature weights
 s2 <- solve(p2)
 
-# print solution
+# print solution based on feature weights
 print(s2)
 
-# plot solution
+# plot solution based on feature weights
 plot(p2, s2)
 }
 }
