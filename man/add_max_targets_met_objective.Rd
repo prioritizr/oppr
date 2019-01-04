@@ -126,7 +126,50 @@ A problem objective is used to specify the overall goal of the
  (\eqn{Y_j}), and project allocation (\eqn{Z_{fj}}) variables are binary.
 }
 \examples{
-#TODO
+# load the ggplot2 R package to customize plot
+library(ggplot2)
+
+# load data
+data(sim_projects, sim_features, sim_actions)
+
+# build problem with maximum targets met objective, a $200 budget, and
+# targets that require each feature to have a 20\\\% chance of persisting into
+# the future
+p1 <- problem(sim_projects, sim_actions, sim_features,
+             "name", "success", "name", "cost", "name") \%>\%
+      add_max_targets_met_objective(budget = 200) \%>\%
+      add_absolute_targets(0.2) \%>\%
+      add_binary_decisions()
+
+# solve problem
+s1 <- solve(p1)
+
+# print solution
+print(s1)
+
+# plot solution, and add a dashed line to indicate the feature targets
+# we can see the three features meet the targets under the baseline
+# scenario, and the project for F3 was prioritized for funding to
+# so that its probability of persistence meets the target
+plot(p1, s1) +
+geom_hline(yintercept = 0.2, linetype = "dashed")
+
+# build another problem that includes feature weights
+p2 <- p1 \%>\%
+      add_feature_weights("weight")
+
+# solve problem
+s2 <- solve(p2)
+
+# print solution
+print(s2)
+
+# plot solution, and add a dashed line to indicate the feature targets
+# we can see that adding weights to the problem has changed the solution
+# specifically, the projects for feature F1 and F5 have been funded
+# to enhance their probability of persistence
+plot(p2, s2) +
+geom_hline(yintercept = 0.2, linetype = "dashed")
 
 }
 \references{

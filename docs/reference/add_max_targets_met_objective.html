@@ -255,9 +255,117 @@ threat management. <em>Conservation Biology</em>, <strong>29</strong>, 525--536.
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>#TODO
+    <pre class="examples"><div class='input'><span class='co'># load the ggplot2 R package to customize plot</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>ggplot2</span>)
 
-</div></pre>
+<span class='co'># load data</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_features</span>, <span class='no'>sim_actions</span>)
+
+<span class='co'># build problem with maximum targets met objective, a $200 budget, and</span>
+<span class='co'># targets that require each feature to have a 20\% chance of persisting into</span>
+<span class='co'># the future</span>
+<span class='no'>p1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_actions</span>, <span class='no'>sim_features</span>,
+             <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span>) <span class='kw'>%&gt;%</span>
+      <span class='fu'>add_max_targets_met_objective</span>(<span class='kw'>budget</span> <span class='kw'>=</span> <span class='fl'>200</span>) <span class='kw'>%&gt;%</span>
+      <span class='fu'><a href='add_absolute_targets.html'>add_absolute_targets</a></span>(<span class='fl'>0.2</span>) <span class='kw'>%&gt;%</span>
+      <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span>()
+
+<span class='co'># solve problem</span>
+<span class='no'>s1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p1</span>)</div><div class='output co'>#&gt; Optimize a model with 47 rows, 47 columns and 122 nonzeros
+#&gt; Variable types: 0 continuous, 47 integer (47 binary)
+#&gt; Coefficient statistics:
+#&gt;   Matrix range     [9e-02, 1e+02]
+#&gt;   Objective range  [1e+00, 1e+00]
+#&gt;   Bounds range     [1e+00, 1e+00]
+#&gt;   RHS range        [1e+00, 2e+02]
+#&gt; Found heuristic solution: objective 1.0000000
+#&gt; Presolve time: 0.00s
+#&gt; Presolved: 47 rows, 47 columns, 120 nonzeros
+#&gt; Variable types: 0 continuous, 47 integer (47 binary)
+#&gt; Presolved: 47 rows, 47 columns, 120 nonzeros
+#&gt; 
+#&gt; 
+#&gt; Root relaxation: objective 4.961414e+00, 19 iterations, 0.00 seconds
+#&gt; 
+#&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
+#&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+#&gt; 
+#&gt;      0     0    4.96141    0    5    1.00000    4.96141   396%     -    0s
+#&gt; H    0     0                       4.0000000    4.96141  24.0%     -    0s
+#&gt; 
+#&gt; Explored 1 nodes (19 simplex iterations) in 0.00 seconds
+#&gt; Thread count was 1 (of 4 available processors)
+#&gt; 
+#&gt; Solution count 1: 4 
+#&gt; 
+#&gt; Optimal solution found (tolerance 1.00e-01)
+#&gt; Best objective 4.000000000000e+00, best bound 4.000000000000e+00, gap 0.0000%</div><div class='input'>
+<span class='co'># print solution</span>
+<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s1</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 15</span><span>
+#&gt;   solution status   obj  cost F1_action F2_action F3_action F4_action F5_action
+#&gt;      </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 OPTIM…     4  103.         0         0         1         0         0
+#&gt; </span><span style='color: #949494;'># ... with 6 more variables: baseline_action </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F1 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F2 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
+#&gt; #   F3 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F4 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F5 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
+<span class='co'># plot solution, and add a dashed line to indicate the feature targets</span>
+<span class='co'># we can see the three features meet the targets under the baseline</span>
+<span class='co'># scenario, and the action for F3 was prioritized for funding to</span>
+<span class='co'># so that its probability of persistence meets the target</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>p1</span>, <span class='no'>s1</span>) +
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_abline.html'>geom_hline</a></span>(<span class='kw'>yintercept</span> <span class='kw'>=</span> <span class='fl'>0.2</span>, <span class='kw'>linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>)</div><div class='img'><img src='add_max_targets_met_objective-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># build another problem that includes feature weights</span>
+<span class='no'>p2</span> <span class='kw'>&lt;-</span> <span class='no'>p1</span> <span class='kw'>%&gt;%</span>
+      <span class='fu'><a href='add_feature_weights.html'>add_feature_weights</a></span>(<span class='st'>"weight"</span>)
+
+<span class='co'># solve problem</span>
+<span class='no'>s2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p2</span>)</div><div class='output co'>#&gt; Optimize a model with 47 rows, 47 columns and 122 nonzeros
+#&gt; Variable types: 0 continuous, 47 integer (47 binary)
+#&gt; Coefficient statistics:
+#&gt;   Matrix range     [9e-02, 1e+02]
+#&gt;   Objective range  [2e-01, 2e+00]
+#&gt;   Bounds range     [1e+00, 1e+00]
+#&gt;   RHS range        [1e+00, 2e+02]
+#&gt; Found heuristic solution: objective 0.2113582
+#&gt; Presolve time: 0.00s
+#&gt; Presolved: 47 rows, 47 columns, 120 nonzeros
+#&gt; Variable types: 0 continuous, 47 integer (47 binary)
+#&gt; Presolved: 47 rows, 47 columns, 120 nonzeros
+#&gt; 
+#&gt; 
+#&gt; Root relaxation: objective 2.856670e+00, 19 iterations, 0.00 seconds
+#&gt; 
+#&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
+#&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+#&gt; 
+#&gt;      0     0    2.85667    0    5    0.21136    2.85667  1252%     -    0s
+#&gt; H    0     0                       1.2735343    2.85667   124%     -    0s
+#&gt; *    0     0               0       2.6440241    2.64402  0.00%     -    0s
+#&gt; 
+#&gt; Cutting planes:
+#&gt;   Cover: 1
+#&gt;   Clique: 15
+#&gt; 
+#&gt; Explored 1 nodes (21 simplex iterations) in 0.00 seconds
+#&gt; Thread count was 1 (of 4 available processors)
+#&gt; 
+#&gt; Solution count 1: 2.64402 
+#&gt; 
+#&gt; Optimal solution found (tolerance 1.00e-01)
+#&gt; Best objective 2.644024124262e+00, best bound 2.644024124262e+00, gap 0.0000%</div><div class='input'>
+<span class='co'># print solution</span>
+<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s2</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 15</span><span>
+#&gt;   solution status   obj  cost F1_action F2_action F3_action F4_action F5_action
+#&gt;      </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 OPTIM…  2.64  194.         1         0         0         0         1
+#&gt; </span><span style='color: #949494;'># ... with 6 more variables: baseline_action </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F1 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F2 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
+#&gt; #   F3 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F4 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F5 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
+<span class='co'># plot solution, and add a dashed line to indicate the feature targets</span>
+<span class='co'># we can see that adding weights to the problem has changed the solution</span>
+<span class='co'># specifically, the projects for feature F1 and F5 have been funded</span>
+<span class='co'># to enhance their probability of persistence</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>p2</span>, <span class='no'>s2</span>) +
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_abline.html'>geom_hline</a></span>(<span class='kw'>yintercept</span> <span class='kw'>=</span> <span class='fl'>0.2</span>, <span class='kw'>linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>)</div><div class='img'><img src='add_max_targets_met_objective-2.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
