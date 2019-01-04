@@ -71,7 +71,7 @@ NULL
 #' # build problem
 #' p <- problem(sim_projects, sim_actions, sim_features,
 #'              "name", "success", "name", "cost", "name") %>%
-#'      add_max_sum_persistence_objective(budget = 400) %>%
+#'      add_max_richness_objective(budget = 400) %>%
 #'      add_feature_weights("weight") %>%
 #'      add_binary_decisions()
 #'

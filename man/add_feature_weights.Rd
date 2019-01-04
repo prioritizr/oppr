@@ -23,7 +23,7 @@ Set weights for conserving features in a project prioritization
 \details{
 Weights are used to specify the relative importance for
   maintaining the persistence of specific features. For budget constrained
-  problems (e.g. \code{\link{add_max_sum_persistence_objective}}), these
+  problems (e.g. \code{\link{add_max_richness_objective}}), these
   weights
   could be used to specify which features are more important than other
   features according to evolutionary or cultural metrics. Specifically,

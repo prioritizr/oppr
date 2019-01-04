@@ -1,16 +1,15 @@
 #' @include internal.R pproto.R Objective-proto.R star_phylogeny.R
 NULL
 
-#' Add maximum probability of persistence objective
+#' Add maximum richness objective
 #'
 #' Set the objective of a project prioritization \code{\link{problem}} to
-#' maximize the chance that at least one feature will persist into the future,
-#' whilst ensuring that the cost of the solution is within a pre-specified
-#' budget. This objective is similar to maximizing sum feature
-#' persistence (i.e. \code{\link{add_max_sum_persistence_objective}}), except
-#' that it may be easier to communicate to decision makers. Furthermore,
-#' weights can also be used to specify the relative importance of conserving
-#' specific features (see \code{\link{add_feature_weights}}).
+#' maximize the total number of features that are expected to persist, whilst
+#' ensuring that the cost of the solution is within a pre-specified budget
+#' (Joseph, Maloney & Possingham 2009). This objective is conceptually similar
+#' to maximizing species richness in a study area. Furthermore, weights can
+#' also be used to specify the relative importance of conserving specific
+#' features (see \code{\link{add_feature_weights}}).
 #'
 #' @param x \code{\link{ProjectProblem-class}} object.
 #'
@@ -18,17 +17,16 @@ NULL
 #'
 #' @details A problem objective is used to specify the overall goal of the
 #'   project prioritization problem.
-#'   Here, the maximum persistence objective seeks to find the set of actions
-#'   that maximizes the chance that at least a single feature (e.g.
-#'   populations, species, eco-systems) will persist into the future, whilst
-#'   ensuring that the total cost of the actions remains within a pre-specified
-#'   budget. Let \eqn{I} represent the set of conservation actions (indexed by
+#'   Here, the maximum richness objective seeks to find the set of actions that
+#'   maximizes the total number of features  (e.g. populations, species,
+#'   eco-systems) that is expected to persist within a pre-specified budget.
+#'   Let \eqn{I} represent the set of conservation actions (indexed by
 #'   \eqn{i}). Let \eqn{C_i} denote the cost for funding action \eqn{i}, and
 #'   let \eqn{m} denote the maximum expenditure (i.e. the budget). Also,
 #'   let \eqn{F} represent each feature (indexed by \eqn{f}), \eqn{W_f}
-#'   represent the weight for each feature \eqn{f} (defaults to zero for
-#'   each feature unless specified otherwise), and \eqn{E_f}
-#'   denote the probability that each feature will go extinct given the funded
+#'   represent the weight for each feature \eqn{f} (defaults to one for
+#'   each feature unless specified otherwise), and \eqn{E_f} denote the
+#'   probability that each feature will go extinct given the funded
 #'   conservation projects.
 #'
 #'   To guide the prioritization, the conservation actions are organized into
@@ -58,10 +56,10 @@ NULL
 #'   represent the set of ten features and also the number ten).
 #'
 #' \deqn{
-#'   \mathrm{Maximize} (1 - \prod_{f = 0}^{F} E_f W_f) + \sum_{f}^{F}
-#'   (1 - E_f) W_f \space \mathrm{(eqn \space 1a)} \\
-#'   \mathrm{Subject \space to}
-#'   \sum_{i = 0}^{I} C_i \leq m \space \mathrm{(eqn \space 1b)} \\
+#'   \mathrm{Maximize} \space \sum_{f = 0}^{F} (1 - E_f) W_f \space
+#'   \mathrm{(eqn \space 1a)} \\
+#'   \mathrm{Subject \space to} \sum_{i = 0}^{I} C_i \leq m \space
+#'   \mathrm{(eqn \space 1b)} \\
 #'   E_f = 1 - \sum_{j = 0}^{J} Z_{fj} P_j B_{fj} \space \forall \space f \in F
 #'   \space \mathrm{(eqn \space 1c)} \\
 #'   Z_{fj} \leq Y_{j} \space \forall \space j \in J \space \mathrm{(eqn \space
@@ -75,7 +73,7 @@ NULL
 #'   X_{i}, Y_{j}, Z_{fj} \in [0, 1] \space \forall \space i \in I, j \in J, f
 #'   \in F \space \mathrm{(eqn \space 1h)}
 #'   }{
-#'   Maximize (1 - prod_f^F E_f W_f) + sum_f^F (1 - E_f) W_f (eqn 1a);
+#'   Maximize sum_f^F (1 - E_f) W_f (eqn 1a);
 #'   Subject to:
 #'   sum_i^I C_i X_i <= m for all f in F (eqn 1b),
 #'   E_f = 1 - sum_j^J Y_{fj} P_j B_{fj} for all f in F (eqn 1c),
@@ -86,47 +84,39 @@ NULL
 #'   X_i, Y_j, Z_{fj} in [0, 1] for all i in I, j in J, f in F (eqn 1h)
 #'   }
 #'
-#'  The objective (eqn 1a) is to maximize the probability that at least one
-#'  feature will remain---given the probability that each feature will
-#'  become extinct---plus the probability each feature will remain multiplied
-#'  by their weights (noting that the feature weights default to zero).
-#'  Constraint (eqn 1b) limits the maximum expenditure (i.e.
-#'  ensures that the cost of the funded actions do not exceed the budget).
-#'  Constraints (eqn 1c) calculate the probability that each feature
-#'  will go extinct according to their allocated project.
-#'  Constraints (eqn 1d) ensure that feature can only be allocated to projects
-#'  that have all of their actions funded. Constraints (eqn 1e) state that each
-#'  feature can only be allocated to a single project. Constraints (eqn 1f)
-#'  ensure that a project cannot be funded unless all of its actions are funded.
-#'  Constraints (eqns 1g) ensure that the probability variables
-#'  (\eqn{E_f}) are bounded between zero and one. Constraints (eqns 1h) ensure
-#'  that the action funding (\eqn{X_i}), project funding (\eqn{Y_j}), and
-#'  project allocation (\eqn{Z_{fj}}) variables are binary.
-#'
-#'  Although this formulation is a mixed integer quadratically constrained
-#'  programming problem (due to eqn 1c), it can be approximated using
-#'  linear terms and then solved using commercial mixed integer programming
-#'  solvers. This can be achieved by substituting the product of the feature
-#'  extinction probabilities (eqn 1c) with the sum of the log feature extinction
-#'  probabilities and using piecewise linear approximations (described in
-#'  Hillier & Price 2005 pp. 390--392) to approximate the exponent of this term.
+#' The objective (eqn 1a) is to maximize the weighted persistence of all the
+#' species. Constraint (eqn 1b) limits the maximum expenditure (i.e. ensures
+#' that the cost of the funded actions do not exceed the budget).
+#' Constraints (eqn 1c) calculate the probability that each feature
+#' will go extinct according to their allocated project.
+#' Constraints (eqn 1d) ensure that feature can only be allocated to projects
+#' that have all of their actions funded. Constraints (eqn 1e) state that each
+#' feature can only be allocated to a single project. Constraints (eqn 1f)
+#' ensure that a project cannot be funded unless all of its actions are funded.
+#' Constraints (eqns 1g) ensure that the probability variables
+#' (\eqn{E_f}) are bounded between zero and one. Constraints (eqns 1h) ensure
+#' that the action funding (\eqn{X_i}), project funding (\eqn{Y_j}), and project
+#' allocation (\eqn{Z_{fj}}) variables are binary.
 #'
 #' @references
+#' Joseph LN, Maloney RF & Possingham HP (2009) Optimal allocation of
+#' resources among threatened species: A project prioritization protocol.
+#' \emph{Conservation Biology}, \strong{23}, 328--338.
 #'
-#' Hillier FS & Price CC (2005) \emph{International series in operations
-#' research & management science}. Springer.
+#' @return \code{\link{ProjectProblem-class}} object with the objective
+#'   added to it.
 #'
-#' @inherit add_max_sum_persistence_objective seealso return
+#' @seealso \code{\link{objectives}}.
 #'
 #' @examples
 #' #TODO
 #'
-#' @name add_max_prob_persistence_objective
+#' @name add_max_richness_objective
 NULL
 
-#' @rdname add_max_prob_persistence_objective
+#' @rdname add_max_richness_objective
 #' @export
-add_max_prob_persistence_objective <- function(x, budget) {
+add_max_richness_objective <- function(x, budget) {
   # assert argument is valid
   assertthat::assert_that(inherits(x, "ProjectProblem"),
                           assertthat::is.number(budget),
@@ -134,18 +124,18 @@ add_max_prob_persistence_objective <- function(x, budget) {
                           isTRUE(budget >= 0))
   # add objective to problem
   x$add_objective(pproto(
-    "MaximumPersistenceObjective",
+    "MaximumRichnessObjective",
     Objective,
-    name = "Maximum persistence objective",
+    name = "Maximum richness objective",
     data = list(feature_names = feature_names(x)),
     parameters = parameters(numeric_parameter("budget", budget,
                                               lower_limit = 0)),
     feature_phylogeny = function(self) {
-      rake_phylogeny(self$data$feature_names,
-                     rep(0, length(self$data$feature_names)), 1)
+      star_phylogeny(self$data$feature_names,
+                     rep(0, length(self$data$feature_names)))
     },
     default_feature_weights = function(self) {
-      stats::setNames(rep(0, length(self$data$feature_names)),
+      stats::setNames(rep(1, length(self$data$feature_names)),
                       self$data$feature_names)
     },
     replace_feature_weights = function(self) {
@@ -161,7 +151,7 @@ add_max_prob_persistence_objective <- function(x, budget) {
       rcpp_evaluate_max_phylo_div_objective(
         y$action_costs(), y$pa_matrix(),
         y$epf_matrix()[, y$feature_phylogeny()$tip.label, drop = FALSE],
-        bm[, bo, drop = FALSE], fp$edge.length[bo],
+        bm[, bo, drop = FALSE], rep(0, ncol(bm)),
         rep(0, y$number_of_features()), w,
         methods::as(as.matrix(solution), "dgCMatrix"))
     },

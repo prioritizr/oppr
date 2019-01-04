@@ -5,7 +5,7 @@ test_that("integer (compile)", {
   data(sim_projects, sim_actions, sim_features)
   p <- problem(sim_projects, sim_actions, sim_features,
                "name", "success", "name", "cost", "name") %>%
-       add_max_sum_persistence_objective(1) %>%
+       add_max_richness_objective(1) %>%
        add_locked_out_constraints(which(sim_actions$locked_out))
   # compile problem
   o <- compile(p)
@@ -24,7 +24,7 @@ test_that("integer (solve)", {
   data(sim_projects, sim_actions, sim_features)
   p <- problem(sim_projects, sim_actions, sim_features,
                "name", "success", "name", "cost", "name") %>%
-       add_max_sum_persistence_objective(1e+5) %>%
+       add_max_richness_objective(1e+5) %>%
        add_locked_out_constraints(which(sim_actions$locked_out))
   # solve problem
   s <- solve(p)
@@ -37,7 +37,7 @@ test_that("integer (invalid arguments)", {
   data(sim_projects, sim_actions, sim_features)
   p <- problem(sim_projects, sim_actions, sim_features,
                "name", "success", "name", "cost", "name") %>%
-       add_max_sum_persistence_objective(1)
+       add_max_richness_objective(1)
   expect_error({
     add_locked_out_constraints(p, -1)
   })
@@ -57,7 +57,7 @@ test_that("logical (compile)", {
   data(sim_projects, sim_actions, sim_features)
   p <- problem(sim_projects, sim_actions, sim_features,
                "name", "success", "name", "cost", "name") %>%
-       add_max_sum_persistence_objective(1) %>%
+       add_max_richness_objective(1) %>%
        add_locked_out_constraints(sim_actions$locked_out)
   # compile problem
   o <- compile(p)
@@ -73,7 +73,7 @@ test_that("logical (invalid arguments)", {
   data(sim_projects, sim_actions, sim_features)
   p <- problem(sim_projects, sim_actions, sim_features,
                "name", "success", "name", "cost", "name") %>%
-       add_max_sum_persistence_objective(1)
+       add_max_richness_objective(1)
   expect_error({
     add_locked_out_constraints(p, FALSE)
   })
@@ -92,7 +92,7 @@ test_that("logical (solve)", {
   data(sim_projects, sim_actions, sim_features)
   p <- problem(sim_projects, sim_actions, sim_features,
                "name", "success", "name", "cost", "name") %>%
-       add_max_sum_persistence_objective(1e+5) %>%
+       add_max_richness_objective(1e+5) %>%
        add_locked_out_constraints(sim_actions$locked_out)
   # solve problem
   s <- solve(p)
@@ -106,7 +106,7 @@ test_that("character (compile)", {
   data(sim_projects, sim_actions, sim_features)
   p <- problem(sim_projects, sim_actions, sim_features,
                "name", "success", "name", "cost", "name") %>%
-       add_max_sum_persistence_objective(1) %>%
+       add_max_richness_objective(1) %>%
        add_locked_out_constraints("locked_out")
   # compile problem
   o <- compile(p)
@@ -122,7 +122,7 @@ test_that("logical (invalid arguments)", {
   data(sim_projects, sim_actions, sim_features)
   p <- problem(sim_projects, sim_actions, sim_features,
                "name", "success", "name", "cost", "name") %>%
-       add_max_sum_persistence_objective(1)
+       add_max_richness_objective(1)
   expect_error({
     add_locked_out_constraints(p, "name")
   })
@@ -141,7 +141,7 @@ test_that("character (solve)", {
   data(sim_projects, sim_actions, sim_features)
   p <- problem(sim_projects, sim_actions, sim_features,
                "name", "success", "name", "cost", "name") %>%
-       add_max_sum_persistence_objective(1e+5) %>%
+       add_max_richness_objective(1e+5) %>%
        add_locked_out_constraints("locked_out")
   # solve problem
   s <- solve(p)

@@ -99,7 +99,7 @@ NULL
 #'
 #' @seealso \code{\link{objectives}}, \code{\link{targets}}.
 #'
-#' @inherit add_max_sum_persistence_objective return
+#' @inherit add_max_richness_objective return
 #'
 #' @examples
 #' # load the ggplot2 R package to customize plot

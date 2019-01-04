@@ -95,7 +95,7 @@ p <- problem(projects = sim_projects, actions = sim_actions,
              features =  sim_features, project_name_column = "name",
              project_success_column = "success", action_name_column = "name",
              action_cost_column = "cost", feature_name_column = "name") %>%
-     add_max_sum_persistence_objective(budget = 400) %>%
+     add_max_richness_objective(budget = 400) %>%
      add_feature_weights(weight = "weight") %>%
      add_binary_decisions() %>%
      add_default_solver(verbose = FALSE)
