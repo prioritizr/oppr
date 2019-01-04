@@ -156,7 +156,7 @@ to produce visually appealing publication quality plots.</p></td>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code>ggplot</code> object.</p>
+    <p>A <code><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></code> object.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
@@ -173,9 +173,34 @@ to produce visually appealing publication quality plots.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>#TODO
+    <pre class="examples"><div class='input'><span class='co'># set seed for reproducibility</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>500</span>)
 
-</div></pre>
+<span class='co'># load the ggplot2 R package to customize plots</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>ggplot2</span>)
+
+<span class='co'># load data</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_features</span>, <span class='no'>sim_actions</span>)
+
+<span class='co'># build problem</span>
+<span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_actions</span>, <span class='no'>sim_features</span>,
+             <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span>) <span class='kw'>%&gt;%</span>
+      <span class='fu'><a href='add_max_sum_persistence_objective.html'>add_max_sum_persistence_objective</a></span>(<span class='kw'>budget</span> <span class='kw'>=</span> <span class='fl'>400</span>) <span class='kw'>%&gt;%</span>
+      <span class='fu'><a href='add_feature_weights.html'>add_feature_weights</a></span>(<span class='st'>"weight"</span>) <span class='kw'>%&gt;%</span>
+      <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span>() <span class='kw'>%&gt;%</span>
+      <span class='fu'><a href='add_heuristic_solver.html'>add_heuristic_solver</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10</span>)
+
+<span class='co'># solve problem</span>
+<span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p</span>)
+
+<span class='co'># plot the first solution</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>p</span>, <span class='no'>s</span>)</div><div class='img'><img src='plot_feature_persistence-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># plot the second solution</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>p</span>, <span class='no'>s</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='img'><img src='plot_feature_persistence-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># since this function returns a ggplot2 plot object, we can customize the</span>
+<span class='co'># appearance of the plot using standard ggplot2 commands!</span>
+<span class='co'># for example, we can add a title</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>p</span>, <span class='no'>s</span>) + <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ggtitle</a></span>(<span class='st'>"solution"</span>)</div><div class='img'><img src='plot_feature_persistence-3.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

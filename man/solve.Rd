@@ -54,8 +54,6 @@ The type of object returned from this function depends on the
 Solve a conservation planning \code{\link{problem}}.
 }
 \examples{
-#TODO
-
 # load data
 data(sim_projects, sim_features, sim_actions)
 

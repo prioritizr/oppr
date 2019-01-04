@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot.R
 \name{plot.ProjectProblem}
 \alias{plot.ProjectProblem}
-\title{Plot a project prioritization}
+\title{Plot a solution to a project prioritization problem}
 \usage{
 \method{plot}{ProjectProblem}(x, solution, n = 1, symbol_hjust = 0.007,
   ...)
@@ -56,8 +56,35 @@ The type of plot that this function creates depends on the
   project---are depicted with an open circle symbol.
 }
 \examples{
-#TODO
+# load data
+data(sim_projects, sim_features, sim_actions)
 
+# build problem without phylogenetic data
+p1 <- problem(sim_projects, sim_actions, sim_features,
+             "name", "success", "name", "cost", "name") \%>\%
+      add_max_sum_persistence_objective(budget = 400) \%>\%
+      add_feature_weights("weight") \%>\%
+      add_binary_decisions()
+
+# solve problem without phylogenetic data
+s1 <- solve(p1)
+
+# visualize solution without phylogenetic data
+plot(p1, s1)
+
+\donttest{
+# build problem with phylogenetic data
+p2 <- problem(sim_projects, sim_actions, sim_features,
+             "name", "success", "name", "cost", "name") \%>\%
+      add_max_phylo_div_objective(budget = 400, sim_tree) \%>\%
+      add_binary_decisions()
+
+# solve problem with phylogenetic data
+s2 <- solve(p2)
+
+# visualize solution with phylogenetic data
+plot(p2, s2)
+}
 }
 \seealso{
 This function is essentially a wrapper for

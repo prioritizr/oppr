@@ -1,7 +1,7 @@
 #' @include internal.R ProjectProblem-proto.R solution_statistics.R
 NULL
 
-#' Plot a project prioritization
+#' Plot a solution to a project prioritization problem
 #'
 #' Create a plot to visualize how well a solution to a project prioritization
 #' problem will maintain biodiversity.
@@ -45,8 +45,35 @@ NULL
 #'   for these functions for more information.
 #'
 #' @examples
-#' #TODO
+#' # load data
+#' data(sim_projects, sim_features, sim_actions)
 #'
+#' # build problem without phylogenetic data
+#' p1 <- problem(sim_projects, sim_actions, sim_features,
+#'              "name", "success", "name", "cost", "name") %>%
+#'       add_max_sum_persistence_objective(budget = 400) %>%
+#'       add_feature_weights("weight") %>%
+#'       add_binary_decisions()
+#'
+#' # solve problem without phylogenetic data
+#' s1 <- solve(p1)
+#'
+#' # visualize solution without phylogenetic data
+#' plot(p1, s1)
+#'
+#' \donttest{
+#' # build problem with phylogenetic data
+#' p2 <- problem(sim_projects, sim_actions, sim_features,
+#'              "name", "success", "name", "cost", "name") %>%
+#'       add_max_phylo_div_objective(budget = 400, sim_tree) %>%
+#'       add_binary_decisions()
+#'
+#' # solve problem with phylogenetic data
+#' s2 <- solve(p2)
+#'
+#' # visualize solution with phylogenetic data
+#' plot(p2, s2)
+#' }
 #' @export
 plot.ProjectProblem <- function(x, solution, n = 1, symbol_hjust = 0.007, ...) {
   # assert arguments are valid
