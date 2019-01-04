@@ -93,10 +93,12 @@ NULL
 #'   (they can also comprise a singular action too), and each project is
 #'   associated with a probability of success if all of its associated actions
 #'   are funded. To determine which projects should be funded, each project is
-#'   associated with an enhanced probability of persistence for the
-#'   features that they benefit. In other words, each conservation project
-#'   should be associated with a value indicating the probability that each
-#'   feature will persist if only that project is funded.
+#'   associated with an probability of persistence for the
+#'   features that they benefit. These values should indicate the
+#'   probability that each feature will persist if only that project funded
+#'   and not the additional benefit relative to the baseline project. Missing
+#'   (\code{NA}) values should be used to indicate which projects do not
+#'   enhance the probability of certain features.
 #'
 #'   The goal of a project prioritization exercise is then to identify which
 #'   management actions---and as a consequence which conservation
@@ -163,7 +165,7 @@ problem <- function(projects, actions, features, project_name_column,
     anyDuplicated(actions[[action_name_column]]) == 0,
     inherits(actions[[action_name_column]], c("character", "factor")),
     all(assertthat::has_name(projects, actions[[action_name_column]])),
-    assertthat::noNA(unlist(projects, actions[[action_name_column]])),
+    assertthat::noNA(unlist(projects[, actions[[action_name_column]]])),
     is.logical(as.matrix(projects[, actions[[action_name_column]]])),
     assertthat::is.string(action_cost_column),
     assertthat::has_name(actions, action_cost_column),
@@ -177,9 +179,10 @@ problem <- function(projects, actions, features, project_name_column,
     inherits(features[[feature_name_column]], c("character", "factor")),
     all(assertthat::has_name(projects, features[[feature_name_column]])),
     is.numeric(as.matrix(projects[, features[[feature_name_column]]])),
-    min(as.matrix(projects[, features[[feature_name_column]]])) >= 0,
-    max(as.matrix(projects[, features[[feature_name_column]]])) <= 1,
-    assertthat::noNA(unlist(projects, features[[feature_name_column]])))
+    min(as.matrix(projects[, features[[feature_name_column]]]),
+        na.rm = TRUE) >= 0,
+    max(as.matrix(projects[, features[[feature_name_column]]]),
+        na.rm = TRUE) <= 1)
   assertthat::assert_that(min(actions[[action_cost_column]]) == 0,
                           msg = "zero cost baseline project missing.")
   # create ProjectProblem object

@@ -107,7 +107,9 @@ NULL
 #'         \item{\code{"F1"} ... \code{"FN"}}{\code{numeric} columns for each
 #'           feature, ranging from \code{"F1"} to \code{"FN"} where \code{N}
 #'           is the number of features, indicating the enhanced probability that
-#'           each feature will persist if it funded.}
+#'           each feature will persist if it funded. Missing values (\code{NA})
+#'           indicate that a feature does not benefit from a project being
+#'           funded.}
 #'
 #'         \item{\code{"F1_action"} ... \code{"FN_action"}}{\code{logical}
 #'           columns for each action, ranging from \code{"F1_action"} to
@@ -120,7 +122,6 @@ NULL
 #'          column indicating if a project is associated with the baseline
 #'          action (\code{TRUE}) or not (\code{FALSE}). This action is only
 #'          associated with the baseline project.}
-#'
 #'
 #'     }}
 #'
@@ -281,7 +282,7 @@ simulate_ppp_data <- function(number_features, cost_mean = 100, cost_sd = 5,
                            success_max_probability), 1))
 
   ## feature persistence probabilities
-  spp_prob_matrix <- matrix(0, ncol = number_features,
+  spp_prob_matrix <- matrix(NA_real_, ncol = number_features,
                             nrow = number_features + 1,
                             dimnames = list(NULL, sort(tree$tip.label)))
    diag(spp_prob_matrix) <- stats::runif(number_features,

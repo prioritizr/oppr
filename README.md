@@ -7,7 +7,7 @@ Project Prioritization
 
 **This package is still under development and not ready for use. Please do not use this package yet.**
 
-The *ppr R* package is decision support tool for prioritizing conservation projects. Prioritizations can be developed by maximizing expected species richness, expected phylogenetic diversity, the number of species that meet persistence targets, or identifying a set of projects that meet persistence targets for minimal cost. Constraints (e.g. lock in specific actions) and feature weights can also be specified to further customize prioritizations. After defining a project prioritization problem, solutions can be obtained using exact algorithms, heuristic algorithms, or using random processes. In particular, it is recommended to install the ['Gurobi' optimizer](https://www.gurobi.com) because it can identify optimal solutions very quickly. Finally, methods are provided for comparing different prioritizations and evaluating their benefits.
+The *ppr R* package is decision support tool for prioritizing conservation projects. Prioritizations can be developed by maximizing the sum of probabilities that features are expected to persist, expected phylogenetic diversity, the number of feature that meet persistence targets, or identifying a set of projects that meet persistence targets for minimal cost. Constraints (e.g. lock in specific actions) and feature weights can also be specified to further customize prioritizations. After defining a project prioritization problem, solutions can be obtained using exact algorithms, heuristic algorithms, or using random processes. In particular, it is recommended to install the ['Gurobi' optimizer](https://www.gurobi.com) because it can identify optimal solutions very quickly. Finally, methods are provided for comparing different prioritizations and evaluating their benefits.
 
 Installation
 ------------
@@ -51,7 +51,7 @@ head(as.data.frame(sim_features))
     ## 4   F4 0.6296374
     ## 5   F5 1.5916703
 
-Next, we will load the `sim_actions` object. This table stores information about the various management actions (i.e. `tibble`). Each row corresponds to a different action, and each column describes different properties associated with the actions. These actions correspond to specific management actions that have known costs. For example, they may relate to pest eradication activities in sites of conservation importance. In this table, the `"name"` column contains the name of each action, and the `"cost"` action denotes the cost of funding each project. It also contains additional columns for customizing the solutions, but we will ignore them for now. Note that the last project---the `"baseline_action"`---has a zero cost and is used subsequently to represent the baseline probability for species when no conservation actions are funded for them.
+Next, we will load the `sim_actions` object. This table stores information about the various management actions (i.e. `tibble`). Each row corresponds to a different action, and each column describes different properties associated with the actions. These actions correspond to specific management actions that have known costs. For example, they may relate to pest eradication activities in sites of conservation importance. In this table, the `"name"` column contains the name of each action, and the `"cost"` action denotes the cost of funding each project. It also contains additional columns for customizing the solutions, but we will ignore them for now. Note that the last project---the `"baseline_action"`---has a zero cost and is used subsequently to represent the baseline probability for feature when no conservation actions are funded for them.
 
 ``` r
 # load data
@@ -69,7 +69,7 @@ head(as.data.frame(sim_actions))
     ## 5       F5_action  99.90791     FALSE       TRUE
     ## 6 baseline_action   0.00000     FALSE      FALSE
 
-Additionally, we will load the `sim_projects` object. This table stores information about various conservation projects. Each row corresponds to a different project, and each column describes various properties associated with the projects. These projects correspond to groups of conservation actions. For example, a conservation project may pertain to a set of conservation actions that relate to a single species or single geographic locality. In this table, the `"name"` column contains the name of each project, the `"success"` column denotes the probability of each project succeeding if it is funded, the `"F1"`--`"F5"` columns show the enhanced probability of each species persisting if the project is funded, and the `"F1_action"`--`"F5_action"` columns indicate which actions are associated with which project. Note that the last project---the `"baseline_project"`---is associated with the `"baseline_action"` action. This project has a zero cost and represents the baseline probability of each species persisting if no other project is funded. Finally, although most projects in this example directly relate to a single species, you can input projects that directly affect the persistence of multiple species.
+Additionally, we will load the `sim_projects` object. This table stores information about various conservation projects. Each row corresponds to a different project, and each column describes various properties associated with the projects. These projects correspond to groups of conservation actions. For example, a conservation project may pertain to a set of conservation actions that relate to a single feature or single geographic locality. In this table, the `"name"` column contains the name of each project, the `"success"` column denotes the probability of each project succeeding if it is funded, the `"F1"`--`"F5"` columns show the probability of each feature is expected to persist if each project is funded (`NA` values mean that a feature does not benefit from a project), and the `"F1_action"`--`"F5_action"` columns indicate which actions are associated with which projects. Note that the last project---the `"baseline_project"`---is associated with the `"baseline_action"` action. This project has a zero cost and represents the baseline probability of each feature persisting if no other project is funded. Finally, although most projects in this example directly relate to a single feature, you can input projects that directly affect the persistence of multiple feature.
 
 ``` r
 # load data
@@ -80,17 +80,17 @@ head(as.data.frame(sim_projects))
 ```
 
     ##               name   success        F1        F2        F3        F4
-    ## 1       F1_project 0.9190985 0.7905800 0.0000000 0.0000000 0.0000000
-    ## 2       F2_project 0.9232556 0.0000000 0.8881011 0.0000000 0.0000000
-    ## 3       F3_project 0.8293499 0.0000000 0.0000000 0.5020887 0.0000000
-    ## 4       F4_project 0.8475053 0.0000000 0.0000000 0.0000000 0.6899938
-    ## 5       F5_project 0.8137868 0.0000000 0.0000000 0.0000000 0.0000000
+    ## 1       F1_project 0.9190985 0.7905800        NA        NA        NA
+    ## 2       F2_project 0.9232556        NA 0.8881011        NA        NA
+    ## 3       F3_project 0.8293499        NA        NA 0.5020887        NA
+    ## 4       F4_project 0.8475053        NA        NA        NA 0.6899938
+    ## 5       F5_project 0.8137868        NA        NA        NA        NA
     ## 6 baseline_project 1.0000000 0.2977965 0.2500224 0.0864612 0.2489246
     ##          F5 F1_action F2_action F3_action F4_action F5_action
-    ## 1 0.0000000      TRUE     FALSE     FALSE     FALSE     FALSE
-    ## 2 0.0000000     FALSE      TRUE     FALSE     FALSE     FALSE
-    ## 3 0.0000000     FALSE     FALSE      TRUE     FALSE     FALSE
-    ## 4 0.0000000     FALSE     FALSE     FALSE      TRUE     FALSE
+    ## 1        NA      TRUE     FALSE     FALSE     FALSE     FALSE
+    ## 2        NA     FALSE      TRUE     FALSE     FALSE     FALSE
+    ## 3        NA     FALSE     FALSE      TRUE     FALSE     FALSE
+    ## 4        NA     FALSE     FALSE     FALSE      TRUE     FALSE
     ## 5 0.6166465     FALSE     FALSE     FALSE     FALSE      TRUE
     ## 6 0.1820005     FALSE     FALSE     FALSE     FALSE     FALSE
     ##   baseline_action

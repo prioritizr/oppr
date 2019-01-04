@@ -27,24 +27,21 @@ test_that("valid arguments", {
   expect_true(all(is.finite(s$projects$success)))
   ## species persistence columns
   expect_equal(unique(vapply(s$projects[, paste0("F", seq_len(5)),
-                                            drop = FALSE], class,
-                                            character(1))), "numeric")
+                                        drop = FALSE], class,
+                                        character(1))), "numeric")
   expect_equal(rowSums(as.matrix(s$projects[, paste0("F", seq_len(5)),
-                                                drop = FALSE]) > 0),
-               c(rep(1, 5), 5))
-  expect_gte(min(as(as.matrix(s$projects[-6,
-                                             paste0("F", seq_len(5)),
-                                             drop = FALSE]), "dgCMatrix")@x),
-                                             0.5)
-  expect_lte(max(as.matrix(s$projects[-6,
-                                          paste0("F", seq_len(5)),
-                                          drop = FALSE])), 0.9)
-  expect_gte(min(as.matrix(s$projects[6,
-                                          paste0("F", seq_len(5)),
-                                          drop = FALSE])), 0.01)
-  expect_lte(max(as.matrix(s$projects[6,
-                                          paste0("F", seq_len(5)),
-                                          drop = FALSE])), 0.4)
+                                            drop = FALSE]) > 0, na.rm = TRUE),
+                                            c(rep(1, 5), 5))
+  expect_gte(min(as(as.matrix(s$projects[-6, paste0("F", seq_len(5)),
+                                         drop = FALSE]), "dgCMatrix")@x,
+                                         na.rm = TRUE),
+                                         0.5)
+  expect_lte(max(as.matrix(s$projects[-6, paste0("F", seq_len(5)),
+                                      drop = FALSE]), na.rm = TRUE), 0.9)
+  expect_gte(min(as.matrix(s$projects[6, paste0("F", seq_len(5)),
+                                      drop = FALSE])), 0.01)
+  expect_lte(max(as.matrix(s$projects[6, paste0("F", seq_len(5)),
+                                      drop = FALSE])), 0.4)
   ## organization data
   expect_true(all(vapply(
     s$projects[, grepl("action", names(s$projects))], inherits,

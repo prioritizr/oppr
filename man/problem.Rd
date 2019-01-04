@@ -103,10 +103,12 @@ A project prioritization problem has actions, projects,
   (they can also comprise a singular action too), and each project is
   associated with a probability of success if all of its associated actions
   are funded. To determine which projects should be funded, each project is
-  associated with an enhanced probability of persistence for the
-  features that they benefit. In other words, each conservation project
-  should be associated with a value indicating the probability that each
-  feature will persist if only that project is funded.
+  associated with an probability of persistence for the
+  features that they benefit. These values should indicate the
+  probability that each feature will persist if only that project funded
+  and not the additional benefit relative to the baseline project. Missing
+  (\code{NA}) values should be used to indicate which projects do not
+  enhance the probability of certain features.
 
   The goal of a project prioritization exercise is then to identify which
   management actions---and as a consequence which conservation

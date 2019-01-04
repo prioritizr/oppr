@@ -30,7 +30,8 @@ test_that("valid arguments", {
                setNames(sim_projects$success, sim_projects$name))
   expect_true(all(p$pf_matrix() ==
                   as(as.matrix(sim_projects[, sim_features$name]),
-                     "dgCMatrix")))
+                     "dgCMatrix"),
+                  na.rm = TRUE))
   expect_equal(rownames(p$pf_matrix()), sim_projects$name)
   expect_equal(colnames(p$pf_matrix()), sim_features$name)
   expect_true(all(p$pa_matrix() ==

@@ -17,9 +17,9 @@ test_that("sim_projects", {
   # species persistence probability columns
   for (s in paste0("F", seq_len(5))) {
     expect_is(sim_projects[[s]], "numeric")
-    expect_true(all(sim_projects[[s]] >= 0))
-    expect_true(all(sim_projects[[s]] <= 1))
-    expect_true(assertthat::noNA(sim_projects[[s]]))
+    expect_true(all(sim_projects[[s]] >= 0, na.rm = TRUE))
+    expect_true(all(sim_projects[[s]] <= 1, na.rm = TRUE))
+    expect_true(sum(is.na(sim_projects[[s]])) == (nrow(sim_projects) - 2))
   }
   # action columns
   for (s in paste0("F", seq_len(5), "_action")) {

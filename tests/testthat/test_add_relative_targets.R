@@ -8,7 +8,8 @@ test_that("numeric(1)", {
                "name", "success", "name", "cost", "name") %>%
        add_relative_targets(0.5)
   # calculate relative targets
-  mp <- unname(rep(apply(sim_projects[, sim_features$name], 2, max)))
+  mp <- unname(rep(apply(sim_projects[, sim_features$name], 2, max,
+                         na.rm = TRUE)))
   targets <- p$targets$output()
   # run tests
   expect_is(targets, "tbl_df")
@@ -30,7 +31,8 @@ test_that("numeric(4)", {
        add_relative_targets(seq_len(5) * 0.1)
   # calculate relative targets
   targets <- p$targets$output()
-  mp <- unname(rep(apply(sim_projects[, sim_features$name], 2, max)))
+  mp <- unname(rep(apply(sim_projects[, sim_features$name], 2, max,
+                         na.rm = TRUE)))
   # run tests
   expect_is(targets, "tbl_df")
   expect_true(all(names(targets) == c("feature", "sense", "value")))
@@ -51,7 +53,8 @@ test_that("character", {
                "name", "success", "name", "cost", "name") %>%
        add_relative_targets("target")
   # calculate relative targets
-  mp <- unname(rep(apply(sim_projects[, sim_features$name], 2, max)))
+  mp <- unname(rep(apply(sim_projects[, sim_features$name], 2, max,
+                         na.rm = TRUE)))
   targets <- p$targets$output()
   # run tests
   expect_is(targets, "tbl_df")
