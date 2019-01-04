@@ -22,7 +22,7 @@ Please note that only one type of decision is currently supported:
 # load data
 data(sim_projects, sim_features, sim_actions)
 
-# build problem with maximum richness objective, $300 budget, and
+# build problem with maximum richness objective, $200 budget, and
 # binary decisions
 p <- problem(sim_projects, sim_actions, sim_features,
              "name", "success", "name", "cost", "name") \%>\%
