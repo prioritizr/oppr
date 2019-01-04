@@ -29,6 +29,9 @@ p <- problem(sim_projects, sim_actions, sim_features,
      add_max_richness_objective(budget = 200) \%>\%
      add_binary_decisions()
 
+# print problem
+print(p)
+
 # solve problem
 s <- solve(p)
 

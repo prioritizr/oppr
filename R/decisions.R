@@ -32,6 +32,9 @@ NULL
 #'      add_max_richness_objective(budget = 200) %>%
 #'      add_binary_decisions()
 #'
+#' # print problem
+#' print(p)
+#'
 #' # solve problem
 #' s <- solve(p)
 #'
