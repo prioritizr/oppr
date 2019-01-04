@@ -88,13 +88,13 @@
     <loc>https://prioritizr.github.io/ppr/reference/add_manual_targets.html</loc>
   </url>
   <url>
-    <loc>https://prioritizr.github.io/ppr/reference/add_max_persistence_objective.html</loc>
-  </url>
-  <url>
     <loc>https://prioritizr.github.io/ppr/reference/add_max_phylo_div_objective.html</loc>
   </url>
   <url>
-    <loc>https://prioritizr.github.io/ppr/reference/add_max_richness_objective.html</loc>
+    <loc>https://prioritizr.github.io/ppr/reference/add_max_prob_persistence_objective.html</loc>
+  </url>
+  <url>
+    <loc>https://prioritizr.github.io/ppr/reference/add_max_sum_persistence_objective.html</loc>
   </url>
   <url>
     <loc>https://prioritizr.github.io/ppr/reference/add_max_targets_met_objective.html</loc>

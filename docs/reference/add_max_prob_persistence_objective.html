@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Add maximum targets met objective — add_max_targets_met_objective • ppr</title>
+<title>Add maximum probability of persistence objective — add_max_prob_persistence_objective • ppr</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,24 +30,16 @@
 
 
 
-<meta property="og:title" content="Add maximum targets met objective — add_max_targets_met_objective" />
+<meta property="og:title" content="Add maximum probability of persistence objective — add_max_prob_persistence_objective" />
 
 <meta property="og:description" content="Set the objective of a project prioritization problem to
-maximize the total number of persistence targets met for the features, whilst
-ensuring that the cost of the solution is within a pre-specified budget
-(Chades et al. 2015). In some project prioritization exercises,
-decision makers may have a target level of persistence for each feature
-(e.g. a 90% persistence target corresponding to a 90% chance for the
-features persisting into the future). In such exercises, the decision makers
-do not perceive any benefit when a target is not met (e.g. if a feature
-has a persistence target of 90% and a solution only secures a 70% chance
-of persistence then no benefit is accrued for that feature) or when a target
-is surpassed (e.g. if a feature has a persistence target of 50%, then a
-solution which
-secures a 95% chance of persistence will accrue the same benefit as a
-solution which secures a 50% chance of persistence). Furthermore, weights
-can also be used to specify the relative importance of meeting targets
-for specific features (see add_feature_weights)." />
+maximize the chance that at least one feature will persist into the future,
+whilst ensuring that the cost of the solution is within a pre-specified
+budget. This objective is similar to maximizing sum feature
+persistence (i.e. add_max_sum_persistence_objective), except
+that it may be easier to communicate to decision makers. Furthermore,
+weights can also be used to specify the relative importance of conserving
+specific features (see add_feature_weights)." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -120,33 +112,25 @@ for specific features (see add_feature_weights)." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Add maximum targets met objective</h1>
-    <small class="dont-index">Source: <a href='https://github.com/prioritizr/ppr/blob/master/R/add_max_targets_met_objective.R'><code>R/add_max_targets_met_objective.R</code></a></small>
-    <div class="hidden name"><code>add_max_targets_met_objective.Rd</code></div>
+    <h1>Add maximum probability of persistence objective</h1>
+    <small class="dont-index">Source: <a href='https://github.com/prioritizr/ppr/blob/master/R/add_max_prob_persistence_objective.R'><code>R/add_max_prob_persistence_objective.R</code></a></small>
+    <div class="hidden name"><code>add_max_prob_persistence_objective.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
     <p>Set the objective of a project prioritization <code><a href='problem.html'>problem</a></code> to
-maximize the total number of persistence targets met for the features, whilst
-ensuring that the cost of the solution is within a pre-specified budget
-(Chades <em>et al.</em> 2015). In some project prioritization exercises,
-decision makers may have a target level of persistence for each feature
-(e.g. a 90% persistence target corresponding to a 90% chance for the
-features persisting into the future). In such exercises, the decision makers
-do not perceive any benefit when a target is not met (e.g. if a feature
-has a persistence target of 90% and a solution only secures a 70% chance
-of persistence then no benefit is accrued for that feature) or when a target
-is surpassed (e.g. if a feature has a persistence target of 50%, then a
-solution which
-secures a 95% chance of persistence will accrue the same benefit as a
-solution which secures a 50% chance of persistence). Furthermore, weights
-can also be used to specify the relative importance of meeting targets
-for specific features (see <code><a href='add_feature_weights.html'>add_feature_weights</a></code>).</p>
+maximize the chance that at least one feature will persist into the future,
+whilst ensuring that the cost of the solution is within a pre-specified
+budget. This objective is similar to maximizing sum feature
+persistence (i.e. <code><a href='add_max_sum_persistence_objective.html'>add_max_sum_persistence_objective</a></code>), except
+that it may be easier to communicate to decision makers. Furthermore,
+weights can also be used to specify the relative importance of conserving
+specific features (see <code><a href='add_feature_weights.html'>add_feature_weights</a></code>).</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>add_max_targets_met_objective</span>(<span class='no'>x</span>, <span class='no'>budget</span>)</pre>
+    <pre class="usage"><span class='fu'>add_max_prob_persistence_objective</span>(<span class='no'>x</span>, <span class='no'>budget</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -170,17 +154,17 @@ for specific features (see <code><a href='add_feature_weights.html'>add_feature_
 
     <p>A problem objective is used to specify the overall goal of the
   project prioritization problem.
-  Here, the maximum targets met objective seeks to find the set of actions
-  that maximizes the total number of features (e.g. populations, species,
-  eco-systems) that have met their persistence targets within a
-  pre-specified budget. Let \(I\) represent the set of conservation
-  actions (indexed by \(i\)). Let \(C_i\) denote the cost for funding
-  action \(i\), and let \(m\) denote the maximum expenditure (i.e. the
-  budget). Also, let \(F\) represent each feature (indexed by \(f\)),
-  \(W_f\) represent the weight for each feature \(f\) (defaults to one
-  for each feature unless specified otherwise), \(T_f\) represent the
-  persistence target for each feature \(f\), and \(E_f\) denote the
-  probability that each feature will go extinct given the funded
+  Here, the maximum persistence objective seeks to find the set of actions
+  that maximizes the chance that at least a single feature (e.g.
+  populations, species, eco-systems) will persist into the future, whilst
+  ensuring that the total cost of the actions remains within a pre-specified
+  budget. Let \(I\) represent the set of conservation actions (indexed by
+  \(i\)). Let \(C_i\) denote the cost for funding action \(i\), and
+  let \(m\) denote the maximum expenditure (i.e. the budget). Also,
+  let \(F\) represent each feature (indexed by \(f\)), \(W_f\)
+  represent the weight for each feature \(f\) (defaults to zero for
+  each feature unless specified otherwise), and \(E_f\)
+  denote the probability that each feature will go extinct given the funded
   conservation projects.</p>
 <p>To guide the prioritization, the conservation actions are organized into
   conservation projects. Let \(J\) denote the set of conservation projects
@@ -194,60 +178,63 @@ for specific features (see <code><a href='add_feature_weights.html'>add_feature_
   and that project is allocated to feature \(f\).</p>
 <p>The binary control variables \(X_i\) in this problem indicate whether
   each project \(i \in I\) is funded or not. The decision
-  variables in this problem are the \(Y_{j}\), \(Z_{fj}\), \(E_f\),
-  and \(G_f\) variables.
+  variables in this problem are the \(Y_{j}\), \(Z_{fj}\), and \(E_f\)
+  variables.
   Specifically, the binary \(Y_{j}\) variables indicate if project \(j\)
   is funded or not based on which actions are funded; the binary
   \(Z_{fj}\) variables indicate if project \(j\) is used to manage
-  feature \(f\) or not; the semi-continuous \(E_f\) variables
-  denote the probability that feature \(f\) will go extinct; and the
-  \(G_f\) variables indicate if the persistence target for feature
-  \(f\) is met.</p>
+  feature \(f\) or not; and the semi-continuous \(E_f\) variables
+  denote the probability that feature \(f\) will go extinct.</p>
 <p>Now that we have defined all the data and variables, we can formulate
   the problem. For convenience, let the symbol used to denote each set also
   represent its cardinality (e.g. if there are ten features, let \(F\)
   represent the set of ten features and also the number ten).</p>
 <p>$$
-  \mathrm{Maximize} \space \sum_{f = 0}^{F} G_f W_f \space
-  \mathrm{(eqn \space 1a)} \\
+  \mathrm{Maximize} (1 - \prod_{f = 0}^{F} E_f W_f) + \sum_{f}^{F}
+  (1 - E_f) W_f \space \mathrm{(eqn \space 1a)} \\
   \mathrm{Subject \space to}
   \sum_{i = 0}^{I} C_i \leq m \space \mathrm{(eqn \space 1b)} \\
-  G_f (1 - E_f) \geq T_f \space \forall \space f \in F \space
-  \mathrm{(eqn \space 1c)} \\
   E_f = 1 - \sum_{j = 0}^{J} Z_{fj} P_j B_{fj} \space \forall \space f \in F
-  \space \mathrm{(eqn \space 1d)} \\
+  \space \mathrm{(eqn \space 1c)} \\
   Z_{fj} \leq Y_{j} \space \forall \space j \in J \space \mathrm{(eqn \space
-  1e)} \\
+  1d)} \\
   \sum_{j = 0}^{J} Z_{fj} = 1 \space \forall \space f \in F \space
-  \mathrm{(eqn \space 1f)} \\
+  \mathrm{(eqn \space 1e)} \\
   A_{ij} Y_{j} \leq X_{i} \space \forall \space i \in I, j \in J \space
-  \mathrm{(eqn \space 1g)} \\
+  \mathrm{(eqn \space 1f)} \\
   E_{f} \geq 0, E_{f} \leq 1 \space \forall \space b \in B \space
-  \mathrm{(eqn \space 1h)} \\
-  G_{f}, X_{i}, Y_{j}, Z_{fj} \in [0, 1] \space \forall \space i \in I, j
-  \in J, f \in F \space \mathrm{(eqn \space 1i)}
+  \mathrm{(eqn \space 1g)} \\
+  X_{i}, Y_{j}, Z_{fj} \in [0, 1] \space \forall \space i \in I, j \in J, f
+  \in F \space \mathrm{(eqn \space 1h)}
   $$</p>
-<p>The objective (eqn 1a) is to maximize the weighted total number of the
- features that have their persistence targets met.
- Constraints (eqn 1b) calculate which persistence targets have been met.
- Constraint (eqn 1c) limits the maximum expenditure (i.e. ensures
- that the cost of the funded actions do not exceed the budget).
- Constraints (eqn 1d) calculate the probability that each feature
+<p>The objective (eqn 1a) is to maximize the probability that at least one
+ feature will remain---given the probability that each feature will
+ become extinct---plus the probability each feature will remain multiplied
+ by their weights (noting that the feature weights default to zero).
+ Constraint (eqn 1b) limits the maximum expenditure (i.e.
+ ensures that the cost of the funded actions do not exceed the budget).
+ Constraints (eqn 1c) calculate the probability that each feature
  will go extinct according to their allocated project.
- Constraints (eqn 1e) ensure that feature can only be allocated to projects
- that have all of their actions funded. Constraints (eqn 1f) state that each
- feature can only be allocated to a single project. Constraints (eqn 1g)
+ Constraints (eqn 1d) ensure that feature can only be allocated to projects
+ that have all of their actions funded. Constraints (eqn 1e) state that each
+ feature can only be allocated to a single project. Constraints (eqn 1f)
  ensure that a project cannot be funded unless all of its actions are funded.
- Constraints (eqns 1h) ensure that the probability variables
- (\(E_f\)) are bounded between zero and one. Constraints (eqns 1i) ensure
- that the target met (\(G_f\)), action funding (\(X_i\)), project funding
- (\(Y_j\)), and project allocation (\(Z_{fj}\)) variables are binary.</p>
+ Constraints (eqns 1g) ensure that the probability variables
+ (\(E_f\)) are bounded between zero and one. Constraints (eqns 1h) ensure
+ that the action funding (\(X_i\)), project funding (\(Y_j\)), and
+ project allocation (\(Z_{fj}\)) variables are binary.</p>
+<p>Although this formulation is a mixed integer quadratically constrained
+ programming problem (due to eqn 1c), it can be approximated using
+ linear terms and then solved using commercial mixed integer programming
+ solvers. This can be achieved by substituting the product of the feature
+ extinction probabilities (eqn 1c) with the sum of the log feature extinction
+ probabilities and using piecewise linear approximations (described in
+ Hillier &amp; Price 2005 pp. 390--392) to approximate the exponent of this term.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Chades I, Nicol S, van Leeuwen S, Walters B, Firn J, Reeson A, Martin TG &amp;
-Carwardine J (2015) Benefits of integrating complementarity into priority
-threat management. <em>Conservation Biology</em>, <strong>29</strong>, 525--536.</p>
+    <p>Hillier FS &amp; Price CC (2005) <em>International series in operations
+research &amp; management science</em>. Springer.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 

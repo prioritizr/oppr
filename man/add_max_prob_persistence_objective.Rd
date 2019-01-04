@@ -19,13 +19,11 @@ add_max_prob_persistence_objective(x, budget)
 Set the objective of a project prioritization \code{\link{problem}} to
 maximize the chance that at least one feature will persist into the future,
 whilst ensuring that the cost of the solution is within a pre-specified
-budget. This objective is conceptually similar to maximizing sum feature
+budget. This objective is similar to maximizing sum feature
 persistence (i.e. \code{\link{add_max_sum_persistence_objective}}), except
-that this objective tends to favor solutions which spread resources across
-many features---instead of triaging features---because each feature is
-treated as an independent "backup". Furthermore, weights can
-also be used to specify the relative importance of conserving specific
-features (see \code{\link{add_feature_weights}}).
+that it may be easier to communicate to decision makers. Furthermore,
+weights can also be used to specify the relative importance of conserving
+specific features (see \code{\link{add_feature_weights}}).
 }
 \details{
 A problem objective is used to specify the overall goal of the

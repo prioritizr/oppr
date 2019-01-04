@@ -152,7 +152,7 @@ p &lt;-<span class="st"> </span><span class="kw"><a href="reference/problem.html
              <span class="dt">features =</span>  sim_features, <span class="dt">project_name_column =</span> <span class="st">"name"</span>,
              <span class="dt">project_success_column =</span> <span class="st">"success"</span>, <span class="dt">action_name_column =</span> <span class="st">"name"</span>,
              <span class="dt">action_cost_column =</span> <span class="st">"cost"</span>, <span class="dt">feature_name_column =</span> <span class="st">"name"</span>) <span class="op">%&gt;%</span>
-<span class="st">     </span><span class="kw"><a href="reference/add_max_richness_objective.html">add_max_richness_objective</a></span>(<span class="dt">budget =</span> <span class="dv">400</span>) <span class="op">%&gt;%</span>
+<span class="st">     </span><span class="kw"><a href="reference/add_max_sum_persistence_objective.html">add_max_sum_persistence_objective</a></span>(<span class="dt">budget =</span> <span class="dv">400</span>) <span class="op">%&gt;%</span>
 <span class="st">     </span><span class="kw"><a href="reference/add_feature_weights.html">add_feature_weights</a></span>(<span class="dt">weight =</span> <span class="st">"weight"</span>) <span class="op">%&gt;%</span>
 <span class="st">     </span><span class="kw"><a href="reference/add_binary_decisions.html">add_binary_decisions</a></span>() <span class="op">%&gt;%</span>
 <span class="st">     </span><span class="kw"><a href="reference/add_default_solver.html">add_default_solver</a></span>(<span class="dt">verbose =</span> <span class="ot">FALSE</span>)
@@ -187,7 +187,7 @@ s &lt;-<span class="st"> </span><span class="kw"><a href="reference/solve.html">
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># visualize solution</span>
 <span class="kw"><a href="reference/plot_feature_persistence.html">plot_feature_persistence</a></span>(p, s)</code></pre></div>
 <p><img src="reference/figures/README-readme-plot-1.png" width="700" style="display: block; margin: auto;"></p>
-<p>This has just been a taster of the <em>ppr R</em> package. For more information, see the <a href="https://prioritizr.github.io/ppr/articles/optimalppp.html">package website</a>.</p>
+<p>This has just been a taster of the <em>ppr R</em> package. For more information, see the <a href="https://prioritizr.github.io/ppr/articles/ppr.html">package vignette</a>.</p>
 </div>
 <div id="citation" class="section level2">
 <h2 class="hasAnchor">
