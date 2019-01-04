@@ -19,14 +19,32 @@ This is the conventional decision of either prioritizing funding
 for a management action or not.
 }
 \details{
-Project prioritization problems involve making decisions on
-  about which management actions should be funded or not. Only a
-  single decision should be added to a \code{ProjectProblem} object.
-  If no decision is added to a problem then this decision class will
+Project prioritization problems involve making decisions about
+  how funding will be allocated to management actions.
+  Only a single decision should be added to a \code{ProjectProblem} object.
+  If no decision is added to a problem then this decision type will
   be used by default. Currently, this is the only supported decision type.
 }
 \examples{
-#TODO
+# load data
+data(sim_projects, sim_features, sim_actions)
+
+# build problem with maximum richness objective, $300 budget, and
+# binary decisions
+p <- problem(sim_projects, sim_actions, sim_features,
+             "name", "success", "name", "cost", "name") \%>\%
+     add_max_richness_objective(budget = 200) \%>\%
+     add_binary_decisions()
+
+# solve problem
+s <- solve(p)
+
+# print solution
+print(s)
+
+# plot solution
+plot(p, s)
+
 }
 \seealso{
 \code{\link{decisions}}.

@@ -9,10 +9,11 @@ NULL
 #'
 #' @param x \code{\link{ProjectProblem-class}} object.
 #'
-#' @details Project prioritization problems involve making decisions on
-#'   about which management actions should be funded or not. Only a
-#'   single decision should be added to a \code{ProjectProblem} object.
-#'   If no decision is added to a problem then this decision class will
+#' @details
+#'   Project prioritization problems involve making decisions about
+#'   how funding will be allocated to management actions.
+#'   Only a single decision should be added to a \code{ProjectProblem} object.
+#'   If no decision is added to a problem then this decision type will
 #'   be used by default. Currently, this is the only supported decision type.
 #'
 #' @return \code{\link{ProjectProblem-class}} object with the decisions
@@ -21,7 +22,25 @@ NULL
 #' @seealso \code{\link{decisions}}.
 #'
 #' @examples
-#' #TODO
+#' # load data
+#' data(sim_projects, sim_features, sim_actions)
+#'
+#' # build problem with maximum richness objective, $300 budget, and
+#' # binary decisions
+#' p <- problem(sim_projects, sim_actions, sim_features,
+#'              "name", "success", "name", "cost", "name") %>%
+#'      add_max_richness_objective(budget = 200) %>%
+#'      add_binary_decisions()
+#'
+#' # solve problem
+#' s <- solve(p)
+#'
+#' # print solution
+#' print(s)
+#'
+#' # plot solution
+#' plot(p, s)
+#'
 #' @name add_binary_decisions
 NULL
 

@@ -11,10 +11,9 @@ NULL
 #'
 #'   \describe{
 #'
-#'   \item{\code{\link{add_binary_decisions}}}{Add a binary decision to a
-#'     project prioritization \code{problem}. This is the classic decision of
-#'     either funding or not funding an action. If no decision is added to a
-#'     problem object then this decision class will be used by default.}
+#'   \item{\code{\link{add_binary_decisions}}}{
+#'     This is the conventional type of decision where management actions are
+#'     either prioritized for funding or not.}
 #'
 #'   }
 #'
@@ -23,7 +22,24 @@ NULL
 #'  \code{\link{weights}}.
 #'
 #' @examples
-#' #TODO
+#' # load data
+#' data(sim_projects, sim_features, sim_actions)
+#'
+#' # build problem with maximum richness objective, $300 budget, and
+#' # binary decisions
+#' p <- problem(sim_projects, sim_actions, sim_features,
+#'              "name", "success", "name", "cost", "name") %>%
+#'      add_max_richness_objective(budget = 200) %>%
+#'      add_binary_decisions()
+#'
+#' # solve problem
+#' s <- solve(p)
+#'
+#' # print solution
+#' print(s)
+#'
+#' # plot solution
+#' plot(p, s)
 #'
 #' @name decisions
 NULL
