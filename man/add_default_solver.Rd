@@ -26,7 +26,27 @@ Ranked from best to worst, the solvers that can be used are:
   any guarantees on solution quality.
 }
 \examples{
-#TODO
+# load data
+data(sim_projects, sim_features, sim_actions)
+
+# build problem with default solver
+p <- problem(sim_projects, sim_actions, sim_features,
+             "name", "success", "name", "cost", "name") \%>\%
+     add_max_richness_objective(budget = 200) \%>\%
+     add_binary_decisions() \%>\%
+     add_default_solver()
+
+# print problem
+print(p)
+
+# solve problem
+s <- solve(p)
+
+# print solution
+print(s)
+
+# plot solution
+plot(p, s)
 
 }
 \seealso{
