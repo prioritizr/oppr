@@ -157,7 +157,7 @@ plot_feature_persistence(p, s)
 
 <img src="man/figures/README-readme-plot-1.png" style="display: block; margin: auto;" />
 
-This has just been a taster of the *ppr R* package. For more information, see the [package website](https://prioritizr.github.io/ppr/articles/optimalppp.html).
+This has just been a taster of the *ppr R* package. For more information, see the [package vignette](https://prioritizr.github.io/ppr/articles/ppr.html).
 
 Citation
 --------

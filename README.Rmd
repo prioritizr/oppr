@@ -121,7 +121,7 @@ The `s` table contains the solution and also various statistics associated with 
 plot_feature_persistence(p, s)
 ```
 
-This has just been a taster of the _ppr R_ package. For more information, see the [package website](https://prioritizr.github.io/ppr/articles/optimalppp.html).
+This has just been a taster of the _ppr R_ package. For more information, see the [package vignette](https://prioritizr.github.io/ppr/articles/ppr.html).
 
 ## Citation
 
