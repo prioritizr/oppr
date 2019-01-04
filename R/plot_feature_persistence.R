@@ -118,9 +118,9 @@ plot_feature_persistence <- function(x, solution, n = 1, symbol_hjust = 0.007) {
                               limits = c(0, 1)) +
   ggplot2::xlab("") +
   ggplot2::scale_fill_gradientn(name = "Weight",
-                                 colors = viridisLite::inferno(
-                                   150, begin = 0, end = 0.9,
-                                   direction = -1)) +
+                                colors = viridisLite::inferno(
+                                  150, begin = 0, end = 0.9,
+                                  direction = -1)) +
   ggplot2::scale_shape_manual(name = "Projects",
                               values = c("Funded" = 8,
                                          "Partially Funded" = 1),
