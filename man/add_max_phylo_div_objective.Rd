@@ -143,8 +143,41 @@ A problem objective is used to specify the overall goal of the
  Hillier & Price 2005 pp. 390--392) to approximate the exponent of this term.
 }
 \examples{
-#TODO
+\donttest{
+# load data
+data(sim_projects, sim_features, sim_actions, sim_tree)
 
+# plot tree
+plot(sim_tree)
+
+# build problem with maximum phylogenetic diversity objective and $300 budget
+p1 <- problem(sim_projects, sim_actions, sim_features,
+             "name", "success", "name", "cost", "name") \%>\%
+      add_max_phylo_div_objective(budget = 300, tree = sim_tree) \%>\%
+      add_binary_decisions()
+
+# solve problem
+s1 <- solve(p1)
+
+# print solution
+print(s1)
+
+# plot solution
+plot(p1, s1)
+
+# build another problem that includes feature weights
+p2 <- p1 \%>\%
+      add_feature_weights("weight")
+
+# solve problem
+s2 <- solve(p2)
+
+# print solution
+print(s2)
+
+# plot solution
+plot(p2, s2)
+}
 }
 \references{
 Bennett JR, Elliott G, Mellish B, Joseph LN, Tulloch AI,

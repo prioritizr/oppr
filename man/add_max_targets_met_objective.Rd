@@ -149,7 +149,7 @@ print(s1)
 
 # plot solution, and add a dashed line to indicate the feature targets
 # we can see the three features meet the targets under the baseline
-# scenario, and the project for F3 was prioritized for funding to
+# scenario, and the project for F3 was prioritized for funding
 # so that its probability of persistence meets the target
 plot(p1, s1) +
 geom_hline(yintercept = 0.2, linetype = "dashed")
