@@ -259,27 +259,27 @@ solver will be used.</p>
               <span class='st'>"random"</span>)
 
 <span class='co'># print solutions</span>
-<span class='fu'><a href='print.html'>print</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/as.data.frame'>as.data.frame</a></span>(<span class='no'>s</span>))</div><div class='output co'>#&gt;   solution  status      obj      cost F1_action F2_action F3_action F4_action
-#&gt; 1        1 OPTIMAL 2.063951 195.39066         1         1         0         0
-#&gt; 2        1 OPTIMAL 2.063951 195.39066         1         1         0         0
-#&gt; 3        1       0 2.063951 195.39066         1         1         0         0
-#&gt; 4        1       0 2.063951 195.39066         1         1         0         0
-#&gt; 5        1    &lt;NA&gt; 2.063951 195.39066         1         1         0         0
-#&gt; 6        1    &lt;NA&gt; 1.401054  99.24274         0         0         0         1
-#&gt;   F5_action baseline_action        F1        F2        F3        F4        F5
-#&gt; 1         0               1 0.7266208 0.8199443 0.0864612 0.2489246 0.1820005
-#&gt; 2         0               1 0.7266208 0.8199443 0.0864612 0.2489246 0.1820005
-#&gt; 3         0               1 0.7266208 0.8199443 0.0864612 0.2489246 0.1820005
-#&gt; 4         0               1 0.7266208 0.8199443 0.0864612 0.2489246 0.1820005
-#&gt; 5         0               1 0.7266208 0.8199443 0.0864612 0.2489246 0.1820005
-#&gt; 6         0               1 0.2977965 0.2500224 0.0864612 0.5847734 0.1820005
-#&gt;       solver
-#&gt; 1    default
-#&gt; 2     gurobi
-#&gt; 3  Rsymphony
-#&gt; 4 lpsymphony
-#&gt; 5  heuristic
-#&gt; 6     random</div></pre>
+<span class='fu'><a href='print.html'>print</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/as.data.frame'>as.data.frame</a></span>(<span class='no'>s</span>))</div><div class='output co'>#&gt;   solution                    status      obj     cost F1_action F2_action
+#&gt; 1        1                   OPTIMAL 2.063951 195.3907         1         1
+#&gt; 2        1                   OPTIMAL 2.063951 195.3907         1         1
+#&gt; 3        1 TM_OPTIMAL_SOLUTION_FOUND 2.063951 195.3907         1         1
+#&gt; 4        1 TM_OPTIMAL_SOLUTION_FOUND 2.063951 195.3907         1         1
+#&gt; 5        1                      &lt;NA&gt; 2.063951 195.3907         1         1
+#&gt; 6        1                      &lt;NA&gt; 1.829878 193.6420         1         0
+#&gt;   F3_action F4_action F5_action baseline_action        F1        F2        F3
+#&gt; 1         0         0         0               1 0.7266208 0.8199443 0.0864612
+#&gt; 2         0         0         0               1 0.7266208 0.8199443 0.0864612
+#&gt; 3         0         0         0               1 0.7266208 0.8199443 0.0864612
+#&gt; 4         0         0         0               1 0.7266208 0.8199443 0.0864612
+#&gt; 5         0         0         0               1 0.7266208 0.8199443 0.0864612
+#&gt; 6         0         1         0               1 0.7266208 0.2500224 0.0864612
+#&gt;          F4        F5     solver
+#&gt; 1 0.2489246 0.1820005    default
+#&gt; 2 0.2489246 0.1820005     gurobi
+#&gt; 3 0.2489246 0.1820005  Rsymphony
+#&gt; 4 0.2489246 0.1820005 lpsymphony
+#&gt; 5 0.2489246 0.1820005  heuristic
+#&gt; 6 0.5847734 0.1820005     random</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
