@@ -114,7 +114,6 @@ NULL
 #'      add_max_targets_met_objective(budget = 200) %>%
 #'      add_absolute_targets(0.4) %>%
 #'      add_locked_in_constraints(which(sim_actions$cost < 1e-5)) %>%
-
 #'      add_binary_decisions()
 #'
 #' # solve problem
