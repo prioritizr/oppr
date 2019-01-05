@@ -129,13 +129,14 @@ NULL
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
-#' # build problem with maximum targets met objective, a $200 budget, and
+#' # build problem with maximum targets met objective, a $200 budget,
 #' # targets that require each feature to have a 20\% chance of persisting into
-#' # the future
+#' # the future, and zero cost actions locked in
 #' p1 <- problem(sim_projects, sim_actions, sim_features,
 #'              "name", "success", "name", "cost", "name") %>%
 #'       add_max_targets_met_objective(budget = 200) %>%
 #'       add_absolute_targets(0.2) %>%
+#'       add_locked_in_constraints(which(sim_actions$cost < 1e-5)) %>%
 #'       add_binary_decisions()
 #'
 #' # solve problem

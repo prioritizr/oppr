@@ -107,12 +107,14 @@ NULL
 #' # plot solution
 #' plot(p2, s2)
 #' }
-#' # build problem with maximum targets met objective, $200 budget, and
-#' # 40\% persistence targets
+#' # build problem with maximum targets met objective, $200 budget,
+#' # 40\% persistence targets, and zero cost actions locked in
 #' p3 <- problem(sim_projects, sim_actions, sim_features,
 #'              "name", "success", "name", "cost", "name") %>%
 #'      add_max_targets_met_objective(budget = 200) %>%
 #'      add_absolute_targets(0.4) %>%
+#'      add_locked_in_constraints(which(sim_actions$cost < 1e-5)) %>%
+
 #'      add_binary_decisions()
 #'
 #' # solve problem
@@ -124,8 +126,8 @@ NULL
 #' # plot solution
 #' plot(p3, s3)
 #'
-#' # build problem with maximum targets met objective, $200 budget, and
-#' # 40\% persistence targets
+#' # build problem with minimum set objective, $200 budget, and 40\%
+#' # persistence targets
 #' p4 <- problem(sim_projects, sim_actions, sim_features,
 #'              "name", "success", "name", "cost", "name") %>%
 #'      add_min_set_objective() %>%

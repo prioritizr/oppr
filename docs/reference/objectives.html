@@ -290,12 +290,13 @@ resources among threatened species: A project prioritization protocol.
 #&gt; </span><span style='color: #949494;'># ... with 6 more variables: baseline_action </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F1 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F2 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
 #&gt; #   F3 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F4 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F5 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># plot solution</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>p2</span>, <span class='no'>s2</span>)</div><div class='img'><img src='objectives-2.png' alt='' width='700' height='433' /></div></span><div class='input'><span class='co'># build problem with maximum targets met objective, $200 budget, and</span>
-<span class='co'># 40\% persistence targets</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>p2</span>, <span class='no'>s2</span>)</div><div class='img'><img src='objectives-2.png' alt='' width='700' height='433' /></div></span><div class='input'><span class='co'># build problem with maximum targets met objective, $200 budget,</span>
+<span class='co'># 40\% persistence targets, and zero cost actions locked in</span>
 <span class='no'>p3</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_actions</span>, <span class='no'>sim_features</span>,
              <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span>) <span class='kw'>%&gt;%</span>
      <span class='fu'><a href='add_max_targets_met_objective.html'>add_max_targets_met_objective</a></span>(<span class='kw'>budget</span> <span class='kw'>=</span> <span class='fl'>200</span>) <span class='kw'>%&gt;%</span>
      <span class='fu'><a href='add_absolute_targets.html'>add_absolute_targets</a></span>(<span class='fl'>0.4</span>) <span class='kw'>%&gt;%</span>
+     <span class='fu'><a href='add_locked_in_constraints.html'>add_locked_in_constraints</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/which'>which</a></span>(<span class='no'>sim_actions</span>$<span class='no'>cost</span> <span class='kw'>&lt;</span> <span class='fl'>1e-5</span>)) <span class='kw'>%&gt;%</span>
      <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span>()
 
 <span class='co'># solve problem</span>
@@ -307,10 +308,11 @@ resources among threatened species: A project prioritization protocol.
 #&gt;   Bounds range     [1e+00, 1e+00]
 #&gt;   RHS range        [1e+00, 2e+02]
 #&gt; Found heuristic solution: objective -0.0000000
+#&gt; Presolve removed 1 rows and 1 columns
 #&gt; Presolve time: 0.00s
-#&gt; Presolved: 47 rows, 47 columns, 117 nonzeros
-#&gt; Variable types: 0 continuous, 47 integer (47 binary)
-#&gt; Presolved: 47 rows, 47 columns, 117 nonzeros
+#&gt; Presolved: 46 rows, 46 columns, 115 nonzeros
+#&gt; Variable types: 0 continuous, 46 integer (46 binary)
+#&gt; Presolved: 46 rows, 46 columns, 115 nonzeros
 #&gt; 
 #&gt; 
 #&gt; Root relaxation: objective 2.039868e+00, 17 iterations, 0.00 seconds
@@ -337,8 +339,8 @@ resources among threatened species: A project prioritization protocol.
 #&gt; #   F3 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F4 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F5 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># plot solution</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>p3</span>, <span class='no'>s3</span>)</div><div class='img'><img src='objectives-3.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># build problem with maximum targets met objective, $200 budget, and</span>
-<span class='co'># 40\% persistence targets</span>
+<span class='co'># build problem with minimum set objective, $200 budget, and 40\%</span>
+<span class='co'># persistence targets</span>
 <span class='no'>p4</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_actions</span>, <span class='no'>sim_features</span>,
              <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span>) <span class='kw'>%&gt;%</span>
      <span class='fu'><a href='add_min_set_objective.html'>add_min_set_objective</a></span>() <span class='kw'>%&gt;%</span>

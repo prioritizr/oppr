@@ -261,13 +261,14 @@ threat management. <em>Conservation Biology</em>, <strong>29</strong>, 525--536.
 <span class='co'># load data</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_features</span>, <span class='no'>sim_actions</span>)
 
-<span class='co'># build problem with maximum targets met objective, a $200 budget, and</span>
+<span class='co'># build problem with maximum targets met objective, a $200 budget,</span>
 <span class='co'># targets that require each feature to have a 20\% chance of persisting into</span>
-<span class='co'># the future</span>
+<span class='co'># the future, and zero cost actions locked in</span>
 <span class='no'>p1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_actions</span>, <span class='no'>sim_features</span>,
              <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span>) <span class='kw'>%&gt;%</span>
       <span class='fu'>add_max_targets_met_objective</span>(<span class='kw'>budget</span> <span class='kw'>=</span> <span class='fl'>200</span>) <span class='kw'>%&gt;%</span>
       <span class='fu'><a href='add_absolute_targets.html'>add_absolute_targets</a></span>(<span class='fl'>0.2</span>) <span class='kw'>%&gt;%</span>
+      <span class='fu'><a href='add_locked_in_constraints.html'>add_locked_in_constraints</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/which'>which</a></span>(<span class='no'>sim_actions</span>$<span class='no'>cost</span> <span class='kw'>&lt;</span> <span class='fl'>1e-5</span>)) <span class='kw'>%&gt;%</span>
       <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span>()
 
 <span class='co'># solve problem</span>
@@ -279,13 +280,14 @@ threat management. <em>Conservation Biology</em>, <strong>29</strong>, 525--536.
 #&gt;   Bounds range     [1e+00, 1e+00]
 #&gt;   RHS range        [1e+00, 2e+02]
 #&gt; Found heuristic solution: objective 1.0000000
+#&gt; Presolve removed 1 rows and 1 columns
 #&gt; Presolve time: 0.00s
-#&gt; Presolved: 47 rows, 47 columns, 120 nonzeros
-#&gt; Variable types: 0 continuous, 47 integer (47 binary)
-#&gt; Presolved: 47 rows, 47 columns, 120 nonzeros
+#&gt; Presolved: 46 rows, 46 columns, 118 nonzeros
+#&gt; Variable types: 0 continuous, 46 integer (46 binary)
+#&gt; Presolved: 46 rows, 46 columns, 118 nonzeros
 #&gt; 
 #&gt; 
-#&gt; Root relaxation: objective 4.961414e+00, 19 iterations, 0.00 seconds
+#&gt; Root relaxation: objective 4.961414e+00, 15 iterations, 0.00 seconds
 #&gt; 
 #&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
 #&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
@@ -293,7 +295,7 @@ threat management. <em>Conservation Biology</em>, <strong>29</strong>, 525--536.
 #&gt;      0     0    4.96141    0    5    1.00000    4.96141   396%     -    0s
 #&gt; H    0     0                       4.0000000    4.96141  24.0%     -    0s
 #&gt; 
-#&gt; Explored 1 nodes (19 simplex iterations) in 0.00 seconds
+#&gt; Explored 1 nodes (15 simplex iterations) in 0.00 seconds
 #&gt; Thread count was 1 (of 4 available processors)
 #&gt; 
 #&gt; Solution count 1: 4 
@@ -304,7 +306,7 @@ threat management. <em>Conservation Biology</em>, <strong>29</strong>, 525--536.
 <span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s1</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 15</span><span>
 #&gt;   solution status   obj  cost F1_action F2_action F3_action F4_action F5_action
 #&gt;      </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 OPTIM~     4  103.         0         0         1         0         0
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 OPTIM…     4  103.         0         0         1         0         0
 #&gt; </span><span style='color: #949494;'># ... with 6 more variables: baseline_action </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F1 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F2 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
 #&gt; #   F3 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F4 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F5 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># plot solution, and add a dashed line to indicate the feature targets</span>
@@ -326,13 +328,14 @@ threat management. <em>Conservation Biology</em>, <strong>29</strong>, 525--536.
 #&gt;   Bounds range     [1e+00, 1e+00]
 #&gt;   RHS range        [1e+00, 2e+02]
 #&gt; Found heuristic solution: objective 0.2113582
+#&gt; Presolve removed 1 rows and 1 columns
 #&gt; Presolve time: 0.00s
-#&gt; Presolved: 47 rows, 47 columns, 120 nonzeros
-#&gt; Variable types: 0 continuous, 47 integer (47 binary)
-#&gt; Presolved: 47 rows, 47 columns, 120 nonzeros
+#&gt; Presolved: 46 rows, 46 columns, 118 nonzeros
+#&gt; Variable types: 0 continuous, 46 integer (46 binary)
+#&gt; Presolved: 46 rows, 46 columns, 118 nonzeros
 #&gt; 
 #&gt; 
-#&gt; Root relaxation: objective 2.856670e+00, 19 iterations, 0.00 seconds
+#&gt; Root relaxation: objective 2.856670e+00, 15 iterations, 0.00 seconds
 #&gt; 
 #&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
 #&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
@@ -345,7 +348,7 @@ threat management. <em>Conservation Biology</em>, <strong>29</strong>, 525--536.
 #&gt;   Cover: 1
 #&gt;   Clique: 15
 #&gt; 
-#&gt; Explored 1 nodes (21 simplex iterations) in 0.00 seconds
+#&gt; Explored 1 nodes (16 simplex iterations) in 0.03 seconds
 #&gt; Thread count was 1 (of 4 available processors)
 #&gt; 
 #&gt; Solution count 1: 2.64402 
@@ -356,7 +359,7 @@ threat management. <em>Conservation Biology</em>, <strong>29</strong>, 525--536.
 <span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s2</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 15</span><span>
 #&gt;   solution status   obj  cost F1_action F2_action F3_action F4_action F5_action
 #&gt;      </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 OPTIM~  2.64  194.         1         0         0         0         1
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 OPTIM…  2.64  194.         1         0         0         0         1
 #&gt; </span><span style='color: #949494;'># ... with 6 more variables: baseline_action </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F1 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F2 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
 #&gt; #   F3 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F4 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F5 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># plot solution, and add a dashed line to indicate the feature targets</span>
