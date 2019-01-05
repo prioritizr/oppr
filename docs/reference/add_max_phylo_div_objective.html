@@ -212,8 +212,8 @@ features, present in the argument to <code>x</code>.</p></td>
   \space \mathrm{(eqn \space 1d)} \\
   Z_{fj} \leq Y_{j} \space \forall \space j \in J \space \mathrm{(eqn \space
   1e)} \\
-  \sum_{j = 0}^{J} Z_{fj} = 1 \space \forall \space f \in F \space
-  \mathrm{(eqn \space 1f)} \\
+  \sum_{j = 0}^{J} Z_{fj} \times \mathrm{ceil}(B_{fj}) = 1 \space \forall
+  \space f \in F \space \mathrm{(eqn \space 1f)} \\
   A_{ij} Y_{j} \leq X_{i} \space \forall \space i \in I, j \in J \space
   \mathrm{(eqn \space 1g)} \\
   E_{f}, R_{b} \geq 0, E_{f}, R_{b} \leq 1 \space \forall \space b \in B
@@ -281,7 +281,7 @@ research &amp; management science</em>. Springer.</p>
       <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span>()
 
 <span class='co'># solve problem</span>
-<span class='no'>s1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p1</span>)</div><div class='output co'>#&gt; Optimize a model with 50 rows, 50 columns and 143 nonzeros
+<span class='no'>s1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p1</span>)</div><div class='output co'>#&gt; Optimize a model with 50 rows, 50 columns and 123 nonzeros
 #&gt; Model has 3 piecewise-linear objective terms
 #&gt; Variable types: 3 continuous, 42 integer (42 binary)
 #&gt; Semi-Variable types: 5 continuous, 0 integer
@@ -290,35 +290,35 @@ research &amp; management science</em>. Springer.</p>
 #&gt;   Objective range  [2e-01, 2e+00]
 #&gt;   Bounds range     [1e+00, 1e+00]
 #&gt;   RHS range        [1e+00, 3e+02]
-#&gt; Found heuristic solution: objective 0.3355236
-#&gt; Presolve removed 3 rows and 3 columns
+#&gt; Found heuristic solution: objective 1.6818350
+#&gt; Presolve removed 16 rows and 12 columns
 #&gt; Presolve time: 0.00s
-#&gt; Presolved: 50 rows, 3044 columns, 3133 nonzeros
-#&gt; Variable types: 3002 continuous, 42 integer (42 binary)
+#&gt; Presolved: 37 rows, 3035 columns, 3076 nonzeros
+#&gt; Variable types: 3000 continuous, 35 integer (35 binary)
 #&gt; Presolve removed 3 rows and 3 columns
-#&gt; Presolved: 47 rows, 3041 columns, 3127 nonzeros
+#&gt; Presolved: 34 rows, 3032 columns, 3070 nonzeros
 #&gt; 
 #&gt; 
-#&gt; Root relaxation: objective 2.639615e+00, 31 iterations, 0.00 seconds
+#&gt; Root relaxation: objective 2.639615e+00, 18 iterations, 0.00 seconds
 #&gt; 
 #&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
 #&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #&gt; 
-#&gt;      0     0    2.63962    0    8    0.33552    2.63962   687%     -    0s
-#&gt; H    0     0                       2.6064978    2.63962  1.27%     -    0s
+#&gt;      0     0    2.63962    0    6    1.68184    2.63962  56.9%     -    0s
+#&gt; H    0     0                       2.6304348    2.63962  0.35%     -    0s
 #&gt; 
-#&gt; Explored 1 nodes (31 simplex iterations) in 0.01 seconds
+#&gt; Explored 1 nodes (18 simplex iterations) in 0.01 seconds
 #&gt; Thread count was 1 (of 4 available processors)
 #&gt; 
-#&gt; Solution count 1: 2.6065 
+#&gt; Solution count 1: 2.63043 
 #&gt; 
 #&gt; Optimal solution found (tolerance 1.00e-01)
-#&gt; Best objective 2.606497765595e+00, best bound 2.639615477017e+00, gap 1.2706%</div><div class='input'>
+#&gt; Best objective 2.630434803747e+00, best bound 2.639615477017e+00, gap 0.3490%</div><div class='input'>
 <span class='co'># print solution</span>
 <span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s1</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 15</span><span>
 #&gt;   solution status   obj  cost F1_action F2_action F3_action F4_action F5_action
 #&gt;      </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 OPTIM~  2.63  295.         1         1         0         0         1
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 OPTIM…  2.63  295.         1         1         0         0         1
 #&gt; </span><span style='color: #949494;'># ... with 6 more variables: baseline_action </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F1 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F2 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
 #&gt; #   F3 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F4 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F5 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># plot solution</span>
@@ -328,7 +328,7 @@ research &amp; management science</em>. Springer.</p>
       <span class='fu'><a href='add_feature_weights.html'>add_feature_weights</a></span>(<span class='st'>"weight"</span>)
 
 <span class='co'># solve problem with feature weights</span>
-<span class='no'>s2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p2</span>)</div><div class='output co'>#&gt; Optimize a model with 50 rows, 50 columns and 143 nonzeros
+<span class='no'>s2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p2</span>)</div><div class='output co'>#&gt; Optimize a model with 50 rows, 50 columns and 123 nonzeros
 #&gt; Model has 3 piecewise-linear objective terms
 #&gt; Variable types: 3 continuous, 42 integer (42 binary)
 #&gt; Semi-Variable types: 5 continuous, 0 integer
@@ -337,23 +337,23 @@ research &amp; management science</em>. Springer.</p>
 #&gt;   Objective range  [4e-01, 3e+00]
 #&gt;   Bounds range     [1e+00, 1e+00]
 #&gt;   RHS range        [1e+00, 3e+02]
-#&gt; Found heuristic solution: objective 0.3355236
-#&gt; Presolve removed 3 rows and 3 columns
+#&gt; Found heuristic solution: objective 2.3361392
+#&gt; Presolve removed 16 rows and 12 columns
 #&gt; Presolve time: 0.00s
-#&gt; Presolved: 50 rows, 3044 columns, 3133 nonzeros
-#&gt; Variable types: 3002 continuous, 42 integer (42 binary)
+#&gt; Presolved: 37 rows, 3035 columns, 3076 nonzeros
+#&gt; Variable types: 3000 continuous, 35 integer (35 binary)
 #&gt; Presolve removed 3 rows and 3 columns
-#&gt; Presolved: 47 rows, 3041 columns, 3127 nonzeros
+#&gt; Presolved: 34 rows, 3032 columns, 3070 nonzeros
 #&gt; 
 #&gt; 
-#&gt; Root relaxation: objective 4.011915e+00, 27 iterations, 0.00 seconds
+#&gt; Root relaxation: objective 4.011915e+00, 14 iterations, 0.00 seconds
 #&gt; 
 #&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
 #&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #&gt; 
 #&gt; *    0     0               0       4.0119147    4.01191  0.00%     -    0s
 #&gt; 
-#&gt; Explored 0 nodes (27 simplex iterations) in 0.01 seconds
+#&gt; Explored 0 nodes (14 simplex iterations) in 0.01 seconds
 #&gt; Thread count was 1 (of 4 available processors)
 #&gt; 
 #&gt; Solution count 1: 4.01191 
@@ -364,7 +364,7 @@ research &amp; management science</em>. Springer.</p>
 <span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s2</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 15</span><span>
 #&gt;   solution status   obj  cost F1_action F2_action F3_action F4_action F5_action
 #&gt;      </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 OPTIM~  4.01  294.         1         0         0         1         1
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 OPTIM…  4.01  294.         1         0         0         1         1
 #&gt; </span><span style='color: #949494;'># ... with 6 more variables: baseline_action </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F1 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F2 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
 #&gt; #   F3 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F4 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F5 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># plot solution based on feature weights</span>

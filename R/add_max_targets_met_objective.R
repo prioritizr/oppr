@@ -78,8 +78,8 @@ NULL
 #'   \space \mathrm{(eqn \space 1d)} \\
 #'   Z_{fj} \leq Y_{j} \space \forall \space j \in J \space \mathrm{(eqn \space
 #'   1e)} \\
-#'   \sum_{j = 0}^{J} Z_{fj} = 1 \space \forall \space f \in F \space
-#'   \mathrm{(eqn \space 1f)} \\
+#'   \sum_{j = 0}^{J} Z_{fj} \times \mathrm{ceil}(B_{fj}) = 1 \space \forall
+#'   \space f \in F \space \mathrm{(eqn \space 1f)} \\
 #'   A_{ij} Y_{j} \leq X_{i} \space \forall \space i \in I, j \in J \space
 #'   \mathrm{(eqn \space 1g)} \\
 #'   E_{f} \geq 0, E_{f} \leq 1 \space \forall \space b \in B \space
@@ -93,7 +93,7 @@ NULL
 #'   G_f (1 - E_f) >= T_f for all f \in F (eqn 1c),
 #'   E_f = 1 - sum_j^J Y_{fj} P_j B_{fj} for all f in F (eqn 1d),
 #'   Z_{fj} <= Y_j for all j in J (eqn 1e),
-#'   sum_j^J Z_{fj} = 1 for all f in F (eqn 1f),
+#'   sum_j^J Z_{fj} * ceil(B_{fj}) = 1 for all f in F (eqn 1f),
 #'   A_{ij} Y_{j} <= X_{i} for all i I, j in J (eqn 1g),
 #'   E_f >= 0, E_f <= 1 for all f in F (eqn 1h),
 #'   G_f, X_i, Y_j, Z_{fj} in [0, 1] for all i in I, j in J, f in F (eqn 1i)

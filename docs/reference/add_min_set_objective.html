@@ -184,8 +184,8 @@ This objective is conceptually similar to that used in <em>Marxan</em>
   \space \mathrm{(eqn \space 1c)} \\
   Z_{fj} \leq Y_{j} \space \forall \space j \in J \space \mathrm{(eqn \space
   1d)} \\
-  \sum_{j = 0}^{J} Z_{fj} = 1 \space \forall \space f \in F \space
-  \mathrm{(eqn \space 1e)} \\
+  \sum_{j = 0}^{J} Z_{fj} \times \mathrm{ceil}(B_{fj}) = 1 \space \forall
+  \space f \in F \space \mathrm{(eqn \space 1e)} \\
   A_{ij} Y_{j} \leq X_{i} \space \forall \space i \in I, j \in J \space
   \mathrm{(eqn \space 1f)} \\
   E_{f} \geq 0, E_{f} \leq 1 \space \forall \space b \in B \space
@@ -234,7 +234,7 @@ computational tools</em>, 185-195.</p>
       <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span>()
 
 <span class='co'># solve problem</span>
-<span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p</span>)</div><div class='output co'>#&gt; Optimize a model with 46 rows, 42 columns and 112 nonzeros
+<span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p</span>)</div><div class='output co'>#&gt; Optimize a model with 46 rows, 42 columns and 92 nonzeros
 #&gt; Variable types: 0 continuous, 42 integer (42 binary)
 #&gt; Coefficient statistics:
 #&gt;   Matrix range     [9e-02, 1e+00]
@@ -242,10 +242,10 @@ computational tools</em>, 185-195.</p>
 #&gt;   Bounds range     [1e+00, 1e+00]
 #&gt;   RHS range        [3e-01, 1e+00]
 #&gt; Found heuristic solution: objective 497.7671458
-#&gt; Presolve removed 45 rows and 40 columns
+#&gt; Presolve removed 45 rows and 20 columns
 #&gt; Presolve time: 0.00s
-#&gt; Presolved: 1 rows, 2 columns, 2 nonzeros
-#&gt; Variable types: 0 continuous, 2 integer (2 binary)
+#&gt; Presolved: 1 rows, 22 columns, 2 nonzeros
+#&gt; Variable types: 0 continuous, 22 integer (22 binary)
 #&gt; 
 #&gt; Explored 0 nodes (0 simplex iterations) in 0.00 seconds
 #&gt; Thread count was 1 (of 4 available processors)

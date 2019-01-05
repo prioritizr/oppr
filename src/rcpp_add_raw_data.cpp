@@ -76,11 +76,13 @@ bool rcpp_add_raw_data(SEXP x, arma::sp_mat pa_matrix, arma::sp_mat pf_matrix,
   for (std::size_t f = 0; f < (ptr->_number_of_features); ++f) {
     r += 1;
     for (std::size_t p = 0; p < (ptr->_number_of_projects); ++p) {
-      ptr->_A_i.push_back(r);
-      ptr->_A_j.push_back((ptr->_number_of_actions) +
-                          (ptr->_number_of_projects) +
-                          (f * (ptr->_number_of_projects)) + p);
-      ptr->_A_x.push_back(1.0);
+      if (pf_matrix(p, f) > 1.0e-15) {
+        ptr->_A_i.push_back(r);
+        ptr->_A_j.push_back((ptr->_number_of_actions) +
+                            (ptr->_number_of_projects) +
+                            (f * (ptr->_number_of_projects)) + p);
+        ptr->_A_x.push_back(1.0);
+      }
     }
     ptr->_sense.push_back("=");
     ptr->_row_ids.push_back("c3");

@@ -107,7 +107,11 @@ r_phylo_div_mip_formulation <- function(project_data, action_data, tree, budget,
   ### project
   for (s in species_names) {
     curr_row <- curr_row + 1
-    model$A[curr_row, paste0("Z_", seq_len(n_projects), s)] <- 1
+    for (j in seq_len(n_projects)) {
+      if (project_data[[s]][j] > 1.0e-15) {
+        model$A[curr_row, paste0("Z_", j, s)] <- 1
+      }
+    }
     model$sense[curr_row] <- "="
     model$rhs[curr_row] <- 1
     model$rownames[curr_row] <- "C3"

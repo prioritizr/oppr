@@ -80,7 +80,11 @@ test_that("compile (no weights)", {
   }
   for (f in seq_len(nrow(features))) {
     curr_row <- curr_row + 1
-    A[curr_row, paste0("Z_", seq_len(nrow(projects)), f)] <- 1
+    for (j in seq_len(nrow(projects))) {
+      if (isTRUE(projects[[features$name[f]]][j] > 1e-15)) {
+        A[curr_row, paste0("Z_", j, f)] <- 1
+      }
+    }
   }
   for (f in seq_len(nrow(features))) {
     curr_row <- curr_row + 1
@@ -177,7 +181,11 @@ test_that("compile (weights)", {
   }
   for (f in seq_len(nrow(features))) {
     curr_row <- curr_row + 1
-    A[curr_row, paste0("Z_", seq_len(nrow(projects)), f)] <- 1
+    for (j in seq_len(nrow(projects))) {
+      if (isTRUE(projects[[features$name[f]]][j] > 1e-15)) {
+        A[curr_row, paste0("Z_", j, f)] <- 1
+      }
+    }
   }
   for (f in seq_len(nrow(features))) {
     curr_row <- curr_row + 1

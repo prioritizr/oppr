@@ -82,7 +82,11 @@ test_that("compile (no weights)", {
   }
   for (f in seq_len(nrow(features))) {
     curr_row <- curr_row + 1
-    A[curr_row, paste0("Z_", seq_len(nrow(projects)), f)] <- 1
+    for (j in seq_len(nrow(projects))) {
+      if (isTRUE(projects[[features$name[f]]][j] > 1e-15)) {
+        A[curr_row, paste0("Z_", j, f)] <- 1
+      }
+    }
   }
   for (f in seq_len(nrow(features))) {
     curr_row <- curr_row + 1
@@ -181,7 +185,11 @@ test_that("compile (weights)", {
   }
   for (f in seq_len(nrow(features))) {
     curr_row <- curr_row + 1
-    A[curr_row, paste0("Z_", seq_len(nrow(projects)), f)] <- 1
+    for (j in seq_len(nrow(projects))) {
+      if (isTRUE(projects[[features$name[f]]][j] > 1e-15)) {
+        A[curr_row, paste0("Z_", j, f)] <- 1
+      }
+    }
   }
   for (f in seq_len(nrow(features))) {
     curr_row <- curr_row + 1
@@ -348,7 +356,7 @@ test_that("exact solver (locked constraints, multiple solutions)", {
   # create problem
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
                 "name") %>%
-       add_max_targets_met_objective(budget = 0.11) %>%
+       add_max_targets_met_objective(budget = 100) %>%
        add_absolute_targets("target") %>%
        add_locked_in_constraints(1) %>%
        add_locked_out_constraints(2) %>%

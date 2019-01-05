@@ -79,13 +79,12 @@ print(s2)
 # plot solution
 plot(p2, s2)
 }
-# build problem with maximum targets met objective, $200 budget,
-# 40\\\% persistence targets, and zero cost actions locked in
+# build problem with maximum targets met objective, $200 budget, and
+# 40\\\% persistence targets
 p3 <- problem(sim_projects, sim_actions, sim_features,
              "name", "success", "name", "cost", "name") \%>\%
      add_max_targets_met_objective(budget = 200) \%>\%
      add_absolute_targets(0.4) \%>\%
-     add_locked_in_constraints(which(sim_actions$cost < 1e-5)) \%>\%
      add_binary_decisions()
 
 # solve problem

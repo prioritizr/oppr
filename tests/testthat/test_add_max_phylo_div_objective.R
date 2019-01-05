@@ -198,7 +198,7 @@ test_that("exact solver (locked constraints, multiple solutions)", {
   # make problems
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
                "name") %>%
-       add_max_phylo_div_objective(0.2, tree) %>%
+       add_max_phylo_div_objective(100, tree) %>%
        add_locked_in_constraints(1) %>%
        add_locked_out_constraints(2) %>%
        add_binary_decisions() %>%
@@ -212,7 +212,7 @@ test_that("exact solver (locked constraints, multiple solutions)", {
                       (5 * s$F2) +
                       (5 * s$F3) +
                       (100 * (1 - ((1 - (s$F1)) * (1 - (s$F2))))))
-  expect_true(all(s$cost <= 0.2))
+  expect_true(all(s$cost <= 0.25))
   expect_equal(s$cost, (s$A1 * actions$cost[1]) +
                        (s$A2 * actions$cost[2]) +
                        (s$A3 * actions$cost[3]) +
