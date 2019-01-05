@@ -31,10 +31,10 @@ test_that("minimum set objective (1 solution)", {
   expect_equal(s$status, NA_character_)
   expect_equal(s$obj, 0.25)
   expect_equal(s$cost, 0.25)
-  expect_equal(s$A1, TRUE)
-  expect_equal(s$A2, FALSE)
-  expect_equal(s$A3, TRUE)
-  expect_equal(s$A4, TRUE)
+  expect_equal(s$A1, 1)
+  expect_equal(s$A2, 0)
+  expect_equal(s$A3, 1)
+  expect_equal(s$A4, 1)
   expect_equal(s$F1, 0.95 * 0.91)
   expect_equal(s$F2, 0.94 * 0.8)
   expect_equal(s$F3, 1 * 0.1)
@@ -74,9 +74,9 @@ test_that("minimum set objective (100 solutions)", {
                        (0.1 * s$A2) +
                        (0.15 * s$A3) +
                        (0.0 * s$A4))
-  expect_equal(s$A1, rep(TRUE, 100))
+  expect_equal(s$A1, rep(1, 100))
   expect_equal(s$A2 + s$A3, rep(1, 100))
-  expect_equal(s$A4, rep(TRUE, 100))
+  expect_equal(s$A4, rep(1, 100))
   expect_true(all(s$F1 > 0.7))
   expect_true(all(s$F2 > 0.7))
   expect_true(all(s$F3 > 0.05))
@@ -115,10 +115,10 @@ test_that("maximum benefit objective (1 solution)", {
                        (0.1 * s$A2) +
                        (0.15 * s$A3) +
                        (0.0 * s$A4))
-  expect_equal(s$A1, TRUE)
-  expect_equal(s$A2, FALSE)
-  expect_equal(s$A3, FALSE)
-  expect_equal(s$A4, TRUE)
+  expect_equal(s$A1, 1)
+  expect_equal(s$A2, 0)
+  expect_equal(s$A3, 0)
+  expect_equal(s$A4, 1)
   expect_equal(s$F1, 0.95 * 0.91)
   expect_equal(s$F2, 1 * 0.1)
   expect_equal(s$F3, 1 * 0.1)
@@ -154,8 +154,8 @@ test_that("maximum benefit objective (100 solutions)", {
   expect_equal(s$obj, s$F1 + s$F2 + s$F3)
   expect_true(all(s$cost <= 0.15))
   expect_equal(s$A1 + s$A3, rep(1, 100))
-  expect_equal(s$A2, rep(FALSE, 100))
-  expect_equal(s$A4, rep(TRUE, 100))
+  expect_equal(s$A2, rep(0, 100))
+  expect_equal(s$A4, rep(1, 100))
 })
 
 test_that("invalid arguments", {

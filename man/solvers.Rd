@@ -59,8 +59,51 @@ The following solvers can be used to find solutions for a
 }
 }
 \examples{
-#TODO
+# load data
+data(sim_projects, sim_features, sim_actions)
 
+# build problem
+p1 <- problem(sim_projects, sim_actions, sim_features,
+             "name", "success", "name", "cost", "name") \%>\%
+     add_max_richness_objective(budget = 200) \%>\%
+     add_binary_decisions()
+
+# build another problem, with the default solver
+p2 <- p1 \%>\%
+      add_default_solver()
+
+# build another problem, with the gurobi solver
+\donttest{
+p3 <- p1 \%>\%
+      add_gurobi_solver()
+}
+
+# build another problem, with the Rsympony solver
+p4 <- p1 \%>\%
+      add_rsymphony_solver()
+
+# build another problem, with the lpsymphony solver
+\donttest{
+p5 <- p1 \%>\%
+      add_lpsymphony_solver()
+}
+# build another problem, with the heuristic solver
+p6 <- p1 \%>\%
+      add_heuristic_solver()
+
+# build another problem, with the random solver
+p7 <- p1 \%>\%
+      add_random_solver()
+
+\donttest{
+# generate solutions using each of the solvers
+s <- rbind(solve(p2), solve(p3), solve(p4), solve(p5), solve(p6), solve(p7))
+s$solver <- c("default", "gurobi", "Rsymphony", "lpsymphony", "heuristic",
+              "random")
+
+# print solutions
+print(as.data.frame(s))
+}
 }
 \seealso{
 \code{\link{constraints}},  \code{\link{decisions}},

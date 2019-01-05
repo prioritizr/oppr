@@ -169,9 +169,117 @@ solver will be used.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>#TODO
+    <pre class="examples"><div class='input'><span class='co'># load data</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_features</span>, <span class='no'>sim_actions</span>)
 
-</div></pre>
+<span class='co'># build problem</span>
+<span class='no'>p1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_actions</span>, <span class='no'>sim_features</span>,
+             <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span>) <span class='kw'>%&gt;%</span>
+     <span class='fu'><a href='add_max_richness_objective.html'>add_max_richness_objective</a></span>(<span class='kw'>budget</span> <span class='kw'>=</span> <span class='fl'>200</span>) <span class='kw'>%&gt;%</span>
+     <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span>()
+
+<span class='co'># build another problem, with the default solver</span>
+<span class='no'>p2</span> <span class='kw'>&lt;-</span> <span class='no'>p1</span> <span class='kw'>%&gt;%</span>
+      <span class='fu'><a href='add_default_solver.html'>add_default_solver</a></span>()
+
+<span class='co'># build another problem, with the gurobi solver</span></div><div class='input'><span class='no'>p3</span> <span class='kw'>&lt;-</span> <span class='no'>p1</span> <span class='kw'>%&gt;%</span>
+      <span class='fu'><a href='add_gurobi_solver.html'>add_gurobi_solver</a></span>()</div><div class='input'>
+<span class='co'># build another problem, with the Rsympony solver</span>
+<span class='no'>p4</span> <span class='kw'>&lt;-</span> <span class='no'>p1</span> <span class='kw'>%&gt;%</span>
+      <span class='fu'><a href='add_rsymphony_solver.html'>add_rsymphony_solver</a></span>()
+
+<span class='co'># build another problem, with the lpsymphony solver</span></div><div class='input'><span class='no'>p5</span> <span class='kw'>&lt;-</span> <span class='no'>p1</span> <span class='kw'>%&gt;%</span>
+      <span class='fu'><a href='add_lsymphony_solver.html'>add_lpsymphony_solver</a></span>()</div><div class='input'><span class='co'># build another problem, with the heuristic solver</span>
+<span class='no'>p6</span> <span class='kw'>&lt;-</span> <span class='no'>p1</span> <span class='kw'>%&gt;%</span>
+      <span class='fu'><a href='add_heuristic_solver.html'>add_heuristic_solver</a></span>()
+
+<span class='co'># build another problem, with the random solver</span>
+<span class='no'>p7</span> <span class='kw'>&lt;-</span> <span class='no'>p1</span> <span class='kw'>%&gt;%</span>
+      <span class='fu'><a href='add_random_solver.html'>add_random_solver</a></span>()</div><div class='input'><span class='co'># generate solutions using each of the solvers</span>
+<span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/cbind'>rbind</a></span>(<span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p2</span>), <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p3</span>), <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p4</span>), <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p5</span>), <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p6</span>), <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p7</span>))</div><div class='output co'>#&gt; Optimize a model with 47 rows, 47 columns and 122 nonzeros
+#&gt; Variable types: 0 continuous, 42 integer (42 binary)
+#&gt; Semi-Variable types: 5 continuous, 0 integer
+#&gt; Coefficient statistics:
+#&gt;   Matrix range     [9e-02, 1e+02]
+#&gt;   Objective range  [1e+00, 1e+00]
+#&gt;   Bounds range     [1e+00, 1e+00]
+#&gt;   RHS range        [1e+00, 2e+02]
+#&gt; Found heuristic solution: objective -0.0000000
+#&gt; Presolve removed 3 rows and 3 columns
+#&gt; Presolve time: 0.00s
+#&gt; Presolved: 44 rows, 44 columns, 113 nonzeros
+#&gt; Variable types: 2 continuous, 42 integer (42 binary)
+#&gt; Presolved: 44 rows, 44 columns, 113 nonzeros
+#&gt; 
+#&gt; 
+#&gt; Root relaxation: objective 2.063951e+00, 17 iterations, 0.00 seconds
+#&gt; 
+#&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
+#&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+#&gt; 
+#&gt; *    0     0               0       2.0639515    2.06395  0.00%     -    0s
+#&gt; 
+#&gt; Explored 0 nodes (17 simplex iterations) in 0.00 seconds
+#&gt; Thread count was 1 (of 4 available processors)
+#&gt; 
+#&gt; Solution count 1: 2.06395 
+#&gt; 
+#&gt; Optimal solution found (tolerance 1.00e-01)
+#&gt; Best objective 2.063951451212e+00, best bound 2.063951451212e+00, gap 0.0000%
+#&gt; Optimize a model with 47 rows, 47 columns and 122 nonzeros
+#&gt; Variable types: 0 continuous, 42 integer (42 binary)
+#&gt; Semi-Variable types: 5 continuous, 0 integer
+#&gt; Coefficient statistics:
+#&gt;   Matrix range     [9e-02, 1e+02]
+#&gt;   Objective range  [1e+00, 1e+00]
+#&gt;   Bounds range     [1e+00, 1e+00]
+#&gt;   RHS range        [1e+00, 2e+02]
+#&gt; Found heuristic solution: objective -0.0000000
+#&gt; Presolve removed 3 rows and 3 columns
+#&gt; Presolve time: 0.00s
+#&gt; Presolved: 44 rows, 44 columns, 113 nonzeros
+#&gt; Variable types: 2 continuous, 42 integer (42 binary)
+#&gt; Presolved: 44 rows, 44 columns, 113 nonzeros
+#&gt; 
+#&gt; 
+#&gt; Root relaxation: objective 2.063951e+00, 17 iterations, 0.00 seconds
+#&gt; 
+#&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
+#&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+#&gt; 
+#&gt; *    0     0               0       2.0639515    2.06395  0.00%     -    0s
+#&gt; 
+#&gt; Explored 0 nodes (17 simplex iterations) in 0.00 seconds
+#&gt; Thread count was 1 (of 4 available processors)
+#&gt; 
+#&gt; Solution count 1: 2.06395 
+#&gt; 
+#&gt; Optimal solution found (tolerance 1.00e-01)
+#&gt; Best objective 2.063951451212e+00, best bound 2.063951451212e+00, gap 0.0000%</div><div class='input'><span class='no'>s</span>$<span class='no'>solver</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"default"</span>, <span class='st'>"gurobi"</span>, <span class='st'>"Rsymphony"</span>, <span class='st'>"lpsymphony"</span>, <span class='st'>"heuristic"</span>,
+              <span class='st'>"random"</span>)
+
+<span class='co'># print solutions</span>
+<span class='fu'><a href='print.html'>print</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/as.data.frame'>as.data.frame</a></span>(<span class='no'>s</span>))</div><div class='output co'>#&gt;   solution  status      obj      cost F1_action F2_action F3_action F4_action
+#&gt; 1        1 OPTIMAL 2.063951 195.39066         1         1         0         0
+#&gt; 2        1 OPTIMAL 2.063951 195.39066         1         1         0         0
+#&gt; 3        1       0 2.063951 195.39066         1         1         0         0
+#&gt; 4        1       0 2.063951 195.39066         1         1         0         0
+#&gt; 5        1    &lt;NA&gt; 2.063951 195.39066         1         1         0         0
+#&gt; 6        1    &lt;NA&gt; 1.401054  99.24274         0         0         0         1
+#&gt;   F5_action baseline_action        F1        F2        F3        F4        F5
+#&gt; 1         0               1 0.7266208 0.8199443 0.0864612 0.2489246 0.1820005
+#&gt; 2         0               1 0.7266208 0.8199443 0.0864612 0.2489246 0.1820005
+#&gt; 3         0               1 0.7266208 0.8199443 0.0864612 0.2489246 0.1820005
+#&gt; 4         0               1 0.7266208 0.8199443 0.0864612 0.2489246 0.1820005
+#&gt; 5         0               1 0.7266208 0.8199443 0.0864612 0.2489246 0.1820005
+#&gt; 6         0               1 0.2977965 0.2500224 0.0864612 0.5847734 0.1820005
+#&gt;       solver
+#&gt; 1    default
+#&gt; 2     gurobi
+#&gt; 3  Rsymphony
+#&gt; 4 lpsymphony
+#&gt; 5  heuristic
+#&gt; 6     random</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
