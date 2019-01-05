@@ -227,3 +227,44 @@ assertthat::on_failure(is_valid_phylo) <- function(call, env) {
   msg <- utils::capture.output(ape::checkValidPhylo(x))
   paste(msg, collapse = "\n")
 }
+
+
+#' SYMPHONY status
+#'
+#' Find a description of the solver status returned from SYMPHONY.
+#'
+#' @param x \code{numeric} status code.
+#'
+#' @return \code{character} status description.
+#'
+#' @noRd
+symphony_status <- function(x) {
+  assertthat::assert_that(is.numeric(x))
+  codes <- c(
+    "0" = "TM_OPTIMAL_SOLUTION_FOUND",
+    "225" = "TM_NO_PROBLEM",
+    "226" = "TM_NO_SOLUTION",
+    "227" = "TM_OPTIMAL_SOLUTION_FOUND",
+    "228" = "TM_TIME_LIMIT_EXCEEDED",
+    "229" = "TM_NODE_LIMIT_EXCEEDED",
+    "230" = "TM_ITERATION_LIMIT_EXCEEDED",
+    "231" = "TM_TARGET_GAP_ACHIEVED",
+    "232" = "TM_FOUND_FIRST_FEASIBLE",
+    "233" = "TM_FINISHED",
+    "234" = "TM_UNFINISHED",
+    "235" = "TM_FEASIBLE_SOLUTION_FOUND",
+    "236" = "TM_SIGNAL_CAUGHT",
+    "237" = "TM_UNBOUNDED",
+    "238" = "PREP_OPTIMAL_SOLUTION_FOUND",
+    "239" = "PREP_NO_SOLUTION",
+    "-250" = "TM_ERROR__NO_BRANCHING_CANDIDATE",
+    "-251" = "TM_ERROR__ILLEGAL_RETURN_CODE",
+    "-252" = "TM_ERROR__NUMERICAL_INSTABILITY",
+    "-253" = "TM_ERROR__COMM_ERROR",
+    "-275" = "TM_ERROR__USER",
+    "-276" = "PREP_ERROR")
+  x <- codes[as.character(x)]
+  if (is.na(x))
+    warning("solver returned unrecognized code")
+  as.character(x)
+}

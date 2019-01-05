@@ -112,9 +112,11 @@ add_lpsymphony_solver <- function(x, gap = 0.1, time_limit = -1,
       start_time <- Sys.time()
       s <- do.call(lpsymphony::lpsymphony_solve_LP, append(model, p))
       end_time <- Sys.time()
-      if (is.null(s$solution) ||
-          names(s$status) %in% c("TM_NO_SOLUTION", "PREP_NO_SOLUTION"))
-        return(NULL)
+      # convert status from integer code to character description
+      x$status <- symphony_status(x$status)
+      # check if no solution found
+      if (is.null(x$solution) ||
+          (x$status %in% c("TM_NO_SOLUTION", "PREP_NO_SOLUTION")))
       list(list(x = s$solution, objective = s$objval,
                 status = as.character(s$status),
                 runtime = as.double(end_time - start_time,

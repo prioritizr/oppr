@@ -101,8 +101,11 @@ add_rsymphony_solver <- function(x, gap = 0.1, time_limit = -1,
       start_time <- Sys.time()
       x <- do.call(Rsymphony::Rsymphony_solve_LP, append(model, p))
       end_time <- Sys.time()
+      # convert status from integer code to character description
+      x$status <- symphony_status(x$status)
+      # check if no solution found
       if (is.null(x$solution) ||
-          names(x$status) %in% c("TM_NO_SOLUTION", "PREP_NO_SOLUTION"))
+          (x$status %in% c("TM_NO_SOLUTION", "PREP_NO_SOLUTION")))
         return(NULL)
       list(list(x = x$solution, objective = x$objval,
                 status = as.character(x$status),

@@ -400,6 +400,7 @@ test_that("invalid arguments", {
     add_rsymphony_solver() %>%
     solve()
   })
+  skip_if_not_installed("gurobi", "8.0.0")
   expect_warning({
     p %>%
     add_max_phylo_div_objective(1e+5, replace(sim_tree, "edge.length",
