@@ -121,8 +121,8 @@
 
     
     <p>The <span class="pkg">ppr</span> <em>R</em> package a decision support tool for prioritizing
-  conservation projects. Prioritizations can be developed by maximizing the
-  sum of probabilities that features are expected to persist, expected
+  conservation projects. Prioritizations can be developed by maximizing
+  expected feature richness, expected
   phylogenetic diversity, the number of feature that meet persistence
   targets, or identifying a set of projects that meet persistence targets
   for minimal cost. Constraints (e.g. lock in
@@ -175,12 +175,12 @@ can obtain a
 <span class='fu'><a href='print.html'>print</a></span>(<span class='no'>sim_projects</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 13</span><span>
 #&gt;   name  success     F1     F2      F3     F4     F5 F1_action F2_action
 #&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>    
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> F1_p~   0.919  0.791 </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     TRUE      FALSE    
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> F2_p~   0.923 </span><span style='color: #BB0000;'>NA</span><span>      0.888 </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     FALSE     TRUE     
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> F3_p~   0.829 </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>      0.502  </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     FALSE     FALSE    
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> F4_p~   0.848 </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>       0.690 </span><span style='color: #BB0000;'>NA</span><span>     FALSE     FALSE    
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> F5_p~   0.814 </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>      0.617 FALSE     FALSE    
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> base~   1      0.298  0.250  0.086</span><span style='text-decoration: underline;'>5</span><span>  0.249  0.182 FALSE     FALSE    
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> F1_p…   0.919  0.791 </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     TRUE      FALSE    
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> F2_p…   0.923 </span><span style='color: #BB0000;'>NA</span><span>      0.888 </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     FALSE     TRUE     
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> F3_p…   0.829 </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>      0.502  </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     FALSE     FALSE    
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> F4_p…   0.848 </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>       0.690 </span><span style='color: #BB0000;'>NA</span><span>     FALSE     FALSE    
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> F5_p…   0.814 </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>      0.617 FALSE     FALSE    
+#&gt; </span><span style='color: #BCBCBC;'>6</span><span> base…   1      0.298  0.250  0.086</span><span style='text-decoration: underline;'>5</span><span>  0.249  0.182 FALSE     FALSE    
 #&gt; </span><span style='color: #949494;'># ... with 4 more variables: F3_action </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #949494;'>, F4_action </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #949494;'>, F5_action </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #949494;'>,
 #&gt; #   baseline_action </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span></div><div class='input'>
 <span class='co'># print action data</span>
@@ -223,7 +223,7 @@ can obtain a
 #&gt; <span class='message'>  constraints:     &lt;none&gt;</span>
 #&gt; <span class='message'>  solver:          default</span></div><div class='input'>
 </div></span><div class='input'><span class='co'># solve problem</span>
-<span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p</span>)</div><div class='output co'>#&gt; Optimize a model with 47 rows, 47 columns and 122 nonzeros
+<span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p</span>)</div><div class='output co'>#&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
 #&gt; Variable types: 0 continuous, 42 integer (42 binary)
 #&gt; Semi-Variable types: 5 continuous, 0 integer
 #&gt; Coefficient statistics:
@@ -231,22 +231,22 @@ can obtain a
 #&gt;   Objective range  [2e-01, 2e+00]
 #&gt;   Bounds range     [1e+00, 1e+00]
 #&gt;   RHS range        [1e+00, 4e+02]
-#&gt; Found heuristic solution: objective -0.0000000
-#&gt; Presolve removed 3 rows and 3 columns
+#&gt; Found heuristic solution: objective 0.6543041
+#&gt; Presolve removed 16 rows and 12 columns
 #&gt; Presolve time: 0.00s
-#&gt; Presolved: 44 rows, 44 columns, 112 nonzeros
-#&gt; Variable types: 2 continuous, 42 integer (42 binary)
-#&gt; Presolved: 44 rows, 44 columns, 112 nonzeros
+#&gt; Presolved: 31 rows, 35 columns, 64 nonzeros
+#&gt; Variable types: 0 continuous, 35 integer (35 binary)
+#&gt; Presolved: 31 rows, 35 columns, 64 nonzeros
 #&gt; 
 #&gt; 
-#&gt; Root relaxation: objective 1.512928e+00, 15 iterations, 0.00 seconds
+#&gt; Root relaxation: objective 1.512928e+00, 11 iterations, 0.00 seconds
 #&gt; 
 #&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
 #&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #&gt; 
 #&gt; *    0     0               0       1.5129280    1.51293  0.00%     -    0s
 #&gt; 
-#&gt; Explored 0 nodes (15 simplex iterations) in 0.00 seconds
+#&gt; Explored 0 nodes (11 simplex iterations) in 0.00 seconds
 #&gt; Thread count was 1 (of 4 available processors)
 #&gt; 
 #&gt; Solution count 1: 1.51293 
@@ -257,7 +257,7 @@ can obtain a
 <span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 15</span><span>
 #&gt;   solution status   obj  cost F1_action F2_action F3_action F4_action F5_action
 #&gt;      </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 OPTIM~  1.51  395.         1         1         0         1         1
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 OPTIM…  1.51  395.         1         1         0         1         1
 #&gt; </span><span style='color: #949494;'># ... with 6 more variables: baseline_action </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F1 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F2 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
 #&gt; #   F3 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F4 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F5 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># print which actions are funded in the solution</span>
