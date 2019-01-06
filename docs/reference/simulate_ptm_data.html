@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Simulate data for the 'Project Prioritization Protocol' — simulate_ppp_data • ppr</title>
+<title>Simulate data for 'Priority threat management' — simulate_ptm_data • ppr</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,11 +30,13 @@
 
 
 
-<meta property="og:title" content="Simulate data for the 'Project Prioritization Protocol' — simulate_ppp_data" />
+<meta property="og:title" content="Simulate data for 'Priority threat management' — simulate_ptm_data" />
 
-<meta property="og:description" content="Simulate data for developing project prioritizations. Here, data are
-simulated such that each feature has its own conservation project,
-similar to species-based prioritizations (e.g. Bennett et al. 2014)." />
+<meta property="og:description" content="Simulate data for developing project prioritizations for a priority threat
+management exercise (Carwardine et al. 2019). Here, data are
+simulated for a pre-specified number of features, actions, and projects.
+Features can benefit from multiple projects, and different projects can
+share actions." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -107,21 +109,24 @@ similar to species-based prioritizations (e.g. Bennett et al. 2014)." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Simulate data for the 'Project Prioritization Protocol'</h1>
-    <small class="dont-index">Source: <a href='https://github.com/prioritizr/ppr/blob/master/R/simulate_ppp_data.R'><code>R/simulate_ppp_data.R</code></a></small>
-    <div class="hidden name"><code>simulate_ppp_data.Rd</code></div>
+    <h1>Simulate data for 'Priority threat management'</h1>
+    <small class="dont-index">Source: <a href='https://github.com/prioritizr/ppr/blob/master/R/simulate_ptm_data.R'><code>R/simulate_ptm_data.R</code></a></small>
+    <div class="hidden name"><code>simulate_ptm_data.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Simulate data for developing project prioritizations. Here, data are
-simulated such that each feature has its own conservation project,
-similar to species-based prioritizations (e.g. Bennett <em>et al.</em> 2014).</p>
+    <p>Simulate data for developing project prioritizations for a priority threat
+management exercise (Carwardine <em>et al.</em> 2019). Here, data are
+simulated for a pre-specified number of features, actions, and projects.
+Features can benefit from multiple projects, and different projects can
+share actions.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>simulate_ppp_data</span>(<span class='no'>number_features</span>, <span class='kw'>cost_mean</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>cost_sd</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-  <span class='kw'>success_min_probability</span> <span class='kw'>=</span> <span class='fl'>0.7</span>, <span class='kw'>success_max_probability</span> <span class='kw'>=</span> <span class='fl'>0.99</span>,
+    <pre class="usage"><span class='fu'>simulate_ptm_data</span>(<span class='no'>number_projects</span>, <span class='no'>number_actions</span>, <span class='no'>number_features</span>,
+  <span class='kw'>cost_mean</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>cost_sd</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>success_min_probability</span> <span class='kw'>=</span> <span class='fl'>0.7</span>,
+  <span class='kw'>success_max_probability</span> <span class='kw'>=</span> <span class='fl'>0.99</span>,
   <span class='kw'>funded_min_persistence_probability</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
   <span class='kw'>funded_max_persistence_probability</span> <span class='kw'>=</span> <span class='fl'>0.9</span>,
   <span class='kw'>baseline_min_persistence_probability</span> <span class='kw'>=</span> <span class='fl'>0.01</span>,
@@ -131,6 +136,16 @@ similar to species-based prioritizations (e.g. Bennett <em>et al.</em> 2014).</p
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>number_projects</th>
+      <td><p><code>numeric</code> number of projects. Note that this
+does not include the baseline project.</p></td>
+    </tr>
+    <tr>
+      <th>number_actions</th>
+      <td><p><code>numeric</code> number of actions. Note that this
+does not include the baseline action.</p></td>
+    </tr>
     <tr>
       <th>number_features</th>
       <td><p><code>numeric</code> number of features.</p></td>
@@ -277,8 +292,8 @@ into the solution. Defaults to <code>0</code>.</p></td>
   no conservation projects share any actions. Specifically, the data are
   simulated as follows:</p>
 <p></p><ol>
-<li><p>A conservation project is created for each feature, and each
-      project is associated with its own single action.</p></li>
+<li><p>A specified number of conservation projects, features, and
+      management actions are created.</p></li>
 <li><p>Cost data for each action are simulated using a normal
       distribution and the <code>cost_mean</code> and <code>cost_sd</code> arguments.</p></li>
 <li><p>A set proportion of the actions are randomly set to be locked
@@ -288,9 +303,9 @@ into the solution. Defaults to <code>0</code>.</p></td>
       is simulated by drawing probabilities from a uniform distribution with
       the upper and lower bounds set as the <code>success_min_probability</code>
       and <code>success_max_probability</code> arguments.</p></li>
-<li><p>The probability of each feature persisting if its project is funded
-      and is successful is simulated by drawing probabilities from a uniform
-      distribution with the upper and lower bounds set as the
+<li><p>The probability of each feature persisting if each project is
+      funded and is successful is simulated by drawing probabilities from a
+      uniform distribution with the upper and lower bounds set as the
       <code>funded_min_persistence_probability</code> and
       <code>funded_max_persistence_probability</code> arguments.</p></li>
 <li><p>An additional project is created which represents the "baseline"
@@ -308,20 +323,22 @@ into the solution. Defaults to <code>0</code>.</p></td>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Bennett JR, Elliott G, Mellish B, Joseph LN, Tulloch AI,
-Probert WJ, ... &amp; Maloney R (2014) Balancing phylogenetic diversity
-and species numbers in conservation prioritization, using a case study of
-threatened species in New Zealand. <em>Biological Conservation</em>,
-<strong>174</strong>: 47--54.</p>
+    <p>Carwardine J, Martin TG, Firn J, Ponce-Reyes P, Nicol S, Reeson A,
+Grantham HS, Stratford D, Kehoe L, Chades I (2019) Priority Threat
+Management for biodiversity conservation: A handbook.
+<em>Journal of Applied Ecology</em>,
+<strong>In press</strong>: <a href='https://doi.org/10.1111/1365-2664.13268'>https://doi.org/10.1111/1365-2664.13268</a>.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='simulate_ptm_data.html'>simulate_ptm_data</a></code>.</p></div>
+    <div class='dont-index'><p><code><a href='simulate_ppp_data.html'>simulate_ppp_data</a></code>.</p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># create a simulated data set</span>
-<span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'>simulate_ppp_data</span>(<span class='kw'>number_features</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+<span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'>simulate_ptm_data</span>(<span class='kw'>number_projects</span> <span class='kw'>=</span> <span class='fl'>6</span>,
+                       <span class='kw'>number_actions</span> <span class='kw'>=</span> <span class='fl'>8</span>,
+                       <span class='kw'>number_features</span> <span class='kw'>=</span> <span class='fl'>5</span>,
                        <span class='kw'>cost_mean</span> <span class='kw'>=</span> <span class='fl'>100</span>,
                        <span class='kw'>cost_sd</span> <span class='kw'>=</span> <span class='fl'>5</span>,
                        <span class='kw'>success_min_probability</span> <span class='kw'>=</span> <span class='fl'>0.7</span>,
@@ -335,38 +352,42 @@ threatened species in New Zealand. <em>Biological Conservation</em>,
 
 <span class='co'># print data set</span>
 <span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s</span>)</div><div class='output co'>#&gt; $projects
-#&gt; <span style='color: #949494;'># A tibble: 6 x 13</span><span>
-#&gt;   name  success      F1     F2     F3     F4     F5 F1_action F2_action
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>    
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> F1_p…   0.900  0.692  </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     TRUE      FALSE    
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> F2_p…   0.709 </span><span style='color: #BB0000;'>NA</span><span>       0.673 </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     FALSE     TRUE     
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> F3_p…   0.765 </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>      0.783 </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     FALSE     FALSE    
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> F4_p…   0.787 </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>      0.879 </span><span style='color: #BB0000;'>NA</span><span>     FALSE     FALSE    
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> F5_p…   0.885 </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>      0.572 FALSE     FALSE    
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> base…   1      0.094</span><span style='text-decoration: underline;'>6</span><span>  0.275  0.205  0.260  0.268 FALSE     FALSE    
-#&gt; </span><span style='color: #949494;'># ... with 4 more variables: F3_action </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #949494;'>, F4_action </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #949494;'>, F5_action </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #949494;'>,
-#&gt; #   baseline_action </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>
+#&gt; <span style='color: #949494;'># A tibble: 7 x 16</span><span>
+#&gt;   name  success    F1    F2    F3    F4    F5 action_1 action_2 action_3
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>   
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> proj…   0.845 0.896 0.697 0.610 0.718 0.508 TRUE     FALSE    FALSE   
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> proj…   0.886 0.888 0.812 0.728 0.611 0.651 TRUE     TRUE     TRUE    
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> proj…   0.891 0.656 0.582 0.634 0.679 0.724 FALSE    TRUE     TRUE    
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> proj…   0.728 0.684 0.785 0.739 0.649 0.843 FALSE    FALSE    TRUE    
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> proj…   0.922 0.626 0.526 0.577 0.511 0.654 TRUE     TRUE     FALSE   
+#&gt; </span><span style='color: #BCBCBC;'>6</span><span> proj…   0.923 0.570 0.642 0.879 0.686 0.711 FALSE    TRUE     TRUE    
+#&gt; </span><span style='color: #BCBCBC;'>7</span><span> base…   1     0.112 0.123 0.197 0.369 0.166 FALSE    FALSE    FALSE   
+#&gt; </span><span style='color: #949494;'># ... with 6 more variables: action_4 </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #949494;'>, action_5 </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #949494;'>, action_6 </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #949494;'>,
+#&gt; #   action_7 </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #949494;'>, action_8 </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #949494;'>, baseline_action </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>
 #&gt; 
 #&gt; $actions
-#&gt; </span><span style='color: #949494;'># A tibble: 6 x 4</span><span>
+#&gt; </span><span style='color: #949494;'># A tibble: 9 x 4</span><span>
 #&gt;   name             cost locked_in locked_out
 #&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>     
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> F1_action        93.0 FALSE     TRUE      
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> F2_action       101.  FALSE     FALSE     
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> F3_action        87.8 FALSE     FALSE     
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> F4_action       100.0 FALSE     FALSE     
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> F5_action       103.  TRUE      FALSE     
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> baseline_action   0   FALSE     FALSE     
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> action_1         93.0 FALSE     TRUE      
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> action_2        101.  FALSE     FALSE     
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> action_3         87.8 TRUE      FALSE     
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> action_4        100.0 FALSE     FALSE     
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> action_5        103.  FALSE     FALSE     
+#&gt; </span><span style='color: #BCBCBC;'>6</span><span> action_6        106.  FALSE     FALSE     
+#&gt; </span><span style='color: #BCBCBC;'>7</span><span> action_7         90.9 FALSE     FALSE     
+#&gt; </span><span style='color: #BCBCBC;'>8</span><span> action_8         98.8 FALSE     FALSE     
+#&gt; </span><span style='color: #BCBCBC;'>9</span><span> baseline_action   0   FALSE     FALSE     
 #&gt; 
 #&gt; $features
 #&gt; </span><span style='color: #949494;'># A tibble: 5 x 2</span><span>
 #&gt;   name  weight
 #&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> F1     0.883
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> F2     0.287
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> F3     0.287
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> F4     0.449
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> F5     0.449
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> F1     0.158
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> F2     0.125
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> F3     0.125
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> F4     0.810
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> F5     0.810
 #&gt; 
 #&gt; $tree
 #&gt; 

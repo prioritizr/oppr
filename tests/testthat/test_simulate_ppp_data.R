@@ -72,13 +72,12 @@ test_that("valid arguments", {
   expect_true(all(is.finite(s$actions$cost)))
   # species
   ## structure
-
   expect_equal(ncol(s$features), 2)
   expect_equal(nrow(s$features), 5)
   ## name column
   expect_is(s$features$name, "character")
   expect_equal(anyDuplicated(s$features$name), 0)
-  expect_equal(sort(s$features$name), paste0("F", seq_len(5)))
+  expect_equal(s$features$name, paste0("F", seq_len(5)))
   # tree
   ## structure
   expect_equal(length(s$tree$tip.label), nrow(s$projects) - 1)

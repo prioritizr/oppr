@@ -1,13 +1,55 @@
 #' @include internal.R
 NULL
 
-#' Simulate data for the 'Project Prioritization Protocol'
+#' Simulate data for 'Priority threat management'
 #'
-#' Simulate data for developing project prioritizations. Here, data are
-#' simulated such that each feature has its own conservation project,
-#' similar to species-based prioritizations (e.g. Bennett \emph{et al.} 2014).
+#' Simulate data for developing project prioritizations for a priority threat
+#' management exercise (Carwardine \emph{et al.} 2019). Here, data are
+#' simulated for a pre-specified number of features, actions, and projects.
+#' Features can benefit from multiple projects, and different projects can
+#' share actions.
 #'
-#' @inheritParams simulate_ptm_data
+#' @param number_projects \code{numeric} number of projects. Note that this
+#'   does not include the baseline project.
+#'
+#' @param number_actions \code{numeric} number of actions. Note that this
+#'   does not include the baseline action.
+#'
+#' @param number_features \code{numeric} number of features.
+#'
+#' @param cost_mean \code{numeric} average cost for the actions. Defaults to
+#'   \code{100}.
+#'
+#' @param cost_sd \code{numeric} standard deviation in action costs. Defaults
+#'   to \code{5}.
+#'
+#' @param success_min_probability \code{numeric} minimum probability of the
+#'   projects succeeding if they are funded. Defaults to \code{0.7}.
+#'
+#' @param success_max_probability \code{numeric} maximum probability of the
+#'   projects succeeding if they are funded. Defaults to \code{0.99}.
+#'
+#' @param funded_min_persistence_probability \code{numeric} minimum probability
+#'   of the features persisting if projects are funded and successful.
+#'   Defaults to \code{0.5}.
+#'
+#' @param funded_max_persistence_probability \code{numeric} maximum probability
+#'   of the features persisting if projects are funded and successful.
+#'   Defaults to \code{0.9}.
+#'
+#' @param baseline_min_persistence_probability \code{numeric} minimum
+#'   probability of the features persisting if only the baseline project
+#'   is funded. Defaults to \code{0.01}.
+#'
+#' @param baseline_max_persistence_probability \code{numeric} maximum
+#'   probability of the features persisting if only the baseline project is
+#'   funded. Defaults to \code{0.4}.
+#'
+#' @param locked_in_proportion \code{numeric} of actions that are locked
+#'   into the solution. Defaults to \code{0}.
+#'
+#' @param locked_out_proportion \code{numeric} of actions that are locked
+#'   into the solution. Defaults to \code{0}.
 #'
 #' @details The simulated data set will contain one conservation project for
 #'   each features, and also a "baseline" (do nothing) project to reflect
@@ -18,8 +60,8 @@ NULL
 #'
 #'   \enumerate{
 #'
-#'     \item A conservation project is created for each feature, and each
-#'       project is associated with its own single action.
+#'     \item A specified number of conservation projects, features, and
+#'       management actions are created.
 #'
 #'     \item Cost data for each action are simulated using a normal
 #'       distribution and the \code{cost_mean} and \code{cost_sd} arguments.
@@ -33,9 +75,9 @@ NULL
 #'       the upper and lower bounds set as the \code{success_min_probability}
 #'       and \code{success_max_probability} arguments.
 #'
-#'     \item The probability of each feature persisting if its project is funded
-#'       and is successful is simulated by drawing probabilities from a uniform
-#'       distribution with the upper and lower bounds set as the
+#'     \item The probability of each feature persisting if each project is
+#'       funded and is successful is simulated by drawing probabilities from a
+#'       uniform distribution with the upper and lower bounds set as the
 #'       \code{funded_min_persistence_probability} and
 #'       \code{funded_max_persistence_probability} arguments.
 #'
@@ -130,18 +172,20 @@ NULL
 #'
 #'  }
 #'
-#' @seealso \code{\link{simulate_ptm_data}}.
+#' @seealso \code{\link{simulate_ppp_data}}.
 #'
 #' @references
-#' Bennett JR, Elliott G, Mellish B, Joseph LN, Tulloch AI,
-#' Probert WJ, ... & Maloney R (2014) Balancing phylogenetic diversity
-#' and species numbers in conservation prioritization, using a case study of
-#' threatened species in New Zealand. \emph{Biological Conservation},
-#' \strong{174}: 47--54.
+#' Carwardine J, Martin TG, Firn J, Ponce-Reyes P, Nicol S, Reeson A,
+#' Grantham HS, Stratford D, Kehoe L, Chades I (2019) Priority Threat
+#' Management for biodiversity conservation: A handbook.
+#' \emph{Journal of Applied Ecology},
+#' \strong{In press}: \url{https://doi.org/10.1111/1365-2664.13268}.
 #'
 #' @examples
 #' # create a simulated data set
-#' s <- simulate_ppp_data(number_features = 5,
+#' s <- simulate_ptm_data(number_projects = 6,
+#'                        number_actions = 8,
+#'                        number_features = 5,
 #'                        cost_mean = 100,
 #'                        cost_sd = 5,
 #'                        success_min_probability = 0.7,
@@ -157,7 +201,8 @@ NULL
 #' print(s)
 #'
 #' @export
-simulate_ppp_data <- function(number_features, cost_mean = 100, cost_sd = 5,
+simulate_ptm_data <- function(number_projects, number_actions, number_features,
+                              cost_mean = 100, cost_sd = 5,
                               success_min_probability = 0.7,
                               success_max_probability = 0.99,
                               funded_min_persistence_probability = 0.5,
@@ -170,6 +215,10 @@ simulate_ppp_data <- function(number_features, cost_mean = 100, cost_sd = 5,
   assertthat::assert_that(
     assertthat::is.count(number_features),
     isTRUE(is.finite(number_features)),
+    assertthat::is.count(number_projects),
+    isTRUE(is.finite(number_projects)),
+    assertthat::is.count(number_actions),
+    isTRUE(is.finite(number_actions)),
     assertthat::is.number(cost_mean),
     isTRUE(cost_mean > 0),
     assertthat::is.number(cost_sd),
@@ -214,9 +263,9 @@ simulate_ppp_data <- function(number_features, cost_mean = 100, cost_sd = 5,
 
   # create action data
   actions <- tibble::tibble(
-    name = c(paste0("F", seq_len(number_features), "_action"),
+    name = c(paste0("action_", seq_len(number_actions)),
              "baseline_action"),
-    cost = c(stats::rnorm(number_features, cost_mean, cost_sd), 0),
+    cost = c(stats::rnorm(number_actions, cost_mean, cost_sd), 0),
     locked_in = FALSE,
     locked_out = FALSE)
   assertthat::assert_that(all(actions$cost >= 0),
@@ -244,28 +293,31 @@ simulate_ppp_data <- function(number_features, cost_mean = 100, cost_sd = 5,
 
   # create project data
   projects <- tibble::tibble(
-    name = c(paste0("F", seq_len(number_features), "_project"),
-                    "baseline_project"),
-    success = c(stats::runif(number_features, success_min_probability,
+    name = c(paste0("project_", seq_len(number_projects)), "baseline_project"),
+    success = c(stats::runif(number_projects, success_min_probability,
                            success_max_probability), 1))
 
   ## feature persistence probabilities
-  spp_prob_matrix <- matrix(NA_real_, ncol = number_features,
-                            nrow = number_features + 1,
-                            dimnames = list(NULL, sort(tree$tip.label)))
-   diag(spp_prob_matrix) <- stats::runif(number_features,
-                                         funded_min_persistence_probability,
-                                         funded_max_persistence_probability)
+  spp_prob_matrix <- matrix(
+    stats::runif(number_features * (number_projects + 1),
+                 funded_min_persistence_probability,
+                 funded_max_persistence_probability),
+    ncol = number_features, nrow = number_projects + 1,
+    dimnames = list(NULL, sort(tree$tip.label)))
   spp_prob_matrix[nrow(spp_prob_matrix), ] <-
     stats::runif(number_features, baseline_min_persistence_probability,
                  baseline_max_persistence_probability)
   projects <- cbind(projects, as.data.frame(spp_prob_matrix))
 
   ## organization data
-  organization_data <- matrix(FALSE, ncol = number_features + 1,
-                              nrow = number_features + 1,
+  organization_data <- matrix(FALSE, ncol = number_actions + 1,
+                              nrow = number_projects + 1,
                               dimnames = list(NULL, actions$name))
-  diag(organization_data) <- TRUE
+  for (i in seq_len(number_projects)) {
+    organization_data[i, sample(seq_len(number_actions),
+                             sample.int(number_actions, 1))] <- TRUE
+  }
+  organization_data[number_projects + 1, number_actions + 1] <- TRUE
   projects <- cbind(projects, as.data.frame(organization_data))
 
   ## feature data

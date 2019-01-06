@@ -117,6 +117,7 @@ Collate:
     'rake_phylogeny.R'
     'show.R'
     'simulate_ppp_data.R'
+    'simulate_ptm_data.R'
     'solve.R'
     'solvers.R'
     'targets.R'
