@@ -14,7 +14,8 @@ NULL
 #'   different actions. Each column in the argument to \code{solution} should
 #'   be named according to a different action in \code{x}.
 #'   Cell values indicate if an action is funded in a given solution or not,
-#'   and should be either zero or one.
+#'   and should be either zero or one. Arguments to \code{solution} can
+#'   contain additional columns, and they will be ignored.
 #'
 #' @return A \code{\link[tibble]{tibble}} table containing the following
 #'   columns:
@@ -87,7 +88,8 @@ solution_statistics <- function(x, solution) {
   # calculate cost and objective values
   out <- tibble::tibble(
     cost = rowSums(as.matrix(solution[, x$action_names()]) *
-                   matrix(x$action_costs(), byrow = TRUE, ncol = ncol(solution),
+                   matrix(x$action_costs(), byrow = TRUE,
+                          ncol = x$number_of_actions(),
                           nrow = nrow(solution))),
     obj = x$objective$evaluate(x, solution[, x$action_names()]))
   # add in columns for feature persistences
