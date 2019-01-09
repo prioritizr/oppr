@@ -401,7 +401,7 @@ ProjectProblem <- pproto(
   epf_matrix = function(self) {
     m <- as(self$pf_matrix() * matrix(self$project_success_probabilities(),
                                       ncol = self$number_of_features(),
-                                      nrow = self$number_of_actions()),
+                                      nrow = self$number_of_projects()),
                                       "dgCMatrix")
     rownames(m) <- self$project_names()
     colnames(m) <- self$feature_names()

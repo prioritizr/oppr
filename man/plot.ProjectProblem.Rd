@@ -16,7 +16,8 @@ rows correspond to different solutions and columns correspond to
 different actions. Each column in the argument to \code{solution} should
 be named according to a different action in \code{x}.
 Cell values indicate if an action is funded in a given solution or not,
-and should be either zero or one.}
+and should be either zero or one. Arguments to \code{solution} can
+contain additional columns, and they will be ignored.}
 
 \item{n}{\code{integer} solution number to visualize.
 Since each row in the argument to \code{solutions} corresponds to a

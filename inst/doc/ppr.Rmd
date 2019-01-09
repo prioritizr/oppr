@@ -23,6 +23,51 @@ fh <- 4.5
 is_check <- ("CheckExEnv" %in% search()) || any(c("_R_CHECK_TIMINGS_",
              "_R_CHECK_LICENSE_") %in% names(Sys.getenv()))
 knitr::opts_chunk$set(fig.align = "center", eval = !is_check)
+
+options(crayon.enabled = TRUE)
+options(pillar.bold = TRUE)
+
+knitr::opts_chunk$set(collapse = TRUE, comment = pillar::style_subtle("#"))
+
+colourise_chunk <- function(type) {
+  function(x, options) {
+    # lines <- strsplit(x, "\\n")[[1]]
+    lines <- x
+    if (type %in% c("error", "warning")) {
+      lines <- crayon::red(lines)
+    }
+    paste0(
+      '<div class="sourceCode"><pre class="sourceCode"><code class="sourceCode">',
+      paste0(
+        sgr_to_html(htmltools::htmlEscape(lines)),
+        collapse = "\n"
+      ),
+      "</code></pre></div>"
+    )
+  }
+}
+knitr::knit_hooks$set(
+  output = colourise_chunk("output"),
+  message = colourise_chunk("message"),
+  warning = colourise_chunk("warning"),
+  error = colourise_chunk("error")
+)
+# Fallback if fansi is missing
+sgr_to_html <- identity
+sgr_to_html <- fansi::sgr_to_html
+```
+
+```{r, include = FALSE}
+# load pkg
+devtools::load_all()
+
+# define dummy data sets
+s1 <- data.frame()
+s2 <- data.frame()
+s3 <- data.frame()
+s4 <- data.frame()
+s5 <- data.frame()
+mean_percent <- 0
 ```
 
 ## Overview
@@ -30,6 +75,226 @@ knitr::opts_chunk$set(fig.align = "center", eval = !is_check)
 The _ppr R_ package is decision support tool for prioritizing conservation projects. Prioritizations can be developed by maximizing expected feature richness, expected phylogenetic diversity, the number of feature that meet persistence targets, or identifying a set of projects that meet persistence targets for minimal cost. Constraints (e.g. lock in specific actions) and feature weights can also be specified to further customize prioritizations. After defining a project prioritization problem, solutions can be obtained using exact algorithms, heuristic algorithms, or using random processes. In particular, it is recommended to install the ['Gurobi' optimizer](https://www.gurobi.com) because it can identify optimal solutions very quickly. Finally, methods are provided for comparing different prioritizations and evaluating their benefits.
 
 ## Tutorial
+
+### Introduction
+
+Here we will provide a short tutorial showing how the _ppr R_ package can be used to prioritize funding for conservation projects. This package is a general purpose project prioritization decision support tool. It can generate solutions for species-based project prioritization problems [@r3; @r4] and priority threat management problems [@r18]. To develop a project prioritization, this package requires (i) _conservation project_ data, (ii) _management action_ data, and (iii) _biodiversity feature_ data.
+
+Briefly, biodiversity features are the biological entities that we wish would persist into the future (e.g. threatened populations, native species, eco-systems). These _biodiversity features_ can (and ideally should) include non-threatened species, but should not include threatening processes that we wish to eradicate (e.g. exotic, invasive, or pest populations). _Management actions_ are the specific actions that can performed at a specific location or over a specific area (e.g. planting native species, removing invasive plant species, reintroducing native birds, trapping pest species). Each action should be associated with an estimated cost. To guide the prioritization, the management actions are grouped into _conservation projects_ (also termed "strategies"). Typically, management actions are grouped into conservation projects based on spatial (e.g. management actions that pertain the the same area), taxonomic (e.g. management actions that pertain to the same pest or conservation feature), or thematic criteria (e.g. management actions that pertain to pest eradication are grouped into a "pest project" and actions that pertain to habitat restoration are grouped into a "habitat project"). Additionally, some conservation projects can be combinations of other projects (e.g. a "pest and habitat project"). Each conservation project should be associated with (i) a probability of succeeding if it is implemented (also termed "feasibility"), (ii) information about which management actions are associated with it, and (iii) an estimate of how likely each conservation feature affected by the project is to persist into the future if the project is implemented (often derived using expert elicitation). The conservation projects should also include a "baseline project" that represents a "do nothing scenario" which has a 100% chance of succeeding and is associated with an action that costs nothing to implement. For more background information  on project prioritization, please refer to Carwardine _et al._ [-@r18].
+
+To start off, we will set the seed for the random number generator to ensure you get the same results as shown here, load the _ppr R_ package, and load the _ggplot2_ package to help with data visualizations.
+
+```{r}
+set.seed(500)
+library(ppr)
+library(ggplot2)
+```
+
+### Data simulation
+
+Now we will simulate a dataset to practice developing project prioritizations. Specifically, we will simulate a dataset for a priority threat management exercise that contains 50 features, 100 projects, and 150 actions.
+
+```{r}
+# simulate data
+sim_data <- simulate_ptm_data(number_projects = 100, number_actions = 150,
+                              number_features = 50)
+
+# extract project, action, feature data
+projects <- sim_data$projects
+actions <- sim_data$actions
+features <- sim_data$features
+
+# print data
+print(projects)
+print(actions)
+print(features)
+```
+
+### Prioritizations with exact algorithms
+
+Let's assume that we want to maximize the overall persistence of the conservation features and that we can only spend $3'000 funding management actions. We will also assume that our decisions involve either funding management actions or not (in other words, our decisions are binary). For the moment, let's assume that we value the persistence of each feature equally. Given this information, we can a project prioritization problem object that matches our specifications.
+
+```{r}
+# build problem
+p1 <- problem(projects = projects, actions = actions, features = features,
+              "name", "success", "name", "cost", "name") %>%
+      add_max_richness_objective(budget = 3000) %>%
+      add_binary_decisions()
+
+# print problem
+print(p1)
+```
+
+After building the problem, we can solve it. Although backwards heuristic algorithms have conventionally been used to solve project prioritization problems [e.g. @r3; @r4; @r11], here we will use exact algorithms to develop a prioritization. Exact algorithms are superior to heuristic algorithms because they can provide guarantees on solution quality [@r12; @r13]. In other words, if you specify that you want an optimal solution when using exact algorithms, then you are guaranteed to get an optimal solution. Heuristic algorithms---and even more advanced meta-heuristic algorithms such as simulated annealing [@r22]---provide no such guarantees and can deliver remarkably poor solutions [e.g. @r21]. Later on we will try solving problems with heuristic algorithms, but for the moment we will use exact algorithms. Since we haven't explicitly stated which solver we would like to use, the _ppr R_ package will identify the best exact algorithm solver currently installed on your system. This is typically the _Rsymphony R_ package unless you have installed the [_gurobi R_ package](http://www.gurobi.com/documentation/8.1/quickstart_mac/r_installing_the_r_package.html) and the [Gurobi optimization suite](http://www.gurobi.com/).
+
+```{r}
+# solve problem
+s1 <- solve(p1)
+
+# print solution
+print(s1)
+
+# calculate number of actions prioritized for funding
+sum(as.matrix(s1[, grepl("action", names(s1))]))
+```
+
+The `s1` table contains the solution and also various statistics associated with the solution. Here, each row corresponds to a different solution. By default only one solution will be returned, and so the table has one row. The `"solution"` column contains an integer identifier for the solution (which may be useful for methods that output multiple solutions), the `"obj"` column contains the objective value (i.e. the expected feature richness in this case), the `"cost"` column stores the cost of the solution, and the `"status"` column contains information from the solver about the solution. Additionally, it contains columns for each action (`"action_1"`, `"action_2"`, `"action_3"`, ..., `"baseline_action"`) which indicate if each action was prioritized for funding in the solution. Furthermore, it contains columns for each feature (`"F1`, `"F2"`, `"F3`, ...) which indicate the probability that each feature is expected to persist into the future if the solutions were implemented.
+
+Since tabular data can be difficult to understand, let's create a bar plot to visualize how well this solution would conserve the features. In this plot, each bar corresponds to a different feature, the width of each bar corresponds to its expected probability of persistence, the color of each bar corresponds to the feature's weight (all bars are the same color here since we didn't specify any weights). Asterisks denote features that benefit from fully funded projects, and open circles denote features that benefit do not benefit from fully funded projects.
+
+```{r, fig.height = 5.5, fig.width = 4.5}
+# plot solution
+plot(p1, s1)
+```
+
+```{r, include = FALSE}
+mean_percent <- round(mean(c(as.matrix(s1[, p1$feature_names()]))) * 100)
+```
+
+Overall, we can see that most species have a fairly decent chance at persisting into the future (approx. `r mean_percent`%). But when making this prioritization, we assumed that we valued the persistence of each feature equally. It is often important to account for the fact that certain features are valued more highly than other features when making prioritizations (e.g. for cultural or taxonomic reasons). The `features` table that we created earlier contains a `"weight"` column, and features with larger values mean that they are more important. Let's quickly visualize the feature weight values.
+
+```{r, fig.width = 4.5, fig.height = 2.5}
+# print features table
+print(features)
+
+# plot histogram of feature weights
+ggplot(data = features, aes(weight)) +
+geom_histogram(bins = 30) +
+xlab("Feature weight") +
+ylab("Frequency")
+```
+
+We can see that most features have a low weighting (less than 0.05), but there are a few features with much higher weightings (greater than 0.15). Let's try adding the feature weights to the problem, and then solve the new problem.
+
+```{r}
+# build on existing problem and add feature weights
+p2 <- p1 %>%
+      add_feature_weights("weight")
+
+# print problem
+print(p2)
+
+# solve problem
+s2 <- solve(p2)
+
+# print solution
+print(s2)
+
+# calculate number of actions prioritized for funding
+sum(as.matrix(s2[, grepl("action", names(s2))]))
+```
+
+```{r, fig.height = 5.5, fig.width = 4.5}
+# plot solution
+plot(p2, s2)
+```
+
+We can also examine how adding feature weights changed our solution. Specifically, we can calculate the number of projects that were given the same status (i.e. zero or one) and the number of projects that changed when adding the weights (e.g. went from zero to one, or vice versa).
+
+```{r}
+# calculate number of actions that were assigned the same status
+sum((as.matrix(s1[, grepl("action", names(s1))]) -
+     as.matrix(s2[, grepl("action", names(s2))])) == 0)
+
+# calculate number of actions that were assigned a different status when
+# adding the weights
+sum((as.matrix(s1[, grepl("action", names(s1))]) -
+     as.matrix(s2[, grepl("action", names(s2))])) != 0)
+```
+
+Earlier, we talked about the _ppr_ using the default exact algorithm solver. Although you should have the _Rsymphony_ solver automatically installed, we strongly recommend installing the [_gurobi R_ package](http://www.gurobi.com/documentation/8.1/quickstart_mac/r_installing_the_r_package.html) and the [Gurobi optimization suite](http://www.gurobi.com/). This is because Gurobi can solve optimization problems much faster than any other software and it can also be used to easily generate multiple solutions.
+Unfortunately, you will have to install Gurobi manually, but please see `?add_gurobi_solver` for instructions. If you have Gurobi installed, let's try using the Gurobi solver to generate multiple solutions. Here, we will manually specify the Gurobi solver and request 1'000 solutions (though we will probably obtain less than 1'000 solutions so if we actually wanted 1'000 solutions we would need to specify a much larger number).
+
+```{r}
+# create new problem, with gurobi solver added and request multiple solutions
+p3 <- p2 %>%
+      add_gurobi_solver(number_solution = 1000)
+
+# solve problem
+s3 <- solve(p3)
+
+# print solution
+print(s3)
+```
+
+We obtained `r nrow(s3)` solutions. Let's explore briefly them.
+
+```{r, fig.width = 4.5, fig.height = 2.5}
+# calculate number of optimal solutions
+sum(s3$obj == max(s3$obj))
+
+# plot histogram of objective values
+ggplot(data = s3, aes(obj)) +
+geom_histogram(bins = 30) +
+xlab("Expected richness (objective function)") +
+ylab("Frequency")
+```
+
+### Assessing action importance
+
+After obtaining a solution (or even multiple solutions) to a project prioritization problem, it is often important to understand which of priority actions are most important. This is because it may not be possible to implement all actions immediately and simultaneously, and since some conservation projects may be less likely to succeed if their management actions are delayed, it may be useful to decision makers with a measure of importance for each action (also termed irreplaceability or vulnerability). For example, if a pest eradication project is delayed and the pest population is given an opportunity to increase, then the success of the pest eradication project may diminish over time. One simple---but often inaccurate---approach for assessing the importance of priority actions (i.e. actions selected for funding in a solution) is calculating the "selection frequency" of the actions. Given multiple near-optimal solutions, this metric involves calculating the average number of times that each priority action is selected [@r19]. For illustrative purposes, we shall compute the selection frequency of the solutions we obtained previously (i.e. the `s3` object).
+
+```{r, fig.width = 4.5, fig.height = 2.5}
+# print the solution object to remind ourselves what it looks like
+print(s3)
+
+# calculate percentage of times each action was selected for
+# funding in the solutions
+actions$sel_freq <- apply(as.matrix(s3[, actions$name]), 2, mean) * 100
+
+# print the actions table with the new column
+print(actions)
+
+# print top 10 most important actions
+head(actions[order(actions$sel_freq, decreasing = TRUE), ], n = 10)
+
+# plot histogram showing solution frequency
+ggplot(data = actions, aes(sel_freq)) +
+geom_histogram(bins = 30) +
+xlab("Selection frequency (%)") +
+ylab("Frequency")
+```
+
+Although calculating selection frequency might seem appealing, it suffers from an assumption that is unrealistic for most real-world problems. Specifically, it assumes that our portfolio of solutions is a representative sample of the near-optimal solutions to the problem. And we do not currently have any method to verify this, except by enumerating all possible solutions---which is not feasible for reasonably sized problems. So now we shall examine a superior metric termed the "replacement cost" [@r20]. Given a set of priority actions and a project prioritization problem, the replacement cost can be calculated for a given priority action by re-solving the problem with the priority action locked out, and calculating the difference between the objective value based on the priority actions and the new objective value with the priority action locked out. So let's calculate the replacement cost for the priority actions in object `s2` using the problem `p2`.
+
+```{r}
+# print p2 to remind ourselves about the problem
+print(p2)
+
+# print s2 to remind ourselves about the solution
+print(s2)
+
+# calculate replacement costs for each priority action selected in s2
+r2 <- replacement_costs(p2, s2)
+
+# print output
+print(r2)
+```
+
+The `r1` table contains the replacement costs and also various statistics associated with each action. Here, each row corresponds to a different action. The `"action"` column contains the name of the action, the `"cost"` column contains the cost of the solution with each action locked out, the `"obj"` column contains the objective value of the solution with each action locked out (i.e. the expected feature richness in this case), and the `"rep_cost"` column contains the replacement cost for each action. Actions associated with larger values are more important, actions associated with missing (`NA`) values were not selected for funding in the input solution, and actions associated with infinite (`Inf`) values are absolutely critical for meeting the constraints (though infinite values usually occur for problems with minimum set objectives).
+
+```{r, fig.width = 4.5, fig.height = 2.5}
+# add replacement costs to action table
+actions$rep_cost <- r2$rep_cost
+
+# print actions, ordered by replacement cost
+print(actions[order(actions$rep_cost, decreasing = TRUE), ])
+
+# test correlation between selection frequencies and replacement costs
+cor.test(x = actions$sel_freq, y = actions$rep_cost, method = "pearson")
+
+# plot histogram of replacement costs,
+ggplot(data = actions, aes(rep_cost)) +
+geom_histogram(bins = 30, na.rm = TRUE) +
+xlab("Replacement cost") +
+ylab("Frequency")
+```
+
+### Complementarity in project prioritizations
+
+
+
+### Benchmarking conventional algorithms
 
 ## Citation
 

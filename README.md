@@ -7,7 +7,7 @@ Project Prioritization
 
 **This package is still under development and not ready for use. Please do not use this package yet.**
 
-The *ppr R* package is decision support tool for prioritizing conservation projects. Prioritizations can be developed by maximizing the sum of probabilities that features are expected to persist, expected phylogenetic diversity, the number of feature that meet persistence targets, or identifying a set of projects that meet persistence targets for minimal cost. Constraints (e.g. lock in specific actions) and feature weights can also be specified to further customize prioritizations. After defining a project prioritization problem, solutions can be obtained using exact algorithms, heuristic algorithms, or using random processes. In particular, it is recommended to install the ['Gurobi' optimizer](https://www.gurobi.com) because it can identify optimal solutions very quickly. Finally, methods are provided for comparing different prioritizations and evaluating their benefits.
+The *ppr R* package is decision support tool for prioritizing conservation projects. Prioritizations can be developed by maximizing expected feature richness, expected phylogenetic diversity, the number of feature that meet persistence targets, or identifying a set of projects that meet persistence targets for minimal cost. Constraints (e.g. lock in specific actions) and feature weights can also be specified to further customize prioritizations. After defining a project prioritization problem, solutions can be obtained using exact algorithms, heuristic algorithms, or using random processes. In particular, it is recommended to install the ['Gurobi' optimizer](https://www.gurobi.com) because it can identify optimal solutions very quickly. Finally, methods are provided for comparing different prioritizations and evaluating their benefits.
 
 Installation
 ------------
@@ -138,15 +138,15 @@ Next, we can solve this problem to obtain a solution. By default, we will obtain
 s <- solve(p)
 
 # print solution
-head(as.data.frame(s))
+print(s)
 ```
 
-    ##   solution  status      obj     cost F1_action F2_action F3_action
-    ## 1        1 OPTIMAL 1.512928 394.5413         1         1         0
-    ##   F4_action F5_action baseline_action        F1        F2        F3
-    ## 1         1         1               1 0.7266208 0.8199443 0.0864612
-    ##          F4        F5
-    ## 1 0.5847734 0.5018188
+    ## # A tibble: 1 x 15
+    ##   solution status   obj  cost F1_action F2_action F3_action F4_action
+    ##      <int> <chr>  <dbl> <dbl>     <dbl>     <dbl>     <dbl>     <dbl>
+    ## 1        1 OPTIM<e2><80><a6>  1.51  395.         1         1         0         1
+    ## # <e2><80><a6> with 7 more variables: F5_action <dbl>, baseline_action <dbl>,
+    ## #   F1 <dbl>, F2 <dbl>, F3 <dbl>, F4 <dbl>, F5 <dbl>
 
 The `s` table contains the solution and also various statistics associated with the solution. Here, each row corresponds to a different solution. Specifically, the `"solution"` column contains an identifier for the solution (which may be useful for methods that output multiple solutions), the `"obj"` column contains the objective value (i.e. the expected feature richness for this problem), the `"cost"` column stores the cost of the solution, and the `"status"` column contains information from the solver about the solution. Additionally, it contains columns for each action (`"F1_action"`, `"F2_actions"`, `"F3_actions"`, ..., `"baseline_action"`) which indicate if each action was prioritized for funding in the solution. Furthermore, it contains column for each feature (`"F1`, `"F2"`, `"F3`, ...) which indicate the probability that each feature is expected to persist into the future under each solution. Since tabular data can be difficult to understand, let's visualize how well this solution would conserve the features. Note that features which benefit from fully funded projects, excepting the baseline project, are denoted with an asterisk.
 

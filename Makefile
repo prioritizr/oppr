@@ -69,6 +69,6 @@ build:
 	touch inst/doc/.gitkeep
 
 install:
-	R --slave -e "devtools::install_local('../ppr')"
+	R --slave -e "devtools::install_local('../ppr', force = TRUE, upgrade = 'never')"
 
 .PHONY: initc clean data docs readme contrib site test check checkwb build install man
