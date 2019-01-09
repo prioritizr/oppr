@@ -47,12 +47,7 @@ We also recommend installing the [Gurobi optimization suite](http://www.gurobi.c
 
 Here we will provide a short example showing how the _optimalppp R_ package can be used to prioritize funding for conservation projects. To start off, we will set the seed for the random number generator to ensure you get the same results as shown here, and load the _ppr R_ package.
 
-```{r, eval = FALSE}
-set.seed(500)
-library(ppr)
-```
-
-```{r, include= FALSE}
+```{r}
 set.seed(500)
 library(ppr)
 ```
