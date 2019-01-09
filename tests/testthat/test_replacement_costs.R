@@ -1,6 +1,6 @@
 context("replacement costs")
 
-test_that("valid arguments", {
+test_that("maximum obj", {
   skip_on_cran()
   skip_if_not(any_solvers_installed())
   # make data
@@ -35,6 +35,40 @@ test_that("valid arguments", {
   expect_equal(r$rep_cost, ((0.91 * 0.95) +
                             (0.94 * 0.8) +
                             (1.0 * 0.1)) - r$obj)
+})
+
+test_that("minimum obj", {
+  skip_on_cran()
+  skip_if_not(any_solvers_installed())
+  # make data
+  projects <- tibble::tibble(name = c("P1", "P2", "P3", "P4"),
+                             success =  c(0.95, 0.96, 0.94, 1.00),
+                             F1 =       c(0.91, 0.00, 0.80, 0.10),
+                             F2 =       c(0.00, 0.92, 0.80, 0.10),
+                             F3 =       c(0.00, 0.00, 0.00, 0.10),
+                             A1 =       c(TRUE, FALSE, FALSE, FALSE),
+                             A2 =       c(FALSE, TRUE, FALSE, FALSE),
+                             A3 =       c(FALSE, FALSE, TRUE, FALSE),
+                             A4 =       c(FALSE, FALSE, FALSE, TRUE))
+  actions <- tibble::tibble(name =      c("A1", "A2", "A3", "A4"),
+                            cost =      c(0.10, 0.10, 0.15, 0))
+  features <- tibble::tibble(name = c("F1", "F2", "F3"),
+                             target = c(0.2, 0.2, 0.05))
+  # create problem, solution, output
+  p <- problem(projects, actions, features, "name", "success", "name", "cost",
+               "name") %>%
+       add_min_set_objective() %>%
+       add_absolute_targets("target") %>%
+       add_binary_decisions()
+  s <- data.frame(A1 = 1, A2 = 0, A3 = 1, A4 = 1)
+  r <- replacement_costs(p, s)
+  # tests
+  expect_is(r, "tbl_df")
+  expect_equal(nrow(r), 4)
+  expect_equal(r$name, p$action_names())
+  expect_equal(r$cost, c(0.15, NA_real_, 0.2, NA_real_))
+  expect_equal(r$obj, c(0.15, NA_real_, 0.2, Inf))
+  expect_equal(r$rep_cost, r$obj - 0.25)
 })
 
 test_that("invalid arguments", {

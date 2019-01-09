@@ -4,7 +4,10 @@ NULL
 #' Replacement cost
 #'
 #' Calculate the replacement cost for priority actions in a project
-#' prioritization problem (Moilanen \emph{et al.} 2009).
+#' prioritization problem (Moilanen \emph{et al.} 2009). Actions associated
+#' with larger replacement cost values are more irreplaceabe, and may
+#' need to be implemented sooner than actions with lower replacement cost
+#' values.
 #'
 #' @inheritParams solution_statistics
 #'
@@ -20,8 +23,12 @@ NULL
 #'  (i) calculating the objective value for the optimal solution to
 #'  the argument to \code{x}, (ii) calculating the objective value for the
 #'  optimal solution to the argument to \code{x} with the given action locked
-#'  out, and (iii) calculating the difference between the two objective
-#'  values. Please note this function can take a long time to complete
+#'  out, (iii) calculating the difference between the two objective
+#'  values, (iv) the problem has an objective which aims to minimize
+#'  the objective value (only \code{\link{add_min_set_objective}}, then
+#'  the resulting value is multiplied by minus one so that larger values
+#'  always indicate actions with greater irreplaceability. Please note this
+#'  function can take a long time to complete
 #'  for large problems since it involves re-solving the problem for every
 #'  action selected for funding.
 #'
@@ -40,14 +47,12 @@ NULL
 #'     function defined for the argument to \code{x}.}
 #'
 #'   \item{\code{"rep_cost"}}{\code{numeric} replacement cost for each
-#'     action. For objectives that aim to minimize cost
-#'     (i.e. \code{\link{add_min_set_objective}}), smaller values
-#'     indicate greater irreplaceability. For objectives that aim to
-#'     maximize utility (e.g. \code{\link{add_max_richness_objective}}),
-#'     greater values indicate greater irreplaceability. Missing (\code{NA})
-#'     values are assigned to actions which are not selected for funding in
-#'     the specified solution, and infinite (\code{Inf}) values are assigned to
-#'     to actions which are required to meet feasibility constraints.}
+#'     action. Greater values indicate greater irreplaceability. Missing
+#'     (\code{NA}) values are assigned to actions which are not selected for
+#'     funding in the specified solution, infinite (\code{Inf}) values are
+#'     assigned to to actions which are required to meet feasibility
+#'     constraints, and negative values mean that superior solutions than
+#'     the specified solution exist.}
 #'
 #'   }
 #'
@@ -127,6 +132,9 @@ replacement_costs <- function(x, solution, n = 1) {
                                    obj = NA_real_))
   out <- out[match(x$action_names(), out$name), , drop = FALSE]
   out$rep_cost <- obj - out$obj
+  # multiply by -1 if minimum set objective
+  if (inherits(x$objective, "MinimumSetObjective"))
+    out$rep_cost <- out$rep_cost * -1
   # return output
   out[, c("name", "cost", "obj", "rep_cost")]
 }
