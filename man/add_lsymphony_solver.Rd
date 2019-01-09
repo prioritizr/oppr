@@ -5,7 +5,7 @@
 \alias{add_lpsymphony_solver}
 \title{Add a SYMPHONY solver with \pkg{lpsymphony}}
 \usage{
-add_lpsymphony_solver(x, gap = 0.1, time_limit = -1,
+add_lpsymphony_solver(x, gap = 0, time_limit = -1,
   first_feasible = 0, verbose = TRUE)
 }
 \arguments{
@@ -16,7 +16,8 @@ solving problems using \pkg{gurobi}, and will cause the optimizer to
 terminate when the difference between the upper and lower objective
 function bounds is less than the gap times the upper bound. For example, a
 value of 0.01 will result in the optimizer stopping when the difference
-between the bounds is 1 percent of the upper bound.}
+between the bounds is 1 percent of the upper bound. Defaults to 0, so
+that optimal solutions will be returned.}
 
 \item{time_limit}{\code{numeric} time limit in seconds to run the optimizer.
 The solver will return the current best solution when this time limit is

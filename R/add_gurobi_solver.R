@@ -16,7 +16,8 @@ NULL
 #'   terminate when the difference between the upper and lower objective
 #'   function bounds is less than the gap times the upper bound. For example, a
 #'   value of 0.01 will result in the optimizer stopping when the difference
-#'   between the bounds is 1 percent of the upper bound.
+#'   between the bounds is 1 percent of the upper bound. Defaults to 0, so
+#'   that optimal solutions will be returned.
 #'
 #' @param number_solutions \code{integer} number of solutions desired.
 #'   Defaults to 1. Note that the number of returned solutions can sometimes
@@ -136,7 +137,7 @@ methods::setClass("GurobiSolver", contains = "Solver")
 
 #' @rdname add_gurobi_solver
 #' @export
-add_gurobi_solver <- function(x, gap = 0.1, number_solutions = 1,
+add_gurobi_solver <- function(x, gap = 0, number_solutions = 1,
                               solution_pool_method = 2,
                               time_limit = .Machine$integer.max,
                               presolve = 2, threads = 1, first_feasible = 0,

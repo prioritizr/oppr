@@ -57,7 +57,7 @@ methods::setClass("LpsymphonySolver", contains = "Solver")
 
 #' @rdname add_lsymphony_solver
 #' @export
-add_lpsymphony_solver <- function(x, gap = 0.1, time_limit = -1,
+add_lpsymphony_solver <- function(x, gap = 0, time_limit = -1,
                                   first_feasible = 0, verbose = TRUE) {
   # assert that arguments are valid
   assertthat::assert_that(inherits(x, "ProjectProblem"),
