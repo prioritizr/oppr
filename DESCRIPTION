@@ -115,6 +115,7 @@ Collate:
     'problem.R'
     'project_names.R'
     'rake_phylogeny.R'
+    'replacement_costs.R'
     'show.R'
     'simulate_ppp_data.R'
     'simulate_ptm_data.R'
