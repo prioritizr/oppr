@@ -80,20 +80,26 @@ Additionally, we will load the `sim_projects` object. This table stores informat
 data(sim_projects)
 
 # print table
-print(sim_projects)
+print(sim_projects, width = Inf)
 ```
 
     ## # A tibble: 6 x 13
-    ##   name  success     F1     F2      F3     F4     F5 F1_action F2_action
-    ##   <chr>   <dbl>  <dbl>  <dbl>   <dbl>  <dbl>  <dbl> <lgl>     <lgl>    
-    ## 1 F1_p<e2><80><a6>   0.919  0.791 NA     NA      NA     NA     TRUE      FALSE    
-    ## 2 F2_p<e2><80><a6>   0.923 NA      0.888 NA      NA     NA     FALSE     TRUE     
-    ## 3 F3_p<e2><80><a6>   0.829 NA     NA      0.502  NA     NA     FALSE     FALSE    
-    ## 4 F4_p<e2><80><a6>   0.848 NA     NA     NA       0.690 NA     FALSE     FALSE    
-    ## 5 F5_p<e2><80><a6>   0.814 NA     NA     NA      NA      0.617 FALSE     FALSE    
-    ## 6 base<e2><80><a6>   1      0.298  0.250  0.0865  0.249  0.182 FALSE     FALSE    
-    ## # <e2><80><a6> with 4 more variables: F3_action <lgl>, F4_action <lgl>,
-    ## #   F5_action <lgl>, baseline_action <lgl>
+    ##   name             success     F1     F2      F3     F4     F5 F1_action
+    ##   <chr>              <dbl>  <dbl>  <dbl>   <dbl>  <dbl>  <dbl> <lgl>    
+    ## 1 F1_project         0.919  0.791 NA     NA      NA     NA     TRUE     
+    ## 2 F2_project         0.923 NA      0.888 NA      NA     NA     FALSE    
+    ## 3 F3_project         0.829 NA     NA      0.502  NA     NA     FALSE    
+    ## 4 F4_project         0.848 NA     NA     NA       0.690 NA     FALSE    
+    ## 5 F5_project         0.814 NA     NA     NA      NA      0.617 FALSE    
+    ## 6 baseline_project   1      0.298  0.250  0.0865  0.249  0.182 FALSE    
+    ##   F2_action F3_action F4_action F5_action baseline_action
+    ##   <lgl>     <lgl>     <lgl>     <lgl>     <lgl>          
+    ## 1 FALSE     FALSE     FALSE     FALSE     FALSE          
+    ## 2 TRUE      FALSE     FALSE     FALSE     FALSE          
+    ## 3 FALSE     TRUE      FALSE     FALSE     FALSE          
+    ## 4 FALSE     FALSE     TRUE      FALSE     FALSE          
+    ## 5 FALSE     FALSE     FALSE     TRUE      FALSE          
+    ## 6 FALSE     FALSE     FALSE     FALSE     TRUE
 
 After loading the data, we can begin formulating the project prioritization problem. Here our goal is to maximize the overall probability that each feature is expected to persist into the future (i.e. the feature richness), whilst also accounting for the relative importance of each feature and the fact that our resources are limited such that we can only spend at most $400 on funding management actions. Now, let's build a project prioritization problem object that represents our goal.
 
@@ -130,17 +136,20 @@ Next, we can solve this problem to obtain a solution. By default, we will obtain
 ``` r
 # solve problem
 s <- solve(p)
+```
 
+``` r
 # print solution
-print(s)
+print(s, width = Inf)
 ```
 
     ## # A tibble: 1 x 15
-    ##   solution status   obj  cost F1_action F2_action F3_action F4_action
-    ##      <int> <chr>  <dbl> <dbl>     <dbl>     <dbl>     <dbl>     <dbl>
-    ## 1        1 OPTIM<e2><80><a6>  1.51  395.         1         1         0         1
-    ## # <e2><80><a6> with 7 more variables: F5_action <dbl>, baseline_action <dbl>,
-    ## #   F1 <dbl>, F2 <dbl>, F3 <dbl>, F4 <dbl>, F5 <dbl>
+    ##   solution status    obj  cost F1_action F2_action F3_action F4_action
+    ##      <int> <chr>   <dbl> <dbl>     <dbl>     <dbl>     <dbl>     <dbl>
+    ## 1        1 OPTIMAL  1.51  395.         1         1         0         1
+    ##   F5_action baseline_action    F1    F2     F3    F4    F5
+    ##       <dbl>           <dbl> <dbl> <dbl>  <dbl> <dbl> <dbl>
+    ## 1         1               1 0.727 0.820 0.0865 0.585 0.502
 
 The `s` table contains the solution and also various statistics associated with the solution. Here, each row corresponds to a different solution. Specifically, the `"solution"` column contains an identifier for the solution (which may be useful for methods that output multiple solutions), the `"obj"` column contains the objective value (i.e. the expected feature richness for this problem), the `"cost"` column stores the cost of the solution, and the `"status"` column contains information from the solver about the solution. Additionally, it contains columns for each action (`"F1_action"`, `"F2_actions"`, `"F3_actions"`, ..., `"baseline_action"`) which indicate if each action was prioritized for funding in the solution. Furthermore, it contains column for each feature (`"F1`, `"F2"`, `"F3`, ...) which indicate the probability that each feature is expected to persist into the future under each solution. Since tabular data can be difficult to understand, let's visualize how well this solution would conserve the features. Note that features which benefit from fully funded projects, excepting the baseline project, are denoted with an asterisk.
 

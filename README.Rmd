@@ -79,7 +79,7 @@ Additionally, we will load the `sim_projects` object. This table stores informat
 data(sim_projects)
 
 # print table
-print(sim_projects)
+print(sim_projects, width = Inf)
 ```
 
 After loading the data, we can begin formulating the project prioritization problem. Here our goal is to maximize the overall probability that each feature is expected to persist into the future (i.e. the feature richness), whilst also accounting for the relative importance of each feature and the fact that our resources are limited such that we can only spend at most $400 on funding management actions. Now, let's build a project prioritization problem object that represents our goal.
@@ -104,9 +104,11 @@ Next, we can solve this problem to obtain a solution. By default, we will obtain
 ```{r, message = FALSE, warning = FALSE}
 # solve problem
 s <- solve(p)
+```
 
+```{r}
 # print solution
-print(s)
+print(s, width = Inf)
 ```
 
 The `s` table contains the solution and also various statistics associated with the solution. Here, each row corresponds to a different solution. Specifically, the `"solution"` column contains an identifier for the solution (which may be useful for methods that output multiple solutions), the `"obj"` column contains the objective value (i.e. the expected feature richness for this problem), the `"cost"` column stores the cost of the solution, and the `"status"` column contains information from the solver about the solution. Additionally, it contains columns for each action (`"F1_action"`, `"F2_actions"`, `"F3_actions"`, ..., `"baseline_action"`) which indicate if each action was prioritized for funding in the solution. Furthermore, it contains column for each feature (`"F1`, `"F2"`, `"F3`, ...) which indicate the probability that each feature is expected to persist into the future under each solution. Since tabular data can be difficult to understand, let's visualize how well this solution would conserve the features. Note that features which benefit from fully funded projects, excepting the baseline project, are denoted with an asterisk.
