@@ -59,7 +59,7 @@ Now we will load some data sets that are distributed with the package. First, we
 data(sim_features)
 
 # print table
-head(as.data.frame(sim_features))
+print(sim_features)
 ```
 
 Next, we will load the `sim_actions` object. This table stores information about the various management actions (i.e. `tibble`). Each row corresponds to a different action, and each column describes different properties associated with the actions. These actions correspond to specific management actions that have known costs. For example, they may relate to pest eradication activities in sites of conservation importance. In this table, the `"name"` column contains the name of each action, and the `"cost"` action denotes the cost of funding each project. It also contains additional columns for customizing the solutions, but we will ignore them for now. Note that the last project---the `"baseline_action"`---has a zero cost and is used subsequently to represent the baseline probability for feature when no conservation actions are funded for them.
@@ -69,7 +69,7 @@ Next, we will load the `sim_actions` object. This table stores information about
 data(sim_actions)
 
 # print table
-head(as.data.frame(sim_actions))
+print(sim_actions)
 ```
 
 Additionally, we will load the `sim_projects` object. This table stores information about various conservation projects. Each row corresponds to a different project, and each column describes various properties associated with the projects. These projects correspond to groups of conservation actions. For example, a conservation project may pertain to a set of conservation actions that relate to a single feature or single geographic locality. In this table, the `"name"` column contains the name of each project, the `"success"` column denotes the probability of each project succeeding if it is funded, the `"F1"`--`"F5"` columns show the probability of each feature is expected to persist if each project is funded (`NA` values mean that a feature does not benefit from a project), and the `"F1_action"`--`"F5_action"` columns indicate which actions are associated with which projects. Note that the last project---the `"baseline_project"`---is associated with the `"baseline_action"` action. This project has a zero cost and represents the baseline probability of each feature persisting if no other project is funded. Finally, although most projects in this example directly relate to a single feature, you can input projects that directly affect the persistence of multiple feature.
@@ -79,7 +79,7 @@ Additionally, we will load the `sim_projects` object. This table stores informat
 data(sim_projects)
 
 # print table
-head(as.data.frame(sim_projects))
+print(sim_projects)
 ```
 
 After loading the data, we can begin formulating the project prioritization problem. Here our goal is to maximize the overall probability that each feature is expected to persist into the future (i.e. the feature richness), whilst also accounting for the relative importance of each feature and the fact that our resources are limited such that we can only spend at most $400 on funding management actions. Now, let's build a project prioritization problem object that represents our goal.

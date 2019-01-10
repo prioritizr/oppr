@@ -198,7 +198,7 @@ does not require targets will throw a warning if targets are supplied.</p>
 #&gt; <span class='message'>  constraints:     &lt;none&gt;</span>
 #&gt; <span class='message'>  solver:          default</span></div><div class='input'>
 <span class='co'># solve problems</span>
-<span class='no'>s1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p1</span>)</div><div class='output co'>#&gt; Optimize a model with 46 rows, 42 columns and 112 nonzeros
+<span class='no'>s1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p1</span>)</div><div class='output co'>#&gt; Optimize a model with 46 rows, 42 columns and 92 nonzeros
 #&gt; Variable types: 0 continuous, 42 integer (42 binary)
 #&gt; Coefficient statistics:
 #&gt;   Matrix range     [9e-02, 1e+00]
@@ -206,18 +206,18 @@ does not require targets will throw a warning if targets are supplied.</p>
 #&gt;   Bounds range     [1e+00, 1e+00]
 #&gt;   RHS range        [3e-01, 1e+00]
 #&gt; Found heuristic solution: objective 497.7671458
-#&gt; Presolve removed 45 rows and 40 columns
+#&gt; Presolve removed 45 rows and 20 columns
 #&gt; Presolve time: 0.00s
-#&gt; Presolved: 1 rows, 2 columns, 2 nonzeros
-#&gt; Variable types: 0 continuous, 2 integer (2 binary)
+#&gt; Presolved: 1 rows, 22 columns, 2 nonzeros
+#&gt; Variable types: 0 continuous, 22 integer (22 binary)
 #&gt; 
 #&gt; Explored 0 nodes (0 simplex iterations) in 0.00 seconds
 #&gt; Thread count was 1 (of 4 available processors)
 #&gt; 
 #&gt; Solution count 1: 497.767 
 #&gt; 
-#&gt; Optimal solution found (tolerance 1.00e-01)
-#&gt; Best objective 4.977671458279e+02, best bound 4.977671458279e+02, gap 0.0000%</div><div class='input'><span class='no'>s2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p2</span>)</div><div class='output co'>#&gt; Optimize a model with 46 rows, 42 columns and 112 nonzeros
+#&gt; Optimal solution found (tolerance 0.00e+00)
+#&gt; Best objective 4.977671458279e+02, best bound 4.977671458279e+02, gap 0.0000%</div><div class='input'><span class='no'>s2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p2</span>)</div><div class='output co'>#&gt; Optimize a model with 46 rows, 42 columns and 92 nonzeros
 #&gt; Variable types: 0 continuous, 42 integer (42 binary)
 #&gt; Coefficient statistics:
 #&gt;   Matrix range     [9e-02, 1e+00]
@@ -225,17 +225,17 @@ does not require targets will throw a warning if targets are supplied.</p>
 #&gt;   Bounds range     [1e+00, 1e+00]
 #&gt;   RHS range        [2e-01, 1e+00]
 #&gt; Found heuristic solution: objective 304.1251127
-#&gt; Presolve removed 39 rows and 34 columns
+#&gt; Presolve removed 31 rows and 14 columns
 #&gt; Presolve time: 0.00s
-#&gt; Presolved: 7 rows, 8 columns, 14 nonzeros
-#&gt; Variable types: 0 continuous, 8 integer (8 binary)
+#&gt; Presolved: 15 rows, 28 columns, 30 nonzeros
+#&gt; Variable types: 0 continuous, 28 integer (28 binary)
 #&gt; 
 #&gt; Explored 0 nodes (0 simplex iterations) in 0.00 seconds
 #&gt; Thread count was 1 (of 4 available processors)
 #&gt; 
 #&gt; Solution count 1: 304.125 
 #&gt; 
-#&gt; Optimal solution found (tolerance 1.00e-01)
+#&gt; Optimal solution found (tolerance 0.00e+00)
 #&gt; Best objective 3.041251126959e+02, best bound 3.041251126959e+02, gap 0.0000%</div><div class='input'>
 <span class='co'># print solutions</span>
 <span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s1</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 15</span><span>
@@ -272,7 +272,7 @@ does not require targets will throw a warning if targets are supplied.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
 </div>
       </footer>
    </div>

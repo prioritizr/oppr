@@ -142,7 +142,7 @@ it can be customized using <code><a href='objectives.html'>objectives</a></code>
     <tr>
       <th>projects</th>
       <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></code> or
-<code><a href='https://www.rdocumentation.org/packages/tibble/topics/tibble'>tibble</a></code> table containing project data. Here, each row
+<code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></code> table containing project data. Here, each row
 should correspond to a different project and columns should contain data
 that correspond to each project. This object should contain data that
 denote (i)
@@ -164,7 +164,7 @@ project is funded.</p></td>
     </tr>
     <tr>
       <th>actions</th>
-      <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></code> or <code><a href='https://www.rdocumentation.org/packages/tibble/topics/tibble'>tibble</a></code>
+      <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></code> or <code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></code>
 table containing the action data. Here, each row should correspond to a
 different action and columns should contain data that correspond to
 each action. At a minimum, this object should contain data that denote (i)
@@ -178,7 +178,7 @@ out (see <code><a href='add_locked_in_constraints.html'>add_locked_in_constraint
     <tr>
       <th>features</th>
       <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></code> or
-<code><a href='https://www.rdocumentation.org/packages/tibble/topics/tibble'>tibble</a></code>
+<code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></code>
 table containing the feature data. Here, each row should correspond
 to a different feature and columns should contain data that correspond
 to each feature. At a minimum, this object should contain data that denote
@@ -329,7 +329,7 @@ duplicates or missing values.</p></td>
 #&gt; <span class='message'>  constraints:     &lt;none&gt;</span>
 #&gt; <span class='message'>  solver:          default</span></div><div class='input'>
 </div></span><div class='input'><span class='co'># solve problem</span>
-<span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p</span>)</div><div class='output co'>#&gt; Optimize a model with 47 rows, 47 columns and 122 nonzeros
+<span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p</span>)</div><div class='output co'>#&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
 #&gt; Variable types: 0 continuous, 42 integer (42 binary)
 #&gt; Semi-Variable types: 5 continuous, 0 integer
 #&gt; Coefficient statistics:
@@ -337,27 +337,27 @@ duplicates or missing values.</p></td>
 #&gt;   Objective range  [2e-01, 2e+00]
 #&gt;   Bounds range     [1e+00, 1e+00]
 #&gt;   RHS range        [1e+00, 4e+02]
-#&gt; Found heuristic solution: objective -0.0000000
-#&gt; Presolve removed 3 rows and 3 columns
+#&gt; Found heuristic solution: objective 0.6543041
+#&gt; Presolve removed 16 rows and 12 columns
 #&gt; Presolve time: 0.00s
-#&gt; Presolved: 44 rows, 44 columns, 112 nonzeros
-#&gt; Variable types: 2 continuous, 42 integer (42 binary)
-#&gt; Presolved: 44 rows, 44 columns, 112 nonzeros
+#&gt; Presolved: 31 rows, 35 columns, 64 nonzeros
+#&gt; Variable types: 0 continuous, 35 integer (35 binary)
+#&gt; Presolved: 31 rows, 35 columns, 64 nonzeros
 #&gt; 
 #&gt; 
-#&gt; Root relaxation: objective 1.512928e+00, 15 iterations, 0.00 seconds
+#&gt; Root relaxation: objective 1.512928e+00, 11 iterations, 0.00 seconds
 #&gt; 
 #&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
 #&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #&gt; 
 #&gt; *    0     0               0       1.5129280    1.51293  0.00%     -    0s
 #&gt; 
-#&gt; Explored 0 nodes (15 simplex iterations) in 0.00 seconds
+#&gt; Explored 0 nodes (11 simplex iterations) in 0.00 seconds
 #&gt; Thread count was 1 (of 4 available processors)
 #&gt; 
 #&gt; Solution count 1: 1.51293 
 #&gt; 
-#&gt; Optimal solution found (tolerance 1.00e-01)
+#&gt; Optimal solution found (tolerance 0.00e+00)
 #&gt; Best objective 1.512928010109e+00, best bound 1.512928010109e+00, gap 0.0000%</div><div class='input'>
 <span class='co'># print output</span>
 <span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 15</span><span>
@@ -403,7 +403,7 @@ duplicates or missing values.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
 </div>
       </footer>
    </div>

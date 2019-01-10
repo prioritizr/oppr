@@ -292,7 +292,7 @@ ylab("Frequency")
 
 ### Complementarity in project prioritizations
 
-
+When developing project prioritizations, decision makers can sometimes have specific targets for feature persistence. For example, decision makers may require a solution that maximizes the number of features that meet a particular threshold probability of persistence (e.g. 40%). In such cases, we don't count any "benefit" for features that don't meet this target threshold and we don't cont any additional benefit for features that surpass this target threshold---we only care if the target is met or not. This approach is often described as incorporating "complementarity"---the idea that individual conservation actions should complement each other, and in combination protect a comprehensive sample of biodiversity [@r23]---into project prioritizations [@r5].
 
 ### Benchmarking conventional algorithms
 

@@ -1,10 +1,4 @@
-all: clean contrib initc data docs test check
-
-clean:
-	rm -rf man/*
-	rm -rf data/*
-	rm -rf docs/*
-	rm -rf inst/doc/*
+all: initc data docs test check
 
 initc:
 	R --slave -e "Rcpp::compileAttributes()"
@@ -20,9 +14,6 @@ man:
 
 readme:
 	R --slave -e "rmarkdown::render('README.Rmd')"
-
-contrib:
-	R --slave -e "rmarkdown::render('CONTRIBUTING.Rmd')"
 
 vigns:
 	R --slave -e "devtools::build_vignettes()"
@@ -71,4 +62,4 @@ build:
 install:
 	R --slave -e "devtools::install_local('../ppr', force = TRUE, upgrade = 'never')"
 
-.PHONY: initc clean data docs readme contrib site test check checkwb build install man
+.PHONY: initc data docs readme site test check checkwb build install man

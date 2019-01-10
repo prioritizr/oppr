@@ -164,13 +164,13 @@ Defaults to <code>FALSE</code>.</p></td>
 
 <span class='co'># create a numeric matrix parameter</span>
 <span class='no'>p1</span> <span class='kw'>&lt;-</span> <span class='fu'>numeric_matrix_parameter</span>(<span class='st'>"m"</span>, <span class='no'>m</span>)
-<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>p1</span>) <span class='co'># print it</span></div><div class='output co'>#&gt; &lt;environment: 0xf84b1b8&gt;
+<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>p1</span>) <span class='co'># print it</span></div><div class='output co'>#&gt; &lt;environment: 0xdee13f8&gt;
 #&gt; attr(,"class")
 #&gt; [1] "MiscParameter" "MiscParameter" "Parameter"     "pproto"       
 #&gt; [5] "proto"         "environment"  </div><div class='input'><span class='no'>p1</span>$<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/get'>get</a></span>() <span class='co'># get value</span></div><div class='output co'>#&gt;           a          b         c
 #&gt; a 0.5387602 0.04693501 0.9706814
 #&gt; b 0.1257892 0.16140918 0.7102741
-#&gt; c 0.9631818 0.93648743 0.8850909</div><div class='input'><span class='no'>p1</span>$<span class='no'>id</span> <span class='co'># get id</span></div><div class='output co'>#&gt; <span class='message'>id: e040b018-f407-415d-83c9-1d9710c77583</span></div><div class='input'><span class='no'>p1</span>$<span class='fu'>validate</span>(<span class='no'>m</span>[, -<span class='fl'>1</span>]) <span class='co'># check if parameter can be updated</span></div><div class='output co'>#&gt; [1] FALSE
+#&gt; c 0.9631818 0.93648743 0.8850909</div><div class='input'><span class='no'>p1</span>$<span class='no'>id</span> <span class='co'># get id</span></div><div class='output co'>#&gt; <span class='message'>id: da431bd1-c214-4080-ad85-eaa285657223</span></div><div class='input'><span class='no'>p1</span>$<span class='fu'>validate</span>(<span class='no'>m</span>[, -<span class='fl'>1</span>]) <span class='co'># check if parameter can be updated</span></div><div class='output co'>#&gt; [1] FALSE
 #&gt; attr(,"msg")
 #&gt; [1] "ncol(m) not equal to ncol(value)"</div><div class='input'><span class='no'>p1</span>$<span class='fu'>set</span>(<span class='no'>m</span> + <span class='fl'>1</span>) <span class='co'># set parameter to new values</span>
 <span class='no'>p1</span>$<span class='fu'><a href='print.html'>print</a></span>() <span class='co'># print it again</span></div><div class='output co'>#&gt; [1] "m"</div><div class='input'>
@@ -181,13 +181,13 @@ Defaults to <code>FALSE</code>.</p></td>
 
 <span class='co'># create a binary matrix parameter</span>
 <span class='no'>p2</span> <span class='kw'>&lt;-</span> <span class='fu'>binary_matrix_parameter</span>(<span class='st'>"m"</span>, <span class='no'>m</span>)
-<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>p2</span>) <span class='co'># print it</span></div><div class='output co'>#&gt; &lt;environment: 0x1aa21f60&gt;
+<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>p2</span>) <span class='co'># print it</span></div><div class='output co'>#&gt; &lt;environment: 0xd32ec38&gt;
 #&gt; attr(,"class")
 #&gt; [1] "MiscParameter" "MiscParameter" "Parameter"     "pproto"       
 #&gt; [5] "proto"         "environment"  </div><div class='input'><span class='no'>p2</span>$<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/get'>get</a></span>() <span class='co'># get value</span></div><div class='output co'>#&gt;   a b c
 #&gt; a 1 1 1
 #&gt; b 0 1 1
-#&gt; c 0 0 1</div><div class='input'><span class='no'>p2</span>$<span class='no'>id</span> <span class='co'># get id</span></div><div class='output co'>#&gt; <span class='message'>id: d7684c36-1bce-4f4a-b812-e425f6f438ec</span></div><div class='input'><span class='no'>p2</span>$<span class='fu'>validate</span>(<span class='no'>m</span>[, -<span class='fl'>1</span>]) <span class='co'># check if parameter can be updated</span></div><div class='output co'>#&gt; [1] FALSE
+#&gt; c 0 0 1</div><div class='input'><span class='no'>p2</span>$<span class='no'>id</span> <span class='co'># get id</span></div><div class='output co'>#&gt; <span class='message'>id: cf81e6e0-1008-41b3-a691-3c6103e86d7c</span></div><div class='input'><span class='no'>p2</span>$<span class='fu'>validate</span>(<span class='no'>m</span>[, -<span class='fl'>1</span>]) <span class='co'># check if parameter can be updated</span></div><div class='output co'>#&gt; [1] FALSE
 #&gt; attr(,"msg")
 #&gt; [1] "ncol(m) not equal to ncol(value)"</div><div class='input'><span class='no'>p2</span>$<span class='fu'>set</span>(<span class='no'>m</span> + <span class='fl'>1</span>) <span class='co'># set parameter to new values</span>
 <span class='no'>p2</span>$<span class='fu'><a href='print.html'>print</a></span>() <span class='co'># print it again</span></div><div class='output co'>#&gt; [1] "m"</div></pre>
@@ -211,7 +211,7 @@ Defaults to <code>FALSE</code>.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
 </div>
       </footer>
    </div>

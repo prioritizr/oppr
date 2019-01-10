@@ -19,62 +19,52 @@ reference:
     desc: Summary of the package
     contents:
       - ppr
-
   - title: Data
     desc: Simulated datasets and data simulation functions
     contents:
       - sim_data
       - starts_with("simulate_")
-
   - title: Create and solve problems
     desc: Functions for creating new problems and solving them
     contents:
       - problem
       - solve
-
   - title: Evaluate solutions
     desc: Functions for evaluating and visualizing solutions to a problem
     contents:
       - starts_with("plot")
       - solution_statistics
       - replacement_costs
-
   - title: Objectives
     desc: Functions for adding an objective to a problem
     contents:
       - objectives
       - ends_with("_objective")
-
   - title: Weights
     desc: Functions for adding weights to a problem
     contents:
       - weights
       - add_feature_weights
-
   - title: Targets
     desc: Functions for adding targets to a problem
     contents:
       - targets
       - ends_with("_targets")
-
   - title: Constraints
     desc: Functions for adding constraints to a problem
     contents:
       - constraints
       - ends_with("_constraints")
-
   - title: Decisions
     desc: Functions for specifying the type of decisions in a problem
     contents:
       - decisions
       - ends_with("_decisions")
-
   - title: Solvers
     desc: Functions for specifying how a problem should be solved
     contents:
       - solvers
       - ends_with("_solver")
-
   - title: Problem manipulation functions
     desc: Functions for extracting information from problems
     contents:
@@ -84,7 +74,6 @@ reference:
       - number_of_features
       - number_of_actions
       - number_of_projects
-
   - title: Miscellaneous functions
     desc: Assorted functions distributed with the package
     contents:
@@ -96,7 +85,6 @@ reference:
       - as
       - compile
       - branch_matrix
-
   - title: Class definitions and methods
     desc: >
      These pages document the package's internal data structures and functions
@@ -110,7 +98,6 @@ reference:
       - as.list.OptimizationProblem
       - ends_with("-class")
       - ends_with("-methods")
-
   - title: Parameter definitions
     desc: >
       These pages document the package's internal data structures for

@@ -41,15 +41,17 @@ Now we will load some data sets that are distributed with the package. First, we
 data(sim_features)
 
 # print table
-head(as.data.frame(sim_features))
+print(sim_features)
 ```
 
-    ##   name    weight
-    ## 1   F1 0.2113582
-    ## 2   F2 0.2113582
-    ## 3   F3 0.2211805
-    ## 4   F4 0.6296374
-    ## 5   F5 1.5916703
+    ## # A tibble: 5 x 2
+    ##   name  weight
+    ##   <chr>  <dbl>
+    ## 1 F1     0.211
+    ## 2 F2     0.211
+    ## 3 F3     0.221
+    ## 4 F4     0.630
+    ## 5 F5     1.59
 
 Next, we will load the `sim_actions` object. This table stores information about the various management actions (i.e. `tibble`). Each row corresponds to a different action, and each column describes different properties associated with the actions. These actions correspond to specific management actions that have known costs. For example, they may relate to pest eradication activities in sites of conservation importance. In this table, the `"name"` column contains the name of each action, and the `"cost"` action denotes the cost of funding each project. It also contains additional columns for customizing the solutions, but we will ignore them for now. Note that the last project---the `"baseline_action"`---has a zero cost and is used subsequently to represent the baseline probability for feature when no conservation actions are funded for them.
 
@@ -58,16 +60,18 @@ Next, we will load the `sim_actions` object. This table stores information about
 data(sim_actions)
 
 # print table
-head(as.data.frame(sim_actions))
+print(sim_actions)
 ```
 
-    ##              name      cost locked_in locked_out
-    ## 1       F1_action  94.39929     FALSE      FALSE
-    ## 2       F2_action 100.99137     FALSE      FALSE
-    ## 3       F3_action 103.22583      TRUE      FALSE
-    ## 4       F4_action  99.24274     FALSE      FALSE
-    ## 5       F5_action  99.90791     FALSE       TRUE
-    ## 6 baseline_action   0.00000     FALSE      FALSE
+    ## # A tibble: 6 x 4
+    ##   name             cost locked_in locked_out
+    ##   <chr>           <dbl> <lgl>     <lgl>     
+    ## 1 F1_action        94.4 FALSE     FALSE     
+    ## 2 F2_action       101.  FALSE     FALSE     
+    ## 3 F3_action       103.  TRUE      FALSE     
+    ## 4 F4_action        99.2 FALSE     FALSE     
+    ## 5 F5_action        99.9 FALSE     TRUE      
+    ## 6 baseline_action   0   FALSE     FALSE
 
 Additionally, we will load the `sim_projects` object. This table stores information about various conservation projects. Each row corresponds to a different project, and each column describes various properties associated with the projects. These projects correspond to groups of conservation actions. For example, a conservation project may pertain to a set of conservation actions that relate to a single feature or single geographic locality. In this table, the `"name"` column contains the name of each project, the `"success"` column denotes the probability of each project succeeding if it is funded, the `"F1"`--`"F5"` columns show the probability of each feature is expected to persist if each project is funded (`NA` values mean that a feature does not benefit from a project), and the `"F1_action"`--`"F5_action"` columns indicate which actions are associated with which projects. Note that the last project---the `"baseline_project"`---is associated with the `"baseline_action"` action. This project has a zero cost and represents the baseline probability of each feature persisting if no other project is funded. Finally, although most projects in this example directly relate to a single feature, you can input projects that directly affect the persistence of multiple feature.
 
@@ -76,30 +80,20 @@ Additionally, we will load the `sim_projects` object. This table stores informat
 data(sim_projects)
 
 # print table
-head(as.data.frame(sim_projects))
+print(sim_projects)
 ```
 
-    ##               name   success        F1        F2        F3        F4
-    ## 1       F1_project 0.9190985 0.7905800        NA        NA        NA
-    ## 2       F2_project 0.9232556        NA 0.8881011        NA        NA
-    ## 3       F3_project 0.8293499        NA        NA 0.5020887        NA
-    ## 4       F4_project 0.8475053        NA        NA        NA 0.6899938
-    ## 5       F5_project 0.8137868        NA        NA        NA        NA
-    ## 6 baseline_project 1.0000000 0.2977965 0.2500224 0.0864612 0.2489246
-    ##          F5 F1_action F2_action F3_action F4_action F5_action
-    ## 1        NA      TRUE     FALSE     FALSE     FALSE     FALSE
-    ## 2        NA     FALSE      TRUE     FALSE     FALSE     FALSE
-    ## 3        NA     FALSE     FALSE      TRUE     FALSE     FALSE
-    ## 4        NA     FALSE     FALSE     FALSE      TRUE     FALSE
-    ## 5 0.6166465     FALSE     FALSE     FALSE     FALSE      TRUE
-    ## 6 0.1820005     FALSE     FALSE     FALSE     FALSE     FALSE
-    ##   baseline_action
-    ## 1           FALSE
-    ## 2           FALSE
-    ## 3           FALSE
-    ## 4           FALSE
-    ## 5           FALSE
-    ## 6            TRUE
+    ## # A tibble: 6 x 13
+    ##   name  success     F1     F2      F3     F4     F5 F1_action F2_action
+    ##   <chr>   <dbl>  <dbl>  <dbl>   <dbl>  <dbl>  <dbl> <lgl>     <lgl>    
+    ## 1 F1_p<e2><80><a6>   0.919  0.791 NA     NA      NA     NA     TRUE      FALSE    
+    ## 2 F2_p<e2><80><a6>   0.923 NA      0.888 NA      NA     NA     FALSE     TRUE     
+    ## 3 F3_p<e2><80><a6>   0.829 NA     NA      0.502  NA     NA     FALSE     FALSE    
+    ## 4 F4_p<e2><80><a6>   0.848 NA     NA     NA       0.690 NA     FALSE     FALSE    
+    ## 5 F5_p<e2><80><a6>   0.814 NA     NA     NA      NA      0.617 FALSE     FALSE    
+    ## 6 base<e2><80><a6>   1      0.298  0.250  0.0865  0.249  0.182 FALSE     FALSE    
+    ## # <e2><80><a6> with 4 more variables: F3_action <lgl>, F4_action <lgl>,
+    ## #   F5_action <lgl>, baseline_action <lgl>
 
 After loading the data, we can begin formulating the project prioritization problem. Here our goal is to maximize the overall probability that each feature is expected to persist into the future (i.e. the feature richness), whilst also accounting for the relative importance of each feature and the fact that our resources are limited such that we can only spend at most $400 on funding management actions. Now, let's build a project prioritization problem object that represents our goal.
 
@@ -129,7 +123,7 @@ print(p)
     ##   weights:         min: 0.21136, max: 1.59167
     ##   decisions        Binary decision 
     ##   constraints:     <none>
-    ##   solver:          Gurobi [first_feasible (0), gap (0.1), number_solutions (1), presolve (2), solution_pool_method (2), threads (1), time_limit (2147483647), time_limit (2147483647), verbose (0)]
+    ##   solver:          Gurobi [first_feasible (0), gap (0), number_solutions (1), presolve (2), solution_pool_method (2), threads (1), time_limit (2147483647), time_limit (2147483647), verbose (0)]
 
 Next, we can solve this problem to obtain a solution. By default, we will obtain the optimal solution to our problem using an exact algorithm solver (e.g. using [Gurobi](http://www.gurobi.com/) or [Rsymphony](https://cran.r-project.org/package=Rsymphony)).
 
