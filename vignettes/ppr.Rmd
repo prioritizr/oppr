@@ -85,24 +85,27 @@ Briefly, biodiversity features are the biological entities that we wish would pe
 To start off, we will set the seed for the random number generator to ensure you get the same results as shown here, load the _ppr R_ package, and load the _ggplot2_ package to help with data visualizations.
 
 ```{r}
-set.seed(500)
+set.seed(1000)
 library(ppr)
 library(ggplot2)
 ```
 
 ### Data simulation
 
-Now we will simulate a dataset to practice developing project prioritizations. Specifically, we will simulate a dataset for a priority threat management exercise that contains 50 features, 100 projects, and 150 actions.
+Now we will simulate a dataset to practice developing project prioritizations. Specifically, we will simulate a dataset for a priority threat management exercise that contains 50 features, 80 projects, and 90 actions.
 
 ```{r}
 # simulate data
-sim_data <- simulate_ptm_data(number_projects = 100, number_actions = 150,
-                              number_features = 50)
+sim_data <- simulate_ptm_data(number_projects = 70, number_actions = 30,
+                              number_features = 40)
 
 # extract project, action, feature data
 projects <- sim_data$projects
 actions <- sim_data$actions
 features <- sim_data$features
+
+# manually set feature weights for teaching purposes
+features$weight <- exp(runif(nrow(features), 1, 15))
 
 # print data
 print(projects)
@@ -112,13 +115,13 @@ print(features)
 
 ### Prioritizations with exact algorithms
 
-Let's assume that we want to maximize the overall persistence of the conservation features and that we can only spend $3'000 funding management actions. We will also assume that our decisions involve either funding management actions or not (in other words, our decisions are binary). For the moment, let's assume that we value the persistence of each feature equally. Given this information, we can a project prioritization problem object that matches our specifications.
+Let's assume that we want to maximize the overall persistence of the conservation features and that we can only spend $1'000 funding management actions. We will also assume that our decisions involve either funding management actions or not (in other words, our decisions are binary). For the moment, let's assume that we value the persistence of each feature equally. Given this information, we can a project prioritization problem object that matches our specifications.
 
 ```{r}
 # build problem
 p1 <- problem(projects = projects, actions = actions, features = features,
               "name", "success", "name", "cost", "name") %>%
-      add_max_richness_objective(budget = 3000) %>%
+      add_max_richness_objective(budget = 1000) %>%
       add_binary_decisions()
 
 # print problem
@@ -133,9 +136,6 @@ s1 <- solve(p1)
 
 # print solution
 print(s1)
-
-# calculate number of actions prioritized for funding
-sum(as.matrix(s1[, grepl("action", names(s1))]))
 ```
 
 The `s1` table contains the solution and also various statistics associated with the solution. Here, each row corresponds to a different solution. By default only one solution will be returned, and so the table has one row. The `"solution"` column contains an integer identifier for the solution (which may be useful for methods that output multiple solutions), the `"obj"` column contains the objective value (i.e. the expected feature richness in this case), the `"cost"` column stores the cost of the solution, and the `"status"` column contains information from the solver about the solution. Additionally, it contains columns for each action (`"action_1"`, `"action_2"`, `"action_3"`, ..., `"baseline_action"`) which indicate if each action was prioritized for funding in the solution. Furthermore, it contains columns for each feature (`"F1`, `"F2"`, `"F3`, ...) which indicate the probability that each feature is expected to persist into the future if the solutions were implemented.
@@ -179,9 +179,10 @@ s2 <- solve(p2)
 
 # print solution
 print(s2)
+```
 
-# calculate number of actions prioritized for funding
-sum(as.matrix(s2[, grepl("action", names(s2))]))
+```{r, include = FALSE}
+assertthat::assert_that(mean(as.matrix(s2[, grepl("action", names(s2))])) < 1)
 ```
 
 ```{r, fig.height = 5.5, fig.width = 4.5}
@@ -189,17 +190,28 @@ sum(as.matrix(s2[, grepl("action", names(s2))]))
 plot(p2, s2)
 ```
 
-We can also examine how adding feature weights changed our solution. Specifically, we can calculate the number of projects that were given the same status (i.e. zero or one) and the number of projects that changed when adding the weights (e.g. went from zero to one, or vice versa).
+We can also examine how adding feature weights changed our solution.
 
 ```{r}
-# calculate number of actions that were assigned the same status
-sum((as.matrix(s1[, grepl("action", names(s1))]) -
-     as.matrix(s2[, grepl("action", names(s2))])) == 0)
+# print actions prioritized for funding in first solution
+actions$name[which(as.logical(as.matrix(s1[, grepl("action", names(s1))])))]
 
-# calculate number of actions that were assigned a different status when
-# adding the weights
-sum((as.matrix(s1[, grepl("action", names(s1))]) -
-     as.matrix(s2[, grepl("action", names(s2))])) != 0)
+# print actions prioritized for funding in second solution
+actions$name[which(as.logical(as.matrix(s2[, grepl("action", names(s2))])))]
+
+# calculate number of actions funded in both solutions
+sum((as.matrix(s1[, grepl("action", names(s1))]) == 1) &
+    (as.matrix(s2[, grepl("action", names(s2))]) == 1))
+```
+
+```{r, include = FALSE}
+a1 <- actions$name[which(as.logical(as.matrix(s1[, grepl("action",
+                                                         names(s1))])))]
+
+a2 <- actions$name[which(as.logical(as.matrix(s2[, grepl("action",
+                                                         names(s2))])))]
+
+assertthat::assert_that(!setequal(a1, a2))
 ```
 
 Earlier, we talked about the _ppr_ using the default exact algorithm solver. Although you should have the _Rsymphony_ solver automatically installed, we strongly recommend installing the [_gurobi R_ package](http://www.gurobi.com/documentation/8.1/quickstart_mac/r_installing_the_r_package.html) and the [Gurobi optimization suite](http://www.gurobi.com/). This is because Gurobi can solve optimization problems much faster than any other software and it can also be used to easily generate multiple solutions.
@@ -207,14 +219,21 @@ Unfortunately, you will have to install Gurobi manually, but please see `?add_gu
 
 ```{r}
 # create new problem, with gurobi solver added and request multiple solutions
+# note that we set the gap to 0.5 because we are not necessarily interested
+# in the top 1'000 solutions (for more information on why read the Gurobi
+# documentation on solution pools)
 p3 <- p2 %>%
-      add_gurobi_solver(number_solution = 1000)
+      add_gurobi_solver(gap = 0.5, number_solution = 10000)
 
 # solve problem
 s3 <- solve(p3)
 
 # print solution
 print(s3)
+```
+
+```{r, include = FALSE}
+assertthat::assert_that(nrow(s3) > 30)
 ```
 
 We obtained `r nrow(s3)` solutions. Let's explore briefly them.
@@ -292,9 +311,213 @@ ylab("Frequency")
 
 ### Complementarity in project prioritizations
 
-When developing project prioritizations, decision makers can sometimes have specific targets for feature persistence. For example, decision makers may require a solution that maximizes the number of features that meet a particular threshold probability of persistence (e.g. 40%). In such cases, we don't count any "benefit" for features that don't meet this target threshold and we don't cont any additional benefit for features that surpass this target threshold---we only care if the target is met or not. This approach is often described as incorporating "complementarity"---the idea that individual conservation actions should complement each other, and in combination protect a comprehensive sample of biodiversity [@r23]---into project prioritizations [@r5].
+Broadly speaking, the principle of complementarity is that individual conservation actions should complement each other---in other words, they should not double up on the same biodiversity features---and when implemented together, conservation actions should conserve a comprehensive sample of biodiversity [@r23]. This principle was born from the profound realization that individual reserves need to provide habitat for different species in order to build a reserve network that provides habitat for many different species---even if this means selecting some individual reserves that do not provide habitat for as many species as other potential reserves [@r25]. In the context of project prioritization, this principle means that resources should be allocated in such a way that avoids doubling up on the same conservation features so that resources can be effectively allocated to as conservation features as possible [@r5]. For instance, if decision makers consider it acceptable for features to  have a 70% chance of persisting into the future, then we should avoid solutions which overly surpass this threshold (e.g. 99%) because we can allocate the limited resources to help other features reach this threshold. Such target thresholds can provide a transparent and effective method for establishing conservation priorities [@r24]. So, let's try developing a prioritization with conservation targets. Specifically, we will develop a prioritization that maximizes the number of features that have a 50% chance of persisting, subject to the same $1'000 budget as before.
+
+```{r, fig.height = 5.5, fig.width = 4.5}
+# build problem
+p4 <- problem(projects = projects, actions = actions, features = features,
+              "name", "success", "name", "cost", "name") %>%
+      add_max_targets_met_objective(budget = 1000) %>%
+      add_absolute_targets(0.5) %>%
+      add_binary_decisions()
+
+# print problem
+print(p4)
+
+# solve problem
+s4 <- solve(p4)
+
+# print solution
+print(s4)
+
+# plot solution
+plot(p4, s4)
+```
+
+But how would the number of features which meet the target change if we increased the budget? Or how would the number of features which meet the target change if we increased the target to 80%? These are common question in project prioritizations as practitioners may be able to secure additional resources if they can make a compelling case. So, let's try solving this problem with 50% and 80% targets under a range of different budgets and plot the relationships.
+
+```{r, fig.height = 4.5, fig.width = 4.5}
+# specify budgets, ranging between zero and the total cost of all the budgets,
+# with the total number of different budgets equaling 50
+# (note that we would use a higher number for publications)
+budgets <- seq(0, sum(actions$cost), length.out = 50)
+
+# specify targets
+targets <- c(0.5, 0.80)
+
+# run prioritizations and compile results
+comp_data <- lapply(targets, function(i) {
+  o <- lapply(budgets, function(b) {
+    problem(projects = projects, actions = actions, features = features,
+            "name", "success", "name", "cost", "name") %>%
+    add_max_targets_met_objective(budget = b) %>%
+    add_absolute_targets(i) %>%
+    add_binary_decisions() %>%
+    add_default_solver(verbose = FALSE) %>%
+    solve()
+  })
+  o <- as(do.call(rbind, o), "tbl_df")
+  o$budget <- budgets
+  o$target <- paste0(i * 100, "%")
+  o
+})
+comp_data <- as(do.call(rbind, comp_data), "tbl_df")
+
+# plot the relationship between the number of features that meet the target
+# in a solution and the cost of a solution
+ggplot(comp_data, aes(x = cost, y = obj, color = target)) +
+geom_step() +
+xlab("Solution cost ($)") +
+ylab("Number of features with targets met by the solution") +
+labs(color = "Target")
+```
+
+We might also be interested in understanding how exactly how much it would cost to implement a set of management actions that would result in all of the features meeting a specific target. Let's see if we can find out how much it would cost to ensure that every feature has a 99% probability of persistence.
+
+```{r}
+# build problem
+p5 <- problem(projects = projects, actions = actions, features = features,
+              "name", "success", "name", "cost", "name") %>%
+      add_min_set_objective() %>%
+      add_absolute_targets(0.99) %>%
+      add_binary_decisions()
+
+# print problem
+print(p5)
+
+# attempt to solve problem, this should throw an error
+s5 <- try(solve(p5))
+```
+
+```{r, include = FALSE}
+assertthat::assert_that(inherits(s5, "try-error"))
+```
+
+Unfortunately, we received an error instead of a solution. Specifically, this error means that there are no valid solutions to the problem (i.e. the problem is infeasible), because some features simply cannot obtain an 95% probability of persistence given the range of conservation projects that are available. So, let's see how much it would cost to ensure that every feature has a 75% chance of persistence.
+
+```{r}
+# build problem
+p6 <- problem(projects = projects, actions = actions, features = features,
+              "name", "success", "name", "cost", "name") %>%
+      add_min_set_objective() %>%
+      add_absolute_targets(0.75) %>%
+      add_binary_decisions()
+
+# print problem
+print(p6)
+
+# solve problem
+s6 <- solve(p6)
+
+# print solution
+print(s6)
+```
+
+```{r, fig.height = 5.5, fig.width = 4.5}
+# plot solution
+plot(p6, s6)
+```
+
+```{r}
+kintr::knit_exit()
+```
 
 ### Benchmarking conventional algorithms
+
+Conventionally, heuristic algorithms have been used to develop project prioritizations [e.g. @r3; @r4]. Although solutions identified using these algorithms often perform better than solutions generated using using random processes [e.g. randomly selecting actions for funding until a budget is met; @r3], this is not an especially compelling benchmark. As talked about earlier, heuristic algorithms do not provide any guarantees on solution quality, and so so should be avoided where possible [@r13]. To illustrate the pitfalls of relying on heuristic algorithms, let's generate a portfolio of solutions using a backwards heuristic algorithm.
+
+```{r}
+# set budgets for which to create multiple solutions
+budgets <- seq(0, sum(actions$cost), length.out = 100)
+
+# generate solutions
+s7 <- lapply(budgets, function(b) {
+  problem(projects = projects, actions = actions, features = features,
+              "name", "success", "name", "cost", "name") %>%
+  add_max_richness_objective(budget = b) %>%
+  add_feature_weights("weight") %>%
+  add_binary_decisions() %>%
+  add_heuristic_solver(verbose = FALSE) %>%
+  solve()
+})
+s7 <- as(do.call(rbind, s7), "tbl_df")
+s7$budget <- budgets
+
+# print solutions
+print(s7)
+```
+
+Now let's generate a portfolio of solutions using random processes.
+
+```{r, fig.width = 4.5, fig.height = 2.5}
+# set budgets for which to create multiple solutions using random processes
+rng_budgets <- seq(0, sum(actions$cost), length.out = 10000)
+
+# generate random solutions under the various budgets
+s8 <- lapply(rng_budgets, function(b) {
+  problem(projects = projects, actions = actions, features = features,
+              "name", "success", "name", "cost", "name") %>%
+  add_max_richness_objective(budget = b) %>%
+  add_feature_weights("weight") %>%
+  add_binary_decisions() %>%
+  add_heuristic_solver(verbose = FALSE, number_solutions = 100) %>%
+  solve()
+})
+s8 <- as(do.call(rbind, s8), "tbl_df")
+
+# print solutions
+print(s8)
+
+# plot histogram of objective values
+ggplot(data = s8, aes(obj)) +
+geom_histogram(bins = 30, na.rm = TRUE) +
+xlab("Expected richness (objective function)") +
+ylab("Frequency")
+```
+
+Now we can visualize how well the solutions identified using the heuristic algorithm compare to solutions generated using random processes. In the plot below, the line shows the performance of solutions generated using the heuristic algorithm. The colored pixels show the distribution of randomly generated solutions.
+
+```{r, fig.width = 4.5, fig.height = 4.5}
+# make plot
+ggplot() +
+geom_bin2d(aes(x = budget, y = obj), data = s8) +
+geom_step(aes(x = budget, y = obj data = s7, color = "orange") +
+xlab("Budget available ($)") +
+ylab("Expected richness (objective function)")
+```
+
+Here, we can see the that heuristic algorithm performs much better than funding conservation projects using random processes, so you might be think that this means that heuristic algorithms can perform pretty well. But we can do better. Let's generate a series of solutions using exact algorithms with various budgets, and add a line to the plot to visualize their effectiveness.
+
+```{r}
+# generate solutions
+s9 <- lapply(budgets, function(b) {
+  problem(projects = projects, actions = actions, features = features,
+          "name", "success", "name", "cost", "name") %>%
+  add_max_richness_objective(budget = b) %>%
+  add_feature_weights("weight") %>%
+  add_binary_decisions() %>%
+  add_default_solver(verbose = FALSE) %>%
+  solve()
+})
+s9 <- as(do.call(rbind, s9), "tbl_df")
+s9$budget <- budgets
+
+# make plot
+ggplot() +
+geom_bin2d(aes(x = budget, y = obj), data = s8) +
+geom_step(aes(x = cost, y = obj data = s7, color = "orange") +
+geom_step(aes(x = cost, y = obj data = s9, color = "red") +
+xlab("Budget available ($)") +
+ylab("Expected richness (objective function)")
+```
+
+So, we can see that solutions identified by the exacts perform better than those identified using heuristic algorithms.
+
+## Conclusion
+
+Hopefully, this tutorial has been useful. For more information and examples on using any of the functions presented in this tutorial, please refer to this package's documentation. For instance, to learn about the mathematical formulations that underpin the objective functions (e.g. `?add_max_richness_objective`) please refer to the function's documentation (e.g. enter `?add_max_richness_objective` into the console). Perhaps, one of the best ways to learn how to use a new piece of software is to just try it out. Test it, try breaking it, make mistakes, and learn from them. We would recommend generating project prioritizations using simulated datasets (see `?simulate_ptm_data` and `?simulate_ppp_data`) and seeing if the solutions line up with what you expect. This way you can quickly verify that the problems you build actually mean what you think they mean. For instance, you can try playing around with the targets and see what effect they have on the solutions, or try playing around with weights and see what effect they have on the solutions.
+
+Finally, if you have any questions about using the _ppr R_ package or suggestions for improving it, please post an issue on this package's online coding repository (https://github.com/prioritizr/ppr/issues).
 
 ## Citation
 
