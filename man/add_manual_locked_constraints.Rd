@@ -36,13 +36,41 @@ The argument to \code{locked} must contain the following fields
 
   \item{\code{"action"}}{\code{character} action name.}
 
-  \item{\code{"status"}}{\code{logical} values (i.e. \code{TRUE} or
-    \code{FALSE}) indicating if actions should be funded or not.}
+  \item{\code{"status"}}{\code{numeric} values indicating if actions should
+     be funded (with a value of 1) or not (with a value of zero).}
 
   }
 }
 \examples{
-#TODO
+# load data
+data(sim_projects, sim_features, sim_actions)
+
+
+# create data frame with locked statuses
+status <- data.frame(action = sim_actions$name[1:2],
+                     status = c(0, 1))
+
+# print locked statuses
+print(status)
+
+# build problem with minimum set objective and targets that require each
+# feature to have a 30\% chance of persisting into the future
+p <- problem(sim_projects, sim_actions, sim_features,
+             "name", "success", "name", "cost", "name") \%>\%
+      add_max_richness_objective(budget = 500) \%>\%
+      add_manual_locked_constraints(status) \%>\%
+      add_binary_decisions()
+
+# print problem
+print(p)
+
+\donttest{
+# solve problem
+s <- solve(p)
+
+# print solution
+print(s)
+}
 
 }
 \seealso{

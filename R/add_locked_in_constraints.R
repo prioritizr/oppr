@@ -122,7 +122,7 @@ methods::setMethod("add_locked_in_constraints",
       isTRUE(min(locked_in) >= 1))
     # add constraints
     add_manual_locked_constraints(x,
-      data.frame(action = x$action_names()[locked_in], status = TRUE))
+      data.frame(action = x$action_names()[locked_in], status = 1))
 })
 
 #' @name add_locked_in_constraints

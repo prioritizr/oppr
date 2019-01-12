@@ -22,15 +22,43 @@ NULL
 #'
 #'   \item{\code{"action"}}{\code{character} action name.}
 #'
-#'   \item{\code{"status"}}{\code{logical} values (i.e. \code{TRUE} or
-#'     \code{FALSE}) indicating if actions should be funded or not.}
+#'   \item{\code{"status"}}{\code{numeric} values indicating if actions should
+#'      be funded (with a value of 1) or not (with a value of zero).}
 #'
 #'   }
 #'
 #' @inherit add_locked_in_constraints return seealso
 #'
 #' @examples
-#' #TODO
+#' # load data
+#' data(sim_projects, sim_features, sim_actions)
+#'
+#'
+#' # create data frame with locked statuses
+#' status <- data.frame(action = sim_actions$name[1:2],
+#'                      status = c(0, 1))
+#'
+#' # print locked statuses
+#' print(status)
+#'
+#' # build problem with minimum set objective and targets that require each
+#' # feature to have a 30% chance of persisting into the future
+#' p <- problem(sim_projects, sim_actions, sim_features,
+#'              "name", "success", "name", "cost", "name") %>%
+#'       add_max_richness_objective(budget = 500) %>%
+#'       add_manual_locked_constraints(status) %>%
+#'       add_binary_decisions()
+#'
+#' # print problem
+#' print(p)
+#'
+#' \donttest{
+#' # solve problem
+#' s <- solve(p)
+#'
+#' # print solution
+#' print(s)
+#' }
 #'
 #' @seealso \code{\link{constraints}}.
 #'
@@ -76,16 +104,17 @@ methods::setMethod("add_manual_locked_constraints",
                               all(locked$action %in%
                                   as.character(x$action_names())),
                               assertthat::has_name(locked, "status"),
-                              is.logical(locked$status),
+                              is.numeric(locked$status),
+                              all(locked$status %in% c(0, 1)),
                               assertthat::noNA(locked$status))
     }
     # assert valid arguments
     validate_data(locked)
     # set attributes
-    if (all(locked$status)) {
+    if (all(locked$status == 1)) {
       class_name <- "LockedInConstraint"
       constraint_name <- "Locked in actions"
-    } else if (all(!locked$status)) {
+    } else if (all(!locked$status == 0)) {
       class_name <- "LockedOutConstraint"
       constraint_name <- "Locked out actions"
     } else {
