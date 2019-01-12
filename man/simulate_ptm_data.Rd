@@ -164,11 +164,11 @@ The simulated data set will contain one conservation project for
       the upper and lower bounds set as the \code{success_min_probability}
       and \code{success_max_probability} arguments.
 
-    \item The probability of each feature persisting if each project is
-      funded and is successful is simulated by drawing probabilities from a
-      uniform distribution with the upper and lower bounds set as the
+    \item The probability of each feature persisting if various projects
+      are funded and is successful is simulated by drawing probabilities
+      from a uniform distribution with the upper and lower bounds set as the
       \code{funded_min_persistence_probability} and
-      \code{funded_max_persistence_probability} arguments.
+      \code{funded_max_persistence_probability} arguments. To prevent
 
     \item An additional project is created which represents the "baseline"
       (do nothing) scenario. The probability of each feature persisting

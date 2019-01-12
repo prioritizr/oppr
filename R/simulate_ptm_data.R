@@ -75,11 +75,11 @@ NULL
 #'       the upper and lower bounds set as the \code{success_min_probability}
 #'       and \code{success_max_probability} arguments.
 #'
-#'     \item The probability of each feature persisting if each project is
-#'       funded and is successful is simulated by drawing probabilities from a
-#'       uniform distribution with the upper and lower bounds set as the
+#'     \item The probability of each feature persisting if various projects
+#'       are funded and is successful is simulated by drawing probabilities
+#'       from a uniform distribution with the upper and lower bounds set as the
 #'       \code{funded_min_persistence_probability} and
-#'       \code{funded_max_persistence_probability} arguments.
+#'       \code{funded_max_persistence_probability} arguments. To prevent
 #'
 #'     \item An additional project is created which represents the "baseline"
 #'       (do nothing) scenario. The probability of each feature persisting
@@ -298,12 +298,20 @@ simulate_ptm_data <- function(number_projects, number_actions, number_features,
                            success_max_probability), 1))
 
   ## feature persistence probabilities
+  ### initialize with probabilities in every project/feature combination
   spp_prob_matrix <- matrix(
     stats::runif(number_features * (number_projects + 1),
                  funded_min_persistence_probability,
                  funded_max_persistence_probability),
     ncol = number_features, nrow = number_projects + 1,
     dimnames = list(NULL, sort(tree$tip.label)))
+  ### randomly introduce sparsity (NAs) into the matrix, so that not every
+  ### feature benefits from every project
+  for (i in seq_len(nrow(spp_prob_matrix) - 1)) {
+    spp_prob_matrix[i, sample(seq_len(number_features),
+                              sample.int(number_features, 1))] <- NA_real_
+  }
+  ### assign probabilities for baseline project
   spp_prob_matrix[nrow(spp_prob_matrix), ] <-
     stats::runif(number_features, baseline_min_persistence_probability,
                  baseline_max_persistence_probability)
