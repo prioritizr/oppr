@@ -195,7 +195,7 @@ print(s2)
 ```
 
 ```{r, include = FALSE}
-assertthat::assert_that(mean(as.matrix(s2[, grepl("action", names(s2))])) < 1)
+assertthat::assert_that(mean(as.matrix(s2[, action_names(p2)])) < 1)
 ```
 
 ```{r, fig.height = 5.5, fig.width = 4.5}
@@ -207,22 +207,20 @@ We can also examine how adding feature weights changed our solution.
 
 ```{r}
 # print actions prioritized for funding in first solution
-actions$name[which(as.logical(as.matrix(s1[, grepl("action", names(s1))])))]
+actions$name[which(as.logical(as.matrix(s1[, action_names(p1)])))]
 
 # print actions prioritized for funding in second solution
-actions$name[which(as.logical(as.matrix(s2[, grepl("action", names(s2))])))]
+actions$name[which(as.logical(as.matrix(s2[, action_names(p2)])))]
 
 # calculate number of actions funded in both solutions
-sum((as.matrix(s1[, grepl("action", names(s1))]) == 1) &
-    (as.matrix(s2[, grepl("action", names(s2))]) == 1))
+sum((as.matrix(s1[, action_names(p1)]) == 1) &
+    (as.matrix(s2[, action_names(p2)]) == 1))
 ```
 
 ```{r, include = FALSE}
-a1 <- actions$name[which(as.logical(as.matrix(s1[, grepl("action",
-                                                         names(s1))])))]
+a1 <- actions$name[which(as.logical(as.matrix(s1[, action_names(p1)])))]
 
-a2 <- actions$name[which(as.logical(as.matrix(s2[, grepl("action",
-                                                         names(s2))])))]
+a2 <- actions$name[which(as.logical(as.matrix(s2[, action_names(p2)])))]
 
 assertthat::assert_that(!setequal(a1, a2))
 ```
