@@ -27,7 +27,7 @@ Set targets for a project prioritization \code{\link{problem}} by manually
 specifying all the required information for each target. This function
 is useful because it can be used to customize all aspects of a target. For
 most cases, targets can be specified using the
-\code{link{add_absolute_targets}} and \code{\link{add_relative_targets}}
+\code{\link{add_absolute_targets}} and \code{\link{add_relative_targets}}
 functions. However, this function can be used to mix absolute and
 relative targets for different features.
 }
@@ -65,7 +65,36 @@ Targets are used to specify the minimum probability of persistence
   }
 }
 \examples{
-#TODO
+# load data
+data(sim_projects, sim_features, sim_actions)
+
+
+# create data frame with targets
+targets <- data.frame(feature = sim_features$name,
+                      type = "absolute",
+                      target = 0.1)
+
+# print targets
+print(targets)
+
+# build problem with minimum set objective and targets that require each
+# feature to have a 30\% chance of persisting into the future
+p <- problem(sim_projects, sim_actions, sim_features,
+             "name", "success", "name", "cost", "name") \%>\%
+      add_min_set_objective() \%>\%
+      add_manual_targets(targets) \%>\%
+      add_binary_decisions()
+
+# print problem
+print(p)
+
+\donttest{
+# solve problem
+s <- solve(p)
+
+# print solution
+print(s)
+}
 }
 \seealso{
 \code{\link{targets}}.
