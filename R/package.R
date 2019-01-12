@@ -20,7 +20,7 @@ NULL
 #'   specific actions) and feature weights can also be specified to further
 #'   customize prioritizations. After defining a project prioritization
 #'   problem, solutions can be obtained using exact algorithms, heuristic
-#'   algorithms, or using random processes. In particular, it is recommended to
+#'   algorithms, or random processes. In particular, it is recommended to
 #'   install the 'Gurobi' optimizer (available from
 #'   \url{https://www.gurobi.com})
 #'   because it can identify optimal solutions very quickly. Finally, methods
