@@ -22,23 +22,6 @@ if (!require(ggtree))
   devtools::install_bioc("ggtree")
 ```
 
-### *Rsymphony* solver
-
-This package depends on the [*Rsymphony R* package](https://cran.r-project.org/web/packages/Rsymphony/index.html). Unfortunately, Mac OSX and Linux users may need to manually install the [*SYMHPONHY* software](https://projects.coin-or.org/SYMPHONY) before they can install the [*Rsymphony R* package](https://cran.r-project.org/web/packages/Rsymphony/index.html) and, in turn, the *ppr R* package. The [*SYMHPONHY* software](https://projects.coin-or.org/SYMPHONY) can be installed on Mac OSX systems using the [Homebrew](https://brew.sh/) commands:
-
-    brew tap coin-or-tools/coinor
-    brew install symphony
-    brew install pkg-config
-
-And the [*SYMHPONHY* software](https://projects.coin-or.org/SYMPHONY) can be installed on Linux (specifically, Ubuntu) systems using the system commands:
-
-    sudo apt-get update
-    sudo apt-get install coinor-libcgl-dev coinor-libclp-dev \
-    coinor-libcoinutils-dev coinor-libosi-dev coinor-libsymphony-dev \
-    coinor-libsymphony-doc coinor-libsymphony3
-
-### Gurobi solver
-
 We also recommend installing the [Gurobi optimization suite](http://www.gurobi.com/) and [*gurobi R* package](https://www.gurobi.com/documentation/8.1/refman/r_api_overview.html) to obtain solutions very quickly. For instructions on installing these software packages, please refer to [this installation guide](https://cran.r-project.org/web/packages/prioritizr/vignettes/gurobi_installation.html).
 
 Usage
@@ -148,7 +131,7 @@ print(p)
     ##   constraints:     <none>
     ##   solver:          Gurobi [first_feasible (0), gap (0), number_solutions (1), presolve (2), solution_pool_method (2), threads (1), time_limit (2147483647), time_limit (2147483647), verbose (0)]
 
-Next, we can solve this problem to obtain a solution. By default, we will obtain the optimal solution to our problem using an exact algorithm solver (e.g. using [Gurobi](http://www.gurobi.com/) or [Rsymphony](https://cran.r-project.org/package=Rsymphony)).
+Next, we can solve this problem to obtain a solution. By default, we will obtain the optimal solution to our problem using an exact algorithm solver (e.g. using [Gurobi](http://www.gurobi.com/) or [lpSolveAPI](https://cran.r-project.org/package=lpSolveAPI)).
 
 ``` r
 # solve problem
