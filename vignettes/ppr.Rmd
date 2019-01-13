@@ -71,13 +71,13 @@ s5 <- data.frame()
 mean_percent <- 0
 ```
 
-## Overview
+# Overview
 
 The _ppr R_ package is decision support tool for prioritizing conservation projects. Prioritizations can be developed by maximizing expected feature richness, expected phylogenetic diversity, the number of feature that meet persistence targets, or identifying a set of projects that meet persistence targets for minimal cost. Constraints (e.g. lock in specific actions) and feature weights can also be specified to further customize prioritizations. After defining a project prioritization problem, solutions can be obtained using exact algorithms, heuristic algorithms, or random processes. In particular, it is recommended to install the ['Gurobi' optimizer](https://www.gurobi.com) because it can identify optimal solutions very quickly. Finally, methods are provided for comparing different prioritizations and evaluating their benefits.
 
-## Tutorial
+# Tutorial
 
-### Introduction
+## Introduction
 
 Here we will provide a short tutorial showing how the _ppr R_ package can be used to prioritize funding for conservation projects. This package is a general purpose project prioritization decision support tool. It can generate solutions for species-based project prioritization problems [@r3; @r4] and priority threat management problems [@r18]. To develop a project prioritization, this package requires data for (i) _conservation projects_, (ii) _management actions_ data, and (iii) _biodiversity features_.
 
@@ -96,7 +96,7 @@ library(ggplot2)
 library(tibble)
 ```
 
-### Data simulation
+## Data simulation
 
 Now we will simulate a dataset to practice developing project prioritizations. Specifically, we will simulate a dataset for a priority threat management exercise that contains 40 features, 70 projects, and 30 actions.
 
@@ -119,7 +119,7 @@ print(actions)  # data for management actions
 print(features) # data for biodiversity features
 ```
 
-### Prioritizations with exact algorithms
+## Prioritizations with exact algorithms
 
 Let's assume that we want to maximize the overall persistence of the conservation features, and that we can only spend $1'000 funding management actions. We will also assume that our decisions involve either funding management actions or not (in other words, our decisions are binary). For the moment, let's assume that we value the persistence of each feature equally. Given this information, we can generate a project prioritization problem object that matches our specifications.
 
@@ -266,7 +266,7 @@ theme(plot.margin = unit(c(5.5, 10.5, 5.5, 5.5), "pt"))
 
 We can see that some of our solutions performed much better than other solutions. And we can also see that there are several solutions that perform nearly as well as the optimal solution.
 
-### Assessing action importance
+## Assessing action importance
 
 After obtaining a solution to a project prioritization problem, it is often important to understand which of priority actions are most "important" [or in other words: irreplaceable; @r27]. This is because it may not be possible to implement all actions immediately and simultaneously, and since some conservation projects may be less likely to succeed if their management actions are delayed, it may be useful to provide decision makers with a measure of importance for each priority action. For example, if a pest eradication project is delayed, then the success of the project may diminish as pest populations increase over time. One simple---and potentially inaccurate [but see @r26]---approach for assessing the importance of priority actions (i.e. actions selected for funding in a solution) is calculating the "selection frequency" of the actions. Given multiple solutions, this metric involves calculating the average number of times that each priority action is selected [@r19]. For illustrative purposes, we shall compute the selection frequency of the solutions we obtained previously (i.e. the `s3` object).
 
@@ -328,7 +328,7 @@ xlab("Replacement cost") +
 ylab("Frequency")
 ```
 
-### Complementarity in project prioritizations
+## Complementarity in project prioritizations
 
 Broadly speaking, the principle of complementarity is that individual conservation actions should complement each other---in other words, they should not double up on the same biodiversity features---and when implemented together, conservation actions should conserve a comprehensive sample of biodiversity [@r23; @r27]. This principle was born from the profound realization that individual reserves need to provide habitat for different species in order to build a reserve network that provides habitat for many different species---even if this means selecting some individual reserves that do not provide habitat for as many species as other potential reserves [@r25]. In the context of project prioritization, this principle means that resources should be allocated in such a way that avoids doubling up on the same conservation features so that resources can be effectively allocated to as many conservation features as possible [@r5]. For instance, if decision makers consider it acceptable for features to  have a 70% chance of persisting into the future, then we should avoid solutions which overly surpass this threshold (e.g. 99%) because we can allocate the limited resources to help other features reach this threshold. Such target thresholds can provide a transparent and effective method for establishing conservation priorities [@r24]. So, let's try developing a prioritization with conservation targets. Specifically, we will develop a prioritization that maximizes the number of features that have a 60% chance of persisting, subject to the same $1'000 budget as before.
 
@@ -447,7 +447,7 @@ print(s6)
 plot(p6, s6)
 ```
 
-### Benchmarking conventional algorithms
+## Benchmarking conventional algorithms
 
 Conventionally, heuristic algorithms have been used to develop project prioritizations [e.g. @r3; @r4]. Although solutions identified using these algorithms often perform better than solutions generated using using random processes [e.g. randomly selecting actions for funding until a budget is met; @r3], this is not an especially compelling benchmark. As talked about earlier, heuristic algorithms do not provide any guarantees on solution quality, and so should be avoided where possible [@r13]. To illustrate the pitfalls of relying on heuristic algorithms, let's generate a portfolio of solutions using a backwards heuristic algorithm.
 
@@ -551,7 +551,7 @@ Hopefully, this tutorial has been useful. For more information and examples on u
 
 Finally, if you have any questions about using the _ppr R_ package or suggestions for improving its documentation or functionality (especially this tutorial), please post an issue on this package's online coding repository (https://github.com/prioritizr/ppr/issues).
 
-## Citation
+# Citation
 
 Please use the following citation to cite the _ppr R_ package in publications:
 
@@ -559,4 +559,4 @@ Please use the following citation to cite the _ppr R_ package in publications:
 cat(paste0("Hanson JO, Schuster R, Strimas-Mackey M, Bennett J, (",format(Sys.time(), "%Y"),"). ppr: Project Prioritization. R package version ",packageDescription("ppr")$Version,". Available at https://github.com/prioritizr/ppr.\n"))
 ```
 
-## References
+# References

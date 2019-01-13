@@ -81,17 +81,17 @@
 
     
     
-<div id="overview" class="section level2">
-<h2 class="hasAnchor">
-<a href="#overview" class="anchor"></a>Overview</h2>
+<div id="overview" class="section level1">
+<h1 class="hasAnchor">
+<a href="#overview" class="anchor"></a>Overview</h1>
 <p>The <em>ppr R</em> package is decision support tool for prioritizing conservation projects. Prioritizations can be developed by maximizing expected feature richness, expected phylogenetic diversity, the number of feature that meet persistence targets, or identifying a set of projects that meet persistence targets for minimal cost. Constraints (e.g. lock in specific actions) and feature weights can also be specified to further customize prioritizations. After defining a project prioritization problem, solutions can be obtained using exact algorithms, heuristic algorithms, or random processes. In particular, it is recommended to install the <a href="https://www.gurobi.com">‘Gurobi’ optimizer</a> because it can identify optimal solutions very quickly. Finally, methods are provided for comparing different prioritizations and evaluating their benefits.</p>
 </div>
-<div id="tutorial" class="section level2">
+<div id="tutorial" class="section level1">
+<h1 class="hasAnchor">
+<a href="#tutorial" class="anchor"></a>Tutorial</h1>
+<div id="introduction" class="section level2">
 <h2 class="hasAnchor">
-<a href="#tutorial" class="anchor"></a>Tutorial</h2>
-<div id="introduction" class="section level3">
-<h3 class="hasAnchor">
-<a href="#introduction" class="anchor"></a>Introduction</h3>
+<a href="#introduction" class="anchor"></a>Introduction</h2>
 <p>Here we will provide a short tutorial showing how the <em>ppr R</em> package can be used to prioritize funding for conservation projects. This package is a general purpose project prioritization decision support tool. It can generate solutions for species-based project prioritization problems <span class="citation">(Joseph <em>et al.</em> 2009; Bennett <em>et al.</em> 2014)</span> and priority threat management problems <span class="citation">(Carwardine <em>et al.</em> 2018)</span>. To develop a project prioritization, this package requires data for (i) <em>conservation projects</em>, (ii) <em>management actions</em> data, and (iii) <em>biodiversity features</em>.</p>
 <p>Briefly, biodiversity features are the biological entities that we wish would persist into the future (e.g. threatened populations, native species, eco-systems). These <em>biodiversity features</em> can (and ideally should) include non-threatened species, but should not include threatening processes that we wish to eradicate (e.g. populations of invasive species). <em>Management actions</em> are acts that can be undertaken to enhance biodiversity (e.g. planting native species, reintroducing native species, trapping pest species). Each action should pertain to a specific location (e.g. a national park) or area (e.g. an entire country), and should be associated with a cost estimate. To guide the prioritization, the management actions are grouped into <em>conservation projects</em> (also termed “strategies”). Typically, management actions are grouped into conservation projects based on spatial (e.g. management actions that pertain to the same area), taxonomic (e.g. management actions that pertain to the same pest species or threatened species), or thematic criteria (e.g. management actions that pertain to pest eradication are grouped into a “pest project”, and actions that pertain to habitat restoration are grouped into a “habitat project”). Additionally, some conservation projects can be combinations of other projects (e.g. a “pest and habitat project”). Each conservation project should be associated with (i) a probability of succeeding if it is implemented (also termed “feasibility”), (ii) information about which management actions are associated with it, and (iii) an estimate of how likely each conservation feature affected by the project is to persist into the future if the project is implemented (often derived using expert elicitation). The conservation projects should also include a “baseline project” that represents a “do nothing scenario” which has a 100% chance of succeeding and is associated with an action that costs nothing to implement. For more background information on project prioritization, please refer to Carwardine <em>et al.</em> <span class="citation">(2018)</span>.</p>
 <p>To start off, we will initialize the random number generator to ensure reproducibility. Next, we will load the <em>ppr R</em> package. And then we will load <em>ggplot2</em> and <em>tibble R</em> packages to help with data for visualizations and wrangling.</p>
@@ -104,9 +104,9 @@
 <span class="co"># load tibble package for working with tabular data</span>
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(tibble)</code></pre></div>
 </div>
-<div id="data-simulation" class="section level3">
-<h3 class="hasAnchor">
-<a href="#data-simulation" class="anchor"></a>Data simulation</h3>
+<div id="data-simulation" class="section level2">
+<h2 class="hasAnchor">
+<a href="#data-simulation" class="anchor"></a>Data simulation</h2>
 <p>Now we will simulate a dataset to practice developing project prioritizations. Specifically, we will simulate a dataset for a priority threat management exercise that contains 40 features, 70 projects, and 30 actions.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># simulate data</span>
 sim_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/simulate_ptm_data.html">simulate_ptm_data</a></span>(<span class="dt">number_projects =</span> <span class="dv">70</span>, <span class="dt">number_actions =</span> <span class="dv">30</span>,
@@ -189,9 +189,9 @@ features<span class="op">$</span>weight &lt;-<span class="st"> </span><span clas
 </span></code></pre>
 </div>
 </div>
-<div id="prioritizations-with-exact-algorithms" class="section level3">
-<h3 class="hasAnchor">
-<a href="#prioritizations-with-exact-algorithms" class="anchor"></a>Prioritizations with exact algorithms</h3>
+<div id="prioritizations-with-exact-algorithms" class="section level2">
+<h2 class="hasAnchor">
+<a href="#prioritizations-with-exact-algorithms" class="anchor"></a>Prioritizations with exact algorithms</h2>
 <p>Let’s assume that we want to maximize the overall persistence of the conservation features, and that we can only spend $1’000 funding management actions. We will also assume that our decisions involve either funding management actions or not (in other words, our decisions are binary). For the moment, let’s assume that we value the persistence of each feature equally. Given this information, we can generate a project prioritization problem object that matches our specifications.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># build problem</span>
 p1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/problem.html">problem</a></span>(<span class="dt">projects =</span> projects, <span class="dt">actions =</span> actions, <span class="dt">features =</span> features,
@@ -327,7 +327,7 @@ s2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/solve.ht
 <p><img src="ppr_files/figure-html/unnamed-chunk-15-1.png" width="432" style="display: block; margin: auto;"></p>
 <p>We can also examine how adding feature weights changed our solution.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># print actions prioritized for funding in first solution</span>
-actions<span class="op">$</span>name[<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/which">which</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/logical">as.logical</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/matrix">as.matrix</a></span>(s1[, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/grep">grepl</a></span>(<span class="st">"action"</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/names">names</a></span>(s1))])))]</code></pre></div>
+actions<span class="op">$</span>name[<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/which">which</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/logical">as.logical</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/matrix">as.matrix</a></span>(s1[, <span class="kw"><a href="../reference/action_names.html">action_names</a></span>(p1)])))]</code></pre></div>
 <div class="sourceCode">
 <pre class="sourceCode"><code class="sourceCode"><span style="color: #555555;">#</span><span>  [1] "action_2"  "action_4"  "action_6"  "action_9"  "action_10"
 </span><span style="color: #555555;">#</span><span>  [6] "action_12" "action_18" "action_21" "action_22" "action_28"
@@ -335,7 +335,7 @@ actions<span class="op">$</span>name[<span class="kw"><a href="https://www.rdocu
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
 <span class="co"># print actions prioritized for funding in second solution</span>
-actions<span class="op">$</span>name[<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/which">which</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/logical">as.logical</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/matrix">as.matrix</a></span>(s2[, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/grep">grepl</a></span>(<span class="st">"action"</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/names">names</a></span>(s2))])))]</code></pre></div>
+actions<span class="op">$</span>name[<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/which">which</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/logical">as.logical</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/matrix">as.matrix</a></span>(s2[, <span class="kw"><a href="../reference/action_names.html">action_names</a></span>(p2)])))]</code></pre></div>
 <div class="sourceCode">
 <pre class="sourceCode"><code class="sourceCode"><span style="color: #555555;">#</span><span>  [1] "action_2"        "action_3"        "action_4"       
 </span><span style="color: #555555;">#</span><span>  [4] "action_6"        "action_7"        "action_10"      
@@ -345,8 +345,8 @@ actions<span class="op">$</span>name[<span class="kw"><a href="https://www.rdocu
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
 <span class="co"># calculate number of actions funded in both solutions</span>
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>((<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/matrix">as.matrix</a></span>(s1[, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/grep">grepl</a></span>(<span class="st">"action"</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/names">names</a></span>(s1))]) <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">&amp;</span>
-<span class="st">    </span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/matrix">as.matrix</a></span>(s2[, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/grep">grepl</a></span>(<span class="st">"action"</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/names">names</a></span>(s2))]) <span class="op">==</span><span class="st"> </span><span class="dv">1</span>))</code></pre></div>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>((<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/matrix">as.matrix</a></span>(s1[, <span class="kw"><a href="../reference/action_names.html">action_names</a></span>(p1)]) <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">&amp;</span>
+<span class="st">    </span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/matrix">as.matrix</a></span>(s2[, <span class="kw"><a href="../reference/action_names.html">action_names</a></span>(p2)]) <span class="op">==</span><span class="st"> </span><span class="dv">1</span>))</code></pre></div>
 <div class="sourceCode">
 <pre class="sourceCode"><code class="sourceCode"><span style="color: #555555;">#</span><span> [1] 5
 </span></code></pre>
@@ -405,9 +405,9 @@ s3 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/solve.ht
 <p><img src="ppr_files/figure-html/unnamed-chunk-22-1.png" width="528" style="display: block; margin: auto;"></p>
 <p>We can see that some of our solutions performed much better than other solutions. And we can also see that there are several solutions that perform nearly as well as the optimal solution.</p>
 </div>
-<div id="assessing-action-importance" class="section level3">
-<h3 class="hasAnchor">
-<a href="#assessing-action-importance" class="anchor"></a>Assessing action importance</h3>
+<div id="assessing-action-importance" class="section level2">
+<h2 class="hasAnchor">
+<a href="#assessing-action-importance" class="anchor"></a>Assessing action importance</h2>
 <p>After obtaining a solution to a project prioritization problem, it is often important to understand which of priority actions are most “important” <span class="citation">(or in other words: irreplaceable; Kukkala &amp; Moilanen 2013)</span>. This is because it may not be possible to implement all actions immediately and simultaneously, and since some conservation projects may be less likely to succeed if their management actions are delayed, it may be useful to provide decision makers with a measure of importance for each priority action. For example, if a pest eradication project is delayed, then the success of the project may diminish as pest populations increase over time. One simple—and potentially inaccurate <span class="citation">(but see Carwardine <em>et al.</em> 2007)</span>—approach for assessing the importance of priority actions (i.e. actions selected for funding in a solution) is calculating the “selection frequency” of the actions. Given multiple solutions, this metric involves calculating the average number of times that each priority action is selected <span class="citation">(Ball <em>et al.</em> 2009)</span>. For illustrative purposes, we shall compute the selection frequency of the solutions we obtained previously (i.e. the <code>s3</code> object).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># print the solution object to remind ourselves what it looks like</span>
 <span class="kw"><a href="../reference/print.html">print</a></span>(s3)</code></pre></div>
@@ -606,9 +606,9 @@ actions<span class="op">$</span>rep_cost &lt;-<span class="st"> </span>r2<span c
 <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span>(<span class="st">"Frequency"</span>)</code></pre></div>
 <p><img src="ppr_files/figure-html/unnamed-chunk-25-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
-<div id="complementarity-in-project-prioritizations" class="section level3">
-<h3 class="hasAnchor">
-<a href="#complementarity-in-project-prioritizations" class="anchor"></a>Complementarity in project prioritizations</h3>
+<div id="complementarity-in-project-prioritizations" class="section level2">
+<h2 class="hasAnchor">
+<a href="#complementarity-in-project-prioritizations" class="anchor"></a>Complementarity in project prioritizations</h2>
 <p>Broadly speaking, the principle of complementarity is that individual conservation actions should complement each other—in other words, they should not double up on the same biodiversity features—and when implemented together, conservation actions should conserve a comprehensive sample of biodiversity <span class="citation">(Vane-Wright <em>et al.</em> 1991; Kukkala &amp; Moilanen 2013)</span>. This principle was born from the profound realization that individual reserves need to provide habitat for different species in order to build a reserve network that provides habitat for many different species—even if this means selecting some individual reserves that do not provide habitat for as many species as other potential reserves <span class="citation">(Kirkpatrick 1983)</span>. In the context of project prioritization, this principle means that resources should be allocated in such a way that avoids doubling up on the same conservation features so that resources can be effectively allocated to as many conservation features as possible <span class="citation">(Chadés <em>et al.</em> 2015)</span>. For instance, if decision makers consider it acceptable for features to have a 70% chance of persisting into the future, then we should avoid solutions which overly surpass this threshold (e.g. 99%) because we can allocate the limited resources to help other features reach this threshold. Such target thresholds can provide a transparent and effective method for establishing conservation priorities <span class="citation">(Carwardine <em>et al.</em> 2009)</span>. So, let’s try developing a prioritization with conservation targets. Specifically, we will develop a prioritization that maximizes the number of features that have a 60% chance of persisting, subject to the same $1’000 budget as before.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># build problem</span>
 p4 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/problem.html">problem</a></span>(<span class="dt">projects =</span> projects, <span class="dt">actions =</span> actions, <span class="dt">features =</span> features,
@@ -802,9 +802,9 @@ s6 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/solve.ht
 <span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(p6, s6)</code></pre></div>
 <p><img src="ppr_files/figure-html/unnamed-chunk-36-1.png" width="432" style="display: block; margin: auto;"></p>
 </div>
-<div id="benchmarking-conventional-algorithms" class="section level3">
-<h3 class="hasAnchor">
-<a href="#benchmarking-conventional-algorithms" class="anchor"></a>Benchmarking conventional algorithms</h3>
+<div id="benchmarking-conventional-algorithms" class="section level2">
+<h2 class="hasAnchor">
+<a href="#benchmarking-conventional-algorithms" class="anchor"></a>Benchmarking conventional algorithms</h2>
 <p>Conventionally, heuristic algorithms have been used to develop project prioritizations <span class="citation">(e.g. Joseph <em>et al.</em> 2009; Bennett <em>et al.</em> 2014)</span>. Although solutions identified using these algorithms often perform better than solutions generated using using random processes <span class="citation">(e.g. randomly selecting actions for funding until a budget is met; Joseph <em>et al.</em> 2009)</span>, this is not an especially compelling benchmark. As talked about earlier, heuristic algorithms do not provide any guarantees on solution quality, and so should be avoided where possible <span class="citation">(Rodrigues &amp; Gaston 2002)</span>. To illustrate the pitfalls of relying on heuristic algorithms, let’s generate a portfolio of solutions using a backwards heuristic algorithm.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># set budgets for which to create multiple solutions</span>
 budgets &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq</a></span>(<span class="dv">0</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(actions<span class="op">$</span>cost), <span class="dt">length.out =</span> <span class="dv">100</span>)
@@ -963,22 +963,22 @@ s9<span class="op">$</span>budget &lt;-<span class="st"> </span>budgets
 <p><img src="ppr_files/figure-html/unnamed-chunk-41-1.png" width="432" style="display: block; margin: auto;"></p>
 <p>So, we can see that the exact algorithm sover performs much better than heuristic algorithms—even if heuristic algorithms perform better than random on average.</p>
 </div>
-</div>
 <div id="conclusion" class="section level2">
 <h2 class="hasAnchor">
 <a href="#conclusion" class="anchor"></a>Conclusion</h2>
 <p>Hopefully, this tutorial has been useful. For more information and examples on using any of the functions presented in this tutorial, please refer to this package’s documentation. For instance, you could learn about the mathematical formulations that underpin the objective functions (see <code><a href="../reference/add_max_richness_objective.html">?add_max_richness_objective</a></code>), how to lock in our lock out certain actions from the solutoins (see <code><a href="../reference/constraints.html">?constraints</a></code>), or how to develop project prioritizations using phylogenies (see <code>?add_max_phylo_objective</code>). But perhaps one of the best ways to learn how to use a new piece of software is to just try it out. Test it, try breaking it, make mistakes, and learn from them. We would recommend generating project prioritizations using simulated datasets (see <code><a href="../reference/simulate_ptm_data.html">?simulate_ptm_data</a></code> and <code><a href="../reference/simulate_ppp_data.html">?simulate_ppp_data</a></code>) and seeing if the solutions line up with what you expect. This way you can quickly verify that the problems you build actually mean what you think they mean. For instance, you can try playing around with the targets and see what effect they have on the solutions, or try playing around with weights and see what effect they have on the solutions.</p>
 <p>Finally, if you have any questions about using the <em>ppr R</em> package or suggestions for improving its documentation or functionality (especially this tutorial), please post an issue on this package’s online coding repository (<a href="https://github.com/prioritizr/ppr/issues" class="uri">https://github.com/prioritizr/ppr/issues</a>).</p>
 </div>
-<div id="citation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#citation" class="anchor"></a>Citation</h2>
+</div>
+<div id="citation" class="section level1">
+<h1 class="hasAnchor">
+<a href="#citation" class="anchor"></a>Citation</h1>
 <p>Please use the following citation to cite the <em>ppr R</em> package in publications:</p>
 <p>Hanson JO, Schuster R, Strimas-Mackey M, Bennett J, (2019). ppr: Project Prioritization. R package version 0.0.0.1. Available at <a href="https://github.com/prioritizr/ppr" class="uri">https://github.com/prioritizr/ppr</a>.</p>
 </div>
-<div id="references" class="section level2 unnumbered">
-<h2 class="hasAnchor">
-<a href="#references" class="anchor"></a>References</h2>
+<div id="references" class="section level1 unnumbered">
+<h1 class="hasAnchor">
+<a href="#references" class="anchor"></a>References</h1>
 <div id="refs" class="references">
 <div id="ref-r19">
 <p>Ball, I.R., Possingham, H.P. &amp; Watts, M. (2009). Marxan and relatives: Software for spatial conservation prioritisation. <em>Spatial conservation prioritisation: Quantitative methods and computational tools</em>, pp. 185–195. Oxford University Press Oxford.</p>
@@ -1044,8 +1044,17 @@ s9<span class="op">$</span>budget &lt;-<span class="st"> </span>budgets
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#overview">Overview</a></li>
-      <li><a href="#tutorial">Tutorial</a></li>
+      <li>
+<a href="#tutorial">Tutorial</a><ul class="nav nav-pills nav-stacked">
+<li><a href="#introduction">Introduction</a></li>
+      <li><a href="#data-simulation">Data simulation</a></li>
+      <li><a href="#prioritizations-with-exact-algorithms">Prioritizations with exact algorithms</a></li>
+      <li><a href="#assessing-action-importance">Assessing action importance</a></li>
+      <li><a href="#complementarity-in-project-prioritizations">Complementarity in project prioritizations</a></li>
+      <li><a href="#benchmarking-conventional-algorithms">Benchmarking conventional algorithms</a></li>
       <li><a href="#conclusion">Conclusion</a></li>
+      </ul>
+</li>
       <li><a href="#citation">Citation</a></li>
       <li><a href="#references">References</a></li>
       </ul>
