@@ -30,6 +30,13 @@ env:
 apt_packages:
   - curl
   - qpdf
+  - coinor-libcgl-dev
+  - coinor-libclp-dev
+  - coinor-libcoinutils-dev
+  - coinor-libosi-dev
+  - coinor-libsymphony-dev
+  - coinor-libsymphony-doc
+  - coinor-libsymphony3
 
 before_script:
   - Rscript -e "if (!requireNamespace('devtools', quietly = TRUE)) install.packages('devtools'); devtools::install_bioc('ggtree')"
@@ -39,6 +46,9 @@ before_install:
   - echo "options(repos = c(CRAN='http://cran.rstudio.com'))" > ~/.Rprofile
   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install Caskroom/cask/xquartz; fi;
   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install ghostscript; fi;
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew tap coin-or-tools/coinor; fi;
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install symphony; fi;
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install pkg-config; fi;
   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then sudo tlmgr update --self; fi;
 
 install:
