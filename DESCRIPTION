@@ -37,7 +37,7 @@ Imports:
     tidytree (>= 0.1.9),
     ggplot2 (>= 3.0.0),
     viridisLite (>= 0.3.0),
-    lpSolve (>= 5.6.13),
+    lpSolveAPI (>= 5.5.2.0.17),
     shiny(>= 1.2.0)
 Suggests:
     testthat (>= 2.0.0),
