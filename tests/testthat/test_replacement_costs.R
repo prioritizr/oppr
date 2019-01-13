@@ -28,7 +28,7 @@ test_that("maximum obj", {
   expect_is(r, "tbl_df")
   expect_equal(nrow(r), 4)
   expect_equal(r$name, p$action_names())
-  expect_equal(r$cost, c(0.25, NA_real_, 0.2, NA_real_))
+  expect_equal(r$cost, c(0.25, NA_real_, 0.2, Inf))
   expect_equal(r$obj, c((0.94 * 0.8) + (0.96 * 0.92) + (1.0 * 0.1),
                          NA_real_,
                          (0.91 * 0.95) + (0.96 * 0.92) + (1.0 * 0.1),
@@ -68,7 +68,7 @@ test_that("minimum obj", {
   expect_is(r, "tbl_df")
   expect_equal(nrow(r), 4)
   expect_equal(r$name, p$action_names())
-  expect_equal(r$cost, c(0.15, NA_real_, 0.2, NA_real_))
+  expect_equal(r$cost, c(0.15, NA_real_, 0.2, Inf))
   expect_equal(r$obj, c(0.15, NA_real_, 0.2, Inf))
   expect_equal(r$rep_cost, r$obj - 0.25)
 })
