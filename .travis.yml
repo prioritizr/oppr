@@ -42,7 +42,9 @@ before_install:
   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew tap coin-or-tools/coinor; fi;
   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install symphony || true; fi;
   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew link --overwrite gcc; fi;
-  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew reinstall symphony; fi;
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then pkg-config --exists SYMPHONY; fi;
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then pkg-config --cflags SYMPHONY; fi;
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then pkg-config --libs SYMPHONY; fi;
   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then sudo tlmgr update --self; fi;
 
 install:
