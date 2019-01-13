@@ -16,8 +16,11 @@ NULL
 #'   terminate when the difference between the upper and lower objective
 #'   function bounds is less than the gap times the upper bound. For example, a
 #'   value of 0.01 will result in the optimizer stopping when the difference
-#'   between the bounds is 1 percent of the upper bound. Defaults to 0, so
-#'   that optimal solutions will be returned.
+#'   between the bounds is 1 percent of the upper bound. For
+#'   other solvers, this is the absolute gap, so if the optimal value for
+#'   a maximization problem is 10, a gap of 0.01 means that a solution between
+#'   10 and 10.01 is required. Defaults to 0, so that optimal solutions will be
+#'   returned.
 #'
 #' @param number_solutions \code{integer} number of solutions desired.
 #'   Defaults to 1. Note that the number of returned solutions can sometimes

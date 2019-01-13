@@ -23,7 +23,7 @@ fh <- 4.5
 # define dummy data sets
 s1 <- data.frame()
 s2 <- data.frame()
-s3 <- data.frame()
+s3 <- data.frame(a = rep(1, 100))
 s4 <- data.frame()
 s5 <- data.frame()
 s6 <- data.frame()
@@ -251,7 +251,7 @@ print(s3)
 ```
 
 ```{r, include = FALSE}
-assertthat::assert_that(nrow(s3) > 30)
+assertthat::assert_that(nrow(s3) > 10)
 ```
 
 We obtained `r nrow(s3)` solutions. Let's briefly explore them.
@@ -260,7 +260,7 @@ We obtained `r nrow(s3)` solutions. Let's briefly explore them.
 # plot histogram of objective values, and add red dashed line to indicate the
 # objective value for the optimal solution
 ggplot(data = s3, aes(obj)) +
-geom_histogram(bins = 30) +
+geom_histogram(bins = 10) +
 geom_vline(xintercept = s2$obj, color = "red", linetype = "dashed") +
 scale_x_continuous(labels = scales::comma) +
 xlab("Expected richness (objective function)") +

@@ -37,7 +37,7 @@ Imports:
     tidytree (>= 0.1.9),
     ggplot2 (>= 3.0.0),
     viridisLite (>= 0.3.0),
-    Rsymphony (>= 0.1.28),
+    lpSolve (>= 5.6.13),
     shiny(>= 1.2.0)
 Suggests:
     testthat (>= 2.0.0),
@@ -46,6 +46,7 @@ Suggests:
     rmarkdown (>= 1.10),
     gurobi (>= 8.0.0),
     ggtree (>= 1.8.2),
+    Rsymphony (>= 0.1.28),
     lpsymphony (>= 1.10.0)
 Depends:
     R(>= 3.4.0)
@@ -92,6 +93,7 @@ Collate:
     'add_heuristic_solver.R'
     'add_locked_in_constraints.R'
     'add_locked_out_constraints.R'
+    'add_lpsolveapi_solver.R'
     'add_lpsymphony_solver.R'
     'tbl_df.R'
     'add_manual_targets.R'

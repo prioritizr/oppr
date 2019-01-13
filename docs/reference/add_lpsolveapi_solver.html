@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Add a default solver — add_default_solver • ppr</title>
+<title>Add a lp_solve solver with <span class="pkg">lpSolveAPI</span> — add_lpsolveapi_solver • ppr</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,10 +30,12 @@
 
 
 
-<meta property="og:title" content="Add a default solver — add_default_solver" />
+<meta property="og:title" content="Add a lp_solve solver with <span class="pkg">lpSolveAPI</span> — add_lpsolveapi_solver" />
 
-<meta property="og:description" content="Identify the best solver currently installed on the system and specify that
-it should be used to solve a project prioritization problem." />
+<meta property="og:description" content="Specify that the lp_solve software should be used to solve a
+project prioritization problem using the lpSolveAPI
+package. This function can also be used to customize the behavior of the
+solver. It requires the lpSolveAPI package." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -106,19 +108,21 @@ it should be used to solve a project prioritization problem." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Add a default solver</h1>
-    <small class="dont-index">Source: <a href='https://github.com/prioritizr/ppr/blob/master/R/add_default_solver.R'><code>R/add_default_solver.R</code></a></small>
-    <div class="hidden name"><code>add_default_solver.Rd</code></div>
+    <h1>Add a lp_solve solver with <span class="pkg">lpSolveAPI</span></h1>
+    <small class="dont-index">Source: <a href='https://github.com/prioritizr/ppr/blob/master/R/add_lpsolveapi_solver.R'><code>R/add_lpsolveapi_solver.R</code></a></small>
+    <div class="hidden name"><code>add_lpsolveapi_solver.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Identify the best solver currently installed on the system and specify that
-it should be used to solve a project prioritization <code><a href='problem.html'>problem</a></code>.</p>
+    <p>Specify that the <em>lp_solve</em> software should be used to solve a
+project prioritization <code><a href='problem.html'>problem</a></code> using the <span class="pkg">lpSolveAPI</span>
+package. This function can also be used to customize the behavior of the
+solver. It requires the <span class="pkg">lpSolveAPI</span> package.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>add_default_solver</span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>add_lpsolveapi_solver</span>(<span class='no'>x</span>, <span class='kw'>gap</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>presolve</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -128,22 +132,47 @@ it should be used to solve a project prioritization <code><a href='problem.html'
       <td><p><code><a href='ProjectProblem-class.html'>ProjectProblem-class</a></code> object.</p></td>
     </tr>
     <tr>
-      <th>...</th>
-      <td><p>arguments passed to the solver.</p></td>
+      <th>gap</th>
+      <td><p><code>numeric</code> gap to optimality. This gap is relative when
+solving problems using <span class="pkg">gurobi</span>, and will cause the optimizer to
+terminate when the difference between the upper and lower objective
+function bounds is less than the gap times the upper bound. For example, a
+value of 0.01 will result in the optimizer stopping when the difference
+between the bounds is 1 percent of the upper bound. For
+other solvers, this is the absolute gap, so if the optimal value for
+a maximization problem is 10, a gap of 0.01 means that a solution between
+10 and 10.01 is required. Defaults to 0, so that optimal solutions will be
+returned.</p></td>
+    </tr>
+    <tr>
+      <th>presolve</th>
+      <td><p><code>logical</code> indicating if attempts to should be made
+to simplify the optimization problem (<code>TRUE</code>) or not (<code>FALSE</code>).
+Defaults to <code>TRUE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p><code>logical</code> should information be printed while solving
+optimization problems?</p></td>
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p><code><a href='ProjectProblem-class.html'>ProjectProblem-class</a></code> object with the solver added
+  to it.</p>
+    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Ranked from best to worst, the solvers that can be used are:
-  <span class="pkg">gurobi</span>, (<code><a href='add_gurobi_solver.html'>add_gurobi_solver</a></code>),
-  <span class="pkg">Rsymphony</span> (<code><a href='add_rsymphony_solver.html'>add_rsymphony_solver</a></code>), <span class="pkg">lpsymphony</span>
-  (<code><a href='add_lsymphony_solver.html'>add_lpsymphony_solver</a></code>), and <span class="pkg">lpSolveAPI</span>
-  (<code><a href='add_lpsolveapi_solver.html'>add_lpsolveapi_solver</a></code>). This function does not consider
-  solvers that generate solutions using heuristic algorithms (i.e.
-  <code><a href='add_heuristic_solver.html'>add_heuristic_solver</a></code>) or random processes
-  (i.e. <code><a href='add_random_solver.html'>add_random_solver</a></code>) because they cannot provide
-  any guarantees on solution quality.</p>
+    <p><a href='http://lpsolve.sourceforge.net/5.5/'><em>lp_solve</em></a> is an
+  open-source integer programming solver.
+  Although this solver is the slowest currently supported solver,
+  it is also the only solver that can be installed on all operating systems
+  without any manual installation steps. This solver is provided so that
+  users can try solving small project prioritization problems, without
+  needing to install additional software. When solve moderate or large
+  project prioritization problems, consider using
+  <code><a href='add_gurobi_solver.html'>add_gurobi_solver</a></code>.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -154,12 +183,12 @@ it should be used to solve a project prioritization <code><a href='problem.html'
     <pre class="examples"><div class='input'><span class='co'># load data</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_features</span>, <span class='no'>sim_actions</span>)
 
-<span class='co'># build problem with default solver</span>
+<span class='co'># build problem with lpSolveAPI solver</span>
 <span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_actions</span>, <span class='no'>sim_features</span>,
              <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span>) <span class='kw'>%&gt;%</span>
      <span class='fu'><a href='add_max_richness_objective.html'>add_max_richness_objective</a></span>(<span class='kw'>budget</span> <span class='kw'>=</span> <span class='fl'>200</span>) <span class='kw'>%&gt;%</span>
      <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span>() <span class='kw'>%&gt;%</span>
-     <span class='fu'>add_default_solver</span>()
+     <span class='fu'>add_lpsolveapi_solver</span>()
 
 <span class='co'># print problem</span>
 <span class='fu'><a href='print.html'>print</a></span>(<span class='no'>p</span>)</div><div class='output co'>#&gt; <span class='message'>Project Prioritization Problem</span>
@@ -173,26 +202,56 @@ it should be used to solve a project prioritization <code><a href='problem.html'
 #&gt; <span class='message'>  weights:         default</span>
 #&gt; <span class='message'>  decisions        Binary decision </span>
 #&gt; <span class='message'>  constraints:     &lt;none&gt;</span>
-#&gt; <span class='message'>  solver:          Rsymphony [first_feasible (0), gap (0), time_limit (-1), verbose (1)]</span></div><div class='input'>
+#&gt; <span class='message'>  solver:          lpSolveAPI [gap (0), presolve (1), verbose (1)]</span></div><div class='input'>
 <span class='co'># solve problem</span>
-<span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p</span>)
-
+<span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p</span>)</div><div class='output co'>#&gt; 
+#&gt; Model name:  'project prioritization problem' - run #1    
+#&gt; Objective:   Maximize(R0)
+#&gt;  
+#&gt; SUBMITTED
+#&gt; Model size:       47 constraints,      47 variables,          102 non-zeros.
+#&gt; Sets:                                   0 GUB,                  0 SOS.
+#&gt;  
+#&gt; Using DUAL simplex for phase 1 and PRIMAL simplex for phase 2.
+#&gt; The primal and dual simplex pricing strategy set to 'Devex'.
+#&gt;  
+#&gt; 
+#&gt; Relaxed solution       2.07954997746 after         34 iter is B&amp;B base.
+#&gt;  
+#&gt; Feasible solution      1.72087221057 after         43 iter,         8 nodes (gap 11.6%)
+#&gt; Improved solution      1.82987831125 after         47 iter,        11 nodes (gap 8.1%)
+#&gt; Improved solution      2.06395145121 after         60 iter,        20 nodes (gap 0.5%)
+#&gt;  
+#&gt; Optimal solution       2.06395145121 after         60 iter,        20 nodes (gap 0.5%).
+#&gt; 
+#&gt; Excellent numeric accuracy ||*|| = 1.11022e-16
+#&gt; 
+#&gt;  MEMO: lp_solve version 5.5.2.0 for 64 bit OS, with 64 bit LPSREAL variables.
+#&gt;       In the total iteration count 60, 17 (28.3%) were bound flips.
+#&gt;       There were 11 refactorizations, 0 triggered by time and 1 by density.
+#&gt;        ... on average 3.9 major pivots per refactorization.
+#&gt;       The largest [LUSOL v2.2.1.0] fact(B) had 104 NZ entries, 1.0x largest basis.
+#&gt;       The maximum B&amp;B level was 6, 0.1x MIP order, 4 at the optimal solution.
+#&gt;       The constraint matrix inf-norm is 103.226, with a dynamic range of 1193.9.
+#&gt;       Time to load data was 0.011 seconds, presolve used 0.001 seconds,
+#&gt;        ... 0.000 seconds in simplex solver, in total 0.012 seconds.</div><div class='input'>
 <span class='co'># print solution</span>
 <span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 15</span><span>
 #&gt;   solution status   obj  cost F1_action F2_action F3_action F4_action F5_action
 #&gt;      </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 TM_OP…  2.06  195.         1         1         0         0         0
-#&gt; </span><span style='color: #949494;'># … with 6 more variables: baseline_action </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F1 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F2 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F3 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
-#&gt; #   F4 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F5 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 optim~  2.06  195.         1         1         0         0         0
+#&gt; </span><span style='color: #949494;'># ... with 6 more variables: baseline_action </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F1 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F2 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
+#&gt; #   F3 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F4 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F5 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># plot solution</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>p</span>, <span class='no'>s</span>)</div><div class='img'><img src='add_default_solver-1.png' alt='' width='700' height='433' /></div><div class='input'>
-</div></span></pre>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>p</span>, <span class='no'>s</span>)</div><div class='img'><img src='add_lpsolveapi_solver-1.png' alt='' width='700' height='433' /></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
+      <li><a href="#value">Value</a></li>
+
       <li><a href="#details">Details</a></li>
 
       <li><a href="#see-also">See also</a></li>

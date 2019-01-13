@@ -268,3 +268,34 @@ symphony_status <- function(x) {
     warning("solver returned unrecognized code")
   as.character(x)
 }
+
+#' lp_solve status
+#'
+#' Find a description of the solver status returned from lp_solve.
+#'
+#' @param x \code{numeric} status code.
+#'
+#' @return \code{character} status description.
+#'
+#' @noRd
+lp_solve_status <- function(x) {
+  assertthat::assert_that(is.numeric(x))
+  codes <- c(
+    "0" = "optimal solution found",
+    "1" ="the model is sub-optimal",
+    "3" ="the model is unbounded",
+    "2" ="the model is infeasible",
+    "4" ="the model is degenerate",
+    "5" ="numerical failure encountered",
+    "6" ="process aborted",
+    "7" ="timeout",
+    "9" ="the model was solved by presolve",
+    "10" ="the branch and bound routine failed",
+    "11" ="the branch and bound was stopped because of a break-at-first or break-at-value",
+    "12" = "a feasible branch and bound solution was found",
+    "13" = "no feasible branch and bound solution was found")
+  x <- codes[as.character(x)]
+  if (is.na(x))
+    warning("solver returned unrecognized code")
+  as.character(x)
+}

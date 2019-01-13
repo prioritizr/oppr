@@ -21,6 +21,7 @@ NULL
 #' @inherit add_gurobi_solver seealso return
 #'
 #' @examples
+#' \donttest{
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
@@ -42,7 +43,7 @@ NULL
 #'
 #' # plot solution
 #' plot(p, s)
-#'
+#' }
 #' @name add_rsymphony_solver
 NULL
 

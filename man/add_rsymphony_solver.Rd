@@ -15,8 +15,11 @@ solving problems using \pkg{gurobi}, and will cause the optimizer to
 terminate when the difference between the upper and lower objective
 function bounds is less than the gap times the upper bound. For example, a
 value of 0.01 will result in the optimizer stopping when the difference
-between the bounds is 1 percent of the upper bound. Defaults to 0, so
-that optimal solutions will be returned.}
+between the bounds is 1 percent of the upper bound. For
+other solvers, this is the absolute gap, so if the optimal value for
+a maximization problem is 10, a gap of 0.01 means that a solution between
+10 and 10.01 is required. Defaults to 0, so that optimal solutions will be
+returned.}
 
 \item{time_limit}{\code{numeric} time limit in seconds to run the optimizer.
 The solver will return the current best solution when this time limit is
@@ -53,6 +56,7 @@ solver. It requires the \pkg{Rsymphony} package.
   This solver uses the \pkg{Rsymphony} package to solve problems.
 }
 \examples{
+\donttest{
 # load data
 data(sim_projects, sim_features, sim_actions)
 
@@ -74,7 +78,7 @@ print(s)
 
 # plot solution
 plot(p, s)
-
+}
 }
 \seealso{
 \code{\link{solvers}}.
