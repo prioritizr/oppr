@@ -82,7 +82,7 @@ add_lpsolveapi_solver <- function(x, gap = 0, presolve = TRUE, verbose = TRUE) {
       # extract parameters
       p <- as.list(self$parameters)
       # prepare inputs
-      m <- as(x$A(), "dgTMatrix")
+      m <- methods::as(x$A(), "dgTMatrix")
       l <- lpSolveAPI::make.lp(nrow(m), ncol(m),
                                ifelse(as.logical(p$verbose), "normal",
                                       "neutral"))
