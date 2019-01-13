@@ -38,7 +38,6 @@ Imports:
     ggplot2 (>= 3.0.0),
     viridisLite (>= 0.3.0),
     lpSolveAPI (>= 5.5.2.0.17),
-    shiny(>= 1.2.0)
 Suggests:
     testthat (>= 2.0.0),
     knitr (>= 1.20),
@@ -47,7 +46,9 @@ Suggests:
     gurobi (>= 8.0.0),
     ggtree (>= 1.8.2),
     Rsymphony (>= 0.1.28),
-    lpsymphony (>= 1.10.0)
+    lpsymphony (>= 1.10.0),
+    shiny(>= 1.2.0),
+    rhandsontable (>= 0.3.7)
 Depends:
     R(>= 3.4.0)
 LinkingTo:

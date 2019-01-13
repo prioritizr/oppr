@@ -82,27 +82,35 @@ NULL
 #' }
 #'
 #' # build another problem, with the Rsympony solver
+#' \donttest{
 #' p4 <- p1 %>%
 #'       add_rsymphony_solver()
+#' }
 #'
 #' # build another problem, with the lpsymphony solver
 #' \donttest{
 #' p5 <- p1 %>%
 #'       add_lpsymphony_solver()
 #' }
-#' # build another problem, with the heuristic solver
+#'
+#' # build another problem, with the lpSolveAPI solver
 #' p6 <- p1 %>%
+#'       add_lpsolvepi_solver()
+#'
+#' # build another problem, with the heuristic solver
+#' p7 <- p1 %>%
 #'       add_heuristic_solver()
 #'
 #' # build another problem, with the random solver
-#' p7 <- p1 %>%
+#' p8 <- p1 %>%
 #'       add_random_solver()
 #'
 #' \donttest{
 #' # generate solutions using each of the solvers
-#' s <- rbind(solve(p2), solve(p3), solve(p4), solve(p5), solve(p6), solve(p7))
-#' s$solver <- c("default", "gurobi", "Rsymphony", "lpsymphony", "heuristic",
-#'               "random")
+#' s <- rbind(solve(p2), solve(p3), solve(p4), solve(p5), solve(p6), solve(p7).
+#'            solve(p8))
+#' s$solver <- c("default", "gurobi", "Rsymphony", "lpsymphony", "lpSolveAPI"
+#'               "heuristic", "random")
 #'
 #' # print solutions
 #' print(as.data.frame(s))
