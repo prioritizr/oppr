@@ -119,7 +119,8 @@ test_that("exact solver (simple problem, single solution)", {
   expect_is(s, "tbl_df")
   expect_equal(nrow(s), 1)
   expect_equal(s$solution, 1L)
-  expect_true(s$status %in% c("OPTIMAL", "TM_OPTIMAL_SOLUTION_FOUND"))
+  expect_true(s$status %in% c("OPTIMAL", "TM_OPTIMAL_SOLUTION_FOUND",
+                              "optimal solution found"))
   expect_equal(s$cost, 0.15)
   expect_equal(s$obj, 0.15)
   expect_equal(s$A1, 0)
