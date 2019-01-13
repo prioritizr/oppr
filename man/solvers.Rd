@@ -43,6 +43,14 @@ The following solvers can be used to find solutions for a
     The \pkg{lpsymphony} package may be easier to install on Windows or
     Max OSX systems than the \pkg{Rsymphony} package.}
 
+  \item{\code{\link{add_lpsolveapi_solver}}}{
+    \href{http://lpsolve.sourceforge.net/5.5/}{\emph{lp_solve}} is an
+    open-source integer programming solver. The \pkg{lpSolveAPI} package
+    provides an interface to this solver and is available on CRAN.
+    Although this solver is the slowest currently supported solver,
+    it is also the only exact algorithm solver that can be installed on all
+    operating systems without any manual installation steps.}
+
   \item{\code{\link{add_heuristic_solver}}}{Generate solutions using
     a backwards heuristic algorithm. Although these types of algorithms have
     conventionally been used to solve project prioritization problems,
@@ -92,7 +100,7 @@ p5 <- p1 \%>\%
 
 # build another problem, with the lpSolveAPI solver
 p6 <- p1 \%>\%
-      add_lpsolvepi_solver()
+      add_lpsolveapi_solver()
 
 # build another problem, with the heuristic solver
 p7 <- p1 \%>\%
@@ -104,9 +112,9 @@ p8 <- p1 \%>\%
 
 \donttest{
 # generate solutions using each of the solvers
-s <- rbind(solve(p2), solve(p3), solve(p4), solve(p5), solve(p6), solve(p7).
+s <- rbind(solve(p2), solve(p3), solve(p4), solve(p5), solve(p6), solve(p7),
            solve(p8))
-s$solver <- c("default", "gurobi", "Rsymphony", "lpsymphony", "lpSolveAPI"
+s$solver <- c("default", "gurobi", "Rsymphony", "lpsymphony", "lpSolveAPI",
               "heuristic", "random")
 
 # print solutions

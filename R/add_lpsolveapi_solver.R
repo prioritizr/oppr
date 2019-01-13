@@ -17,8 +17,9 @@ NULL
 #' @details \href{http://lpsolve.sourceforge.net/5.5/}{\emph{lp_solve}} is an
 #'   open-source integer programming solver.
 #'   Although this solver is the slowest currently supported solver,
-#'   it is also the only solver that can be installed on all operating systems
-#'   without any manual installation steps. This solver is provided so that
+#'   it is also the only exact algorithm solver that can be installed on all
+#'   operating systems without any manual installation steps. This solver is
+#'   provided so that
 #'   users can try solving small project prioritization problems, without
 #'   needing to install additional software. When solve moderate or large
 #'   project prioritization problems, consider using

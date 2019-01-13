@@ -122,7 +122,7 @@ solver. It requires the <span class="pkg">lpSolveAPI</span> package.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>add_lpsolveapi_solver</span>(<span class='no'>x</span>, <span class='kw'>gap</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>presolve</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>add_lpsolveapi_solver</span>(<span class='no'>x</span>, <span class='kw'>gap</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>presolve</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -167,8 +167,9 @@ optimization problems?</p></td>
     <p><a href='http://lpsolve.sourceforge.net/5.5/'><em>lp_solve</em></a> is an
   open-source integer programming solver.
   Although this solver is the slowest currently supported solver,
-  it is also the only solver that can be installed on all operating systems
-  without any manual installation steps. This solver is provided so that
+  it is also the only exact algorithm solver that can be installed on all
+  operating systems without any manual installation steps. This solver is
+  provided so that
   users can try solving small project prioritization problems, without
   needing to install additional software. When solve moderate or large
   project prioritization problems, consider using
@@ -202,7 +203,7 @@ optimization problems?</p></td>
 #&gt; <span class='message'>  weights:         default</span>
 #&gt; <span class='message'>  decisions        Binary decision </span>
 #&gt; <span class='message'>  constraints:     &lt;none&gt;</span>
-#&gt; <span class='message'>  solver:          lpSolveAPI [gap (0), presolve (1), verbose (1)]</span></div><div class='input'>
+#&gt; <span class='message'>  solver:          lpSolveAPI [gap (0), presolve (0), verbose (1)]</span></div><div class='input'>
 <span class='co'># solve problem</span>
 <span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p</span>)</div><div class='output co'>#&gt; 
 #&gt; Model name:  'project prioritization problem' - run #1    
@@ -233,15 +234,15 @@ optimization problems?</p></td>
 #&gt;       The largest [LUSOL v2.2.1.0] fact(B) had 104 NZ entries, 1.0x largest basis.
 #&gt;       The maximum B&amp;B level was 6, 0.1x MIP order, 4 at the optimal solution.
 #&gt;       The constraint matrix inf-norm is 103.226, with a dynamic range of 1193.9.
-#&gt;       Time to load data was 0.011 seconds, presolve used 0.001 seconds,
+#&gt;       Time to load data was 0.012 seconds, presolve used 0.000 seconds,
 #&gt;        ... 0.000 seconds in simplex solver, in total 0.012 seconds.</div><div class='input'>
 <span class='co'># print solution</span>
 <span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 15</span><span>
 #&gt;   solution status   obj  cost F1_action F2_action F3_action F4_action F5_action
 #&gt;      </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 optim~  2.06  195.         1         1         0         0         0
-#&gt; </span><span style='color: #949494;'># ... with 6 more variables: baseline_action </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F1 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F2 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
-#&gt; #   F3 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F4 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F5 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 optim…  2.06  195.         1         1         0         0         0
+#&gt; </span><span style='color: #949494;'># … with 6 more variables: baseline_action </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F1 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F2 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F3 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
+#&gt; #   F4 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F5 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># plot solution</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>p</span>, <span class='no'>s</span>)</div><div class='img'><img src='add_lpsolveapi_solver-1.png' alt='' width='700' height='433' /></div></span></pre>
   </div>

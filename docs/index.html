@@ -202,19 +202,19 @@ p &lt;-<span class="st"> </span><span class="kw"><a href="reference/problem.html
 ##   weights:         min: 0.21136, max: 1.59167
 ##   decisions        Binary decision 
 ##   constraints:     &lt;none&gt;
-##   solver:          Gurobi [first_feasible (0), gap (0), number_solutions (1), presolve (2), solution_pool_method (2), threads (1), time_limit (2147483647), time_limit (2147483647), verbose (0)]</code></pre>
+##   solver:          lpSolveAPI [gap (0), presolve (0), verbose (0)]</code></pre>
 <p>Next, we can solve this problem to obtain a solution. By default, we will obtain the optimal solution to our problem using an exact algorithm solver (e.g. using <a href="http://www.gurobi.com/">Gurobi</a> or <a href="https://cran.r-project.org/package=Rsymphony">Rsymphony</a>).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># solve problem</span>
 s &lt;-<span class="st"> </span><span class="kw"><a href="reference/solve.html">solve</a></span>(p)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># print solution</span>
 <span class="kw"><a href="reference/print.html">print</a></span>(s, <span class="dt">width =</span> <span class="ot">Inf</span>)</code></pre></div>
 <pre><code>## # A tibble: 1 x 15
-##   solution status    obj  cost F1_action F2_action F3_action F4_action
-##      &lt;int&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
-## 1        1 OPTIMAL  1.51  395.         1         1         0         1
-##   F5_action baseline_action    F1    F2     F3    F4    F5
-##       &lt;dbl&gt;           &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1         1               1 0.727 0.820 0.0865 0.585 0.502</code></pre>
+##   solution status                   obj  cost F1_action F2_action F3_action
+##      &lt;int&gt; &lt;chr&gt;                  &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1        1 optimal solution found  1.51  395.         1         1         0
+##   F4_action F5_action baseline_action    F1    F2     F3    F4    F5
+##       &lt;dbl&gt;     &lt;dbl&gt;           &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1         1         1               1 0.727 0.820 0.0865 0.585 0.502</code></pre>
 <p>The <code>s</code> table contains the solution and also various statistics associated with the solution. Here, each row corresponds to a different solution. Specifically, the <code>"solution"</code> column contains an identifier for the solution (which may be useful for methods that output multiple solutions), the <code>"obj"</code> column contains the objective value (i.e. the expected feature richness for this problem), the <code>"cost"</code> column stores the cost of the solution, and the <code>"status"</code> column contains information from the solver about the solution. Additionally, it contains columns for each action (<code>"F1_action"</code>, <code>"F2_actions"</code>, <code>"F3_actions"</code>, …, <code>"baseline_action"</code>) which indicate if each action was prioritized for funding in the solution. Furthermore, it contains column for each feature (<code>"F1</code>, <code>"F2"</code>, <code>"F3</code>, …) which indicate the probability that each feature is expected to persist into the future under each solution. Since tabular data can be difficult to understand, let’s visualize how well this solution would conserve the features. Note that features which benefit from fully funded projects, excepting the baseline project, are denoted with an asterisk.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># visualize solution</span>
 <span class="kw"><a href="reference/plot_feature_persistence.html">plot_feature_persistence</a></span>(p, s)</code></pre></div>
