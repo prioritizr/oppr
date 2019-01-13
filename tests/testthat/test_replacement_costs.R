@@ -21,7 +21,7 @@ test_that("maximum obj", {
                "name") %>%
        add_max_richness_objective(budget = 0.26) %>%
        add_binary_decisions() %>%
-       add_lpsolveapi_solver()
+       add_rsymphony_solver()
   s <- data.frame(A1 = 1, A2 = 0, A3 = 1, A4 = 1)
   r <- replacement_costs(p, s)
   # tests
@@ -61,7 +61,7 @@ test_that("minimum obj", {
        add_min_set_objective() %>%
        add_absolute_targets("target") %>%
        add_binary_decisions() %>%
-       add_lpsolveapi_solver()
+       add_rsymphony_solver()
   s <- data.frame(A1 = 1, A2 = 0, A3 = 1, A4 = 1)
   r <- replacement_costs(p, s)
   # tests
