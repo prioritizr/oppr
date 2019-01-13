@@ -20,21 +20,14 @@ test_that("maximum obj", {
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
                "name") %>%
        add_max_richness_objective(budget = 0.26) %>%
-       add_binary_decisions()
+       add_binary_decisions() %>%
+       add_lpsolveapi_solver()
   s <- data.frame(A1 = 1, A2 = 0, A3 = 1, A4 = 1)
   r <- replacement_costs(p, s)
   # tests
   expect_is(r, "tbl_df")
   expect_equal(nrow(r), 4)
   expect_equal(r$name, p$action_names())
-
-  warning("r$cost")
-  warning(r$cost)
-  warning("r$obj")
-  warning(r$obj)
-  warning("r$rep_cost")
-  warning(r$rep_cost)
-
   expect_equal(r$cost, c(0.25, NA_real_, 0.2, NA_real_))
   expect_equal(r$obj, c((0.94 * 0.8) + (0.96 * 0.92) + (1.0 * 0.1),
                          NA_real_,
@@ -67,7 +60,8 @@ test_that("minimum obj", {
                "name") %>%
        add_min_set_objective() %>%
        add_absolute_targets("target") %>%
-       add_binary_decisions()
+       add_binary_decisions() %>%
+       add_lpsolveapi_solver()
   s <- data.frame(A1 = 1, A2 = 0, A3 = 1, A4 = 1)
   r <- replacement_costs(p, s)
   # tests
