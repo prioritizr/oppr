@@ -106,7 +106,7 @@ replacement_costs <- function(x, solution, n = 1) {
   if (!inherits(solution, "tbl_df"))
     solution <- tibble::as_tibble(solution)
   # over-write solver
-  suppressWarnings({x <- add_default_solver(x, gap = 0, verbose = FALSE)})
+  suppressWarnings({x <- add_default_solver(x, gap = 0, verbose = TRUE)})
   # calculate initial objective value
   obj <- try(solution_statistics(x, solution[n, x$action_names()])$obj,
              silent = TRUE)
@@ -116,7 +116,7 @@ replacement_costs <- function(x, solution, n = 1) {
   a <- which(c(as.matrix(solution[n, x$action_names()])) > 0.5)
   # calculate cost and objective values
   out <- lapply(a, function(i) {
-    o <- try(solve(add_locked_out_constraints(x, i)), silent = TRUE)
+    o <- try(solve(add_locked_out_constraints(x, i)), silent = FALSE)
     if (inherits(o, "try-error")) {
       o <- data.frame(cost = Inf, obj = Inf)
     } else {
