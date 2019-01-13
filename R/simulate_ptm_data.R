@@ -309,7 +309,7 @@ simulate_ptm_data <- function(number_projects, number_actions, number_features,
   ### feature benefits from every project
   for (i in seq_len(nrow(spp_prob_matrix) - 1)) {
     spp_prob_matrix[i, sample(seq_len(number_features),
-                              sample.int(number_features, 1))] <- NA_real_
+                              sample.int(number_features - 1, 1))] <- NA_real_
   }
   ### assign probabilities for baseline project
   spp_prob_matrix[nrow(spp_prob_matrix), ] <-
