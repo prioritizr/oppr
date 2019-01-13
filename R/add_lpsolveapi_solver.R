@@ -58,7 +58,7 @@ methods::setClass("LpsolveapiSolver", contains = "Solver")
 
 #' @rdname add_lpsolveapi_solver
 #' @export
-add_lpsolveapi_solver <- function(x, gap = 0, presolve = TRUE, verbose = TRUE) {
+add_lpsolveapi_solver <- function(x, gap = 0, presolve = FALSE, verbose = TRUE) {
   # assert that arguments are valid
   assertthat::assert_that(inherits(x, "ProjectProblem"),
                           isTRUE(all(is.finite(gap))),
@@ -81,8 +81,24 @@ add_lpsolveapi_solver <- function(x, gap = 0, presolve = TRUE, verbose = TRUE) {
         msg = "gurobi solver is required to solve problems with this objective")
       # extract parameters
       p <- as.list(self$parameters)
-      # prepare inputs
+      # extract constraints
       m <- methods::as(x$A(), "dgTMatrix")
+      mrhs <- x$rhs()
+      msense <- x$sense()
+      # manually add in locked constraints
+      locked_in <- which(x$lb() > 0.5)
+      locked_out <- which(x$ub() < 0.5)
+      n_locked <- length(locked_in) + length(locked_out)
+      if (n_locked > 0) {
+        mrhs <- c(mrhs, rep(1, length(locked_in) ), rep(0, length(locked_out)))
+        msense <- c(msense, rep("=", length(n_locked)))
+        m2 <- Matrix::sparseMatrix(i = seq_len(n_locked),
+                                   j = c(locked_in, locked_out),
+                                   x = rep(1, n_locked),
+                                   dims = list(n_locked, ncol(m)))
+        m <- rbind(m, m2)
+      }
+      # prepare inputs
       l <- lpSolveAPI::make.lp(nrow(m), ncol(m),
                                ifelse(as.logical(p$verbose), "normal",
                                       "neutral"))
@@ -90,8 +106,8 @@ add_lpsolveapi_solver <- function(x, gap = 0, presolve = TRUE, verbose = TRUE) {
       for (i in seq_len(ncol(m)))
         lpSolveAPI::set.column(l, i, m[, i])
       lpSolveAPI::set.objfn(l, x$obj())
-      lpSolveAPI::set.rhs(l, x$rhs())
-      lpSolveAPI::set.constr.type(l, x$sense(), seq_len(nrow(m)))
+      lpSolveAPI::set.rhs(l, mrhs)
+      lpSolveAPI::set.constr.type(l, msense, seq_len(nrow(m)))
       lpSolveAPI::set.bounds(l, lower = x$lb(), upper = x$ub())
       v <- x$vtype()
       s <- which(v == "S")
@@ -107,8 +123,7 @@ add_lpsolveapi_solver <- function(x, gap = 0, presolve = TRUE, verbose = TRUE) {
       if (isTRUE(p$presolve)) {
         presolve <- c("rows", "cols", "lindep", "knapsack", "impliedfree",
                       "probreduce", "rowdominate", "coldominate", "mergerows",
-                      "impliedslk", "colfixdual", "bounds", "duals",
-                      "sensduals")
+                      "impliedslk", "colfixdual", "duals", "sensduals")
       } else {
         presolve <- "none"
       }
@@ -116,12 +131,12 @@ add_lpsolveapi_solver <- function(x, gap = 0, presolve = TRUE, verbose = TRUE) {
                              sense = x$modelsense())
       # solve problem
       start_time <- Sys.time()
-      x <- lpSolveAPI::solve.lpExtPtr(l)
+      o <- lpSolveAPI::solve.lpExtPtr(l)
       end_time <- Sys.time()
       # status code
-      status <- lp_solve_status(x)
+      status <- lp_solve_status(o)
       # check if no solution found
-      if (!x %in% c(0, 1, 9, 12))
+      if (!o %in% c(0, 1, 9, 12))
         return(NULL)
       # return solution
       list(list(x = lpSolveAPI::get.variables(l),
