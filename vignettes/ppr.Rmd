@@ -20,6 +20,18 @@ vignette: >
 fw <- 7.0
 fh <- 4.5
 
+# define dummy data sets
+s1 <- data.frame()
+s2 <- data.frame()
+s3 <- data.frame()
+s4 <- data.frame()
+s5 <- data.frame()
+s6 <- data.frame()
+s7 <- data.frame()
+s8 <- data.frame()
+s9 <- data.frame()
+mean_percent <- 0
+
 # disable running vignette code during R CMD check
 is_check <- ("CheckExEnv" %in% search()) || any(c("_R_CHECK_TIMINGS_",
              "_R_CHECK_LICENSE_") %in% names(Sys.getenv()))
@@ -61,14 +73,6 @@ sgr_to_html <- fansi::sgr_to_html
 ```{r, include = FALSE}
 # load pkg
 devtools::load_all()
-
-# define dummy data sets
-s1 <- data.frame()
-s2 <- data.frame()
-s3 <- data.frame()
-s4 <- data.frame()
-s5 <- data.frame()
-mean_percent <- 0
 ```
 
 # Overview
