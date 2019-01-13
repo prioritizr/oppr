@@ -95,13 +95,30 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>The latest development version of the <em>ppr R</em> package can be installed using the following code. Please note that you will need install the <em>ggtree</em> package from Bioconductor since it is not available on <a href="https://cran.r-project.org/">The Comprehensive R Archive Network</a>.</p>
+<p>The development version of the <em>ppr R</em> package can be installed using the following code. Please note that you will need install the <em>ggtree</em> package from Bioconductor since it is not available on <a href="https://cran.r-project.org/">The Comprehensive R Archive Network</a>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (<span class="op">!</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">require</a></span>(devtools))
   <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"devtools"</span>)
 devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"prioritizr/ppr"</span>)
 <span class="cf">if</span> (<span class="op">!</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">require</a></span>(ggtree))
   devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_bioc</a></span>(<span class="st">"ggtree"</span>)</code></pre></div>
+<div id="rsymphony-solver" class="section level3">
+<h3 class="hasAnchor">
+<a href="#rsymphony-solver" class="anchor"></a><em>Rsymphony</em> solver</h3>
+<p>This package depends on the <a href="https://cran.r-project.org/web/packages/Rsymphony/index.html"><em>Rsymphony R</em> package</a>. Unfortunately, Mac OSX and Linux users may need to manually install the <a href="https://projects.coin-or.org/SYMPHONY"><em>SYMHPONHY</em> software</a> before they can install the <a href="https://cran.r-project.org/web/packages/Rsymphony/index.html"><em>Rsymphony R</em> package</a> and, in turn, the <em>ppr R</em> package. The <a href="https://projects.coin-or.org/SYMPHONY"><em>SYMHPONHY</em> software</a> can be installed on Mac OSX systems using the <a href="https://brew.sh/">Homebrew</a> commands:</p>
+<pre><code>brew tap coin-or-tools/coinor
+brew install symphony
+brew install pkg-config</code></pre>
+<p>And the <a href="https://projects.coin-or.org/SYMPHONY"><em>SYMHPONHY</em> software</a> can be installed on Linux (specifically, Ubuntu) systems using the system commands:</p>
+<pre><code>sudo apt-get update
+sudo apt-get install coinor-libcgl-dev coinor-libclp-dev \
+coinor-libcoinutils-dev coinor-libosi-dev coinor-libsymphony-dev \
+coinor-libsymphony-doc coinor-libsymphony3</code></pre>
+</div>
+<div id="gurobi-solver" class="section level3">
+<h3 class="hasAnchor">
+<a href="#gurobi-solver" class="anchor"></a>Gurobi solver</h3>
 <p>We also recommend installing the <a href="http://www.gurobi.com/">Gurobi optimization suite</a> and <a href="https://www.gurobi.com/documentation/8.1/refman/r_api_overview.html"><em>gurobi R</em> package</a> to obtain solutions very quickly. For instructions on installing these software packages, please refer to <a href="https://cran.r-project.org/web/packages/prioritizr/vignettes/gurobi_installation.html">this installation guide</a>.</p>
+</div>
 </div>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
