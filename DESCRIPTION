@@ -37,7 +37,8 @@ Imports:
     tidytree (>= 0.1.9),
     ggplot2 (>= 3.0.0),
     viridisLite (>= 0.3.0),
-    Rsymphony (>= 0.1.28)
+    Rsymphony (>= 0.1.28),
+    shiny(>= 1.2.0)
 Suggests:
     testthat (>= 2.0.0),
     knitr (>= 1.20),
