@@ -233,7 +233,8 @@ test_that("exact solver (simple problem, single solution)", {
   expect_is(s1, "tbl_df")
   expect_equal(nrow(s1), 1L)
   expect_equal(s1$solution, 1L)
-  expect_true(s1$status %in% c("OPTIMAL", "TM_OPTIMAL_SOLUTION_FOUND"))
+  expect_true(s1$status %in% c("OPTIMAL", "TM_OPTIMAL_SOLUTION_FOUND",
+                               "optimal solution found"))
   expect_equal(s1$obj, s1$F1 + s1$F2 + s1$F3)
   expect_equal(s1$cost, 0.15)
   expect_equal(s1$A1, 0)
@@ -247,7 +248,8 @@ test_that("exact solver (simple problem, single solution)", {
   expect_is(s2, "tbl_df")
   expect_equal(nrow(s2), 1L)
   expect_equal(s2$solution, 1L)
-  expect_true(s2$status %in% c("OPTIMAL", "TM_OPTIMAL_SOLUTION_FOUND"))
+  expect_true(s2$status %in% c("OPTIMAL", "TM_OPTIMAL_SOLUTION_FOUND",
+                               "optimal solution found"))
   expect_equal(s2$obj, s2$F1 + s2$F2 + s2$F3)
   expect_equal(s2$cost, 0.2)
   expect_equal(s2$A1, 1)
@@ -284,7 +286,8 @@ test_that("exact solver (tricky problem, single solution)", {
   expect_is(s, "tbl_df")
   expect_equal(nrow(s), 1L)
   expect_equal(s$cost, 1)
-  expect_true(s$status %in% c("OPTIMAL", "TM_OPTIMAL_SOLUTION_FOUND"))
+  expect_true(s$status %in% c("OPTIMAL", "TM_OPTIMAL_SOLUTION_FOUND",
+                               "optimal solution found"))
   expect_equal(s$obj, 0.19)
   expect_equal(s$F1, 0.18)
   expect_equal(s$F2, 0.01)
