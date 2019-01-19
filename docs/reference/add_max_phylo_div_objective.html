@@ -66,7 +66,7 @@ pre-specified budget (Bennett et al. 2014, Faith 2008)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.2</span>
       </span>
     </div>
 
@@ -290,31 +290,31 @@ research &amp; management science</em>. Springer.</p>
 #&gt;   Objective range  [2e-01, 2e+00]
 #&gt;   Bounds range     [1e+00, 1e+00]
 #&gt;   RHS range        [1e+00, 3e+02]
-#&gt; Found heuristic solution: objective 1.6818350
+#&gt; Found heuristic solution: objective 1.6818351
 #&gt; Presolve removed 16 rows and 12 columns
 #&gt; Presolve time: 0.00s
-#&gt; Presolved: 37 rows, 3035 columns, 3076 nonzeros
-#&gt; Variable types: 3000 continuous, 35 integer (35 binary)
+#&gt; Presolved: 37 rows, 2993 columns, 3034 nonzeros
+#&gt; Variable types: 2958 continuous, 35 integer (35 binary)
 #&gt; Presolve removed 3 rows and 3 columns
-#&gt; Presolved: 34 rows, 3032 columns, 3070 nonzeros
+#&gt; Presolved: 34 rows, 2990 columns, 3028 nonzeros
 #&gt; 
 #&gt; 
-#&gt; Root relaxation: objective 2.639615e+00, 18 iterations, 0.00 seconds
+#&gt; Root relaxation: objective 2.639616e+00, 19 iterations, 0.00 seconds
 #&gt; 
 #&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
 #&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #&gt; 
 #&gt;      0     0    2.63962    0    6    1.68184    2.63962  56.9%     -    0s
-#&gt; H    0     0                       2.6304348    2.63962  0.35%     -    0s
-#&gt;      0     0 infeasible    0         2.63043    2.63043  0.00%     -    0s
+#&gt; H    0     0                       2.6304061    2.63962  0.35%     -    0s
+#&gt; *    0     0               0       2.6304346    2.63043  0.00%     -    0s
 #&gt; 
-#&gt; Explored 1 nodes (18 simplex iterations) in 0.01 seconds
+#&gt; Explored 1 nodes (21 simplex iterations) in 0.01 seconds
 #&gt; Thread count was 1 (of 4 available processors)
 #&gt; 
 #&gt; Solution count 1: 2.63043 
 #&gt; 
 #&gt; Optimal solution found (tolerance 0.00e+00)
-#&gt; Best objective 2.630434803747e+00, best bound 2.630434803747e+00, gap 0.0000%</div><div class='input'>
+#&gt; Best objective 2.630434584912e+00, best bound 2.630434584912e+00, gap 0.0000%</div><div class='input'>
 <span class='co'># print solution</span>
 <span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s1</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 15</span><span>
 #&gt;   solution status   obj  cost F1_action F2_action F3_action F4_action F5_action
@@ -338,13 +338,13 @@ research &amp; management science</em>. Springer.</p>
 #&gt;   Objective range  [4e-01, 3e+00]
 #&gt;   Bounds range     [1e+00, 1e+00]
 #&gt;   RHS range        [1e+00, 3e+02]
-#&gt; Found heuristic solution: objective 2.3361392
+#&gt; Found heuristic solution: objective 2.3361393
 #&gt; Presolve removed 16 rows and 12 columns
 #&gt; Presolve time: 0.00s
-#&gt; Presolved: 37 rows, 3035 columns, 3076 nonzeros
-#&gt; Variable types: 3000 continuous, 35 integer (35 binary)
+#&gt; Presolved: 37 rows, 2993 columns, 3034 nonzeros
+#&gt; Variable types: 2958 continuous, 35 integer (35 binary)
 #&gt; Presolve removed 3 rows and 3 columns
-#&gt; Presolved: 34 rows, 3032 columns, 3070 nonzeros
+#&gt; Presolved: 34 rows, 2990 columns, 3028 nonzeros
 #&gt; 
 #&gt; 
 #&gt; Root relaxation: objective 4.011915e+00, 14 iterations, 0.00 seconds
@@ -352,7 +352,7 @@ research &amp; management science</em>. Springer.</p>
 #&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
 #&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #&gt; 
-#&gt; *    0     0               0       4.0119147    4.01191  0.00%     -    0s
+#&gt; *    0     0               0       4.0119146    4.01191  0.00%     -    0s
 #&gt; 
 #&gt; Explored 0 nodes (14 simplex iterations) in 0.01 seconds
 #&gt; Thread count was 1 (of 4 available processors)
@@ -360,7 +360,7 @@ research &amp; management science</em>. Springer.</p>
 #&gt; Solution count 1: 4.01191 
 #&gt; 
 #&gt; Optimal solution found (tolerance 0.00e+00)
-#&gt; Best objective 4.011914667474e+00, best bound 4.011914667474e+00, gap 0.0000%</div><div class='input'>
+#&gt; Best objective 4.011914639629e+00, best bound 4.011914639629e+00, gap 0.0000%</div><div class='input'>
 <span class='co'># print solution based on feature weights</span>
 <span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s2</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 15</span><span>
 #&gt;   solution status   obj  cost F1_action F2_action F3_action F4_action F5_action

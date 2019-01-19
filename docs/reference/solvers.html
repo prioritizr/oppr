@@ -65,7 +65,7 @@ solver will be used." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.2</span>
       </span>
     </div>
 
@@ -189,13 +189,13 @@ solver will be used.</p>
       <span class='fu'><a href='add_default_solver.html'>add_default_solver</a></span>()
 
 <span class='co'># build another problem, with the gurobi solver</span></div><div class='input'><span class='no'>p3</span> <span class='kw'>&lt;-</span> <span class='no'>p1</span> <span class='kw'>%&gt;%</span>
-      <span class='fu'><a href='add_gurobi_solver.html'>add_gurobi_solver</a></span>()</div><div class='output co'>#&gt; <span class='error'>Error: requireNamespace(package = "gurobi", quietly = TRUE) is not TRUE</span></div><div class='input'>
+      <span class='fu'><a href='add_gurobi_solver.html'>add_gurobi_solver</a></span>()</div><div class='input'>
 # build another problem, with the Rsympony solver
 </div><div class='input'><span class='no'>p4</span> <span class='kw'>&lt;-</span> <span class='no'>p1</span> <span class='kw'>%&gt;%</span>
-      <span class='fu'><a href='add_rsymphony_solver.html'>add_rsymphony_solver</a></span>()</div><div class='output co'>#&gt; <span class='error'>Error: requireNamespace(package = "Rsymphony", quietly = TRUE) is not TRUE</span></div><div class='input'>
+      <span class='fu'><a href='add_rsymphony_solver.html'>add_rsymphony_solver</a></span>()</div><div class='input'>
 # build another problem, with the lpsymphony solver
 </div><div class='input'><span class='no'>p5</span> <span class='kw'>&lt;-</span> <span class='no'>p1</span> <span class='kw'>%&gt;%</span>
-      <span class='fu'><a href='add_lsymphony_solver.html'>add_lpsymphony_solver</a></span>()</div><div class='output co'>#&gt; <span class='error'>Error: requireNamespace(package = "lpsymphony", quietly = TRUE) is not TRUE</span></div><div class='input'>
+      <span class='fu'><a href='add_lsymphony_solver.html'>add_lpsymphony_solver</a></span>()</div><div class='input'>
 <span class='co'># build another problem, with the lpSolveAPI solver</span>
 <span class='no'>p6</span> <span class='kw'>&lt;-</span> <span class='no'>p1</span> <span class='kw'>%&gt;%</span>
       <span class='fu'><a href='add_lpsolveapi_solver.html'>add_lpsolveapi_solver</a></span>()
@@ -208,7 +208,67 @@ solver will be used.</p>
 <span class='no'>p8</span> <span class='kw'>&lt;-</span> <span class='no'>p1</span> <span class='kw'>%&gt;%</span>
       <span class='fu'><a href='add_random_solver.html'>add_random_solver</a></span>()</div><div class='input'><span class='co'># generate solutions using each of the solvers</span>
 <span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/cbind'>rbind</a></span>(<span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p2</span>), <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p3</span>), <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p4</span>), <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p5</span>), <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p6</span>), <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p7</span>),
-           <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p8</span>))</div><div class='output co'>#&gt; 
+           <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p8</span>))</div><div class='output co'>#&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
+#&gt; Variable types: 0 continuous, 42 integer (42 binary)
+#&gt; Semi-Variable types: 5 continuous, 0 integer
+#&gt; Coefficient statistics:
+#&gt;   Matrix range     [9e-02, 1e+02]
+#&gt;   Objective range  [1e+00, 1e+00]
+#&gt;   Bounds range     [1e+00, 1e+00]
+#&gt;   RHS range        [1e+00, 2e+02]
+#&gt; Found heuristic solution: objective 1.3951511
+#&gt; Presolve removed 16 rows and 12 columns
+#&gt; Presolve time: 0.00s
+#&gt; Presolved: 31 rows, 35 columns, 65 nonzeros
+#&gt; Variable types: 0 continuous, 35 integer (35 binary)
+#&gt; Presolved: 31 rows, 35 columns, 65 nonzeros
+#&gt; 
+#&gt; 
+#&gt; Root relaxation: objective 2.063951e+00, 11 iterations, 0.00 seconds
+#&gt; 
+#&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
+#&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+#&gt; 
+#&gt; *    0     0               0       2.0639515    2.06395  0.00%     -    0s
+#&gt; 
+#&gt; Explored 0 nodes (11 simplex iterations) in 0.00 seconds
+#&gt; Thread count was 1 (of 4 available processors)
+#&gt; 
+#&gt; Solution count 1: 2.06395 
+#&gt; 
+#&gt; Optimal solution found (tolerance 0.00e+00)
+#&gt; Best objective 2.063951451212e+00, best bound 2.063951451212e+00, gap 0.0000%
+#&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
+#&gt; Variable types: 0 continuous, 42 integer (42 binary)
+#&gt; Semi-Variable types: 5 continuous, 0 integer
+#&gt; Coefficient statistics:
+#&gt;   Matrix range     [9e-02, 1e+02]
+#&gt;   Objective range  [1e+00, 1e+00]
+#&gt;   Bounds range     [1e+00, 1e+00]
+#&gt;   RHS range        [1e+00, 2e+02]
+#&gt; Found heuristic solution: objective 1.3951511
+#&gt; Presolve removed 16 rows and 12 columns
+#&gt; Presolve time: 0.00s
+#&gt; Presolved: 31 rows, 35 columns, 65 nonzeros
+#&gt; Variable types: 0 continuous, 35 integer (35 binary)
+#&gt; Presolved: 31 rows, 35 columns, 65 nonzeros
+#&gt; 
+#&gt; 
+#&gt; Root relaxation: objective 2.063951e+00, 11 iterations, 0.00 seconds
+#&gt; 
+#&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
+#&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+#&gt; 
+#&gt; *    0     0               0       2.0639515    2.06395  0.00%     -    0s
+#&gt; 
+#&gt; Explored 0 nodes (11 simplex iterations) in 0.00 seconds
+#&gt; Thread count was 1 (of 4 available processors)
+#&gt; 
+#&gt; Solution count 1: 2.06395 
+#&gt; 
+#&gt; Optimal solution found (tolerance 0.00e+00)
+#&gt; Best objective 2.063951451212e+00, best bound 2.063951451212e+00, gap 0.0000%
+#&gt; 
 #&gt; Model name:  'project prioritization problem' - run #1    
 #&gt; Objective:   Maximize(R0)
 #&gt;  
@@ -237,11 +297,35 @@ solver will be used.</p>
 #&gt;       The largest [LUSOL v2.2.1.0] fact(B) had 104 NZ entries, 1.0x largest basis.
 #&gt;       The maximum B&amp;B level was 6, 0.1x MIP order, 4 at the optimal solution.
 #&gt;       The constraint matrix inf-norm is 103.226, with a dynamic range of 1193.9.
-#&gt;       Time to load data was 0.013 seconds, presolve used 0.000 seconds,
-#&gt;        ... 0.000 seconds in simplex solver, in total 0.013 seconds.</div><div class='output co'>#&gt; <span class='error'>Error in solve(p3): object 'p3' not found</span></div><div class='input'><span class='no'>s</span>$<span class='no'>solver</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"default"</span>, <span class='st'>"gurobi"</span>, <span class='st'>"Rsymphony"</span>, <span class='st'>"lpsymphony"</span>, <span class='st'>"lpSolveAPI"</span>,
-              <span class='st'>"heuristic"</span>, <span class='st'>"random"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in s$solver &lt;- c("default", "gurobi", "Rsymphony", "lpsymphony",     "lpSolveAPI", "heuristic", "random"): object 's' not found</span></div><div class='input'>
+#&gt;       Time to load data was 0.007 seconds, presolve used 0.000 seconds,
+#&gt;        ... 0.001 seconds in simplex solver, in total 0.008 seconds.</div><div class='input'><span class='no'>s</span>$<span class='no'>solver</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"default"</span>, <span class='st'>"gurobi"</span>, <span class='st'>"Rsymphony"</span>, <span class='st'>"lpsymphony"</span>, <span class='st'>"lpSolveAPI"</span>,
+              <span class='st'>"heuristic"</span>, <span class='st'>"random"</span>)
+
 <span class='co'># print solutions</span>
-<span class='fu'><a href='print.html'>print</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/as.data.frame'>as.data.frame</a></span>(<span class='no'>s</span>))</div><div class='output co'>#&gt; <span class='error'>Error in as.data.frame(s): object 's' not found</span></div></pre>
+<span class='fu'><a href='print.html'>print</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/as.data.frame'>as.data.frame</a></span>(<span class='no'>s</span>))</div><div class='output co'>#&gt;   solution                    status      obj     cost F1_action F2_action
+#&gt; 1        1                   OPTIMAL 2.063951 195.3907         1         1
+#&gt; 2        1                   OPTIMAL 2.063951 195.3907         1         1
+#&gt; 3        1 TM_OPTIMAL_SOLUTION_FOUND 2.063951 195.3907         1         1
+#&gt; 4        1 TM_OPTIMAL_SOLUTION_FOUND 2.063951 195.3907         1         1
+#&gt; 5        1    optimal solution found 2.063951 195.3907         1         1
+#&gt; 6        1                      &lt;NA&gt; 2.063951 195.3907         1         1
+#&gt; 7        1                      &lt;NA&gt; 1.395151 103.2258         0         0
+#&gt;   F3_action F4_action F5_action baseline_action        F1        F2        F3
+#&gt; 1         0         0         0               1 0.7266208 0.8199443 0.0864612
+#&gt; 2         0         0         0               1 0.7266208 0.8199443 0.0864612
+#&gt; 3         0         0         0               1 0.7266208 0.8199443 0.0864612
+#&gt; 4         0         0         0               1 0.7266208 0.8199443 0.0864612
+#&gt; 5         0         0         0               1 0.7266208 0.8199443 0.0864612
+#&gt; 6         0         0         0               1 0.7266208 0.8199443 0.0864612
+#&gt; 7         1         0         0               1 0.2977965 0.2500224 0.4164073
+#&gt;          F4        F5     solver
+#&gt; 1 0.2489246 0.1820005    default
+#&gt; 2 0.2489246 0.1820005     gurobi
+#&gt; 3 0.2489246 0.1820005  Rsymphony
+#&gt; 4 0.2489246 0.1820005 lpsymphony
+#&gt; 5 0.2489246 0.1820005 lpSolveAPI
+#&gt; 6 0.2489246 0.1820005  heuristic
+#&gt; 7 0.2489246 0.1820005     random</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

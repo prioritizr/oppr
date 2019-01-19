@@ -74,7 +74,7 @@ a specified objective will throw an error." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.2</span>
       </span>
     </div>
 
@@ -252,13 +252,13 @@ resources among threatened species: A project prioritization protocol.
 #&gt;   Objective range  [2e-01, 2e+00]
 #&gt;   Bounds range     [1e+00, 1e+00]
 #&gt;   RHS range        [1e+00, 2e+02]
-#&gt; Found heuristic solution: objective 1.6818350
+#&gt; Found heuristic solution: objective 1.6818351
 #&gt; Presolve removed 16 rows and 12 columns
 #&gt; Presolve time: 0.00s
-#&gt; Presolved: 37 rows, 2591 columns, 2633 nonzeros
-#&gt; Variable types: 2556 continuous, 35 integer (35 binary)
+#&gt; Presolved: 37 rows, 2537 columns, 2579 nonzeros
+#&gt; Variable types: 2502 continuous, 35 integer (35 binary)
 #&gt; Presolve removed 3 rows and 3 columns
-#&gt; Presolved: 34 rows, 2588 columns, 2627 nonzeros
+#&gt; Presolved: 34 rows, 2534 columns, 2573 nonzeros
 #&gt; 
 #&gt; 
 #&gt; Root relaxation: objective 2.447151e+00, 25 iterations, 0.00 seconds
@@ -267,8 +267,8 @@ resources among threatened species: A project prioritization protocol.
 #&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #&gt; 
 #&gt;      0     0    2.44715    0    3    1.68184    2.44715  45.5%     -    0s
-#&gt; H    0     0                       1.9501098    2.44715  25.5%     -    0s
-#&gt;      0     0    2.35719    0    3    1.95011    2.35719  20.9%     -    0s
+#&gt; H    0     0                       1.9501715    2.44715  25.5%     -    0s
+#&gt;      0     0    2.35719    0    3    1.95017    2.35719  20.9%     -    0s
 #&gt; H    0     0                       2.3474647    2.35719  0.41%     -    0s
 #&gt;      0     0     cutoff    0         2.34746    2.34746  0.00%     -    0s
 #&gt; 
@@ -277,13 +277,13 @@ resources among threatened species: A project prioritization protocol.
 #&gt;   Clique: 8
 #&gt;   StrongCG: 1
 #&gt; 
-#&gt; Explored 1 nodes (37 simplex iterations) in 0.01 seconds
+#&gt; Explored 1 nodes (39 simplex iterations) in 0.01 seconds
 #&gt; Thread count was 1 (of 4 available processors)
 #&gt; 
 #&gt; Solution count 1: 2.34746 
 #&gt; 
 #&gt; Optimal solution found (tolerance 0.00e+00)
-#&gt; Best objective 2.347464666261e+00, best bound 2.347464666261e+00, gap 0.0000%</div><div class='input'>
+#&gt; Best objective 2.347464732688e+00, best bound 2.347464732688e+00, gap 0.0000%</div><div class='input'>
 <span class='co'># print solution</span>
 <span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s2</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 15</span><span>
 #&gt;   solution status   obj  cost F1_action F2_action F3_action F4_action F5_action

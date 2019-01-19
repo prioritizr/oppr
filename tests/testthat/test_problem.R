@@ -175,4 +175,16 @@ test_that("invalid arguments", {
     problem(sim_projects, sim_actions, sim_features,
             "name", "success", "name", "cost", "name")
   })
+  expect_error({
+    data(sim_projects, sim_actions, sim_features)
+    sim_projects[nrow(sim_projects), sim_features$name[1]] <- 1e-12
+    problem(sim_projects, sim_actions, sim_features,
+            "name", "success", "name", "cost", "name")
+  })
+  expect_error({
+    data(sim_projects, sim_actions, sim_features)
+    sim_projects[nrow(sim_projects), sim_features$name[1]] <- NA_real_
+    problem(sim_projects, sim_actions, sim_features,
+            "name", "success", "name", "cost", "name")
+  })
 })

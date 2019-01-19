@@ -177,6 +177,48 @@ test_that("exact solver (simple problem, multiple solutions", {
   expect_true(all(rowSums(as.matrix(s[, actions$name])) >= 1))
 })
 
+test_that("exact solver (constant branch probabilities, single solution", {
+  skip_on_cran()
+  skip_if_not_installed("gurobi", "8.0.0")
+  # create data
+  projects <- tibble::tibble(name = letters[1:4],
+                             success =  c(0.95, 0.96, 0.94, 1.00),
+                             F1 =       c(0.91, 0.00, 0.80, 0.10),
+                             F2 =       c(0.00, 0.92, 0.80, 0.10),
+                             F3 =       c(0.00, 0.00, 0.00, 1.0),
+                             F4 =       c(0.00, 0.00, 0.00, 1.0),
+                             A1 =       c(TRUE, FALSE, FALSE, FALSE),
+                             A2 =       c(FALSE, TRUE, FALSE, FALSE),
+                             A3 =       c(FALSE, FALSE, TRUE, FALSE),
+                             A4 =       c(FALSE, FALSE, FALSE, TRUE))
+  actions <- tibble::tibble(name =      c("A1", "A2", "A3", "A4"),
+                            cost =      c(0.10, 0.10, 0.15, 0))
+  features <- tibble::tibble(name = c("F1", "F2", "F3", "F4"))
+  tree <- ape::read.tree(text = "((F1,F2),(F3,F4));")
+  tree$edge.length <- c(5, 5, 5, 5, 5, 5, 5)
+  # make problems
+  p <- problem(projects, actions, features, "name", "success", "name", "cost",
+               "name") %>%
+       add_max_phylo_div_objective(0.16, tree) %>%
+       add_binary_decisions()
+  # solve problem
+  s <- solve(p)
+  # tests
+  expect_is(s, "tbl_df")
+  expect_equal(nrow(s), 1)
+  expect_equal(s$solution, 1L)
+  expect_equal(s$status, "OPTIMAL")
+  expect_equal(s$cost, 0.15)
+  expect_equal(s$F1, 0.94 * 0.8)
+  expect_equal(s$F2, 0.94 * 0.8)
+  expect_equal(s$F3, 1.0)
+  expect_equal(s$F4, 1.0)
+  expect_equal(s$A1, 0)
+  expect_equal(s$A2, 0)
+  expect_equal(s$A3, 1)
+  expect_equal(s$A4, 1)
+})
+
 test_that("exact solver (locked constraints, multiple solutions)", {
   skip_on_cran()
   skip_if_not_installed("gurobi", "8.0.0")

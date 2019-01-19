@@ -222,6 +222,28 @@ problem <- function(projects, actions, features, project_name_column,
         na.rm = TRUE) <= 1)
   assertthat::assert_that(min(actions[[action_cost_column]]) == 0,
                           msg = "zero cost baseline project missing.")
+  # verify that features have finite persistence probabilities in baseline
+  # project(s)
+  bp <- actions$name[actions[[action_cost_column]] == 0]
+  pa <- as.matrix(projects[, actions$name])
+  bp <- which(vapply(seq_len(nrow(pa)), FUN.VALUE = logical(1), function(i) {
+    setequal(actions$name[pa[i, ]], bp)
+  }))
+  bpp <- colSums(as.matrix(projects[bp, features[[feature_name_column]]]))
+  assertthat::assert_that(all(is.finite(bpp)),
+    msg = paste("feature(s) has a missing (NA) value for its",
+                "probability of persistence under the baseline",
+                "project(s), please provide baseline probabilities for:",
+                paste(features[[feature_name_column]][!is.finite(bpp)],
+                      collapse = ", "), "."))
+  bpp <- colSums(as.matrix(projects[bp, features[[feature_name_column]]]),
+                na.rm = TRUE)
+  assertthat::assert_that(all(bpp > 1e-11),
+    msg = paste("feature(s) has a zero probability of persistence under",
+                "the baseline project(s), please replace these zeros with",
+                "a small number (e.g. 1e-10) for:",
+                paste(features[[feature_name_column]][bpp <= 1e-11],
+                      collapse = ", "), "."))
   # create ProjectProblem object
   pproto(NULL, ProjectProblem,
          constraints = pproto(NULL, Collection),

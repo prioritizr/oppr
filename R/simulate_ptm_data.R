@@ -304,7 +304,7 @@ simulate_ptm_data <- function(number_projects, number_actions, number_features,
                  funded_min_persistence_probability,
                  funded_max_persistence_probability),
     ncol = number_features, nrow = number_projects + 1,
-    dimnames = list(NULL, sort(tree$tip.label)))
+    dimnames = list(NULL, tree$tip.label))
   ### randomly introduce sparsity (NAs) into the matrix, so that not every
   ### feature benefits from every project
   for (i in seq_len(nrow(spp_prob_matrix) - 1)) {

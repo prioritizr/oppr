@@ -60,7 +60,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.2</span>
       </span>
     </div>
 
@@ -106,6 +106,17 @@
       <small>Source: <a href='https://github.com/prioritizr/ppr/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="ppr-0-0-0-2" class="section level1">
+<h1 class="page-header">
+<a href="#ppr-0-0-0-2" class="anchor"></a>ppr 0.0.0.2<small> Unreleased </small>
+</h1>
+<ul>
+<li>Fix bug when solving problems with a phylogenetic objective and branches that have a constant probability of persistence (<a href='https://github.com/prioritizr/ppr/issues/6'>#6</a>).</li>
+<li>Add additional data sanity checks to <code>problem</code>. It will now throw descriptive error messages if features are missing baseline probabilities, or are associated with baseline probabilities below 1e-11.</li>
+<li>Fix unit test for <code>simulate_ptm_data</code> that had a very small chance of failing due to simulating a data set where an action is not associated with any project.</li>
+<li>Feature columns in simulated data produced using <code>simulate_ppp_data</code> and <code>simulate_ptm_data</code> are now sorted.</li>
+</ul>
+</div>
     <div id="ppr-0-0-0-1" class="section level1">
 <h1 class="page-header">
 <a href="#ppr-0-0-0-1" class="anchor"></a>ppr 0.0.0.1<small> Unreleased </small>
@@ -120,6 +131,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#ppr-0-0-0-2">0.0.0.2</a></li>
         <li><a href="#ppr-0-0-0-1">0.0.0.1</a></li>
       </ul>
     </div>

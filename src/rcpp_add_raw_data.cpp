@@ -109,22 +109,23 @@ bool rcpp_add_raw_data(SEXP x, arma::sp_mat pa_matrix, arma::sp_mat pf_matrix,
   /// constraints for the log-sum probabilities for nontip branches
   std::vector<std::size_t> model_pwl_var;
   model_pwl_var.reserve(n_branch_nontips);
-  std::vector<std::vector<double>> model_pwl_x(
-    n_branch_nontips, std::vector<double>(n_approx_points));
-  std::vector<std::vector<double>> model_pwl_y(
-    n_branch_nontips, std::vector<double>(n_approx_points));
+  std::vector<std::vector<double>> model_pwl_x(n_branch_nontips);
+  std::vector<std::vector<double>> model_pwl_y(n_branch_nontips);
   double curr_min_value;
   double curr_max_value;
   double curr_frac;
   double curr_tmp_value;
   int p = -1;
+  std::size_t curr_n_approx_points;
   if (n_branch_nontips > 0) {
     /// initialize variables
     for (auto bitr = branch_nontip_indices.begin(); bitr !=
          branch_nontip_indices.end(); ++bitr) {
+      //// reset values
+      curr_n_approx_points = n_approx_points;
       //// increment counters
-      r += 1;
-      p += 1;
+      ++r;
+      ++p;
       //// apply linear constraints
       for (auto sitr = branch_matrix.begin_col(*bitr);
            sitr != branch_matrix.end_col(*bitr); ++sitr) {
@@ -135,30 +136,74 @@ bool rcpp_add_raw_data(SEXP x, arma::sp_mat pa_matrix, arma::sp_mat pf_matrix,
                               (ptr->_number_of_projects) +
                               (sitr.row() * (ptr->_number_of_projects)) +
                               pitr.row());
-          ptr->_A_x.push_back(std::log(1.0 - (*pitr)));
+          // if probability of persistence is really close to 1, so that
+          // log(1 - prob) is Inf, then replace with number that is very close
+          // but not equal to 1
+          curr_tmp_value = (*pitr);
+          if (std::abs(1.0 - curr_tmp_value) < 1.0e-15)
+            curr_tmp_value = 1.0 - 1.0e-15;
+          // add log value
+          ptr->_A_x.push_back(std::log(1.0 - curr_tmp_value));
         }
       }
       ptr->_row_ids.push_back("c5");
 
       /// apply piecewise linear approximation constraints
       /// calculate extinction probabilities for each spp and project
+      // note that we substract 1e-15
       curr_min_value = 0.0;
       curr_max_value = 0.0;
       for (auto sitr = branch_matrix.begin_col(*bitr);
            sitr != branch_matrix.end_col(*bitr);
            ++sitr) {
-        curr_min_value += std::log(1.0 - (pf_matrix.col(sitr.row()).max()));
+        /// calculate highest possible persistence probabilitity
+        curr_tmp_value = pf_matrix.col(sitr.row()).max();
+        if (std::abs(1.0 - curr_tmp_value) < 1.0e-15)
+          curr_tmp_value = 1.0 - 1.0e-15;
+        curr_min_value += std::log(1.0 - curr_tmp_value);
+        /// calculate lowest possible persistence probability
         curr_tmp_value = 100.0;
         for (auto pitr = pf_matrix.begin_col(sitr.row());
-             pitr != pf_matrix.end_col(sitr.row()); ++pitr)
-          if (*pitr < curr_tmp_value)
+             pitr != pf_matrix.end_col(sitr.row()); ++pitr) {
+          if (*pitr < curr_tmp_value) {
             curr_tmp_value = *pitr;
+          }
+        }
+        if (std::abs(1.0 - curr_tmp_value) < 1.0e-15)
+          curr_tmp_value = 1.0 - 1.0e-15;
         curr_max_value += std::log(1.0 - curr_tmp_value);
       }
-      /// inflate the range slightly to account for floating point precision
-      /// issues
-      curr_min_value *= 0.99;
-      curr_max_value *= 1.01;
+
+      /// if min value is greater than max value then stop
+      if (curr_min_value > curr_max_value) {
+        Rcout << "curr_min_value = " << curr_min_value << std::endl;
+        Rcout << "curr_max_value = " << curr_max_value << std::endl;
+        Rcpp::stop("max < min");
+      }
+
+      /// if min and max values differ by less than 1e-6 then simply set two
+      // points for interpolation and use them
+      if (std::abs(curr_min_value - curr_max_value) < 1.0e-6) {
+        curr_n_approx_points = 2;
+        curr_min_value = curr_max_value - 1.0e-5;
+      } else {
+        // otherwise, slightly expand the range, note that these values
+        // should be negative since they range betwen log(1) and log(1e-15)
+        curr_min_value *= 1.01;
+        curr_max_value *= 0.99;
+      }
+
+      /// if min value is greater than max value then stop
+      if (curr_min_value > curr_max_value) {
+        Rcout << "curr_min_value = " << curr_min_value << std::endl;
+        Rcout << "curr_max_value = " << curr_max_value << std::endl;
+        Rcpp::stop("max < min");
+      }
+
+
+      /// pre-allocate vectors for xy pwl data
+      model_pwl_x[p].reserve(curr_n_approx_points);
+      model_pwl_y[p].reserve(curr_n_approx_points);
       /// add pwl constraints
       model_pwl_var.push_back((ptr->_number_of_actions) +
                               (ptr->_number_of_projects) +
@@ -166,13 +211,13 @@ bool rcpp_add_raw_data(SEXP x, arma::sp_mat pa_matrix, arma::sp_mat pf_matrix,
                               (ptr->_number_of_projects)) +
                               (*bitr) + 1.0);
       curr_frac = (curr_max_value - curr_min_value) /
-                  static_cast<double>(n_approx_points - 1);
-      for (std::size_t i = 0; i < n_approx_points; ++i)
-        model_pwl_x[p][i] = curr_min_value +
-                            (static_cast<double>(i) * curr_frac);
-      for (std::size_t i = 0; i < n_approx_points; ++i)
-        model_pwl_y[p][i] = branch_lengths[*bitr] *
-                            (1.0 - std::exp(model_pwl_x[p][i]));
+                  static_cast<double>(curr_n_approx_points - 1);
+      for (std::size_t i = 0; i < curr_n_approx_points; ++i)
+        model_pwl_x[p].push_back(curr_min_value +
+                                 (static_cast<double>(i) * curr_frac));
+      for (std::size_t i = 0; i < curr_n_approx_points; ++i)
+        model_pwl_y[p].push_back(branch_lengths[*bitr] *
+                                 (1.0 - std::exp(model_pwl_x[p][i])));
     }
   }
 

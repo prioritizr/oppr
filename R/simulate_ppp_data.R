@@ -252,7 +252,7 @@ simulate_ppp_data <- function(number_features, cost_mean = 100, cost_sd = 5,
   ## feature persistence probabilities
   spp_prob_matrix <- matrix(NA_real_, ncol = number_features,
                             nrow = number_features + 1,
-                            dimnames = list(NULL, sort(tree$tip.label)))
+                            dimnames = list(NULL, tree$tip.label))
    diag(spp_prob_matrix) <- stats::runif(number_features,
                                          funded_min_persistence_probability,
                                          funded_max_persistence_probability)

@@ -1,6 +1,9 @@
 context("simulate_ptm_data")
 
 test_that("valid arguments", {
+  # set seed for reproducibility
+  set.seed(500)
+  # simulate data
   s <- simulate_ptm_data(6, 8, 5, 100, 5, 0.7, 0.99, 0.5, 0.9, 0.01, 0.4, 0.01,
                          0.01)
   # verify object structure
