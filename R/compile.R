@@ -116,6 +116,13 @@ compile.ProjectProblem <- function(x, ...) {
     warning("all planning units are locked out.")
   # add data to optimization problem object
   op$data <- x
+  # throw warning if range of values in object exceeds 1e8.
+  # see: http://files.gurobi.com/Numerics.pdf
+  r <- range(op$A()@x)
+  if ((r[2] / r[1]) > 1e8)
+    warning(paste("massive difference between minimum and maximum values in",
+                  "the optimization problem, please double check that",
+                  "solutions make sense and consider rescaling values."))
   # return optimization problem object
   op
 }

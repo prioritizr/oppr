@@ -1,3 +1,10 @@
+# ppr 0.0.0.3
+
+- The gurobi solver (i.e. `add_gurobi_solver` function) now uses
+  `NumericFocus=3` to help avoid numerical issues.
+- The `compile` function now throws a warning if problems are likely to
+  have numerical issues.
+
 # ppr 0.0.0.2
 
 - Fix bug when solving problems with a phylogenetic objective and branches that

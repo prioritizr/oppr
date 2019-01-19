@@ -208,6 +208,7 @@ add_gurobi_solver <- function(x, gap = 0, number_solutions = 1,
                 TimeLimit = self$parameters$get("time_limit"),
                 Threads = self$parameters$get("threads"),
                 LogFile = "",
+                NumericFocus = 3,
                 SolutionLimit = self$parameters$get("first_feasible"),
                 PoolSolutions = self$parameters$get("number_solutions"),
                 PoolSearchMode = self$parameters$get("solution_pool_method"))
