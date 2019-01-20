@@ -18,7 +18,7 @@ test_that("maximum obj", {
   features <- tibble::tibble(name = c("F1", "F2", "F3"))
   # create problem, solution, output
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
-               "name") %>%
+               "name", FALSE) %>%
        add_max_richness_objective(budget = 0.26) %>%
        add_binary_decisions() %>%
        add_rsymphony_solver()
@@ -57,7 +57,7 @@ test_that("minimum obj", {
                              target = c(0.2, 0.2, 0.05))
   # create problem, solution, output
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
-               "name") %>%
+               "name", FALSE) %>%
        add_min_set_objective() %>%
        add_absolute_targets("target") %>%
        add_binary_decisions() %>%
@@ -77,7 +77,7 @@ test_that("invalid arguments", {
   # initialize test data
   data(sim_projects, sim_actions, sim_features)
   p <- problem(sim_projects, sim_actions, sim_features, "name", "success",
-               "name", "cost", "name") %>%
+               "name", "cost", "name", FALSE) %>%
        add_max_richness_objective(0.16) %>%
        add_binary_decisions()
   solution <- as.data.frame(matrix(rep(1, p$number_of_actions()), nrow = 1,

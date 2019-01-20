@@ -74,7 +74,7 @@ a specified objective will throw an error." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.4</span>
       </span>
     </div>
 
@@ -207,7 +207,7 @@ resources among threatened species: A project prioritization protocol.
 #&gt;   Objective range  [1e+00, 1e+00]
 #&gt;   Bounds range     [1e+00, 1e+00]
 #&gt;   RHS range        [1e+00, 2e+02]
-#&gt; Found heuristic solution: objective 1.3951511
+#&gt; Found heuristic solution: objective 1.4456093
 #&gt; Presolve removed 16 rows and 12 columns
 #&gt; Presolve time: 0.00s
 #&gt; Presolved: 31 rows, 35 columns, 65 nonzeros
@@ -215,25 +215,25 @@ resources among threatened species: A project prioritization protocol.
 #&gt; Presolved: 31 rows, 35 columns, 65 nonzeros
 #&gt; 
 #&gt; 
-#&gt; Root relaxation: objective 2.063951e+00, 11 iterations, 0.00 seconds
+#&gt; Root relaxation: objective 2.190381e+00, 11 iterations, 0.00 seconds
 #&gt; 
 #&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
 #&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #&gt; 
-#&gt; *    0     0               0       2.0639515    2.06395  0.00%     -    0s
+#&gt; *    0     0               0       2.1903807    2.19038  0.00%     -    0s
 #&gt; 
 #&gt; Explored 0 nodes (11 simplex iterations) in 0.00 seconds
 #&gt; Thread count was 1 (of 4 available processors)
 #&gt; 
-#&gt; Solution count 1: 2.06395 
+#&gt; Solution count 1: 2.19038 
 #&gt; 
 #&gt; Optimal solution found (tolerance 0.00e+00)
-#&gt; Best objective 2.063951451212e+00, best bound 2.063951451212e+00, gap 0.0000%</div><div class='input'>
+#&gt; Best objective 2.190380737245e+00, best bound 2.190380737245e+00, gap 0.0000%</div><div class='input'>
 <span class='co'># print solution</span>
 <span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s1</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 15</span><span>
 #&gt;   solution status   obj  cost F1_action F2_action F3_action F4_action F5_action
 #&gt;      </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 OPTIM~  2.06  195.         1         1         0         0         0
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 OPTIM~  2.19  195.         1         1         0         0         0
 #&gt; </span><span style='color: #949494;'># ... with 6 more variables: baseline_action </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F1 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F2 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
 #&gt; #   F3 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F4 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F5 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># plot solution</span>
@@ -252,38 +252,38 @@ resources among threatened species: A project prioritization protocol.
 #&gt;   Objective range  [2e-01, 2e+00]
 #&gt;   Bounds range     [1e+00, 1e+00]
 #&gt;   RHS range        [1e+00, 2e+02]
-#&gt; Found heuristic solution: objective 1.6818351
+#&gt; Found heuristic solution: objective 1.7230501
 #&gt; Presolve removed 16 rows and 12 columns
 #&gt; Presolve time: 0.00s
-#&gt; Presolved: 37 rows, 2537 columns, 2579 nonzeros
-#&gt; Variable types: 2502 continuous, 35 integer (35 binary)
+#&gt; Presolved: 37 rows, 2530 columns, 2572 nonzeros
+#&gt; Variable types: 2495 continuous, 35 integer (35 binary)
 #&gt; Presolve removed 3 rows and 3 columns
-#&gt; Presolved: 34 rows, 2534 columns, 2573 nonzeros
+#&gt; Presolved: 34 rows, 2527 columns, 2566 nonzeros
 #&gt; 
 #&gt; 
-#&gt; Root relaxation: objective 2.447151e+00, 25 iterations, 0.00 seconds
+#&gt; Root relaxation: objective 2.638346e+00, 19 iterations, 0.00 seconds
 #&gt; 
 #&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
 #&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #&gt; 
-#&gt;      0     0    2.44715    0    3    1.68184    2.44715  45.5%     -    0s
-#&gt; H    0     0                       1.9501715    2.44715  25.5%     -    0s
-#&gt; H    0     0                       2.2882814    2.44715  6.94%     -    0s
-#&gt; H    0     0                       2.3474647    2.44715  4.25%     -    0s
-#&gt;      0     0    2.34746    0    3    2.34746    2.34746  0.00%     -    0s
+#&gt;      0     0    2.63835    0    6    1.72305    2.63835  53.1%     -    0s
+#&gt; H    0     0                       1.9924876    2.63835  32.4%     -    0s
+#&gt;      0     2    2.63696    0    6    1.99249    2.63696  32.3%     -    0s
+#&gt; *    1     3               1       2.1724148    2.59317  19.4%   3.0    0s
+#&gt; *    5     3               2       2.5726722    2.57267  0.00%   3.6    0s
 #&gt; 
-#&gt; Explored 1 nodes (33 simplex iterations) in 0.03 seconds
+#&gt; Explored 6 nodes (37 simplex iterations) in 0.02 seconds
 #&gt; Thread count was 1 (of 4 available processors)
 #&gt; 
-#&gt; Solution count 1: 2.34746 
+#&gt; Solution count 1: 2.57267 
 #&gt; 
 #&gt; Optimal solution found (tolerance 0.00e+00)
-#&gt; Best objective 2.347464732688e+00, best bound 2.347464732688e+00, gap 0.0000%</div><div class='input'>
+#&gt; Best objective 2.572672188340e+00, best bound 2.572672188340e+00, gap 0.0000%</div><div class='input'>
 <span class='co'># print solution</span>
 <span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s2</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 15</span><span>
 #&gt;   solution status   obj  cost F1_action F2_action F3_action F4_action F5_action
 #&gt;      </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 OPTIM~  2.35  194.         1         0         0         0         1
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 OPTIM~  2.57  194.         1         0         0         0         1
 #&gt; </span><span style='color: #949494;'># ... with 6 more variables: baseline_action </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F1 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F2 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
 #&gt; #   F3 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F4 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F5 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># plot solution</span>

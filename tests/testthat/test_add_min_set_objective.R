@@ -17,7 +17,7 @@ test_that("compile", {
                              target = c(0.7, 0.7, 0.09))
   # create problem
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
-               "name") %>%
+               "name", FALSE) %>%
        add_min_set_objective() %>%
        add_absolute_targets("target") %>%
        add_binary_decisions()
@@ -109,7 +109,7 @@ test_that("exact solver (simple problem, single solution)", {
                              target = c(0.7, 0.7, 0.09))
   # create problem
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
-               "name") %>%
+               "name", FALSE) %>%
        add_min_set_objective() %>%
        add_absolute_targets("target") %>%
        add_binary_decisions()
@@ -151,7 +151,7 @@ test_that("exact solver (simple problem, multiple solutions)", {
                              target = c(0.7, 0.7, 0.09))
   # create problem
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
-               "name") %>%
+               "name", FALSE) %>%
        add_min_set_objective() %>%
        add_absolute_targets("target") %>%
        add_binary_decisions() %>%
@@ -197,7 +197,7 @@ test_that("exact solver (locked constraints, multiple solutions)", {
                              target = c(0.7, 0.09, 0.09))
   # create problem
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
-               "name") %>%
+               "name", FALSE) %>%
        add_min_set_objective() %>%
        add_absolute_targets("target") %>%
        add_locked_in_constraints(1) %>%
@@ -246,7 +246,7 @@ test_that("heuristic solver (simple problem, single solution)", {
                              target = c(0.7, 0.7, 0.09))
   # create problem
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
-               "name") %>%
+               "name", FALSE) %>%
        add_min_set_objective() %>%
        add_absolute_targets("target") %>%
        add_binary_decisions() %>%
@@ -286,7 +286,7 @@ test_that("heuristic solver (simple problem, multiple solutions)", {
                              target = c(0.09, 0.7, 0.09))
   # create problem
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
-               "name") %>%
+               "name", FALSE) %>%
        add_min_set_objective() %>%
        add_absolute_targets("target") %>%
        add_binary_decisions() %>%
@@ -330,7 +330,7 @@ test_that("heuristic solver (locked constraints, multiple solutions)", {
                              target = c(0.09, 0.7, 0.09))
   # create problem
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
-               "name") %>%
+               "name", FALSE) %>%
        add_min_set_objective() %>%
        add_absolute_targets("target") %>%
        add_locked_in_constraints(1) %>%
@@ -377,7 +377,7 @@ test_that("solution_statistics", {
   features <- tibble::tibble(name = c("F1", "F2", "F3"))
   # create problem
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
-               "name") %>%
+               "name", FALSE) %>%
        add_min_set_objective() %>%
        add_binary_decisions()
   # create solutions

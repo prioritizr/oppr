@@ -16,7 +16,7 @@ test_that("compile (no weights)", {
   features <- tibble::tibble(name = c("F1", "F2", "F3"))
   # create problem
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
-               "name") %>%
+               "name", FALSE) %>%
        add_max_richness_objective(budget = 0.16) %>%
        add_binary_decisions()
   # create optimization problem
@@ -116,7 +116,7 @@ test_that("compile (weights)", {
                              weight = seq_len(3) * 90)
   # create problem
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
-               "name") %>%
+               "name", FALSE) %>%
        add_max_richness_objective(budget = 0.16) %>%
        add_feature_weights(weight = features$weight) %>%
        add_binary_decisions()
@@ -218,11 +218,11 @@ test_that("exact solver (simple problem, single solution)", {
   features <- tibble::tibble(name = c("F1", "F2", "F3"))
   # create problem
   p1 <- problem(projects, actions, features, "name", "success", "name", "cost",
-               "name") %>%
+               "name", FALSE) %>%
        add_max_richness_objective(budget = 0.16) %>%
        add_binary_decisions()
   p2 <- problem(projects, actions, features, "name", "success", "name", "cost",
-               "name") %>%
+               "name", FALSE) %>%
        add_max_richness_objective(budget = 0.26) %>%
        add_binary_decisions()
   # solve problem
@@ -278,7 +278,7 @@ test_that("exact solver (tricky problem, single solution)", {
   features <- tibble::tibble(name = c("F1", "F2"), weight = c(5, 5))
   # make problem
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
-               "name") %>%
+               "name", FALSE) %>%
        add_max_richness_objective(budget = 1.0) %>%
        add_binary_decisions()
   s <- solve(p)
@@ -315,7 +315,7 @@ test_that("exact solver (simple problem, multiple solutions)", {
   features <- tibble::tibble(name = c("F1", "F2", "F3"))
   # create problem
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
-               "name") %>%
+               "name", FALSE) %>%
        add_max_richness_objective(budget = 0.16) %>%
        add_binary_decisions() %>%
        add_gurobi_solver(number_solutions = 100)
@@ -360,7 +360,7 @@ test_that("exact solver (locked constraints, multiple solutions)", {
   features <- tibble::tibble(name = c("F1", "F2", "F3"))
   # create problem
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
-               "name") %>%
+               "name", FALSE) %>%
        add_max_richness_objective(budget = 100) %>%
        add_locked_in_constraints(1) %>%
        add_locked_out_constraints(2) %>%
@@ -407,12 +407,12 @@ test_that("heuristic solver (simple problem, single solution)", {
   features <- tibble::tibble(name = c("F1", "F2", "F3"))
   # create problem
   p1 <- problem(projects, actions, features, "name", "success", "name", "cost",
-               "name") %>%
+                "name", FALSE) %>%
        add_max_richness_objective(budget = 0.16) %>%
        add_binary_decisions() %>%
        add_heuristic_solver(verbose = FALSE)
   p2 <- problem(projects, actions, features, "name", "success", "name", "cost",
-               "name") %>%
+                "name", FALSE) %>%
        add_max_richness_objective(budget = 0.26) %>%
        add_binary_decisions() %>%
        add_heuristic_solver(verbose = FALSE)
@@ -466,7 +466,7 @@ test_that("heuristic solver (locked constraints, multiple solutions)", {
   features <- tibble::tibble(name = c("F1", "F2", "F3"))
   # create problem
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
-               "name") %>%
+               "name", FALSE) %>%
        add_max_richness_objective(budget = 100) %>%
        add_locked_in_constraints(1) %>%
        add_locked_out_constraints(2) %>%
@@ -499,7 +499,7 @@ test_that("heuristic solver (locked constraints, multiple solutions)", {
 test_that("invalid arguments", {
   data(sim_projects, sim_actions, sim_features)
   p <- problem(sim_projects, sim_actions, sim_features,
-               "name", "success", "name", "cost", "name")
+               "name", "success", "name", "cost", "name", FALSE)
   expect_error({
      add_max_richness_objective(p, NA_real_)
   })
@@ -531,7 +531,7 @@ test_that("solution_statistics", {
                              weight = c(100, 4, 9))
   # create problem
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
-               "name") %>%
+               "name", FALSE) %>%
        add_max_richness_objective(budget = 0.16) %>%
        add_feature_weights("weight") %>%
        add_binary_decisions()

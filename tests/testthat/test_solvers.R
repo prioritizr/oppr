@@ -6,7 +6,7 @@ test_that("add_default_solver (simulated data)", {
   # make data
   data(sim_projects, sim_actions, sim_features)
   p <- problem(sim_projects, sim_actions, sim_features,
-               "name", "success", "name", "cost", "name") %>%
+               "name", "success", "name", "cost", "name", FALSE) %>%
        add_min_set_objective() %>%
        add_relative_targets(0.5) %>%
        add_binary_decisions() %>%
@@ -46,13 +46,13 @@ test_that("add_default_solver (simple problem)", {
   expect_equal(s$A4, 1)
 })
 
-test_that("add_rsymphony_solver", {
+test_that("add_rsymphony_solver (simulated data)", {
   skip_on_cran()
   skip_if_not_installed("Rsymphony")
   # make data
   data(sim_projects, sim_actions, sim_features)
   p <- problem(sim_projects, sim_actions, sim_features,
-               "name", "success", "name", "cost", "name") %>%
+               "name", "success", "name", "cost", "name", FALSE) %>%
        add_min_set_objective() %>%
        add_relative_targets(0.5) %>%
        add_binary_decisions() %>%
@@ -92,14 +92,14 @@ test_that("add_rsymphony_solver (simple problem)", {
   expect_equal(s$A4, 1)
 })
 
-test_that("add_lpsymphony_solver", {
+test_that("add_lpsymphony_solver (simulated data)", {
   skip_on_cran()
   skip_if_not_installed("lpsymphony")
   skip_on_os("linux") # lpsymphony package crashes unpredictably on Ubuntu 16.04
   # make data
   data(sim_projects, sim_actions, sim_features)
   p <- problem(sim_projects, sim_actions, sim_features,
-               "name", "success", "name", "cost", "name") %>%
+               "name", "success", "name", "cost", "name", FALSE) %>%
        add_min_set_objective() %>%
        add_relative_targets(0.5) %>%
        add_binary_decisions() %>%
@@ -146,7 +146,7 @@ test_that("add_gurobi_solver", {
   # make data
   data(sim_projects, sim_actions, sim_features)
   p <- problem(sim_projects, sim_actions, sim_features,
-               "name", "success", "name", "cost", "name") %>%
+               "name", "success", "name", "cost", "name", FALSE) %>%
        add_min_set_objective() %>%
        add_relative_targets(0.5) %>%
        add_binary_decisions() %>%
@@ -192,7 +192,7 @@ test_that("add_lpsolveapi_solver", {
   # make data
   data(sim_projects, sim_actions, sim_features)
   p <- problem(sim_projects, sim_actions, sim_features,
-               "name", "success", "name", "cost", "name") %>%
+               "name", "success", "name", "cost", "name", FALSE) %>%
        add_min_set_objective() %>%
        add_relative_targets(0.5) %>%
        add_binary_decisions() %>%

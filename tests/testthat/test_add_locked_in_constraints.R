@@ -4,7 +4,7 @@ test_that("integer (compile)", {
   # create problem
   data(sim_projects, sim_actions, sim_features)
   p <- problem(sim_projects, sim_actions, sim_features,
-               "name", "success", "name", "cost", "name") %>%
+               "name", "success", "name", "cost", "name", FALSE) %>%
        add_max_richness_objective(1) %>%
        add_locked_in_constraints(which(sim_actions$locked_in))
   # compile problem
@@ -23,7 +23,7 @@ test_that("integer (solve)", {
   # create problem
   data(sim_projects, sim_actions, sim_features)
   p <- problem(sim_projects, sim_actions, sim_features,
-               "name", "success", "name", "cost", "name") %>%
+               "name", "success", "name", "cost", "name", FALSE) %>%
        add_max_richness_objective(1e+5) %>%
        add_locked_in_constraints(which(sim_actions$locked_in))
   # solve problem
@@ -36,7 +36,7 @@ test_that("integer (solve)", {
 test_that("integer (invalid arguments)", {
   data(sim_projects, sim_actions, sim_features)
   p <- problem(sim_projects, sim_actions, sim_features,
-               "name", "success", "name", "cost", "name") %>%
+               "name", "success", "name", "cost", "name", FALSE) %>%
        add_max_richness_objective(1)
   expect_error({
     add_locked_in_constraints(p, -1)
@@ -56,7 +56,7 @@ test_that("logical (compile)", {
   # create problem
   data(sim_projects, sim_actions, sim_features)
   p <- problem(sim_projects, sim_actions, sim_features,
-               "name", "success", "name", "cost", "name") %>%
+               "name", "success", "name", "cost", "name", FALSE) %>%
        add_max_richness_objective(1) %>%
        add_locked_in_constraints(sim_actions$locked_in)
   # compile problem
@@ -72,7 +72,7 @@ test_that("logical (compile)", {
 test_that("logical (invalid arguments)", {
   data(sim_projects, sim_actions, sim_features)
   p <- problem(sim_projects, sim_actions, sim_features,
-               "name", "success", "name", "cost", "name") %>%
+               "name", "success", "name", "cost", "name", FALSE) %>%
        add_max_richness_objective(1)
   expect_error({
     add_locked_in_constraints(p, FALSE)
@@ -91,7 +91,7 @@ test_that("logical (solve)", {
   # create problem
   data(sim_projects, sim_actions, sim_features)
   p <- problem(sim_projects, sim_actions, sim_features,
-               "name", "success", "name", "cost", "name") %>%
+               "name", "success", "name", "cost", "name", FALSE) %>%
        add_max_richness_objective(1e+5) %>%
        add_locked_in_constraints(sim_actions$locked_in)
   # solve problem
@@ -105,7 +105,7 @@ test_that("character (compile)", {
   # create problem
   data(sim_projects, sim_actions, sim_features)
   p <- problem(sim_projects, sim_actions, sim_features,
-               "name", "success", "name", "cost", "name") %>%
+               "name", "success", "name", "cost", "name", FALSE) %>%
        add_max_richness_objective(1) %>%
        add_locked_in_constraints("locked_in")
   # compile problem
@@ -121,7 +121,7 @@ test_that("character (compile)", {
 test_that("logical (invalid arguments)", {
   data(sim_projects, sim_actions, sim_features)
   p <- problem(sim_projects, sim_actions, sim_features,
-               "name", "success", "name", "cost", "name") %>%
+               "name", "success", "name", "cost", "name", FALSE) %>%
        add_max_richness_objective(1)
   expect_error({
     add_locked_in_constraints(p, "name")
@@ -140,7 +140,7 @@ test_that("character (solve)", {
   # create problem
   data(sim_projects, sim_actions, sim_features)
   p <- problem(sim_projects, sim_actions, sim_features,
-               "name", "success", "name", "cost", "name") %>%
+               "name", "success", "name", "cost", "name", FALSE) %>%
        add_max_richness_objective(1e+5) %>%
        add_locked_in_constraints("locked_in")
   # solve problem

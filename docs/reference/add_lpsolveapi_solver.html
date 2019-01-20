@@ -66,7 +66,7 @@ solver. It requires the lpSolveAPI package." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.4</span>
       </span>
     </div>
 
@@ -217,30 +217,30 @@ optimization problems?</p></td>
 #&gt; The primal and dual simplex pricing strategy set to 'Devex'.
 #&gt;  
 #&gt; 
-#&gt; Relaxed solution       2.07954997746 after         34 iter is B&amp;B base.
+#&gt; Relaxed solution       2.21077983146 after         34 iter is B&amp;B base.
 #&gt;  
-#&gt; Feasible solution      1.72087221057 after         43 iter,         8 nodes (gap 11.6%)
-#&gt; Improved solution      1.82987831125 after         47 iter,        11 nodes (gap 8.1%)
-#&gt; Improved solution      2.06395145121 after         60 iter,        20 nodes (gap 0.5%)
+#&gt; Feasible solution      1.91490153549 after         43 iter,         8 nodes (gap 9.2%)
+#&gt; Improved solution       2.0146497578 after         47 iter,        11 nodes (gap 6.1%)
+#&gt; Improved solution      2.19038073724 after         59 iter,        20 nodes (gap 0.6%)
 #&gt;  
-#&gt; Optimal solution       2.06395145121 after         60 iter,        20 nodes (gap 0.5%).
+#&gt; Optimal solution       2.19038073724 after         59 iter,        20 nodes (gap 0.6%).
 #&gt; 
 #&gt; Excellent numeric accuracy ||*|| = 1.11022e-16
 #&gt; 
 #&gt;  MEMO: lp_solve version 5.5.2.0 for 64 bit OS, with 64 bit LPSREAL variables.
-#&gt;       In the total iteration count 60, 17 (28.3%) were bound flips.
+#&gt;       In the total iteration count 59, 16 (27.1%) were bound flips.
 #&gt;       There were 11 refactorizations, 0 triggered by time and 1 by density.
 #&gt;        ... on average 3.9 major pivots per refactorization.
 #&gt;       The largest [LUSOL v2.2.1.0] fact(B) had 104 NZ entries, 1.0x largest basis.
 #&gt;       The maximum B&amp;B level was 6, 0.1x MIP order, 4 at the optimal solution.
 #&gt;       The constraint matrix inf-norm is 103.226, with a dynamic range of 1193.9.
-#&gt;       Time to load data was 0.013 seconds, presolve used 0.000 seconds,
-#&gt;        ... 0.001 seconds in simplex solver, in total 0.014 seconds.</div><div class='input'>
+#&gt;       Time to load data was 0.012 seconds, presolve used 0.000 seconds,
+#&gt;        ... 0.001 seconds in simplex solver, in total 0.013 seconds.</div><div class='input'>
 <span class='co'># print solution</span>
 <span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 15</span><span>
 #&gt;   solution status   obj  cost F1_action F2_action F3_action F4_action F5_action
 #&gt;      </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 optim~  2.06  195.         1         1         0         0         0
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 optim~  2.19  195.         1         1         0         0         0
 #&gt; </span><span style='color: #949494;'># ... with 6 more variables: baseline_action </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F1 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F2 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
 #&gt; #   F3 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F4 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F5 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># plot solution</span>

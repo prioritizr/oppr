@@ -33,7 +33,7 @@ A problem objective is used to specify the overall goal of the
   of actions that maximizes the expected amount of evolutionary history
   that is expected to persist into the future given the evolutionary
   relationships between the features (e.g. populations, species).
-   Let \eqn{I} represent the set of conservation actions (indexed by
+  Let \eqn{I} represent the set of conservation actions (indexed by
   \eqn{i}). Let \eqn{C_i} denote the cost for funding action \eqn{i}, and
   let \eqn{m} denote the maximum expenditure (i.e. the budget). Also,
   let \eqn{F} represent each feature (indexed by \eqn{f}), \eqn{W_f}
@@ -64,6 +64,22 @@ A problem objective is used to specify the overall goal of the
   \eqn{f \in F}{f in F} associated with the project \eqn{j \in J}{j in J}
   will persist if all of the actions that comprise project \eqn{j} are funded
   and that project is allocated to feature \eqn{f}.
+  For convenience,
+  let \eqn{Q_{fj}} denote the actual probability that each
+  \eqn{f \in F}{f in F} associated with the project \eqn{j \in J}{j in J}
+  is expected to persist if the project is funded. If the argument
+  to \code{adjust_for_baseline} in the \code{problem} function was set to
+  \code{TRUE}, and this is the default behavior, then
+  \eqn{Q_{fj} = (P_{j} \times B_{fj}) + \bigg(\big(1 - (P_{j} B_{fj})\big)
+  \times (P_{n} \times B_{fn})\bigg)}{Q_{fj} = (P_j B_{fj}) + ((1 - (P_j
+  B_{fj})) * (P_n \times B_{fn}))}, where \code{n} corresponds to the
+  baseline "do nothing" project. This means that the probability
+  of a feature persisting if a project is allocated to a feature
+  depends on (i) the probability of the project succeeding, (ii) the
+  probability of the feature persisting if the project does not fail,
+  and (iii) the probability of the feature persisting even if the project
+  fails. Otherwise, if the argument is set to \code{FALSE}, then
+  \eqn{Q_{fj} = P_{j} \times B_{fj}}{Q_{fj} = P_{j} * B_{fj}}.
 
   The binary control variables \eqn{X_i} in this problem indicate whether
   each project \eqn{i \in I}{i in I} is funded or not. The decision
@@ -89,11 +105,11 @@ A problem objective is used to specify the overall goal of the
   \sum_{i = 0}^{I} C_i \leq m \space \mathrm{(eqn \space 1b)} \\
   R_b = 1 - \prod_{f = 0}^{F} ifelse(T_{bf} == 1, \space E_f, \space
   1) \space \forall \space b \in B \space \mathrm{(eqn \space 1c)} \\
-  E_f = 1 - \sum_{j = 0}^{J} Z_{fj} P_j B_{fj} \space \forall \space f \in F
+  E_f = 1 - \sum_{j = 0}^{J} Z_{fj} Q_{fj} \space \forall \space f \in F
   \space \mathrm{(eqn \space 1d)} \\
   Z_{fj} \leq Y_{j} \space \forall \space j \in J \space \mathrm{(eqn \space
   1e)} \\
-  \sum_{j = 0}^{J} Z_{fj} \times \mathrm{ceil}(B_{fj}) = 1 \space \forall
+  \sum_{j = 0}^{J} Z_{fj} \times \mathrm{ceil}(Q_{fj}) = 1 \space \forall
   \space f \in F \space \mathrm{(eqn \space 1f)} \\
   A_{ij} Y_{j} \leq X_{i} \space \forall \space i \in I, j \in J \space
   \mathrm{(eqn \space 1g)} \\
@@ -106,9 +122,9 @@ A problem objective is used to specify the overall goal of the
   Subject to:
   sum_i^I C_i X_i <= m for all f in F (eqn 1b),
   R_b = 1 - prod_f^F ifelse(T_{bf} == 1, E_f, 1) for all b in B (eqn 1c),
-  E_f = 1 - sum_j^J Y_{fj} P_j B_{fj} for all f in F (eqn 1d),
+  E_f = 1 - sum_j^J Y_{fj} Q_{fj} for all f in F (eqn 1d),
   Z_{fj} <= Y_j for all j in J (eqn 1e),
-  sum_j^J Z_{fj} * ceil(B_{fj}) = 1 for all f in F (eqn 1f),
+  sum_j^J Z_{fj} * ceil(Q_{fj}) = 1 for all f in F (eqn 1f),
   A_{ij} Y_{j} <= X_{i} for all i I, j in J (eqn 1g),
   E_f, R_b >= 0, E_f, R_b <= 1 for all b in B, f in F (eqn 1h),
   X_i, Y_j, Z_{fj} in [0, 1] for all i in I, j in J, f in F (eqn 1i)

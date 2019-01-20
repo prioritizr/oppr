@@ -103,6 +103,8 @@ experts should use this class directly.}
 
 \code{action_costs()}
 
+\code{project_costs()}
+
 \code{project_success_probabilities()}
 
 \code{pf_matrix()}
@@ -213,6 +215,8 @@ experts should use this class directly.}
 \item{feature_phylogeny}{\code{\link[ape]{phylo}} phylogenetic tree object.}
 
 \item{action_costs}{\code{numeric} costs for each action.}
+
+\item{project_costs}{\code{numeric} costs for each project.}
 
 \item{project_success_probabilities}{\code{numeric} probability that
   each project will succeed.}

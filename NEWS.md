@@ -1,3 +1,10 @@
+# ppr 0.0.0.4
+
+- Fix bug in `add_relative_targets` and `add_manual_targets` (when relative
+  targets supplied) calculations. This result in incorrect calculations.
+- Fix issue with expected persistence probabilities not accounting for the
+  "do nothing" scenario (#7).
+
 # ppr 0.0.0.3
 
 - The gurobi solver (i.e. `add_gurobi_solver` function) now uses

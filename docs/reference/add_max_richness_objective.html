@@ -69,7 +69,7 @@ features (see add_feature_weights)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.4</span>
       </span>
     </div>
 
@@ -169,10 +169,24 @@ features (see <code><a href='add_feature_weights.html'>add_feature_weights</a></
   \(i \in I\) comprise each conservation project
   \(j \in J\) using zeros and ones. Next, let \(P_j\) represent
   the probability of project \(j\) being successful if it is funded. Also,
-  let \(B_{fj}\) denote the enhanced probability that each feature
+  let \(B_{fj}\) denote the probability that each feature
   \(f \in F\) associated with the project \(j \in J\)
   will persist if all of the actions that comprise project \(j\) are funded
-  and that project is allocated to feature \(f\).</p>
+  and that project is allocated to feature \(f\). For convenience,
+  let \(Q_{fj}\) denote the actual probability that each
+  \(f \in F\) associated with the project \(j \in J\)
+  is expected to persist if the project is funded. If the argument
+  to <code>adjust_for_baseline</code> in the <code>problem</code> function was set to
+  <code>TRUE</code>, and this is the default behavior, then
+  \(Q_{fj} = (P_{j} \times B_{fj}) + \bigg(\big(1 - (P_{j} B_{fj})\big)
+  \times (P_{n} \times B_{fn})\bigg)\), where <code>n</code> corresponds to the
+  baseline "do nothing" project. This means that the probability
+  of a feature persisting if a project is allocated to a feature
+  depends on (i) the probability of the project succeeding, (ii) the
+  probability of the feature persisting if the project does not fail,
+  and (iii) the probability of the feature persisting even if the project
+  fails. Otherwise, if the argument is set to <code>FALSE</code>, then
+  \(Q_{fj} = P_{j} \times B_{fj}\).</p>
 <p>The binary control variables \(X_i\) in this problem indicate whether
   each project \(i \in I\) is funded or not. The decision
   variables in this problem are the \(Y_{j}\), \(Z_{fj}\), and \(E_f\)
@@ -191,11 +205,11 @@ features (see <code><a href='add_feature_weights.html'>add_feature_weights</a></
   \mathrm{(eqn \space 1a)} \\
   \mathrm{Subject \space to} \sum_{i = 0}^{I} C_i \leq m \space
   \mathrm{(eqn \space 1b)} \\
-  E_f = 1 - \sum_{j = 0}^{J} Z_{fj} P_j B_{fj} \space \forall \space f \in F
+  E_f = 1 - \sum_{j = 0}^{J} Z_{fj} Q_{fj} \space \forall \space f \in F
   \space \mathrm{(eqn \space 1c)} \\
   Z_{fj} \leq Y_{j} \space \forall \space j \in J \space \mathrm{(eqn \space
   1d)} \\
-  \sum_{j = 0}^{J} Z_{fj} \times \mathrm{ceil}(B_{fj}) = 1 \space \forall
+  \sum_{j = 0}^{J} Z_{fj} \times \mathrm{ceil}(Q_{fj}) = 1 \space \forall
   \space f \in F \space \mathrm{(eqn \space 1e)} \\
   A_{ij} Y_{j} \leq X_{i} \space \forall \space i \in I, j \in J \space
   \mathrm{(eqn \space 1f)} \\
@@ -248,7 +262,7 @@ resources among threatened species: A project prioritization protocol.
 #&gt;   Objective range  [1e+00, 1e+00]
 #&gt;   Bounds range     [1e+00, 1e+00]
 #&gt;   RHS range        [1e+00, 2e+02]
-#&gt; Found heuristic solution: objective 1.3951511
+#&gt; Found heuristic solution: objective 1.4456093
 #&gt; Presolve removed 16 rows and 12 columns
 #&gt; Presolve time: 0.00s
 #&gt; Presolved: 31 rows, 35 columns, 65 nonzeros
@@ -256,25 +270,25 @@ resources among threatened species: A project prioritization protocol.
 #&gt; Presolved: 31 rows, 35 columns, 65 nonzeros
 #&gt; 
 #&gt; 
-#&gt; Root relaxation: objective 2.063951e+00, 11 iterations, 0.00 seconds
+#&gt; Root relaxation: objective 2.190381e+00, 11 iterations, 0.00 seconds
 #&gt; 
 #&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
 #&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #&gt; 
-#&gt; *    0     0               0       2.0639515    2.06395  0.00%     -    0s
+#&gt; *    0     0               0       2.1903807    2.19038  0.00%     -    0s
 #&gt; 
 #&gt; Explored 0 nodes (11 simplex iterations) in 0.00 seconds
 #&gt; Thread count was 1 (of 4 available processors)
 #&gt; 
-#&gt; Solution count 1: 2.06395 
+#&gt; Solution count 1: 2.19038 
 #&gt; 
 #&gt; Optimal solution found (tolerance 0.00e+00)
-#&gt; Best objective 2.063951451212e+00, best bound 2.063951451212e+00, gap 0.0000%</div><div class='input'>
+#&gt; Best objective 2.190380737245e+00, best bound 2.190380737245e+00, gap 0.0000%</div><div class='input'>
 <span class='co'># print solution</span>
 <span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s1</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 15</span><span>
 #&gt;   solution status   obj  cost F1_action F2_action F3_action F4_action F5_action
 #&gt;      </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 OPTIM~  2.06  195.         1         1         0         0         0
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 OPTIM~  2.19  195.         1         1         0         0         0
 #&gt; </span><span style='color: #949494;'># ... with 6 more variables: baseline_action </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F1 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F2 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
 #&gt; #   F3 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F4 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F5 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># plot solution</span>
@@ -292,7 +306,7 @@ resources among threatened species: A project prioritization protocol.
 #&gt;   Objective range  [2e-01, 2e+00]
 #&gt;   Bounds range     [1e+00, 1e+00]
 #&gt;   RHS range        [1e+00, 2e+02]
-#&gt; Found heuristic solution: objective 0.6543041
+#&gt; Found heuristic solution: objective 0.6654645
 #&gt; Presolve removed 16 rows and 12 columns
 #&gt; Presolve time: 0.00s
 #&gt; Presolved: 31 rows, 35 columns, 65 nonzeros
@@ -300,25 +314,25 @@ resources among threatened species: A project prioritization protocol.
 #&gt; Presolved: 31 rows, 35 columns, 65 nonzeros
 #&gt; 
 #&gt; 
-#&gt; Root relaxation: objective 1.301835e+00, 11 iterations, 0.00 seconds
+#&gt; Root relaxation: objective 1.511230e+00, 11 iterations, 0.00 seconds
 #&gt; 
 #&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
 #&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #&gt; 
-#&gt; *    0     0               0       1.3018348    1.30183  0.00%     -    0s
+#&gt; *    0     0               0       1.5112297    1.51123  0.00%     -    0s
 #&gt; 
 #&gt; Explored 0 nodes (11 simplex iterations) in 0.00 seconds
 #&gt; Thread count was 1 (of 4 available processors)
 #&gt; 
-#&gt; Solution count 1: 1.30183 
+#&gt; Solution count 1: 1.51123 
 #&gt; 
 #&gt; Optimal solution found (tolerance 0.00e+00)
-#&gt; Best objective 1.301834767485e+00, best bound 1.301834767485e+00, gap 0.0000%</div><div class='input'>
+#&gt; Best objective 1.511229665304e+00, best bound 1.511229665304e+00, gap 0.0000%</div><div class='input'>
 <span class='co'># print solution based on feature weights</span>
 <span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s2</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 15</span><span>
 #&gt;   solution status   obj  cost F1_action F2_action F3_action F4_action F5_action
 #&gt;      </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 OPTIM~  1.30  199.         0         0         0         1         1
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 OPTIM~  1.51  199.         0         0         0         1         1
 #&gt; </span><span style='color: #949494;'># ... with 6 more variables: baseline_action </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F1 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F2 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
 #&gt; #   F3 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F4 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F5 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># plot solution based on feature weights</span>

@@ -20,7 +20,7 @@ test_that("compile", {
   tree$edge.length <- c(100, 5, 5, 5)
   # make problem
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
-               "name") %>%
+               "name", FALSE) %>%
        add_max_phylo_div_objective(0.16, tree) %>%
        add_binary_decisions()
   # create optimization problem
@@ -58,15 +58,15 @@ test_that("exact solver (simple problem, single solution", {
   tree2$edge.length <- c(5, 100, 5, 5)
   # make problems
   p1 <- problem(projects, actions, features, "name", "success", "name", "cost",
-               "name") %>%
+               "name", FALSE) %>%
        add_max_phylo_div_objective(0.16, tree) %>%
        add_binary_decisions()
   p2 <- problem(projects, actions, features, "name", "success", "name", "cost",
-               "name") %>%
+               "name", FALSE) %>%
        add_max_phylo_div_objective(0.21, tree) %>%
        add_binary_decisions()
   p3 <- problem(projects, actions, features, "name", "success", "name", "cost",
-               "name") %>%
+               "name", FALSE) %>%
        add_max_phylo_div_objective(0.11, tree2) %>%
        add_binary_decisions()
   # solve problems
@@ -147,7 +147,7 @@ test_that("exact solver (simple problem, multiple solutions", {
   tree$edge.length <- c(100, 5, 5, 5)
   # make problems
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
-               "name") %>%
+               "name", FALSE) %>%
        add_max_phylo_div_objective(0.2, tree) %>%
        add_binary_decisions() %>%
        add_gurobi_solver(number_solutions = 100)
@@ -198,7 +198,7 @@ test_that("exact solver (constant branch probabilities, single solution", {
   tree$edge.length <- c(5, 5, 5, 5, 5, 5, 5)
   # make problems
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
-               "name") %>%
+               "name", FALSE) %>%
        add_max_phylo_div_objective(0.16, tree) %>%
        add_binary_decisions()
   # solve problem
@@ -239,7 +239,7 @@ test_that("exact solver (locked constraints, multiple solutions)", {
   tree$edge.length <- c(100, 5, 5, 5)
   # make problems
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
-               "name") %>%
+               "name", FALSE) %>%
        add_max_phylo_div_objective(100, tree) %>%
        add_locked_in_constraints(1) %>%
        add_locked_out_constraints(2) %>%
@@ -291,7 +291,7 @@ test_that("heuristic solver (simple problem, single solution", {
   tree$edge.length <- c(100, 5, 5, 5)
   # make problems
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
-               "name") %>%
+               "name", FALSE) %>%
        add_max_phylo_div_objective(0.16, tree) %>%
        add_binary_decisions() %>%
        add_heuristic_solver()
@@ -332,7 +332,7 @@ test_that("heuristic solver (simple problem, multiple solutions", {
   tree$edge.length <- c(100, 5, 5, 5)
   # make problems
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
-               "name") %>%
+               "name", FALSE) %>%
        add_max_phylo_div_objective(0.2, tree) %>%
        add_binary_decisions() %>%
        add_heuristic_solver(number_solutions = 100)
@@ -379,7 +379,7 @@ test_that("heuristic solver (locked constraints, multiple solutions)", {
   tree$edge.length <- c(100, 5, 5, 5)
   # make problems
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
-               "name") %>%
+               "name", FALSE) %>%
        add_max_phylo_div_objective(0.2, tree) %>%
        add_locked_in_constraints(1) %>%
        add_locked_out_constraints(2) %>%
@@ -409,7 +409,7 @@ test_that("heuristic solver (locked constraints, multiple solutions)", {
 test_that("invalid arguments", {
   data(sim_projects, sim_actions, sim_features, sim_tree)
   p <- problem(sim_projects, sim_actions, sim_features,
-               "name", "success", "name", "cost", "name")
+               "name", "success", "name", "cost", "name", FALSE)
   ## budgets
   expect_error({
     add_max_phylo_div_objective(p, NA_real_, sim_tree)
@@ -470,7 +470,7 @@ test_that("solution_statistics", {
   tree$edge.length <- c(100, 5, 5, 5)
   # create problem
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
-               "name") %>%
+               "name", FALSE) %>%
        add_max_phylo_div_objective(budget = 0.16, tree) %>%
        add_feature_weights("weight") %>%
        add_binary_decisions()

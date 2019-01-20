@@ -152,7 +152,7 @@ methods::setMethod(
     "ManualTargets",
     Target,
     name = "Targets",
-    data = list(max_persistences = apply(x$pf_matrix(), 2, max),
+    data = list(max_persistences = apply(x$epf_matrix(), 2, max),
                 feature_names = x$feature_names()),
     parameters = parameters(misc_parameter("Targets", targets, vfun, rfun)),
     repr = function(self) {

@@ -6,7 +6,7 @@
 \usage{
 problem(projects, actions, features, project_name_column,
   project_success_column, action_name_column, action_cost_column,
-  feature_name_column)
+  feature_name_column, adjust_for_baseline = TRUE)
 }
 \arguments{
 \item{projects}{\code{\link[base]{data.frame}} or
@@ -76,6 +76,14 @@ values are permitted.}
 the name for each feature. This argument corresponds to the
 \code{feature} table. Note that the feature names must not contain any
 duplicates or missing values.}
+
+\item{adjust_for_baseline}{\code{logical} should the probability of
+features persisting when projects are funded be adjusted to account for the
+probability of features persisting under the baseline "do nothing"
+scenario in the event that the funded projects fail to succeed?
+This should always be \code{TRUE}, except when funding a project
+means that the baseline "do nothing" scenario does not apply if a funded
+project fails. Defaults to \code{TRUE}.}
 }
 \value{
 A fresh \code{\link{ProjectProblem-class}} object.

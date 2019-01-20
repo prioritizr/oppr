@@ -66,7 +66,7 @@ This objective is conceptually similar to that used in Marxan
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.4</span>
       </span>
     </div>
 
@@ -160,7 +160,22 @@ This objective is conceptually similar to that used in <em>Marxan</em>
   let \(B_{fj}\) denote the enhanced probability that each feature
   \(f \in F\) associated with the project \(j \in J\)
   will persist if all of the actions that comprise project \(j\) are funded
-  and that project is allocated to feature \(f\).</p>
+  and that project is allocated to feature \(f\).
+  For convenience,
+  let \(Q_{fj}\) denote the actual probability that each
+  \(f \in F\) associated with the project \(j \in J\)
+  is expected to persist if the project is funded. If the argument
+  to <code>adjust_for_baseline</code> in the <code>problem</code> function was set to
+  <code>TRUE</code>, and this is the default behavior, then
+  \(Q_{fj} = (P_{j} \times B_{fj}) + \bigg(\big(1 - (P_{j} B_{fj})\big)
+  \times (P_{n} \times B_{fn})\bigg)\), where <code>n</code> corresponds to the
+  baseline "do nothing" project. This means that the probability
+  of a feature persisting if a project is allocated to a feature
+  depends on (i) the probability of the project succeeding, (ii) the
+  probability of the feature persisting if the project does not fail,
+  and (iii) the probability of the feature persisting even if the project
+  fails. Otherwise, if the argument is set to <code>FALSE</code>, then
+  \(Q_{fj} = P_{j} \times B_{fj}\).</p>
 <p>The binary control variables \(X_i\) in this problem indicate whether
   each project \(i \in I\) is funded or not. The decision
   variables in this problem are the \(Y_{j}\), \(Z_{fj}\), and \(E_f\)
@@ -180,11 +195,11 @@ This objective is conceptually similar to that used in <em>Marxan</em>
   \mathrm{Subject \space to} \space  \\
   (1 - E_f) \geq T_f \space \forall f \in F \space
   \mathrm{(eqn \space 1b)} \\
-  E_f = 1 - \sum_{j = 0}^{J} Z_{fj} P_j B_{fj} \space \forall \space f \in F
+  E_f = 1 - \sum_{j = 0}^{J} Z_{fj} Q_{fj} \space \forall \space f \in F
   \space \mathrm{(eqn \space 1c)} \\
   Z_{fj} \leq Y_{j} \space \forall \space j \in J \space \mathrm{(eqn \space
   1d)} \\
-  \sum_{j = 0}^{J} Z_{fj} \times \mathrm{ceil}(B_{fj}) = 1 \space \forall
+  \sum_{j = 0}^{J} Z_{fj} \times \mathrm{ceil}(Q_{fj}) = 1 \space \forall
   \space f \in F \space \mathrm{(eqn \space 1e)} \\
   A_{ij} Y_{j} \leq X_{i} \space \forall \space i \in I, j \in J \space
   \mathrm{(eqn \space 1f)} \\

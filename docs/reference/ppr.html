@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.4</span>
       </span>
     </div>
 
@@ -231,7 +231,7 @@ can obtain a
 #&gt;   Objective range  [2e-01, 2e+00]
 #&gt;   Bounds range     [1e+00, 1e+00]
 #&gt;   RHS range        [1e+00, 4e+02]
-#&gt; Found heuristic solution: objective 0.6543041
+#&gt; Found heuristic solution: objective 0.6654645
 #&gt; Presolve removed 16 rows and 12 columns
 #&gt; Presolve time: 0.00s
 #&gt; Presolved: 31 rows, 35 columns, 64 nonzeros
@@ -239,25 +239,25 @@ can obtain a
 #&gt; Presolved: 31 rows, 35 columns, 64 nonzeros
 #&gt; 
 #&gt; 
-#&gt; Root relaxation: objective 1.512928e+00, 11 iterations, 0.00 seconds
+#&gt; Root relaxation: objective 1.749045e+00, 11 iterations, 0.00 seconds
 #&gt; 
 #&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
 #&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #&gt; 
-#&gt; *    0     0               0       1.5129280    1.51293  0.00%     -    0s
+#&gt; *    0     0               0       1.7490448    1.74904  0.00%     -    0s
 #&gt; 
 #&gt; Explored 0 nodes (11 simplex iterations) in 0.00 seconds
 #&gt; Thread count was 1 (of 4 available processors)
 #&gt; 
-#&gt; Solution count 1: 1.51293 
+#&gt; Solution count 1: 1.74904 
 #&gt; 
 #&gt; Optimal solution found (tolerance 0.00e+00)
-#&gt; Best objective 1.512928010109e+00, best bound 1.512928010109e+00, gap 0.0000%</div><div class='input'>
+#&gt; Best objective 1.749044775334e+00, best bound 1.749044775334e+00, gap 0.0000%</div><div class='input'>
 <span class='co'># print output</span>
 <span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 15</span><span>
 #&gt;   solution status   obj  cost F1_action F2_action F3_action F4_action F5_action
 #&gt;      </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 OPTIM~  1.51  395.         1         1         0         1         1
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 OPTIM~  1.75  395.         1         1         0         1         1
 #&gt; </span><span style='color: #949494;'># ... with 6 more variables: baseline_action </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F1 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F2 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
 #&gt; #   F3 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F4 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F5 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># print which actions are funded in the solution</span>
@@ -270,7 +270,7 @@ can obtain a
 <span class='no'>s</span>[, <span class='no'>sim_features</span>$<span class='no'>name</span>, <span class='kw'>drop</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>]</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 5</span><span>
 #&gt;      F1    F2     F3    F4    F5
 #&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 0.727 0.820 0.086</span><span style='text-decoration: underline;'>5</span><span> 0.585 0.502</div><div class='input'>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 0.808 0.865 0.086</span><span style='text-decoration: underline;'>5</span><span> 0.688 0.592</div><div class='input'>
 <span class='co'># visualize solution</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>p</span>, <span class='no'>s</span>)</div><div class='img'><img src='ppr-1.png' alt='' width='700' height='433' /></div></span></pre>
   </div>

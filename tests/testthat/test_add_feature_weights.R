@@ -5,7 +5,7 @@ test_that("numeric(5)", {
   data(sim_projects, sim_actions, sim_features)
   # create problem
   p <- problem(sim_projects, sim_actions, sim_features,
-               "name", "success", "name", "cost", "name") %>%
+               "name", "success", "name", "cost", "name", FALSE) %>%
        add_feature_weights(seq_len(5))
   # calculate weights
   weights <- p$feature_weights()
@@ -19,7 +19,7 @@ test_that("character(1)", {
   data(sim_projects, sim_actions, sim_features)
   # create problem
   p <- problem(sim_projects, sim_actions, sim_features,
-               "name", "success", "name", "cost", "name") %>%
+               "name", "success", "name", "cost", "name", FALSE) %>%
        add_feature_weights("weight")
   # calculate weights
   weights <- p$feature_weights()
@@ -31,7 +31,7 @@ test_that("character(1)", {
 test_that("invalid arguments", {
   data(sim_projects, sim_actions, sim_features)
   p <- problem(sim_projects, sim_actions, sim_features,
-               "name", "success", "name", "cost", "name")
+               "name", "success", "name", "cost", "name", FALSE)
   ## single numeric values
   expect_error({
     add_feature_weights(p, 2)

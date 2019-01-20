@@ -17,7 +17,7 @@ test_that("compile (no weights)", {
                              target = c(0.1, 0.2, 0.3))
   # create problem
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
-               "name") %>%
+               "name", FALSE) %>%
        add_max_targets_met_objective(budget = 0.16) %>%
        add_absolute_targets("target") %>%
        add_binary_decisions()
@@ -119,7 +119,7 @@ test_that("compile (weights)", {
                              weight = seq_len(3) * 4)
   # create problem
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
-               "name") %>%
+               "name", FALSE) %>%
        add_max_targets_met_objective(budget = 0.16) %>%
        add_absolute_targets("target") %>%
        add_feature_weights(weight = features$weight) %>%
@@ -225,17 +225,17 @@ test_that("exact solver (simple problem, single solution)", {
                              target3 = c(0.7, 0.7, 0.05))
   # create problem
   p1 <- problem(projects, actions, features, "name", "success", "name", "cost",
-                "name") %>%
+                "name", FALSE) %>%
         add_max_targets_met_objective(budget = 0.11) %>%
         add_absolute_targets("target1") %>%
         add_binary_decisions()
   p2 <- problem(projects, actions, features, "name", "success", "name", "cost",
-                "name") %>%
+                "name", FALSE) %>%
         add_max_targets_met_objective(budget = 0.11) %>%
         add_absolute_targets("target2") %>%
         add_binary_decisions()
   p3 <- problem(projects, actions, features, "name", "success", "name", "cost",
-                "name") %>%
+                "name", FALSE) %>%
         add_max_targets_met_objective(budget = 0.16) %>%
         add_absolute_targets("target3") %>%
         add_binary_decisions()
@@ -310,7 +310,7 @@ test_that("exact solver (simple problem, multiple solutions)", {
                              target = c(0.9, 0.05, 0.05))
   # create problem
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
-                "name") %>%
+                "name", FALSE) %>%
        add_max_targets_met_objective(budget = 0.11) %>%
        add_absolute_targets("target") %>%
        add_binary_decisions() %>%
@@ -358,7 +358,7 @@ test_that("exact solver (locked constraints, multiple solutions)", {
                              target = c(0.9, 0.05, 0.05))
   # create problem
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
-                "name") %>%
+                "name", FALSE) %>%
        add_max_targets_met_objective(budget = 100) %>%
        add_absolute_targets("target") %>%
        add_locked_in_constraints(1) %>%
@@ -408,7 +408,7 @@ test_that("heuristic solver (simple problem, single solution)", {
                              target = c(0.05, 0.9, 0.05))
   # create problem
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
-               "name") %>%
+               "name", FALSE) %>%
        add_max_targets_met_objective(budget = 0.11) %>%
        add_absolute_targets("target") %>%
        add_binary_decisions() %>%
@@ -449,7 +449,7 @@ test_that("heuristic solver (simple problem, multiple solutions)", {
                              target = c(0.9, 0.05, 0.05))
   # create problem
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
-                "name") %>%
+                "name", FALSE) %>%
        add_max_targets_met_objective(budget = 0.11) %>%
        add_absolute_targets("target") %>%
        add_binary_decisions() %>%
@@ -494,7 +494,7 @@ test_that("heuristic solver (locked constraints, multiple solutions)", {
                              target = c(0.9, 0.05, 0.05))
   # create problem
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
-                "name") %>%
+                "name", FALSE) %>%
        add_max_targets_met_objective(budget = 0.11) %>%
        add_absolute_targets("target") %>%
        add_locked_in_constraints(1) %>%
@@ -530,7 +530,7 @@ test_that("heuristic solver (locked constraints, multiple solutions)", {
 test_that("invalid arguments", {
   data(sim_projects, sim_actions, sim_features)
   p <- problem(sim_projects, sim_actions, sim_features,
-               "name", "success", "name", "cost", "name")
+               "name", "success", "name", "cost", "name", FALSE)
   expect_error({
     add_max_targets_met_objective(p, NA_real_)
   })
@@ -563,7 +563,7 @@ test_that("solution_statistics", {
                              target = c(0.7, 0.7, 0.05))
   # create problem
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
-               "name") %>%
+               "name", FALSE) %>%
        add_max_targets_met_objective(budget = 0.16) %>%
        add_absolute_targets("target") %>%
        add_feature_weights("weight") %>%

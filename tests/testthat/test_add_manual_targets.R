@@ -5,7 +5,7 @@ test_that("valid arguments", {
   data(sim_projects, sim_actions, sim_features)
   # create problem
   p <- problem(sim_projects, sim_actions, sim_features,
-               "name", "success", "name", "cost", "name") %>%
+               "name", "success", "name", "cost", "name", FALSE) %>%
        add_manual_targets(data.frame(feature = sim_features$name[seq_len(4)],
                                      target = seq_len(4) * 0.1,
                                      type = "absolute"))
@@ -25,7 +25,7 @@ test_that("valid arguments", {
 test_that("invalid arguments", {
   data(sim_projects, sim_actions, sim_features)
   p <- problem(sim_projects, sim_actions, sim_features,
-               "name", "success", "name", "cost", "name")
+               "name", "success", "name", "cost", "name", FALSE)
   # tests
   ## empty data.frame
   expect_error({

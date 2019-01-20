@@ -98,6 +98,8 @@ NULL
 #'
 #' \code{action_costs()}
 #'
+#' \code{project_costs()}
+#'
 #' \code{project_success_probabilities()}
 #'
 #' \code{pf_matrix()}
@@ -204,6 +206,8 @@ NULL
 #' \item{feature_phylogeny}{\code{\link[ape]{phylo}} phylogenetic tree object.}
 #'
 #' \item{action_costs}{\code{numeric} costs for each action.}
+#'
+#' \item{project_costs}{\code{numeric} costs for each project.}
 #'
 #' \item{project_success_probabilities}{\code{numeric} probability that
 #'   each project will succeed.}
@@ -385,6 +389,11 @@ ProjectProblem <- pproto(
     setNames(self$data$actions[[self$data$action_cost_column]],
              self$action_names())
   },
+  project_costs = function(self) {
+    pa <- as.matrix(self$pa_matrix())
+    ac <- matrix(self$action_costs(), ncol = ncol(pa), nrow = nrow(pa))
+    rowSums(pa * ac)
+  },
   project_success_probabilities = function(self) {
     setNames(self$data$projects[[self$data$project_success_column]],
              self$project_names())
@@ -399,10 +408,30 @@ ProjectProblem <- pproto(
     Matrix::drop0(m)
   },
   epf_matrix = function(self) {
+    # extract persistence probabilities, but not accounting for baseline
     m <- as(self$pf_matrix() * matrix(self$project_success_probabilities(),
                                       ncol = self$number_of_features(),
                                       nrow = self$number_of_projects()),
                                       "dgCMatrix")
+    m <- as(m, "dgCMatrix")
+    m <- Matrix::drop0(m)
+    # if include baseline probabilities, then account for probabilities of
+    # each project persisting and the baseline project not failing
+    if (self$data$adjust_for_baseline) {
+      ## extract project costs
+      pc <- self$project_costs()
+      ## extract baseline probability data
+      bp <- which(pc == 0)
+      bpp <- m[bp, ]
+      ## update probabilities
+      m2 <- m + ((1 - m) * m[rep(bp, nrow(m)), ])
+      m <- m2 * (m > 0)
+      ## overwrite baseline data
+      m[bp, ] <- bpp
+      ## coerce data type
+      m <- as(m, "dgCMatrix")
+      m <- Matrix::drop0(m)
+    }
     rownames(m) <- self$project_names()
     colnames(m) <- self$feature_names()
     m

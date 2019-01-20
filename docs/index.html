@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">ppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.4</span>
       </span>
     </div>
 
@@ -194,10 +194,10 @@ s &lt;-<span class="st"> </span><span class="kw"><a href="reference/solve.html">
 <pre><code>## # A tibble: 1 x 15
 ##   solution status    obj  cost F1_action F2_action F3_action F4_action
 ##      &lt;int&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
-## 1        1 OPTIMAL  1.51  395.         1         1         0         1
+## 1        1 OPTIMAL  1.75  395.         1         1         0         1
 ##   F5_action baseline_action    F1    F2     F3    F4    F5
 ##       &lt;dbl&gt;           &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1         1               1 0.727 0.820 0.0865 0.585 0.502</code></pre>
+## 1         1               1 0.808 0.865 0.0865 0.688 0.592</code></pre>
 <p>The <code>s</code> table contains the solution and also various statistics associated with the solution. Here, each row corresponds to a different solution. Specifically, the <code>"solution"</code> column contains an identifier for the solution (which may be useful for methods that output multiple solutions), the <code>"obj"</code> column contains the objective value (i.e. the expected feature richness for this problem), the <code>"cost"</code> column stores the cost of the solution, and the <code>"status"</code> column contains information from the solver about the solution. Additionally, it contains columns for each action (<code>"F1_action"</code>, <code>"F2_actions"</code>, <code>"F3_actions"</code>, …, <code>"baseline_action"</code>) which indicate if each action was prioritized for funding in the solution. Furthermore, it contains column for each feature (<code>"F1</code>, <code>"F2"</code>, <code>"F3</code>, …) which indicate the probability that each feature is expected to persist into the future under each solution. Since tabular data can be difficult to understand, let’s visualize how well this solution would conserve the features. Note that features which benefit from fully funded projects, excepting the baseline project, are denoted with an asterisk.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># visualize solution</span>
 <span class="kw"><a href="reference/plot_feature_persistence.html">plot_feature_persistence</a></span>(p, s)</code></pre></div>
@@ -209,7 +209,7 @@ s &lt;-<span class="st"> </span><span class="kw"><a href="reference/solve.html">
 <a href="#citation" class="anchor"></a>Citation</h2>
 <p>Please use the following citation to cite the <em>ppr R</em> package in publications:</p>
 <p><strong>This package is still under development and not ready for use. Please do not use this package yet.</strong></p>
-<p>Hanson JO, Schuster R, Strimas-Mackey M, Bennett J, (2019). ppr: Project Prioritization. R package version 0.0.0.3. Available at <a href="https://github.com/prioritizr/ppr" class="uri">https://github.com/prioritizr/ppr</a>.</p>
+<p>Hanson JO, Schuster R, Strimas-Mackey M, Bennett J, (2019). ppr: Project Prioritization. R package version 0.0.0.4. Available at <a href="https://github.com/prioritizr/ppr" class="uri">https://github.com/prioritizr/ppr</a>.</p>
 </div>
 </div>
   </div>

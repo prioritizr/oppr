@@ -5,11 +5,10 @@ test_that("numeric(1)", {
   data(sim_projects, sim_actions, sim_features)
   # create problem
   p <- problem(sim_projects, sim_actions, sim_features,
-               "name", "success", "name", "cost", "name") %>%
+               "name", "success", "name", "cost", "name", FALSE) %>%
        add_relative_targets(0.5)
   # calculate relative targets
-  mp <- unname(rep(apply(sim_projects[, sim_features$name], 2, max,
-                         na.rm = TRUE)))
+  mp <- unname(rep(apply(p$epf_matrix(), 2, max, na.rm = TRUE)))
   targets <- p$targets$output()
   # run tests
   expect_is(targets, "tbl_df")
@@ -27,12 +26,11 @@ test_that("numeric(4)", {
   data(sim_projects, sim_actions, sim_features)
   # create problem
   p <- problem(sim_projects, sim_actions, sim_features,
-               "name", "success", "name", "cost", "name") %>%
+               "name", "success", "name", "cost", "name", FALSE) %>%
        add_relative_targets(seq_len(5) * 0.1)
   # calculate relative targets
   targets <- p$targets$output()
-  mp <- unname(rep(apply(sim_projects[, sim_features$name], 2, max,
-                         na.rm = TRUE)))
+  mp <- unname(rep(apply(p$epf_matrix(), 2, max, na.rm = TRUE)))
   # run tests
   expect_is(targets, "tbl_df")
   expect_true(all(names(targets) == c("feature", "sense", "value")))
@@ -50,11 +48,10 @@ test_that("character", {
   sim_features$target <- seq_len(5) * 0.1
   # create problem
   p <- problem(sim_projects, sim_actions, sim_features,
-               "name", "success", "name", "cost", "name") %>%
+               "name", "success", "name", "cost", "name", FALSE) %>%
        add_relative_targets("target")
   # calculate relative targets
-  mp <- unname(rep(apply(sim_projects[, sim_features$name], 2, max,
-                         na.rm = TRUE)))
+  mp <- unname(rep(apply(p$epf_matrix(), 2, max, na.rm = TRUE)))
   targets <- p$targets$output()
   # run tests
   expect_is(targets, "tbl_df")

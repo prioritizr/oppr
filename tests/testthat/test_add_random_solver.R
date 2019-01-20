@@ -16,7 +16,7 @@ test_that("minimum set objective (1 solution)", {
   features <- tibble::tibble(name = c("F1", "F2", "F3"))
   # create problem
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
-               "name") %>%
+               "name", FALSE) %>%
        add_min_set_objective() %>%
        add_absolute_targets(c(0.7, 0.7, 0.05)) %>%
        add_binary_decisions() %>%
@@ -56,7 +56,7 @@ test_that("minimum set objective (100 solutions)", {
   features <- tibble::tibble(name = c("F1", "F2", "F3"))
   # create problem
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
-               "name") %>%
+               "name", FALSE) %>%
        add_min_set_objective() %>%
        add_absolute_targets(c(0.7, 0.7, 0.05)) %>%
        add_binary_decisions() %>%
@@ -98,7 +98,7 @@ test_that("maximum benefit objective (1 solution)", {
   features <- tibble::tibble(name = c("F1", "F2", "F3"))
   # create problem
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
-               "name") %>%
+               "name", FALSE) %>%
        add_max_richness_objective(budget = 0.15) %>%
        add_binary_decisions() %>%
        add_locked_in_constraints(1) %>%
@@ -140,7 +140,7 @@ test_that("maximum benefit objective (100 solutions)", {
   features <- tibble::tibble(name = c("F1", "F2", "F3"))
   # create problem
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
-               "name") %>%
+               "name", FALSE) %>%
        add_max_richness_objective(budget = 0.15) %>%
        add_binary_decisions() %>%
        add_locked_out_constraints(2) %>%
@@ -161,7 +161,7 @@ test_that("maximum benefit objective (100 solutions)", {
 test_that("invalid arguments", {
   data(sim_projects, sim_actions, sim_features)
   p <- problem(sim_projects, sim_actions, sim_features,
-               "name", "success", "name", "cost", "name")
+               "name", "success", "name", "cost", "name", FALSE)
   # number_solutions
   expect_error({
     add_random_solver(p, number_solutions = NA_integer_)

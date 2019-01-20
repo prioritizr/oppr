@@ -67,7 +67,7 @@ values." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.4</span>
       </span>
     </div>
 
@@ -224,7 +224,7 @@ cost of conservation areas: how does habitat loss influence priorities?
 #&gt;   Objective range  [2e-01, 2e+00]
 #&gt;   Bounds range     [1e+00, 1e+00]
 #&gt;   RHS range        [1e+00, 4e+02]
-#&gt; Found heuristic solution: objective 0.6543041
+#&gt; Found heuristic solution: objective 0.6654645
 #&gt; Presolve removed 16 rows and 12 columns
 #&gt; Presolve time: 0.00s
 #&gt; Presolved: 31 rows, 35 columns, 64 nonzeros
@@ -232,25 +232,25 @@ cost of conservation areas: how does habitat loss influence priorities?
 #&gt; Presolved: 31 rows, 35 columns, 64 nonzeros
 #&gt; 
 #&gt; 
-#&gt; Root relaxation: objective 1.512928e+00, 11 iterations, 0.00 seconds
+#&gt; Root relaxation: objective 1.749045e+00, 11 iterations, 0.00 seconds
 #&gt; 
 #&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
 #&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #&gt; 
-#&gt; *    0     0               0       1.5129280    1.51293  0.00%     -    0s
+#&gt; *    0     0               0       1.7490448    1.74904  0.00%     -    0s
 #&gt; 
 #&gt; Explored 0 nodes (11 simplex iterations) in 0.00 seconds
 #&gt; Thread count was 1 (of 4 available processors)
 #&gt; 
-#&gt; Solution count 1: 1.51293 
+#&gt; Solution count 1: 1.74904 
 #&gt; 
 #&gt; Optimal solution found (tolerance 0.00e+00)
-#&gt; Best objective 1.512928010109e+00, best bound 1.512928010109e+00, gap 0.0000%</div><div class='input'>
+#&gt; Best objective 1.749044775334e+00, best bound 1.749044775334e+00, gap 0.0000%</div><div class='input'>
 <span class='co'># print solution</span>
 <span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 15</span><span>
 #&gt;   solution status   obj  cost F1_action F2_action F3_action F4_action F5_action
 #&gt;      </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 OPTIM~  1.51  395.         1         1         0         1         1
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 OPTIM~  1.75  395.         1         1         0         1         1
 #&gt; </span><span style='color: #949494;'># ... with 6 more variables: baseline_action </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F1 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F2 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
 #&gt; #   F3 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F4 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F5 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># calculate replacement cost values</span>
@@ -260,11 +260,11 @@ cost of conservation areas: how does habitat loss influence priorities?
 <span class='fu'><a href='print.html'>print</a></span>(<span class='no'>r</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 6 x 4</span><span>
 #&gt;   name             cost    obj  rep_cost
 #&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> F1_action        300.   1.42    0.090</span><span style='text-decoration: underline;'>6</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> F2_action        397.   1.47    0.047</span><span style='text-decoration: underline;'>5</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> F1_action        300.   1.64    0.108 
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> F2_action        397.   1.70    0.045</span><span style='text-decoration: underline;'>8</span><span>
 #&gt; </span><span style='color: #BCBCBC;'>3</span><span> F3_action         </span><span style='color: #BB0000;'>NA</span><span>   </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>     
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> F4_action        399.   1.37    0.138 
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> F5_action        398.   1.08    0.436 
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> F4_action        399.   1.56    0.192 
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> F5_action        398.   1.18    0.569 
 #&gt; </span><span style='color: #BCBCBC;'>6</span><span> baseline_action  </span><span style='color: #BB0000;'>Inf</span><span>  </span><span style='color: #BB0000;'>Inf</span><span>    -</span><span style='color: #BB0000;'>Inf</span><span>     </div><div class='input'>
 <span class='co'># plot histogram of replacement costs,</span>
 <span class='co'># with this objective, greater values indicate greater irreplaceability</span>

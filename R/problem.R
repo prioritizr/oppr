@@ -81,6 +81,14 @@ NULL
 #'   \code{feature} table. Note that the feature names must not contain any
 #'   duplicates or missing values.
 #'
+#' @param adjust_for_baseline \code{logical} should the probability of
+#'   features persisting when projects are funded be adjusted to account for the
+#'   probability of features persisting under the baseline "do nothing"
+#'   scenario in the event that the funded projects fail to succeed?
+#'   This should always be \code{TRUE}, except when funding a project
+#'   means that the baseline "do nothing" scenario does not apply if a funded
+#'   project fails. Defaults to \code{TRUE}.
+#'
 #' @details
 #'   A project prioritization problem has actions, projects,
 #'   and features. Features are the biological entities that need to
@@ -169,7 +177,8 @@ NULL
 #' @export
 problem <- function(projects, actions, features, project_name_column,
                     project_success_column, action_name_column,
-                    action_cost_column, feature_name_column) {
+                    action_cost_column, feature_name_column,
+                    adjust_for_baseline = TRUE) {
   # assertions
   ## coerce projects to tibble if just a regular data.frame
   if (inherits(projects, "data.frame") && !inherits(projects, "tbl_df"))
@@ -219,12 +228,18 @@ problem <- function(projects, actions, features, project_name_column,
     min(as.matrix(projects[, features[[feature_name_column]]]),
         na.rm = TRUE) >= 0,
     max(as.matrix(projects[, features[[feature_name_column]]]),
-        na.rm = TRUE) <= 1)
+        na.rm = TRUE) <= 1,
+    assertthat::is.flag(adjust_for_baseline),
+    assertthat::noNA(adjust_for_baseline))
   assertthat::assert_that(min(actions[[action_cost_column]]) == 0,
                           msg = "zero cost baseline project missing.")
   # verify that features have finite persistence probabilities in baseline
   # project(s)
   bp <- actions$name[actions[[action_cost_column]] == 0]
+  assertthat::assert_that(length(bp) > 0,
+    msg = "no baseline project detected (i.e. no projects have a zero cost)")
+  assertthat::assert_that(length(bp) <= 1,
+    msg = "multiple baseline projects detected")
   pa <- as.matrix(projects[, actions$name])
   bp <- which(vapply(seq_len(nrow(pa)), FUN.VALUE = logical(1), function(i) {
     setequal(actions$name[pa[i, ]], bp)
@@ -233,14 +248,14 @@ problem <- function(projects, actions, features, project_name_column,
   assertthat::assert_that(all(is.finite(bpp)),
     msg = paste("feature(s) has a missing (NA) value for its",
                 "probability of persistence under the baseline",
-                "project(s), please provide baseline probabilities for:",
+                "project, please provide baseline probabilities for:",
                 paste(features[[feature_name_column]][!is.finite(bpp)],
                       collapse = ", "), "."))
   bpp <- colSums(as.matrix(projects[bp, features[[feature_name_column]]]),
                 na.rm = TRUE)
   assertthat::assert_that(all(bpp > 1e-11),
     msg = paste("feature(s) has a zero probability of persistence under",
-                "the baseline project(s), please replace these zeros with",
+                "the baseline project, please replace these zeros with",
                 "a small number (e.g. 1e-10) for:",
                 paste(features[[feature_name_column]][bpp <= 1e-11],
                       collapse = ", "), "."))
@@ -253,5 +268,6 @@ problem <- function(projects, actions, features, project_name_column,
                      project_success_column = project_success_column,
                      action_name_column = action_name_column,
                      action_cost_column = action_cost_column,
-                     feature_name_column = feature_name_column))
+                     feature_name_column = feature_name_column,
+                     adjust_for_baseline = adjust_for_baseline))
 }
