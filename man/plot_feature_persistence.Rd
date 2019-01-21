@@ -86,7 +86,7 @@ plot(p, s, n = 2)
 # for example, we can add a title
 plot(p, s) + ggtitle("solution")
 
-#we can also obtain the raw plotting data using return_data=TRUE
+# we can also obtain the raw plotting data using return_data=TRUE
 plot_data <- plot(p, s, return_data = TRUE)
 print(plot_data)
 }
