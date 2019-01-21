@@ -64,7 +64,7 @@ problem will maintain biodiversity." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.5</span>
       </span>
     </div>
 
@@ -120,7 +120,7 @@ problem will maintain biodiversity.</p>
 
     <pre class="usage"><span class='co'># S3 method for ProjectProblem</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>x</span>, <span class='no'>solution</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>symbol_hjust</span> <span class='kw'>=</span> <span class='fl'>0.007</span>,
-  <span class='no'>...</span>)</pre>
+  <span class='kw'>return_data</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -154,6 +154,11 @@ manually align the asterisks and dashes in the plot. Defaults to
 <code>0.007</code>. Increasing this parameter will shift the symbols further
 right. Please note that this parameter may require some tweaking
 to produce visually appealing publication quality plots.</p></td>
+    </tr>
+    <tr>
+      <th>return_data</th>
+      <td><p><code>logical</code> should the underlying data used to create
+the plot be returned instead of the plot? Defaults to <code>FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>...</th>

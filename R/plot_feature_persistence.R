@@ -19,7 +19,9 @@ NULL
 #'   projects that have non-zero costs and share actions with at least one
 #'   completely funded project---are depicted with an open circle symbol.
 #'
-#' @return A \code{\link{ggplot}} object.
+#' @return A \code{\link{ggplot}} object, or a
+#'   \code{\link[tibble]{tbl_df}} object if \code{return_data} is
+#'   \code{TRUE}.
 #'
 #' @examples
 #' # set seed for reproducibility
@@ -52,8 +54,13 @@ NULL
 #' # appearance of the plot using standard ggplot2 commands!
 #' # for example, we can add a title
 #' plot(p, s) + ggtitle("solution")
+#'
+#' #we can also obtain the raw plotting data using return_data=TRUE
+#' plot_data <- plot(p, s, return_data = TRUE)
+#' print(plot_data)
 #' @export
-plot_feature_persistence <- function(x, solution, n = 1, symbol_hjust = 0.007) {
+plot_feature_persistence <- function(x, solution, n = 1, symbol_hjust = 0.007,
+                                     return_data = FALSE) {
   # assertions
   ## coerce solution to tibble if just a regular data.frame
   if (inherits(solution, "data.frame") && !inherits(solution, "tbl_df"))
@@ -72,7 +79,9 @@ plot_feature_persistence <- function(x, solution, n = 1, symbol_hjust = 0.007) {
     is.finite(n),
     isTRUE(n <= nrow(solution)),
     assertthat::is.number(symbol_hjust),
-    is.finite(symbol_hjust))
+    is.finite(symbol_hjust),
+    assertthat::is.flag(return_data),
+    assertthat::noNA(return_data))
   assertthat::assert_that(!is.Waiver(x$objective),
     msg = "argument to x does not have a defined objective")
   # preliminary processing
@@ -135,24 +144,33 @@ plot_feature_persistence <- function(x, solution, n = 1, symbol_hjust = 0.007) {
   d$name <- factor(d$name, levels = unique(d$name))
 
   # Main processing
-  ggplot2::ggplot(d, ggplot2::aes_string(x = "name", y = "prob",
-                                         fill = "weight")) +
-  ggplot2::geom_col() +
-  ggplot2::geom_point(data = d[!is.na(d$status), , drop = FALSE],
-                      ggplot2::aes_string(shape = "status"),
-                      size = 3, color = "black",
-                      position = ggplot2::position_nudge(y = symbol_hjust)) +
-  ggplot2::scale_y_continuous(name = "Probability of persistence",
-                              limits = c(0, 1)) +
-  ggplot2::xlab("") +
-  ggplot2::scale_fill_gradientn(name = "Weight",
-                                colors = viridisLite::inferno(
-                                  150, begin = 0, end = 0.9,
-                                  direction = -1)) +
-  ggplot2::scale_shape_manual(name = "Projects",
-                              values = c("Funded" = 8,
-                                         "Partially Funded" = 1),
-                              na.translate = FALSE) +
-  ggplot2::theme(legend.position = "right") +
-  ggplot2::coord_flip()
+  ## prepare outputs
+  if (!isTRUE(return_data)) {
+    o <- ggplot2::ggplot(d, ggplot2::aes_string(x = "name", y = "prob",
+                                           fill = "weight")) +
+         ggplot2::geom_col() +
+         ggplot2::geom_point(data = d[!is.na(d$status), , drop = FALSE],
+                             ggplot2::aes_string(shape = "status"),
+                             size = 3, color = "black",
+                             position = ggplot2::position_nudge(
+                               y =  symbol_hjust)) +
+         ggplot2::scale_y_continuous(name = "Probability of persistence",
+                                     limits = c(0, 1)) +
+         ggplot2::xlab("") +
+         ggplot2::scale_fill_gradientn(name = "Weight",
+                                       colors = viridisLite::inferno(
+                                         150, begin = 0, end = 0.9,
+                                         direction = -1)) +
+         ggplot2::scale_shape_manual(name = "Projects",
+                                     values = c("Funded" = 8,
+                                                "Partially Funded" = 1),
+                                     na.translate = FALSE) +
+         ggplot2::theme(legend.position = "right") +
+         ggplot2::coord_flip()
+  } else {
+   o <- d
+  }
+
+  # Exports
+  o
 }

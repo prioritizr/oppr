@@ -19,6 +19,9 @@ NULL
 #'   right. Please note that this parameter may require some tweaking
 #'   to produce visually appealing publication quality plots.
 #'
+#' @param return_data \code{logical} should the underlying data used to create
+#'   the plot be returned instead of the plot? Defaults to \code{FALSE}.
+#'
 #' @param ... not used.
 #'
 #' @details The type of plot that this function creates depends on the
@@ -75,7 +78,8 @@ NULL
 #' plot(p2, s2)
 #' }
 #' @export
-plot.ProjectProblem <- function(x, solution, n = 1, symbol_hjust = 0.007, ...) {
+plot.ProjectProblem <- function(x, solution, n = 1, symbol_hjust = 0.007,
+                                return_data = FALSE, ...) {
   # assert arguments are valid
   assertthat::assert_that(inherits(x, "ProjectProblem"),
                           no_extra_arguments(...))
@@ -83,10 +87,12 @@ plot.ProjectProblem <- function(x, solution, n = 1, symbol_hjust = 0.007, ...) {
     msg = "argument to x does not have a defined objective")
   # create plot
   if (inherits(x$objective, "MaximumPhyloDivObjective")) {
-    g <- plot_phylo_persistence(x, solution, n = n, symbol_hjust = symbol_hjust)
+    g <- plot_phylo_persistence(x, solution, n = n, symbol_hjust = symbol_hjust,
+                                return_data = return_data)
   } else {
     g <- plot_feature_persistence(x, solution, n = n,
-                                  symbol_hjust = symbol_hjust)
+                                  symbol_hjust = symbol_hjust,
+                                  return_data = return_data)
   }
   g
 }

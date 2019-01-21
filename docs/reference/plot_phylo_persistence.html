@@ -65,7 +65,7 @@ into the future under a solution to a project prioritization problem." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.5</span>
       </span>
     </div>
 
@@ -120,7 +120,8 @@ into the future under a solution to a project prioritization problem.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>plot_phylo_persistence</span>(<span class='no'>x</span>, <span class='no'>solution</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>symbol_hjust</span> <span class='kw'>=</span> <span class='fl'>0.007</span>)</pre>
+    <pre class="usage"><span class='fu'>plot_phylo_persistence</span>(<span class='no'>x</span>, <span class='no'>solution</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>symbol_hjust</span> <span class='kw'>=</span> <span class='fl'>0.007</span>,
+  <span class='kw'>return_data</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -155,11 +156,18 @@ manually align the asterisks and dashes in the plot. Defaults to
 right. Please note that this parameter may require some tweaking
 to produce visually appealing publication quality plots.</p></td>
     </tr>
+    <tr>
+      <th>return_data</th>
+      <td><p><code>logical</code> should the underlying data used to create
+the plot be returned instead of the plot? Defaults to <code>FALSE</code>.</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code><a href='https://www.rdocumentation.org/packages/ggtree/topics/ggtree'>ggtree</a></code> object.</p>
+    <p>A <code><a href='https://www.rdocumentation.org/packages/ggtree/topics/ggtree'>ggtree</a></code> object, or a
+  <code><a href='https://www.rdocumentation.org/packages/tidytree/topics/treedata'>treedata</a></code> object if <code>return_data</code> is
+  <code>TRUE</code>.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
@@ -238,7 +246,23 @@ Evolution</em>, <strong>8</strong>: 28--36.</p>
                      <span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='kw'>high</span> <span class='kw'>=</span> <span class='st'>"black"</span>) +
 <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span>(<span class='kw'>legend.position</span> <span class='kw'>=</span> <span class='st'>"hide"</span>) +
 <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ggtitle</a></span>(<span class='st'>"solution"</span>)</div><div class='output co'>#&gt; <span class='message'>Scale for 'colour' is already present. Adding another scale for 'colour',</span>
-#&gt; <span class='message'>which will replace the existing scale.</span></div><div class='img'><img src='plot_phylo_persistence-6.png' alt='' width='700' height='433' /></div></pre>
+#&gt; <span class='message'>which will replace the existing scale.</span></div><div class='img'><img src='plot_phylo_persistence-6.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># we can also obtain the raw plotting data using return_data=TRUE</span>
+<span class='no'>plot_data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>p</span>, <span class='no'>s</span>, <span class='kw'>return_data</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>plot_data</span>)</div><div class='output co'>#&gt; 'treedata' S4 object'.
+#&gt; 
+#&gt; ...@ phylo: 
+#&gt; Phylogenetic tree with 5 tips and 4 internal nodes.
+#&gt; 
+#&gt; Tip labels:
+#&gt; [1] "   F1" "   F2" "   F3" "   F4" "   F5"
+#&gt; Node labels:
+#&gt; [1] "   NA" "   NA" "   NA" "   NA"
+#&gt; 
+#&gt; Rooted; includes branch lengths.
+#&gt; 
+#&gt; with the following features available:
+#&gt; 	'status',	'prob'.</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

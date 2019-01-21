@@ -4,7 +4,8 @@
 \alias{plot_phylo_persistence}
 \title{Plot a phylogram to visualize a project prioritization}
 \usage{
-plot_phylo_persistence(x, solution, n = 1, symbol_hjust = 0.007)
+plot_phylo_persistence(x, solution, n = 1, symbol_hjust = 0.007,
+  return_data = FALSE)
 }
 \arguments{
 \item{x}{project prioritization \code{\link{problem}}.}
@@ -28,9 +29,14 @@ manually align the asterisks and dashes in the plot. Defaults to
 \code{0.007}. Increasing this parameter will shift the symbols further
 right. Please note that this parameter may require some tweaking
 to produce visually appealing publication quality plots.}
+
+\item{return_data}{\code{logical} should the underlying data used to create
+the plot be returned instead of the plot? Defaults to \code{FALSE}.}
 }
 \value{
-A \code{\link[ggtree]{ggtree}} object.
+A \code{\link[ggtree]{ggtree}} object, or a
+  \code{\link[tidytree]{treedata}} object if \code{return_data} is
+  \code{TRUE}.
 }
 \description{
 Create a plot showing a phylogenetic tree (i.e. a "phylogram") to visualize
@@ -108,6 +114,10 @@ scale_color_gradient(name = "Probability of\\npersistence",
                      low = "red", high = "black") +
 theme(legend.position = "hide") +
 ggtitle("solution")
+
+# we can also obtain the raw plotting data using return_data=TRUE
+plot_data <- plot(p, s, return_data = TRUE)
+print(plot_data)
 }
 }
 \references{

@@ -38,7 +38,9 @@ NULL
 #' covariates and other associated data. \emph{Methods in Ecology and
 #' Evolution}, \strong{8}: 28--36.
 #'
-#' @return A \code{\link[ggtree]{ggtree}} object.
+#' @return A \code{\link[ggtree]{ggtree}} object, or a
+#'   \code{\link[tidytree]{treedata}} object if \code{return_data} is
+#'   \code{TRUE}.
 #'
 #' @examples
 #' # set seed for reproducibility
@@ -92,9 +94,14 @@ NULL
 #'                      low = "red", high = "black") +
 #' theme(legend.position = "hide") +
 #' ggtitle("solution")
+#'
+#' # we can also obtain the raw plotting data using return_data=TRUE
+#' plot_data <- plot(p, s, return_data = TRUE)
+#' print(plot_data)
 #' }
 #' @export
-plot_phylo_persistence <- function(x, solution, n = 1, symbol_hjust = 0.007) {
+plot_phylo_persistence <- function(x, solution, n = 1, symbol_hjust = 0.007,
+                                   return_data = FALSE) {
   # assertions
   ## assert that ggtree R package is installed
   assertthat::assert_that(requireNamespace("ggtree", quietly = TRUE),
@@ -116,7 +123,9 @@ plot_phylo_persistence <- function(x, solution, n = 1, symbol_hjust = 0.007) {
     is.finite(n),
     isTRUE(n <= nrow(solution)),
     assertthat::is.number(symbol_hjust),
-    is.finite(symbol_hjust))
+    is.finite(symbol_hjust),
+    assertthat::is.flag(return_data),
+    assertthat::noNA(return_data))
   assertthat::assert_that(!is.Waiver(x$objective),
     msg = "argument to x does not have a defined objective")
   # preliminary data processing
@@ -186,24 +195,30 @@ plot_phylo_persistence <- function(x, solution, n = 1, symbol_hjust = 0.007) {
                                matrix(tree$edge.length, ncol = nrow(tree$edge),
                                       nrow = length(tree$tip.label)))) *
                    symbol_hjust
-  ## make plot
-  p <- ggtree::ggtree(tree2, ggplot2::aes_string(color = "prob"), size = 1.1) +
-       ggtree::geom_tippoint(
-         ggplot2::aes_string(x = "x + point_padding", subset = "!is.na(status)",
-                             shape = "status"), color = "black") +
-       ggtree::geom_tiplab(color = "black", size = 2.5) +
-       ggplot2::scale_color_gradientn(name = "Probability of\npersistence",
-                                      colors = viridisLite::inferno(
-                                        150, begin = 0, end = 0.9,
-                                        direction = -1),
-                                      limits = c(0, 1)) +
-       ggplot2::scale_shape_manual(name = "Projects",
-                                   values = c("Funded" = 8,
-                                              "Partially Funded" = 1),
-                                   na.translate = FALSE) +
-       ggplot2::theme(legend.position = "right")
 
+  ## prepare outputs
+  if (!isTRUE(return_data)) {
+    o <- ggtree::ggtree(tree2, ggplot2::aes_string(color = "prob"),
+                        size = 1.1) +
+         ggtree::geom_tippoint(
+           ggplot2::aes_string(x = "x + point_padding",
+                               subset = "!is.na(status)",
+                               shape = "status"), color = "black") +
+         ggtree::geom_tiplab(color = "black", size = 2.5) +
+         ggplot2::scale_color_gradientn(name = "Probability of\npersistence",
+                                        colors = viridisLite::inferno(
+                                          150, begin = 0, end = 0.9,
+                                          direction = -1),
+                                        limits = c(0, 1)) +
+         ggplot2::scale_shape_manual(name = "Projects",
+                                     values = c("Funded" = 8,
+                                                "Partially Funded" = 1),
+                                     na.translate = FALSE) +
+         ggplot2::theme(legend.position = "right")
+  } else {
+    o <- tree2
+  }
   # Exports
   # return plot
-  p
+  o
 }

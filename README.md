@@ -146,10 +146,10 @@ print(s, width = Inf)
     ## # A tibble: 1 x 15
     ##   solution status    obj  cost F1_action F2_action F3_action F4_action
     ##      <int> <chr>   <dbl> <dbl>     <dbl>     <dbl>     <dbl>     <dbl>
-    ## 1        1 OPTIMAL  1.51  395.         1         1         0         1
+    ## 1        1 OPTIMAL  1.75  395.         1         1         0         1
     ##   F5_action baseline_action    F1    F2     F3    F4    F5
     ##       <dbl>           <dbl> <dbl> <dbl>  <dbl> <dbl> <dbl>
-    ## 1         1               1 0.727 0.820 0.0865 0.585 0.502
+    ## 1         1               1 0.808 0.865 0.0865 0.688 0.592
 
 The `s` table contains the solution and also various statistics associated with the solution. Here, each row corresponds to a different solution. Specifically, the `"solution"` column contains an identifier for the solution (which may be useful for methods that output multiple solutions), the `"obj"` column contains the objective value (i.e. the expected feature richness for this problem), the `"cost"` column stores the cost of the solution, and the `"status"` column contains information from the solver about the solution. Additionally, it contains columns for each action (`"F1_action"`, `"F2_actions"`, `"F3_actions"`, ..., `"baseline_action"`) which indicate if each action was prioritized for funding in the solution. Furthermore, it contains column for each feature (`"F1`, `"F2"`, `"F3`, ...) which indicate the probability that each feature is expected to persist into the future under each solution. Since tabular data can be difficult to understand, let's visualize how well this solution would conserve the features. Note that features which benefit from fully funded projects, excepting the baseline project, are denoted with an asterisk.
 
@@ -169,4 +169,4 @@ Please use the following citation to cite the *ppr R* package in publications:
 
 **This package is still under development and not ready for use. Please do not use this package yet.**
 
-Hanson JO, Schuster R, Strimas-Mackey M, Bennett J, (2019). ppr: Project Prioritization. R package version 0.0.0.1. Available at <https://github.com/prioritizr/ppr>.
+Hanson JO, Schuster R, Strimas-Mackey M, Bennett J, (2019). ppr: Project Prioritization. R package version 0.0.0.5. Available at <https://github.com/prioritizr/ppr>.

@@ -5,7 +5,7 @@
 \title{Plot a solution to a project prioritization problem}
 \usage{
 \method{plot}{ProjectProblem}(x, solution, n = 1, symbol_hjust = 0.007,
-  ...)
+  return_data = FALSE, ...)
 }
 \arguments{
 \item{x}{project prioritization \code{\link{problem}}.}
@@ -29,6 +29,9 @@ manually align the asterisks and dashes in the plot. Defaults to
 \code{0.007}. Increasing this parameter will shift the symbols further
 right. Please note that this parameter may require some tweaking
 to produce visually appealing publication quality plots.}
+
+\item{return_data}{\code{logical} should the underlying data used to create
+the plot be returned instead of the plot? Defaults to \code{FALSE}.}
 
 \item{...}{not used.}
 }

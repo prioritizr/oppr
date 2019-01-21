@@ -1,3 +1,9 @@
+# ppr 0.0.0.5
+
+- Add `return_data` argument to `plot_feature_persistence` and
+  `plot_phylo_persistence` so that plotting data can be obtained
+  for creating custom plots.
+
 # ppr 0.0.0.4
 
 - Fix bug in `add_relative_targets` and `add_manual_targets` (when relative

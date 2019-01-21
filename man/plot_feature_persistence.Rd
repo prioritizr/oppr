@@ -4,7 +4,8 @@
 \alias{plot_feature_persistence}
 \title{Plot a bar plot to visualize a project prioritization}
 \usage{
-plot_feature_persistence(x, solution, n = 1, symbol_hjust = 0.007)
+plot_feature_persistence(x, solution, n = 1, symbol_hjust = 0.007,
+  return_data = FALSE)
 }
 \arguments{
 \item{x}{project prioritization \code{\link{problem}}.}
@@ -28,9 +29,14 @@ manually align the asterisks and dashes in the plot. Defaults to
 \code{0.007}. Increasing this parameter will shift the symbols further
 right. Please note that this parameter may require some tweaking
 to produce visually appealing publication quality plots.}
+
+\item{return_data}{\code{logical} should the underlying data used to create
+the plot be returned instead of the plot? Defaults to \code{FALSE}.}
 }
 \value{
-A \code{\link{ggplot}} object.
+A \code{\link{ggplot}} object, or a
+  \code{\link[tibble]{tbl_df}} object if \code{return_data} is
+  \code{TRUE}.
 }
 \description{
 Create a bar plot to visualize how likely features are to persist into
@@ -79,4 +85,8 @@ plot(p, s, n = 2)
 # appearance of the plot using standard ggplot2 commands!
 # for example, we can add a title
 plot(p, s) + ggtitle("solution")
+
+#we can also obtain the raw plotting data using return_data=TRUE
+plot_data <- plot(p, s, return_data = TRUE)
+print(plot_data)
 }

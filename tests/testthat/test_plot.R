@@ -24,6 +24,7 @@ test_that("no phylogenetic data", {
        add_binary_decisions()
   # make plot
   g <- plot(p, solution)
+  d <- plot(p, solution, return_data = TRUE)
   # tests
   expect_is(g, "ggplot")
   expect_true({
@@ -34,6 +35,7 @@ test_that("no phylogenetic data", {
     unlink(f)
     TRUE
   })
+  expect_is(d, "tbl_df")
 })
 
 test_that("phylogenetic data", {
@@ -62,6 +64,7 @@ test_that("phylogenetic data", {
        add_binary_decisions()
   # make plot
   g <- plot(p, solution)
+  d <- plot(p, solution, return_data = TRUE)
   # tests
   expect_is(g, "ggtree")
   expect_true({
@@ -72,6 +75,7 @@ test_that("phylogenetic data", {
     unlink(f)
     TRUE
   })
+  expect_is(d, "treedata")
 })
 
 test_that("invalid arguments", {
