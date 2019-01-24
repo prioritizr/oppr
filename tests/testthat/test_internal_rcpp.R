@@ -17,8 +17,10 @@ test_that("rcpp_branch_order (identity matrix)", {
 })
 
 test_that("rcpp_branch_order (duplicated features)", {
-  m <- cbind(diag(5), diag(5))
-  m <- as(m, "dgCMatrix")
-  o <- rcpp_branch_order(m)
-  expect_equal(o, c(1, 6, 2, 7, 3, 8, 4, 9, 5, 10))
+  m <- diag(1, nrow = 5, ncol = 7)
+  m[1, 7] <- 1
+  m[2, 6] <- 1
+  m2 <- m[, c(4, 1, 2, 5, 3, 6, 7)]
+  o <- rcpp_branch_order(as(m2, "dgCMatrix"))
+  expect_equal(m2[, o], m)
 })

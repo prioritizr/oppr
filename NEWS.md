@@ -1,3 +1,18 @@
+# ppr 0.0.0.7
+
+- Actually fix bug when solving problems with a phylogenetic objective and
+  branches that have a constant probability of persistence (#6).
+- Fix bug in `add_max_phylo_div_objective` yielding incorrect solutions
+  when features are ordered differently in the phylogenetic and tabular input
+  data.
+- Fix bug in `solution_statistics` yielding objective values for
+  phylogenetic problems when features are ordered differently in the
+  phylogenetic and tabular input data.
+- Fix bug when handling phylogenetic data when a species is associated with
+  two tip branches. Although such data probably indicate errors in the
+  phylogenetic data, this functionality could be useful when combining
+  multiple datasets.
+
 # ppr 0.0.0.5
 
 - Add `return_data` argument to `plot_feature_persistence` and
@@ -21,7 +36,8 @@
 # ppr 0.0.0.2
 
 - Fix bug when solving problems with a phylogenetic objective and branches that
-  have a constant probability of persistence (#6).
+  have a constant probability of persistence (#6). Hindsight shows this attempt
+  did not cover all edge cases.
 - Add additional data sanity checks to `problem`. It will now throw
   descriptive error messages if features are missing baseline probabilities, or
   are associated with baseline probabilities below 1e-11.

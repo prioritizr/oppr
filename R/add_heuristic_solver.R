@@ -160,7 +160,6 @@ add_heuristic_solver <- function(x, number_solutions = 1, verbose = TRUE) {
       fp <- x$data$feature_phylogeny()
       bm <- branch_matrix(fp, FALSE)
       bo <- rcpp_branch_order(bm)
-      w <- x$data$feature_weights()[fp$tip.label]
       if (!is.Waiver(x$data$targets)) {
         targets <- x$data$targets$output()$value
       } else {
@@ -176,9 +175,10 @@ add_heuristic_solver <- function(x, number_solutions = 1, verbose = TRUE) {
         s <- rcpp_heuristic_solution(
           x$data$action_costs(),
           x$data$pa_matrix(),
-          x$data$epf_matrix(),
-          bm[, bo, drop = FALSE], fp$edge.length[bo],
-          targets, w, budget,
+          x$data$epf_matrix()[, fp$tip.label, drop = FALSE],
+          bm[, bo, drop = FALSE],
+          fp$edge.length[bo],
+          targets, x$data$feature_weights()[fp$tip.label], budget,
           locked_in, locked_out,
           self$parameters$get("number_solutions"),
           as.logical(self$parameters$get("verbose")),

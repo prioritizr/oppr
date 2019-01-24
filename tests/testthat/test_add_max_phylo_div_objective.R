@@ -127,6 +127,98 @@ test_that("exact solver (simple problem, single solution", {
   expect_equal(s3$F3, 0.1 * 1)
 })
 
+test_that("exact solver (random order, no weights, single solution)", {
+  skip_on_cran()
+  skip_if_not_installed("gurobi", "8.0.0")
+  projects <- tibble::tibble(name = letters[1:4],
+                             success =  c(0.95, 0.96, 0.94, 1.00),
+                             F1 =       c(0.91, 0.00, 0.80, 0.10),
+                             F3 =       c(0.00, 0.00, 0.00, 0.80),
+                             F4 =       c(0.00, 0.00, 0.00, 0.80),
+                             A1 =       c(TRUE, FALSE, FALSE, FALSE),
+                             A2 =       c(FALSE, TRUE, FALSE, FALSE),
+                             A3 =       c(FALSE, FALSE, TRUE, FALSE),
+                             A4 =       c(FALSE, FALSE, FALSE, TRUE))
+  actions <- tibble::tibble(name =      c("A1", "A2", "A3", "A4"),
+                            cost =      c(0.10, 0.10, 0.15, 0))
+  features <- tibble::tibble(name = c("F1", "F3", "F4"))
+  tree <- ape::read.tree(text = "((F3, F4), F1);")
+  tree$edge.length <- rep(5, nrow(tree$edge))
+  # make problems
+  s <- problem(projects, actions, features, "name", "success", "name", "cost",
+               "name", FALSE) %>%
+       add_max_phylo_div_objective(0.16, tree) %>%
+       add_binary_decisions() %>%
+       add_gurobi_solver(verbose = FALSE) %>%
+       solve()
+  # solve problem
+  expect_is(s, "tbl_df")
+  expect_equal(nrow(s), 1)
+  expect_equal(s$solution, 1L)
+  expect_equal(s$status, "OPTIMAL")
+  expect_equal(s$obj, (5 * 0.95 * 0.91) +
+                      (5 * 1 * 0.80) +
+                      (5 * 1 * 0.80) +
+                      (5 * (1 - ((1 - (0.8)) * (1 - (0.8))))))
+  expect_equal(s$cost, 0.1)
+  expect_equal(s$A1, 1)
+  expect_equal(s$A2, 0)
+  expect_equal(s$A3, 0)
+  expect_equal(s$A4, 1)
+  expect_equal(s$F1, 0.95 * 0.91)
+  expect_equal(s$F3, 0.8 * 1)
+  expect_equal(s$F4, 0.8 * 1)
+})
+
+test_that("exact solver (random order, weights, single solution)", {
+  skip_on_cran()
+  skip_if_not_installed("gurobi", "8.0.0")
+  projects <- tibble::tibble(name = letters[1:4],
+                             success =  c(0.95, 0.96, 0.94, 1.00),
+                             F1 =       c(0.91, 0.00, 0.00, 0.10),
+                             F2 =       c(0.00, 0.00, 0.05, 0.01),
+                             F3 =       c(0.00, 0.00, 0.00, 0.80),
+                             F4 =       c(0.00, 0.00, 0.00, 0.80),
+                             A1 =       c(TRUE, FALSE, FALSE, FALSE),
+                             A2 =       c(FALSE, TRUE, FALSE, FALSE),
+                             A3 =       c(FALSE, FALSE, TRUE, FALSE),
+                             A4 =       c(FALSE, FALSE, FALSE, TRUE))
+  actions <- tibble::tibble(name =      c("A1", "A2", "A3", "A4"),
+                            cost =      c(0.10, 0.10, 0.15, 0))
+  features <- tibble::tibble(name = c("F1", "F2", "F3", "F4"))
+  tree <- ape::read.tree(text = "(((F3, F4), F1), F2);")
+  tree$edge.length <- rep(5, nrow(tree$edge))
+  # make problems
+  s <- problem(projects, actions, features, "name", "success", "name", "cost",
+               "name", FALSE) %>%
+       add_max_phylo_div_objective(0.16, tree) %>%
+       add_feature_weights(c(4, 1000, 2, 4)) %>%
+       add_binary_decisions() %>%
+       add_gurobi_solver(verbose = FALSE) %>%
+       solve()
+  # solve problem
+  expect_is(s, "tbl_df")
+  expect_equal(nrow(s), 1)
+  expect_equal(s$solution, 1L)
+  expect_equal(s$status, "OPTIMAL")
+  expect_equal(s$obj,
+    (5 * 0.1 * 1) + (4 * 0.1 * 1) +
+    (5 * 0.05 * 0.94) + (1000 * 0.05 * 0.94) +
+    (5 * 1 * 0.80) + (2 * 0.8 * 1) +
+    (5 * 1 * 0.80) + (4 * 0.8 * 1) +
+    (5 * (1 - ((1 - (0.8)) * (1 - (0.8))))) +
+    (5 * (1 - ((1 - (0.8)) * (1 - (0.8)) * (1 - (0.1 * 1))))))
+  expect_equal(s$cost, 0.15)
+  expect_equal(s$A1, 0)
+  expect_equal(s$A2, 0)
+  expect_equal(s$A3, 1)
+  expect_equal(s$A4, 1)
+  expect_equal(s$F1, 0.1 * 1)
+  expect_equal(s$F2, 0.05 * 0.94)
+  expect_equal(s$F3, 0.8 * 1)
+  expect_equal(s$F4, 0.8 * 1)
+})
+
 test_that("exact solver (simple problem, multiple solutions", {
   skip_on_cran()
   skip_if_not_installed("gurobi", "8.0.0")
@@ -208,6 +300,12 @@ test_that("exact solver (constant branch probabilities, single solution", {
   expect_equal(nrow(s), 1)
   expect_equal(s$solution, 1L)
   expect_equal(s$status, "OPTIMAL")
+  expect_equal(s$obj, (0.752 * 5) +
+                      (0.752 * 5) +
+                      (1 * 5) +
+                      (1 * 5) +
+                      ((1 - ((1 - 0.752) * (1 - 0.752))) * 5) +
+                      ((1 - ((1 - 1) * (1 - 1))) * 5))
   expect_equal(s$cost, 0.15)
   expect_equal(s$F1, 0.94 * 0.8)
   expect_equal(s$F2, 0.94 * 0.8)
@@ -312,6 +410,91 @@ test_that("heuristic solver (simple problem, single solution", {
   expect_equal(s$F1, 0.1 * 1)
   expect_equal(s$F2, 0.96 * 0.92)
   expect_equal(s$F3, 0.1 * 1)
+})
+
+test_that("exact solver (random order, weights, single solution)", {
+  # create data
+  projects <- tibble::tibble(name = letters[1:4],
+                             success =  c(0.95, 0.96, 0.94, 1.00),
+                             F1 =       c(0.91, 0.00, 0.80, 0.10),
+                             F3 =       c(0.00, 0.00, 0.00, 0.80),
+                             F4 =       c(0.00, 0.00, 0.00, 0.80),
+                             A1 =       c(TRUE, FALSE, FALSE, FALSE),
+                             A2 =       c(FALSE, TRUE, FALSE, FALSE),
+                             A3 =       c(FALSE, FALSE, TRUE, FALSE),
+                             A4 =       c(FALSE, FALSE, FALSE, TRUE))
+  actions <- tibble::tibble(name =      c("A1", "A2", "A3", "A4"),
+                            cost =      c(0.10, 0.10, 0.15, 0))
+  features <- tibble::tibble(name = c("F1", "F3", "F4"))
+  tree <- ape::read.tree(text = "((F3, F4), F1);")
+  tree$edge.length <- rep(5, nrow(tree$edge))
+  # make problems
+  s <- problem(projects, actions, features, "name", "success", "name", "cost",
+               "name", FALSE) %>%
+       add_max_phylo_div_objective(0.16, tree) %>%
+       add_binary_decisions() %>%
+       add_feature_weights(c(4, 8, 90)) %>%
+       add_heuristic_solver(verbose = FALSE) %>%
+       solve()
+  # solve problem
+  expect_is(s, "tbl_df")
+  expect_equal(nrow(s), 1)
+  expect_equal(s$solution, 1L)
+  expect_equal(s$status, NA_character_)
+  expect_equal(s$obj, (5 * 0.95 * 0.91) + ((4 * 0.95 * 0.91)) +
+                      (5 * 1 * 0.80) + (8 * 1 * 0.80) +
+                      (5 * 1 * 0.80) + (90 * 1 * 0.80) +
+                      (5 * (1 - ((1 - (0.8)) * (1 - (0.8))))))
+  expect_equal(s$cost, 0.1)
+  expect_equal(s$A1, 1)
+  expect_equal(s$A2, 0)
+  expect_equal(s$A3, 0)
+  expect_equal(s$A4, 1)
+  expect_equal(s$F1, 0.95 * 0.91)
+  expect_equal(s$F3, 0.8 * 1)
+  expect_equal(s$F4, 0.8 * 1)
+})
+
+test_that("exact solver (random order, no weights, single solution)", {
+  # create data
+  projects <- tibble::tibble(name = letters[1:4],
+                             success =  c(0.95, 0.96, 0.94, 1.00),
+                             F1 =       c(0.91, 0.00, 0.80, 0.10),
+                             F3 =       c(0.00, 0.00, 0.00, 0.80),
+                             F4 =       c(0.00, 0.00, 0.00, 0.80),
+                             A1 =       c(TRUE, FALSE, FALSE, FALSE),
+                             A2 =       c(FALSE, TRUE, FALSE, FALSE),
+                             A3 =       c(FALSE, FALSE, TRUE, FALSE),
+                             A4 =       c(FALSE, FALSE, FALSE, TRUE))
+  actions <- tibble::tibble(name =      c("A1", "A2", "A3", "A4"),
+                            cost =      c(0.10, 0.10, 0.15, 0))
+  features <- tibble::tibble(name = c("F1", "F3", "F4"))
+  tree <- ape::read.tree(text = "((F3, F4), F1);")
+  tree$edge.length <- rep(5, nrow(tree$edge))
+  # make problems
+  s <- problem(projects, actions, features, "name", "success", "name", "cost",
+               "name", FALSE) %>%
+       add_max_phylo_div_objective(0.16, tree) %>%
+       add_binary_decisions() %>%
+       add_heuristic_solver(verbose = FALSE) %>%
+       solve()
+  # solve problem
+  expect_is(s, "tbl_df")
+  expect_equal(nrow(s), 1)
+  expect_equal(s$solution, 1L)
+  expect_equal(s$status, NA_character_)
+  expect_equal(s$obj, (5 * 0.95 * 0.91) +
+                      (5 * 1 * 0.80) +
+                      (5 * 1 * 0.80) +
+                      (5 * (1 - ((1 - (0.8)) * (1 - (0.8))))))
+  expect_equal(s$cost, 0.1)
+  expect_equal(s$A1, 1)
+  expect_equal(s$A2, 0)
+  expect_equal(s$A3, 0)
+  expect_equal(s$A4, 1)
+  expect_equal(s$F1, 0.95 * 0.91)
+  expect_equal(s$F3, 0.8 * 1)
+  expect_equal(s$F4, 0.8 * 1)
 })
 
 test_that("heuristic solver (simple problem, multiple solutions", {

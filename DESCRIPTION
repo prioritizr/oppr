@@ -1,6 +1,6 @@
 Package: ppr
 Type: Package
-Version: 0.0.0.5
+Version: 0.0.0.6
 Title: Project Prioritization
 Description: A decision support tool for prioritizing conservation projects.
     Prioritizations can be developed by maximizing expected feature richness,

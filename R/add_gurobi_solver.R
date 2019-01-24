@@ -223,6 +223,7 @@ add_gurobi_solver <- function(x, gap = 0, number_solutions = 1,
       # extract solution
       out <- list(list(x = x$x, objective = x$objval, status = x$status,
                        runtime = x$runtime))
+      assign("r", x, .GlobalEnv)
       # add solutions from solution pool if required
       if (is.numeric(x$x) && isTRUE(length(x$pool) > 1) &&
           isTRUE(self$parameters$get("number_solutions") > 1)) {

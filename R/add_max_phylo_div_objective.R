@@ -246,12 +246,12 @@ add_max_phylo_div_objective <- function(x, budget, tree) {
       fp <- y$feature_phylogeny()
       bm <- branch_matrix(fp, FALSE)
       bo <- rcpp_branch_order(bm)
-      w <- y$feature_weights()[y$feature_phylogeny()$tip.label]
       rcpp_evaluate_max_phylo_div_objective(
-        y$action_costs(), y$pa_matrix(), y$epf_matrix(),
+        y$action_costs(), y$pa_matrix(),
+        y$epf_matrix()[, fp$tip.label, drop = FALSE],
         bm[, bo, drop = FALSE], fp$edge.length[bo],
         rep(0, y$number_of_features()),
-        w,
+        y$feature_weights()[fp$tip.label],
         methods::as(as.matrix(solution), "dgCMatrix"))
     },
     apply = function(self, x, y) {
