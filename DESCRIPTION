@@ -1,6 +1,6 @@
 Package: ppr
 Type: Package
-Version: 0.0.0.6
+Version: 0.0.0.7
 Title: Project Prioritization
 Description: A decision support tool for prioritizing conservation projects.
     Prioritizations can be developed by maximizing expected feature richness,
@@ -32,7 +32,7 @@ Imports:
     proto (>= 1.0.0),
     cli (>= 1.0.1),
     assertthat (>= 0.2.0),
-    tibble (>= 1.4.2),
+    tibble (>= 2.0.0),
     ape (>= 5.2),
     tidytree (>= 0.1.9),
     ggplot2 (>= 3.0.0),

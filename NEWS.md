@@ -1,5 +1,9 @@
 # ppr 0.0.0.7
 
+- Fix annoying "`Found more than one class "tbl_df" in cache; using the first, from namespace 'tibble'`" text.
+
+# ppr 0.0.0.6
+
 - Actually fix bug when solving problems with a phylogenetic objective and
   branches that have a constant probability of persistence (#6).
 - Fix bug in `add_max_phylo_div_objective` yielding incorrect solutions
