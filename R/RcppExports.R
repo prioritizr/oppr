@@ -137,6 +137,10 @@ rcpp_expected_persistences <- function(pa_matrix, pf_matrix, branch_matrix, solu
     .Call(`_ppr_rcpp_expected_persistences`, pa_matrix, pf_matrix, branch_matrix, solutions)
 }
 
+rcpp_funded_projects <- function(pa_matrix, solutions) {
+    .Call(`_ppr_rcpp_funded_projects`, pa_matrix, solutions)
+}
+
 rcpp_heuristic_solution <- function(costs, pa_matrix, pf_matrix, branch_matrix, branch_lengths, targets, weights, budget, locked_in, locked_out, number_solutions, verbose, obj_name) {
     .Call(`_ppr_rcpp_heuristic_solution`, costs, pa_matrix, pf_matrix, branch_matrix, branch_lengths, targets, weights, budget, locked_in, locked_out, number_solutions, verbose, obj_name)
 }

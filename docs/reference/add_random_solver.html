@@ -66,7 +66,7 @@ the effectiveness of solutions." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.8</span>
       </span>
     </div>
 
@@ -211,7 +211,7 @@ optimization problems?</p></td>
 <span class='no'>s1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p1</span>)
 
 <span class='co'># print solutions</span>
-<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s1</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 100 x 15</span><span>
+<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s1</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 100 x 21</span><span>
 #&gt;    solution status   obj  cost F1_action F2_action F3_action F4_action F5_action
 #&gt;       </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #BCBCBC;'> 1</span><span>        1 </span><span style='color: #BB0000;'>NA</span><span>      1.50  99.2         0         0         0         1         0
@@ -224,8 +224,10 @@ optimization problems?</p></td>
 #&gt; </span><span style='color: #BCBCBC;'> 8</span><span>        8 </span><span style='color: #BB0000;'>NA</span><span>      1.68 101.          0         1         0         0         0
 #&gt; </span><span style='color: #BCBCBC;'> 9</span><span>        9 </span><span style='color: #BB0000;'>NA</span><span>      1.91 199.          0         0         0         1         1
 #&gt; </span><span style='color: #BCBCBC;'>10</span><span>       10 </span><span style='color: #BB0000;'>NA</span><span>      1.99 194.          1         0         0         0         1
-#&gt; </span><span style='color: #949494;'># ... with 90 more rows, and 6 more variables: baseline_action </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F1 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
-#&gt; #   F2 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F3 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F4 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F5 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
+#&gt; </span><span style='color: #949494;'># ... with 90 more rows, and 12 more variables: baseline_action </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
+#&gt; #   F1_project </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F2_project </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F3_project </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F4_project </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
+#&gt; #   F5_project </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, baseline_project </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F1 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F2 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F3 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
+#&gt; #   F4 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F5 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># plot first random solution</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>p1</span>, <span class='no'>s1</span>)</div><div class='img'><img src='add_random_solver-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># plot histogram of the objective values for the random solutions</span>

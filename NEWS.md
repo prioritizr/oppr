@@ -1,3 +1,11 @@
+# ppr 0.0.0.8
+
+- Fix typos in documentation (#8).
+- The `solution_statistics` function outputs which projects are completely
+  funded in each solution (#9).
+- Add example for saving tabular data to vignette (#10).
+- Add examples to vignette for working with the solution output (#11).
+
 # ppr 0.0.0.7
 
 - Fix annoying "`Found more than one class "tbl_df" in cache; using the first, from namespace 'tibble'`" text.

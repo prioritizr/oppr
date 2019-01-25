@@ -1,10 +1,10 @@
 Package: ppr
 Type: Package
-Version: 0.0.0.7
+Version: 0.0.0.8
 Title: Project Prioritization
 Description: A decision support tool for prioritizing conservation projects.
     Prioritizations can be developed by maximizing expected feature richness,
-    expected phylogenetic diversity, the number of feature that meet
+    expected phylogenetic diversity, the number of features that meet
     persistence targets, or identifying a set of projects that meet persistence
     targets for minimal cost. Constraints (e.g. lock in specific actions) and
     feature weights can also be specified to further customize prioritizations.
@@ -47,8 +47,9 @@ Suggests:
     ggtree (>= 1.8.2),
     Rsymphony (>= 0.1.28),
     lpsymphony (>= 1.10.0),
-    shiny(>= 1.2.0),
-    rhandsontable (>= 0.3.7)
+    shiny (>= 1.2.0),
+    rhandsontable (>= 0.3.7),
+    tidyr (>= 0.8.2)
 Depends:
     R(>= 3.4.0)
 LinkingTo:

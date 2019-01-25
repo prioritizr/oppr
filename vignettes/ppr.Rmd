@@ -77,7 +77,7 @@ devtools::load_all()
 
 # Overview
 
-The _ppr R_ package is decision support tool for prioritizing conservation projects. Prioritizations can be developed by maximizing expected feature richness, expected phylogenetic diversity, the number of feature that meet persistence targets, or identifying a set of projects that meet persistence targets for minimal cost. Constraints (e.g. lock in specific actions) and feature weights can also be specified to further customize prioritizations. After defining a project prioritization problem, solutions can be obtained using exact algorithms, heuristic algorithms, or random processes. In particular, it is recommended to install the ['Gurobi' optimizer](https://www.gurobi.com) because it can identify optimal solutions very quickly. Finally, methods are provided for comparing different prioritizations and evaluating their benefits.
+The _ppr R_ package is decision support tool for prioritizing conservation projects. Prioritizations can be developed by maximizing expected feature richness, expected phylogenetic diversity, the number of features that meet persistence targets, or identifying a set of projects that meet persistence targets for minimal cost. Constraints (e.g. lock in specific actions) and feature weights can also be specified to further customize prioritizations. After defining a project prioritization problem, solutions can be obtained using exact algorithms, heuristic algorithms, or random processes. In particular, it is recommended to install the ['Gurobi' optimizer](https://www.gurobi.com) because it can identify optimal solutions very quickly. Finally, methods are provided for comparing different prioritizations and evaluating their benefits.
 
 # Tutorial
 
@@ -87,7 +87,7 @@ Here we will provide a short tutorial showing how the _ppr R_ package can be use
 
 Briefly, biodiversity features are the biological entities that we wish would persist into the future (e.g. threatened populations, native species, eco-systems). These _biodiversity features_ can (and ideally should) include non-threatened species, but should not include threatening processes that we wish to eradicate (e.g. populations of invasive species). _Management actions_ are acts that can be undertaken to enhance biodiversity (e.g. planting native species, reintroducing native species, trapping pest species). Each action should pertain to a specific location (e.g. a national park) or area (e.g. an entire country), and should be associated with a cost estimate. To guide the prioritization, the management actions are grouped into _conservation projects_ (also termed "strategies"). Typically, management actions are grouped into conservation projects based on spatial (e.g. management actions that pertain to the same area), taxonomic (e.g. management actions that pertain to the same pest species or threatened species), or thematic criteria (e.g. management actions that pertain to pest eradication are grouped into a "pest project", and actions that pertain to habitat restoration are grouped into a "habitat project"). Additionally, some conservation projects can be combinations of other projects (e.g. a "pest and habitat project"). Each conservation project should be associated with (i) a probability of succeeding if it is implemented (also termed "feasibility"), (ii) information about which management actions are associated with it, and (iii) an estimate of how likely each conservation feature affected by the project is to persist into the future if the project is implemented (often derived using expert elicitation). The conservation projects should also include a "baseline project" that represents a "do nothing scenario" which has a 100% chance of succeeding and is associated with an action that costs nothing to implement. For more background information on project prioritization, please refer to Carwardine _et al._ [-@r18].
 
-To start off, we will initialize the random number generator to ensure reproducibility. Next, we will load the _ppr R_ package. And then we will load _ggplot2_ and _tibble R_ packages to help with data for visualizations and wrangling.
+To start off, we will initialize the random number generator to ensure reproducibility. Next, we will load the _ppr R_ package. And then we will load the _ggplot2_, _tibble_, and _tidyr R_ packages to help with data for visualizations and wrangling.
 
 ```{r}
 # set random number generated seed
@@ -98,6 +98,8 @@ library(ppr)
 library(ggplot2)
 # load tibble package for working with tabular data
 library(tibble)
+# load tidyr package for reshaping tabular data
+library(tidyr)
 ```
 
 ## Data simulation
@@ -150,9 +152,33 @@ s1 <- solve(p1)
 print(s1)
 ```
 
-The `s1` table contains the solution (i.e. a prioritization) and also various statistics associated with the solution. Here, each row corresponds to a different solution. By default only one solution will be returned, and so the table has one row. The `"solution"` column contains an integer identifier for the solution (this is when multiple solutions are output), the `"obj"` column contains the objective value (i.e. the expected feature richness in this case), the `"cost"` column stores the cost of the solution, and the `"status"` column contains information from the solver about the solution (i.e. it found an optimal solution). Additionally, it contains columns for each action (`"action_1"`, `"action_2"`, `"action_3"`, ..., `"baseline_action"`) which indicate their status in the solution. In other words, these columns tell us if each action was prioritized for funding in the solution (i.e. a value of one) or not (i.e. a value of zero). Furthermore, this table contains columns for each feature (`"F1`, `"F2"`, `"F3`, ...) which indicate the probability that each feature is expected to persist into the future if the solution was implemented.
+The `s1` table contains the solution (i.e. a prioritization) and also various statistics associated with the solution. Here, each row corresponds to a different solution. By default only one solution will be returned, and so the table has one row. The `"solution"` column contains an integer identifier for the solution (this is when multiple solutions are output), the `"obj"` column contains the objective value (i.e. the expected feature richness in this case), the `"cost"` column stores the cost of the solution, and the `"status"` column contains information from the solver about the solution (i.e. it found an optimal solution). Additionally, it contains columns for each action (`"action_1"`, `"action_2"`, `"action_3"`, ..., `"baseline_action"`) which indicate their status in the solution. In other words, these columns tell us if each action was prioritized for funding in the solution (i.e. a value of one) or not (i.e. a value of zero). Additionally, it contains columns for each project (`"project_1"`, `"project_2"`, `"project_3"`, ..., `"baseline_project"`) that indicate if the project was completely funded or not. Finally, this table contains columns for each feature (`"F1`, `"F2"`, `"F3`, ...) which indicate the probability that each feature is expected to persist into the future if the solution was implemented.
 
-Since tabular data can be difficult to understand, let's create a bar plot to visualize how well this solution would conserve the features. In this plot, each bar corresponds to a different feature, the width of each bar corresponds to its expected probability of persistence, the color of each bar corresponds to the feature's weight (since we didn't specify any weights, all bars are the same color). Asterisks denote features that benefit from fully funded projects, and open circles (if any) denote features that do not benefit from fully funded projects but may indirectly benefit from partially funded projects.
+Since the text printed to the screen doesn't show which projects were completely funded, let's extract this information from the table.
+
+```{r}
+# extract names of funded projects
+s1_projects <- s1[, c("solution", p1$project_names())] %>%
+               gather(project, status, -solution)
+
+# print project results
+print(s1_projects)
+
+# print names of completely funded projects
+s1_projects$project[s1_projects$status > 0]
+```
+
+We could also save the solution table to our computer (e.g. so we could view it in a spreadheeting program, such as Microsoft Excel).
+
+```{r, eval = FALSE}
+# print folder where the file will be saved
+cat(getwd(), "\n")
+
+# save table to file
+write.table(s1, "results.csv" , sep = ",", row.names = FALSE)
+```
+
+Since visualizations are an effective way to understand data, let's create a bar plot to visualize how well this solution would conserve the features. In this plot, each bar corresponds to a different feature, the width of each bar corresponds to its expected probability of persistence, the color of each bar corresponds to the feature's weight (since we didn't specify any weights, all bars are the same color). Asterisks denote features that benefit from fully funded projects, and open circles (if any) denote features that do not benefit from fully funded projects but may indirectly benefit from partially funded projects.
 
 ```{r, fig.height = 5.5, fig.width = 4.5}
 # plot solution

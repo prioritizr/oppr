@@ -14,7 +14,7 @@ NULL
 #'   The \pkg{ppr} \emph{R} package a decision support tool for prioritizing
 #'   conservation projects. Prioritizations can be developed by maximizing
 #'   expected feature richness, expected
-#'   phylogenetic diversity, the number of feature that meet persistence
+#'   phylogenetic diversity, the number of features that meet persistence
 #'   targets, or identifying a set of projects that meet persistence targets
 #'   for minimal cost. Constraints (e.g. lock in
 #'   specific actions) and feature weights can also be specified to further

@@ -28,6 +28,10 @@ NULL
 #'     This is calculated using the objective function defined for the
 #'     argument to \code{x}.}
 #'
+#'   \item{\code{x$project_names()}}{\code{numeric} column for each
+#'     project indicating if it was completely funded (with a value of 1)
+#'     or not (with a value of 0).}
+#'
 #'   \item{\code{x$feature_names()}}{\code{numeric} column for each
 #'     feature indicating the probability that it will persist into
 #'     the future given each solution.}
@@ -92,6 +96,12 @@ solution_statistics <- function(x, solution) {
                           ncol = x$number_of_actions(),
                           nrow = nrow(solution))),
     obj = x$objective$evaluate(x, solution[, x$action_names()]))
+  # add in columns indicating if each project is funded or not
+  out <- tibble::as_tibble(cbind(out, stats::setNames(as.data.frame(
+    rcpp_funded_projects(
+      x$pa_matrix(),
+      methods::as(as.matrix(solution[, x$action_names()]), "dgCMatrix"))),
+    x$project_names())))
   # add in columns for feature persistences
   out <- tibble::as_tibble(cbind(out, stats::setNames(as.data.frame(
     rcpp_expected_persistences(

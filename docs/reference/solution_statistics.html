@@ -64,7 +64,7 @@ problem." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.8</span>
       </span>
     </div>
 
@@ -152,6 +152,10 @@ contain additional columns, and they will be ignored.</p></td>
     This is calculated using the objective function defined for the
     argument to <code>x</code>.</p></dd>
 
+  <dt><code>x$project_names()</code></dt><dd><p><code>numeric</code> column for each
+    project indicating if it was completely funded (with a value of 1)
+    or not (with a value of 0).</p></dd>
+
   <dt><code>x$feature_names()</code></dt><dd><p><code>numeric</code> column for each
     feature indicating the probability that it will persist into
     the future given each solution.</p></dd>
@@ -236,12 +240,14 @@ contain additional columns, and they will be ignored.</p></td>
 #&gt; 2         1         1         1         1         1               1
 #&gt; 3         1         0         1         0         1               1</div><div class='input'>
 <span class='co'># calculate statistics</span>
-<span class='fu'>solution_statistics</span>(<span class='no'>p</span>, <span class='no'>solutions</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 3 x 7</span><span>
-#&gt;    cost   obj    F1    F2     F3    F4    F5
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>    0  0.581 0.298 0.250 0.086</span><span style='text-decoration: underline;'>5</span><span> 0.249 0.182
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span>  498. 1.83  0.808 0.865 0.467  0.688 0.592
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span>  298. 1.43  0.808 0.250 0.467  0.249 0.592</div></span></pre>
+<span class='fu'>solution_statistics</span>(<span class='no'>p</span>, <span class='no'>solutions</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 3 x 13</span><span>
+#&gt;    cost   obj F1_project F2_project F3_project F4_project F5_project
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>    0  0.581          0          0          0          0          0
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span>  498. 1.83           1          1          1          1          1
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span>  298. 1.43           1          0          1          0          1
+#&gt; </span><span style='color: #949494;'># ... with 6 more variables: baseline_project </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F1 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F2 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
+#&gt; #   F3 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F4 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F5 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

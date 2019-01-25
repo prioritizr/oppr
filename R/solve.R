@@ -42,6 +42,10 @@ NULL
 #'   \item{\code{x$action_names()}}{\code{numeric} column for each action
 #'     indicating if they were funded in each solution or not.}
 #'
+#'   \item{\code{x$project_names()}}{\code{numeric} column for each
+#'     project indicating if it was completely funded (with a value of 1)
+#'     or not (with a value of 0).}
+#'
 #'   \item{\code{x$feature_names()}}{\code{numeric} column for each
 #'     feature indicating the probability that it will persist into
 #'     the future given each solution.}
@@ -163,7 +167,7 @@ methods::setMethod(
     out <- tibble::as.tibble(cbind(out, solution_statistics(a, s)))
     ### reorder columns
     out <- out[, c("solution", "status", "obj", "cost", a$action_names(),
-                   a$feature_names())]
+                   a$project_names(), a$feature_names())]
     # return result
     out
   }

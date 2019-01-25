@@ -30,6 +30,10 @@ A \code{\link[tibble]{tibble}} table containing the following
     This is calculated using the objective function defined for the
     argument to \code{x}.}
 
+  \item{\code{x$project_names()}}{\code{numeric} column for each
+    project indicating if it was completely funded (with a value of 1)
+    or not (with a value of 0).}
+
   \item{\code{x$feature_names()}}{\code{numeric} column for each
     feature indicating the probability that it will persist into
     the future given each solution.}

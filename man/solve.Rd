@@ -44,6 +44,10 @@ The type of object returned from this function depends on the
   \item{\code{x$action_names()}}{\code{numeric} column for each action
     indicating if they were funded in each solution or not.}
 
+  \item{\code{x$project_names()}}{\code{numeric} column for each
+    project indicating if it was completely funded (with a value of 1)
+    or not (with a value of 0).}
+
   \item{\code{x$feature_names()}}{\code{numeric} column for each
     feature indicating the probability that it will persist into
     the future given each solution.}
