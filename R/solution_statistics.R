@@ -38,7 +38,8 @@ NULL
 #'
 #'   }
 #'
-#' @seealso \code{\link{objectives}}.
+#' @seealso \code{\link{objectives}}, \code{\link{replacement_costs}},
+#'   \code{\link{project_cost_effectiveness}}.
 #'
 #' @examples
 #' # load data

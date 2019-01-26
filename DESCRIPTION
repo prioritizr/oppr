@@ -1,6 +1,6 @@
 Package: ppr
 Type: Package
-Version: 0.0.0.8
+Version: 0.0.0.9
 Title: Project Prioritization
 Description: A decision support tool for prioritizing conservation projects.
     Prioritizations can be developed by maximizing expected feature richness,
@@ -129,6 +129,7 @@ Collate:
     'predefined_optimization_problem.R'
     'print.R'
     'problem.R'
+    'project_cost_effectiveness.R'
     'project_names.R'
     'rake_phylogeny.R'
     'replacement_costs.R'

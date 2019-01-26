@@ -35,6 +35,7 @@ reference:
       - starts_with("plot")
       - solution_statistics
       - replacement_costs
+      - project_cost_effectiveness
   - title: Objectives
     desc: Functions for adding an objective to a problem
     contents:

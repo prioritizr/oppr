@@ -168,14 +168,35 @@ print(s1_projects)
 s1_projects$project[s1_projects$status > 0]
 ```
 
-We could also save the solution table to our computer (e.g. so we could view it in a spreadheeting program, such as Microsoft Excel).
+We could also calculate cost-effectiveness measures for each of the conservation projects.
+
+```{r}
+# calculate cost-effectiveness of each project
+p1_pce <- project_cost_effectiveness(p1)
+
+# print output
+print(p1_pce)
+```
+
+The `p1_pce` table contains the cost-effectiveness of each project. Specifically, the `"project"` column contains the name of each project. The `"cost"` column contains the total cost of all the management actions associated with the project. The `"obj"` column contains the objective value associated with a solution that contains all of the management actions for each project, and also the actions associated with a zero cost. The `"benefit"` column contains the difference between (i) the objective value associated with each project and also any zero cost actions (as per the `"obj"` column), and (ii) the objective value associated with the baseline project. The `"ce"` column contains the cost-effectiveness of each project. For a given project, this is calculated by dividing its benefit by its cost (as per the `"benefit"` and `"cost"` columns). The `"rank"` column contains the rank for each project, with the most cost-effective project having a rank of one.
+
+By combining the project cost-effectiveness table with the project funding table, we can see that many of the projects selected for funding are not actually the most cost-effective projects. This is because simply selecting the most cost-effective projects might double up on the same features and reduce the overall effectiveness of the solution [see @r5 for more information].
+
+```{r}
+# print the ranks of the priority projects
+p1_pce$rank[s1_projects$status > 0]
+```
+
+We could also save these table to our computer (e.g. so we could view them in a spreadsheet program, such as Microsoft Excel).
 
 ```{r, eval = FALSE}
 # print folder where the file will be saved
 cat(getwd(), "\n")
 
 # save table to file
-write.table(s1, "results.csv" , sep = ",", row.names = FALSE)
+write.table(s1, "solutions.csv" , sep = ",", row.names = FALSE)
+write.table(s1_projects, "project_statuses.csv" , sep = ",", row.names = FALSE)
+write.table(p1_pce, "project_ce.csv" , sep = ",", row.names = FALSE)
 ```
 
 Since visualizations are an effective way to understand data, let's create a bar plot to visualize how well this solution would conserve the features. In this plot, each bar corresponds to a different feature, the width of each bar corresponds to its expected probability of persistence, the color of each bar corresponds to the feature's weight (since we didn't specify any weights, all bars are the same color). Asterisks denote features that benefit from fully funded projects, and open circles (if any) denote features that do not benefit from fully funded projects but may indirectly benefit from partially funded projects.

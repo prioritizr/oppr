@@ -85,5 +85,6 @@ print(solutions)
 solution_statistics(p, solutions)
 }
 \seealso{
-\code{\link{objectives}}.
+\code{\link{objectives}}, \code{\link{replacement_costs}},
+  \code{\link{project_cost_effectiveness}}.
 }

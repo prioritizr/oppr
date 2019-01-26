@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9</span>
       </span>
     </div>
 
@@ -294,16 +294,49 @@ s1_projects<span class="op">$</span>project[s1_projects<span class="op">$</span>
 </span><span style="color: #555555;">#</span><span> [4] "project_40"       "baseline_project"
 </span></code></pre>
 </div>
-<p>We could also save the solution table to our computer (e.g. so we could view it in a spreadheeting program, such as Microsoft Excel).</p>
+<p>We could also calculate cost-effectiveness measures for each of the conservation projects.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># calculate cost-effectiveness of each project</span>
+p1_pce &lt;-<span class="st"> </span><span class="kw"><a href="../reference/project_cost_effectiveness.html">project_cost_effectiveness</a></span>(p1)
+
+<span class="co"># print output</span>
+<span class="kw"><a href="../reference/print.html">print</a></span>(p1_pce)</code></pre></div>
+<div class="sourceCode">
+<pre class="sourceCode"><code class="sourceCode"><span style="color: #555555;">#</span><span> </span><span style="color: #555555;"># A tibble: 71 x 6</span><span>
+</span><span style="color: #555555;">#</span><span>    </span><span style="font-weight: bold;">project</span><span>     </span><span style="font-weight: bold;">cost</span><span>   </span><span style="font-weight: bold;">obj</span><span> </span><span style="font-weight: bold;">benefit</span><span>      </span><span style="font-weight: bold;">ce</span><span>  </span><span style="font-weight: bold;">rank</span><span>
+</span><span style="color: #555555;">#</span><span>    </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>      </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span>   </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span>   </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span>
+</span><span style="color: #555555;">#</span><span> </span><span style="color: #555555;"> 1</span><span> project_1  </span><span style="text-decoration: underline;">1</span><span>691.  25.2   16.7  0.009</span><span style="text-decoration: underline;">85</span><span>    41
+</span><span style="color: #555555;">#</span><span> </span><span style="color: #555555;"> 2</span><span> project_2  </span><span style="text-decoration: underline;">2</span><span>277.  28.8   20.3  0.008</span><span style="text-decoration: underline;">91</span><span>    60
+</span><span style="color: #555555;">#</span><span> </span><span style="color: #555555;"> 3</span><span> project_3   391.  23.0   14.5  0.037</span><span style="text-decoration: underline;">1</span><span>      4
+</span><span style="color: #555555;">#</span><span> </span><span style="color: #555555;"> 4</span><span> project_4   289.  14.3    5.86 0.020</span><span style="text-decoration: underline;">3</span><span>     13
+</span><span style="color: #555555;">#</span><span> </span><span style="color: #555555;"> 5</span><span> project_5  </span><span style="text-decoration: underline;">1</span><span>804.  26.5   18.0  0.009</span><span style="text-decoration: underline;">97</span><span>    40
+</span><span style="color: #555555;">#</span><span> </span><span style="color: #555555;"> 6</span><span> project_6  </span><span style="text-decoration: underline;">2</span><span>668.  33.8   25.3  0.009</span><span style="text-decoration: underline;">48</span><span>    47
+</span><span style="color: #555555;">#</span><span> </span><span style="color: #555555;"> 7</span><span> project_7  </span><span style="text-decoration: underline;">2</span><span>190.  28.6   20.2  0.009</span><span style="text-decoration: underline;">21</span><span>    54
+</span><span style="color: #555555;">#</span><span> </span><span style="color: #555555;"> 8</span><span> project_8  </span><span style="text-decoration: underline;">1</span><span>963.  28.3   19.8  0.010</span><span style="text-decoration: underline;">1</span><span>     38
+</span><span style="color: #555555;">#</span><span> </span><span style="color: #555555;"> 9</span><span> project_9  </span><span style="text-decoration: underline;">1</span><span>300.  28.6   20.2  0.015</span><span style="text-decoration: underline;">5</span><span>     21
+</span><span style="color: #555555;">#</span><span> </span><span style="color: #555555;">10</span><span> project_10  770.  26.2   17.7  0.023</span><span style="text-decoration: underline;">0</span><span>     11
+</span><span style="color: #555555;">#</span><span> </span><span style="color: #555555;"># <e2>&lt;80&gt;<a6> with 61 more rows</a6></e2></span><span>
+</span></code></pre>
+</div>
+<p>The <code>p1_pce</code> table contains the cost-effectiveness of each project. Specifically, the <code>"project"</code> column contains the name of each project. The <code>"cost"</code> column contains the total cost of all the management actions associated with the project. The <code>"obj"</code> column contains the objective value associated with a solution that contains all of the management actions for each project, and also the actions associated with a zero cost. The <code>"benefit"</code> column contains the difference between (i) the objective value associated with each project and also any zero cost actions (as per the <code>"obj"</code> column), and (ii) the objective value associated with the baseline project. The <code>"ce"</code> column contains the cost-effectiveness of each project. For a given project, this is calculated by dividing its benefit by its cost (as per the <code>"benefit"</code> and <code>"cost"</code> columns). The <code>"rank"</code> column contains the rank for each project, with the most cost-effective project having a rank of one.</p>
+<p>By combining the project cost-effectiveness table with the project funding table, we can see that many of the projects selected for funding are not actually the most cost-effective projects. This is because simply selecting the most cost-effective projects might double up on the same features and reduce the overall effectiveness of the solution <span class="citation">(see Chadés <em>et al.</em> 2015 for more information)</span>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># print the ranks of the priority projects</span>
+p1_pce<span class="op">$</span>rank[s1_projects<span class="op">$</span>status <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>]</code></pre></div>
+<div class="sourceCode">
+<pre class="sourceCode"><code class="sourceCode"><span style="color: #555555;">#</span><span> [1] 10  2  1  3 71
+</span></code></pre>
+</div>
+<p>We could also save these table to our computer (e.g. so we could view them in a spreadsheet program, such as Microsoft Excel).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># print folder where the file will be saved</span>
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cat">cat</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/getwd">getwd</a></span>(), <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)
 
 <span class="co"># save table to file</span>
-<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/write.table">write.table</a></span>(s1, <span class="st">"results.csv"</span> , <span class="dt">sep =</span> <span class="st">","</span>, <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/write.table">write.table</a></span>(s1, <span class="st">"solutions.csv"</span> , <span class="dt">sep =</span> <span class="st">","</span>, <span class="dt">row.names =</span> <span class="ot">FALSE</span>)
+<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/write.table">write.table</a></span>(s1_projects, <span class="st">"project_statuses.csv"</span> , <span class="dt">sep =</span> <span class="st">","</span>, <span class="dt">row.names =</span> <span class="ot">FALSE</span>)
+<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/write.table">write.table</a></span>(p1_pce, <span class="st">"project_ce.csv"</span> , <span class="dt">sep =</span> <span class="st">","</span>, <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</code></pre></div>
 <p>Since visualizations are an effective way to understand data, let’s create a bar plot to visualize how well this solution would conserve the features. In this plot, each bar corresponds to a different feature, the width of each bar corresponds to its expected probability of persistence, the color of each bar corresponds to the feature’s weight (since we didn’t specify any weights, all bars are the same color). Asterisks denote features that benefit from fully funded projects, and open circles (if any) denote features that do not benefit from fully funded projects but may indirectly benefit from partially funded projects.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plot solution</span>
 <span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(p1, s1)</code></pre></div>
-<p><img src="ppr_files/figure-html/unnamed-chunk-10-1.png" width="432" style="display: block; margin: auto;"></p>
+<p><img src="ppr_files/figure-html/unnamed-chunk-12-1.png" width="432" style="display: block; margin: auto;"></p>
 <p>Overall, we can see that most species have a fairly decent chance at persisting into the future (approx. 79%). But when making this prioritization, we assumed that we valued the persistence of each feature equally. It is often important to account for the fact that certain features are valued more highly than other features when making prioritizations (e.g. for cultural or taxonomic reasons). The <code>features</code> table that we created earlier contains a <code>"weight"</code> column, and features with larger values mean that they are more important. Let’s quickly visualize the feature weight values.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># print features table</span>
 <span class="kw"><a href="../reference/print.html">print</a></span>(features)</code></pre></div>
@@ -331,7 +364,7 @@ s1_projects<span class="op">$</span>project[s1_projects<span class="op">$</span>
 <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span>(<span class="dt">labels =</span> scales<span class="op">::</span>comma) <span class="op">+</span>
 <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span>(<span class="st">"Feature weight"</span>) <span class="op">+</span>
 <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span>(<span class="st">"Frequency"</span>)</code></pre></div>
-<p><img src="ppr_files/figure-html/unnamed-chunk-12-1.png" width="528" style="display: block; margin: auto;"></p>
+<p><img src="ppr_files/figure-html/unnamed-chunk-14-1.png" width="528" style="display: block; margin: auto;"></p>
 <p>We can see that most features have a low weighting (less than 1’000), but a few features have very high weightings (greater than 500’000). Let’s make a new problem based on the original problem, add the feature weights to the new problem, and then solve this new problem.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># build on existing problem and add feature weights</span>
 p2 &lt;-<span class="st"> </span>p1 <span class="op">%&gt;%</span>
@@ -398,7 +431,7 @@ s2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/solve.ht
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plot solution</span>
 <span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(p2, s2)</code></pre></div>
-<p><img src="ppr_files/figure-html/unnamed-chunk-17-1.png" width="432" style="display: block; margin: auto;"></p>
+<p><img src="ppr_files/figure-html/unnamed-chunk-19-1.png" width="432" style="display: block; margin: auto;"></p>
 <p>We can also examine how adding feature weights changed our solution.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># print actions prioritized for funding in first solution</span>
 actions<span class="op">$</span>name[<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/which">which</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/logical">as.logical</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/matrix">as.matrix</a></span>(s1[, <span class="kw"><a href="../reference/action_names.html">action_names</a></span>(p1)])))]</code></pre></div>
@@ -495,7 +528,7 @@ s3 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/solve.ht
 <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span>(<span class="st">"Expected richness (objective function)"</span>) <span class="op">+</span>
 <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span>(<span class="st">"Frequency"</span>) <span class="op">+</span>
 <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">plot.margin =</span> <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/reexports.html">unit</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">5.5</span>, <span class="fl">10.5</span>, <span class="fl">5.5</span>, <span class="fl">5.5</span>), <span class="st">"pt"</span>))</code></pre></div>
-<p><img src="ppr_files/figure-html/unnamed-chunk-24-1.png" width="528" style="display: block; margin: auto;"></p>
+<p><img src="ppr_files/figure-html/unnamed-chunk-26-1.png" width="528" style="display: block; margin: auto;"></p>
 <p>We can see that some of our solutions performed much better than other solutions. And we can also see that there are several solutions that perform nearly as well as the optimal solution.</p>
 </div>
 <div id="assessing-action-importance" class="section level2">
@@ -601,7 +634,7 @@ actions<span class="op">$</span>sel_freq &lt;-<span class="st"> </span><span cla
 <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html">coord_cartesian</a></span>(<span class="dt">xlim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>, <span class="dv">100</span>)) <span class="op">+</span>
 <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span>(<span class="st">"Selection frequency (%)"</span>) <span class="op">+</span>
 <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span>(<span class="st">"Frequency"</span>)</code></pre></div>
-<p><img src="ppr_files/figure-html/unnamed-chunk-25-1.png" width="528" style="display: block; margin: auto;"></p>
+<p><img src="ppr_files/figure-html/unnamed-chunk-27-1.png" width="528" style="display: block; margin: auto;"></p>
 <p>Although selection frequency might seem like an appealing metric, it suffers from an assumption that is unrealistic for most large-scale problems. Specifically, it assumes that our portfolio of solutions is a representative sample of the near-optimal solutions to the problem. And we do not currently have any method to verify this, except by enumerating all possible solutions—which is not feasible for reasonably sized project prioritization exercises. So now we shall examine a superior metric termed the “replacement cost” <span class="citation">(Moilanen <em>et al.</em> 2009)</span>. Given a set of priority actions and a project prioritization problem, the replacement cost can be calculated for a given priority action by re-solving the problem with the priority action locked out, and calculating the difference between the objective value based on the priority actions and the new objective value with the priority action locked out. So let’s calculate the replacement cost for the priority actions in object <code>s2</code> using the problem <code>p2</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># print p2 to remind ourselves about the problem</span>
 <span class="kw"><a href="../reference/print.html">print</a></span>(p2)</code></pre></div>
@@ -731,7 +764,7 @@ actions<span class="op">$</span>rep_cost &lt;-<span class="st"> </span>r2<span c
 <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span>(<span class="dt">labels =</span> scales<span class="op">::</span>comma) <span class="op">+</span>
 <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span>(<span class="st">"Replacement cost"</span>) <span class="op">+</span>
 <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span>(<span class="st">"Frequency"</span>)</code></pre></div>
-<p><img src="ppr_files/figure-html/unnamed-chunk-27-1.png" width="528" style="display: block; margin: auto;"></p>
+<p><img src="ppr_files/figure-html/unnamed-chunk-29-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 <div id="complementarity-in-project-prioritizations" class="section level2">
 <h2 class="hasAnchor">
@@ -806,7 +839,7 @@ s4 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/solve.ht
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
 <span class="co"># plot solution</span>
 <span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(p4, s4)</code></pre></div>
-<p><img src="ppr_files/figure-html/unnamed-chunk-30-1.png" width="432" style="display: block; margin: auto;"></p>
+<p><img src="ppr_files/figure-html/unnamed-chunk-32-1.png" width="432" style="display: block; margin: auto;"></p>
 <p>But how would the number of features which meet the target change if we increased the budget? Or how would the number of features which meet the target change if we increased the target to 85%? These are common questions in project prioritization exercises <span class="citation">(e.g. Chadés <em>et al.</em> 2015; Di Fonzo <em>et al.</em> 2016; Martin <em>et al.</em> 2018)</span>. So, let’s try solving this problem with 70% and 85% targets under a range of different budgets and plot the relationships.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># specify budgets, ranging between zero and the total cost of all the budgets,</span>
 <span class="co"># with the total number of different budgets equaling 50</span>
@@ -841,7 +874,7 @@ comp_data &lt;-<span class="st"> </span><span class="kw"><a href="https://tibble
 <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span>(<span class="st">"Solution cost ($)"</span>) <span class="op">+</span>
 <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span>(<span class="st">"Number of features with targets"</span>) <span class="op">+</span>
 <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">color =</span> <span class="st">"Target"</span>)</code></pre></div>
-<p><img src="ppr_files/figure-html/unnamed-chunk-31-1.png" width="432" style="display: block; margin: auto;"></p>
+<p><img src="ppr_files/figure-html/unnamed-chunk-33-1.png" width="432" style="display: block; margin: auto;"></p>
 <p>We might also be interested in understanding how exactly how much it would cost to implement a set of management actions that would result in all of the features meeting a specific target. Let’s see if we can find out how much it would cost to ensure that every feature has a 99% probability of persistence.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># build problem</span>
 p5 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/problem.html">problem</a></span>(<span class="dt">projects =</span> projects, <span class="dt">actions =</span> actions, <span class="dt">features =</span> features,
@@ -877,9 +910,9 @@ s5 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/solve.ht
 </span><span style="color: #555555;">#</span><span>   Objective range  [9e+01, 1e+02]
 </span><span style="color: #555555;">#</span><span>   Bounds range     [1e+00, 1e+00]
 </span><span style="color: #555555;">#</span><span>   RHS range        [1e+00, 1e+00]
-</span><span style="color: #555555;">#</span><span> Presolve time: 0.00s
+</span><span style="color: #555555;">#</span><span> Presolve time: 0.01s
 </span><span style="color: #555555;">#</span><span> 
-</span><span style="color: #555555;">#</span><span> Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+</span><span style="color: #555555;">#</span><span> Explored 0 nodes (0 simplex iterations) in 0.01 seconds
 </span><span style="color: #555555;">#</span><span> Thread count was 1 (of 4 available processors)
 </span><span style="color: #555555;">#</span><span> 
 </span><span style="color: #555555;">#</span><span> Solution count 0
@@ -961,7 +994,7 @@ s6 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/solve.ht
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plot solution</span>
 <span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(p6, s6)</code></pre></div>
-<p><img src="ppr_files/figure-html/unnamed-chunk-38-1.png" width="432" style="display: block; margin: auto;"></p>
+<p><img src="ppr_files/figure-html/unnamed-chunk-40-1.png" width="432" style="display: block; margin: auto;"></p>
 </div>
 <div id="benchmarking-conventional-algorithms" class="section level2">
 <h2 class="hasAnchor">
@@ -1077,7 +1110,7 @@ s8 &lt;-<span class="st"> </span><span class="kw"><a href="https://tibble.tidyve
 <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span>(<span class="st">"Budget available ($)"</span>) <span class="op">+</span>
 <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span>(<span class="st">"Expected richness (objective function)"</span>) <span class="op">+</span>
 <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">axis.text.y =</span> <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">vjust =</span> <span class="dv">1</span>))</code></pre></div>
-<p><img src="ppr_files/figure-html/unnamed-chunk-41-1.png" width="432" style="display: block; margin: auto;"></p>
+<p><img src="ppr_files/figure-html/unnamed-chunk-43-1.png" width="432" style="display: block; margin: auto;"></p>
 <p>Here, we can see the that heuristic algorithm generally performs better than funding conservation projects using random processes, so you might think that this means that heuristic algorithms can perform pretty well on balance. But we can do better. Let’s generate a series of solutions using exact algorithms with various budgets.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># generate solutions</span>
 s9 &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/lapply">lapply</a></span>(budgets, <span class="cf">function</span>(b) {
@@ -1153,7 +1186,7 @@ s9<span class="op">$</span>budget &lt;-<span class="st"> </span>budgets
 <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span>(<span class="st">"Budget available ($)"</span>) <span class="op">+</span>
 <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span>(<span class="st">"Expected richness (objective function)"</span>) <span class="op">+</span>
 <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">axis.text.y =</span> <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="fl">0.5</span>, <span class="dt">vjust =</span> <span class="dv">1</span>))</code></pre></div>
-<p><img src="ppr_files/figure-html/unnamed-chunk-43-1.png" width="432" style="display: block; margin: auto;"></p>
+<p><img src="ppr_files/figure-html/unnamed-chunk-45-1.png" width="432" style="display: block; margin: auto;"></p>
 <p>So, we can see that the exact algorithm sover performs much better than heuristic algorithms—even if heuristic algorithms perform better than random on average.</p>
 </div>
 <div id="conclusion" class="section level2">
@@ -1167,7 +1200,7 @@ s9<span class="op">$</span>budget &lt;-<span class="st"> </span>budgets
 <h1 class="hasAnchor">
 <a href="#citation" class="anchor"></a>Citation</h1>
 <p>Please use the following citation to cite the <em>ppr R</em> package in publications:</p>
-<p>Hanson JO, Schuster R, Strimas-Mackey M, Bennett J, (2019). ppr: Project Prioritization. R package version 0.0.0.8. Available at <a href="https://github.com/prioritizr/ppr" class="uri">https://github.com/prioritizr/ppr</a>.</p>
+<p>Hanson JO, Schuster R, Strimas-Mackey M, Bennett J, (2019). ppr: Project Prioritization. R package version 0.0.0.9. Available at <a href="https://github.com/prioritizr/ppr" class="uri">https://github.com/prioritizr/ppr</a>.</p>
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1 class="hasAnchor">

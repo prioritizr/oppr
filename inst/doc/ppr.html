@@ -294,12 +294,45 @@ s1_projects<span class="op">$</span>project[s1_projects<span class="op">$</span>
 </span><span style="color: #555555;">#</span><span> [4] &quot;project_40&quot;       &quot;baseline_project&quot;
 </span></code></pre>
 </div>
-<p>We could also save the solution table to our computer (e.g. so we could view it in a spreadheeting program, such as Microsoft Excel).</p>
+<p>We could also calculate cost-effectiveness measures for each of the conservation projects.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># calculate cost-effectiveness of each project</span>
+p1_pce &lt;-<span class="st"> </span><span class="kw">project_cost_effectiveness</span>(p1)
+
+<span class="co"># print output</span>
+<span class="kw">print</span>(p1_pce)</code></pre></div>
+<div class="sourceCode">
+<pre class="sourceCode"><code class="sourceCode"><span style="color: #555555;">#</span><span> </span><span style="color: #555555;"># A tibble: 71 x 6</span><span>
+</span><span style="color: #555555;">#</span><span>    </span><span style="font-weight: bold;">project</span><span>     </span><span style="font-weight: bold;">cost</span><span>   </span><span style="font-weight: bold;">obj</span><span> </span><span style="font-weight: bold;">benefit</span><span>      </span><span style="font-weight: bold;">ce</span><span>  </span><span style="font-weight: bold;">rank</span><span>
+</span><span style="color: #555555;">#</span><span>    </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>      </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span>   </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span>   </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span>
+</span><span style="color: #555555;">#</span><span> </span><span style="color: #555555;"> 1</span><span> project_1  </span><span style="text-decoration: underline;">1</span><span>691.  25.2   16.7  0.009</span><span style="text-decoration: underline;">85</span><span>    41
+</span><span style="color: #555555;">#</span><span> </span><span style="color: #555555;"> 2</span><span> project_2  </span><span style="text-decoration: underline;">2</span><span>277.  28.8   20.3  0.008</span><span style="text-decoration: underline;">91</span><span>    60
+</span><span style="color: #555555;">#</span><span> </span><span style="color: #555555;"> 3</span><span> project_3   391.  23.0   14.5  0.037</span><span style="text-decoration: underline;">1</span><span>      4
+</span><span style="color: #555555;">#</span><span> </span><span style="color: #555555;"> 4</span><span> project_4   289.  14.3    5.86 0.020</span><span style="text-decoration: underline;">3</span><span>     13
+</span><span style="color: #555555;">#</span><span> </span><span style="color: #555555;"> 5</span><span> project_5  </span><span style="text-decoration: underline;">1</span><span>804.  26.5   18.0  0.009</span><span style="text-decoration: underline;">97</span><span>    40
+</span><span style="color: #555555;">#</span><span> </span><span style="color: #555555;"> 6</span><span> project_6  </span><span style="text-decoration: underline;">2</span><span>668.  33.8   25.3  0.009</span><span style="text-decoration: underline;">48</span><span>    47
+</span><span style="color: #555555;">#</span><span> </span><span style="color: #555555;"> 7</span><span> project_7  </span><span style="text-decoration: underline;">2</span><span>190.  28.6   20.2  0.009</span><span style="text-decoration: underline;">21</span><span>    54
+</span><span style="color: #555555;">#</span><span> </span><span style="color: #555555;"> 8</span><span> project_8  </span><span style="text-decoration: underline;">1</span><span>963.  28.3   19.8  0.010</span><span style="text-decoration: underline;">1</span><span>     38
+</span><span style="color: #555555;">#</span><span> </span><span style="color: #555555;"> 9</span><span> project_9  </span><span style="text-decoration: underline;">1</span><span>300.  28.6   20.2  0.015</span><span style="text-decoration: underline;">5</span><span>     21
+</span><span style="color: #555555;">#</span><span> </span><span style="color: #555555;">10</span><span> project_10  770.  26.2   17.7  0.023</span><span style="text-decoration: underline;">0</span><span>     11
+</span><span style="color: #555555;">#</span><span> </span><span style="color: #555555;"># <e2>&lt;80&gt;<a6> with 61 more rows</span><span>
+</span></code></pre>
+</div>
+<p>The <code>p1_pce</code> table contains the cost-effectiveness of each project. Specifically, the <code>&quot;project&quot;</code> column contains the name of each project. The <code>&quot;cost&quot;</code> column contains the total cost of all the management actions associated with the project. The <code>&quot;obj&quot;</code> column contains the objective value associated with a solution that contains all of the management actions for each project, and also the actions associated with a zero cost. The <code>&quot;benefit&quot;</code> column contains the difference between (i) the objective value associated with each project and also any zero cost actions (as per the <code>&quot;obj&quot;</code> column), and (ii) the objective value associated with the baseline project. The <code>&quot;ce&quot;</code> column contains the cost-effectiveness of each project. For a given project, this is calculated by dividing its benefit by its cost (as per the <code>&quot;benefit&quot;</code> and <code>&quot;cost&quot;</code> columns). The <code>&quot;rank&quot;</code> column contains the rank for each project, with the most cost-effective project having a rank of one.</p>
+<p>By combining the project cost-effectiveness table with the project funding table, we can see that many of the projects selected for funding are not actually the most cost-effective projects. This is because simply selecting the most cost-effective projects might double up on the same features and reduce the overall effectiveness of the solution <span class="citation">(see Chadés <em>et al.</em> 2015 for more information)</span>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># print the ranks of the priority projects</span>
+p1_pce<span class="op">$</span>rank[s1_projects<span class="op">$</span>status <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>]</code></pre></div>
+<div class="sourceCode">
+<pre class="sourceCode"><code class="sourceCode"><span style="color: #555555;">#</span><span> [1] 10  2  1  3 71
+</span></code></pre>
+</div>
+<p>We could also save these table to our computer (e.g. so we could view them in a spreadsheet program, such as Microsoft Excel).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># print folder where the file will be saved</span>
 <span class="kw">cat</span>(<span class="kw">getwd</span>(), <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)
 
 <span class="co"># save table to file</span>
-<span class="kw">write.table</span>(s1, <span class="st">&quot;results.csv&quot;</span> , <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<span class="kw">write.table</span>(s1, <span class="st">&quot;solutions.csv&quot;</span> , <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="dt">row.names =</span> <span class="ot">FALSE</span>)
+<span class="kw">write.table</span>(s1_projects, <span class="st">&quot;project_statuses.csv&quot;</span> , <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="dt">row.names =</span> <span class="ot">FALSE</span>)
+<span class="kw">write.table</span>(p1_pce, <span class="st">&quot;project_ce.csv&quot;</span> , <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</code></pre></div>
 <p>Since visualizations are an effective way to understand data, let’s create a bar plot to visualize how well this solution would conserve the features. In this plot, each bar corresponds to a different feature, the width of each bar corresponds to its expected probability of persistence, the color of each bar corresponds to the feature’s weight (since we didn’t specify any weights, all bars are the same color). Asterisks denote features that benefit from fully funded projects, and open circles (if any) denote features that do not benefit from fully funded projects but may indirectly benefit from partially funded projects.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plot solution</span>
 <span class="kw">plot</span>(p1, s1)</code></pre></div>
@@ -877,7 +910,7 @@ s5 &lt;-<span class="st"> </span><span class="kw">solve</span>(p5)</code></pre><
 </span><span style="color: #555555;">#</span><span>   RHS range        [1e+00, 1e+00]
 </span><span style="color: #555555;">#</span><span> Presolve time: 0.00s
 </span><span style="color: #555555;">#</span><span> 
-</span><span style="color: #555555;">#</span><span> Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+</span><span style="color: #555555;">#</span><span> Explored 0 nodes (0 simplex iterations) in 0.01 seconds
 </span><span style="color: #555555;">#</span><span> Thread count was 1 (of 4 available processors)
 </span><span style="color: #555555;">#</span><span> 
 </span><span style="color: #555555;">#</span><span> Solution count 0
@@ -1162,7 +1195,7 @@ s9<span class="op">$</span>budget &lt;-<span class="st"> </span>budgets
 <div id="citation" class="section level1">
 <h1>Citation</h1>
 <p>Please use the following citation to cite the <em>ppr R</em> package in publications:</p>
-<p>Hanson JO, Schuster R, Strimas-Mackey M, Bennett J, (2019). ppr: Project Prioritization. R package version 0.0.0.7. Available at <a href="https://github.com/prioritizr/ppr" class="uri">https://github.com/prioritizr/ppr</a>.</p>
+<p>Hanson JO, Schuster R, Strimas-Mackey M, Bennett J, (2019). ppr: Project Prioritization. R package version 0.0.0.9. Available at <a href="https://github.com/prioritizr/ppr" class="uri">https://github.com/prioritizr/ppr</a>.</p>
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1>References</h1>

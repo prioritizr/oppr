@@ -1,3 +1,8 @@
+# ppr 0.0.0.9
+
+- Add new `project_cost_effectiveness` function to calculate the
+  cost-effectiveness for each conservation project in a problem.
+
 # ppr 0.0.0.8
 
 - Fix typos in documentation (#8).

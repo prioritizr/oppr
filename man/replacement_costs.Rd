@@ -106,3 +106,7 @@ Moilanen A, Arponen A, Stokland JN & Cabeza M (2009) Assessing replacement
 cost of conservation areas: how does habitat loss influence priorities?
 \emph{Biological Conservation}, \strong{142}, 575--585.
 }
+\seealso{
+\code{\link{solution_statistics}},
+  \code{\link{project_cost_effectiveness}}.
+}

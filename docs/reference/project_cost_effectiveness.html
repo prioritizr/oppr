@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Solution statistics — solution_statistics • ppr</title>
+<title>Project cost effectiveness — project_cost_effectiveness • ppr</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,10 +30,11 @@
 
 
 
-<meta property="og:title" content="Solution statistics — solution_statistics" />
+<meta property="og:title" content="Project cost effectiveness — project_cost_effectiveness" />
 
-<meta property="og:description" content="Calculate statistics describing a solution to a project prioritization
-problem." />
+<meta property="og:description" content="Calculate the individual cost-effectiveness of each conservation project
+in a project prioritization problem
+(Joseph, Maloney &amp;amp; Possingham 2009)." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -106,19 +107,20 @@ problem." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Solution statistics</h1>
-    <small class="dont-index">Source: <a href='https://github.com/prioritizr/ppr/blob/master/R/solution_statistics.R'><code>R/solution_statistics.R</code></a></small>
-    <div class="hidden name"><code>solution_statistics.Rd</code></div>
+    <h1>Project cost effectiveness</h1>
+    <small class="dont-index">Source: <a href='https://github.com/prioritizr/ppr/blob/master/R/project_cost_effectiveness.R'><code>R/project_cost_effectiveness.R</code></a></small>
+    <div class="hidden name"><code>project_cost_effectiveness.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Calculate statistics describing a solution to a project prioritization
-<code><a href='problem.html'>problem</a></code>.</p>
+    <p>Calculate the individual cost-effectiveness of each conservation project
+in a project prioritization <code><a href='problem.html'>problem</a></code>
+(Joseph, Maloney &amp; Possingham 2009).</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>solution_statistics</span>(<span class='no'>x</span>, <span class='no'>solution</span>)</pre>
+    <pre class="usage"><span class='fu'>project_cost_effectiveness</span>(<span class='no'>x</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -126,17 +128,6 @@ problem." />
     <tr>
       <th>x</th>
       <td><p>project prioritization <code><a href='problem.html'>problem</a></code>.</p></td>
-    </tr>
-    <tr>
-      <th>solution</th>
-      <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></code> or
-<code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></code> table containing the solutions. Here,
-rows correspond to different solutions and columns correspond to
-different actions. Each column in the argument to <code>solution</code> should
-be named according to a different action in <code>x</code>.
-Cell values indicate if an action is funded in a given solution or not,
-and should be either zero or one. Arguments to <code>solution</code> can
-contain additional columns, and they will be ignored.</p></td>
     </tr>
     </table>
     
@@ -146,27 +137,45 @@ contain additional columns, and they will be ignored.</p></td>
   columns:</p>
 <p></p><dl class='dl-horizontal'>
 
-  <dt><code>"cost"</code></dt><dd><p><code>numeric</code> cost of each solution.</p></dd>
+  <dt><code>"project"</code></dt><dd><p><code>character</code> name of each project</p></dd>
 
-  <dt><code>"obj"</code></dt><dd><p><code>numeric</code> objective value for each solution.
-    This is calculated using the objective function defined for the
-    argument to <code>x</code>.</p></dd>
+  <dt><code>"cost"</code></dt><dd><p><code>numeric</code> cost of each project.</p></dd>
 
-  <dt><code>x$project_names()</code></dt><dd><p><code>numeric</code> column for each
-    project indicating if it was completely funded (with a value of 1)
-    or not (with a value of 0).</p></dd>
+  <dt><code>"benefit"</code></dt><dd><p><code>numeric</code> benefit for each project. For a
+    given project, this is calculated as the difference between (i) the
+    objective value for a solution containing all of the management actions
+    associated with the project and all zero cost actions, and (ii) the
+    objective value for a solution containing the baseline project.</p></dd>
 
-  <dt><code>x$feature_names()</code></dt><dd><p><code>numeric</code> column for each
-    feature indicating the probability that it will persist into
-    the future given each solution.</p></dd>
+  <dt><code>"ce"</code></dt><dd><p><code>numeric</code> cost-effectiveness of each project.
+    For a given project, this is calculated as the difference between the
+    the benefit for the project and the benefit for the baseline project,
+    divided by the cost of the project. Note that the baseline
+    project will have a <code>NaN</code> value because it has a zero cost.</p></dd>
+
+ <dt><code>"rank"</code></dt><dd><p><code>numeric</code> rank for each project according to
+   is cost-effectiveness value. The project with a rank of one is the
+   most cost-effective project. Ties are accommodated using averages.</p></dd>
 
   </dl>
 
     
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Note that project cost-effectiveness cannot be calculated for
+  problems with minimum set objectives because the objective function
+  for these problems is to minimize cost and not maximize some measure
+  of biodiversity persistence.</p>
+    
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>Joseph LN, Maloney RF &amp; Possingham HP (2009) Optimal allocation of
+resources among threatened species: A project prioritization protocol.
+<em>Conservation Biology</em>, <strong>23</strong>, 328--338.</p>
+    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='objectives.html'>objectives</a></code>, <code><a href='replacement_costs.html'>replacement_costs</a></code>,
-  <code><a href='project_cost_effectiveness.html'>project_cost_effectiveness</a></code>.</p></div>
+    <div class='dont-index'><p><code><a href='solution_statistics.html'>solution_statistics</a></code>, <code><a href='replacement_costs.html'>replacement_costs</a></code>.</p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -224,31 +233,21 @@ contain additional columns, and they will be ignored.</p></td>
 #&gt; <span class='message'>  decisions        Binary decision </span>
 #&gt; <span class='message'>  constraints:     &lt;none&gt;</span>
 #&gt; <span class='message'>  solver:          default</span></div><div class='input'>
-<span class='co'># create a table with some solutions</span>
-<span class='no'>solutions</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(<span class='kw'>F1_action</span> <span class='kw'>=</span>       <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>, <span class='fl'>1</span>),
-                        <span class='kw'>F2_action</span> <span class='kw'>=</span>       <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>, <span class='fl'>0</span>),
-                        <span class='kw'>F3_action</span> <span class='kw'>=</span>       <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>, <span class='fl'>1</span>),
-                        <span class='kw'>F4_action</span> <span class='kw'>=</span>       <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>, <span class='fl'>0</span>),
-                        <span class='kw'>F5_action</span> <span class='kw'>=</span>       <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>, <span class='fl'>1</span>),
-                        <span class='kw'>baseline_action</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>1</span>))
+<span class='co'># calculate cost-effectiveness of each project</span>
+<span class='no'>pce</span> <span class='kw'>&lt;-</span> <span class='fu'>project_cost_effectiveness</span>(<span class='no'>p</span>)
 
-<span class='co'># print the solutions</span>
-<span class='co'># the first solution only has the baseline action funded</span>
-<span class='co'># the second solution has every action funded</span>
-<span class='co'># the third solution has only some actions funded</span>
-<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>solutions</span>)</div><div class='output co'>#&gt;   F1_action F2_action F3_action F4_action F5_action baseline_action
-#&gt; 1         0         0         0         0         0               1
-#&gt; 2         1         1         1         1         1               1
-#&gt; 3         1         0         1         0         1               1</div><div class='input'>
-<span class='co'># calculate statistics</span>
-<span class='fu'>solution_statistics</span>(<span class='no'>p</span>, <span class='no'>solutions</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 3 x 13</span><span>
-#&gt;    cost   obj F1_project F2_project F3_project F4_project F5_project
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>    0  0.581          0          0          0          0          0
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span>  498. 1.83           1          1          1          1          1
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span>  298. 1.43           1          0          1          0          1
-#&gt; </span><span style='color: #949494;'># … with 6 more variables: baseline_project </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F1 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F2 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
-#&gt; #   F3 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F4 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F5 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span></div></span></pre>
+<span class='co'># print project costs, benefits, and cost-effectiveness values</span>
+<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>pce</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 6 x 6</span><span>
+#&gt;   project           cost   obj benefit         ce  rank
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> F1_project        94.4 0.689  0.108    0.001</span><span style='text-decoration: underline;'>14</span><span>      4
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> F2_project       101.  0.711  0.130    0.001</span><span style='text-decoration: underline;'>29</span><span>      3
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> F3_project       103.  0.665  0.084</span><span style='text-decoration: underline;'>1</span><span>   0.000</span><span style='text-decoration: underline;'>815</span><span>     5
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> F4_project        99.2 0.858  0.277    0.002</span><span style='text-decoration: underline;'>79</span><span>      2
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> F5_project        99.9 1.23   0.653    0.006</span><span style='text-decoration: underline;'>54</span><span>      1
+#&gt; </span><span style='color: #BCBCBC;'>6</span><span> baseline_project   0   0.581  0      </span><span style='color: #BB0000;'>NaN</span><span>            6</div><div class='input'>
+<span class='co'># plot histogram of cost-effectiveness values</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/hist'>hist</a></span>(<span class='no'>pce</span>$<span class='no'>ce</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"Cost effectiveness"</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>""</span>)</div><div class='img'><img src='project_cost_effectiveness-1.png' alt='' width='700' height='433' /></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -256,6 +255,10 @@ contain additional columns, and they will be ignored.</p></td>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
+
+      <li><a href="#references">References</a></li>
 
       <li><a href="#see-also">See also</a></li>
       
