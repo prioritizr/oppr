@@ -89,7 +89,7 @@ project_cost_effectiveness <- function(x) {
     msg = paste0("project cost effectiveness values cannot be (meaningfully) ",
                  "computed for minimum set problems."))
   # generate baseline- project solution
-  bpm <- matrix(round(x$action_costs() == 0), nrow = 1,
+  bpm <- matrix(x$action_costs() == 0, nrow = 1,
                 dimnames = list(NULL, x$action_names()))
   bp_obj <- x$objective$evaluate(x, tibble::as_tibble(bpm))
   # generate solutions for other projects
