@@ -24,11 +24,15 @@ test_that("maximum obj", {
        add_binary_decisions() %>%
        add_rsymphony_solver()
   s <- data.frame(A1 = 1, A2 = 0, A3 = 1, A4 = 1)
-  r <- replacement_costs(p, s)
   RPushbullet::pbPost(
     email = "jeff.o.hanson@gmail.com",
     title = "Max obj",
-    body = {f=tempfile();dput(r,f);paste0(readLines(f), collapse = ",")})
+    body = "starting max obj")
+  r <- replacement_costs(p, s)
+  RPushbullet::pbPost(
+    email = "jeff.o.hanson@gmail.com",
+    title = "Max obj result",
+    body = {f=tempfile();dput(r,f);paste0(readLines(f), collapse = " ")})
   # tests
   expect_is(r, "tbl_df")
   expect_equal(nrow(r), 4)
@@ -69,11 +73,15 @@ test_that("minimum obj", {
        add_binary_decisions() %>%
        add_rsymphony_solver()
   s <- data.frame(A1 = 1, A2 = 0, A3 = 1, A4 = 1)
-  r <- replacement_costs(p, s)
   RPushbullet::pbPost(
     email = "jeff.o.hanson@gmail.com",
     title = "Min obj",
-    body = {f=tempfile();dput(r,f);paste0(readLines(f), collapse = ",")})
+    body = "starting min obj")
+  r <- replacement_costs(p, s)
+  RPushbullet::pbPost(
+    email = "jeff.o.hanson@gmail.com",
+    title = "Min obj result",
+    body = {f=tempfile();dput(r,f);paste0(readLines(f), collapse = " ")})
   # tests
   expect_is(r, "tbl_df")
   expect_equal(nrow(r), 4)
