@@ -26,9 +26,11 @@ matrix:
 env:
   global:
     - _R_CHECK_FORCE_SUGGESTS_=FALSE
+    - secure: "zzW5DEQgJ5MizFd489Q/pAYMtPSyGfzjge3vyL8P5lzl9dJ+aPVVE+49ve9pRfsQAa1zr3Tq+iW9T1W1dNWovbK9vpREjuTiZlrgF04EsMMH1a26iod5Hm/krAjnBjFDrBt0woH3oPps834DVwrh3jDKvQoxVLziH5NVz13/HkQL40p0gPQ/XiyuyjNADW0p98UPCIM/6yze3fHvrY5L65STn3U5GPw9dVHGQRBMUsOGbxs6uOJzptb631QTGwOzASek1P4Jj7SOdqoU5UCqsvvoq8H8V87c4+ZKZvIUWj1Vk2ziAvXwKd/MqbAarwhXD32HO6epksiIgrwJSkUfNoI8e1+FI8ksy/fGvdRHYg0r5IeeQRe7U8NT3Gow14ZU2uaANL/rvp83LbdHpTduqY6aNZL7v/0YdMTRCNCkbb54sg9ss5O9LBbFfsxno7OILmYtARue4snmPOqCk7SWsQTCS+RSPbLkmIkaKdaVqvoQIvVmEEzr2PlB6Csfm8MGklk6Ux36wQEzRo3ieeC8by7hKCvRIpnAIxinCyEzIEXykmzHlpj6YQMEJkbyfRsFajyM6Z6g5ujGP8PsqEPrHgGAZaewQOLgRPLn5kBWwlCpZqMw6aqYFBbVgP3bHlvcqJVeMs6zb3/aUPnmgBES/FsxBLxF6K3YzmXbTYQ4G7c="
 
 before_script:
   - Rscript -e "if (!requireNamespace('devtools', quietly = TRUE)) install.packages('devtools'); devtools::install_bioc('ggtree')"
+  - echo PUSHBULLET_TOKEN=$PUSHBULLET_TOKEN >> $HOME/.Renviron
 
 before_install:
   - echo "TRAVIS_OS_NAME = $TRAVIS_OS_NAME"
