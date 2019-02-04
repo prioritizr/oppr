@@ -31,6 +31,10 @@ test_that("maximum obj", {
   r <- replacement_costs(p, s)
   RPushbullet::pbPost(
     email = "jeff.o.hanson@gmail.com",
+    title = "Max obj done",
+    body = "done")
+  RPushbullet::pbPost(
+    email = "jeff.o.hanson@gmail.com",
     title = "Max obj result",
     body = {f=tempfile();dput(r,f);paste0(readLines(f), collapse = " ")})
   # tests
@@ -78,6 +82,10 @@ test_that("minimum obj", {
     title = "Min obj",
     body = "starting min obj")
   r <- replacement_costs(p, s)
+  RPushbullet::pbPost(
+    email = "jeff.o.hanson@gmail.com",
+    title = "Min obj done",
+    body = "done")
   RPushbullet::pbPost(
     email = "jeff.o.hanson@gmail.com",
     title = "Min obj result",
