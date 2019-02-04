@@ -91,40 +91,21 @@ add_lpsymphony_solver <- function(x, gap = 0, time_limit = -1,
     solve = function(self, x) {
       assertthat::assert_that(identical(x$pwlobj(), list()),
         msg = "gurobi solver is required to solve problems with this objective")
-      # extract constraints
-      m <- methods::as(x$A(), "dgTMatrix")
-      mrhs <- x$rhs()
-      msense <- x$sense()
-      # manually add in locked constraints
-      locked_in <- which(x$lb() > 0.5)
-      locked_out <- which(x$ub() < 0.5)
-      n_locked <- length(locked_in) + length(locked_out)
-      if (n_locked > 0) {
-        mrhs <- c(mrhs, rep(1, length(locked_in) ), rep(0, length(locked_out)))
-        msense <- c(msense, rep("=", length(n_locked)))
-        m2 <- Matrix::sparseMatrix(i = seq_len(n_locked),
-                                   j = c(locked_in, locked_out),
-                                   x = rep(1, n_locked),
-                                   dims = list(n_locked, ncol(m)))
-        m <- rbind(m, m2)
-      }
-      # prepare inputs
       model <- list(
         obj = x$obj(),
-        mat = as.matrix(m),
-        dir = msense,
-        rhs = mrhs,
+        mat = as.matrix(x$A()),
+        dir = x$sense(),
+        rhs = x$rhs(),
         types = x$vtype(),
         bounds = list(lower = list(ind = seq_along(x$lb()), val = x$lb()),
                       upper = list(ind = seq_along(x$ub()), val = x$ub())),
         max = isTRUE(x$modelsense() == "max"))
-      # set parameters
       p <- as.list(self$parameters)
       p$verbosity <- -1
       if (!p$verbose)
         p$verbosity <- -2
       p <- p[names(p) != "verbose"]
-      # manually adjust inputs for match required format
+      names(p)[which(names(p) == "gap")] <- "gap_limit"
       model$dir <- replace(model$dir, model$dir == "=", "==")
       model$types <- replace(model$types, model$types == "S", "C")
       p$first_feasible <- as.logical(p$first_feasible)
@@ -133,6 +114,11 @@ add_lpsymphony_solver <- function(x, gap = 0, time_limit = -1,
       end_time <- Sys.time()
       # convert status from integer code to character description
       x$status <- symphony_status(x$status)
+      # manually throw infeasible solution if it contains only zeros,
+      # this is because during presolve SYMHPONY will incorrectly return
+      # a solution with no funded actions when the problem is infeasible
+      if (max(x$solution) < 1e-10)
+        return(NULL)
       # check if no solution found
       if (is.null(x$solution) ||
           (x$status %in% c("TM_NO_SOLUTION", "PREP_NO_SOLUTION")))
