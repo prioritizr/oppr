@@ -3,7 +3,6 @@ context("replacement costs")
 test_that("maximum obj", {
   skip_on_cran()
   skip_if_not(any_solvers_installed())
-  options(rpushbullet.key = Sys.getenv("PUSHBULLET_TOKEN"))
   # make data
   projects <- tibble::tibble(name = c("P1", "P2", "P3", "P4"),
                              success =  c(0.95, 0.96, 0.94, 1.00),
@@ -21,22 +20,9 @@ test_that("maximum obj", {
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
                "name", FALSE) %>%
        add_max_richness_objective(budget = 0.26) %>%
-       add_binary_decisions() %>%
-       add_rsymphony_solver()
+       add_binary_decisions()
   s <- data.frame(A1 = 1, A2 = 0, A3 = 1, A4 = 1)
-  RPushbullet::pbPost(
-    email = "jeff.o.hanson@gmail.com",
-    title = "Max obj",
-    body = "starting max obj")
   r <- replacement_costs(p, s)
-  RPushbullet::pbPost(
-    email = "jeff.o.hanson@gmail.com",
-    title = "Max obj done",
-    body = "done")
-  RPushbullet::pbPost(
-    email = "jeff.o.hanson@gmail.com",
-    title = "Max obj result",
-    body = {f=tempfile();dput(r,f);paste0(readLines(f), collapse = " ")})
   # tests
   expect_is(r, "tbl_df")
   expect_equal(nrow(r), 4)
@@ -54,7 +40,6 @@ test_that("maximum obj", {
 test_that("minimum obj", {
   skip_on_cran()
   skip_if_not(any_solvers_installed())
-  options(rpushbullet.key = Sys.getenv("PUSHBULLET_TOKEN"))
   # make data
   projects <- tibble::tibble(name = c("P1", "P2", "P3", "P4"),
                              success =  c(0.95, 0.96, 0.94, 1.00),
@@ -74,22 +59,9 @@ test_that("minimum obj", {
                "name", FALSE) %>%
        add_min_set_objective() %>%
        add_absolute_targets("target") %>%
-       add_binary_decisions() %>%
-       add_rsymphony_solver()
+       add_binary_decisions()
   s <- data.frame(A1 = 1, A2 = 0, A3 = 1, A4 = 1)
-  RPushbullet::pbPost(
-    email = "jeff.o.hanson@gmail.com",
-    title = "Min obj",
-    body = "starting min obj")
   r <- replacement_costs(p, s)
-  RPushbullet::pbPost(
-    email = "jeff.o.hanson@gmail.com",
-    title = "Min obj done",
-    body = "done")
-  RPushbullet::pbPost(
-    email = "jeff.o.hanson@gmail.com",
-    title = "Min obj result",
-    body = {f=tempfile();dput(r,f);paste0(readLines(f), collapse = " ")})
   # tests
   expect_is(r, "tbl_df")
   expect_equal(nrow(r), 4)

@@ -49,8 +49,7 @@ Suggests:
     lpsymphony (>= 1.10.0),
     shiny (>= 1.2.0),
     rhandsontable (>= 0.3.7),
-    tidyr (>= 0.8.2),
-    RPushbullet
+    tidyr (>= 0.8.2)
 Depends:
     R(>= 3.4.0)
 LinkingTo:
