@@ -7,7 +7,7 @@ Project Prioritization
 
 **This package is still under development and not ready for use. Please do not use this package yet.**
 
-The *ppr R* package is decision support tool for prioritizing conservation projects. Prioritizations can be developed by maximizing expected feature richness, expected phylogenetic diversity, the number of feature that meet persistence targets, or identifying a set of projects that meet persistence targets for minimal cost. Constraints (e.g. lock in specific actions) and feature weights can also be specified to further customize prioritizations. After defining a project prioritization problem, solutions can be obtained using exact algorithms, heuristic algorithms, or random processes. In particular, it is recommended to install the ['Gurobi' optimizer](https://www.gurobi.com) because it can identify optimal solutions very quickly. Finally, methods are provided for comparing different prioritizations and evaluating their benefits.
+The *ppr R* package is decision support tool for prioritizing conservation projects. Prioritizations can be developed by maximizing expected feature richness, expected phylogenetic diversity, the number of features that meet persistence targets, or identifying a set of projects that meet persistence targets for minimal cost. Constraints (e.g. lock in specific actions) and feature weights can also be specified to further customize prioritizations. After defining a project prioritization problem, solutions can be obtained using exact algorithms, heuristic algorithms, or random processes. In particular, it is recommended to install the ['Gurobi' optimizer](https://www.gurobi.com) because it can identify optimal solutions very quickly. Finally, methods are provided for comparing different prioritizations and evaluating their benefits.
 
 Installation
 ------------
@@ -53,7 +53,7 @@ print(sim_features)
     ## 4 F4     0.630
     ## 5 F5     1.59
 
-Next, we will load the `sim_actions` object. This table stores information about the various management actions (i.e. `tibble`). Each row corresponds to a different action, and each column describes different properties associated with the actions. These actions correspond to specific management actions that have known costs. For example, they may relate to pest eradication activities in sites of conservation importance. In this table, the `"name"` column contains the name of each action, and the `"cost"` action denotes the cost of funding each project. It also contains additional columns for customizing the solutions, but we will ignore them for now. Note that the last project---the `"baseline_action"`---has a zero cost and is used subsequently to represent the baseline probability for feature when no conservation actions are funded for them.
+Next, we will load the `sim_actions` object. This table stores information about the various management actions (i.e. `tibble`). Each row corresponds to a different action, and each column describes different properties associated with the actions. These actions correspond to specific management actions that have known costs. For example, they may relate to pest eradication activities (e.g. trapping) in sites of conservation importance. In this table, the `"name"` column contains the name of each action, and the `"cost"` column denotes the cost of each action. It also contains additional columns for customizing the solutions, but we will ignore them for now. Note that the last action---the `"baseline_action"`---has a zero cost and is used with the a baseline project (see below).
 
 ``` r
 # load data
@@ -73,7 +73,7 @@ print(sim_actions)
     ## 5 F5_action        99.9 FALSE     TRUE      
     ## 6 baseline_action   0   FALSE     FALSE
 
-Additionally, we will load the `sim_projects` object. This table stores information about various conservation projects. Each row corresponds to a different project, and each column describes various properties associated with the projects. These projects correspond to groups of conservation actions. For example, a conservation project may pertain to a set of conservation actions that relate to a single feature or single geographic locality. In this table, the `"name"` column contains the name of each project, the `"success"` column denotes the probability of each project succeeding if it is funded, the `"F1"`--`"F5"` columns show the probability of each feature is expected to persist if each project is funded (`NA` values mean that a feature does not benefit from a project), and the `"F1_action"`--`"F5_action"` columns indicate which actions are associated with which projects. Note that the last project---the `"baseline_project"`---is associated with the `"baseline_action"` action. This project has a zero cost and represents the baseline probability of each feature persisting if no other project is funded. Finally, although most projects in this example directly relate to a single feature, you can input projects that directly affect the persistence of multiple feature.
+Additionally, we will load the `sim_projects` object. This table stores information about various conservation projects. Each row corresponds to a different project, and each column describes various properties associated with the projects. These projects correspond to groups of conservation actions. For example, a conservation project may pertain to a set of conservation actions that relate to a single feature or single geographic locality. In this table, the `"name"` column contains the name of each project, the `"success"` column denotes the probability of each project succeeding if it is funded, the `"F1"`--`"F5"` columns show the probability of each feature is expected to persist if each project is funded (`NA` values mean that a feature does not benefit from a project), and the `"F1_action"`--`"F5_action"` columns indicate which actions are associated with which projects. Note that the last project---the `"baseline_project"`---is associated with the `"baseline_action"` action. This project has a zero cost and represents the baseline probability of each feature persisting if no other project is funded. Finally, although most projects in this example directly relate to a single feature, you can input projects that directly affect the persistence of multiple features.
 
 ``` r
 # load data
@@ -143,15 +143,18 @@ s <- solve(p)
 print(s, width = Inf)
 ```
 
-    ## # A tibble: 1 x 15
+    ## # A tibble: 1 x 21
     ##   solution status    obj  cost F1_action F2_action F3_action F4_action
     ##      <int> <chr>   <dbl> <dbl>     <dbl>     <dbl>     <dbl>     <dbl>
     ## 1        1 OPTIMAL  1.75  395.         1         1         0         1
-    ##   F5_action baseline_action    F1    F2     F3    F4    F5
-    ##       <dbl>           <dbl> <dbl> <dbl>  <dbl> <dbl> <dbl>
-    ## 1         1               1 0.808 0.865 0.0865 0.688 0.592
+    ##   F5_action baseline_action F1_project F2_project F3_project F4_project
+    ##       <dbl>           <dbl>      <dbl>      <dbl>      <dbl>      <dbl>
+    ## 1         1               1          1          1          0          1
+    ##   F5_project baseline_project    F1    F2     F3    F4    F5
+    ##        <dbl>            <dbl> <dbl> <dbl>  <dbl> <dbl> <dbl>
+    ## 1          1                1 0.808 0.865 0.0865 0.688 0.592
 
-The `s` table contains the solution and also various statistics associated with the solution. Here, each row corresponds to a different solution. Specifically, the `"solution"` column contains an identifier for the solution (which may be useful for methods that output multiple solutions), the `"obj"` column contains the objective value (i.e. the expected feature richness for this problem), the `"cost"` column stores the cost of the solution, and the `"status"` column contains information from the solver about the solution. Additionally, it contains columns for each action (`"F1_action"`, `"F2_actions"`, `"F3_actions"`, ..., `"baseline_action"`) which indicate if each action was prioritized for funding in the solution. Furthermore, it contains column for each feature (`"F1`, `"F2"`, `"F3`, ...) which indicate the probability that each feature is expected to persist into the future under each solution. Since tabular data can be difficult to understand, let's visualize how well this solution would conserve the features. Note that features which benefit from fully funded projects, excepting the baseline project, are denoted with an asterisk.
+The `s` table contains the solution and also various statistics associated with the solution. Here, each row corresponds to a different solution. Specifically, the `"solution"` column contains an identifier for the solution (which may be useful for methods that output multiple solutions), the `"obj"` column contains the objective value (i.e. the expected feature richness for this problem), the `"cost"` column stores the cost of the solution, and the `"status"` column contains information from the solver about the solution. Additionally, it contains columns for each action (`"F1_action"`, `"F2_actions"`, `"F3_actions"`, ..., `"baseline_action"`) which indicate if each action was prioritized for funding in the solution. Additionally, it contains columns for each project (`"F1_project"`, `"F2_project"`, `"F3_project"`, ..., `"baseline_project"`) that indicate if the project was completely funded or not. Finally, it contains column for each feature (`"F1`, `"F2"`, `"F3`, ...) which indicate the probability that each feature is expected to persist into the future under each solution. Since tabular data can be difficult to understand, let's visualize how well this solution would conserve the features. Note that features which benefit from fully funded projects, excepting the baseline project, are denoted with an asterisk.
 
 ``` r
 # visualize solution
@@ -169,4 +172,4 @@ Please use the following citation to cite the *ppr R* package in publications:
 
 **This package is still under development and not ready for use. Please do not use this package yet.**
 
-Hanson JO, Schuster R, Strimas-Mackey M, Bennett J, (2019). ppr: Project Prioritization. R package version 0.0.0.5. Available at <https://github.com/prioritizr/ppr>.
+Hanson JO, Schuster R, Strimas-Mackey M, Bennett J, (2019). ppr: Project Prioritization. R package version 0.0.0.9. Available at <https://github.com/prioritizr/ppr>.
