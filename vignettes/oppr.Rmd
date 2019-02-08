@@ -1,5 +1,5 @@
 ---
-title: "Project Prioritization"
+title: "Optimal Project Prioritization"
 output:
   rmarkdown::html_vignette:
     toc: true
@@ -10,7 +10,7 @@ bibliography: references.bib
 csl: reference-style.csl
 documentclass: article
 vignette: >
-  %\VignetteIndexEntry{ppr}
+  %\VignetteIndexEntry{oppr}
   %\VignetteEngine{knitr::rmarkdown_notangle}
   \usepackage[utf8]{inputenc}
 ---
@@ -77,23 +77,23 @@ devtools::load_all()
 
 # Overview
 
-The _ppr R_ package is decision support tool for prioritizing conservation projects. Prioritizations can be developed by maximizing expected feature richness, expected phylogenetic diversity, the number of features that meet persistence targets, or identifying a set of projects that meet persistence targets for minimal cost. Constraints (e.g. lock in specific actions) and feature weights can also be specified to further customize prioritizations. After defining a project prioritization problem, solutions can be obtained using exact algorithms, heuristic algorithms, or random processes. In particular, it is recommended to install the ['Gurobi' optimizer](https://www.gurobi.com) because it can identify optimal solutions very quickly. Finally, methods are provided for comparing different prioritizations and evaluating their benefits.
+The _oppr R_ package is decision support tool for prioritizing conservation projects. Prioritizations can be developed by maximizing expected feature richness, expected phylogenetic diversity, the number of features that meet persistence targets, or identifying a set of projects that meet persistence targets for minimal cost. Constraints (e.g. lock in specific actions) and feature weights can also be specified to further customize prioritizations. After defining a project prioritization problem, solutions can be obtained using exact algorithms, heuristic algorithms, or random processes. In particular, it is recommended to install the ['Gurobi' optimizer](https://www.gurobi.com) because it can identify optimal solutions very quickly. Finally, methods are provided for comparing different prioritizations and evaluating their benefits.
 
 # Tutorial
 
 ## Introduction
 
-Here we will provide a short tutorial showing how the _ppr R_ package can be used to prioritize funding for conservation projects. This package is a general purpose project prioritization decision support tool. It can generate solutions for species-based project prioritization problems [@r3; @r4] and priority threat management problems [@r18]. To develop a project prioritization, this package requires data for (i) _conservation projects_, (ii) _management actions_ data, and (iii) _biodiversity features_.
+Here we will provide a short tutorial showing how the _oppr R_ package can be used to prioritize funding for conservation projects. This package is a general purpose project prioritization decision support tool. It can generate solutions for species-based project prioritization problems [@r3; @r4] and priority threat management problems [@r18]. To develop a project prioritization, this package requires data for (i) _conservation projects_, (ii) _management actions_ data, and (iii) _biodiversity features_.
 
 Briefly, biodiversity features are the biological entities that we wish would persist into the future (e.g. threatened populations, native species, eco-systems). These _biodiversity features_ can (and ideally should) include non-threatened species, but should not include threatening processes that we wish to eradicate (e.g. populations of invasive species). _Management actions_ are acts that can be undertaken to enhance biodiversity (e.g. planting native species, reintroducing native species, trapping pest species). Each action should pertain to a specific location (e.g. a national park) or area (e.g. an entire country), and should be associated with a cost estimate. To guide the prioritization, the management actions are grouped into _conservation projects_ (also termed "strategies"). Typically, management actions are grouped into conservation projects based on spatial (e.g. management actions that pertain to the same area), taxonomic (e.g. management actions that pertain to the same pest species or threatened species), or thematic criteria (e.g. management actions that pertain to pest eradication are grouped into a "pest project", and actions that pertain to habitat restoration are grouped into a "habitat project"). Additionally, some conservation projects can be combinations of other projects (e.g. a "pest and habitat project"). Each conservation project should be associated with (i) a probability of succeeding if it is implemented (also termed "feasibility"), (ii) information about which management actions are associated with it, and (iii) an estimate of how likely each conservation feature affected by the project is to persist into the future if the project is implemented (often derived using expert elicitation). The conservation projects should also include a "baseline project" that represents a "do nothing scenario" which has a 100% chance of succeeding and is associated with an action that costs nothing to implement. For more background information on project prioritization, please refer to Carwardine _et al._ [-@r18].
 
-To start off, we will initialize the random number generator to ensure reproducibility. Next, we will load the _ppr R_ package. And then we will load the _ggplot2_, _tibble_, and _tidyr R_ packages to help with data for visualizations and wrangling.
+To start off, we will initialize the random number generator to ensure reproducibility. Next, we will load the _oppr R_ package. And then we will load the _ggplot2_, _tibble_, and _tidyr R_ packages to help with data for visualizations and wrangling.
 
 ```{r}
 # set random number generated seed
 set.seed(1000)
-# load ppr package for project prioritization
-library(ppr)
+# load oppr package for project prioritization
+library(oppr)
 # load ggplot2 package for plotting
 library(ggplot2)
 # load tibble package for working with tabular data
@@ -140,7 +140,7 @@ p1 <- problem(projects = projects, actions = actions, features = features,
 print(p1)
 ```
 
-After building the problem, we can solve it. Although backwards heuristic algorithms have conventionally been used to solve project prioritization problems [e.g. @r3; @r4; @r11], here we will use exact algorithms to develop a prioritization. Exact algorithms are superior to heuristic algorithms because they can provide guarantees on solution quality [@r12; @r13]. In other words, if you specify that you want an optimal solution when using exact algorithms, then you are guaranteed to get an optimal solution. Heuristic algorithms---and even more advanced meta-heuristic algorithms such as simulated annealing that are commonly to guide conservation decision making [@r22]---provide no such guarantees and can actually deliver remarkably poor solutions [e.g. @r21]. Later on we will experiment with heuristic algorithms, but for now, we will use exact algorithms. Since we haven't explicitly stated which solver we would like to use, the _ppr R_ package will identify the best exact algorithm solver currently installed on your system. This is typically the _lpSolveAPI R_ package unless you have manually installed the [_gurobi R_ package](http://www.gurobi.com/documentation/8.1/quickstart_mac/r_installing_the_r_package.html) and the [Gurobi optimization suite](http://www.gurobi.com/). Although not shown here, when you try solving the problem you will see information printed to your screen as the solver tries to find an optimal solution. Please do not be alarmed, this is normal behavior and some of the information can actually be useful (e.g. to estimate how long it might take to solve the problem).
+After building the problem, we can solve it. Although backwards heuristic algorithms have conventionally been used to solve project prioritization problems [e.g. @r3; @r4; @r11], here we will use exact algorithms to develop a prioritization. Exact algorithms are superior to heuristic algorithms because they can provide guarantees on solution quality [@r12; @r13]. In other words, if you specify that you want an optimal solution when using exact algorithms, then you are guaranteed to get an optimal solution. Heuristic algorithms---and even more advanced meta-heuristic algorithms such as simulated annealing that are commonly to guide conservation decision making [@r22]---provide no such guarantees and can actually deliver remarkably poor solutions [e.g. @r21]. Later on we will experiment with heuristic algorithms, but for now, we will use exact algorithms. Since we haven't explicitly stated which solver we would like to use, the _oppr R_ package will identify the best exact algorithm solver currently installed on your system. This is typically the _lpSolveAPI R_ package unless you have manually installed the [_gurobi R_ package](http://www.gurobi.com/documentation/8.1/quickstart_mac/r_installing_the_r_package.html) and the [Gurobi optimization suite](http://www.gurobi.com/). Although not shown here, when you try solving the problem you will see information printed to your screen as the solver tries to find an optimal solution. Please do not be alarmed, this is normal behavior and some of the information can actually be useful (e.g. to estimate how long it might take to solve the problem).
 
 ```{r, results = "hide", message = FALSE, warn = FALSE}
 # solve problem
@@ -276,7 +276,7 @@ a2 <- actions$name[which(as.logical(as.matrix(s2[, action_names(p2)])))]
 assertthat::assert_that(!setequal(a1, a2))
 ```
 
-Earlier, we talked about the _ppr R_ package using the default exact algorithm solver. Although you should have the _lpSolveAPI_ solver automatically installed, we strongly recommend installing the [_gurobi R_ package](http://www.gurobi.com/documentation/8.1/quickstart_mac/r_installing_the_r_package.html) and the [Gurobi optimization suite](http://www.gurobi.com/). This is because Gurobi can solve optimization problems much faster than any other software currently supported and it can also easily generate multiple solutions. Unfortunately, you will have to install Gurobi manually, but please see the documentation for the solver for instructions (i.e. enter the command  `?add_gurobi_solver` into the console). If you have Gurobi installed, let's try using the Gurobi solver to generate multiple solutions. Here, we will manually specify the Gurobi solver and request 1'000 solutions (though we will probably obtain less than 1'000 solutions, so if we actually wanted 1'000 solutions then we would need to specify a much larger number).
+Earlier, we talked about the _oppr R_ package using the default exact algorithm solver. Although you should have the _lpSolveAPI_ solver automatically installed, we strongly recommend installing the [_gurobi R_ package](http://www.gurobi.com/documentation/8.1/quickstart_mac/r_installing_the_r_package.html) and the [Gurobi optimization suite](http://www.gurobi.com/). This is because Gurobi can solve optimization problems much faster than any other software currently supported and it can also easily generate multiple solutions. Unfortunately, you will have to install Gurobi manually, but please see the documentation for the solver for instructions (i.e. enter the command  `?add_gurobi_solver` into the console). If you have Gurobi installed, let's try using the Gurobi solver to generate multiple solutions. Here, we will manually specify the Gurobi solver and request 1'000 solutions (though we will probably obtain less than 1'000 solutions, so if we actually wanted 1'000 solutions then we would need to specify a much larger number).
 
 ```{r}
 # create new problem, with gurobi solver added and request multiple solutions
@@ -600,14 +600,14 @@ So, we can see that the exact algorithm sover performs much better than heuristi
 
 Hopefully, this tutorial has been useful. For more information and examples on using any of the functions presented in this tutorial, please refer to this package's documentation. For instance, you could learn about the mathematical formulations that underpin the objective functions (see `?add_max_richness_objective`), how to lock in our lock out certain actions from the solutoins (see `?constraints`), or how to develop project prioritizations using phylogenies (see `?add_max_phylo_objective`). But perhaps one of the best ways to learn how to use a new piece of software is to just try it out. Test it, try breaking it, make mistakes, and learn from them. We would recommend generating project prioritizations using simulated datasets (see `?simulate_ptm_data` and `?simulate_ppp_data`) and seeing if the solutions line up with what you expect. This way you can quickly verify that the problems you build actually mean what you think they mean. For instance, you can try playing around with the targets and see what effect they have on the solutions, or try playing around with weights and see what effect they have on the solutions.
 
-Finally, if you have any questions about using the _ppr R_ package or suggestions for improving its documentation or functionality (especially this tutorial), please post an issue on this package's online coding repository (https://github.com/prioritizr/ppr/issues).
+Finally, if you have any questions about using the _oppr R_ package or suggestions for improving its documentation or functionality (especially this tutorial), please post an issue on this package's online coding repository (https://github.com/prioritizr/oppr/issues).
 
 # Citation
 
-Please use the following citation to cite the _ppr R_ package in publications:
+Please use the following citation to cite the _oppr R_ package in publications:
 
 ```{r, echo = FALSE, results = "asis", comment = ""}
-cat(paste0("Hanson JO, Schuster R, Strimas-Mackey M, Bennett J, (",format(Sys.time(), "%Y"),"). ppr: Project Prioritization. R package version ",packageDescription("ppr")$Version,". Available at https://github.com/prioritizr/ppr.\n"))
+cat(paste0("Hanson JO, Schuster R, Strimas-Mackey M, Bennett J, (",format(Sys.time(), "%Y"),"). oppr: Project Prioritization. R package version ",packageDescription("oppr")$Version,". Available at https://github.com/prioritizr/oppr.\n"))
 ```
 
 # References

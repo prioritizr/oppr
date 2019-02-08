@@ -1,17 +1,17 @@
 #' @include internal.R
 NULL
 
-#' @useDynLib ppr, .registration = TRUE
+#' @useDynLib oppr, .registration = TRUE
 NULL
 
 #' @importFrom ape plot.phylo
 #' @export
 NULL
 
-#' \pkg{ppr}: Project Prioritization
+#' \pkg{oppr}: Optimal Project Prioritization
 #'
 #' @section Description:
-#'   The \pkg{ppr} \emph{R} package a decision support tool for prioritizing
+#'   The \pkg{oppr} \emph{R} package a decision support tool for prioritizing
 #'   conservation projects. Prioritizations can be developed by maximizing
 #'   expected feature richness, expected
 #'   phylogenetic diversity, the number of features that meet persistence
@@ -51,9 +51,9 @@ NULL
 #'
 #' @seealso Please refer to the package vignette for more information and worked
 #'   examples. This can be accessed using the code
-#'   \code{vignette("ppr")}.
+#'   \code{vignette("oppr")}.
 #'
-#' @name ppr
+#' @name oppr
 #'
 #' @examples
 #' # load data

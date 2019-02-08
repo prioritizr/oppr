@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Weights — weights • ppr</title>
+<title>Weights — weights • oppr</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -65,8 +65,8 @@ require weights will throw a warning and the weights will be ignored." />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">ppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9</span>
+        <a class="navbar-link" href="../index.html">oppr</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.10</span>
       </span>
     </div>
 
@@ -79,7 +79,7 @@ require weights will throw a warning and the weights will be ignored." />
   </a>
 </li>
 <li>
-  <a href="../articles/ppr.html">Get started</a>
+  <a href="../articles/oppr.html">Get started</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
@@ -91,7 +91,7 @@ require weights will throw a warning and the weights will be ignored." />
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/prioritizr/ppr">
+  <a href="https://github.com/prioritizr/oppr">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -109,7 +109,7 @@ require weights will throw a warning and the weights will be ignored." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Weights</h1>
-    <small class="dont-index">Source: <a href='https://github.com/prioritizr/ppr/blob/master/R/weights.R'><code>R/weights.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/prioritizr/oppr/blob/master/R/weights.R'><code>R/weights.R</code></a></small>
     <div class="hidden name"><code>weights.Rd</code></div>
     </div>
 
@@ -127,14 +127,14 @@ require weights will throw a warning and the weights will be ignored.</p>
 
     <p>Currently, only one function can be used to specify weights:</p>
 <p></p><dl class='dl-horizontal'>
-    <dt><code><a href='add_feature_weights.html'>add_feature_weights</a></code></dt><dd><p>Set feature weights for a project prioritization <code><a href='problem.html'>problem</a></code>.</p></dd>
+    <dt><code>add_feature_weights</code></dt><dd><p>Set feature weights for a project prioritization <code>problem</code>.</p></dd>
     </dl>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='constraints.html'>constraints</a></code>, <code><a href='decisions.html'>decisions</a></code>,
- <code><a href='objectives.html'>objectives</a></code>, <code><a href='problem.html'>problem</a></code>,
- <code><a href='solvers.html'>solvers</a></code>, <code><a href='targets.html'>targets</a></code>.</p></div>
+    <div class='dont-index'><p><code>constraints</code>, <code>decisions</code>,
+ <code>objectives</code>, <code>problem</code>,
+ <code>solvers</code>, <code>targets</code>.</p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -143,14 +143,14 @@ require weights will throw a warning and the weights will be ignored.</p>
 
 <span class='co'># build problem with maximum richness objective, $300 budget, and</span>
 <span class='co'># feature weights</span>
-<span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_actions</span>, <span class='no'>sim_features</span>,
+<span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'>problem</span>(<span class='no'>sim_projects</span>, <span class='no'>sim_actions</span>, <span class='no'>sim_features</span>,
              <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span>) <span class='kw'>%&gt;%</span>
-     <span class='fu'><a href='add_max_richness_objective.html'>add_max_richness_objective</a></span>(<span class='kw'>budget</span> <span class='kw'>=</span> <span class='fl'>200</span>) <span class='kw'>%&gt;%</span>
-     <span class='fu'><a href='add_feature_weights.html'>add_feature_weights</a></span>(<span class='st'>"weight"</span>) <span class='kw'>%&gt;%</span>
-     <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span>()
+     <span class='fu'>add_max_richness_objective</span>(<span class='kw'>budget</span> <span class='kw'>=</span> <span class='fl'>200</span>) <span class='kw'>%&gt;%</span>
+     <span class='fu'>add_feature_weights</span>(<span class='st'>"weight"</span>) <span class='kw'>%&gt;%</span>
+     <span class='fu'>add_binary_decisions</span>()
 
 <span class='co'># solve problem</span>
-<span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p</span>)</div><div class='output co'>#&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
+<span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/solve'>solve</a></span>(<span class='no'>p</span>)</div><div class='output co'>#&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
 #&gt; Variable types: 0 continuous, 42 integer (42 binary)
 #&gt; Semi-Variable types: 5 continuous, 0 integer
 #&gt; Coefficient statistics:
@@ -181,7 +181,7 @@ require weights will throw a warning and the weights will be ignored.</p>
 #&gt; Optimal solution found (tolerance 0.00e+00)
 #&gt; Best objective 1.511229665304e+00, best bound 1.511229665304e+00, gap 0.0000%</div><div class='input'>
 <span class='co'># print solution</span>
-<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 21</span><span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>s</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 21</span><span>
 #&gt;   solution status   obj  cost F1_action F2_action F3_action F4_action F5_action
 #&gt;      </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 OPTIM~  1.51  199.         0         0         0         1         1

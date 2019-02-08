@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Compile a problem — compile • ppr</title>
+<title>Compile a problem — compile • oppr</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -63,8 +63,8 @@ purpose format for optimization." />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">ppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9</span>
+        <a class="navbar-link" href="../index.html">oppr</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.10</span>
       </span>
     </div>
 
@@ -77,7 +77,7 @@ purpose format for optimization." />
   </a>
 </li>
 <li>
-  <a href="../articles/ppr.html">Get started</a>
+  <a href="../articles/oppr.html">Get started</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
@@ -89,7 +89,7 @@ purpose format for optimization." />
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/prioritizr/ppr">
+  <a href="https://github.com/prioritizr/oppr">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -107,13 +107,13 @@ purpose format for optimization." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Compile a problem</h1>
-    <small class="dont-index">Source: <a href='https://github.com/prioritizr/ppr/blob/master/R/compile.R'><code>R/compile.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/prioritizr/oppr/blob/master/R/compile.R'><code>R/compile.R</code></a></small>
     <div class="hidden name"><code>compile.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Compile a project prioritization <code><a href='problem.html'>problem</a></code> into a general
+    <p>Compile a project prioritization <code>problem</code> into a general
 purpose format for optimization.</p>
     
     </div>
@@ -128,7 +128,7 @@ purpose format for optimization.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p><code><a href='ProjectProblem-class.html'>ProjectProblem-class</a></code> object.</p></td>
+      <td><p><code>ProjectProblem-class</code> object.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -138,14 +138,14 @@ purpose format for optimization.</p>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code><a href='OptimizationProblem-class.html'>OptimizationProblem-class</a></code> object.</p>
+    <p><code>OptimizationProblem-class</code> object.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>This function might be useful for those interested in understanding
-  how their project prioritization <code><a href='problem.html'>problem</a></code> is expressed
+  how their project prioritization <code>problem</code> is expressed
   as a mathematical problem. However, if the problem just needs to
-  be solved, then the <code><a href='solve.html'>solve</a></code> function should be used instead.</p>
+  be solved, then the <code><a href='https://www.rdocumentation.org/packages/base/topics/solve'>solve</a></code> function should be used instead.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -154,13 +154,13 @@ purpose format for optimization.</p>
 
 <span class='co'># build problem with maximum richness objective, $200 budget, and</span>
 <span class='co'># binary decisions</span>
-<span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_actions</span>, <span class='no'>sim_features</span>,
+<span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'>problem</span>(<span class='no'>sim_projects</span>, <span class='no'>sim_actions</span>, <span class='no'>sim_features</span>,
              <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span>) <span class='kw'>%&gt;%</span>
-     <span class='fu'><a href='add_max_richness_objective.html'>add_max_richness_objective</a></span>(<span class='kw'>budget</span> <span class='kw'>=</span> <span class='fl'>200</span>) <span class='kw'>%&gt;%</span>
-     <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span>()
+     <span class='fu'>add_max_richness_objective</span>(<span class='kw'>budget</span> <span class='kw'>=</span> <span class='fl'>200</span>) <span class='kw'>%&gt;%</span>
+     <span class='fu'>add_binary_decisions</span>()
 
 <span class='co'># print problem</span>
-<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>p</span>)</div><div class='output co'>#&gt; <span class='message'>Project Prioritization Problem</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>p</span>)</div><div class='output co'>#&gt; <span class='message'>Project Prioritization Problem</span>
 #&gt; <span class='message'>  actions          F1_action, F2_action, F3_action, ... (6 actions)</span>
 #&gt; <span class='message'>  projects         F1_project, F2_project, F3_project, ... (6 projects)</span>
 #&gt; <span class='message'>  features         F1, F2, F3, ... (5 features)</span>
@@ -176,7 +176,7 @@ purpose format for optimization.</p>
 <span class='no'>o</span> <span class='kw'>&lt;-</span> <span class='fu'>compile</span>(<span class='no'>p</span>)
 
 <span class='co'># print compiled problem</span>
-<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>o</span>)</div><div class='output co'>#&gt; <span class='message'>optimization problem</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>o</span>)</div><div class='output co'>#&gt; <span class='message'>optimization problem</span>
 #&gt; <span class='message'>  objective:    linear</span>
 #&gt; <span class='message'>  model sense: max</span>
 #&gt; <span class='message'>  dimensions:  47, 47, 103 (nrow, ncol, ncell)</span>

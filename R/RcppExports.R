@@ -2,154 +2,154 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 rcpp_new_optimization_problem <- function(nrow = 1000000L, ncol = 1000000L, ncell = 100000L) {
-    .Call(`_ppr_rcpp_new_optimization_problem`, nrow, ncol, ncell)
+    .Call(`_oppr_rcpp_new_optimization_problem`, nrow, ncol, ncell)
 }
 
 rcpp_predefined_optimization_problem <- function(l) {
-    .Call(`_ppr_rcpp_predefined_optimization_problem`, l)
+    .Call(`_oppr_rcpp_predefined_optimization_problem`, l)
 }
 
 rcpp_optimization_problem_as_list <- function(x) {
-    .Call(`_ppr_rcpp_optimization_problem_as_list`, x)
+    .Call(`_oppr_rcpp_optimization_problem_as_list`, x)
 }
 
 rcpp_get_optimization_problem_ncol <- function(x) {
-    .Call(`_ppr_rcpp_get_optimization_problem_ncol`, x)
+    .Call(`_oppr_rcpp_get_optimization_problem_ncol`, x)
 }
 
 rcpp_get_optimization_problem_nrow <- function(x) {
-    .Call(`_ppr_rcpp_get_optimization_problem_nrow`, x)
+    .Call(`_oppr_rcpp_get_optimization_problem_nrow`, x)
 }
 
 rcpp_get_optimization_problem_ncell <- function(x) {
-    .Call(`_ppr_rcpp_get_optimization_problem_ncell`, x)
+    .Call(`_oppr_rcpp_get_optimization_problem_ncell`, x)
 }
 
 rcpp_get_optimization_problem_A <- function(x) {
-    .Call(`_ppr_rcpp_get_optimization_problem_A`, x)
+    .Call(`_oppr_rcpp_get_optimization_problem_A`, x)
 }
 
 rcpp_get_optimization_problem_modelsense <- function(x) {
-    .Call(`_ppr_rcpp_get_optimization_problem_modelsense`, x)
+    .Call(`_oppr_rcpp_get_optimization_problem_modelsense`, x)
 }
 
 rcpp_get_optimization_problem_number_of_projects <- function(x) {
-    .Call(`_ppr_rcpp_get_optimization_problem_number_of_projects`, x)
+    .Call(`_oppr_rcpp_get_optimization_problem_number_of_projects`, x)
 }
 
 rcpp_get_optimization_problem_number_of_actions <- function(x) {
-    .Call(`_ppr_rcpp_get_optimization_problem_number_of_actions`, x)
+    .Call(`_oppr_rcpp_get_optimization_problem_number_of_actions`, x)
 }
 
 rcpp_get_optimization_problem_number_of_features <- function(x) {
-    .Call(`_ppr_rcpp_get_optimization_problem_number_of_features`, x)
+    .Call(`_oppr_rcpp_get_optimization_problem_number_of_features`, x)
 }
 
 rcpp_get_optimization_problem_number_of_branches <- function(x) {
-    .Call(`_ppr_rcpp_get_optimization_problem_number_of_branches`, x)
+    .Call(`_oppr_rcpp_get_optimization_problem_number_of_branches`, x)
 }
 
 rcpp_get_optimization_problem_vtype <- function(x) {
-    .Call(`_ppr_rcpp_get_optimization_problem_vtype`, x)
+    .Call(`_oppr_rcpp_get_optimization_problem_vtype`, x)
 }
 
 rcpp_get_optimization_problem_obj <- function(x) {
-    .Call(`_ppr_rcpp_get_optimization_problem_obj`, x)
+    .Call(`_oppr_rcpp_get_optimization_problem_obj`, x)
 }
 
 rcpp_get_optimization_problem_pwlobj <- function(x) {
-    .Call(`_ppr_rcpp_get_optimization_problem_pwlobj`, x)
+    .Call(`_oppr_rcpp_get_optimization_problem_pwlobj`, x)
 }
 
 rcpp_get_optimization_problem_rhs <- function(x) {
-    .Call(`_ppr_rcpp_get_optimization_problem_rhs`, x)
+    .Call(`_oppr_rcpp_get_optimization_problem_rhs`, x)
 }
 
 rcpp_get_optimization_problem_sense <- function(x) {
-    .Call(`_ppr_rcpp_get_optimization_problem_sense`, x)
+    .Call(`_oppr_rcpp_get_optimization_problem_sense`, x)
 }
 
 rcpp_get_optimization_problem_lb <- function(x) {
-    .Call(`_ppr_rcpp_get_optimization_problem_lb`, x)
+    .Call(`_oppr_rcpp_get_optimization_problem_lb`, x)
 }
 
 rcpp_get_optimization_problem_ub <- function(x) {
-    .Call(`_ppr_rcpp_get_optimization_problem_ub`, x)
+    .Call(`_oppr_rcpp_get_optimization_problem_ub`, x)
 }
 
 rcpp_get_optimization_problem_col_ids <- function(x) {
-    .Call(`_ppr_rcpp_get_optimization_problem_col_ids`, x)
+    .Call(`_oppr_rcpp_get_optimization_problem_col_ids`, x)
 }
 
 rcpp_get_optimization_problem_row_ids <- function(x) {
-    .Call(`_ppr_rcpp_get_optimization_problem_row_ids`, x)
+    .Call(`_oppr_rcpp_get_optimization_problem_row_ids`, x)
 }
 
 rcpp_add_raw_data <- function(x, pa_matrix, pf_matrix, branch_matrix, branch_lengths, n_approx_points) {
-    .Call(`_ppr_rcpp_add_raw_data`, x, pa_matrix, pf_matrix, branch_matrix, branch_lengths, n_approx_points)
+    .Call(`_oppr_rcpp_add_raw_data`, x, pa_matrix, pf_matrix, branch_matrix, branch_lengths, n_approx_points)
 }
 
 rcpp_apply_decisions <- function(x, vtype, default_lower, default_upper) {
-    .Call(`_ppr_rcpp_apply_decisions`, x, vtype, default_lower, default_upper)
+    .Call(`_oppr_rcpp_apply_decisions`, x, vtype, default_lower, default_upper)
 }
 
 rcpp_apply_feature_weights <- function(x, weights, replace) {
-    .Call(`_ppr_rcpp_apply_feature_weights`, x, weights, replace)
+    .Call(`_oppr_rcpp_apply_feature_weights`, x, weights, replace)
 }
 
 rcpp_apply_locked_constraints <- function(x, actions, status) {
-    .Call(`_ppr_rcpp_apply_locked_constraints`, x, actions, status)
+    .Call(`_oppr_rcpp_apply_locked_constraints`, x, actions, status)
 }
 
 rcpp_apply_max_phylo_div_objective <- function(x, costs, budget, feature_weights) {
-    .Call(`_ppr_rcpp_apply_max_phylo_div_objective`, x, costs, budget, feature_weights)
+    .Call(`_oppr_rcpp_apply_max_phylo_div_objective`, x, costs, budget, feature_weights)
 }
 
 rcpp_apply_max_targets_met_objective <- function(x, targets_list, costs, budget, feature_weights) {
-    .Call(`_ppr_rcpp_apply_max_targets_met_objective`, x, targets_list, costs, budget, feature_weights)
+    .Call(`_oppr_rcpp_apply_max_targets_met_objective`, x, targets_list, costs, budget, feature_weights)
 }
 
 rcpp_apply_min_set_objective <- function(x, targets_list, costs) {
-    .Call(`_ppr_rcpp_apply_min_set_objective`, x, targets_list, costs)
+    .Call(`_oppr_rcpp_apply_min_set_objective`, x, targets_list, costs)
 }
 
 rcpp_branch_matrix <- function(x) {
-    .Call(`_ppr_rcpp_branch_matrix`, x)
+    .Call(`_oppr_rcpp_branch_matrix`, x)
 }
 
 rcpp_branch_order <- function(x) {
-    .Call(`_ppr_rcpp_branch_order`, x)
+    .Call(`_oppr_rcpp_branch_order`, x)
 }
 
 rcpp_evaluate_max_phylo_div_objective <- function(costs, pa_matrix, pf_matrix, branch_matrix, branch_lengths, targets, weights, solutions) {
-    .Call(`_ppr_rcpp_evaluate_max_phylo_div_objective`, costs, pa_matrix, pf_matrix, branch_matrix, branch_lengths, targets, weights, solutions)
+    .Call(`_oppr_rcpp_evaluate_max_phylo_div_objective`, costs, pa_matrix, pf_matrix, branch_matrix, branch_lengths, targets, weights, solutions)
 }
 
 rcpp_evaluate_min_set_objective <- function(costs, pa_matrix, pf_matrix, branch_matrix, branch_lengths, targets, weights, solutions) {
-    .Call(`_ppr_rcpp_evaluate_min_set_objective`, costs, pa_matrix, pf_matrix, branch_matrix, branch_lengths, targets, weights, solutions)
+    .Call(`_oppr_rcpp_evaluate_min_set_objective`, costs, pa_matrix, pf_matrix, branch_matrix, branch_lengths, targets, weights, solutions)
 }
 
 rcpp_evaluate_max_targets_met_objective <- function(costs, pa_matrix, pf_matrix, branch_matrix, branch_lengths, targets, weights, solutions) {
-    .Call(`_ppr_rcpp_evaluate_max_targets_met_objective`, costs, pa_matrix, pf_matrix, branch_matrix, branch_lengths, targets, weights, solutions)
+    .Call(`_oppr_rcpp_evaluate_max_targets_met_objective`, costs, pa_matrix, pf_matrix, branch_matrix, branch_lengths, targets, weights, solutions)
 }
 
 rcpp_expected_persistences <- function(pa_matrix, pf_matrix, branch_matrix, solutions) {
-    .Call(`_ppr_rcpp_expected_persistences`, pa_matrix, pf_matrix, branch_matrix, solutions)
+    .Call(`_oppr_rcpp_expected_persistences`, pa_matrix, pf_matrix, branch_matrix, solutions)
 }
 
 rcpp_funded_projects <- function(pa_matrix, solutions) {
-    .Call(`_ppr_rcpp_funded_projects`, pa_matrix, solutions)
+    .Call(`_oppr_rcpp_funded_projects`, pa_matrix, solutions)
 }
 
 rcpp_heuristic_solution <- function(costs, pa_matrix, pf_matrix, branch_matrix, branch_lengths, targets, weights, budget, locked_in, locked_out, number_solutions, verbose, obj_name) {
-    .Call(`_ppr_rcpp_heuristic_solution`, costs, pa_matrix, pf_matrix, branch_matrix, branch_lengths, targets, weights, budget, locked_in, locked_out, number_solutions, verbose, obj_name)
+    .Call(`_oppr_rcpp_heuristic_solution`, costs, pa_matrix, pf_matrix, branch_matrix, branch_lengths, targets, weights, budget, locked_in, locked_out, number_solutions, verbose, obj_name)
 }
 
 rcpp_random_max_benefit_solution <- function(costs, locked_in, locked_out, budget, n_solutions, verbose) {
-    .Call(`_ppr_rcpp_random_max_benefit_solution`, costs, locked_in, locked_out, budget, n_solutions, verbose)
+    .Call(`_oppr_rcpp_random_max_benefit_solution`, costs, locked_in, locked_out, budget, n_solutions, verbose)
 }
 
 rcpp_random_min_set_solution <- function(costs, pa_matrix, pf_matrix, targets_list, locked_in, locked_out, n_solutions, verbose) {
-    .Call(`_ppr_rcpp_random_min_set_solution`, costs, pa_matrix, pf_matrix, targets_list, locked_in, locked_out, n_solutions, verbose)
+    .Call(`_oppr_rcpp_random_min_set_solution`, costs, pa_matrix, pf_matrix, targets_list, locked_in, locked_out, n_solutions, verbose)
 }
 

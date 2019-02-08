@@ -1,9 +1,8 @@
 pandoc: 1.19.2.1
 pkgdown: 1.3.0
 pkgdown_sha: ~
-articles:
-  ppr: ppr.html
+articles: []
 urls:
-  reference: https://prioritizr.github.io/ppr/reference
-  article: https://prioritizr.github.io/ppr/articles
+  reference: https://prioritizr.github.io/oppr/reference
+  article: https://prioritizr.github.io/oppr/articles
 

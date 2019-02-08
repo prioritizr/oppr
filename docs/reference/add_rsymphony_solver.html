@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Add a SYMPHONY solver with <span class="pkg">Rsymphony</span> — add_rsymphony_solver • ppr</title>
+<title>Add a SYMPHONY solver with <span class="pkg">Rsymphony</span> — add_rsymphony_solver • oppr</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -65,8 +65,8 @@ solver. It requires the Rsymphony package." />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">ppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9</span>
+        <a class="navbar-link" href="../index.html">oppr</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.10</span>
       </span>
     </div>
 
@@ -79,7 +79,7 @@ solver. It requires the Rsymphony package." />
   </a>
 </li>
 <li>
-  <a href="../articles/ppr.html">Get started</a>
+  <a href="../articles/oppr.html">Get started</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
@@ -91,7 +91,7 @@ solver. It requires the Rsymphony package." />
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/prioritizr/ppr">
+  <a href="https://github.com/prioritizr/oppr">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -109,14 +109,14 @@ solver. It requires the Rsymphony package." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Add a SYMPHONY solver with <span class="pkg">Rsymphony</span></h1>
-    <small class="dont-index">Source: <a href='https://github.com/prioritizr/ppr/blob/master/R/add_rsymphony_solver.R'><code>R/add_rsymphony_solver.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/prioritizr/oppr/blob/master/R/add_rsymphony_solver.R'><code>R/add_rsymphony_solver.R</code></a></small>
     <div class="hidden name"><code>add_rsymphony_solver.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
     <p>Specify that the <em>SYMPHONY</em> software should be used to solve a
-project prioritization <code><a href='problem.html'>problem</a></code> using the <span class="pkg">Rsymphony</span>
+project prioritization <code>problem</code> using the <span class="pkg">Rsymphony</span>
 package. This function can also be used to customize the behavior of the
 solver. It requires the <span class="pkg">Rsymphony</span> package.</p>
     
@@ -130,7 +130,7 @@ solver. It requires the <span class="pkg">Rsymphony</span> package.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p><code><a href='ProjectProblem-class.html'>ProjectProblem-class</a></code> object.</p></td>
+      <td><p><code>ProjectProblem-class</code> object.</p></td>
     </tr>
     <tr>
       <th>gap</th>
@@ -170,7 +170,7 @@ optimization problems?</p></td>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code><a href='ProjectProblem-class.html'>ProjectProblem-class</a></code> object with the solver added
+    <p><code>ProjectProblem-class</code> object with the solver added
   to it.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
@@ -185,7 +185,7 @@ optimization problems?</p></td>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='solvers.html'>solvers</a></code>.</p></div>
+    <div class='dont-index'><p><code>solvers</code>.</p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -193,14 +193,14 @@ optimization problems?</p></td>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_features</span>, <span class='no'>sim_actions</span>)
 
 <span class='co'># build problem with Rsymphony solver</span>
-<span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_actions</span>, <span class='no'>sim_features</span>,
+<span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'>problem</span>(<span class='no'>sim_projects</span>, <span class='no'>sim_actions</span>, <span class='no'>sim_features</span>,
              <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span>) <span class='kw'>%&gt;%</span>
-     <span class='fu'><a href='add_max_richness_objective.html'>add_max_richness_objective</a></span>(<span class='kw'>budget</span> <span class='kw'>=</span> <span class='fl'>200</span>) <span class='kw'>%&gt;%</span>
-     <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span>() <span class='kw'>%&gt;%</span>
+     <span class='fu'>add_max_richness_objective</span>(<span class='kw'>budget</span> <span class='kw'>=</span> <span class='fl'>200</span>) <span class='kw'>%&gt;%</span>
+     <span class='fu'>add_binary_decisions</span>() <span class='kw'>%&gt;%</span>
      <span class='fu'>add_rsymphony_solver</span>()
 
 <span class='co'># print problem</span>
-<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>p</span>)</div><div class='output co'>#&gt; <span class='message'>Project Prioritization Problem</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>p</span>)</div><div class='output co'>#&gt; <span class='message'>Project Prioritization Problem</span>
 #&gt; <span class='message'>  actions          F1_action, F2_action, F3_action, ... (6 actions)</span>
 #&gt; <span class='message'>  projects         F1_project, F2_project, F3_project, ... (6 projects)</span>
 #&gt; <span class='message'>  features         F1, F2, F3, ... (5 features)</span>
@@ -213,10 +213,10 @@ optimization problems?</p></td>
 #&gt; <span class='message'>  constraints:     &lt;none&gt;</span>
 #&gt; <span class='message'>  solver:          Rsymphony [first_feasible (0), gap (0), time_limit (-1), verbose (1)]</span></div><div class='input'>
 <span class='co'># solve problem</span>
-<span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p</span>)
+<span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/solve'>solve</a></span>(<span class='no'>p</span>)
 
 <span class='co'># print solution</span>
-<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 21</span><span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>s</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 21</span><span>
 #&gt;   solution status   obj  cost F1_action F2_action F3_action F4_action F5_action
 #&gt;      </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 TM_OP~  2.19  195.         1         1         0         0         0

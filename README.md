@@ -1,23 +1,23 @@
 
 <!--- README.md is generated from README.Rmd. Please edit that file -->
-Project Prioritization
-======================
+Optimal Project Prioritization
+==============================
 
-[![lifecycle](https://img.shields.io/badge/Lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing) [![Travis Build Status](https://img.shields.io/travis/prioritizr/ppr/master.svg?label=Linux%20%26%20Mac%20OSX)](https://travis-ci.org/prioritizr/ppr) [![AppVeyor Build Status](https://img.shields.io/appveyor/ci/jeffreyhanson/ppr/master.svg?label=Windows)](https://ci.appveyor.com/project/jeffreyhanson/ppr) [![Coverage Status](https://codecov.io/github/prioritizr/ppr/coverage.svg?branch=master)](https://codecov.io/github/prioritizr/ppr?branch=master) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/ppr)](https://CRAN.R-project.org/package=ppr)
+[![lifecycle](https://img.shields.io/badge/Lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing) [![Travis Build Status](https://img.shields.io/travis/prioritizr/oppr/master.svg?label=Linux%20%26%20Mac%20OSX)](https://travis-ci.org/prioritizr/oppr) [![AppVeyor Build Status](https://img.shields.io/appveyor/ci/jeffreyhanson/oppr/master.svg?label=Windows)](https://ci.appveyor.com/project/jeffreyhanson/oppr) [![Coverage Status](https://codecov.io/github/prioritizr/oppr/coverage.svg?branch=master)](https://codecov.io/github/prioritizr/oppr?branch=master) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/oppr)](https://CRAN.R-project.org/package=oppr)
 
 **This package is still under development and not ready for use. Please do not use this package yet.**
 
-The *ppr R* package is decision support tool for prioritizing conservation projects. Prioritizations can be developed by maximizing expected feature richness, expected phylogenetic diversity, the number of features that meet persistence targets, or identifying a set of projects that meet persistence targets for minimal cost. Constraints (e.g. lock in specific actions) and feature weights can also be specified to further customize prioritizations. After defining a project prioritization problem, solutions can be obtained using exact algorithms, heuristic algorithms, or random processes. In particular, it is recommended to install the ['Gurobi' optimizer](https://www.gurobi.com) because it can identify optimal solutions very quickly. Finally, methods are provided for comparing different prioritizations and evaluating their benefits.
+The *oppr R* package is decision support tool for prioritizing conservation projects. Prioritizations can be developed by maximizing expected feature richness, expected phylogenetic diversity, the number of features that meet persistence targets, or identifying a set of projects that meet persistence targets for minimal cost. Constraints (e.g. lock in specific actions) and feature weights can also be specified to further customize prioritizations. After defining a project prioritization problem, solutions can be obtained using exact algorithms, heuristic algorithms, or random processes. In particular, it is recommended to install the ['Gurobi' optimizer](https://www.gurobi.com) because it can identify optimal solutions very quickly. Finally, methods are provided for comparing different prioritizations and evaluating their benefits.
 
 Installation
 ------------
 
-The development version of the *ppr R* package can be installed using the following code. Please note that you will need install the *ggtree* package from Bioconductor since it is not available on [The Comprehensive R Archive Network](https://cran.r-project.org/).
+The development version of the *oppr R* package can be installed using the following code. Please note that you will need install the *ggtree* package from Bioconductor since it is not available on [The Comprehensive R Archive Network](https://cran.r-project.org/).
 
 ``` r
 if (!require(devtools))
   install.packages("devtools")
-devtools::install_github("prioritizr/ppr")
+devtools::install_github("prioritizr/oppr")
 if (!require(ggtree))
   devtools::install_bioc("ggtree")
 ```
@@ -27,11 +27,11 @@ We also recommend installing the [Gurobi optimization suite](http://www.gurobi.c
 Usage
 -----
 
-Here we will provide a short example showing how the *optimalppp R* package can be used to prioritize funding for conservation projects. To start off, we will set the seed for the random number generator to ensure you get the same results as shown here, and load the *ppr R* package.
+Here we will provide a short example showing how the *optimalppp R* package can be used to prioritize funding for conservation projects. To start off, we will set the seed for the random number generator to ensure you get the same results as shown here, and load the *oppr R* package.
 
 ``` r
 set.seed(500)
-library(ppr)
+library(oppr)
 ```
 
 Now we will load some data sets that are distributed with the package. First, we will load the `sim_features` object. This table contains information on the conservation features (e.g. species). Specifically, each row corresponds to a different feature, and each column contains information associated with the features. In this table, the `"name"` column contains the name of each feature, and the `"weight"` column denotes the relative importance for each feature.
@@ -163,13 +163,13 @@ plot_feature_persistence(p, s)
 
 <img src="man/figures/README-readme-plot-1.png" style="display: block; margin: auto;" />
 
-This has just been a taster of the *ppr R* package. For more information, see the [package vignette](https://prioritizr.github.io/ppr/articles/ppr.html).
+This has just been a taster of the *oppr R* package. For more information, see the [package vignette](https://prioritizr.github.io/oppr/articles/oppr.html).
 
 Citation
 --------
 
-Please use the following citation to cite the *ppr R* package in publications:
+Please use the following citation to cite the *oppr R* package in publications:
 
 **This package is still under development and not ready for use. Please do not use this package yet.**
 
-Hanson JO, Schuster R, Strimas-Mackey M, Bennett J, (2019). ppr: Project Prioritization. R package version 0.0.0.9. Available at <https://github.com/prioritizr/ppr>.
+Hanson JO, Schuster R, Strimas-Mackey M, Bennett J, (2019). oppr: Project Prioritization. R package version 0.0.0.10. Available at <https://github.com/prioritizr/oppr>.

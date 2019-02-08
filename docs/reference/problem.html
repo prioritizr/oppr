@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Project prioritization problem — problem • ppr</title>
+<title>Project prioritization problem — problem • oppr</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -70,8 +70,8 @@ solve function can be used to identify solutions." />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">ppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9</span>
+        <a class="navbar-link" href="../index.html">oppr</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.10</span>
       </span>
     </div>
 
@@ -84,7 +84,7 @@ solve function can be used to identify solutions." />
   </a>
 </li>
 <li>
-  <a href="../articles/ppr.html">Get started</a>
+  <a href="../articles/oppr.html">Get started</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
@@ -96,7 +96,7 @@ solve function can be used to identify solutions." />
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/prioritizr/ppr">
+  <a href="https://github.com/prioritizr/oppr">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -114,7 +114,7 @@ solve function can be used to identify solutions." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Project prioritization problem</h1>
-    <small class="dont-index">Source: <a href='https://github.com/prioritizr/ppr/blob/master/R/problem.R'><code>R/problem.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/prioritizr/oppr/blob/master/R/problem.R'><code>R/problem.R</code></a></small>
     <div class="hidden name"><code>problem.Rd</code></div>
     </div>
 
@@ -125,10 +125,10 @@ specify the underlying data used in a prioritization problem: the projects,
 the management actions, and the features that need
 to be conserved (e.g. species, ecosystems). After constructing this
 <code>ProjectProblem-class</code> object,
-it can be customized using <code><a href='objectives.html'>objectives</a></code>, <code><a href='targets.html'>targets</a></code>,
-<code><a href='weights.html'>weights</a></code>, <code><a href='constraints.html'>constraints</a></code> and
-<code><a href='solvers.html'>solvers</a></code>. After building the problem, the
-<code><a href='solve.html'>solve</a></code> function can be used to identify solutions.</p>
+it can be customized using <code>objectives</code>, <code>targets</code>,
+<code><a href='https://www.rdocumentation.org/packages/stats/topics/weights'>weights</a></code>, <code>constraints</code> and
+<code>solvers</code>. After building the problem, the
+<code><a href='https://www.rdocumentation.org/packages/base/topics/solve'>solve</a></code> function can be used to identify solutions.</p>
     
     </div>
 
@@ -172,8 +172,8 @@ the name of each action (specified in the argument to
 <code>action_name_column</code>), (ii) the cost of each action (specified in the
 argument to <code>action_cost_column</code>). Optionally, it may also contain
 data that indicate planning units should be (iii) locked in or (iv) locked
-out (see <code><a href='add_locked_in_constraints.html'>add_locked_in_constraints</a></code> and
-<code><a href='add_locked_out_constraints.html'>add_locked_out_constraints</a></code>).</p></td>
+out (see <code>add_locked_in_constraints</code> and
+<code>add_locked_out_constraints</code>).</p></td>
     </tr>
     <tr>
       <th>features</th>
@@ -237,7 +237,7 @@ project fails. Defaults to <code>TRUE</code>.</p></td>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A fresh <code><a href='ProjectProblem-class.html'>ProjectProblem-class</a></code> object.</p>
+    <p>A fresh <code>ProjectProblem-class</code> object.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
@@ -273,14 +273,14 @@ project fails. Defaults to <code>TRUE</code>.</p></td>
   constraints impose limits such as the total budget available for funding
   management actions. For more information on the mathematical
   formulations used in this package, please refer to the manual entries for
-  the available objectives (listed in <code><a href='objectives.html'>objectives</a></code>).</p>
+  the available objectives (listed in <code>objectives</code>).</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='constraints.html'>constraints</a></code>, <code><a href='decisions.html'>decisions</a></code>,
- <code><a href='objectives.html'>objectives</a></code>, <code><a href='solvers.html'>solvers</a></code>, <code><a href='targets.html'>targets</a></code>,
- <code><a href='weights.html'>weights</a></code>, <code><a href='solution_statistics.html'>solution_statistics</a></code>,
- <code><a href='plot.ProjectProblem.html'>plot.ProjectProblem</a></code>.</p></div>
+    <div class='dont-index'><p><code>constraints</code>, <code>decisions</code>,
+ <code>objectives</code>, <code>solvers</code>, <code>targets</code>,
+ <code><a href='https://www.rdocumentation.org/packages/stats/topics/weights'>weights</a></code>, <code>solution_statistics</code>,
+ <code>plot.ProjectProblem</code>.</p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -288,7 +288,7 @@ project fails. Defaults to <code>TRUE</code>.</p></td>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_features</span>, <span class='no'>sim_actions</span>)
 
 <span class='co'># print project data</span>
-<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>sim_projects</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 13</span><span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>sim_projects</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 13</span><span>
 #&gt;   name  success     F1     F2      F3     F4     F5 F1_action F2_action
 #&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>    
 #&gt; </span><span style='color: #BCBCBC;'>1</span><span> F1_p~   0.919  0.791 </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     TRUE      FALSE    
@@ -300,7 +300,7 @@ project fails. Defaults to <code>TRUE</code>.</p></td>
 #&gt; </span><span style='color: #949494;'># ... with 4 more variables: F3_action </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #949494;'>, F4_action </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #949494;'>, F5_action </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #949494;'>,
 #&gt; #   baseline_action </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span></div><div class='input'>
 <span class='co'># print action data</span>
-<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>sim_features</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 5 x 2</span><span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>sim_features</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 5 x 2</span><span>
 #&gt;   name  weight
 #&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #BCBCBC;'>1</span><span> F1     0.211
@@ -309,7 +309,7 @@ project fails. Defaults to <code>TRUE</code>.</p></td>
 #&gt; </span><span style='color: #BCBCBC;'>4</span><span> F4     0.630
 #&gt; </span><span style='color: #BCBCBC;'>5</span><span> F5     1.59 </div><div class='input'>
 <span class='co'># print feature data</span>
-<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>sim_actions</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 6 x 4</span><span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>sim_actions</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 6 x 4</span><span>
 #&gt;   name             cost locked_in locked_out
 #&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>     
 #&gt; </span><span style='color: #BCBCBC;'>1</span><span> F1_action        94.4 FALSE     FALSE     
@@ -321,12 +321,12 @@ project fails. Defaults to <code>TRUE</code>.</p></td>
 <span class='co'># build problem</span>
 <span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'>problem</span>(<span class='no'>sim_projects</span>, <span class='no'>sim_actions</span>, <span class='no'>sim_features</span>,
              <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span>) <span class='kw'>%&gt;%</span>
-     <span class='fu'><a href='add_max_richness_objective.html'>add_max_richness_objective</a></span>(<span class='kw'>budget</span> <span class='kw'>=</span> <span class='fl'>400</span>) <span class='kw'>%&gt;%</span>
-     <span class='fu'><a href='add_feature_weights.html'>add_feature_weights</a></span>(<span class='st'>"weight"</span>) <span class='kw'>%&gt;%</span>
-     <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span>()
+     <span class='fu'>add_max_richness_objective</span>(<span class='kw'>budget</span> <span class='kw'>=</span> <span class='fl'>400</span>) <span class='kw'>%&gt;%</span>
+     <span class='fu'>add_feature_weights</span>(<span class='st'>"weight"</span>) <span class='kw'>%&gt;%</span>
+     <span class='fu'>add_binary_decisions</span>()
 
 <span class='co'># print problem</span>
-<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>p</span>)</div><div class='output co'>#&gt; <span class='message'>Project Prioritization Problem</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>p</span>)</div><div class='output co'>#&gt; <span class='message'>Project Prioritization Problem</span>
 #&gt; <span class='message'>  actions          F1_action, F2_action, F3_action, ... (6 actions)</span>
 #&gt; <span class='message'>  projects         F1_project, F2_project, F3_project, ... (6 projects)</span>
 #&gt; <span class='message'>  features         F1, F2, F3, ... (5 features)</span>
@@ -339,7 +339,7 @@ project fails. Defaults to <code>TRUE</code>.</p></td>
 #&gt; <span class='message'>  constraints:     &lt;none&gt;</span>
 #&gt; <span class='message'>  solver:          default</span></div><div class='input'>
 </div></span><div class='input'><span class='co'># solve problem</span>
-<span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p</span>)</div><div class='output co'>#&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
+<span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/solve'>solve</a></span>(<span class='no'>p</span>)</div><div class='output co'>#&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
 #&gt; Variable types: 0 continuous, 42 integer (42 binary)
 #&gt; Semi-Variable types: 5 continuous, 0 integer
 #&gt; Coefficient statistics:
@@ -370,7 +370,7 @@ project fails. Defaults to <code>TRUE</code>.</p></td>
 #&gt; Optimal solution found (tolerance 0.00e+00)
 #&gt; Best objective 1.749044775334e+00, best bound 1.749044775334e+00, gap 0.0000%</div><div class='input'>
 <span class='co'># print output</span>
-<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 21</span><span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>s</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 21</span><span>
 #&gt;   solution status   obj  cost F1_action F2_action F3_action F4_action F5_action
 #&gt;      </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 OPTIM~  1.75  395.         1         1         0         1         1

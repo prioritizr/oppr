@@ -1,6 +1,6 @@
-Package: ppr
+Package: oppr
 Type: Package
-Version: 0.0.0.9
+Version: 0.0.0.10
 Title: Project Prioritization
 Description: A decision support tool for prioritizing conservation projects.
     Prioritizations can be developed by maximizing expected feature richness,
@@ -59,8 +59,8 @@ LinkingTo:
 License: GPL-3
 LazyData: true
 SystemRequirements: C++11
-URL: https://prioritizr.github.io/ppr, https://github.com/prioritizr/ppr
-BugReports: https://github.com/prioritizr/ppr/issues
+URL: https://prioritizr.github.io/oppr, https://github.com/prioritizr/oppr
+BugReports: https://github.com/prioritizr/oppr/issues
 VignetteBuilder: knitr
 RoxygenNote: 6.1.1
 Collate:

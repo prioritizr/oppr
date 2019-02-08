@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Add manually specified locked constraints — add_manual_locked_constraints • ppr</title>
+<title>Add manually specified locked constraints — add_manual_locked_constraints • oppr</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -65,8 +65,8 @@ and add_locked_out_constraints functions." />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">ppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9</span>
+        <a class="navbar-link" href="../index.html">oppr</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.10</span>
       </span>
     </div>
 
@@ -79,7 +79,7 @@ and add_locked_out_constraints functions." />
   </a>
 </li>
 <li>
-  <a href="../articles/ppr.html">Get started</a>
+  <a href="../articles/oppr.html">Get started</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
@@ -91,7 +91,7 @@ and add_locked_out_constraints functions." />
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/prioritizr/ppr">
+  <a href="https://github.com/prioritizr/oppr">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -109,16 +109,16 @@ and add_locked_out_constraints functions." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Add manually specified locked constraints</h1>
-    <small class="dont-index">Source: <a href='https://github.com/prioritizr/ppr/blob/master/R/add_manual_locked_constraints.R'><code>R/add_manual_locked_constraints.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/prioritizr/oppr/blob/master/R/add_manual_locked_constraints.R'><code>R/add_manual_locked_constraints.R</code></a></small>
     <div class="hidden name"><code>add_manual_locked_constraints.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Add constraints to a project prioritization <code><a href='problem.html'>problem</a></code> to ensure
+    <p>Add constraints to a project prioritization <code>problem</code> to ensure
 that solutions fund (or do not fund) specific actions. This function offers
-more fine-grained control than the <code><a href='add_locked_in_constraints.html'>add_locked_in_constraints</a></code>
-and <code><a href='add_locked_out_constraints.html'>add_locked_out_constraints</a></code> functions.</p>
+more fine-grained control than the <code>add_locked_in_constraints</code>
+and <code>add_locked_out_constraints</code> functions.</p>
     
     </div>
 
@@ -135,7 +135,7 @@ and <code><a href='add_locked_out_constraints.html'>add_locked_out_constraints</
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p><code><a href='ProjectProblem-class.html'>ProjectProblem-class</a></code> object.</p></td>
+      <td><p><code>ProjectProblem-class</code> object.</p></td>
     </tr>
     <tr>
       <th>locked</th>
@@ -146,7 +146,7 @@ the Details section for more information.</p></td>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code><a href='ProjectProblem-class.html'>ProjectProblem-class</a></code> object with the constraints
+    <p><code>ProjectProblem-class</code> object with the constraints
   added to it.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
@@ -161,7 +161,7 @@ the Details section for more information.</p></td>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='constraints.html'>constraints</a></code>.</p></div>
+    <div class='dont-index'><p><code>constraints</code>.</p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -174,19 +174,19 @@ the Details section for more information.</p></td>
                      <span class='kw'>status</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>))
 
 <span class='co'># print locked statuses</span>
-<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>status</span>)</div><div class='output co'>#&gt;      action status
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>status</span>)</div><div class='output co'>#&gt;      action status
 #&gt; 1 F1_action      0
 #&gt; 2 F2_action      1</div><div class='input'>
 <span class='co'># build problem with minimum set objective and targets that require each</span>
 <span class='co'># feature to have a 30% chance of persisting into the future</span>
-<span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_actions</span>, <span class='no'>sim_features</span>,
+<span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'>problem</span>(<span class='no'>sim_projects</span>, <span class='no'>sim_actions</span>, <span class='no'>sim_features</span>,
              <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span>) <span class='kw'>%&gt;%</span>
-      <span class='fu'><a href='add_max_richness_objective.html'>add_max_richness_objective</a></span>(<span class='kw'>budget</span> <span class='kw'>=</span> <span class='fl'>500</span>) <span class='kw'>%&gt;%</span>
+      <span class='fu'>add_max_richness_objective</span>(<span class='kw'>budget</span> <span class='kw'>=</span> <span class='fl'>500</span>) <span class='kw'>%&gt;%</span>
       <span class='fu'>add_manual_locked_constraints</span>(<span class='no'>status</span>) <span class='kw'>%&gt;%</span>
-      <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span>()
+      <span class='fu'>add_binary_decisions</span>()
 
 <span class='co'># print problem</span>
-<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>p</span>)</div><div class='output co'>#&gt; <span class='message'>Project Prioritization Problem</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>p</span>)</div><div class='output co'>#&gt; <span class='message'>Project Prioritization Problem</span>
 #&gt; <span class='message'>  actions          F1_action, F2_action, F3_action, ... (6 actions)</span>
 #&gt; <span class='message'>  projects         F1_project, F2_project, F3_project, ... (6 projects)</span>
 #&gt; <span class='message'>  features         F1, F2, F3, ... (5 features)</span>
@@ -199,7 +199,7 @@ the Details section for more information.</p></td>
 #&gt; <span class='message'>  constraints:     &lt;Manually locked actions [2 locked units]&gt;</span>
 #&gt; <span class='message'>  solver:          default</span></div><div class='input'>
 </div><div class='input'><span class='co'># solve problem</span>
-<span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p</span>)</div><div class='output co'>#&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
+<span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/solve'>solve</a></span>(<span class='no'>p</span>)</div><div class='output co'>#&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
 #&gt; Variable types: 0 continuous, 42 integer (42 binary)
 #&gt; Semi-Variable types: 5 continuous, 0 integer
 #&gt; Coefficient statistics:
@@ -230,7 +230,7 @@ the Details section for more information.</p></td>
 #&gt; Optimal solution found (tolerance 0.00e+00)
 #&gt; Best objective 2.910245655750e+00, best bound 2.910245655750e+00, gap 0.0000%</div><div class='input'>
 <span class='co'># print solution</span>
-<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 21</span><span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>s</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 21</span><span>
 #&gt;   solution status   obj  cost F1_action F2_action F3_action F4_action F5_action
 #&gt;      </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 OPTIM~  2.91  403.         0         1         1         1         1

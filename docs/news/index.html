@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Changelog • ppr</title>
+<title>Changelog • oppr</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -59,8 +59,8 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">ppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9</span>
+        <a class="navbar-link" href="../index.html">oppr</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.10</span>
       </span>
     </div>
 
@@ -73,7 +73,7 @@
   </a>
 </li>
 <li>
-  <a href="../articles/ppr.html">Get started</a>
+  <a href="../articles/oppr.html">Get started</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
@@ -85,7 +85,7 @@
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/prioritizr/ppr">
+  <a href="https://github.com/prioritizr/oppr">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -103,88 +103,87 @@
   <div class="col-md-9 contents">
     <div class="page-header">
       <h1>Changelog <small></small></h1>
-      <small>Source: <a href='https://github.com/prioritizr/ppr/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
+      <small>Source: <a href='https://github.com/prioritizr/oppr/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="ppr-0-0-0-9" class="section level1">
+    <div id="oppr-0-0-0-10" class="section level1">
 <h1 class="page-header">
-<a href="#ppr-0-0-0-9" class="anchor"></a>ppr 0.0.0.9<small> Unreleased </small>
-</h1>
+<a href="#oppr-0-0-0-10" class="anchor"></a>oppr 0.0.0.10</h1>
+<ul>
+<li>Rename package to <em>oppr</em> since <em>ppr</em> is already on CRAN.</li>
+<li>Fix issue with <code>replacement_costs</code> yielding incorrect results for baseline projects when used with SYMPHONY solvers.</li>
+</ul>
+</div>
+    <div id="oppr-0-0-0-9" class="section level1">
+<h1 class="page-header">
+<a href="#oppr-0-0-0-9" class="anchor"></a>oppr 0.0.0.9</h1>
 <ul>
 <li>Add new <code>project_cost_effectiveness</code> function to calculate the cost-effectiveness for each conservation project in a problem.</li>
 </ul>
 </div>
-    <div id="ppr-0-0-0-8" class="section level1">
+    <div id="oppr-0-0-0-8" class="section level1">
 <h1 class="page-header">
-<a href="#ppr-0-0-0-8" class="anchor"></a>ppr 0.0.0.8<small> Unreleased </small>
-</h1>
+<a href="#oppr-0-0-0-8" class="anchor"></a>oppr 0.0.0.8</h1>
 <ul>
-<li>Fix typos in documentation (<a href='https://github.com/prioritizr/ppr/issues/8'>#8</a>).</li>
-<li>The <code>solution_statistics</code> function outputs which projects are completely funded in each solution (<a href='https://github.com/prioritizr/ppr/issues/9'>#9</a>).</li>
-<li>Add example for saving tabular data to vignette (<a href='https://github.com/prioritizr/ppr/issues/10'>#10</a>).</li>
-<li>Add examples to vignette for working with the solution output (<a href='https://github.com/prioritizr/ppr/issues/11'>#11</a>).</li>
+<li>Fix typos in documentation (<a href='https://github.com/prioritizr/oppr/issues/8'>#8</a>).</li>
+<li>The <code>solution_statistics</code> function outputs which projects are completely funded in each solution (<a href='https://github.com/prioritizr/oppr/issues/9'>#9</a>).</li>
+<li>Add example for saving tabular data to vignette (<a href='https://github.com/prioritizr/oppr/issues/10'>#10</a>).</li>
+<li>Add examples to vignette for working with the solution output (<a href='https://github.com/prioritizr/oppr/issues/11'>#11</a>).</li>
 </ul>
 </div>
-    <div id="ppr-0-0-0-7" class="section level1">
+    <div id="oppr-0-0-0-7" class="section level1">
 <h1 class="page-header">
-<a href="#ppr-0-0-0-7" class="anchor"></a>ppr 0.0.0.7<small> Unreleased </small>
-</h1>
+<a href="#oppr-0-0-0-7" class="anchor"></a>oppr 0.0.0.7</h1>
 <ul>
 <li>Fix annoying “<code>Found more than one class "tbl_df" in cache; using the first, from namespace 'tibble'</code>” text.</li>
 </ul>
 </div>
-    <div id="ppr-0-0-0-6" class="section level1">
+    <div id="oppr-0-0-0-6" class="section level1">
 <h1 class="page-header">
-<a href="#ppr-0-0-0-6" class="anchor"></a>ppr 0.0.0.6<small> Unreleased </small>
-</h1>
+<a href="#oppr-0-0-0-6" class="anchor"></a>oppr 0.0.0.6</h1>
 <ul>
-<li>Actually fix bug when solving problems with a phylogenetic objective and branches that have a constant probability of persistence (<a href='https://github.com/prioritizr/ppr/issues/6'>#6</a>).</li>
+<li>Actually fix bug when solving problems with a phylogenetic objective and branches that have a constant probability of persistence (<a href='https://github.com/prioritizr/oppr/issues/6'>#6</a>).</li>
 <li>Fix bug in <code>add_max_phylo_div_objective</code> yielding incorrect solutions when features are ordered differently in the phylogenetic and tabular input data.</li>
 <li>Fix bug in <code>solution_statistics</code> yielding objective values for phylogenetic problems when features are ordered differently in the phylogenetic and tabular input data.</li>
 <li>Fix bug when handling phylogenetic data when a species is associated with two tip branches. Although such data probably indicate errors in the phylogenetic data, this functionality could be useful when combining multiple datasets.</li>
 </ul>
 </div>
-    <div id="ppr-0-0-0-5" class="section level1">
+    <div id="oppr-0-0-0-5" class="section level1">
 <h1 class="page-header">
-<a href="#ppr-0-0-0-5" class="anchor"></a>ppr 0.0.0.5<small> Unreleased </small>
-</h1>
+<a href="#oppr-0-0-0-5" class="anchor"></a>oppr 0.0.0.5</h1>
 <ul>
 <li>Add <code>return_data</code> argument to <code>plot_feature_persistence</code> and <code>plot_phylo_persistence</code> so that plotting data can be obtained for creating custom plots.</li>
 </ul>
 </div>
-    <div id="ppr-0-0-0-4" class="section level1">
+    <div id="oppr-0-0-0-4" class="section level1">
 <h1 class="page-header">
-<a href="#ppr-0-0-0-4" class="anchor"></a>ppr 0.0.0.4<small> Unreleased </small>
-</h1>
+<a href="#oppr-0-0-0-4" class="anchor"></a>oppr 0.0.0.4</h1>
 <ul>
 <li>Fix bug in <code>add_relative_targets</code> and <code>add_manual_targets</code> (when relative targets supplied) calculations. This result in incorrect calculations.</li>
-<li>Fix issue with expected persistence probabilities not accounting for the “do nothing” scenario (<a href='https://github.com/prioritizr/ppr/issues/7'>#7</a>).</li>
+<li>Fix issue with expected persistence probabilities not accounting for the “do nothing” scenario (<a href='https://github.com/prioritizr/oppr/issues/7'>#7</a>).</li>
 </ul>
 </div>
-    <div id="ppr-0-0-0-3" class="section level1">
+    <div id="oppr-0-0-0-3" class="section level1">
 <h1 class="page-header">
-<a href="#ppr-0-0-0-3" class="anchor"></a>ppr 0.0.0.3<small> Unreleased </small>
-</h1>
+<a href="#oppr-0-0-0-3" class="anchor"></a>oppr 0.0.0.3</h1>
 <ul>
 <li>The gurobi solver (i.e. <code>add_gurobi_solver</code> function) now uses <code>NumericFocus=3</code> to help avoid numerical issues.</li>
 <li>The <code>compile</code> function now throws a warning if problems are likely to have numerical issues.</li>
 </ul>
 </div>
-    <div id="ppr-0-0-0-2" class="section level1">
+    <div id="oppr-0-0-0-2" class="section level1">
 <h1 class="page-header">
-<a href="#ppr-0-0-0-2" class="anchor"></a>ppr 0.0.0.2<small> Unreleased </small>
-</h1>
+<a href="#oppr-0-0-0-2" class="anchor"></a>oppr 0.0.0.2</h1>
 <ul>
-<li>Fix bug when solving problems with a phylogenetic objective and branches that have a constant probability of persistence (<a href='https://github.com/prioritizr/ppr/issues/6'>#6</a>). Hindsight shows this attempt did not cover all edge cases.</li>
+<li>Fix bug when solving problems with a phylogenetic objective and branches that have a constant probability of persistence (<a href='https://github.com/prioritizr/oppr/issues/6'>#6</a>). Hindsight shows this attempt did not cover all edge cases.</li>
 <li>Add additional data sanity checks to <code>problem</code>. It will now throw descriptive error messages if features are missing baseline probabilities, or are associated with baseline probabilities below 1e-11.</li>
 <li>Fix unit test for <code>simulate_ptm_data</code> that had a very small chance of failing due to simulating a data set where an action is not associated with any project.</li>
 <li>Feature columns in simulated data produced using <code>simulate_ppp_data</code> and <code>simulate_ptm_data</code> are now sorted.</li>
 </ul>
 </div>
-    <div id="ppr-0-0-0-1" class="section level1">
+    <div id="oppr-0-0-0-1" class="section level1">
 <h1 class="page-header">
-<a href="#ppr-0-0-0-1" class="anchor"></a>ppr 0.0.0.1<small> Unreleased </small>
-</h1>
+<a href="#oppr-0-0-0-1" class="anchor"></a>oppr 0.0.0.1</h1>
 <ul>
 <li>Initial commit.</li>
 </ul>
@@ -195,15 +194,16 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#ppr-0-0-0-9">0.0.0.9</a></li>
-        <li><a href="#ppr-0-0-0-8">0.0.0.8</a></li>
-        <li><a href="#ppr-0-0-0-7">0.0.0.7</a></li>
-        <li><a href="#ppr-0-0-0-6">0.0.0.6</a></li>
-        <li><a href="#ppr-0-0-0-5">0.0.0.5</a></li>
-        <li><a href="#ppr-0-0-0-4">0.0.0.4</a></li>
-        <li><a href="#ppr-0-0-0-3">0.0.0.3</a></li>
-        <li><a href="#ppr-0-0-0-2">0.0.0.2</a></li>
-        <li><a href="#ppr-0-0-0-1">0.0.0.1</a></li>
+        <li><a href="#oppr-0-0-0-10">0.0.0.10</a></li>
+        <li><a href="#oppr-0-0-0-9">0.0.0.9</a></li>
+        <li><a href="#oppr-0-0-0-8">0.0.0.8</a></li>
+        <li><a href="#oppr-0-0-0-7">0.0.0.7</a></li>
+        <li><a href="#oppr-0-0-0-6">0.0.0.6</a></li>
+        <li><a href="#oppr-0-0-0-5">0.0.0.5</a></li>
+        <li><a href="#oppr-0-0-0-4">0.0.0.4</a></li>
+        <li><a href="#oppr-0-0-0-3">0.0.0.3</a></li>
+        <li><a href="#oppr-0-0-0-2">0.0.0.2</a></li>
+        <li><a href="#oppr-0-0-0-1">0.0.0.1</a></li>
       </ul>
     </div>
   </div>

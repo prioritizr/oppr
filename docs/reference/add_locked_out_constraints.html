@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Add locked out constraints — add_locked_out_constraints • ppr</title>
+<title>Add locked out constraints — add_locked_out_constraints • oppr</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -65,8 +65,8 @@ importance to the optimal funding scheme." />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">ppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9</span>
+        <a class="navbar-link" href="../index.html">oppr</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.10</span>
       </span>
     </div>
 
@@ -79,7 +79,7 @@ importance to the optimal funding scheme." />
   </a>
 </li>
 <li>
-  <a href="../articles/ppr.html">Get started</a>
+  <a href="../articles/oppr.html">Get started</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
@@ -91,7 +91,7 @@ importance to the optimal funding scheme." />
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/prioritizr/ppr">
+  <a href="https://github.com/prioritizr/oppr">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -109,13 +109,13 @@ importance to the optimal funding scheme." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Add locked out constraints</h1>
-    <small class="dont-index">Source: <a href='https://github.com/prioritizr/ppr/blob/master/R/add_locked_out_constraints.R'><code>R/add_locked_out_constraints.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/prioritizr/oppr/blob/master/R/add_locked_out_constraints.R'><code>R/add_locked_out_constraints.R</code></a></small>
     <div class="hidden name"><code>add_locked_out_constraints.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Add constraints to a project prioritization <code><a href='problem.html'>problem</a></code> to ensure
+    <p>Add constraints to a project prioritization <code>problem</code> to ensure
 that specific actions are not prioritized for funding in the solution. For
 example, it may be desirable to lock out specific actions to examine their
 importance to the optimal funding scheme.</p>
@@ -138,7 +138,7 @@ importance to the optimal funding scheme.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p><code><a href='ProjectProblem-class.html'>ProjectProblem-class</a></code> object.</p></td>
+      <td><p><code>ProjectProblem-class</code> object.</p></td>
     </tr>
     <tr>
       <th>locked_out</th>
@@ -156,7 +156,7 @@ locked out. See the Details section for more information.</p></td>
 <span class='no'>sim_actions</span>$<span class='no'>locked_out</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>FALSE</span>, <span class='fl'>TRUE</span>, <span class='fl'>FALSE</span>, <span class='fl'>FALSE</span>, <span class='fl'>FALSE</span>, <span class='fl'>FALSE</span>)
 
 <span class='co'># print action data</span>
-<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>sim_actions</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 4</span><span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>sim_actions</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 4</span><span>
 #&gt;   name             cost locked_in locked_out
 #&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>     
 #&gt; </span><span style='color: #BCBCBC;'>1</span><span> F1_action        94.4 FALSE     FALSE     
@@ -166,13 +166,13 @@ locked out. See the Details section for more information.</p></td>
 #&gt; </span><span style='color: #BCBCBC;'>5</span><span> F5_action        99.9 FALSE     FALSE     
 #&gt; </span><span style='color: #BCBCBC;'>6</span><span> baseline_action   0   FALSE     FALSE     </div><div class='input'>
 <span class='co'># build problem with maximum richness objective and $150 budget</span>
-<span class='no'>p1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_actions</span>, <span class='no'>sim_features</span>,
+<span class='no'>p1</span> <span class='kw'>&lt;-</span> <span class='fu'>problem</span>(<span class='no'>sim_projects</span>, <span class='no'>sim_actions</span>, <span class='no'>sim_features</span>,
              <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span>) <span class='kw'>%&gt;%</span>
-     <span class='fu'><a href='add_max_richness_objective.html'>add_max_richness_objective</a></span>(<span class='kw'>budget</span> <span class='kw'>=</span> <span class='fl'>150</span>) <span class='kw'>%&gt;%</span>
-     <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span>()
+     <span class='fu'>add_max_richness_objective</span>(<span class='kw'>budget</span> <span class='kw'>=</span> <span class='fl'>150</span>) <span class='kw'>%&gt;%</span>
+     <span class='fu'>add_binary_decisions</span>()
 
 <span class='co'># print problem</span>
-<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>p1</span>)</div><div class='output co'>#&gt; <span class='message'>Project Prioritization Problem</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>p1</span>)</div><div class='output co'>#&gt; <span class='message'>Project Prioritization Problem</span>
 #&gt; <span class='message'>  actions          F1_action, F2_action, F3_action, ... (6 actions)</span>
 #&gt; <span class='message'>  projects         F1_project, F2_project, F3_project, ... (6 projects)</span>
 #&gt; <span class='message'>  features         F1, F2, F3, ... (5 features)</span>
@@ -189,7 +189,7 @@ locked out. See the Details section for more information.</p></td>
       <span class='fu'>add_locked_out_constraints</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>2</span>))
 
 <span class='co'># print problem</span>
-<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>p2</span>)</div><div class='output co'>#&gt; <span class='message'>Project Prioritization Problem</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>p2</span>)</div><div class='output co'>#&gt; <span class='message'>Project Prioritization Problem</span>
 #&gt; <span class='message'>  actions          F1_action, F2_action, F3_action, ... (6 actions)</span>
 #&gt; <span class='message'>  projects         F1_project, F2_project, F3_project, ... (6 projects)</span>
 #&gt; <span class='message'>  features         F1, F2, F3, ... (5 features)</span>
@@ -207,7 +207,7 @@ locked out. See the Details section for more information.</p></td>
       <span class='fu'>add_locked_out_constraints</span>(<span class='no'>sim_actions</span>$<span class='no'>locked_out</span>)
 
 <span class='co'># print problem</span>
-<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>p3</span>)</div><div class='output co'>#&gt; <span class='message'>Project Prioritization Problem</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>p3</span>)</div><div class='output co'>#&gt; <span class='message'>Project Prioritization Problem</span>
 #&gt; <span class='message'>  actions          F1_action, F2_action, F3_action, ... (6 actions)</span>
 #&gt; <span class='message'>  projects         F1_project, F2_project, F3_project, ... (6 projects)</span>
 #&gt; <span class='message'>  features         F1, F2, F3, ... (5 features)</span>
@@ -226,7 +226,7 @@ locked out. See the Details section for more information.</p></td>
       <span class='fu'>add_locked_out_constraints</span>(<span class='st'>"locked_out"</span>)
 
 <span class='co'># print problem</span>
-<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>p4</span>)</div><div class='output co'>#&gt; <span class='message'>Project Prioritization Problem</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>p4</span>)</div><div class='output co'>#&gt; <span class='message'>Project Prioritization Problem</span>
 #&gt; <span class='message'>  actions          F1_action, F2_action, F3_action, ... (6 actions)</span>
 #&gt; <span class='message'>  projects         F1_project, F2_project, F3_project, ... (6 projects)</span>
 #&gt; <span class='message'>  features         F1, F2, F3, ... (5 features)</span>
@@ -239,7 +239,7 @@ locked out. See the Details section for more information.</p></td>
 #&gt; <span class='message'>  constraints:     &lt;Manually locked actions [1 locked units]&gt;</span>
 #&gt; <span class='message'>  solver:          default</span></div><div class='input'>
 <span class='co'># solve problems</span>
-<span class='no'>s1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p1</span>)</div><div class='output co'>#&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
+<span class='no'>s1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/solve'>solve</a></span>(<span class='no'>p1</span>)</div><div class='output co'>#&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
 #&gt; Variable types: 0 continuous, 42 integer (42 binary)
 #&gt; Semi-Variable types: 5 continuous, 0 integer
 #&gt; Coefficient statistics:
@@ -249,7 +249,7 @@ locked out. See the Details section for more information.</p></td>
 #&gt;   RHS range        [1e+00, 2e+02]
 #&gt; Found heuristic solution: objective 1.4456093
 #&gt; Presolve removed 16 rows and 12 columns
-#&gt; Presolve time: 0.01s
+#&gt; Presolve time: 0.00s
 #&gt; Presolved: 31 rows, 35 columns, 65 nonzeros
 #&gt; Variable types: 0 continuous, 35 integer (35 binary)
 #&gt; Presolved: 31 rows, 35 columns, 65 nonzeros
@@ -262,13 +262,13 @@ locked out. See the Details section for more information.</p></td>
 #&gt; 
 #&gt; *    0     0               0       1.6801450    1.68015  0.00%     -    0s
 #&gt; 
-#&gt; Explored 0 nodes (11 simplex iterations) in 0.01 seconds
+#&gt; Explored 0 nodes (11 simplex iterations) in 0.00 seconds
 #&gt; Thread count was 1 (of 4 available processors)
 #&gt; 
 #&gt; Solution count 1: 1.68015 
 #&gt; 
 #&gt; Optimal solution found (tolerance 0.00e+00)
-#&gt; Best objective 1.680145013696e+00, best bound 1.680145013696e+00, gap 0.0000%</div><div class='input'><span class='no'>s2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p2</span>)</div><div class='output co'>#&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
+#&gt; Best objective 1.680145013696e+00, best bound 1.680145013696e+00, gap 0.0000%</div><div class='input'><span class='no'>s2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/solve'>solve</a></span>(<span class='no'>p2</span>)</div><div class='output co'>#&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
 #&gt; Variable types: 0 continuous, 42 integer (42 binary)
 #&gt; Semi-Variable types: 5 continuous, 0 integer
 #&gt; Coefficient statistics:
@@ -297,7 +297,7 @@ locked out. See the Details section for more information.</p></td>
 #&gt; Solution count 1: 1.57544 
 #&gt; 
 #&gt; Optimal solution found (tolerance 0.00e+00)
-#&gt; Best objective 1.575440809243e+00, best bound 1.575440809243e+00, gap 0.0000%</div><div class='input'><span class='no'>s3</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p3</span>)</div><div class='output co'>#&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
+#&gt; Best objective 1.575440809243e+00, best bound 1.575440809243e+00, gap 0.0000%</div><div class='input'><span class='no'>s3</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/solve'>solve</a></span>(<span class='no'>p3</span>)</div><div class='output co'>#&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
 #&gt; Variable types: 0 continuous, 42 integer (42 binary)
 #&gt; Semi-Variable types: 5 continuous, 0 integer
 #&gt; Coefficient statistics:
@@ -326,7 +326,7 @@ locked out. See the Details section for more information.</p></td>
 #&gt; Solution count 1: 1.57544 
 #&gt; 
 #&gt; Optimal solution found (tolerance 0.00e+00)
-#&gt; Best objective 1.575440809243e+00, best bound 1.575440809243e+00, gap 0.0000%</div><div class='input'><span class='no'>s4</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p4</span>)</div><div class='output co'>#&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
+#&gt; Best objective 1.575440809243e+00, best bound 1.575440809243e+00, gap 0.0000%</div><div class='input'><span class='no'>s4</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/solve'>solve</a></span>(<span class='no'>p4</span>)</div><div class='output co'>#&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
 #&gt; Variable types: 0 continuous, 42 integer (42 binary)
 #&gt; Semi-Variable types: 5 continuous, 0 integer
 #&gt; Coefficient statistics:
@@ -357,16 +357,16 @@ locked out. See the Details section for more information.</p></td>
 #&gt; Optimal solution found (tolerance 0.00e+00)
 #&gt; Best objective 1.575440809243e+00, best bound 1.575440809243e+00, gap 0.0000%</div><div class='input'>
 <span class='co'># print the actions selected for funding in each of the solutions</span>
-<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s1</span>[, <span class='no'>sim_actions</span>$<span class='no'>name</span>])</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 6</span><span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>s1</span>[, <span class='no'>sim_actions</span>$<span class='no'>name</span>])</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 6</span><span>
 #&gt;   F1_action F2_action F3_action F4_action F5_action baseline_action
 #&gt;       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>         0         1         0         0         0               1</div><div class='input'><span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s2</span>[, <span class='no'>sim_actions</span>$<span class='no'>name</span>])</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 6</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>         0         1         0         0         0               1</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>s2</span>[, <span class='no'>sim_actions</span>$<span class='no'>name</span>])</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 6</span><span>
 #&gt;   F1_action F2_action F3_action F4_action F5_action baseline_action
 #&gt;       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>         1         0         0         0         0               1</div><div class='input'><span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s3</span>[, <span class='no'>sim_actions</span>$<span class='no'>name</span>])</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 6</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>         1         0         0         0         0               1</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>s3</span>[, <span class='no'>sim_actions</span>$<span class='no'>name</span>])</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 6</span><span>
 #&gt;   F1_action F2_action F3_action F4_action F5_action baseline_action
 #&gt;       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>         1         0         0         0         0               1</div><div class='input'><span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s4</span>[, <span class='no'>sim_actions</span>$<span class='no'>name</span>])</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 6</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>         1         0         0         0         0               1</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>s4</span>[, <span class='no'>sim_actions</span>$<span class='no'>name</span>])</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 6</span><span>
 #&gt;   F1_action F2_action F3_action F4_action F5_action baseline_action
 #&gt;       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #BCBCBC;'>1</span><span>         1         0         0         0         0               1</div><div class='input'>

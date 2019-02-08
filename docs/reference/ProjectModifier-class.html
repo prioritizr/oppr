@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Conservation problem modifier prototype — ProjectModifier-class • ppr</title>
+<title>Conservation problem modifier prototype — ProjectModifier-class • oppr</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -68,8 +68,8 @@ far reaching effects." />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">ppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9</span>
+        <a class="navbar-link" href="../index.html">oppr</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.10</span>
       </span>
     </div>
 
@@ -82,7 +82,7 @@ far reaching effects." />
   </a>
 </li>
 <li>
-  <a href="../articles/ppr.html">Get started</a>
+  <a href="../articles/oppr.html">Get started</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
@@ -94,7 +94,7 @@ far reaching effects." />
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/prioritizr/ppr">
+  <a href="https://github.com/prioritizr/oppr">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -112,16 +112,16 @@ far reaching effects." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Conservation problem modifier prototype</h1>
-    <small class="dont-index">Source: <a href='https://github.com/prioritizr/ppr/blob/master/R/ProjectModifier-proto.R'><code>R/ProjectModifier-proto.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/prioritizr/oppr/blob/master/R/ProjectModifier-proto.R'><code>R/ProjectModifier-proto.R</code></a></small>
     <div class="hidden name"><code>ProjectModifier-class.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
     <p>This super-prototype is used to represent prototypes that in turn are used to
-modify a <code><a href='ProjectProblem-class.html'>ProjectProblem-class</a></code> object. Specifically, the
-<code><a href='Constraint-class.html'>Constraint-class</a></code>, <code><a href='Decision-class.html'>Decision-class</a></code>,
-<code><a href='Objective-class.html'>Objective-class</a></code>, and <code><a href='Target-class.html'>Target-class</a></code> prototypes
+modify a <code>ProjectProblem-class</code> object. Specifically, the
+<code>Constraint-class</code>, <code>Decision-class</code>,
+<code>Objective-class</code>, and <code>Target-class</code> prototypes
 inherit from this class. <strong>Only experts should interact with
 this class directly because changes to these class will have profound and
 far reaching effects.</strong></p>
@@ -165,8 +165,8 @@ far reaching effects.</strong></p>
     <dt>name</dt><dd><p><code>character</code> name for object</p></dd>
     <dt>value</dt><dd><p>any object</p></dd>
     <dt>id</dt><dd><p><code>id</code> or <code>name</code> of parameter</p></dd>
-    <dt>cp</dt><dd><p><code><a href='ProjectProblem-class.html'>ProjectProblem-class</a></code> object</p></dd>
-    <dt>op</dt><dd><p><code><a href='OptimizationProblem-class.html'>OptimizationProblem-class</a></code> object</p></dd>
+    <dt>cp</dt><dd><p><code>ProjectProblem-class</code> object</p></dd>
+    <dt>op</dt><dd><p><code>OptimizationProblem-class</code> object</p></dd>
     </dl>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
@@ -188,11 +188,11 @@ far reaching effects.</strong></p>
   in the <code>data</code> slot of the input <code>ProjectModifier</code> or
   <code>ProjectProblem</code> objects.</p></dd>
     <dt>output</dt><dd><p><code>function</code> used to generate an output from the object.
-  This method is only used for <code><a href='Target-class.html'>Target-class</a></code> objects.</p></dd>
+  This method is only used for <code>Target-class</code> objects.</p></dd>
     <dt>apply</dt><dd><p><code>function</code> used to apply the modifier to an
-  <code><a href='OptimizationProblem-class.html'>OptimizationProblem-class</a></code> object.
-  This is used by <code><a href='Constraint-class.html'>Constraint-class</a></code>,
-  <code><a href='Decision-class.html'>Decision-class</a></code>, and <code><a href='Objective-class.html'>Objective-class</a></code> objects.</p></dd>
+  <code>OptimizationProblem-class</code> object.
+  This is used by <code>Constraint-class</code>,
+  <code>Decision-class</code>, and <code>Objective-class</code> objects.</p></dd>
     <dt>get_parameter</dt><dd><p>retrieve the value of a parameter.</p></dd>
     <dt>get_all_parameters</dt><dd><p>generate <code>list</code> containing all the
   parameters.</p></dd>

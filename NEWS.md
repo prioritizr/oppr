@@ -1,9 +1,15 @@
-# ppr 0.0.0.9
+# oppr 0.0.0.10
+
+- Rename package to _oppr_ since _ppr_ is already on CRAN.
+- Fix issue with `replacement_costs` yielding incorrect results for baseline
+  projects when used with SYMPHONY solvers.
+
+# oppr 0.0.0.9
 
 - Add new `project_cost_effectiveness` function to calculate the
   cost-effectiveness for each conservation project in a problem.
 
-# ppr 0.0.0.8
+# oppr 0.0.0.8
 
 - Fix typos in documentation (#8).
 - The `solution_statistics` function outputs which projects are completely
@@ -11,11 +17,11 @@
 - Add example for saving tabular data to vignette (#10).
 - Add examples to vignette for working with the solution output (#11).
 
-# ppr 0.0.0.7
+# oppr 0.0.0.7
 
 - Fix annoying "`Found more than one class "tbl_df" in cache; using the first, from namespace 'tibble'`" text.
 
-# ppr 0.0.0.6
+# oppr 0.0.0.6
 
 - Actually fix bug when solving problems with a phylogenetic objective and
   branches that have a constant probability of persistence (#6).
@@ -30,27 +36,27 @@
   phylogenetic data, this functionality could be useful when combining
   multiple datasets.
 
-# ppr 0.0.0.5
+# oppr 0.0.0.5
 
 - Add `return_data` argument to `plot_feature_persistence` and
   `plot_phylo_persistence` so that plotting data can be obtained
   for creating custom plots.
 
-# ppr 0.0.0.4
+# oppr 0.0.0.4
 
 - Fix bug in `add_relative_targets` and `add_manual_targets` (when relative
   targets supplied) calculations. This result in incorrect calculations.
 - Fix issue with expected persistence probabilities not accounting for the
   "do nothing" scenario (#7).
 
-# ppr 0.0.0.3
+# oppr 0.0.0.3
 
 - The gurobi solver (i.e. `add_gurobi_solver` function) now uses
   `NumericFocus=3` to help avoid numerical issues.
 - The `compile` function now throws a warning if problems are likely to
   have numerical issues.
 
-# ppr 0.0.0.2
+# oppr 0.0.0.2
 
 - Fix bug when solving problems with a phylogenetic objective and branches that
   have a constant probability of persistence (#6). Hindsight shows this attempt
@@ -64,6 +70,6 @@
 - Feature columns in simulated data produced using `simulate_ppp_data` and
   `simulate_ptm_data` are now sorted.
 
-# ppr 0.0.0.1
+# oppr 0.0.0.1
 
 - Initial commit.

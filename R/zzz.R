@@ -2,7 +2,7 @@
 .pkgenv <- new.env(parent = emptyenv())
 
 .onUnload <- function(libpath) {
-  library.dynam.unload("ppr", libpath)
+  library.dynam.unload("oppr", libpath)
 }
 
 .onAttach <- function(libname, pkgname) {
@@ -10,11 +10,11 @@
   msg <- function() {
     packageStartupMessage(cli::rule())
     packageStartupMessage(
-      "You have loaded both ppr and prioritizr - ",
+      "You have loaded both oppr and prioritizr - ",
       "this is likely to cause serious issues.\n",
       "You should only have one of these packages loaded at a time,\n",
-      "please unload one ppr or prioritizr using one of the commands below:\n",
-      "  detach(\"package:ppr\", unload = TRUE) # unload ppr package\n",
+      "please unload one oppr or prioritizr using one of the commands below:\n",
+      "  detach(\"package:oppr\", unload = TRUE) # unload oppr package\n",
       "  detach(\"package:prioritizr\", unload = TRUE) # unload prioritizr",
       "package\n",
       "and then reload the desired package."

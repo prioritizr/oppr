@@ -1,6 +1,6 @@
 # load packages
 library(testthat)
-library(ppr)
+library(oppr)
 
 # run tests
-test_check("ppr")
+test_check("oppr")

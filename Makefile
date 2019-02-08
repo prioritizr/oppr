@@ -60,6 +60,6 @@ build:
 	touch inst/doc/.gitkeep
 
 install:
-	R --slave -e "devtools::install_local('../ppr', force = TRUE, upgrade = 'never')"
+	R --slave -e "devtools::install_local('../oppr', force = TRUE, upgrade = 'never')"
 
 .PHONY: initc data docs readme site test check checkwb build install man

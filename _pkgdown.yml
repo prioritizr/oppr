@@ -1,4 +1,4 @@
-url: https://prioritizr.github.io/ppr
+url: https://prioritizr.github.io/oppr
 
 authors:
   Jeffrey O Hanson:
@@ -18,7 +18,7 @@ reference:
   - title: Summary
     desc: Summary of the package
     contents:
-      - ppr
+      - oppr
   - title: Data
     desc: Simulated datasets and data simulation functions
     contents:
