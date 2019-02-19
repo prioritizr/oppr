@@ -102,7 +102,7 @@ it can be customized using \code{\link{objectives}}, \code{\link{targets}},
 \details{
 A project prioritization problem has actions, projects,
   and features. Features are the biological entities that need to
-  be conserved (e.g. species, populations, eco-systems). Actions are
+  be conserved (e.g. species, populations, ecosystems). Actions are
   real-world management actions that can be implemented to enhance
   biodiversity (e.g. habitat restoration, monitoring, pest eradication). Each
   action should have a known cost, and this usually means that each

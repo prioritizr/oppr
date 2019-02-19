@@ -92,7 +92,7 @@ NULL
 #' @details
 #'   A project prioritization problem has actions, projects,
 #'   and features. Features are the biological entities that need to
-#'   be conserved (e.g. species, populations, eco-systems). Actions are
+#'   be conserved (e.g. species, populations, ecosystems). Actions are
 #'   real-world management actions that can be implemented to enhance
 #'   biodiversity (e.g. habitat restoration, monitoring, pest eradication). Each
 #'   action should have a known cost, and this usually means that each
@@ -237,13 +237,14 @@ problem <- function(projects, actions, features, project_name_column,
   # project(s)
   bp <- actions$name[actions[[action_cost_column]] == 0]
   assertthat::assert_that(length(bp) > 0,
-    msg = "no baseline project detected (i.e. no projects have a zero cost)")
+    msg = "no baseline action detected (i.e. no projects have a zero cost)")
   assertthat::assert_that(length(bp) <= 1,
-    msg = "multiple baseline projects detected")
+    msg = "multiple baseline actions detected")
   pa <- as.matrix(projects[, actions$name])
   bp <- which(vapply(seq_len(nrow(pa)), FUN.VALUE = logical(1), function(i) {
     setequal(actions$name[pa[i, ]], bp)
   }))
+  assertthat::assert_that(length(bp) > 0, msg = "no baseline projects detected")
   bpp <- colSums(as.matrix(projects[bp, features[[feature_name_column]]]))
   assertthat::assert_that(all(is.finite(bpp)),
     msg = paste("feature(s) has a missing (NA) value for its",

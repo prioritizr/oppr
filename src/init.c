@@ -44,8 +44,7 @@ extern SEXP _oppr_rcpp_heuristic_solution(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SE
 extern SEXP _oppr_rcpp_new_optimization_problem(SEXP, SEXP, SEXP);
 extern SEXP _oppr_rcpp_optimization_problem_as_list(SEXP);
 extern SEXP _oppr_rcpp_predefined_optimization_problem(SEXP);
-extern SEXP _oppr_rcpp_random_max_benefit_solution(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
-extern SEXP _oppr_rcpp_random_min_set_solution(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
+extern SEXP _oppr_rcpp_random_solution(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
 
 static const R_CallMethodDef CallEntries[] = {
     {"_oppr_rcpp_add_raw_data",                                (DL_FUNC) &_oppr_rcpp_add_raw_data,                                 6},
@@ -84,8 +83,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_oppr_rcpp_new_optimization_problem",                    (DL_FUNC) &_oppr_rcpp_new_optimization_problem,                     3},
     {"_oppr_rcpp_optimization_problem_as_list",                (DL_FUNC) &_oppr_rcpp_optimization_problem_as_list,                 1},
     {"_oppr_rcpp_predefined_optimization_problem",             (DL_FUNC) &_oppr_rcpp_predefined_optimization_problem,              1},
-    {"_oppr_rcpp_random_max_benefit_solution",                 (DL_FUNC) &_oppr_rcpp_random_max_benefit_solution,                  6},
-    {"_oppr_rcpp_random_min_set_solution",                     (DL_FUNC) &_oppr_rcpp_random_min_set_solution,                      8},
+    {"_oppr_rcpp_random_solution",                             (DL_FUNC) &_oppr_rcpp_random_solution,                             10},
     {NULL, NULL, 0}
 };
 

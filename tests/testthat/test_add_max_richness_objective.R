@@ -450,6 +450,83 @@ test_that("heuristic solver (simple problem, single solution)", {
   expect_equal(s2$F3, 1 * 0.1)
 })
 
+test_that("heuristic solver (shared actions, single solution)", {
+  # make data
+  projects <- tibble::tibble(name = c("P1", "P2", "P3", "P4"),
+                             success =  c(0.95, 0.96, 0.94, 1.00),
+                             F1 =       c(0.91, 0.00, 0.80, 0.10),
+                             F2 =       c(0.00, 0.92, 0.80, 0.10),
+                             F3 =       c(0.00, 0.00, 0.00, 0.10),
+                             A1 =       c(TRUE, FALSE, FALSE, FALSE),
+                             A2 =       c(FALSE, TRUE, FALSE, FALSE),
+                             A3 =       c(FALSE, FALSE, TRUE, FALSE),
+                             A4 =       c(FALSE, TRUE, TRUE, FALSE),
+                             A5 =       c(FALSE, FALSE, FALSE, TRUE))
+  actions <- tibble::tibble(name =      c("A1", "A2", "A3", "A4", "A5"),
+                            cost =      c(0.10, 0.10, 0.15, 0.05, 0))
+  features <- tibble::tibble(name = c("F1", "F2", "F3"))
+  # create problem
+  p <- problem(projects, actions, features, "name", "success", "name", "cost",
+               "name", FALSE) %>%
+       add_max_richness_objective(budget = 0.16) %>%
+       add_binary_decisions() %>%
+       add_heuristic_solver(verbose = FALSE)
+  # solve problem
+  s <- solve(p)
+  # tests
+  expect_is(s, "tbl_df")
+  expect_equal(nrow(s), 1L)
+  expect_equal(s$solution, 1L)
+  expect_equal(s$status, NA_character_)
+  expect_equal(s$obj, s$F1 + s$F2 + s$F3)
+  expect_equal(s$cost, 0.15)
+  expect_equal(s$A1, 0)
+  expect_equal(s$A2, 1)
+  expect_equal(s$A3, 0)
+  expect_equal(s$A4, 1)
+  expect_equal(s$A5, 1)
+  expect_equal(s$F1, 1 * 0.1)
+  expect_equal(s$F2, 0.96 * 0.92)
+  expect_equal(s$F3, 1 * 0.1)
+})
+
+test_that("heuristic solver (shared actions, multiple solutions)", {
+  # make data
+  projects <- tibble::tibble(name = c("P1", "P2", "P3", "P4"),
+                             success =  c(0.95, 0.96, 0.94, 1.00),
+                             F1 =       c(0.91, 0.00, 0.80, 0.10),
+                             F2 =       c(0.00, 0.92, 0.80, 0.10),
+                             F3 =       c(0.00, 0.00, 0.00, 0.10),
+                             A1 =       c(TRUE, FALSE, FALSE, FALSE),
+                             A2 =       c(FALSE, TRUE, FALSE, FALSE),
+                             A3 =       c(FALSE, FALSE, TRUE, FALSE),
+                             A4 =       c(FALSE, TRUE, TRUE, FALSE),
+                             A5 =       c(FALSE, FALSE, FALSE, TRUE))
+  actions <- tibble::tibble(name =      c("A1", "A2", "A3", "A4", "A5"),
+                            cost =      c(0.10, 0.10, 0.15, 0.05, 0))
+  features <- tibble::tibble(name = c("F1", "F2", "F3"))
+  # create problem
+  p <- problem(projects, actions, features, "name", "success", "name", "cost",
+               "name", FALSE) %>%
+       add_max_richness_objective(budget = 0.26) %>%
+       add_binary_decisions() %>%
+       add_heuristic_solver(verbose = FALSE, number_solutions = 100)
+  # solve problem
+  s <- solve(p)
+  # tests
+  expect_is(s, "tbl_df")
+  expect_equal(nrow(s), 4L)
+  expect_equal(s$solution, seq_len(4))
+  expect_equal(s$status, rep(NA_character_, 4))
+  expect_equal(s$obj, s$F1 + s$F2 + s$F3)
+  expect_equal(s$cost, c(0.25, 0.15, 0.05, 0))
+  expect_equal(s$A1, c(1, 0, 0, 0))
+  expect_equal(s$A2, c(1, 1, 0, 0))
+  expect_equal(s$A3, c(0, 0, 0, 0))
+  expect_equal(s$A4, c(1, 1, 1, 0))
+  expect_equal(s$A5, c(1, 1, 1, 1))
+})
+
 test_that("heuristic solver (locked constraints, multiple solutions)", {
   # make data
   projects <- tibble::tibble(name = c("P1", "P2", "P3", "P4"),
@@ -494,6 +571,135 @@ test_that("heuristic solver (locked constraints, multiple solutions)", {
   expect_is(s$F2, "numeric")
   expect_is(s$F3, "numeric")
   expect_true(all(rowSums(as.matrix(s[, actions$name])) >= 1))
+})
+
+test_that("heuristic solver (zero budget)", {
+  # make data
+  projects <- tibble::tibble(name = c("P1", "P2", "P3", "P4"),
+                             success =  c(0.95, 0.96, 0.94, 1.00),
+                             F1 =       c(0.91, 0.00, 0.80, 0.10),
+                             F2 =       c(0.00, 0.92, 0.80, 0.10),
+                             F3 =       c(0.00, 0.00, 0.00, 0.10),
+                             A1 =       c(TRUE, FALSE, FALSE, FALSE),
+                             A2 =       c(FALSE, TRUE, FALSE, FALSE),
+                             A3 =       c(FALSE, FALSE, TRUE, FALSE),
+                             A4 =       c(FALSE, FALSE, FALSE, TRUE))
+  actions <- tibble::tibble(name =      c("A1", "A2", "A3", "A4"),
+                            cost =      c(0.10, 0.10, 0.15, 0))
+  features <- tibble::tibble(name = c("F1", "F2", "F3"))
+  # create problem
+  p <- problem(projects, actions, features, "name", "success", "name", "cost",
+               "name", FALSE) %>%
+       add_max_richness_objective(budget = 0) %>%
+       add_binary_decisions() %>%
+       add_heuristic_solver(number_solutions = 100)
+  # solve problem
+  s <- solve(p)
+  # tests
+  expect_is(s, "tbl_df")
+  expect_equal(nrow(s), 1)
+  expect_equal(s$obj, 0.3)
+  expect_equal(s$cost, 0)
+  expect_equal(s$status, rep(NA_character_, nrow(s)))
+  expect_equal(s$A1, 0)
+  expect_equal(s$A2, 0)
+  expect_equal(s$A3, 0)
+  expect_equal(s$A4, 1)
+})
+
+test_that("heuristic solver (large problem, inc budgets)", {
+  # make data
+  set.seed(1000)
+  sim_data <- simulate_ptm_data(number_projects = 70, number_actions = 30,
+                                number_features = 40)
+  projects <- sim_data$projects
+  actions <- sim_data$actions
+  features <- sim_data$features
+  features$weight <- exp(runif(nrow(features), 1, 15))
+  # solutions and tests
+  for (p in seq(0, 1, length.out = 5)) {
+    # generate solutions
+    b <- sum(actions$cost) * p
+    s <- problem(projects = projects, actions = actions, features = features,
+                 "name", "success", "name", "cost", "name") %>%
+         add_max_richness_objective(budget = b) %>%
+         add_feature_weights("weight") %>%
+         add_binary_decisions() %>%
+         add_heuristic_solver(verbose = FALSE, number_solutions = 100) %>%
+         solve()
+    # tests
+    expect_is(s, "tbl_df")
+    expect_gte(nrow(s), 1)
+    expect_equal(s$status, rep(NA_character_, nrow(s)))
+    expect_true(all(s$cost <= b))
+  }
+})
+
+test_that("heuristic solver (large problem, inc budgets, locked constraints)", {
+  # make data
+  set.seed(1000)
+  sim_data <- simulate_ptm_data(number_projects = 70, number_actions = 30,
+                                number_features = 40)
+  projects <- sim_data$projects
+  actions <- sim_data$actions
+  features <- sim_data$features
+  features$weight <- exp(runif(nrow(features), 1, 15))
+  # solutions and tests
+  for (p in seq(0.15, 1, length.out = 5)) {
+    # generate solutions
+    b <- sum(actions$cost) * p
+    s <- problem(projects = projects, actions = actions, features = features,
+                 "name", "success", "name", "cost", "name") %>%
+         add_max_richness_objective(budget = b) %>%
+         add_feature_weights("weight") %>%
+         add_locked_in_constraints(c(1, 2, 3)) %>%
+         add_locked_out_constraints(c(4, 5)) %>%
+         add_binary_decisions() %>%
+         add_heuristic_solver(verbose = FALSE, number_solutions = 100) %>%
+         solve()
+    # tests
+    expect_is(s, "tbl_df")
+    expect_gte(nrow(s), 1)
+    expect_equal(s$status, rep(NA_character_, nrow(s)))
+    expect_true(all(s$action_1 == 1))
+    expect_true(all(s$action_2 == 1))
+    expect_true(all(s$action_3 == 1))
+    expect_true(all(s$action_4 == 0))
+    expect_true(all(s$action_5 == 0))
+    expect_true(all(s$cost <= b))
+  }
+})
+
+test_that("heuristic solver (large problem, low budget)", {
+  # make data
+  set.seed(1000)
+  sim_data <- simulate_ptm_data(number_projects = 70, number_actions = 30,
+                                number_features = 40)
+  projects <- sim_data$projects
+  actions <- sim_data$actions
+  features <- sim_data$features
+  features$weight <- exp(runif(nrow(features), 1, 15))
+  b <- sum(actions$cost) * 0.2
+  # generate solutions
+  s <- problem(projects = projects, actions = actions, features = features,
+               "name", "success", "name", "cost", "name") %>%
+       add_max_richness_objective(budget = b) %>%
+       add_feature_weights("weight") %>%
+       add_locked_in_constraints(c(1, 2, 3)) %>%
+       add_locked_out_constraints(c(4, 5)) %>%
+       add_binary_decisions() %>%
+       add_heuristic_solver(verbose = FALSE, number_solutions = 100) %>%
+       solve()
+  # tests
+  expect_is(s, "tbl_df")
+  expect_gt(nrow(s), 1)
+  expect_equal(s$status, rep(NA_character_, nrow(s)))
+  expect_true(all(s$action_1 == 1))
+  expect_true(all(s$action_2 == 1))
+  expect_true(all(s$action_3 == 1))
+  expect_true(all(s$action_4 == 0))
+  expect_true(all(s$action_5 == 0))
+  expect_true(all(s$cost <= b))
 })
 
 test_that("invalid arguments", {

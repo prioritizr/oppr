@@ -18,6 +18,7 @@ Rcpp::LogicalMatrix rcpp_heuristic_solution(
   const std::string obj_name) {
   // Initialization
   std::size_t n_actions = pa_matrix.n_cols;
+  std::size_t n_projects = pa_matrix.n_rows;
   std::size_t n_features = pf_matrix.n_cols;
   double curr_objective;
   std::vector<double> curr_action_benefit(n_actions);
@@ -27,11 +28,16 @@ Rcpp::LogicalMatrix rcpp_heuristic_solution(
   std::size_t curr_action;
   std::size_t j;
   double curr_objective_sans_action;
-  std::size_t max_iterations = n_actions;
+  std::size_t max_iterations = n_actions + 1;
+  bool targets_met = true;
 
   // Preliminary processing
   /// initialize current cost
   double curr_cost = std::accumulate(costs.begin(), costs.end(), 0.0);
+
+  // throw error if all actions locked out
+  if (static_cast<std::size_t>(locked_out.size()) == n_actions)
+    Rcpp::stop("problem infeasible: all actions locked out");
 
   //// if minimum set problem objective, overwrite weights to be 1
   if (obj_name == "MinimumSetObjective")
@@ -42,64 +48,109 @@ Rcpp::LogicalMatrix rcpp_heuristic_solution(
   for (std::size_t i = 0; i < n_actions; ++i)
     remaining_actions(0, i) = 1.0;
 
+  //// verify that targets can be met
+  if (obj_name == "MinimumSetObjective") {
+      curr_feature_shortfalls = expected_persistences_shortfalls(
+        pa_matrix, pf_matrix, targets, remaining_actions);
+      targets_met = !(curr_feature_shortfalls.max() > 0.0);
+      if (!targets_met)
+        Rcpp::stop("problem infeasible: targets cannot be met");
+  }
+
   /// initialize lock in actions vector
   std::vector<bool> locked_in_vector(n_actions, FALSE);
+  double locked_in_cost = 0.0;
   for (auto itr = locked_in.begin(); itr != locked_in.end(); ++itr) {
     locked_in_vector[(*itr) - 1] = TRUE;
+    locked_in_cost += costs[(*itr) - 1];
     --max_iterations;
   }
+
+  /// verify that budget can be met given locked in actions
+  if (locked_in_cost > budget && (obj_name != "MinimumSetObjective"))
+    Rcpp::stop("problem infeasible: budget too low given locked in actions");
 
   /// lock out actions
-  for (auto itr = locked_out.begin(); itr != locked_out.end(); ++itr) {
-    remaining_actions.col((*itr) - 1).zeros();
-    curr_cost -= costs[(*itr) - 1];
-    --max_iterations;
+  std::vector<bool> locked_out_actions(n_actions, false);
+  for (auto itr = locked_out.begin(); itr != locked_out.end();
+       ++itr) {
+    locked_out_actions[(*itr) - 1] = true;
   }
 
-  /// if multiple actions with zero cost, then subtract remaining from
-  // from max iterations
-  bool first_zero_cost = FALSE;
+  /// lock out actions which exceed budget
+  for (std::size_t i = 0; i < n_actions; ++i)
+    locked_out_actions[i] = locked_out_actions[i] || (costs[i] > budget);
+
+  /// find total cost of each project
+  std::vector<double> total_cost_projects(n_projects, 0.0);
+  for (std::size_t i = 0; i < n_projects; ++i)
+    for (auto pitr = pa_matrix.begin_row(i); pitr != pa_matrix.end_row(i);
+         ++pitr)
+      total_cost_projects[i] += costs[pitr.col()];
+
+  /// lock out actions which are only associated with projects that
+  /// exceed budget
+  bool keep_action;
   for (std::size_t i = 0; i < n_actions; ++i) {
-    if (costs[i] < 1.0e-15) {
-      if (first_zero_cost)
-        --max_iterations;
-      first_zero_cost = TRUE;
+    for (auto pitr = pa_matrix.begin_col(i); pitr != pa_matrix.end_col(i);
+         ++pitr) {
+      keep_action = false;
+      if (total_cost_projects[pitr.row()] > budget) {
+        keep_action = true;
+        break;
+      }
+      locked_out_actions[i] = locked_out_actions[i] || keep_action;
+    }
+  }
+
+  /// remove locked out actions from pool of remaining actions,
+  /// substract costs for locked out actions,
+  /// and adjust the maximum number of iterations
+  for (std::size_t i = 0; i < n_actions; ++i) {
+    if (locked_out_actions[i]) {
+      curr_cost -= costs[i];
+      remaining_actions.col(i).zeros();
+      --max_iterations;
     }
   }
 
   /// initialize n_remaining actions
   std::size_t n_remaining_actions = remaining_actions.n_nonzero;
 
-  /// initialize solutions matrix with locked out solutions
-  Rcpp::LogicalMatrix sols(max_iterations, n_actions);
-  for (std::size_t i = 0; i < (max_iterations * n_actions); ++i)
-     sols[i] = TRUE;
-  for (auto itr = locked_out.begin(); itr != locked_out.end(); ++itr)
-    for (std::size_t i = 0; i < max_iterations; ++i)
-      sols(i, *itr - 1) = FALSE;
+  /// decrement max iterations by number of zero cost actions
+  for (std::size_t i = 0; i < n_actions; ++i)
+    if (costs[i] < 1.0e-15)
+      --max_iterations;
 
-  //// initialize budget met
-  int budget_met_iteration = -1;
-
-  //// initialize progress bar
-  Progress pb(max_iterations * static_cast<std::size_t>(verbose),
-              verbose);
-
-  //// initialize targets met
-  bool targets_met = true;
+  //// verify that targets can be met with locked out actions
   if (obj_name == "MinimumSetObjective") {
       curr_feature_shortfalls = expected_persistences_shortfalls(
         pa_matrix, pf_matrix, targets, remaining_actions);
       targets_met = !(curr_feature_shortfalls.max() > 0.0);
+      if (!targets_met)
+        Rcpp::stop("problem infeasible: targets cannot be met given locked out actions");
   }
-  if (!targets_met)
-    Rcpp::stop("problem infeasible: targets cannot be met given locked out actions");
 
-   /// find out if the budget is met
-   if ((obj_name != "MinimumSetObjective") &
-       (budget_met_iteration < 0) &
-       (curr_cost <= budget))
-       budget_met_iteration = curr_iteration;
+  /// initialize budget met and find out if it is already met after
+  /// deselecting actions
+  int budget_met_iteration = -1;
+  if ((obj_name != "MinimumSetObjective") &
+      (budget_met_iteration < 0) &
+      (curr_cost <= budget))
+      budget_met_iteration = curr_iteration;
+
+  /// initialize solutions matrix with locked out solutions
+  Rcpp::LogicalMatrix sols(max_iterations, n_actions);
+  for (std::size_t i = 0; i < (max_iterations * n_actions); ++i)
+     sols[i] = TRUE;
+  for (std::size_t i = 0; i < n_actions; ++i)
+    if (locked_out_actions[i])
+      for (std::size_t j = 0; j < max_iterations; ++j)
+      sols(j, i) = FALSE;
+
+  //// initialize progress bar
+  Progress pb(max_iterations * static_cast<std::size_t>(verbose),
+              verbose);
 
   // Main processing
   while (curr_iteration < max_iterations) {
@@ -209,7 +260,7 @@ Rcpp::LogicalMatrix rcpp_heuristic_solution(
          number_solutions))
       break;
 
-   /// find out if the budget is met
+   /// find out if the budget is met after deselecting action
    if ((obj_name != "MinimumSetObjective") &
        (budget_met_iteration < 0) &
        (curr_cost <= budget))
@@ -219,15 +270,18 @@ Rcpp::LogicalMatrix rcpp_heuristic_solution(
     pb.increment();
   }
 
-  // Exports
-  if ((obj_name != "MinimumSetObjective") & (budget_met_iteration < 0))
-    Rcpp::stop("problem infeasible: budget too low given locked in actions");
+  /// verify that at least one solution was found given the budget
+  if ((budget_met_iteration == -1) &&
+      (obj_name != "MinimumSetObjective") &&
+      (max_iterations != 1))
+    Rcpp::stop("something went wrong, please file an issue at: https://github.com/prioritizr/oppr/issues.");
 
-  // subset the solutions to only contain valid solutions
+  // Exports
+  /// subset the solutions to only contain valid solutions
   Rcpp::LogicalMatrix out;
   Rcpp::LogicalMatrix out2(curr_iteration, n_actions);
   if (obj_name == "MinimumSetObjective") {
-    // if min set objective, extract only solutions where targets met
+    /// if min set objective, extract only solutions where targets met
     j = 0;
     for (int i = static_cast<int>(curr_iteration - 1); i >= 0; --i) {
       out2(j, Rcpp::_) = sols(i, Rcpp::_);
@@ -235,7 +289,7 @@ Rcpp::LogicalMatrix rcpp_heuristic_solution(
     }
     out = out2;
   } else {
-    // otherwise, extract only solutions where budget met
+    /// otherwise, extract only solutions where budget met
     out = sols(Rcpp::Range(budget_met_iteration - 1, curr_iteration - 1),
                Rcpp::_);
   }

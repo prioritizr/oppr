@@ -1,3 +1,13 @@
+# oppr 0.0.0.11
+
+- Update `add_heuristic_solver` algorithm so that all actions and projects which
+  exceed the budget are automatically removed prior to the iterative action
+  removal.
+- Update `add_random_solver` algorithms so that projects are selected instead
+  of individual actions. This means that solutions from this solver are (i)
+  similar to those in previous project prioritization studies and (ii) more
+  likely to deliver better solutions (#13).
+
 # oppr 0.0.0.10
 
 - Rename package to _oppr_ since _ppr_ is already on CRAN.

@@ -39,14 +39,17 @@ The algorithm used to randomly generate solutions depends on the
 
  \enumerate{
 
- \item All actions are initially selected for funding (excepting actions
-   which are locked out).
+ \item All locked in and zero-cost actions are initially
+  selected for funding (excepting actions which are locked out).
 
- \item An action is randomly deselected for funding (excepting actions which
-   are locked in or actions which have zero cost).
+ \item A project---and all of its associated actions---is randomly selected
+   for funding (excepting projects associated with locked out actions,
+   and projects which would cause the budget to be exceeded when added
+   to the existing set of selected actions).
 
-\item The previous step is repeated until the total cost of the remaining
-  actions that are prioritized for funding falls within the budget.
+\item The previous step is repeated until no more projects can be
+  selected for funding without the total cost of the prioritized actions
+  exceeding the budget.
 
  }
 
@@ -55,11 +58,13 @@ For objectives which minimize cost subject to biodiversity constraints
 
  \enumerate{
 
- \item All actions are initially not selected for funding (excepting actions
-   which are locked in or actions which have zero cost).
+ \item All locked in and zero-cost actions are initially
+  selected for funding (excepting actions which are locked out).
 
- \item An action is randomly selected for funding (excepting actions which
-   are locked out.
+ \item A project---and all of its associated actions---is randomly selected
+   for funding (excepting projects associated with locked out actions,
+   and projects which would cause the budget to be exceeded when added
+   to the existing set of selected actions).
 
 \item The previous step is repeated until all of the persistence targets
   are met.

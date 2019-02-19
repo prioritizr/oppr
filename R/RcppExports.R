@@ -145,11 +145,7 @@ rcpp_heuristic_solution <- function(costs, pa_matrix, pf_matrix, branch_matrix, 
     .Call(`_oppr_rcpp_heuristic_solution`, costs, pa_matrix, pf_matrix, branch_matrix, branch_lengths, targets, weights, budget, locked_in, locked_out, number_solutions, verbose, obj_name)
 }
 
-rcpp_random_max_benefit_solution <- function(costs, locked_in, locked_out, budget, n_solutions, verbose) {
-    .Call(`_oppr_rcpp_random_max_benefit_solution`, costs, locked_in, locked_out, budget, n_solutions, verbose)
-}
-
-rcpp_random_min_set_solution <- function(costs, pa_matrix, pf_matrix, targets_list, locked_in, locked_out, n_solutions, verbose) {
-    .Call(`_oppr_rcpp_random_min_set_solution`, costs, pa_matrix, pf_matrix, targets_list, locked_in, locked_out, n_solutions, verbose)
+rcpp_random_solution <- function(costs, pa_matrix, pf_matrix, targets, budget, locked_in, locked_out, number_solutions, verbose, obj_name) {
+    .Call(`_oppr_rcpp_random_solution`, costs, pa_matrix, pf_matrix, targets, budget, locked_in, locked_out, number_solutions, verbose, obj_name)
 }
 

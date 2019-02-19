@@ -38,7 +38,7 @@ A problem objective is used to specify the overall goal of the
   project prioritization problem.
   Here, the maximum targets met objective seeks to find the set of actions
   that maximizes the total number of features (e.g. populations, species,
-  eco-systems) that have met their persistence targets within a
+  ecosystems) that have met their persistence targets within a
   pre-specified budget. Let \eqn{I} represent the set of conservation
   actions (indexed by \eqn{i}). Let \eqn{C_i} denote the cost for funding
   action \eqn{i}, and let \eqn{m} denote the maximum expenditure (i.e. the

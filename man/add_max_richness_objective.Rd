@@ -29,7 +29,7 @@ A problem objective is used to specify the overall goal of the
   project prioritization problem.
   Here, the maximum richness objective seeks to find the set of actions that
   maximizes the total number of features  (e.g. populations, species,
-  eco-systems) that is expected to persist within a pre-specified budget.
+  ecosystems) that is expected to persist within a pre-specified budget.
   Let \eqn{I} represent the set of conservation actions (indexed by
   \eqn{i}). Let \eqn{C_i} denote the cost for funding action \eqn{i}, and
   let \eqn{m} denote the maximum expenditure (i.e. the budget). Also,

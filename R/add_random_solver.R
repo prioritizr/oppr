@@ -19,14 +19,17 @@ NULL
 #'
 #'  \enumerate{
 #'
-#'  \item All actions are initially selected for funding (excepting actions
-#'    which are locked out).
+#'  \item All locked in and zero-cost actions are initially
+#'   selected for funding (excepting actions which are locked out).
 #'
-#'  \item An action is randomly deselected for funding (excepting actions which
-#'    are locked in or actions which have zero cost).
+#'  \item A project---and all of its associated actions---is randomly selected
+#'    for funding (excepting projects associated with locked out actions,
+#'    and projects which would cause the budget to be exceeded when added
+#'    to the existing set of selected actions).
 #'
-#' \item The previous step is repeated until the total cost of the remaining
-#'   actions that are prioritized for funding falls within the budget.
+#' \item The previous step is repeated until no more projects can be
+#'   selected for funding without the total cost of the prioritized actions
+#'   exceeding the budget.
 #'
 #'  }
 #'
@@ -35,11 +38,13 @@ NULL
 #'
 #'  \enumerate{
 #'
-#'  \item All actions are initially not selected for funding (excepting actions
-#'    which are locked in or actions which have zero cost).
+#'  \item All locked in and zero-cost actions are initially
+#'   selected for funding (excepting actions which are locked out).
 #'
-#'  \item An action is randomly selected for funding (excepting actions which
-#'    are locked out.
+#'  \item A project---and all of its associated actions---is randomly selected
+#'    for funding (excepting projects associated with locked out actions,
+#'    and projects which would cause the budget to be exceeded when added
+#'    to the existing set of selected actions).
 #'
 #' \item The previous step is repeated until all of the persistence targets
 #'   are met.
@@ -119,27 +124,29 @@ add_random_solver <- function(x, number_solutions = 1, verbose = TRUE) {
       # extract data
       locked_in <- which(x$lb()[seq_len(x$number_of_actions())] > 0.5)
       locked_out <- which(x$ub()[seq_len(x$number_of_actions())] < 0.5)
-      # generate solutions
-      if (!inherits(x$data$objective, "MinimumSetObjective")) {
-        runtime <- system.time({
-          s <- rcpp_random_max_benefit_solution(
-            x$data$action_costs(),
-            locked_in, locked_out,
-            x$data$objective$parameters$get("budget"),
-            self$parameters$get("number_solutions"),
-            as.logical(self$parameters$get("verbose")))
-        })
+      # initialize variables for different objectives
+      if (!is.Waiver(x$data$targets)) {
+        targets <- x$data$targets$output()$value
       } else {
-        runtime <- system.time({
-          s <- rcpp_random_min_set_solution(
-            x$data$action_costs(),
-            x$data$pa_matrix(), x$data$epf_matrix(),
-            as.list(x$data$targets$output()),
-            locked_in, locked_out,
-            self$parameters$get("number_solutions"),
-            as.logical(self$parameters$get("verbose")))
-        })
+        fp <- x$data$feature_phylogeny()
+        targets <- rep(0, length(fp$tip.label))
       }
+      if (inherits(x$data$objective, "MinimumSetObjective")) {
+        budget <- Inf
+      } else {
+        budget <- x$data$objective$parameters$get("budget")
+      }
+      # generate solutions
+      runtime <- system.time({
+        s <- rcpp_random_solution(
+          x$data$action_costs(),
+          x$data$pa_matrix(), x$data$pf_matrix(),
+          targets, budget,
+          locked_in, locked_out,
+          self$parameters$get("number_solutions"),
+          as.logical(self$parameters$get("verbose")),
+          class(x$data$objective)[1])
+      })
       # coerce logical to numeric matrix
       s <- round(s)
       # format solution data

@@ -65,7 +65,7 @@ solver will be used." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.11</span>
       </span>
     </div>
 
@@ -297,8 +297,8 @@ solver will be used.</p>
 #&gt;       The largest [LUSOL v2.2.1.0] fact(B) had 104 NZ entries, 1.0x largest basis.
 #&gt;       The maximum B&amp;B level was 6, 0.1x MIP order, 4 at the optimal solution.
 #&gt;       The constraint matrix inf-norm is 103.226, with a dynamic range of 1193.9.
-#&gt;       Time to load data was 0.010 seconds, presolve used 0.000 seconds,
-#&gt;        ... 0.000 seconds in simplex solver, in total 0.010 seconds.</div><div class='input'><span class='no'>s</span>$<span class='no'>solver</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"default"</span>, <span class='st'>"gurobi"</span>, <span class='st'>"Rsymphony"</span>, <span class='st'>"lpsymphony"</span>, <span class='st'>"lpSolveAPI"</span>,
+#&gt;       Time to load data was 0.014 seconds, presolve used 0.001 seconds,
+#&gt;        ... 0.000 seconds in simplex solver, in total 0.015 seconds.</div><div class='input'><span class='no'>s</span>$<span class='no'>solver</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"default"</span>, <span class='st'>"gurobi"</span>, <span class='st'>"Rsymphony"</span>, <span class='st'>"lpsymphony"</span>, <span class='st'>"lpSolveAPI"</span>,
               <span class='st'>"heuristic"</span>, <span class='st'>"random"</span>)
 
 <span class='co'># print solutions</span>
@@ -309,7 +309,7 @@ solver will be used.</p>
 #&gt; 4        1 TM_OPTIMAL_SOLUTION_FOUND 2.190381 195.3907         1         1
 #&gt; 5        1    optimal solution found 2.190381 195.3907         1         1
 #&gt; 6        1                      &lt;NA&gt; 2.190381 195.3907         1         1
-#&gt; 7        1                      &lt;NA&gt; 1.445609 103.2258         0         0
+#&gt; 7        1                      &lt;NA&gt; 1.914902 199.1507         0         0
 #&gt;   F3_action F4_action F5_action baseline_action F1_project F2_project
 #&gt; 1         0         0         0               1          1          1
 #&gt; 2         0         0         0               1          1          1
@@ -317,7 +317,7 @@ solver will be used.</p>
 #&gt; 4         0         0         0               1          1          1
 #&gt; 5         0         0         0               1          1          1
 #&gt; 6         0         0         0               1          1          1
-#&gt; 7         1         0         0               1          0          0
+#&gt; 7         0         1         1               1          0          0
 #&gt;   F3_project F4_project F5_project baseline_project        F1        F2
 #&gt; 1          0          0          0                1 0.8080322 0.8649623
 #&gt; 2          0          0          0                1 0.8080322 0.8649623
@@ -325,7 +325,7 @@ solver will be used.</p>
 #&gt; 4          0          0          0                1 0.8080322 0.8649623
 #&gt; 5          0          0          0                1 0.8080322 0.8649623
 #&gt; 6          0          0          0                1 0.8080322 0.8649623
-#&gt; 7          1          0          0                1 0.2977965 0.2500224
+#&gt; 7          0          1          1                1 0.2977965 0.2500224
 #&gt;          F3        F4        F5     solver
 #&gt; 1 0.0864612 0.2489246 0.1820005    default
 #&gt; 2 0.0864612 0.2489246 0.1820005     gurobi
@@ -333,7 +333,7 @@ solver will be used.</p>
 #&gt; 4 0.0864612 0.2489246 0.1820005 lpsymphony
 #&gt; 5 0.0864612 0.2489246 0.1820005 lpSolveAPI
 #&gt; 6 0.0864612 0.2489246 0.1820005  heuristic
-#&gt; 7 0.4668654 0.2489246 0.1820005     random</div></pre>
+#&gt; 7 0.0864612 0.6881335 0.5924880     random</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

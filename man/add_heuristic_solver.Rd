@@ -45,6 +45,10 @@ The specific algorithm used to generate solutions depends on the
  \item All actions are initially selected for funding (excepting actions
    which are locked out).
 
+ \item Actions which exceed the budget are then deselected. Actions which
+   are exclusively associated with projects that exceed the budget
+   are also deselected.
+
  \item The next step is repeated until (i) the number of desired
    solutions is obtained and (ii) the total cost of the remaining
    actions that are selected for funding is within the budget.
@@ -77,6 +81,10 @@ For objectives which minimize cost subject to biodiversity constraints
 
  \item All actions are initially selected for funding (excepting actions
    which are locked out).
+
+ \item Actions which exceed the budget are then deselected. Actions which
+   are exclusively associated with projects that exceed the budget
+   are also deselected.
 
  \item The next step is repeated until (i) the number of desired
    solutions is obtained or (ii) no action can be deselected for funding

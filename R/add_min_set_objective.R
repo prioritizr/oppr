@@ -15,7 +15,7 @@ NULL
 #'   Here, the minimum set objective seeks to find the set of actions that
 #'   minimizes the overall cost of the prioritization, while ensuring that the
 #'   funded projects meet a set of persistence targets for the conservation
-#'   features (e.g. populations, species, eco-systems). Let \eqn{I} represent
+#'   features (e.g. populations, species, ecosystems). Let \eqn{I} represent
 #'   the set of conservation actions (indexed by \eqn{i}). Let \eqn{C_i} denote
 #'   the cost for funding action \eqn{i}. Also, let \eqn{F} represent each
 #'   feature (indexed by \eqn{f}), \eqn{T_f} represent the persistence target

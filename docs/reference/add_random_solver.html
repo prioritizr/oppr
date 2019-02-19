@@ -66,7 +66,7 @@ the effectiveness of solutions." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.11</span>
       </span>
     </div>
 
@@ -160,20 +160,25 @@ optimization problems?</p></td>
 <p>For objectives which maximize benefit subject to budgetary constraints
  (e.g. <code>add_max_richness_objective</code>):</p>
 <p></p><ol>
-<li><p>All actions are initially selected for funding (excepting actions
-   which are locked out).</p></li>
-<li><p>An action is randomly deselected for funding (excepting actions which
-   are locked in or actions which have zero cost).</p></li>
-<li><p>The previous step is repeated until the total cost of the remaining
-  actions that are prioritized for funding falls within the budget.</p></li>
+<li><p>All locked in and zero-cost actions are initially
+  selected for funding (excepting actions which are locked out).</p></li>
+<li><p>A project---and all of its associated actions---is randomly selected
+   for funding (excepting projects associated with locked out actions,
+   and projects which would cause the budget to be exceeded when added
+   to the existing set of selected actions).</p></li>
+<li><p>The previous step is repeated until no more projects can be
+  selected for funding without the total cost of the prioritized actions
+  exceeding the budget.</p></li>
 </ol>
     <p>For objectives which minimize cost subject to biodiversity constraints
 (i.e. <code>add_min_set_objective</code>:</p>
 <p></p><ol>
-<li><p>All actions are initially not selected for funding (excepting actions
-   which are locked in or actions which have zero cost).</p></li>
-<li><p>An action is randomly selected for funding (excepting actions which
-   are locked out.</p></li>
+<li><p>All locked in and zero-cost actions are initially
+  selected for funding (excepting actions which are locked out).</p></li>
+<li><p>A project---and all of its associated actions---is randomly selected
+   for funding (excepting projects associated with locked out actions,
+   and projects which would cause the budget to be exceeded when added
+   to the existing set of selected actions).</p></li>
 <li><p>The previous step is repeated until all of the persistence targets
   are met.</p></li>
 </ol>
@@ -214,16 +219,16 @@ optimization problems?</p></td>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>s1</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 100 x 21</span><span>
 #&gt;    solution status   obj  cost F1_action F2_action F3_action F4_action F5_action
 #&gt;       </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span>        1 </span><span style='color: #BB0000;'>NA</span><span>      1.50  99.2         0         0         0         1         0
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span>        2 </span><span style='color: #BB0000;'>NA</span><span>      1.48  99.9         0         0         0         0         1
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span>        3 </span><span style='color: #BB0000;'>NA</span><span>      2.19 195.          1         1         0         0         0
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span>        4 </span><span style='color: #BB0000;'>NA</span><span>      1.91 199.          0         0         0         1         1
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span>        5 </span><span style='color: #BB0000;'>NA</span><span>      1.48  99.9         0         0         0         0         1
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span>        6 </span><span style='color: #BB0000;'>NA</span><span>      1.45 103.          0         0         1         0         0
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span>        7 </span><span style='color: #BB0000;'>NA</span><span>      1.68 101.          0         1         0         0         0
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span>        8 </span><span style='color: #BB0000;'>NA</span><span>      1.68 101.          0         1         0         0         0
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span>        9 </span><span style='color: #BB0000;'>NA</span><span>      1.91 199.          0         0         0         1         1
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span>       10 </span><span style='color: #BB0000;'>NA</span><span>      1.99 194.          1         0         0         0         1
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span>        1 </span><span style='color: #BB0000;'>NA</span><span>      1.99  194.         1         0         0         0         1
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span>        2 </span><span style='color: #BB0000;'>NA</span><span>      2.01  194.         1         0         0         1         0
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span>        3 </span><span style='color: #BB0000;'>NA</span><span>      1.96  198.         1         0         1         0         0
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span>        4 </span><span style='color: #BB0000;'>NA</span><span>      1.96  198.         1         0         1         0         0
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span>        5 </span><span style='color: #BB0000;'>NA</span><span>      1.91  199.         0         0         0         1         1
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span>        6 </span><span style='color: #BB0000;'>NA</span><span>      1.99  194.         1         0         0         0         1
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span>        7 </span><span style='color: #BB0000;'>NA</span><span>      1.96  198.         1         0         1         0         0
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span>        8 </span><span style='color: #BB0000;'>NA</span><span>      1.96  198.         1         0         1         0         0
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span>        9 </span><span style='color: #BB0000;'>NA</span><span>      1.96  198.         1         0         1         0         0
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span>       10 </span><span style='color: #BB0000;'>NA</span><span>      2.19  195.         1         1         0         0         0
 #&gt; </span><span style='color: #949494;'># ... with 90 more rows, and 12 more variables: baseline_action </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
 #&gt; #   F1_project </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F2_project </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F3_project </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F4_project </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
 #&gt; #   F5_project </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, baseline_project </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F1 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F2 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F3 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,

@@ -77,7 +77,7 @@ devtools::load_all()
 
 # Overview
 
-The _oppr R_ package is decision support tool for prioritizing conservation projects. Prioritizations can be developed by maximizing expected feature richness, expected phylogenetic diversity, the number of features that meet persistence targets, or identifying a set of projects that meet persistence targets for minimal cost. Constraints (e.g. lock in specific actions) and feature weights can also be specified to further customize prioritizations. After defining a project prioritization problem, solutions can be obtained using exact algorithms, heuristic algorithms, or random processes. In particular, it is recommended to install the ['Gurobi' optimizer](https://www.gurobi.com) because it can identify optimal solutions very quickly. Finally, methods are provided for comparing different prioritizations and evaluating their benefits.
+The _oppr R_ package is decision support tool for prioritizing conservation projects. Prioritizations can be developed by maximizing expected feature richness, expected phylogenetic diversity, the number of features that meet persistence targets, or identifying a set of projects that meet persistence targets for minimal cost. Constraints (e.g. lock in specific actions) and feature weights can also be specified to further customize prioritizations. After defining a project prioritization problem, solutions can be obtained using exact alg'orithms, heuristic algorithms, or random processes. In particular, it is recommended to install the ['Gurobi' optimizer](https://www.gurobi.com) because it can identify optimal solutions very quickly. Finally, methods are provided for comparing different prioritizations and evaluating their benefits.
 
 # Tutorial
 
@@ -506,18 +506,25 @@ Conventionally, heuristic algorithms have been used to develop project prioritiz
 # set budgets for which to create multiple solutions
 budgets <- seq(0, sum(actions$cost), length.out = 100)
 
-# generate solutions
-s7 <- lapply(budgets, function(b) {
+# rank projects using the backwards heuristic algorithm
+s7_ranks <-
   problem(projects = projects, actions = actions, features = features,
               "name", "success", "name", "cost", "name") %>%
-  add_max_richness_objective(budget = b) %>%
+  add_max_richness_objective(budget = max(budgets)) %>%
   add_feature_weights("weight") %>%
   add_binary_decisions() %>%
-  add_heuristic_solver(verbose = FALSE) %>%
+  add_heuristic_solver(verbose = FALSE,
+                       number_solutions = nrow(projects) + 1) %>%
   solve()
+
+# find best solution for each budget increment
+s7 <- lapply(budgets, function(x) {
+  s <- s7_ranks[s7_ranks$cost <= x, , drop = FALSE]
+  s <- s[which.max(s$obj), , drop = FALSE]
+  s$budget <- x
+  s
 })
 s7 <- as_tibble(do.call(rbind, s7))
-s7$budget <- budgets
 
 # print solutions
 print(s7)
@@ -534,7 +541,7 @@ s8 <- lapply(budgets, function(b) {
        add_max_richness_objective(budget = b) %>%
        add_feature_weights("weight") %>%
        add_binary_decisions() %>%
-       add_random_solver(verbose = FALSE, number_solutions = 1000) %>%
+       add_random_solver(verbose = FALSE, number_solutions = 100) %>%
        solve()
   data.frame(budget = b, min_obj = min(o$obj), max_obj = max(o$obj))
 })
@@ -594,11 +601,11 @@ ylab("Expected richness (objective function)") +
 theme(axis.text.y = element_text(angle = 90, hjust = 0.5, vjust = 1))
 ```
 
-So, we can see that the exact algorithm sover performs much better than heuristic algorithms---even if heuristic algorithms perform better than random on average.
+So, we can see that the exact algorithm solver performs much better than heuristic algorithms---even if heuristic algorithms perform better than random on average.
 
 ## Conclusion
 
-Hopefully, this tutorial has been useful. For more information and examples on using any of the functions presented in this tutorial, please refer to this package's documentation. For instance, you could learn about the mathematical formulations that underpin the objective functions (see `?add_max_richness_objective`), how to lock in our lock out certain actions from the solutoins (see `?constraints`), or how to develop project prioritizations using phylogenies (see `?add_max_phylo_objective`). But perhaps one of the best ways to learn how to use a new piece of software is to just try it out. Test it, try breaking it, make mistakes, and learn from them. We would recommend generating project prioritizations using simulated datasets (see `?simulate_ptm_data` and `?simulate_ppp_data`) and seeing if the solutions line up with what you expect. This way you can quickly verify that the problems you build actually mean what you think they mean. For instance, you can try playing around with the targets and see what effect they have on the solutions, or try playing around with weights and see what effect they have on the solutions.
+Hopefully, this tutorial has been useful. For more information and examples on using any of the functions presented in this tutorial, please refer to this package's documentation. For instance, you could learn about the mathematical formulations that underpin the objective functions (see `?add_max_richness_objective`), how to lock in our lock out certain actions from the solutions (see `?constraints`), or how to develop project prioritizations using phylogenies (see `?add_max_phylo_objective`). But perhaps one of the best ways to learn how to use a new piece of software is to just try it out. Test it, try breaking it, make mistakes, and learn from them. We would recommend generating project prioritizations using simulated datasets (see `?simulate_ptm_data` and `?simulate_ppp_data`) and seeing if the solutions line up with what you expect. This way you can quickly verify that the problems you build actually mean what you think they mean. For instance, you can try playing around with the targets and see what effect they have on the solutions, or try playing around with weights and see what effect they have on the solutions.
 
 Finally, if you have any questions about using the _oppr R_ package or suggestions for improving its documentation or functionality (especially this tutorial), please post an issue on this package's online coding repository (https://github.com/prioritizr/oppr/issues).
 

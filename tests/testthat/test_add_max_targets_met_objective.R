@@ -432,7 +432,7 @@ test_that("heuristic solver (simple problem, single solution)", {
   expect_equal(s$F3, 1 * 0.1)
 })
 
-test_that("heuristic solver (simple problem, multiple solutions)", {
+test_that("heuristic solver (simple problem, single feasible solution)", {
   # make data
   projects <- tibble::tibble(name = c("P1", "P2", "P3", "P4"),
                              success =  c(0.95, 0.96, 0.94, 1.00),

@@ -1,7 +1,7 @@
 Package: oppr
 Type: Package
-Version: 0.0.0.10
-Title: Project Prioritization
+Version: 0.0.0.11
+Title: Optimal Project Prioritization
 Description: A decision support tool for prioritizing conservation projects.
     Prioritizations can be developed by maximizing expected feature richness,
     expected phylogenetic diversity, the number of features that meet

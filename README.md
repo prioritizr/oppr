@@ -27,7 +27,7 @@ We also recommend installing the [Gurobi optimization suite](http://www.gurobi.c
 Usage
 -----
 
-Here we will provide a short example showing how the *optimalppp R* package can be used to prioritize funding for conservation projects. To start off, we will set the seed for the random number generator to ensure you get the same results as shown here, and load the *oppr R* package.
+Here we will provide a short example showing how the *oppr R* package can be used to prioritize funding for conservation projects. To start off, we will set the seed for the random number generator to ensure you get the same results as shown here, and load the *oppr R* package.
 
 ``` r
 set.seed(500)
@@ -172,4 +172,4 @@ Please use the following citation to cite the *oppr R* package in publications:
 
 **This package is still under development and not ready for use. Please do not use this package yet.**
 
-Hanson JO, Schuster R, Strimas-Mackey M, Bennett J, (2019). oppr: Project Prioritization. R package version 0.0.0.10. Available at <https://github.com/prioritizr/oppr>.
+Hanson JO, Schuster R, Strimas-Mackey M, Bennett J, (2019). oppr: Project Prioritization. R package version 0.0.0.11. Available at <https://github.com/prioritizr/oppr>.
