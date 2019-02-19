@@ -21,14 +21,21 @@ probability that each project will succeed if all of its actions are funded
 the enhanced probability that each feature will persist if it
 is funded (using a column for each feature),
 and (iv) and which actions are associated with which projects
-(using a column for each action).
-To account for the combined benefits of multiple projects (e.g.
-habitat restoration and trapping invasive species projects), additional
-projects should be created that indicate the combined cost and
-corresponding features' persistence probabilities. Furthermore, this object
+(using a column for each action). This object
 must have a baseline project, with a zero cost value, that represents the
 probability that each feature will persist if no other conservation
-project is funded.}
+project is funded.
+Since each feature is assigned the greatest probability of persistence
+given the funded projects in a solution, the combined benefits of multiple
+projects can be encoded by creating additional projects that represent
+"combined projects". For instance, a habitat restoration project might
+cost \$100 and mean that a feature has a 40\% chance of persisting, and
+a pest eradication project might cost \$50 and mean that a feature has a
+60\% chance of persisting. Due to non-linear effects, funding both of these
+projects might mean that a species has a 90\% chance of persistence.
+This can be accounted for by creating a third project, representing the
+funding of both projects, which costs \$150 and provides a 90\% chance
+of persistence.}
 
 \item{actions}{\code{\link[base]{data.frame}} or \code{\link[tibble]{tibble}}
 table containing the action data. Here, each row should correspond to a
@@ -37,9 +44,10 @@ each action. At a minimum, this object should contain data that denote (i)
 the name of each action (specified in the argument to
 \code{action_name_column}), (ii) the cost of each action (specified in the
 argument to \code{action_cost_column}). Optionally, it may also contain
-data that indicate planning units should be (iii) locked in or (iv) locked
+data that indicate actions should be (iii) locked in or (iv) locked
 out (see \code{\link{add_locked_in_constraints}} and
-\code{\link{add_locked_out_constraints}}).}
+\code{\link{add_locked_out_constraints}}). It should also contain a
+zero-cost baseline action that is associated with the baseline project.}
 
 \item{features}{\code{\link[base]{data.frame}} or
 \code{\link[tibble]{tibble}}

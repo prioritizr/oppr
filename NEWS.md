@@ -1,3 +1,7 @@
+# oppr 0.0.0.12
+
+- Assorted documentation tweaks.
+
 # oppr 0.0.0.11
 
 - Update `add_heuristic_solver` algorithm so that all actions and projects which

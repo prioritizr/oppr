@@ -71,7 +71,7 @@ solve function can be used to identify solutions." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.11</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.12</span>
       </span>
     </div>
 
@@ -153,14 +153,21 @@ probability that each project will succeed if all of its actions are funded
 the enhanced probability that each feature will persist if it
 is funded (using a column for each feature),
 and (iv) and which actions are associated with which projects
-(using a column for each action).
-To account for the combined benefits of multiple projects (e.g.
-habitat restoration and trapping invasive species projects), additional
-projects should be created that indicate the combined cost and
-corresponding features' persistence probabilities. Furthermore, this object
+(using a column for each action). This object
 must have a baseline project, with a zero cost value, that represents the
 probability that each feature will persist if no other conservation
-project is funded.</p></td>
+project is funded.
+Since each feature is assigned the greatest probability of persistence
+given the funded projects in a solution, the combined benefits of multiple
+projects can be encoded by creating additional projects that represent
+"combined projects". For instance, a habitat restoration project might
+cost \$100 and mean that a feature has a 40% chance of persisting, and
+a pest eradication project might cost \$50 and mean that a feature has a
+60% chance of persisting. Due to non-linear effects, funding both of these
+projects might mean that a species has a 90% chance of persistence.
+This can be accounted for by creating a third project, representing the
+funding of both projects, which costs \$150 and provides a 90% chance
+of persistence.</p></td>
     </tr>
     <tr>
       <th>actions</th>
@@ -171,9 +178,10 @@ each action. At a minimum, this object should contain data that denote (i)
 the name of each action (specified in the argument to
 <code>action_name_column</code>), (ii) the cost of each action (specified in the
 argument to <code>action_cost_column</code>). Optionally, it may also contain
-data that indicate planning units should be (iii) locked in or (iv) locked
+data that indicate actions should be (iii) locked in or (iv) locked
 out (see <code>add_locked_in_constraints</code> and
-<code>add_locked_out_constraints</code>).</p></td>
+<code>add_locked_out_constraints</code>). It should also contain a
+zero-cost baseline action that is associated with the baseline project.</p></td>
     </tr>
     <tr>
       <th>features</th>
