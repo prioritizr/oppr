@@ -66,7 +66,7 @@ pre-specified budget (Bennett et al. 2014, Faith 2008)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.12</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.13</span>
       </span>
     </div>
 
@@ -305,29 +305,86 @@ research &amp; management science</em>. Springer.</p>
 #&gt;   Objective range  [2e-01, 2e+00]
 #&gt;   Bounds range     [1e+00, 1e+00]
 #&gt;   RHS range        [1e+00, 3e+02]
-#&gt; Found heuristic solution: objective 1.7230501
+#&gt; Found heuristic solution: objective 1.7230503
 #&gt; Presolve removed 16 rows and 12 columns
-#&gt; Presolve time: 0.00s
-#&gt; Presolved: 37 rows, 2995 columns, 3036 nonzeros
-#&gt; Variable types: 2960 continuous, 35 integer (35 binary)
+#&gt; Presolve time: 0.01s
+#&gt; Presolved: 37 rows, 29615 columns, 29656 nonzeros
+#&gt; Variable types: 29580 continuous, 35 integer (35 binary)
 #&gt; Presolve removed 3 rows and 3 columns
-#&gt; Presolved: 34 rows, 2992 columns, 3030 nonzeros
+#&gt; Presolved: 34 rows, 29612 columns, 29650 nonzeros
 #&gt; 
 #&gt; 
-#&gt; Root relaxation: objective 2.904788e+00, 14 iterations, 0.00 seconds
+#&gt; Starting sifting (using dual simplex for sub-problems)...
+#&gt; 
+#&gt;     Iter     Pivots    Primal Obj      Dual Obj        Time
+#&gt;        0          0     infinity     -3.2034487e+00      0s
+#&gt;        1         12   1.9999968e+06  -3.0351728e+00      0s
+#&gt;        2         16   9.9999745e+05  -3.0278829e+00      0s
+#&gt;        3         19   8.8659259e+05  -3.0271402e+00      0s
+#&gt;        4         22   7.8228764e+05  -3.0264313e+00      0s
+#&gt;        5         25   6.8002789e+05  -3.0257131e+00      0s
+#&gt;        6         28   5.7879074e+05  -3.0249813e+00      0s
+#&gt;        7         31   4.7908748e+05  -3.0242426e+00      0s
+#&gt;        8         34   3.8040682e+05  -3.0234967e+00      0s
+#&gt;        9         37   2.8274876e+05  -3.0227473e+00      0s
+#&gt;       10         40   1.8611329e+05  -3.0219985e+00      0s
+#&gt;       11         43   9.0500428e+04  -3.0215420e+00      0s
+#&gt;       12         48   8.2112198e+03  -3.0215226e+00      0s
+#&gt;       13         52  -2.3045430e+00  -3.0213644e+00      0s
+#&gt;       14         56  -2.3182094e+00  -3.0212064e+00      0s
+#&gt;       15         60  -2.3318729e+00  -3.0210487e+00      0s
+#&gt;       16         64  -2.3453096e+00  -3.0208939e+00      0s
+#&gt;       17         68  -2.3587432e+00  -3.0207397e+00      0s
+#&gt;       18         72  -2.3721739e+00  -3.0205860e+00      0s
+#&gt;       19         76  -2.3856015e+00  -3.0204331e+00      0s
+#&gt;       20         82  -2.3988023e+00  -3.0202835e+00      0s
+#&gt;       21         86  -2.4120000e+00  -3.0201348e+00      0s
+#&gt;       22         90  -2.4251944e+00  -3.0199872e+00      0s
+#&gt;       23         94  -2.4395142e+00  -3.0198407e+00      0s
+#&gt;       24         98  -2.4566156e+00  -3.0196979e+00      0s
+#&gt;       25        102  -2.4739008e+00  -3.0195565e+00      0s
+#&gt;       26        106  -2.4909582e+00  -3.0194190e+00      0s
+#&gt;       27        110  -2.5080111e+00  -3.0192831e+00      0s
+#&gt;       28        114  -2.5248363e+00  -3.0191513e+00      0s
+#&gt;       29        119  -2.5416570e+00  -3.0190213e+00      0s
+#&gt;       30        124  -2.5582501e+00  -3.0188954e+00      0s
+#&gt;       31        129  -2.5748387e+00  -3.0187716e+00      0s
+#&gt;       32        134  -2.5911996e+00  -3.0186521e+00      0s
+#&gt;       33        139  -2.6073685e+00  -3.0185348e+00      0s
+#&gt;       34        144  -2.6236851e+00  -3.0184220e+00      0s
+#&gt;       35        149  -2.6396220e+00  -3.0183115e+00      0s
+#&gt;       36        154  -2.6557419e+00  -3.0182036e+00      0s
+#&gt;       37        159  -2.6718217e+00  -3.0181004e+00      0s
+#&gt;       38        164  -2.6767356e+00  -3.0179482e+00      0s
+#&gt;       39        170  -2.6831024e+00  -3.0177991e+00      0s
+#&gt;       40        176  -2.6894664e+00  -3.0176505e+00      0s
+#&gt;       41        182  -2.6958275e+00  -3.0175026e+00      0s
+#&gt;       42        188  -2.7021857e+00  -3.0173553e+00      0s
+#&gt;       43        194  -2.7085409e+00  -3.0172087e+00      0s
+#&gt;       44        200  -2.7147063e+00  -3.0170672e+00      0s
+#&gt;       45        206  -2.7208689e+00  -3.0169265e+00      0s
+#&gt;       46        212  -2.7270285e+00  -3.0167866e+00      0s
+#&gt;       47        218  -2.7331852e+00  -3.0166476e+00      0s
+#&gt;       48        224  -2.7393388e+00  -3.0165096e+00      0s
+#&gt;       49        230  -2.7454894e+00  -3.0163726e+00      0s
+#&gt; 
+#&gt; Sifting complete
+#&gt; 
+#&gt; 
+#&gt; Root relaxation: objective 2.904788e+00, 248 iterations, 0.23 seconds
 #&gt; 
 #&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
 #&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #&gt; 
-#&gt; *    0     0               0       2.9047879    2.90479  0.00%     -    0s
+#&gt; *    0     0               0       2.9047880    2.90479  0.00%     -    0s
 #&gt; 
-#&gt; Explored 0 nodes (14 simplex iterations) in 0.01 seconds
+#&gt; Explored 0 nodes (248 simplex iterations) in 0.44 seconds
 #&gt; Thread count was 1 (of 4 available processors)
 #&gt; 
 #&gt; Solution count 1: 2.90479 
 #&gt; 
 #&gt; Optimal solution found (tolerance 0.00e+00)
-#&gt; Best objective 2.904787920708e+00, best bound 2.904787920708e+00, gap 0.0000%</div><div class='input'>
+#&gt; Best objective 2.904787950913e+00, best bound 2.904787950913e+00, gap 0.0000%</div><div class='input'>
 <span class='co'># print solution</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>s1</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 21</span><span>
 #&gt;   solution status   obj  cost F1_action F2_action F3_action F4_action F5_action
@@ -352,29 +409,86 @@ research &amp; management science</em>. Springer.</p>
 #&gt;   Objective range  [4e-01, 3e+00]
 #&gt;   Bounds range     [1e+00, 1e+00]
 #&gt;   RHS range        [1e+00, 3e+02]
-#&gt; Found heuristic solution: objective 2.3885146
+#&gt; Found heuristic solution: objective 2.3885148
 #&gt; Presolve removed 16 rows and 12 columns
-#&gt; Presolve time: 0.00s
-#&gt; Presolved: 37 rows, 2995 columns, 3036 nonzeros
-#&gt; Variable types: 2960 continuous, 35 integer (35 binary)
+#&gt; Presolve time: 0.01s
+#&gt; Presolved: 37 rows, 29615 columns, 29656 nonzeros
+#&gt; Variable types: 29580 continuous, 35 integer (35 binary)
 #&gt; Presolve removed 3 rows and 3 columns
-#&gt; Presolved: 34 rows, 2992 columns, 3030 nonzeros
+#&gt; Presolved: 34 rows, 29612 columns, 29650 nonzeros
 #&gt; 
 #&gt; 
-#&gt; Root relaxation: objective 4.523860e+00, 14 iterations, 0.00 seconds
+#&gt; Starting sifting (using dual simplex for sub-problems)...
+#&gt; 
+#&gt;     Iter     Pivots    Primal Obj      Dual Obj        Time
+#&gt;        0          0     infinity     -5.0366315e+00      0s
+#&gt;        1         12   1.9999950e+06  -4.7000796e+00      0s
+#&gt;        2         16   9.9999627e+05  -4.6927897e+00      0s
+#&gt;        3         19   8.8659144e+05  -4.6920470e+00      0s
+#&gt;        4         22   7.8228652e+05  -4.6913381e+00      0s
+#&gt;        5         25   6.8002680e+05  -4.6906199e+00      0s
+#&gt;        6         28   5.7878967e+05  -4.6898881e+00      0s
+#&gt;        7         31   4.7908644e+05  -4.6891494e+00      0s
+#&gt;        8         34   3.8040581e+05  -4.6884035e+00      0s
+#&gt;        9         37   2.8274778e+05  -4.6876541e+00      0s
+#&gt;       10         40   1.8611234e+05  -4.6869053e+00      0s
+#&gt;       11         43   9.0499500e+04  -4.6864488e+00      0s
+#&gt;       12         48   8.2103062e+03  -4.6864294e+00      0s
+#&gt;       13         52  -3.2451351e+00  -4.6862711e+00      0s
+#&gt;       14         56  -3.2725991e+00  -4.6861129e+00      0s
+#&gt;       15         60  -3.3000601e+00  -4.6859551e+00      0s
+#&gt;       16         64  -3.3270681e+00  -4.6858002e+00      0s
+#&gt;       17         68  -3.3540731e+00  -4.6856459e+00      0s
+#&gt;       18         72  -3.3810751e+00  -4.6854922e+00      0s
+#&gt;       19         76  -3.4080740e+00  -4.6853391e+00      0s
+#&gt;       20         80  -3.4346199e+00  -4.6851895e+00      0s
+#&gt;       21         84  -3.4611627e+00  -4.6850407e+00      0s
+#&gt;       22         88  -3.4877024e+00  -4.6848931e+00      0s
+#&gt;       23         92  -3.5169039e+00  -4.6847465e+00      0s
+#&gt;       24         96  -3.5517437e+00  -4.6846038e+00      0s
+#&gt;       25        100  -3.5865790e+00  -4.6844624e+00      0s
+#&gt;       26        104  -3.6209604e+00  -4.6843249e+00      0s
+#&gt;       27        108  -3.6553373e+00  -4.6841890e+00      0s
+#&gt;       28        112  -3.6892603e+00  -4.6840572e+00      0s
+#&gt;       29        117  -3.7231789e+00  -4.6839272e+00      0s
+#&gt;       30        122  -3.7566435e+00  -4.6838014e+00      0s
+#&gt;       31        127  -3.7901037e+00  -4.6836777e+00      0s
+#&gt;       32        133  -3.8231101e+00  -4.6835582e+00      0s
+#&gt;       33        138  -3.8561120e+00  -4.6834410e+00      0s
+#&gt;       34        143  -3.8886602e+00  -4.6833283e+00      0s
+#&gt;       35        148  -3.9212039e+00  -4.6832180e+00      0s
+#&gt;       36        153  -3.9537429e+00  -4.6831103e+00      0s
+#&gt;       37        158  -3.9862084e+00  -4.6830072e+00      0s
+#&gt;       38        163  -3.9961684e+00  -4.6828564e+00      0s
+#&gt;       39        169  -4.0090856e+00  -4.6827083e+00      0s
+#&gt;       40        175  -4.0220000e+00  -4.6825607e+00      0s
+#&gt;       41        181  -4.0349115e+00  -4.6824138e+00      0s
+#&gt;       42        187  -4.0478201e+00  -4.6822676e+00      0s
+#&gt;       43        193  -4.0607257e+00  -4.6821221e+00      0s
+#&gt;       44        199  -4.0732489e+00  -4.6819816e+00      0s
+#&gt;       45        205  -4.0857692e+00  -4.6818420e+00      0s
+#&gt;       46        211  -4.0982865e+00  -4.6817032e+00      0s
+#&gt;       47        217  -4.1108009e+00  -4.6815654e+00      0s
+#&gt;       48        223  -4.1233123e+00  -4.6814285e+00      0s
+#&gt;       49        229  -4.1358206e+00  -4.6812926e+00      0s
+#&gt; 
+#&gt; Sifting complete
+#&gt; 
+#&gt; 
+#&gt; Root relaxation: objective 4.523860e+00, 240 iterations, 0.26 seconds
 #&gt; 
 #&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
 #&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #&gt; 
 #&gt; *    0     0               0       4.5238601    4.52386  0.00%     -    0s
 #&gt; 
-#&gt; Explored 0 nodes (14 simplex iterations) in 0.01 seconds
+#&gt; Explored 0 nodes (240 simplex iterations) in 0.46 seconds
 #&gt; Thread count was 1 (of 4 available processors)
 #&gt; 
 #&gt; Solution count 1: 4.52386 
 #&gt; 
 #&gt; Optimal solution found (tolerance 0.00e+00)
-#&gt; Best objective 4.523860094486e+00, best bound 4.523860094486e+00, gap 0.0000%</div><div class='input'>
+#&gt; Best objective 4.523860124691e+00, best bound 4.523860124691e+00, gap 0.0000%</div><div class='input'>
 <span class='co'># print solution based on feature weights</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>s2</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 21</span><span>
 #&gt;   solution status   obj  cost F1_action F2_action F3_action F4_action F5_action

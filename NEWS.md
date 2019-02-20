@@ -1,3 +1,8 @@
+# oppr 0.0.0.13
+
+- Fix bug in `project_cost_effectiveness` reporting incorrect costs, and
+  cost-effectiveness values.
+
 # oppr 0.0.0.12
 
 - Assorted documentation tweaks.

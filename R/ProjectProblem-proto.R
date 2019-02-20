@@ -391,7 +391,8 @@ ProjectProblem <- pproto(
   },
   project_costs = function(self) {
     pa <- as.matrix(self$pa_matrix())
-    ac <- matrix(self$action_costs(), ncol = ncol(pa), nrow = nrow(pa))
+    ac <- matrix(self$action_costs(), ncol = ncol(pa), nrow = nrow(pa),
+                 byrow = TRUE)
     rowSums(pa * ac)
   },
   project_success_probabilities = function(self) {
