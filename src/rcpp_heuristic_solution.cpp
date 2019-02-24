@@ -155,8 +155,6 @@ Rcpp::LogicalMatrix rcpp_heuristic_solution(
   // Main processing
   while (curr_iteration < max_iterations) {
 
-    Rcout << "iteration = " << curr_iteration << std::endl;
-
     /// check for user interrupt
     if (curr_iteration % 100 == 0)
       if (Progress::check_abort())
@@ -270,9 +268,6 @@ Rcpp::LogicalMatrix rcpp_heuristic_solution(
        ((curr_cost - budget) <= 1.0e-10))
        budget_met_iteration = curr_iteration;
 
-    Rcout << "curr_cost=" << curr_cost << std::endl;
-    Rcout << "budget_met_iteration=" << budget_met_iteration << std::endl;
-
     // increment progress bar
     pb.increment();
   }
@@ -300,9 +295,6 @@ Rcpp::LogicalMatrix rcpp_heuristic_solution(
     out = sols(Rcpp::Range(budget_met_iteration - 1, curr_iteration - 1),
                Rcpp::_);
   }
-
-  Rcout << "out" << std::endl;
-  Rf_PrintValue(out);
 
   return out;
 }
