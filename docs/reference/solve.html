@@ -112,7 +112,7 @@
 
     <div class="ref-description">
     
-    <p>Solve a conservation planning <code>problem</code>.</p>
+    <p>Solve a conservation planning <code><a href='problem.html'>problem</a></code>.</p>
     
     </div>
 
@@ -122,17 +122,17 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>a</th>
-      <td><p><code>ProjectProblem-class</code> or an
-<code>OptimizationProblem-class</code> object.</p></td>
+      <td><p><code><a href='ProjectProblem-class.html'>ProjectProblem-class</a></code> or an
+<code><a href='OptimizationProblem-class.html'>OptimizationProblem-class</a></code> object.</p></td>
     </tr>
     <tr>
       <th>b</th>
-      <td><p><code>Solver-class</code> object. Not used if <code>a</code> is an
-<code>ProjectProblem-class</code> object.</p></td>
+      <td><p><code><a href='Solver-class.html'>Solver-class</a></code> object. Not used if <code>a</code> is an
+<code><a href='ProjectProblem-class.html'>ProjectProblem-class</a></code> object.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>arguments passed to <code>compile</code>.</p></td>
+      <td><p>arguments passed to <code><a href='compile.html'>compile</a></code>.</p></td>
     </tr>
     </table>
     
@@ -140,11 +140,11 @@
 
     <p>The type of object returned from this function depends on the
   argument to <code>a</code>. If the argument to <code>a</code> is an
-  <code>OptimizationProblem-class</code> object, then the
+  <code><a href='OptimizationProblem-class.html'>OptimizationProblem-class</a></code> object, then the
   solution is returned as a <code>list</code> containing the prioritization and
   additional information (e.g. run time, solver status). On the other hand,
   if the argument
-  to <code>a</code> is an <code>ProjectProblem-class</code> object,
+  to <code>a</code> is an <code><a href='ProjectProblem-class.html'>ProjectProblem-class</a></code> object,
   then a <code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></code> table object will be returned. In this
   table, each row row corresponds to a different solution and each column
   describes a different property or result associated with each solution:</p>
@@ -179,8 +179,8 @@
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>problem</code>, <code>solution_statistics</code>,
-  <code>solvers</code>.</p></div>
+    <div class='dont-index'><p><code><a href='problem.html'>problem</a></code>, <code><a href='solution_statistics.html'>solution_statistics</a></code>,
+  <code><a href='solvers.html'>solvers</a></code>.</p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -188,7 +188,7 @@
 <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_features</span>, <span class='no'>sim_actions</span>)
 
 <span class='co'># print project data</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>sim_projects</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 13</span><span>
+<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>sim_projects</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 13</span><span>
 #&gt;   name  success     F1     F2      F3     F4     F5 F1_action F2_action
 #&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>    
 #&gt; </span><span style='color: #BCBCBC;'>1</span><span> F1_p~   0.919  0.791 </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     TRUE      FALSE    
@@ -200,7 +200,7 @@
 #&gt; </span><span style='color: #949494;'># ... with 4 more variables: F3_action </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #949494;'>, F4_action </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #949494;'>, F5_action </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #949494;'>,
 #&gt; #   baseline_action </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span></div><div class='input'>
 <span class='co'># print action data</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>sim_features</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 5 x 2</span><span>
+<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>sim_features</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 5 x 2</span><span>
 #&gt;   name  weight
 #&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #BCBCBC;'>1</span><span> F1     0.211
@@ -209,7 +209,7 @@
 #&gt; </span><span style='color: #BCBCBC;'>4</span><span> F4     0.630
 #&gt; </span><span style='color: #BCBCBC;'>5</span><span> F5     1.59 </div><div class='input'>
 <span class='co'># print feature data</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>sim_actions</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 6 x 4</span><span>
+<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>sim_actions</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 6 x 4</span><span>
 #&gt;   name             cost locked_in locked_out
 #&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>     
 #&gt; </span><span style='color: #BCBCBC;'>1</span><span> F1_action        94.4 FALSE     FALSE     
@@ -219,14 +219,14 @@
 #&gt; </span><span style='color: #BCBCBC;'>5</span><span> F5_action        99.9 FALSE     TRUE      
 #&gt; </span><span style='color: #BCBCBC;'>6</span><span> baseline_action   0   FALSE     FALSE     </div><div class='input'>
 <span class='co'># build problem</span>
-<span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'>problem</span>(<span class='no'>sim_projects</span>, <span class='no'>sim_actions</span>, <span class='no'>sim_features</span>,
+<span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_actions</span>, <span class='no'>sim_features</span>,
              <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span>) <span class='kw'>%&gt;%</span>
-     <span class='fu'>add_max_richness_objective</span>(<span class='kw'>budget</span> <span class='kw'>=</span> <span class='fl'>400</span>) <span class='kw'>%&gt;%</span>
-     <span class='fu'>add_feature_weights</span>(<span class='st'>"weight"</span>) <span class='kw'>%&gt;%</span>
-     <span class='fu'>add_binary_decisions</span>()
+     <span class='fu'><a href='add_max_richness_objective.html'>add_max_richness_objective</a></span>(<span class='kw'>budget</span> <span class='kw'>=</span> <span class='fl'>400</span>) <span class='kw'>%&gt;%</span>
+     <span class='fu'><a href='add_feature_weights.html'>add_feature_weights</a></span>(<span class='st'>"weight"</span>) <span class='kw'>%&gt;%</span>
+     <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span>()
 
 <span class='co'># print problem</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>p</span>)</div><div class='output co'>#&gt; <span class='message'>Project Prioritization Problem</span>
+<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>p</span>)</div><div class='output co'>#&gt; <span class='message'>Project Prioritization Problem</span>
 #&gt; <span class='message'>  actions          F1_action, F2_action, F3_action, ... (6 actions)</span>
 #&gt; <span class='message'>  projects         F1_project, F2_project, F3_project, ... (6 projects)</span>
 #&gt; <span class='message'>  features         F1, F2, F3, ... (5 features)</span>
@@ -239,7 +239,7 @@
 #&gt; <span class='message'>  constraints:     &lt;none&gt;</span>
 #&gt; <span class='message'>  solver:          default</span></div><div class='input'>
 </div></span><div class='input'><span class='co'># solve problem</span>
-<span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/solve'>solve</a></span>(<span class='no'>p</span>)</div><div class='output co'>#&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
+<span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'>solve</span>(<span class='no'>p</span>)</div><div class='output co'>#&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
 #&gt; Variable types: 0 continuous, 42 integer (42 binary)
 #&gt; Semi-Variable types: 5 continuous, 0 integer
 #&gt; Coefficient statistics:
@@ -270,7 +270,7 @@
 #&gt; Optimal solution found (tolerance 0.00e+00)
 #&gt; Best objective 1.749044775334e+00, best bound 1.749044775334e+00, gap 0.0000%</div><div class='input'>
 <span class='co'># print output</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>s</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 21</span><span>
+<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 21</span><span>
 #&gt;   solution status   obj  cost F1_action F2_action F3_action F4_action F5_action
 #&gt;      </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 OPTIM~  1.75  395.         1         1         0         1         1
@@ -278,11 +278,11 @@
 #&gt; #   F2_project </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F3_project </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F4_project </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F5_project </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
 #&gt; #   baseline_project </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F1 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F2 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F3 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F4 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F5 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># print the solver status</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>s</span>$<span class='no'>obj</span>)</div><div class='output co'>#&gt; [1] 1.749045</div><div class='input'>
+<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s</span>$<span class='no'>obj</span>)</div><div class='output co'>#&gt; [1] 1.749045</div><div class='input'>
 <span class='co'># print the objective value</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>s</span>$<span class='no'>obj</span>)</div><div class='output co'>#&gt; [1] 1.749045</div><div class='input'>
+<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s</span>$<span class='no'>obj</span>)</div><div class='output co'>#&gt; [1] 1.749045</div><div class='input'>
 <span class='co'># print the solution cost</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>s</span>$<span class='no'>cost</span>)</div><div class='output co'>#&gt; [1] 394.5413</div><div class='input'>
+<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s</span>$<span class='no'>cost</span>)</div><div class='output co'>#&gt; [1] 394.5413</div><div class='input'>
 <span class='co'># print which actions are funded in the solution</span>
 <span class='no'>s</span>[, <span class='no'>sim_actions</span>$<span class='no'>name</span>, <span class='kw'>drop</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>]</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 6</span><span>
 #&gt;   F1_action F2_action F3_action F4_action F5_action baseline_action

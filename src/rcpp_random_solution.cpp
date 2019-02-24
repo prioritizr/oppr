@@ -149,8 +149,8 @@ Rcpp::LogicalMatrix rcpp_random_solution(
 
   /// add locked in actions and zero-cost actions to solutions
   for (std::size_t i = 0; i < n_actions; ++i)
-    if ((locked_in_actions[i]) |
-        ((costs[i] < 1.0e-15) & !locked_out_actions[i]))
+    if ((locked_in_actions[i]) ||
+        ((costs[i] < 1.0e-15) && !locked_out_actions[i]))
       for (std::size_t y = 0; y < number_solutions; ++y)
         out(y, i) = TRUE;
 
@@ -184,7 +184,8 @@ Rcpp::LogicalMatrix rcpp_random_solution(
       curr_actions = initial_actions;
 
     /// generate random solutions
-    while ((curr_cost <= budget) & (n_remaining_projects > 0) &
+    while ((std::abs(curr_cost - budget) > 1.0e-10) &&
+           (n_remaining_projects > 0) &&
            (!targets_met)) {
 
       //// reset matrices
@@ -197,7 +198,7 @@ Rcpp::LogicalMatrix rcpp_random_solution(
            ritr != curr_remaining_projects.end(); ++ritr) {
         for (auto pitr = pa_matrix.begin_row(ritr.col());
              pitr != pa_matrix.end_row(ritr.col()); ++pitr) {
-          if ((!out(y, pitr.col())) & (!locked_in_actions[pitr.col()])) {
+          if ((!out(y, pitr.col())) && (!locked_in_actions[pitr.col()])) {
             curr_new_actions_per_project(ritr.col(), pitr.col()) = 1.0;
           }
         }

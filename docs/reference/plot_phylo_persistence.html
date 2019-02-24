@@ -128,7 +128,7 @@ into the future under a solution to a project prioritization problem.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>project prioritization <code>problem</code>.</p></td>
+      <td><p>project prioritization <code><a href='problem.html'>problem</a></code>.</p></td>
     </tr>
     <tr>
       <th>solution</th>
@@ -208,15 +208,35 @@ Evolution</em>, <strong>8</strong>: 28--36.</p>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>ggplot2</span>)</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_features</span>, <span class='no'>sim_actions</span>)
 
 <span class='co'># build problem</span>
-<span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'>problem</span>(<span class='no'>sim_projects</span>, <span class='no'>sim_actions</span>, <span class='no'>sim_features</span>,
+<span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_actions</span>, <span class='no'>sim_features</span>,
              <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span>) <span class='kw'>%&gt;%</span>
-     <span class='fu'>add_max_phylo_div_objective</span>(<span class='kw'>budget</span> <span class='kw'>=</span> <span class='fl'>400</span>, <span class='no'>sim_tree</span>) <span class='kw'>%&gt;%</span>
-     <span class='fu'>add_binary_decisions</span>() <span class='kw'>%&gt;%</span>
-     <span class='fu'>add_heuristic_solver</span>(<span class='kw'>number_solutions</span> <span class='kw'>=</span> <span class='fl'>10</span>)
+     <span class='fu'><a href='add_max_phylo_div_objective.html'>add_max_phylo_div_objective</a></span>(<span class='kw'>budget</span> <span class='kw'>=</span> <span class='fl'>400</span>, <span class='no'>sim_tree</span>) <span class='kw'>%&gt;%</span>
+     <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span>() <span class='kw'>%&gt;%</span>
+     <span class='fu'><a href='add_heuristic_solver.html'>add_heuristic_solver</a></span>(<span class='kw'>number_solutions</span> <span class='kw'>=</span> <span class='fl'>10</span>)
 
 <span class='co'># solve problem</span>
-<span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/solve'>solve</a></span>(<span class='no'>p</span>)
-
+<span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p</span>)</div><div class='output co'>#&gt; iteration = 1
+#&gt; curr_cost=394.541
+#&gt; budget_met_iteration=2
+#&gt; iteration = 2
+#&gt; curr_cost=300.142
+#&gt; budget_met_iteration=2
+#&gt; iteration = 3
+#&gt; curr_cost=200.899
+#&gt; budget_met_iteration=2
+#&gt; iteration = 4
+#&gt; curr_cost=99.9079
+#&gt; budget_met_iteration=2
+#&gt; iteration = 5
+#&gt; curr_cost=2.84217e-14
+#&gt; budget_met_iteration=2
+#&gt; out
+#&gt;       [,1]  [,2]  [,3]  [,4]  [,5] [,6]
+#&gt; [1,]  TRUE  TRUE FALSE  TRUE  TRUE TRUE
+#&gt; [2,] FALSE  TRUE FALSE  TRUE  TRUE TRUE
+#&gt; [3,] FALSE  TRUE FALSE FALSE  TRUE TRUE
+#&gt; [4,] FALSE FALSE FALSE FALSE  TRUE TRUE
+#&gt; [5,] FALSE FALSE FALSE FALSE FALSE TRUE</div><div class='input'>
 <span class='co'># plot the first solution</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>p</span>, <span class='no'>s</span>)</div><div class='img'><img src='plot_phylo_persistence-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># plot the second solution</span>
@@ -249,7 +269,7 @@ Evolution</em>, <strong>8</strong>: 28--36.</p>
 #&gt; <span class='message'>which will replace the existing scale.</span></div><div class='img'><img src='plot_phylo_persistence-6.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># we can also obtain the raw plotting data using return_data=TRUE</span>
 <span class='no'>plot_data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>p</span>, <span class='no'>s</span>, <span class='kw'>return_data</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>plot_data</span>)</div><div class='output co'>#&gt; 'treedata' S4 object'.
+<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>plot_data</span>)</div><div class='output co'>#&gt; 'treedata' S4 object'.
 #&gt; 
 #&gt; ...@ phylo: 
 #&gt; Phylogenetic tree with 5 tips and 4 internal nodes.

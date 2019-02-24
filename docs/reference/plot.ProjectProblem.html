@@ -127,7 +127,7 @@ problem will maintain biodiversity.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>project prioritization <code>problem</code>.</p></td>
+      <td><p>project prioritization <code><a href='problem.html'>problem</a></code>.</p></td>
     </tr>
     <tr>
       <th>solution</th>
@@ -190,8 +190,8 @@ the plot be returned instead of the plot? Defaults to <code>FALSE</code>.</p></t
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>This function is essentially a wrapper for
-  <code>plot_feature_persistence</code> and
-  <code>plot_phylo_persistence</code>, so refer to the documentation
+  <code><a href='plot_feature_persistence.html'>plot_feature_persistence</a></code> and
+  <code><a href='plot_phylo_persistence.html'>plot_phylo_persistence</a></code>, so refer to the documentation
   for these functions for more information.</p></div>
     
 
@@ -200,14 +200,14 @@ the plot be returned instead of the plot? Defaults to <code>FALSE</code>.</p></t
 <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_features</span>, <span class='no'>sim_actions</span>)
 
 <span class='co'># build problem without phylogenetic data</span>
-<span class='no'>p1</span> <span class='kw'>&lt;-</span> <span class='fu'>problem</span>(<span class='no'>sim_projects</span>, <span class='no'>sim_actions</span>, <span class='no'>sim_features</span>,
+<span class='no'>p1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_actions</span>, <span class='no'>sim_features</span>,
              <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span>) <span class='kw'>%&gt;%</span>
-      <span class='fu'>add_max_richness_objective</span>(<span class='kw'>budget</span> <span class='kw'>=</span> <span class='fl'>400</span>) <span class='kw'>%&gt;%</span>
-      <span class='fu'>add_feature_weights</span>(<span class='st'>"weight"</span>) <span class='kw'>%&gt;%</span>
-      <span class='fu'>add_binary_decisions</span>()
+      <span class='fu'><a href='add_max_richness_objective.html'>add_max_richness_objective</a></span>(<span class='kw'>budget</span> <span class='kw'>=</span> <span class='fl'>400</span>) <span class='kw'>%&gt;%</span>
+      <span class='fu'><a href='add_feature_weights.html'>add_feature_weights</a></span>(<span class='st'>"weight"</span>) <span class='kw'>%&gt;%</span>
+      <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span>()
 
 <span class='co'># solve problem without phylogenetic data</span>
-<span class='no'>s1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/solve'>solve</a></span>(<span class='no'>p1</span>)</div><div class='output co'>#&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
+<span class='no'>s1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p1</span>)</div><div class='output co'>#&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
 #&gt; Variable types: 0 continuous, 42 integer (42 binary)
 #&gt; Semi-Variable types: 5 continuous, 0 integer
 #&gt; Coefficient statistics:
@@ -240,13 +240,13 @@ the plot be returned instead of the plot? Defaults to <code>FALSE</code>.</p></t
 <span class='co'># visualize solution without phylogenetic data</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>p1</span>, <span class='no'>s1</span>)</div><div class='img'><img src='plot.ProjectProblem-1.png' alt='' width='700' height='433' /></div><div class='input'>
 </div><div class='input'><span class='co'># build problem with phylogenetic data</span>
-<span class='no'>p2</span> <span class='kw'>&lt;-</span> <span class='fu'>problem</span>(<span class='no'>sim_projects</span>, <span class='no'>sim_actions</span>, <span class='no'>sim_features</span>,
+<span class='no'>p2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_actions</span>, <span class='no'>sim_features</span>,
              <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span>) <span class='kw'>%&gt;%</span>
-      <span class='fu'>add_max_phylo_div_objective</span>(<span class='kw'>budget</span> <span class='kw'>=</span> <span class='fl'>400</span>, <span class='no'>sim_tree</span>) <span class='kw'>%&gt;%</span>
-      <span class='fu'>add_binary_decisions</span>()
+      <span class='fu'><a href='add_max_phylo_div_objective.html'>add_max_phylo_div_objective</a></span>(<span class='kw'>budget</span> <span class='kw'>=</span> <span class='fl'>400</span>, <span class='no'>sim_tree</span>) <span class='kw'>%&gt;%</span>
+      <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span>()
 
 <span class='co'># solve problem with phylogenetic data</span>
-<span class='no'>s2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/solve'>solve</a></span>(<span class='no'>p2</span>)</div><div class='output co'>#&gt; Optimize a model with 50 rows, 50 columns and 123 nonzeros
+<span class='no'>s2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p2</span>)</div><div class='output co'>#&gt; Optimize a model with 50 rows, 50 columns and 123 nonzeros
 #&gt; Model has 3 piecewise-linear objective terms
 #&gt; Variable types: 3 continuous, 42 integer (42 binary)
 #&gt; Semi-Variable types: 5 continuous, 0 integer

@@ -118,11 +118,11 @@ relative targets for different features." />
 
     <div class="ref-description">
     
-    <p>Set targets for a project prioritization <code>problem</code> by manually
+    <p>Set targets for a project prioritization <code><a href='problem.html'>problem</a></code> by manually
 specifying all the required information for each target. This function
 is useful because it can be used to customize all aspects of a target. For
 most cases, targets can be specified using the
-<code>add_absolute_targets</code> and <code>add_relative_targets</code>
+<code><a href='add_absolute_targets.html'>add_absolute_targets</a></code> and <code><a href='add_relative_targets.html'>add_relative_targets</a></code>
 functions. However, this function can be used to mix absolute and
 relative targets for different features.</p>
     
@@ -139,7 +139,7 @@ relative targets for different features.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p><code>ProjectProblem-class</code> object.</p></td>
+      <td><p><code><a href='ProjectProblem-class.html'>ProjectProblem-class</a></code> object.</p></td>
     </tr>
     <tr>
       <th>targets</th>
@@ -150,17 +150,17 @@ the Details section for more information.</p></td>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>ProjectProblem-class</code> object with the targets added
+    <p><code><a href='ProjectProblem-class.html'>ProjectProblem-class</a></code> object with the targets added
   to it.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Targets are used to specify the minimum probability of persistence
   for each feature in solutions. For minimum set objectives
-  (i.e. <code>add_min_set_objective</code>, these targets
+  (i.e. <code><a href='add_min_set_objective.html'>add_min_set_objective</a></code>, these targets
   specify the minimum probability of persistence required for each species
   in the solution. And for budget constrained objectives that use targets
-  (i.e. <code>add_max_targets_met_objective</code>), these targets
+  (i.e. <code><a href='add_max_targets_met_objective.html'>add_max_targets_met_objective</a></code>), these targets
   specify the minimum threshold probability of persistence that needs to be
   achieved to count the benefits for conserving these species.
   Please note that attempting to solve problems with objectives that require
@@ -171,8 +171,8 @@ the Details section for more information.</p></td>
     to <code>x</code>.</p></dd>
     <dt><code>"type"</code></dt><dd><p><code>character</code> describing the type of target.
     Acceptable values include <code>"absolute"</code> and <code>"relative"</code>.
-    These values correspond to <code>add_absolute_targets</code>,
-    and <code>add_relative_targets</code> respectively.</p></dd>
+    These values correspond to <code><a href='add_absolute_targets.html'>add_absolute_targets</a></code>,
+    and <code><a href='add_relative_targets.html'>add_relative_targets</a></code> respectively.</p></dd>
     <dt><code>"sense"</code></dt><dd><p><code>character</code> sense of the target. The
     only acceptable value currently supported is: <code>"&gt;="</code>. This field
     (column) is optional and if it is missing then target senses will
@@ -182,7 +182,7 @@ the Details section for more information.</p></td>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>targets</code>.</p></div>
+    <div class='dont-index'><p><code><a href='targets.html'>targets</a></code>.</p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -196,7 +196,7 @@ the Details section for more information.</p></td>
                       <span class='kw'>target</span> <span class='kw'>=</span> <span class='fl'>0.1</span>)
 
 <span class='co'># print targets</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>targets</span>)</div><div class='output co'>#&gt;   feature     type target
+<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>targets</span>)</div><div class='output co'>#&gt;   feature     type target
 #&gt; 1      F1 absolute    0.1
 #&gt; 2      F2 absolute    0.1
 #&gt; 3      F3 absolute    0.1
@@ -204,14 +204,14 @@ the Details section for more information.</p></td>
 #&gt; 5      F5 absolute    0.1</div><div class='input'>
 <span class='co'># build problem with minimum set objective and targets that require each</span>
 <span class='co'># feature to have a 30% chance of persisting into the future</span>
-<span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'>problem</span>(<span class='no'>sim_projects</span>, <span class='no'>sim_actions</span>, <span class='no'>sim_features</span>,
+<span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_actions</span>, <span class='no'>sim_features</span>,
              <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span>) <span class='kw'>%&gt;%</span>
-      <span class='fu'>add_min_set_objective</span>() <span class='kw'>%&gt;%</span>
+      <span class='fu'><a href='add_min_set_objective.html'>add_min_set_objective</a></span>() <span class='kw'>%&gt;%</span>
       <span class='fu'>add_manual_targets</span>(<span class='no'>targets</span>) <span class='kw'>%&gt;%</span>
-      <span class='fu'>add_binary_decisions</span>()
+      <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span>()
 
 <span class='co'># print problem</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>p</span>)</div><div class='output co'>#&gt; <span class='message'>Project Prioritization Problem</span>
+<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>p</span>)</div><div class='output co'>#&gt; <span class='message'>Project Prioritization Problem</span>
 #&gt; <span class='message'>  actions          F1_action, F2_action, F3_action, ... (6 actions)</span>
 #&gt; <span class='message'>  projects         F1_project, F2_project, F3_project, ... (6 projects)</span>
 #&gt; <span class='message'>  features         F1, F2, F3, ... (5 features)</span>
@@ -224,7 +224,7 @@ the Details section for more information.</p></td>
 #&gt; <span class='message'>  constraints:     &lt;none&gt;</span>
 #&gt; <span class='message'>  solver:          default</span></div><div class='input'>
 </div><div class='input'><span class='co'># solve problem</span>
-<span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/solve'>solve</a></span>(<span class='no'>p</span>)</div><div class='output co'>#&gt; Optimize a model with 46 rows, 42 columns and 92 nonzeros
+<span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p</span>)</div><div class='output co'>#&gt; Optimize a model with 46 rows, 42 columns and 92 nonzeros
 #&gt; Variable types: 0 continuous, 42 integer (42 binary)
 #&gt; Coefficient statistics:
 #&gt;   Matrix range     [9e-02, 1e+00]
@@ -254,7 +254,7 @@ the Details section for more information.</p></td>
 #&gt; Optimal solution found (tolerance 0.00e+00)
 #&gt; Best objective 1.032258290263e+02, best bound 1.032258290263e+02, gap 0.0000%</div><div class='input'>
 <span class='co'># print solution</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>s</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 21</span><span>
+<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 21</span><span>
 #&gt;   solution status   obj  cost F1_action F2_action F3_action F4_action F5_action
 #&gt;      </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 OPTIM~  103.  103.         0         0         1         0         0

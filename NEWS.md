@@ -1,3 +1,9 @@
+# oppr 0.0.0.14
+
+- Fix bugs in `add_heuristic_solver` and `add_random_solver` arising from
+  floating point comparison issue. These were causing infeasible solutions to
+  be returned in R version 3.4.4.
+
 # oppr 0.0.0.13
 
 - Fix bug in `project_cost_effectiveness` reporting incorrect costs, and

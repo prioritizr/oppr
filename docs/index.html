@@ -114,7 +114,7 @@ devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumen
 <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(sim_features)
 
 <span class="co"># print table</span>
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(sim_features)</code></pre></div>
+<span class="kw"><a href="reference/print.html">print</a></span>(sim_features)</code></pre></div>
 <pre><code>## # A tibble: 5 x 2
 ##   name  weight
 ##   &lt;chr&gt;  &lt;dbl&gt;
@@ -128,7 +128,7 @@ devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumen
 <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(sim_actions)
 
 <span class="co"># print table</span>
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(sim_actions)</code></pre></div>
+<span class="kw"><a href="reference/print.html">print</a></span>(sim_actions)</code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   name             cost locked_in locked_out
 ##   &lt;chr&gt;           &lt;dbl&gt; &lt;lgl&gt;     &lt;lgl&gt;     
@@ -143,7 +143,7 @@ devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumen
 <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(sim_projects)
 
 <span class="co"># print table</span>
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(sim_projects, <span class="dt">width =</span> <span class="ot">Inf</span>)</code></pre></div>
+<span class="kw"><a href="reference/print.html">print</a></span>(sim_projects, <span class="dt">width =</span> <span class="ot">Inf</span>)</code></pre></div>
 <pre><code>## # A tibble: 6 x 13
 ##   name             success     F1     F2      F3     F4     F5 F1_action
 ##   &lt;chr&gt;              &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;lgl&gt;    
@@ -163,17 +163,17 @@ devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumen
 ## 6 FALSE     FALSE     FALSE     FALSE     TRUE</code></pre>
 <p>After loading the data, we can begin formulating the project prioritization problem. Here our goal is to maximize the overall probability that each feature is expected to persist into the future (i.e. the feature richness), whilst also accounting for the relative importance of each feature and the fact that our resources are limited such that we can only spend at most $400 on funding management actions. Now, let’s build a project prioritization problem object that represents our goal.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># build problem</span>
-p &lt;-<span class="st"> </span><span class="kw">problem</span>(<span class="dt">projects =</span> sim_projects, <span class="dt">actions =</span> sim_actions,
+p &lt;-<span class="st"> </span><span class="kw"><a href="reference/problem.html">problem</a></span>(<span class="dt">projects =</span> sim_projects, <span class="dt">actions =</span> sim_actions,
              <span class="dt">features =</span>  sim_features, <span class="dt">project_name_column =</span> <span class="st">"name"</span>,
              <span class="dt">project_success_column =</span> <span class="st">"success"</span>, <span class="dt">action_name_column =</span> <span class="st">"name"</span>,
              <span class="dt">action_cost_column =</span> <span class="st">"cost"</span>, <span class="dt">feature_name_column =</span> <span class="st">"name"</span>) <span class="op">%&gt;%</span>
-<span class="st">     </span><span class="kw">add_max_richness_objective</span>(<span class="dt">budget =</span> <span class="dv">400</span>) <span class="op">%&gt;%</span>
-<span class="st">     </span><span class="kw">add_feature_weights</span>(<span class="dt">weight =</span> <span class="st">"weight"</span>) <span class="op">%&gt;%</span>
-<span class="st">     </span><span class="kw">add_binary_decisions</span>() <span class="op">%&gt;%</span>
-<span class="st">     </span><span class="kw">add_default_solver</span>(<span class="dt">verbose =</span> <span class="ot">FALSE</span>)
+<span class="st">     </span><span class="kw"><a href="reference/add_max_richness_objective.html">add_max_richness_objective</a></span>(<span class="dt">budget =</span> <span class="dv">400</span>) <span class="op">%&gt;%</span>
+<span class="st">     </span><span class="kw"><a href="reference/add_feature_weights.html">add_feature_weights</a></span>(<span class="dt">weight =</span> <span class="st">"weight"</span>) <span class="op">%&gt;%</span>
+<span class="st">     </span><span class="kw"><a href="reference/add_binary_decisions.html">add_binary_decisions</a></span>() <span class="op">%&gt;%</span>
+<span class="st">     </span><span class="kw"><a href="reference/add_default_solver.html">add_default_solver</a></span>(<span class="dt">verbose =</span> <span class="ot">FALSE</span>)
 
 <span class="co"># print problem</span>
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(p)</code></pre></div>
+<span class="kw"><a href="reference/print.html">print</a></span>(p)</code></pre></div>
 <pre><code>## Project Prioritization Problem
 ##   actions          F1_action, F2_action, F3_action, ... (6 actions)
 ##   projects         F1_project, F2_project, F3_project, ... (6 projects)
@@ -188,9 +188,9 @@ p &lt;-<span class="st"> </span><span class="kw">problem</span>(<span class="dt"
 ##   solver:          Gurobi [first_feasible (0), gap (0), number_solutions (1), presolve (2), solution_pool_method (2), threads (1), time_limit (2147483647), time_limit (2147483647), verbose (0)]</code></pre>
 <p>Next, we can solve this problem to obtain a solution. By default, we will obtain the optimal solution to our problem using an exact algorithm solver (e.g. using <a href="http://www.gurobi.com/">Gurobi</a> or <a href="https://cran.r-project.org/package=lpSolveAPI">lpSolveAPI</a>).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># solve problem</span>
-s &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/solve">solve</a></span>(p)</code></pre></div>
+s &lt;-<span class="st"> </span><span class="kw"><a href="reference/solve.html">solve</a></span>(p)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># print solution</span>
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(s, <span class="dt">width =</span> <span class="ot">Inf</span>)</code></pre></div>
+<span class="kw"><a href="reference/print.html">print</a></span>(s, <span class="dt">width =</span> <span class="ot">Inf</span>)</code></pre></div>
 <pre><code>## # A tibble: 1 x 21
 ##   solution status    obj  cost F1_action F2_action F3_action F4_action
 ##      &lt;int&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
@@ -201,7 +201,7 @@ s &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumenta
 ##   F5_project baseline_project    F1    F2     F3    F4    F5
 ##        &lt;dbl&gt;            &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 ## 1          1                1 0.808 0.865 0.0865 0.688 0.592</code></pre>
-<p>The <code>s</code> table contains the solution and also various statistics associated with the solution. Here, each row corresponds to a different solution. Specifically, the <code>"solution"</code> column contains an identifier for the solution (which may be useful for methods that output multiple solutions), the <code>"obj"</code> column contains the objective value (i.e. the expected feature richness for this problem), the <code>"cost"</code> column stores the cost of the solution, and the <code>"status"</code> column contains information from the solver about the solution. Additionally, it contains columns for each action (<code>"F1_action"</code>, <code>"F2_actions"</code>, <code>"F3_actions"</code>, …, <code>"baseline_action"</code>) which indicate if each action was prioritized for funding in the solution. Additionally, it contains columns for each project (<code>"F1_project"</code>, <code>"F2_project"</code>, <code>"F3_project"</code>, …, <code>"baseline_project"</code>) that indicate if the project was completely funded or not. Finally, it contains column for each feature (<code>"F1</code>, <code>"F2"</code>, <code>"F3</code>, …) which indicate the probability that each feature is expected to persist into the future under each solution (for information on how this is calculated see <code>?add_max_richness_objective</code>). Since tabular data can be difficult to understand, let’s visualize how well this solution would conserve the features. Note that features which benefit from fully funded projects, excepting the baseline project, are denoted with an asterisk.</p>
+<p>The <code>s</code> table contains the solution and also various statistics associated with the solution. Here, each row corresponds to a different solution. Specifically, the <code>"solution"</code> column contains an identifier for the solution (which may be useful for methods that output multiple solutions), the <code>"obj"</code> column contains the objective value (i.e. the expected feature richness for this problem), the <code>"cost"</code> column stores the cost of the solution, and the <code>"status"</code> column contains information from the solver about the solution. Additionally, it contains columns for each action (<code>"F1_action"</code>, <code>"F2_actions"</code>, <code>"F3_actions"</code>, …, <code>"baseline_action"</code>) which indicate if each action was prioritized for funding in the solution. Additionally, it contains columns for each project (<code>"F1_project"</code>, <code>"F2_project"</code>, <code>"F3_project"</code>, …, <code>"baseline_project"</code>) that indicate if the project was completely funded or not. Finally, it contains column for each feature (<code>"F1</code>, <code>"F2"</code>, <code>"F3</code>, …) which indicate the probability that each feature is expected to persist into the future under each solution (for information on how this is calculated see <code><a href="reference/add_max_richness_objective.html">?add_max_richness_objective</a></code>). Since tabular data can be difficult to understand, let’s visualize how well this solution would conserve the features. Note that features which benefit from fully funded projects, excepting the baseline project, are denoted with an asterisk.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># visualize solution</span>
 <span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(p, s)</code></pre></div>
 <p><img src="reference/figures/README-readme-plot-1.png" width="700" style="display: block; margin: auto;"></p>

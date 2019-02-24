@@ -134,9 +134,9 @@ Rcpp::LogicalMatrix rcpp_heuristic_solution(
   /// initialize budget met and find out if it is already met after
   /// deselecting actions
   int budget_met_iteration = -1;
-  if ((obj_name != "MinimumSetObjective") &
-      (budget_met_iteration < 0) &
-      (curr_cost <= budget))
+  if ((obj_name != "MinimumSetObjective") &&
+      (budget_met_iteration < 0) &&
+      ((curr_cost - budget) <= 1.0e-10))
       budget_met_iteration = curr_iteration;
 
   /// initialize solutions matrix with locked out solutions
@@ -154,6 +154,9 @@ Rcpp::LogicalMatrix rcpp_heuristic_solution(
 
   // Main processing
   while (curr_iteration < max_iterations) {
+
+    Rcout << "iteration = " << curr_iteration << std::endl;
+
     /// check for user interrupt
     if (curr_iteration % 100 == 0)
       if (Progress::check_abort())
@@ -175,8 +178,8 @@ Rcpp::LogicalMatrix rcpp_heuristic_solution(
 
     /// calculate the benefit when each action is removed
     for (std::size_t i = 0; i < n_actions; ++i) {
-      if ((remaining_actions[i] > 0.5) &
-          (costs[i] > 1e-16) &
+      if ((remaining_actions[i] > 0.5) &&
+          (costs[i] > 1.0e-10) &&
           !locked_in_vector[i]) {
 
         //// create new solution with i'th action removed
@@ -191,7 +194,7 @@ Rcpp::LogicalMatrix rcpp_heuristic_solution(
             pa_matrix, pf_matrix, targets, curr_sans_action);
           //// if any targets are now unmet, then assign -infinity so they
           //// don't get picked
-          if ((obj_name == "MinimumSetObjective") &
+          if ((obj_name == "MinimumSetObjective") &&
               (curr_feature_shortfalls.max() > 0.0)) {
             curr_objective_sans_action =
               -std::numeric_limits<double>::infinity();
@@ -211,8 +214,7 @@ Rcpp::LogicalMatrix rcpp_heuristic_solution(
         curr_action_benefit[i] = (curr_objective -
                                   curr_objective_sans_action) / costs[i];
 
-      } else if (!(costs[i] > 1e-16) &
-                 !locked_in_vector[i]) {
+      } else if (!(costs[i] > 1.0e-10) && !locked_in_vector[i]) {
         // manually assign large, but finite, benefit to actions with zero cost
         curr_action_benefit[i] = std::numeric_limits<double>::max();
       } else {
@@ -254,17 +256,22 @@ Rcpp::LogicalMatrix rcpp_heuristic_solution(
     // check if solving budget limited objective,
     // check if the budget is met and if the number of solutions found
     // is equal to the number of desired solutions then exit main loop
-    if ((obj_name != "MinimumSetObjective") &
-        (budget_met_iteration > 0) &
+    if ((obj_name != "MinimumSetObjective") &&
+        (budget_met_iteration > 0) &&
         ((static_cast<std::size_t>(curr_iteration) - budget_met_iteration) >=
          number_solutions))
       break;
 
+
+
    /// find out if the budget is met after deselecting action
-   if ((obj_name != "MinimumSetObjective") &
-       (budget_met_iteration < 0) &
-       (curr_cost <= budget))
+   if ((obj_name != "MinimumSetObjective") &&
+       (budget_met_iteration < 0) &&
+       ((curr_cost - budget) <= 1.0e-10))
        budget_met_iteration = curr_iteration;
+
+    Rcout << "curr_cost=" << curr_cost << std::endl;
+    Rcout << "budget_met_iteration=" << budget_met_iteration << std::endl;
 
     // increment progress bar
     pb.increment();
@@ -293,6 +300,9 @@ Rcpp::LogicalMatrix rcpp_heuristic_solution(
     out = sols(Rcpp::Range(budget_met_iteration - 1, curr_iteration - 1),
                Rcpp::_);
   }
+
+  Rcout << "out" << std::endl;
+  Rf_PrintValue(out);
 
   return out;
 }
