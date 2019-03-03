@@ -172,4 +172,4 @@ Please use the following citation to cite the *oppr R* package in publications:
 
 **This package is still under development and not ready for use. Please do not use this package yet.**
 
-Hanson JO, Schuster R, Strimas-Mackey M, Bennett J, (2019). oppr: Project Prioritization. R package version 0.0.0.13. Available at <https://github.com/prioritizr/oppr>.
+Hanson JO, Schuster R, Strimas-Mackey M, Bennett J, (2019). oppr: Project Prioritization. R package version 0.0.0.15. Available at <https://github.com/prioritizr/oppr>.

@@ -26,95 +26,104 @@ optimization problems?}
 \description{
 Specify that solutions should be generated using a backwards step-wise
 heuristic algorithm (inspired by Cabeza \emph{et al.} 2004,
-Korte & Vygen 2000). Ideally,
+Korte & Vygen 2000, Probert \emph{et al.} 2016). Ideally,
 solutions should be generated using exact algorithm solvers (e.g.
 \code{\link{add_rsymphony_solver}} or \code{\link{add_gurobi_solver}})
-because they can guaranteably identify optimal solutions (Rodrigues & Gaston
+because they are guaranteed to identify optimal solutions (Rodrigues & Gaston
 2002).
 }
 \details{
-The specific algorithm used to generate solutions depends on the
- the objective specified for the project prioritization
- \code{\link{problem}}.
-
- For objectives which maximize benefit subject to budgetary constraints
- (e.g. \code{\link{add_max_richness_objective}}):
+The heuristic algorithm used to generate solutions is described
+ below. It is heavily inspired by the cost-sharing backwards heuristic
+ algorithm conventionally used to guide the prioritization of species
+ recovery projects (Probert \emph{et al.} 2016).
 
  \enumerate{
 
- \item All actions are initially selected for funding (excepting actions
-   which are locked out).
+ \item All actions and projects are initially selected for funding.
 
- \item Actions which exceed the budget are then deselected. Actions which
-   are exclusively associated with projects that exceed the budget
-   are also deselected.
+ \item A set of rules are then used to deselect actions and projects
+   based on locked constraints (if any). Specifically, (i) actions which are
+   which are locked out are deselected, and (ii) projects which are
+   associated with actions that are locked out are also deselected.
+
+ \item A set of rules are then used to deselect actions and projects
+   based on budgetary constraints (if present). Specifically, (i) actions
+   which exceed the budget are deselected, (ii) projects which are
+   associated with a set of actions that exceed the budget are deselected,
+   and (iii) actions which are not associated with any project (excepting
+   locked in actions) are also deselected.
+
+ \item If the objective function is to maximize biodiversity subject
+   to budgetary constraints (e.g. \code{\link{add_max_richness_objective}})
+   then go to step 5. Otherwise, if the objective is to minimize cost
+   subject to biodiversity constraints (i.e.
+   \code{\link{add_min_set_objective}}) then go to step 7.
 
  \item The next step is repeated until (i) the number of desired
-   solutions is obtained and (ii) the total cost of the remaining
-   actions that are selected for funding is within the budget.
+   solutions is obtained, and (ii) the total cost of the remaining
+   actions that are selected for funding is within the budget. After both of
+   these conditions are met, the algorithm is terminated.
 
- \item Each of the remaining actions that are currently selected for
-   funding (excepting actions which are locked in or actions which have zero
-   cost) are evaluated according to how much the performance of the
-   solution decreases when the action is deselected for funding, relative to
-   the cost of the action. This can be expressed mathematically as:
+ \item Each of the remaining projects that are currently selected for
+   funding are evaluated according to how much the performance of the
+   solution decreases when the project is deselected for funding, relative to
+   the cost of the project not shared by other remaining projects. This can
+   be expressed mathematically as:
 
-   \deqn{B_l = \frac{V(L) - V(L - l)}{C_l}}{B_l = (V(L) - V(L - l)) / C_l}
+   \deqn{B_j = \frac{V(J) - V(J - j)}{C_j}}{B_j = (V(J) - V(J - j)) / C_j}
 
-   Where \eqn{L} is the set of remaining actions currently
-   selected for funding (indexed by \eqn{l}), \eqn{B_l} is the benefit
-   associated with funding action \eqn{l}, \eqn{V(L)} is the objective
-   value associated with the solution where all remaining actions are
-   funded, \eqn{V(L - l)} is the objective value associated with the
-   solution where all remaining actions except for the action \eqn{l} are
-   funded, and \eqn{C_l} is the cost of action \eqn{l}.
+   Where \eqn{J} is the set of remaining projects currently
+   selected for funding (indexed by \eqn{j}), \eqn{B_j} is the benefit
+   associated with funding project \eqn{j}, \eqn{V(J)} is the objective
+   value associated with the solution where all remaining projects are
+   funded, \eqn{V(J - j)} is the objective value associated with the
+   solution where all remaining projects except for project \eqn{j} are
+   funded, and \eqn{C_j} is the sum cost of all of the actions
+   associated with project \eqn{j} that are not associated with any other
+   remaining projects.
 
-   The action with the smallest benefit (i.e. \eqn{B_l} value) is then
-   deselected for funding.
-
- }
-
-For objectives which minimize cost subject to biodiversity constraints
-(i.e. \code{\link{add_min_set_objective}}):
-
- \enumerate{
-
- \item All actions are initially selected for funding (excepting actions
-   which are locked out).
-
- \item Actions which exceed the budget are then deselected. Actions which
-   are exclusively associated with projects that exceed the budget
-   are also deselected.
+   The project with the smallest benefit (i.e. \eqn{B_j} value) is then
+   deselected for funding. In cases where multiple projects have
+   the same benefit (\eqn{B_j}) value, the project with the greatest overall
+   cost (including actions which are shared among multiple remaining
+   projects) is deselected.
 
  \item The next step is repeated until (i) the number of desired
    solutions is obtained or (ii) no action can be deselected for funding
    without the probability of any feature expecting to persist falling below
-   its target probability of persistence.
+   its target probability of persistence. After one or both of
+   these conditions are met, the algorithm is terminated.
 
- \item Each of the remaining actions that are currently selected for
-   funding (excepting actions which are locked in or actions which have zero
-   cost) are evaluated according to how much the performance of the
-   solution decreases when the action is deselected for funding, relative to
-   the cost of the action. This can be expressed mathematically as:
+ \item Each of the remaining projects that are currently selected for
+   funding are evaluated according to how much the performance of the
+   solution decreases when the project is deselected for funding, relative to
+   the cost of the project not shared by other remaining projects. This can
+   be expressed mathematically as:
 
-   \deqn{B_l = \frac{\big(\sum_{f}^{F} P_f(L) - T_f \big) -
-   \big( \sum_{f}^{F} P_f(L - l) - T_f \big)}{C_l}}{
-   B_l = ((sum_f^F P_f(L) - T_f) - (sum_f^F P_f(L - 1) - T_f)) / C_l}
+   \deqn{B_j = \frac{\big(\sum_{f}^{F} P_f(J) - T_f \big) -
+   \big( \sum_{f}^{F} P_f(J - j) - T_f \big)}{C_j}}{
+   B_j = ((sum_f^F P_f(J) - T_f) - (sum_f^F P_f(J - j) - T_f)) / C_j}
 
    Where \eqn{F} is the set of features (indexed by \eqn{f}),
-   \eqn{T_f} is the target for feature \eqn{f}, \eqn{L} is the set of
-   selected for funding (indexed by \eqn{l}), \eqn{C_l} is the cost of
-    action \eqn{l}, \eqn{B_l} is the benefit
-   associated with funding action \eqn{l}, \eqn{P(L)} is probability
-   that each feature is expected to persist when the remaining actions
-   (\eqn{L}) are funded, and \eqn{P(L - l)} is the probability that
-   each feature is expected to persist when all the remaining actions except
-   for action \eqn{l} are funded.
+   \eqn{T_f} is the target for feature \eqn{f}, \eqn{P} is the set of
+   remaining projects that are selected for funding (indexed by \eqn{j}),
+   \eqn{C_j} is the sum cost of all of the actions
+   associated with project \eqn{j} that are not associated with any other
+   remaining projects, \eqn{B_p} is the benefit
+   associated with funding project \eqn{p}, \eqn{P(J)} is probability
+   that each feature is expected to persist when the remaining projects
+   (\eqn{J}) are funded, and \eqn{P(J - j)} is the probability that
+   each feature is expected to persist when all the remaining projects except
+   for action \eqn{j} are funded.
 
-   The action with the smallest benefit (i.e. \eqn{B_l} value) is then
-   deselected for funding.
+   The project with the smallest benefit (i.e. \eqn{B_j} value) is then
+   deselected for funding. In cases where multiple projects have
+   the same \eqn{B_j} value, the project with the greatest overall cost
+   (including actions which are shared among multiple remaining projects)
+   is deselected.
 
- }
+}
 }
 \examples{
 # load ggplot2 package for making plots
@@ -154,6 +163,10 @@ Combining probabilities of occurrence with spatial reserve design.
 Korte B & Vygen J (2000)
 \emph{Combinatorial Optimization. Theory and Algorithms}. Springer-Verlag,
 Berlin, Germany.
+
+Probert W, Maloney RF, Belinda Mellish and Liana Joseph (2016)
+Project Prioritisation Protocol (PPP). Available at
+\url{https://github.com/p-robot/ppp}.
 }
 \seealso{
 \code{\link{solvers}}.
