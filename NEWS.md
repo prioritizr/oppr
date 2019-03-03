@@ -1,3 +1,11 @@
+# oppr 0.0.0.15
+
+- Update `add_heuristic_solver` algorithm so that it removes projects, and
+  not actions, in an iterative fashion. This update (i) makes the algorithm
+  comparable to the backwards heuristics conventionally used in prioritizing
+  species recovery projects (i.e. https://github.com/p-robot/ppp) and (ii)
+  substantially reduces run time (#14).
+
 # oppr 0.0.0.14
 
 - Fix bugs in `add_heuristic_solver` and `add_random_solver` arising from

@@ -506,25 +506,18 @@ Conventionally, heuristic algorithms have been used to develop project prioritiz
 # set budgets for which to create multiple solutions
 budgets <- seq(0, sum(actions$cost), length.out = 100)
 
-# rank projects using the backwards heuristic algorithm
-s7_ranks <-
+# generate solutions using heuristic algorithms
+s7 <- lapply(budgets, function(b) {
   problem(projects = projects, actions = actions, features = features,
-              "name", "success", "name", "cost", "name") %>%
-  add_max_richness_objective(budget = max(budgets)) %>%
+          "name", "success", "name", "cost", "name") %>%
+  add_max_richness_objective(budget = b) %>%
   add_feature_weights("weight") %>%
   add_binary_decisions() %>%
-  add_heuristic_solver(verbose = FALSE,
-                       number_solutions = nrow(projects) + 1) %>%
+  add_heuristic_solver(verbose = FALSE) %>%
   solve()
-
-# find best solution for each budget increment
-s7 <- lapply(budgets, function(x) {
-  s <- s7_ranks[s7_ranks$cost <= x, , drop = FALSE]
-  s <- s[which.max(s$obj), , drop = FALSE]
-  s$budget <- x
-  s
 })
 s7 <- as_tibble(do.call(rbind, s7))
+s7$budget <- budgets
 
 # print solutions
 print(s7)
@@ -566,7 +559,7 @@ ylab("Expected richness (objective function)") +
 theme(axis.text.y = element_text(angle = 90, vjust = 1))
 ```
 
-Here, we can see the that heuristic algorithm generally performs better than funding conservation projects using random processes, so you might think that this means that heuristic algorithms can perform pretty well on balance. But we can do better. Let's generate a series of solutions using exact algorithms with various budgets.
+Here, we can see the that heuristic algorithm generally performs better than funding conservation projects using random processes. We can also see that for some budgets, the heuristic algorithm returns a worse solution (i.e. has a lower objective value) then solutions it found for lower budgets (i.e. where there is a step down in the orange line). Unfortunately, this behavior is normal because heuristic algorithms often deliver suboptimal solutions and the degree of suboptimality often varies depending on the budget. Despite these occasional drops in solution quality, you might be tempted to think that these results show that heuristic algorithms can perform pretty well on balance. But we can do better. Let's generate a series of solutions using exact algorithms.
 
 ```{r}
 # generate solutions

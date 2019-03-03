@@ -34,10 +34,10 @@
 
 <meta property="og:description" content="Specify that solutions should be generated using a backwards step-wise
 heuristic algorithm (inspired by Cabeza et al. 2004,
-Korte &amp;amp; Vygen 2000). Ideally,
+Korte &amp;amp; Vygen 2000, Probert et al. 2016). Ideally,
 solutions should be generated using exact algorithm solvers (e.g.
 add_rsymphony_solver or add_gurobi_solver)
-because they can guaranteably identify optimal solutions (Rodrigues &amp;amp; Gaston
+because they are guaranteed to identify optimal solutions (Rodrigues &amp;amp; Gaston
 2002)." />
 <meta name="twitter:card" content="summary" />
 
@@ -69,7 +69,7 @@ because they can guaranteably identify optimal solutions (Rodrigues &amp;amp; Ga
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.13</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.15</span>
       </span>
     </div>
 
@@ -120,10 +120,10 @@ because they can guaranteably identify optimal solutions (Rodrigues &amp;amp; Ga
     
     <p>Specify that solutions should be generated using a backwards step-wise
 heuristic algorithm (inspired by Cabeza <em>et al.</em> 2004,
-Korte &amp; Vygen 2000). Ideally,
+Korte &amp; Vygen 2000, Probert <em>et al.</em> 2016). Ideally,
 solutions should be generated using exact algorithm solvers (e.g.
 <code><a href='add_rsymphony_solver.html'>add_rsymphony_solver</a></code> or <code><a href='add_gurobi_solver.html'>add_gurobi_solver</a></code>)
-because they can guaranteably identify optimal solutions (Rodrigues &amp; Gaston
+because they are guaranteed to identify optimal solutions (Rodrigues &amp; Gaston
 2002).</p>
     
     </div>
@@ -160,66 +160,79 @@ optimization problems?</p></td>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The specific algorithm used to generate solutions depends on the
- the objective specified for the project prioritization
- <code><a href='problem.html'>problem</a></code>.</p>
-<p>For objectives which maximize benefit subject to budgetary constraints
- (e.g. <code><a href='add_max_richness_objective.html'>add_max_richness_objective</a></code>):</p>
+    <p>The heuristic algorithm used to generate solutions is described
+ below. It is heavily inspired by the cost-sharing backwards heuristic
+ algorithm conventionally used to guide the prioritization of species
+ recovery projects (Probert <em>et al.</em> 2016).</p>
 <p></p><ol>
-<li><p>All actions are initially selected for funding (excepting actions
-   which are locked out).</p></li>
-<li><p>Actions which exceed the budget are then deselected. Actions which
-   are exclusively associated with projects that exceed the budget
-   are also deselected.</p></li>
+<li><p>All actions and projects are initially selected for funding.</p></li>
+<li><p>A set of rules are then used to deselect actions and projects
+   based on locked constraints (if any). Specifically, (i) actions which are
+   which are locked out are deselected, and (ii) projects which are
+   associated with actions that are locked out are also deselected.</p></li>
+<li><p>A set of rules are then used to deselect actions and projects
+   based on budgetary constraints (if present). Specifically, (i) actions
+   which exceed the budget are deselected, (ii) projects which are
+   associated with a set of actions that exceed the budget are deselected,
+   and (iii) actions which are not associated with any project (excepting
+   locked in actions) are also deselected.</p></li>
+<li><p>If the objective function is to maximize biodiversity subject
+   to budgetary constraints (e.g. <code><a href='add_max_richness_objective.html'>add_max_richness_objective</a></code>)
+   then go to step 5. Otherwise, if the objective is to minimize cost
+   subject to biodiversity constraints (i.e.
+   <code><a href='add_min_set_objective.html'>add_min_set_objective</a></code>) then go to step 7.</p></li>
 <li><p>The next step is repeated until (i) the number of desired
-   solutions is obtained and (ii) the total cost of the remaining
-   actions that are selected for funding is within the budget.</p></li>
-<li><p>Each of the remaining actions that are currently selected for
-   funding (excepting actions which are locked in or actions which have zero
-   cost) are evaluated according to how much the performance of the
-   solution decreases when the action is deselected for funding, relative to
-   the cost of the action. This can be expressed mathematically as:</p>
-<p>$$B_l = \frac{V(L) - V(L - l)}{C_l}$$</p>
-<p>Where \(L\) is the set of remaining actions currently
-   selected for funding (indexed by \(l\)), \(B_l\) is the benefit
-   associated with funding action \(l\), \(V(L)\) is the objective
-   value associated with the solution where all remaining actions are
-   funded, \(V(L - l)\) is the objective value associated with the
-   solution where all remaining actions except for the action \(l\) are
-   funded, and \(C_l\) is the cost of action \(l\).</p>
-<p>The action with the smallest benefit (i.e. \(B_l\) value) is then
-   deselected for funding.</p></li>
-</ol>
-    <p>For objectives which minimize cost subject to biodiversity constraints
-(i.e. <code><a href='add_min_set_objective.html'>add_min_set_objective</a></code>):</p>
-<p></p><ol>
-<li><p>All actions are initially selected for funding (excepting actions
-   which are locked out).</p></li>
-<li><p>Actions which exceed the budget are then deselected. Actions which
-   are exclusively associated with projects that exceed the budget
-   are also deselected.</p></li>
+   solutions is obtained, and (ii) the total cost of the remaining
+   actions that are selected for funding is within the budget. After both of
+   these conditions are met, the algorithm is terminated.</p></li>
+<li><p>Each of the remaining projects that are currently selected for
+   funding are evaluated according to how much the performance of the
+   solution decreases when the project is deselected for funding, relative to
+   the cost of the project not shared by other remaining projects. This can
+   be expressed mathematically as:</p>
+<p>$$B_j = \frac{V(J) - V(J - j)}{C_j}$$</p>
+<p>Where \(J\) is the set of remaining projects currently
+   selected for funding (indexed by \(j\)), \(B_j\) is the benefit
+   associated with funding project \(j\), \(V(J)\) is the objective
+   value associated with the solution where all remaining projects are
+   funded, \(V(J - j)\) is the objective value associated with the
+   solution where all remaining projects except for project \(j\) are
+   funded, and \(C_j\) is the sum cost of all of the actions
+   associated with project \(j\) that are not associated with any other
+   remaining projects.</p>
+<p>The project with the smallest benefit (i.e. \(B_j\) value) is then
+   deselected for funding. In cases where multiple projects have
+   the same benefit (\(B_j\)) value, the project with the greatest overall
+   cost (including actions which are shared among multiple remaining
+   projects) is deselected.</p></li>
 <li><p>The next step is repeated until (i) the number of desired
    solutions is obtained or (ii) no action can be deselected for funding
    without the probability of any feature expecting to persist falling below
-   its target probability of persistence.</p></li>
-<li><p>Each of the remaining actions that are currently selected for
-   funding (excepting actions which are locked in or actions which have zero
-   cost) are evaluated according to how much the performance of the
-   solution decreases when the action is deselected for funding, relative to
-   the cost of the action. This can be expressed mathematically as:</p>
-<p>$$B_l = \frac{\big(\sum_{f}^{F} P_f(L) - T_f \big) -
-   \big( \sum_{f}^{F} P_f(L - l) - T_f \big)}{C_l}$$</p>
+   its target probability of persistence. After one or both of
+   these conditions are met, the algorithm is terminated.</p></li>
+<li><p>Each of the remaining projects that are currently selected for
+   funding are evaluated according to how much the performance of the
+   solution decreases when the project is deselected for funding, relative to
+   the cost of the project not shared by other remaining projects. This can
+   be expressed mathematically as:</p>
+<p>$$B_j = \frac{\big(\sum_{f}^{F} P_f(J) - T_f \big) -
+   \big( \sum_{f}^{F} P_f(J - j) - T_f \big)}{C_j}$$</p>
 <p>Where \(F\) is the set of features (indexed by \(f\)),
-   \(T_f\) is the target for feature \(f\), \(L\) is the set of
-   selected for funding (indexed by \(l\)), \(C_l\) is the cost of
-    action \(l\), \(B_l\) is the benefit
-   associated with funding action \(l\), \(P(L)\) is probability
-   that each feature is expected to persist when the remaining actions
-   (\(L\)) are funded, and \(P(L - l)\) is the probability that
-   each feature is expected to persist when all the remaining actions except
-   for action \(l\) are funded.</p>
-<p>The action with the smallest benefit (i.e. \(B_l\) value) is then
-   deselected for funding.</p></li>
+   \(T_f\) is the target for feature \(f\), \(P\) is the set of
+   remaining projects that are selected for funding (indexed by \(j\)),
+   \(C_j\) is the sum cost of all of the actions
+   associated with project \(j\) that are not associated with any other
+   remaining projects, \(B_p\) is the benefit
+   associated with funding project \(p\), \(P(J)\) is probability
+   that each feature is expected to persist when the remaining projects
+   (\(J\)) are funded, and \(P(J - j)\) is the probability that
+   each feature is expected to persist when all the remaining projects except
+   for action \(j\) are funded.</p>
+<p>The project with the smallest benefit (i.e. \(B_j\) value) is then
+   deselected for funding. In cases where multiple projects have
+   the same \(B_j\) value, the project with the greatest overall cost
+   (including actions which are shared among multiple remaining projects)
+   is deselected.</p></li>
 </ol>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
@@ -233,6 +246,9 @@ Combining probabilities of occurrence with spatial reserve design.
 <p>Korte B &amp; Vygen J (2000)
 <em>Combinatorial Optimization. Theory and Algorithms</em>. Springer-Verlag,
 Berlin, Germany.</p>
+<p>Probert W, Maloney RF, Belinda Mellish and Liana Joseph (2016)
+Project Prioritisation Protocol (PPP). Available at
+<a href='https://github.com/p-robot/ppp'>https://github.com/p-robot/ppp</a>.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
