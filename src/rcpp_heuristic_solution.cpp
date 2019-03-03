@@ -29,7 +29,7 @@ Rcpp::LogicalMatrix rcpp_heuristic_solution(
   arma::sp_mat curr_pf_sans_project;
   arma::sp_mat curr_pa_matrix = pa_matrix;
   arma::sp_mat curr_pf_matrix = pf_matrix;
-  std::vector<bool> curr_shared_actions(n_actions);
+  std::vector<double> curr_shared_actions(n_actions);
   std::vector<double> curr_project_costs(n_projects);
   std::size_t curr_iteration = 1;
   std::size_t curr_project;
@@ -234,10 +234,9 @@ Rcpp::LogicalMatrix rcpp_heuristic_solution(
       if (Progress::check_abort())
         Rcpp::stop("user interupt");
 
-    /// find out which actions are shared between multiple remaining projects
+    /// calculate number of remaining projects which share each action
     for (std::size_t i = 0; i < n_actions; ++i)
-      curr_shared_actions[i] =
-        static_cast<bool>(arma::accu(curr_pa_matrix.col(i)) > 1.5);
+      curr_shared_actions[i] = arma::accu(curr_pa_matrix.col(i));
 
     /// calculate objective with all the remaining actions
     if ((obj_name == "MaximumTargetsMetObjective") ||
@@ -258,16 +257,17 @@ Rcpp::LogicalMatrix rcpp_heuristic_solution(
       if ((remaining_projects[j] > 0.5) &&
           (project_costs[j] > 1.0e-10)) {
 
-        //// calculate cost of project, using only actions that are not
-        ///  shared with any other project and actions that are not locked in
+        //// calculate cost of project using shared action costs
+        //// e.g. if two projects share a $100 action, then each project
+        //// incurs a $50 cost for the action
         curr_project_costs[j] = 1.0e-5; // note we add a small value to avoid
                                         // divide by zero issues
         for (auto aitr = curr_pa_matrix.begin_row(j);
              aitr != curr_pa_matrix.end_row(j);
              ++aitr)
-          if (!curr_shared_actions[aitr.col()] &&
-              !locked_in_actions[aitr.col()])
-            curr_project_costs[j] += costs[aitr.col()];
+          if (!locked_in_actions[aitr.col()])
+            curr_project_costs[j] += (costs[aitr.col()] /
+                                      curr_shared_actions[aitr.col()]);
 
         //// create input data with the j'th project removed
         curr_pa_sans_project = curr_pa_matrix;
@@ -333,16 +333,15 @@ Rcpp::LogicalMatrix rcpp_heuristic_solution(
       }
     }
 
-    // update the cost of the project to remove
-    curr_cost -= curr_project_costs[curr_project];
-
     // remove the actions that are unique to the project from the remaining
     // actions, unless they are locked in
+    // also update the costs
     for (auto aitr = curr_pa_matrix.begin_row(curr_project);
          aitr != curr_pa_matrix.end_row(curr_project); ++aitr) {
-      if (!curr_shared_actions[aitr.col()] &&
+      if ((curr_shared_actions[aitr.col()] < 1.5) &&
           !locked_in_actions[aitr.col()]) {
         remaining_actions.col(aitr.col()).zeros();
+        curr_cost -= costs[aitr.col()];
         --n_remaining_actions;
       }
     }
@@ -366,8 +365,8 @@ Rcpp::LogicalMatrix rcpp_heuristic_solution(
     // update solution
     for (auto aitr = pa_matrix.begin_row(curr_project);
          aitr != pa_matrix.end_row(curr_project); ++aitr)
-      if ((!curr_shared_actions[aitr.col()]) &&
-          (!locked_in_actions[aitr.col()]))
+      if ((curr_shared_actions[aitr.col()] < 1.5) &&
+          !locked_in_actions[aitr.col()])
         for (std::size_t k = curr_iteration; k < max_iterations; ++k)
           sols(k, aitr.col()) = FALSE;
 

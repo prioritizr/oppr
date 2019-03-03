@@ -69,7 +69,7 @@ because they are guaranteed to identify optimal solutions (Rodrigues &amp;amp; G
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.16</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.17</span>
       </span>
     </div>
 
@@ -198,8 +198,11 @@ optimization problems?</p></td>
    funded, \(V(J - j)\) is the objective value associated with the
    solution where all remaining projects except for project \(j\) are
    funded, and \(C_j\) is the sum cost of all of the actions
-   associated with project \(j\) that are not associated with any other
-   remaining projects.</p>
+   associated with project \(j\)---excluding locked in actions---with the
+   cost of each action divided by the total number of remaining
+   projects that share the action (e.g. if two projects both share a $100
+   action, then this action contributes $50 to the overall cost of each
+   project).</p>
 <p>The project with the smallest benefit (i.e. \(B_j\) value) is then
    deselected for funding. In cases where multiple projects have
    the same benefit (\(B_j\)) value, the project with the greatest overall
@@ -220,9 +223,11 @@ optimization problems?</p></td>
 <p>Where \(F\) is the set of features (indexed by \(f\)),
    \(T_f\) is the target for feature \(f\), \(P\) is the set of
    remaining projects that are selected for funding (indexed by \(j\)),
-   \(C_j\) is the sum cost of all of the actions
-   associated with project \(j\) that are not associated with any other
-   remaining projects, \(B_p\) is the benefit
+   \(C_j\) is the cost of all of the actions
+   associated with project \(j\)---excluding locked in actions---and
+   accounting for shared costs among remaining projects (e.g. if two
+   projects both share a $100 action, then this action contributes $50 to
+   the overall cost of each project), \(B_p\) is the benefit
    associated with funding project \(p\), \(P(J)\) is probability
    that each feature is expected to persist when the remaining projects
    (\(J\)) are funded, and \(P(J - j)\) is the probability that

@@ -1,6 +1,15 @@
+# oppr 0.0.0.17
+
+- Update `add_heuristic_solver` algorithm so that cost-effectiveness values
+  are calculated with projects sharing costs (e.g. if two projects share an
+  action that costs $100, then this action contributes $50 to the cost of each
+  project). This update makes the algorithm similar to backwards heuristics
+  conventionally used in prioritizing species recovery projects (i.e.
+  https://github.com/p-robot/ppp; #14).
+
 # oppr 0.0.0.16
 
-- Fix bug in `add_heuristic_solver` introduced in version 0.0.0.15.
+- Fix bug in `add_heuristic_solver` function introduced in version 0.0.0.15.
 
 # oppr 0.0.0.15
 

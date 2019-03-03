@@ -80,8 +80,11 @@ The heuristic algorithm used to generate solutions is described
    funded, \eqn{V(J - j)} is the objective value associated with the
    solution where all remaining projects except for project \eqn{j} are
    funded, and \eqn{C_j} is the sum cost of all of the actions
-   associated with project \eqn{j} that are not associated with any other
-   remaining projects.
+   associated with project \eqn{j}---excluding locked in actions---with the
+   cost of each action divided by the total number of remaining
+   projects that share the action (e.g. if two projects both share a $100
+   action, then this action contributes $50 to the overall cost of each
+   project).
 
    The project with the smallest benefit (i.e. \eqn{B_j} value) is then
    deselected for funding. In cases where multiple projects have
@@ -108,9 +111,11 @@ The heuristic algorithm used to generate solutions is described
    Where \eqn{F} is the set of features (indexed by \eqn{f}),
    \eqn{T_f} is the target for feature \eqn{f}, \eqn{P} is the set of
    remaining projects that are selected for funding (indexed by \eqn{j}),
-   \eqn{C_j} is the sum cost of all of the actions
-   associated with project \eqn{j} that are not associated with any other
-   remaining projects, \eqn{B_p} is the benefit
+   \eqn{C_j} is the cost of all of the actions
+   associated with project \eqn{j}---excluding locked in actions---and
+   accounting for shared costs among remaining projects (e.g. if two
+   projects both share a $100 action, then this action contributes $50 to
+   the overall cost of each project), \eqn{B_p} is the benefit
    associated with funding project \eqn{p}, \eqn{P(J)} is probability
    that each feature is expected to persist when the remaining projects
    (\eqn{J}) are funded, and \eqn{P(J - j)} is the probability that
