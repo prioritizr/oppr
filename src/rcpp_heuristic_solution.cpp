@@ -172,7 +172,7 @@ Rcpp::LogicalMatrix rcpp_heuristic_solution(
           ///// remove cost
           curr_cost -= costs[aitr.col()];
           //// remove action
-          remaining_actions.col(aitr.col());
+          remaining_actions.col(aitr.col()).zeros();
           //// lock out action
           locked_out_actions[aitr.col()] = true;
         }
@@ -180,6 +180,19 @@ Rcpp::LogicalMatrix rcpp_heuristic_solution(
       //// remove project from remaining projects
       remaining_projects.col(j).zeros();
       pa_matrix.row(j).zeros();
+    }
+  }
+
+  /// remove actions which are not associated with any remaining projects
+  for (std::size_t i = 0; i < n_actions; ++i) {
+    if ((arma::accu(pa_matrix.col(i)) < 0.5) &&
+        (remaining_actions(0, i) > 0.5) &&
+        (!locked_in_actions[i])) {
+      pa_matrix.col(i).zeros();
+      curr_pa_matrix.col(i).zeros();
+      remaining_actions.col(i).zeros();
+      locked_out_actions[i] = true;
+      curr_cost -= costs[i];
     }
   }
 

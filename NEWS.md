@@ -1,3 +1,7 @@
+# oppr 0.0.0.16
+
+- Fix bug in `add_heuristic_solver` introduced in version 0.0.0.15.
+
 # oppr 0.0.0.15
 
 - Update `add_heuristic_solver` algorithm so that it removes projects, and
