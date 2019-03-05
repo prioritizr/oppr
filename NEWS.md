@@ -1,3 +1,13 @@
+# oppr 0.0.0.18
+
+- Reduce precision of extinction probability calculations when formulating
+  a problem with a maximum expected phylogenetic diversity objective (i.e.
+  `add_max_phylo_div_objective`). Specifically, 1'000 points instead of 10'000
+  points are now used for piece-wise linear components. It appears that
+  reducing the precision in this manner does not affect the correctness of
+  results, but substantially reduces the time needed to solve problems to
+  optimality in certain situations.
+
 # oppr 0.0.0.17
 
 - Update `add_heuristic_solver` algorithm so that cost-effectiveness values

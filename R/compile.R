@@ -91,7 +91,7 @@ compile.ProjectProblem <- function(x, ...) {
   rcpp_add_raw_data(op$ptr, x$pa_matrix(),
                     x$epf_matrix()[, fp$tip.label, drop = FALSE],
                     bm[, bo, drop = FALSE],
-                    fp$edge.length[bo], 10000)
+                    fp$edge.length[bo], 1000)
   # add decision types to optimization problem
   x$decisions$calculate(x)
   x$decisions$apply(op)

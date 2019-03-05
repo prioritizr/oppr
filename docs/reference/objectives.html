@@ -74,7 +74,7 @@ a specified objective will throw an error." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.17</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.18</span>
       </span>
     </div>
 
@@ -253,90 +253,33 @@ resources among threatened species: A project prioritization protocol.
 #&gt;   Objective range  [2e-01, 2e+00]
 #&gt;   Bounds range     [1e+00, 1e+00]
 #&gt;   RHS range        [1e+00, 2e+02]
-#&gt; Found heuristic solution: objective 1.7230503
+#&gt; Found heuristic solution: objective 1.7230501
 #&gt; Presolve removed 16 rows and 12 columns
-#&gt; Presolve time: 0.01s
-#&gt; Presolved: 37 rows, 24965 columns, 25007 nonzeros
-#&gt; Variable types: 24930 continuous, 35 integer (35 binary)
+#&gt; Presolve time: 0.00s
+#&gt; Presolved: 37 rows, 2530 columns, 2572 nonzeros
+#&gt; Variable types: 2495 continuous, 35 integer (35 binary)
 #&gt; Presolve removed 3 rows and 3 columns
-#&gt; Presolved: 34 rows, 24962 columns, 25001 nonzeros
+#&gt; Presolved: 34 rows, 2527 columns, 2566 nonzeros
 #&gt; 
 #&gt; 
-#&gt; Starting sifting (using dual simplex for sub-problems)...
-#&gt; 
-#&gt;     Iter     Pivots    Primal Obj      Dual Obj        Time
-#&gt;        0          0     infinity     -3.1864560e+00      0s
-#&gt;        1         15   4.2074226e+06  -3.0333511e+00      0s
-#&gt;        2         22  -2.1724149e+00  -2.9476886e+00      0s
-#&gt;        3         28  -2.1724149e+00  -2.8643624e+00      0s
-#&gt;        4         37  -2.1752014e+00  -2.8641198e+00      0s
-#&gt;        5         47  -2.1816963e+00  -2.8636375e+00      0s
-#&gt;        6         57  -2.1749294e+00  -2.8625701e+00      0s
-#&gt;        7         68  -2.1749498e+00  -2.8616911e+00      0s
-#&gt;        8         78  -2.1761371e+00  -2.8609122e+00      0s
-#&gt;        9         88  -2.1762853e+00  -2.8604065e+00      0s
-#&gt;       10         98  -2.1763814e+00  -2.8597729e+00      0s
-#&gt;       11        108  -2.1781200e+00  -2.8596084e+00      0s
-#&gt;       12        118  -2.1788095e+00  -2.8593412e+00      0s
-#&gt;       13        129  -2.1801206e+00  -2.8591970e+00      0s
-#&gt;       14        139  -2.1846826e+00  -2.8589099e+00      0s
-#&gt;       15        150  -2.1847848e+00  -2.8584635e+00      0s
-#&gt;       16        159  -2.1897480e+00  -2.8581436e+00      0s
-#&gt;       17        170  -2.1897761e+00  -2.8576657e+00      0s
-#&gt;       18        179  -2.1965364e+00  -2.8573415e+00      0s
-#&gt;       19        190  -2.1965877e+00  -2.8567818e+00      0s
-#&gt;       20        199  -2.2046430e+00  -2.8564244e+00      0s
-#&gt;       21        208  -2.2047156e+00  -2.8557366e+00      0s
-#&gt;       22        217  -2.2128670e+00  -2.8553579e+00      0s
-#&gt;       23        227  -2.2129936e+00  -2.8545746e+00      0s
-#&gt;       24        236  -2.2223980e+00  -2.8541682e+00      0s
-#&gt;       25        246  -2.2224113e+00  -2.8533979e+00      0s
-#&gt;       26        255  -2.2302413e+00  -2.8529556e+00      0s
-#&gt;       27        265  -2.2303250e+00  -2.8525310e+00      0s
-#&gt;       28        275  -2.2303268e+00  -2.8517868e+00      0s
-#&gt;       29        283  -2.2350740e+00  -2.8515682e+00      0s
-#&gt;       30        294  -2.2351018e+00  -2.8511127e+00      0s
-#&gt;       31        303  -2.2386316e+00  -2.8508901e+00      0s
-#&gt;       32        314  -2.2387199e+00  -2.8504542e+00      0s
-#&gt;       33        323  -2.2427120e+00  -2.8502190e+00      0s
-#&gt;       34        334  -2.2428271e+00  -2.8498511e+00      0s
-#&gt;       35        343  -2.2474453e+00  -2.8496141e+00      0s
-#&gt;       36        354  -2.2475861e+00  -2.8492155e+00      0s
-#&gt;       37        364  -2.2520417e+00  -2.8489695e+00      0s
-#&gt;       38        375  -2.2521757e+00  -2.8484953e+00      0s
-#&gt;       39        385  -2.2557146e+00  -2.8482400e+00      0s
-#&gt;       40        396  -2.2557776e+00  -2.8478454e+00      0s
-#&gt;       41        405  -2.2604305e+00  -2.8475780e+00      0s
-#&gt;       42        416  -2.2605192e+00  -2.8471700e+00      0s
-#&gt;       43        425  -2.2655335e+00  -2.8468951e+00      0s
-#&gt;       44        436  -2.2655821e+00  -2.8464472e+00      0s
-#&gt;       45        445  -2.2714132e+00  -2.8461726e+00      0s
-#&gt;       46        456  -2.2714531e+00  -2.8456283e+00      0s
-#&gt;       47        465  -2.2768923e+00  -2.8453435e+00      0s
-#&gt;       48        476  -2.2769891e+00  -2.8447221e+00      0s
-#&gt;       49        485  -2.2834038e+00  -2.8444111e+00      0s
-#&gt; 
-#&gt; Sifting complete
-#&gt; 
-#&gt; 
-#&gt; Root relaxation: objective 2.638346e+00, 510 iterations, 0.18 seconds
+#&gt; Root relaxation: objective 2.638346e+00, 19 iterations, 0.00 seconds
 #&gt; 
 #&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
 #&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #&gt; 
 #&gt;      0     0    2.63835    0    6    1.72305    2.63835  53.1%     -    0s
-#&gt; H    0     0                       1.9926901    2.63835  32.4%     -    0s
-#&gt;      0     2    2.63424    0    6    1.99269    2.63424  32.2%     -    0s
-#&gt; *    1     3               1       2.1724149    2.59317  19.4%   3.0    0s
-#&gt; *    5     3               2       2.5726724    2.57267  0.00%   4.2    1s
+#&gt; H    0     0                       1.9924876    2.63835  32.4%     -    0s
+#&gt;      0     2    2.63696    0    6    1.99249    2.63696  32.3%     -    0s
+#&gt; *    1     3               1       2.1724148    2.59317  19.4%   3.0    0s
+#&gt; *    5     3               2       2.5726722    2.57267  0.00%   3.6    0s
 #&gt; 
-#&gt; Explored 6 nodes (531 simplex iterations) in 1.00 seconds
+#&gt; Explored 6 nodes (37 simplex iterations) in 0.04 seconds
 #&gt; Thread count was 1 (of 4 available processors)
 #&gt; 
 #&gt; Solution count 1: 2.57267 
 #&gt; 
 #&gt; Optimal solution found (tolerance 0.00e+00)
-#&gt; Best objective 2.572672447214e+00, best bound 2.572672447214e+00, gap 0.0000%</div><div class='input'>
+#&gt; Best objective 2.572672188340e+00, best bound 2.572672188340e+00, gap 0.0000%</div><div class='input'>
 <span class='co'># print solution</span>
 <span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s2</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 21</span><span>
 #&gt;   solution status   obj  cost F1_action F2_action F3_action F4_action F5_action
