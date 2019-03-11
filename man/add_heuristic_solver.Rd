@@ -4,7 +4,8 @@
 \alias{add_heuristic_solver}
 \title{Add a heuristic solver}
 \usage{
-add_heuristic_solver(x, number_solutions = 1, verbose = TRUE)
+add_heuristic_solver(x, number_solutions = 1, initial_sweep = TRUE,
+  verbose = TRUE)
 }
 \arguments{
 \item{x}{\code{\link{ProjectProblem-class}} object.}
@@ -15,6 +16,15 @@ be less than the argument to \code{number_solutions} depending on the
 argument to \code{solution_pool_method}, for example if 100
 solutions are requested but only 10 unique solutions exist, then only 10
 solutions will be returned.}
+
+\item{initial_sweep}{\code{logical} value indicating if projects and
+actions which exceed the budget should be automatically excluded
+prior to running the backwards heuristic. This step prevents
+projects which exceed the budget, and so would never be selected in
+the final solution, from biasing the cost-sharing calculations.
+However, previous algorithms for project prioritization have not
+used this step (e.g. Probert \emph{et al.} 2016).
+Defaults to \code{TRUE}.}
 
 \item{verbose}{\code{logical} should information be printed while solving
 optimization problems?}
@@ -47,7 +57,8 @@ The heuristic algorithm used to generate solutions is described
    which are locked out are deselected, and (ii) projects which are
    associated with actions that are locked out are also deselected.
 
- \item A set of rules are then used to deselect actions and projects
+ \item If the argument to \code{initial_sweep} is \code{TRUE}, then a set of
+   rules are then used to deselect actions and projects
    based on budgetary constraints (if present). Specifically, (i) actions
    which exceed the budget are deselected, (ii) projects which are
    associated with a set of actions that exceed the budget are deselected,

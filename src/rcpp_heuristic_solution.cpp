@@ -14,6 +14,7 @@ Rcpp::LogicalMatrix rcpp_heuristic_solution(
   Rcpp::IntegerVector locked_in,
   Rcpp::IntegerVector locked_out,
   std::size_t number_solutions,
+  bool initial_sweep,
   bool verbose,
   const std::string obj_name) {
   // Initialization
@@ -81,8 +82,9 @@ Rcpp::LogicalMatrix rcpp_heuristic_solution(
   }
 
   /// lock out actions which exceed budget
-  for (std::size_t i = 0; i < n_actions; ++i)
-    locked_out_actions[i] = locked_out_actions[i] || (costs[i] > budget);
+  if (initial_sweep)
+    for (std::size_t i = 0; i < n_actions; ++i)
+      locked_out_actions[i] = locked_out_actions[i] || (costs[i] > budget);
 
   /// find total cost of each project
   std::vector<double> total_cost_projects(n_projects, 0.0);
@@ -94,16 +96,18 @@ Rcpp::LogicalMatrix rcpp_heuristic_solution(
   /// lock out actions which are only associated with projects that
   /// exceed budget
   bool keep_action;
-  for (std::size_t i = 0; i < n_actions; ++i) {
-    if (!locked_in_actions[i]) {
-      for (auto pitr = pa_matrix.begin_col(i); pitr != pa_matrix.end_col(i);
-           ++pitr) {
-        keep_action = false;
-        if (total_cost_projects[pitr.row()] > budget) {
-          keep_action = true;
-          break;
+  if (initial_sweep) {
+    for (std::size_t i = 0; i < n_actions; ++i) {
+      if (!locked_in_actions[i]) {
+        for (auto pitr = pa_matrix.begin_col(i); pitr != pa_matrix.end_col(i);
+             ++pitr) {
+          keep_action = false;
+          if (total_cost_projects[pitr.row()] > budget) {
+            keep_action = true;
+            break;
+          }
+          locked_out_actions[i] = locked_out_actions[i] || keep_action;
         }
-        locked_out_actions[i] = locked_out_actions[i] || keep_action;
       }
     }
   }
@@ -159,27 +163,29 @@ Rcpp::LogicalMatrix rcpp_heuristic_solution(
       project_costs[j] += costs[aitr.col()];
 
   /// remove projects with costs that exceed budget
-  for (std::size_t j = 0; j < n_projects; ++j) {
-    if (project_costs[j] > budget) {
-      //// remove actions from matrices
-      curr_pa_matrix.row(j).zeros();
-      curr_pf_matrix.row(j).zeros();
-      //// remove actions exclusively associated with the project
-      for (auto aitr = pa_matrix.begin_row(j); aitr != pa_matrix.end_row(j);
-           ++aitr) {
-        if ((arma::accu(curr_pa_matrix.col(aitr.col())) < 0.5) &&
-            (!locked_in_actions[aitr.col()])) {
-          ///// remove cost
-          curr_cost -= costs[aitr.col()];
-          //// remove action
-          remaining_actions.col(aitr.col()).zeros();
-          //// lock out action
-          locked_out_actions[aitr.col()] = true;
+  if (initial_sweep) {
+    for (std::size_t j = 0; j < n_projects; ++j) {
+      if (project_costs[j] > budget) {
+        //// remove actions from matrices
+        curr_pa_matrix.row(j).zeros();
+        curr_pf_matrix.row(j).zeros();
+        //// remove actions exclusively associated with the project
+        for (auto aitr = pa_matrix.begin_row(j); aitr != pa_matrix.end_row(j);
+             ++aitr) {
+          if ((arma::accu(curr_pa_matrix.col(aitr.col())) < 0.5) &&
+              (!locked_in_actions[aitr.col()])) {
+            ///// remove cost
+            curr_cost -= costs[aitr.col()];
+            //// remove action
+            remaining_actions.col(aitr.col()).zeros();
+            //// lock out action
+            locked_out_actions[aitr.col()] = true;
+          }
         }
+        //// remove project from remaining projects
+        remaining_projects.col(j).zeros();
+        pa_matrix.row(j).zeros();
       }
-      //// remove project from remaining projects
-      remaining_projects.col(j).zeros();
-      pa_matrix.row(j).zeros();
     }
   }
 

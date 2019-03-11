@@ -13,6 +13,15 @@ NULL
 #'
 #' @inheritParams add_gurobi_solver
 #'
+#' @param initial_sweep \code{logical} value indicating if projects and
+#'   actions which exceed the budget should be automatically excluded
+#'   prior to running the backwards heuristic. This step prevents
+#'   projects which exceed the budget, and so would never be selected in
+#'   the final solution, from biasing the cost-sharing calculations.
+#'   However, previous algorithms for project prioritization have not
+#'   used this step (e.g. Probert \emph{et al.} 2016).
+#'   Defaults to \code{TRUE}.
+#
 #' @details The heuristic algorithm used to generate solutions is described
 #'  below. It is heavily inspired by the cost-sharing backwards heuristic
 #'  algorithm conventionally used to guide the prioritization of species
@@ -27,7 +36,8 @@ NULL
 #'    which are locked out are deselected, and (ii) projects which are
 #'    associated with actions that are locked out are also deselected.
 #'
-#'  \item A set of rules are then used to deselect actions and projects
+#'  \item If the argument to \code{initial_sweep} is \code{TRUE}, then a set of
+#'    rules are then used to deselect actions and projects
 #'    based on budgetary constraints (if present). Specifically, (i) actions
 #'    which exceed the budget are deselected, (ii) projects which are
 #'    associated with a set of actions that exceed the budget are deselected,
@@ -162,11 +172,14 @@ methods::setClass("HeuristicSolver", contains = "Solver")
 
 #' @rdname add_heuristic_solver
 #' @export
-add_heuristic_solver <- function(x, number_solutions = 1, verbose = TRUE) {
+add_heuristic_solver <- function(x, number_solutions = 1,
+                                 initial_sweep = TRUE, verbose = TRUE) {
   # assert that arguments are valid
   assertthat::assert_that(inherits(x, "ProjectProblem"),
                           assertthat::is.count(number_solutions),
                           assertthat::noNA(number_solutions),
+                          assertthat::is.flag(initial_sweep),
+                          assertthat::noNA(initial_sweep),
                           assertthat::is.flag(verbose),
                           assertthat::noNA(verbose))
   # add solver
@@ -177,6 +190,7 @@ add_heuristic_solver <- function(x, number_solutions = 1, verbose = TRUE) {
     parameters = parameters(
       integer_parameter("number_solutions", number_solutions, lower_limit = 0L,
                         upper_limit = as.integer(.Machine$integer.max)),
+      binary_parameter("initial_sweep", initial_sweep),
       binary_parameter("verbose", verbose)),
     solve = function(self, x, ...) {
       # extract data
@@ -207,6 +221,7 @@ add_heuristic_solver <- function(x, number_solutions = 1, verbose = TRUE) {
           targets, x$data$feature_weights()[fp$tip.label], budget,
           locked_in, locked_out,
           self$parameters$get("number_solutions"),
+          as.logical(self$parameters$get("initial_sweep")),
           as.logical(self$parameters$get("verbose")),
           class(x$data$objective)[1])
       })

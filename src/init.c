@@ -40,7 +40,7 @@ extern SEXP _oppr_rcpp_get_optimization_problem_row_ids(SEXP);
 extern SEXP _oppr_rcpp_get_optimization_problem_sense(SEXP);
 extern SEXP _oppr_rcpp_get_optimization_problem_ub(SEXP);
 extern SEXP _oppr_rcpp_get_optimization_problem_vtype(SEXP);
-extern SEXP _oppr_rcpp_heuristic_solution(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
+extern SEXP _oppr_rcpp_heuristic_solution(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
 extern SEXP _oppr_rcpp_new_optimization_problem(SEXP, SEXP, SEXP);
 extern SEXP _oppr_rcpp_optimization_problem_as_list(SEXP);
 extern SEXP _oppr_rcpp_predefined_optimization_problem(SEXP);
@@ -79,7 +79,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_oppr_rcpp_get_optimization_problem_sense",              (DL_FUNC) &_oppr_rcpp_get_optimization_problem_sense,               1},
     {"_oppr_rcpp_get_optimization_problem_ub",                 (DL_FUNC) &_oppr_rcpp_get_optimization_problem_ub,                  1},
     {"_oppr_rcpp_get_optimization_problem_vtype",              (DL_FUNC) &_oppr_rcpp_get_optimization_problem_vtype,               1},
-    {"_oppr_rcpp_heuristic_solution",                          (DL_FUNC) &_oppr_rcpp_heuristic_solution,                          13},
+    {"_oppr_rcpp_heuristic_solution",                          (DL_FUNC) &_oppr_rcpp_heuristic_solution,                          14},
     {"_oppr_rcpp_new_optimization_problem",                    (DL_FUNC) &_oppr_rcpp_new_optimization_problem,                     3},
     {"_oppr_rcpp_optimization_problem_as_list",                (DL_FUNC) &_oppr_rcpp_optimization_problem_as_list,                 1},
     {"_oppr_rcpp_predefined_optimization_problem",             (DL_FUNC) &_oppr_rcpp_predefined_optimization_problem,              1},

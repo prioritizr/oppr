@@ -1,3 +1,11 @@
+# oppr 0.0.0.19
+
+- Add argument to `add_heuristic_solver` to skip initial step for removing
+  projects and actions that exceed the budget. While this initial step
+  improves solution quality, it is not conventionally used in project
+  prioritization algorithms and so should be omitted to provide accurate
+  benchmarks.
+
 # oppr 0.0.0.18
 
 - Reduce precision of extinction probability calculations when formulating

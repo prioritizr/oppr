@@ -141,8 +141,8 @@ rcpp_funded_projects <- function(pa_matrix, solutions) {
     .Call(`_oppr_rcpp_funded_projects`, pa_matrix, solutions)
 }
 
-rcpp_heuristic_solution <- function(costs, pa_matrix, pf_matrix, branch_matrix, branch_lengths, targets, weights, budget, locked_in, locked_out, number_solutions, verbose, obj_name) {
-    .Call(`_oppr_rcpp_heuristic_solution`, costs, pa_matrix, pf_matrix, branch_matrix, branch_lengths, targets, weights, budget, locked_in, locked_out, number_solutions, verbose, obj_name)
+rcpp_heuristic_solution <- function(costs, pa_matrix, pf_matrix, branch_matrix, branch_lengths, targets, weights, budget, locked_in, locked_out, number_solutions, initial_sweep, verbose, obj_name) {
+    .Call(`_oppr_rcpp_heuristic_solution`, costs, pa_matrix, pf_matrix, branch_matrix, branch_lengths, targets, weights, budget, locked_in, locked_out, number_solutions, initial_sweep, verbose, obj_name)
 }
 
 rcpp_random_solution <- function(costs, pa_matrix, pf_matrix, targets, budget, locked_in, locked_out, number_solutions, verbose, obj_name) {
