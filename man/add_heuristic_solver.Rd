@@ -180,7 +180,7 @@ Korte B & Vygen J (2000)
 \emph{Combinatorial Optimization. Theory and Algorithms}. Springer-Verlag,
 Berlin, Germany.
 
-Probert W, Maloney RF, Belinda Mellish and Liana Joseph (2016)
+Probert W, Maloney RF, Mellish B, and Joseph L (2016)
 Project Prioritisation Protocol (PPP). Available at
 \url{https://github.com/p-robot/ppp}.
 }
