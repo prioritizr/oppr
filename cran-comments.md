@@ -17,7 +17,6 @@ I am pleased to submit the initial release of the _oppr_ R package. This R packa
 * [Ubuntu 14.04.5, R-devel (travis-ci)](https://travis-ci.org/prioritizr/oppr/builds)
 * [Mac OSX 10.9.5, R-release (travis-ci](https://travis-ci.org/prioritizr/oppr/builds)
 * [Windows Server 2012 R2 (x64), R-release (appveyor)](https://ci.appveyor.com/project/jeffreyhanson/oppr)
-* Windows Server 2008 (x64), R-devel (win-builder)
 * Windows Server 2008 (x64), R-release (win-builder)
 * Windows Server 2008 (x64), R-devel (win-builder)
 
