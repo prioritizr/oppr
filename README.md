@@ -3,26 +3,35 @@
 Optimal Project Prioritization
 ==============================
 
-[![lifecycle](https://img.shields.io/badge/Lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing) [![Travis Build Status](https://img.shields.io/travis/prioritizr/oppr/master.svg?label=Linux%20%26%20Mac%20OSX)](https://travis-ci.org/prioritizr/oppr) [![AppVeyor Build Status](https://img.shields.io/appveyor/ci/jeffreyhanson/oppr/master.svg?label=Windows)](https://ci.appveyor.com/project/jeffreyhanson/oppr) [![Coverage Status](https://codecov.io/github/prioritizr/oppr/coverage.svg?branch=master)](https://codecov.io/github/prioritizr/oppr?branch=master) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/oppr)](https://CRAN.R-project.org/package=oppr)
-
-**This package is still under development and not ready for use. Please do not use this package yet.**
+[![lifecycle](https://img.shields.io/badge/Lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable) [![Travis Build Status](https://img.shields.io/travis/prioritizr/oppr/master.svg?label=Linux%20%26%20Mac%20OSX)](https://travis-ci.org/prioritizr/oppr) [![AppVeyor Build Status](https://img.shields.io/appveyor/ci/jeffreyhanson/oppr/master.svg?label=Windows)](https://ci.appveyor.com/project/jeffreyhanson/oppr) [![Coverage Status](https://codecov.io/github/prioritizr/oppr/coverage.svg?branch=master)](https://codecov.io/github/prioritizr/oppr?branch=master) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/oppr)](https://CRAN.R-project.org/package=oppr)
 
 The *oppr R* package is decision support tool for prioritizing conservation projects. Prioritizations can be developed by maximizing expected feature richness, expected phylogenetic diversity, the number of features that meet persistence targets, or identifying a set of projects that meet persistence targets for minimal cost. Constraints (e.g. lock in specific actions) and feature weights can also be specified to further customize prioritizations. After defining a project prioritization problem, solutions can be obtained using exact algorithms, heuristic algorithms, or random processes. In particular, it is recommended to install the ['Gurobi' optimizer](https://www.gurobi.com) because it can identify optimal solutions very quickly. Finally, methods are provided for comparing different prioritizations and evaluating their benefits.
 
 Installation
 ------------
 
-The development version of the *oppr R* package can be installed using the following code. Please note that you will need install the *ggtree* package from Bioconductor since it is not available on [The Comprehensive R Archive Network](https://cran.r-project.org/).
+The latest official version of the *oppr R* package can be installed using the following *R* code. We also recommend installing the [Gurobi optimization suite](http://www.gurobi.com/) and [*gurobi R* package](https://www.gurobi.com/documentation/8.1/refman/r_api_overview.html) to obtain solutions very quickly. For instructions on installing these software packages, please refer to [this installation guide](https://cran.r-project.org/web/packages/prioritizr/vignettes/gurobi_installation.html).
+
+``` r
+install.packages("oppr", repos = "https://cran.rstudio.com/")
+```
+
+If you wish to plot phylogenetic trees, you will need install the *ggtree* package from Bioconductor since it is not available on [The Comprehensive R Archive Network](https://cran.r-project.org/).
+
+``` r
+if (!require(devtools))
+  install.packages("devtools")
+if (!require(ggtree))
+  devtools::install_bioc("ggtree")
+```
+
+Alternatively, the latest developmental version can be installed using the following code. Please note that while developmental versions may contain additional features not present in the official version, they may also contain coding errors.
 
 ``` r
 if (!require(devtools))
   install.packages("devtools")
 devtools::install_github("prioritizr/oppr")
-if (!require(ggtree))
-  devtools::install_bioc("ggtree")
 ```
-
-We also recommend installing the [Gurobi optimization suite](http://www.gurobi.com/) and [*gurobi R* package](https://www.gurobi.com/documentation/8.1/refman/r_api_overview.html) to obtain solutions very quickly. For instructions on installing these software packages, please refer to [this installation guide](https://cran.r-project.org/web/packages/prioritizr/vignettes/gurobi_installation.html).
 
 Usage
 -----
@@ -168,8 +177,19 @@ This has just been a taster of the *oppr R* package. For more information, see t
 Citation
 --------
 
-Please use the following citation to cite the *oppr R* package in publications:
 
-**This package is still under development and not ready for use. Please do not use this package yet.**
+    To cite the oppr package in publications, please use:
 
-Hanson JO, Schuster R, Strimas-Mackey M, Bennett J, (2019). oppr: Project Prioritization. R package version 0.0.0.19. Available at <https://github.com/prioritizr/oppr>.
+      Hanson JO, Schuster R, Strimas-Mackey M, Bennett J (2019) oppr:
+      Optimal Project Prioritization R package version 0.0.1.
+      https://CRAN.R-project.org/package=oppr
+
+    A BibTeX entry for LaTeX users is
+
+      @Manual{,
+        author = {Jeffrey O Hanson and Richard Schuster and Matthew Strimas-Mackey and Joeseph Bennett},
+        title = {oppr: Optimal Project Prioritization},
+        year = {2019},
+        note = {R package version 0.0.1},
+        url = {https://CRAN.R-project.org/package=oppr},
+      }

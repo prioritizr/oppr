@@ -604,10 +604,8 @@ Finally, if you have any questions about using the _oppr R_ package or suggestio
 
 # Citation
 
-Please use the following citation to cite the _oppr R_ package in publications:
-
-```{r, echo = FALSE, results = "asis", comment = ""}
-cat(paste0("Hanson JO, Schuster R, Strimas-Mackey M, Bennett J, (",format(Sys.time(), "%Y"),"). oppr: Project Prioritization. R package version ",packageDescription("oppr")$Version,". Available at https://github.com/prioritizr/oppr.\n"))
+```{r, echo = FALSE, result = "asis", comment = ""}
+citation("oppr")
 ```
 
 # References
