@@ -836,7 +836,7 @@ test_that("heuristic solver (large problem, low budget, no sweep)", {
   actions <- sim_data$actions
   features <- sim_data$features
   features$weight <- exp(runif(nrow(features), 1, 15))
-  b <- sum(actions$cost) * 0.2
+  b <- sum(actions$cost) * 0.6
   # generate solutions
   s <- problem(projects = projects, actions = actions, features = features,
                "name", "success", "name", "cost", "name") %>%
