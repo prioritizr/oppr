@@ -64,6 +64,7 @@ NULL
 #' # print problem
 #' print(p2)
 #'
+#' \donttest{
 #' # solve problems
 #' s1 <- solve(p1)
 #' s2 <- solve(p2)
@@ -75,6 +76,7 @@ NULL
 #' # plot solutions
 #' plot(p1, s1)
 #' plot(p2, s2)
+#' }
 #' @name targets
 NULL
 

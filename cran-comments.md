@@ -1,22 +1,21 @@
 Dear CRAN maintainers,
 
-I am pleased to submit the initial release of the _oppr_ R package.
+I sincerely apologize for submitting an updated version of the _oppr_ R package so soon after its initial release on CRAN. Prof Brian Ripley alerted me to the fact that the current version on CRAN is failing illegal memory address checks (https://cran.r-project.org/web/checks/check_results_oppr.html). This version should address these issues. I am extremely sorry for taking up more of your time.
+
+Cheers,
+
+Jeff
 
 ## R CMD check results
 
-0 errors | 0 warnings | 2 notes
+0 errors | 0 warnings | 2 note
 
 ## Notes
 
 * checking CRAN incoming feasibility ... NOTE
-    Maintainer: 'Jeffrey O Hanson <jeffrey.hanson@uqconnect.edu.au>'
-    New submission
+    Maintainer: ‘Jeffrey O Hanson <jeffrey.hanson@uqconnect.edu.au>’
 
-    Possibly mis-spelled words in DESCRIPTION:
-      Prioritizations (6:5)
-      prioritizations (10:64, 16:5)
-
-    **This package is a new submission. The words "Prioritizations" and "prioritizations" are correct and are not mis-spelled.**
+    Days since last update: 2
 
 * checking package dependencies ... NOTE
     Package suggested but not available for checking: 'gurobi'
@@ -31,7 +30,8 @@ I am pleased to submit the initial release of the _oppr_ R package.
 * [Windows Server 2012 R2 (x64), R-release (appveyor)](https://ci.appveyor.com/project/jeffreyhanson/oppr)
 * Windows Server 2008 (x64), R-release (win-builder)
 * Windows Server 2008 (x64), R-devel (win-builder)
+* [Ubuntu 18.04, R-devel, GCC ASAN](https://hub.docker.com/r/wch1/r-debug)
 
 ## Downstream dependencies
 
-There are no existing packages that depend on this package because it is not yet on CRAN.
+There are no packages that currently depend on this package.

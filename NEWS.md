@@ -1,3 +1,12 @@
+# oppr 0.0.1.1
+
+- Fix address sanitizer issues causing CRAN checks to fail.
+- Tests successfully complete when the _shiny_ R package is not installed.
+
+# oppr 0.0.1
+
+- CRAN release.
+
 # oppr 0.0.0.19
 
 - Add argument to `add_heuristic_solver` to skip initial step for removing

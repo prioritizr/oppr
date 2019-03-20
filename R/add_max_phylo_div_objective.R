@@ -167,7 +167,6 @@ NULL
 #' research & management science}. Springer.
 #'
 #' @examples
-#' \donttest{
 #' # load data
 #' data(sim_projects, sim_features, sim_actions, sim_tree)
 #'
@@ -180,6 +179,7 @@ NULL
 #'       add_max_phylo_div_objective(budget = 300, tree = sim_tree) %>%
 #'       add_binary_decisions()
 #'
+#' \donttest{
 #' # solve problem
 #' s1 <- solve(p1)
 #'

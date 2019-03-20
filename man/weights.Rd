@@ -31,6 +31,7 @@ p <- problem(sim_projects, sim_actions, sim_features,
      add_feature_weights("weight") \%>\%
      add_binary_decisions()
 
+\donttest{
 # solve problem
 s <- solve(p)
 
@@ -39,7 +40,7 @@ print(s)
 
 # plot solution
 plot(p, s)
-
+}
 }
 \seealso{
 \code{\link{constraints}}, \code{\link{decisions}},

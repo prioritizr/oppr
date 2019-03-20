@@ -270,8 +270,8 @@ Rcpp::LogicalMatrix rcpp_random_solution(
                aitr != curr_new_actions_per_project.end_row(curr_project);
                ++aitr)
             curr_actions(0, aitr.col()) = 1.0;
-            curr_feature_shortfalls = expected_persistences_shortfalls(
-              pa_matrix, pf_matrix, targets, curr_actions);
+          curr_feature_shortfalls = expected_persistences_shortfalls(
+            pa_matrix, pf_matrix, targets, curr_actions);
           targets_met = !(curr_feature_shortfalls.max() > 0.0);
         }
       } else {

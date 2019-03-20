@@ -156,6 +156,7 @@ NULL
 #' # print problem
 #' print(p1)
 #'
+#' \donttest{
 #' # solve problem
 #' s1 <- solve(p1)
 #'
@@ -164,6 +165,7 @@ NULL
 #'
 #' # plot solution
 #' plot(p1, s1)
+#' }
 #' @name add_heuristic_solver
 NULL
 

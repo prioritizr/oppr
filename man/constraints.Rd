@@ -48,6 +48,7 @@ p3 <- p1 \%>\%
 # print problem
 print(p3)
 
+\donttest{
 # solve problems
 s1 <- solve(p1)
 s2 <- solve(p2)
@@ -57,7 +58,7 @@ s3 <- solve(p3)
 print(s1[, sim_actions$name])
 print(s2[, sim_actions$name])
 print(s3[, sim_actions$name])
-
+}
 }
 \seealso{
 \code{\link{decisions}}, \code{\link{objectives}},

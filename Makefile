@@ -59,6 +59,10 @@ build:
 	cp -R doc inst/
 	touch inst/doc/.gitkeep
 
+quickbuild:
+	R --slave -e "devtools::build(vignettes = FALSE)"
+	cp -R doc inst/
+
 install:
 	R --slave -e "devtools::install_local('../oppr', force = TRUE, upgrade = 'never')"
 

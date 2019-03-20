@@ -51,6 +51,7 @@ NULL
 #' # print problem
 #' print(p3)
 #'
+#' \donttest{
 #' # solve problems
 #' s1 <- solve(p1)
 #' s2 <- solve(p2)
@@ -60,6 +61,6 @@ NULL
 #' print(s1[, sim_actions$name])
 #' print(s2[, sim_actions$name])
 #' print(s3[, sim_actions$name])
-#'
+#' }
 #' @name constraints
 NULL

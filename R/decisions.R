@@ -35,6 +35,7 @@ NULL
 #' # print problem
 #' print(p)
 #'
+#' \donttest{
 #' # solve problem
 #' s <- solve(p)
 #'
@@ -43,7 +44,7 @@ NULL
 #'
 #' # plot solution
 #' plot(p, s)
-#'
+#' }
 #' @name decisions
 NULL
 

@@ -37,6 +37,7 @@ NULL
 #' # print problem
 #' print(p)
 #'
+#' \donttest{
 #' # solve problem
 #' s <- solve(p)
 #'
@@ -45,7 +46,7 @@ NULL
 #'
 #' # plot solution
 #' plot(p, s)
-#'
+#' }
 #' @export
 add_default_solver <- function(x, ...) {
   ds <- default_solver_name()

@@ -33,6 +33,7 @@ NULL
 #'      add_feature_weights("weight") %>%
 #'      add_binary_decisions()
 #'
+#' \donttest{
 #' # solve problem
 #' s <- solve(p)
 #'
@@ -41,6 +42,6 @@ NULL
 #'
 #' # plot solution
 #' plot(p, s)
-#'
+#' }
 #' @name weights
 NULL

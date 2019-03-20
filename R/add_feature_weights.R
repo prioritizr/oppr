@@ -79,6 +79,7 @@ NULL
 #' # print problem
 #' print(p3)
 #'
+#' \donttest{
 #' # solve the problems
 #' s1 <- solve(p1)
 #' s2 <- solve(p2)
@@ -93,7 +94,7 @@ NULL
 #' plot(p1, s1)
 #' plot(p2, s2)
 #' plot(p3, s3)
-#'
+#' }
 #' @aliases add_feature_weights,ProjectProblem,numeric-method add_feature_weights,ProjectProblem,character-method
 #'
 #' @name add_feature_weights

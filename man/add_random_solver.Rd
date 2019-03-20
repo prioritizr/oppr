@@ -102,6 +102,7 @@ hist(s1$obj, xlab = "Expected richness", xlim = c(0, 2.5),
 # solutions, we can find the optimal solution and calculate how different
 # each of the random solutions is from optimality
 
+\donttest{
 # find the optimal objective value using an exact algorithms solver
 s2 <- p1 \%>\%
       add_default_solver() \%>\%
@@ -114,6 +115,7 @@ s1$optimality_diff <- ((s2$obj - s1$obj) / s1$obj) * 100
 # higher numbers indicate worse solutions
 hist(s1$optimality_diff, xlab = "Difference from optimality (\%)",
      main = "Histogram of random solutions", xlim = c(0, 50))
+}
 }
 \seealso{
 \code{\link{solvers}}.

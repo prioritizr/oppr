@@ -84,6 +84,7 @@ NULL
 #' # solutions, we can find the optimal solution and calculate how different
 #' # each of the random solutions is from optimality
 #'
+#' \donttest{
 #' # find the optimal objective value using an exact algorithms solver
 #' s2 <- p1 %>%
 #'       add_default_solver() %>%
@@ -96,6 +97,7 @@ NULL
 #' # higher numbers indicate worse solutions
 #' hist(s1$optimality_diff, xlab = "Difference from optimality (%)",
 #'      main = "Histogram of random solutions", xlim = c(0, 50))
+#' }
 #' @name add_random_solver
 NULL
 

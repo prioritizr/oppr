@@ -60,6 +60,7 @@ NULL
 #' # print problem
 #' print(p4)
 #'
+#' \donttest{
 #' # solve problems
 #' s1 <- solve(p1)
 #' s2 <- solve(p2)
@@ -71,7 +72,7 @@ NULL
 #' print(s2[, sim_actions$name])
 #' print(s3[, sim_actions$name])
 #' print(s4[, sim_actions$name])
-#'
+#' }
 #' @name add_locked_out_constraints
 #'
 #' @exportMethod add_locked_out_constraints

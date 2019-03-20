@@ -49,7 +49,6 @@ NULL
 #' # load the ggplot2 R package to customize plots
 #' library(ggplot2)
 #'
-#' \donttest{
 #' data(sim_projects, sim_features, sim_actions)
 #'
 #' # build problem
@@ -59,6 +58,7 @@ NULL
 #'      add_binary_decisions() %>%
 #'      add_heuristic_solver(number_solutions = 10)
 #'
+#' \donttest{
 #' # solve problem
 #' s <- solve(p)
 #'

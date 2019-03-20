@@ -60,7 +60,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.1</span>
       </span>
     </div>
 
@@ -106,65 +106,91 @@
       <small>Source: <a href='https://github.com/prioritizr/oppr/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="oppr-0-0-1-1" class="section level1">
+<h1 class="page-header">
+<a href="#oppr-0-0-1-1" class="anchor"></a>oppr 0.0.1.1<small> Unreleased </small>
+</h1>
+<ul>
+<li>Fix address sanitizer issues causing CRAN checks to fail.</li>
+<li>Tests successfully complete when the <em>shiny</em> R package is not installed.</li>
+</ul>
+</div>
+    <div id="oppr-0-0-1" class="section level1">
+<h1 class="page-header">
+<a href="#oppr-0-0-1" class="anchor"></a>oppr 0.0.1<small> 2019-03-18 </small>
+</h1>
+<ul>
+<li>CRAN release.</li>
+</ul>
+</div>
     <div id="oppr-0-0-0-19" class="section level1">
 <h1 class="page-header">
-<a href="#oppr-0-0-0-19" class="anchor"></a>oppr 0.0.0.19</h1>
+<a href="#oppr-0-0-0-19" class="anchor"></a>oppr 0.0.0.19<small> Unreleased </small>
+</h1>
 <ul>
 <li>Add argument to <code>add_heuristic_solver</code> to skip initial step for removing projects and actions that exceed the budget. While this initial step improves solution quality, it is not conventionally used in project prioritization algorithms and so should be omitted to provide accurate benchmarks.</li>
 </ul>
 </div>
     <div id="oppr-0-0-0-18" class="section level1">
 <h1 class="page-header">
-<a href="#oppr-0-0-0-18" class="anchor"></a>oppr 0.0.0.18</h1>
+<a href="#oppr-0-0-0-18" class="anchor"></a>oppr 0.0.0.18<small> Unreleased </small>
+</h1>
 <ul>
 <li>Reduce precision of extinction probability calculations when formulating a problem with a maximum expected phylogenetic diversity objective (i.e. <code>add_max_phylo_div_objective</code>). Specifically, 1’000 points instead of 10’000 points are now used for piece-wise linear components. It appears that reducing the precision in this manner does not affect the correctness of results, but substantially reduces the time needed to solve problems to optimality in certain situations.</li>
 </ul>
 </div>
     <div id="oppr-0-0-0-17" class="section level1">
 <h1 class="page-header">
-<a href="#oppr-0-0-0-17" class="anchor"></a>oppr 0.0.0.17</h1>
+<a href="#oppr-0-0-0-17" class="anchor"></a>oppr 0.0.0.17<small> Unreleased </small>
+</h1>
 <ul>
 <li>Update <code>add_heuristic_solver</code> algorithm so that cost-effectiveness values are calculated with projects sharing costs (e.g. if two projects share an action that costs $100, then this action contributes $50 to the cost of each project). This update makes the algorithm similar to backwards heuristics conventionally used in prioritizing species recovery projects (i.e. <a href="https://github.com/p-robot/ppp" class="uri">https://github.com/p-robot/ppp</a>; <a href='https://github.com/prioritizr/oppr/issues/14'>#14</a>).</li>
 </ul>
 </div>
     <div id="oppr-0-0-0-16" class="section level1">
 <h1 class="page-header">
-<a href="#oppr-0-0-0-16" class="anchor"></a>oppr 0.0.0.16</h1>
+<a href="#oppr-0-0-0-16" class="anchor"></a>oppr 0.0.0.16<small> Unreleased </small>
+</h1>
 <ul>
 <li>Fix bug in <code>add_heuristic_solver</code> function introduced in version 0.0.0.15.</li>
 </ul>
 </div>
     <div id="oppr-0-0-0-15" class="section level1">
 <h1 class="page-header">
-<a href="#oppr-0-0-0-15" class="anchor"></a>oppr 0.0.0.15</h1>
+<a href="#oppr-0-0-0-15" class="anchor"></a>oppr 0.0.0.15<small> Unreleased </small>
+</h1>
 <ul>
 <li>Update <code>add_heuristic_solver</code> algorithm so that it removes projects, and not actions, in an iterative fashion. This update (i) makes the algorithm comparable to the backwards heuristics conventionally used in prioritizing species recovery projects (i.e. <a href="https://github.com/p-robot/ppp" class="uri">https://github.com/p-robot/ppp</a>) and (ii) substantially reduces run time (<a href='https://github.com/prioritizr/oppr/issues/14'>#14</a>).</li>
 </ul>
 </div>
     <div id="oppr-0-0-0-14" class="section level1">
 <h1 class="page-header">
-<a href="#oppr-0-0-0-14" class="anchor"></a>oppr 0.0.0.14</h1>
+<a href="#oppr-0-0-0-14" class="anchor"></a>oppr 0.0.0.14<small> Unreleased </small>
+</h1>
 <ul>
 <li>Fix bugs in <code>add_heuristic_solver</code> and <code>add_random_solver</code> arising from floating point comparison issue. These were causing infeasible solutions to be returned in R version 3.4.4.</li>
 </ul>
 </div>
     <div id="oppr-0-0-0-13" class="section level1">
 <h1 class="page-header">
-<a href="#oppr-0-0-0-13" class="anchor"></a>oppr 0.0.0.13</h1>
+<a href="#oppr-0-0-0-13" class="anchor"></a>oppr 0.0.0.13<small> Unreleased </small>
+</h1>
 <ul>
 <li>Fix bug in <code>project_cost_effectiveness</code> reporting incorrect costs, and cost-effectiveness values.</li>
 </ul>
 </div>
     <div id="oppr-0-0-0-12" class="section level1">
 <h1 class="page-header">
-<a href="#oppr-0-0-0-12" class="anchor"></a>oppr 0.0.0.12</h1>
+<a href="#oppr-0-0-0-12" class="anchor"></a>oppr 0.0.0.12<small> Unreleased </small>
+</h1>
 <ul>
 <li>Assorted documentation tweaks.</li>
 </ul>
 </div>
     <div id="oppr-0-0-0-11" class="section level1">
 <h1 class="page-header">
-<a href="#oppr-0-0-0-11" class="anchor"></a>oppr 0.0.0.11</h1>
+<a href="#oppr-0-0-0-11" class="anchor"></a>oppr 0.0.0.11<small> Unreleased </small>
+</h1>
 <ul>
 <li>Update <code>add_heuristic_solver</code> algorithm so that all actions and projects which exceed the budget are automatically removed prior to the iterative action removal.</li>
 <li>Update <code>add_random_solver</code> algorithms so that projects are selected instead of individual actions. This means that solutions from this solver are (i) similar to those in previous project prioritization studies and (ii) more likely to deliver better solutions (<a href='https://github.com/prioritizr/oppr/issues/13'>#13</a>).</li>
@@ -172,7 +198,8 @@
 </div>
     <div id="oppr-0-0-0-10" class="section level1">
 <h1 class="page-header">
-<a href="#oppr-0-0-0-10" class="anchor"></a>oppr 0.0.0.10</h1>
+<a href="#oppr-0-0-0-10" class="anchor"></a>oppr 0.0.0.10<small> Unreleased </small>
+</h1>
 <ul>
 <li>Rename package to <em>oppr</em> since <em>ppr</em> is already on CRAN.</li>
 <li>Fix issue with <code>replacement_costs</code> yielding incorrect results for baseline projects when used with SYMPHONY solvers.</li>
@@ -180,14 +207,16 @@
 </div>
     <div id="oppr-0-0-0-9" class="section level1">
 <h1 class="page-header">
-<a href="#oppr-0-0-0-9" class="anchor"></a>oppr 0.0.0.9</h1>
+<a href="#oppr-0-0-0-9" class="anchor"></a>oppr 0.0.0.9<small> Unreleased </small>
+</h1>
 <ul>
 <li>Add new <code>project_cost_effectiveness</code> function to calculate the cost-effectiveness for each conservation project in a problem.</li>
 </ul>
 </div>
     <div id="oppr-0-0-0-8" class="section level1">
 <h1 class="page-header">
-<a href="#oppr-0-0-0-8" class="anchor"></a>oppr 0.0.0.8</h1>
+<a href="#oppr-0-0-0-8" class="anchor"></a>oppr 0.0.0.8<small> Unreleased </small>
+</h1>
 <ul>
 <li>Fix typos in documentation (<a href='https://github.com/prioritizr/oppr/issues/8'>#8</a>).</li>
 <li>The <code>solution_statistics</code> function outputs which projects are completely funded in each solution (<a href='https://github.com/prioritizr/oppr/issues/9'>#9</a>).</li>
@@ -197,14 +226,16 @@
 </div>
     <div id="oppr-0-0-0-7" class="section level1">
 <h1 class="page-header">
-<a href="#oppr-0-0-0-7" class="anchor"></a>oppr 0.0.0.7</h1>
+<a href="#oppr-0-0-0-7" class="anchor"></a>oppr 0.0.0.7<small> Unreleased </small>
+</h1>
 <ul>
 <li>Fix annoying “<code>Found more than one class "tbl_df" in cache; using the first, from namespace 'tibble'</code>” text.</li>
 </ul>
 </div>
     <div id="oppr-0-0-0-6" class="section level1">
 <h1 class="page-header">
-<a href="#oppr-0-0-0-6" class="anchor"></a>oppr 0.0.0.6</h1>
+<a href="#oppr-0-0-0-6" class="anchor"></a>oppr 0.0.0.6<small> Unreleased </small>
+</h1>
 <ul>
 <li>Actually fix bug when solving problems with a phylogenetic objective and branches that have a constant probability of persistence (<a href='https://github.com/prioritizr/oppr/issues/6'>#6</a>).</li>
 <li>Fix bug in <code>add_max_phylo_div_objective</code> yielding incorrect solutions when features are ordered differently in the phylogenetic and tabular input data.</li>
@@ -214,14 +245,16 @@
 </div>
     <div id="oppr-0-0-0-5" class="section level1">
 <h1 class="page-header">
-<a href="#oppr-0-0-0-5" class="anchor"></a>oppr 0.0.0.5</h1>
+<a href="#oppr-0-0-0-5" class="anchor"></a>oppr 0.0.0.5<small> Unreleased </small>
+</h1>
 <ul>
 <li>Add <code>return_data</code> argument to <code>plot_feature_persistence</code> and <code>plot_phylo_persistence</code> so that plotting data can be obtained for creating custom plots.</li>
 </ul>
 </div>
     <div id="oppr-0-0-0-4" class="section level1">
 <h1 class="page-header">
-<a href="#oppr-0-0-0-4" class="anchor"></a>oppr 0.0.0.4</h1>
+<a href="#oppr-0-0-0-4" class="anchor"></a>oppr 0.0.0.4<small> Unreleased </small>
+</h1>
 <ul>
 <li>Fix bug in <code>add_relative_targets</code> and <code>add_manual_targets</code> (when relative targets supplied) calculations. This result in incorrect calculations.</li>
 <li>Fix issue with expected persistence probabilities not accounting for the “do nothing” scenario (<a href='https://github.com/prioritizr/oppr/issues/7'>#7</a>).</li>
@@ -229,7 +262,8 @@
 </div>
     <div id="oppr-0-0-0-3" class="section level1">
 <h1 class="page-header">
-<a href="#oppr-0-0-0-3" class="anchor"></a>oppr 0.0.0.3</h1>
+<a href="#oppr-0-0-0-3" class="anchor"></a>oppr 0.0.0.3<small> Unreleased </small>
+</h1>
 <ul>
 <li>The gurobi solver (i.e. <code>add_gurobi_solver</code> function) now uses <code>NumericFocus=3</code> to help avoid numerical issues.</li>
 <li>The <code>compile</code> function now throws a warning if problems are likely to have numerical issues.</li>
@@ -237,7 +271,8 @@
 </div>
     <div id="oppr-0-0-0-2" class="section level1">
 <h1 class="page-header">
-<a href="#oppr-0-0-0-2" class="anchor"></a>oppr 0.0.0.2</h1>
+<a href="#oppr-0-0-0-2" class="anchor"></a>oppr 0.0.0.2<small> Unreleased </small>
+</h1>
 <ul>
 <li>Fix bug when solving problems with a phylogenetic objective and branches that have a constant probability of persistence (<a href='https://github.com/prioritizr/oppr/issues/6'>#6</a>). Hindsight shows this attempt did not cover all edge cases.</li>
 <li>Add additional data sanity checks to <code>problem</code>. It will now throw descriptive error messages if features are missing baseline probabilities, or are associated with baseline probabilities below 1e-11.</li>
@@ -247,7 +282,8 @@
 </div>
     <div id="oppr-0-0-0-1" class="section level1">
 <h1 class="page-header">
-<a href="#oppr-0-0-0-1" class="anchor"></a>oppr 0.0.0.1</h1>
+<a href="#oppr-0-0-0-1" class="anchor"></a>oppr 0.0.0.1<small> Unreleased </small>
+</h1>
 <ul>
 <li>Initial commit.</li>
 </ul>
@@ -258,6 +294,8 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#oppr-0-0-1-1">0.0.1.1</a></li>
+        <li><a href="#oppr-0-0-1">0.0.1</a></li>
         <li><a href="#oppr-0-0-0-19">0.0.0.19</a></li>
         <li><a href="#oppr-0-0-0-18">0.0.0.18</a></li>
         <li><a href="#oppr-0-0-0-17">0.0.0.17</a></li>

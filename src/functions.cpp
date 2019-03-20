@@ -14,7 +14,7 @@ Rcpp::NumericVector evaluate_max_phylo_div_objective(
     arma::mat p = expected_persistences(pa_matrix, pf_matrix,
                                         branch_matrix,
                                         solutions);
-    Rcpp::NumericVector out(solutions.n_rows);
+    Rcpp::NumericVector out(solutions.n_rows, 0.0);
     for (std::size_t i = 0; i < p.n_rows; ++i)
       for (std::size_t j = 0; j < p.n_cols; ++j)
         out[i] += p(i, j) * branch_lengths[j];
@@ -32,7 +32,7 @@ Rcpp::NumericVector evaluate_max_targets_met_objective(
   arma::sp_mat solutions) {
     arma::mat p = expected_persistences(pa_matrix, pf_matrix, branch_matrix,
                                         solutions);
-    Rcpp::NumericVector out(solutions.n_rows);
+    Rcpp::NumericVector out(solutions.n_rows, 0.0);
     for (std::size_t j = 0; j < p.n_cols; ++j)
       for (std::size_t i = 0; i < p.n_rows; ++i)
         out[i] += (static_cast<double>(p(i, j) >= targets[j]) * weights[j]);
@@ -46,11 +46,11 @@ Rcpp::NumericVector evaluate_min_set_objective(
   Rcpp::NumericVector targets, Rcpp::NumericVector weights,
   arma::sp_mat solutions) {
     std::size_t n_actions = costs.size();
-    std::size_t n_solutions = solutions.size();
-    Rcpp::NumericVector out(solutions.n_rows);
+    std::size_t n_solutions = solutions.n_rows;
+    Rcpp::NumericVector out(solutions.n_rows, 0.0);
     for (std::size_t i = 0; i < n_actions; ++i)
       for (std::size_t j = 0; j < n_solutions; ++j)
-      out[j] += (solutions(j, i) * costs[i]);
+        out[j] += (solutions(j, i) * costs[i]);
     return out;
 }
 

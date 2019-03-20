@@ -81,7 +81,8 @@ test_that("invalid arguments", {
   solution <- as.data.frame(matrix(rep(1, p$number_of_actions()), nrow = 1,
                                    dimnames = list(NULL, p$action_names())))
   # verify that test data yields plot
-  expect_is(replacement_costs(p, solution), "tbl_df")
+  if (identical(Sys.getenv("NOT_CRAN"), "true"))
+    expect_is(replacement_costs(p, solution), "tbl_df")
   # invalid problem
   expect_error({
     replacement_costs(

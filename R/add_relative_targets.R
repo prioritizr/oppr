@@ -54,6 +54,7 @@ NULL
 #'       add_relative_targets("target") %>%
 #'       add_binary_decisions()
 #'
+#' \donttest{
 #' # print problem
 #' print(p3)
 #'
@@ -71,7 +72,7 @@ NULL
 #' plot(p1, s1)
 #' plot(p2, s2)
 #' plot(p3, s3)
-#'
+#' }
 #' @aliases add_relative_targets,ProjectProblem,numeric-method add_relative_targets,ProjectProblem,character-method
 #'
 #' @name add_relative_targets

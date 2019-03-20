@@ -155,6 +155,7 @@ NULL
 #'       add_locked_in_constraints(which(sim_actions$cost < 1e-5)) %>%
 #'       add_binary_decisions()
 #'
+#' \donttest{
 #' # solve problem
 #' s1 <- solve(p1)
 #'
@@ -167,11 +168,13 @@ NULL
 #' # so that its probability of persistence meets the target
 #' plot(p1, s1) +
 #' geom_hline(yintercept = 0.2, linetype = "dashed")
+#' }
 #'
 #' # build another problem that includes feature weights
 #' p2 <- p1 %>%
 #'       add_feature_weights("weight")
 #'
+#' \donttest{
 #' # solve problem
 #' s2 <- solve(p2)
 #'
@@ -184,7 +187,7 @@ NULL
 #' # to enhance their probability of persistence
 #' plot(p2, s2) +
 #' geom_hline(yintercept = 0.2, linetype = "dashed")
-#'
+#' }
 #' @name add_max_targets_met_objective
 NULL
 

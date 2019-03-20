@@ -69,7 +69,7 @@ features (see add_feature_weights)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.1</span>
       </span>
     </div>
 
@@ -251,9 +251,7 @@ resources among threatened species: A project prioritization protocol.
 <span class='no'>p1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_actions</span>, <span class='no'>sim_features</span>,
              <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span>) <span class='kw'>%&gt;%</span>
      <span class='fu'>add_max_richness_objective</span>(<span class='kw'>budget</span> <span class='kw'>=</span> <span class='fl'>200</span>) <span class='kw'>%&gt;%</span>
-     <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span>()
-
-<span class='co'># solve problem</span>
+     <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span>()</div><div class='input'><span class='co'># solve problem</span>
 <span class='no'>s1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p1</span>)</div><div class='output co'>#&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
 #&gt; Variable types: 0 continuous, 42 integer (42 binary)
 #&gt; Semi-Variable types: 5 continuous, 0 integer
@@ -293,12 +291,10 @@ resources among threatened species: A project prioritization protocol.
 #&gt; #   F2_project </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F3_project </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F4_project </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F5_project </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
 #&gt; #   baseline_project </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F1 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F2 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F3 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F4 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F5 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># plot solution</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>p1</span>, <span class='no'>s1</span>)</div><div class='img'><img src='add_max_richness_objective-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>p1</span>, <span class='no'>s1</span>)</div><div class='img'><img src='add_max_richness_objective-1.png' alt='' width='700' height='433' /></div></span><div class='input'>
 <span class='co'># build another problem that includes feature weights</span>
 <span class='no'>p2</span> <span class='kw'>&lt;-</span> <span class='no'>p1</span> <span class='kw'>%&gt;%</span>
-     <span class='fu'><a href='add_feature_weights.html'>add_feature_weights</a></span>(<span class='st'>"weight"</span>)
-
-<span class='co'># solve problem with feature weights</span>
+     <span class='fu'><a href='add_feature_weights.html'>add_feature_weights</a></span>(<span class='st'>"weight"</span>)</div><div class='input'><span class='co'># solve problem with feature weights</span>
 <span class='no'>s2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p2</span>)</div><div class='output co'>#&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
 #&gt; Variable types: 0 continuous, 42 integer (42 binary)
 #&gt; Semi-Variable types: 5 continuous, 0 integer
@@ -330,7 +326,7 @@ resources among threatened species: A project prioritization protocol.
 #&gt; Optimal solution found (tolerance 0.00e+00)
 #&gt; Best objective 1.511229665304e+00, best bound 1.511229665304e+00, gap 0.0000%</div><div class='input'>
 <span class='co'># print solution based on feature weights</span>
-<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s2</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 21</span><span>
+<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s2</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 21</span><span>
 #&gt;   solution status   obj  cost F1_action F2_action F3_action F4_action F5_action
 #&gt;      </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 OPTIM~  1.51  199.         0         0         0         1         1
@@ -338,8 +334,7 @@ resources among threatened species: A project prioritization protocol.
 #&gt; #   F2_project </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F3_project </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F4_project </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F5_project </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
 #&gt; #   baseline_project </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F1 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F2 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F3 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F4 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F5 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># plot solution based on feature weights</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>p2</span>, <span class='no'>s2</span>)</div><div class='img'><img src='add_max_richness_objective-2.png' alt='' width='700' height='433' /></div><div class='input'>
-</div></span></pre>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>p2</span>, <span class='no'>s2</span>)</div><div class='img'><img src='add_max_richness_objective-2.png' alt='' width='700' height='433' /></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.1</span>
       </span>
     </div>
 
@@ -359,11 +359,11 @@ p1_pce<span class="op">$</span>rank[s1_projects<span class="op">$</span>status <
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
 <span class="co"># plot histogram of feature weights</span>
-<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="dt">data =</span> features, <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(weight)) <span class="op">+</span>
-<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span>(<span class="dt">bins =</span> <span class="dv">30</span>) <span class="op">+</span>
-<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span>(<span class="dt">labels =</span> scales<span class="op">::</span>comma) <span class="op">+</span>
-<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span>(<span class="st">"Feature weight"</span>) <span class="op">+</span>
-<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span>(<span class="st">"Frequency"</span>)</code></pre></div>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(<span class="dt">data =</span> features, <span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(weight)) <span class="op">+</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/geom_histogram">geom_histogram</a></span>(<span class="dt">bins =</span> <span class="dv">30</span>) <span class="op">+</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/scale_continuous">scale_x_continuous</a></span>(<span class="dt">labels =</span> scales<span class="op">::</span>comma) <span class="op">+</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/labs">xlab</a></span>(<span class="st">"Feature weight"</span>) <span class="op">+</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/labs">ylab</a></span>(<span class="st">"Frequency"</span>)</code></pre></div>
 <p><img src="oppr_files/figure-html/unnamed-chunk-14-1.png" width="528" style="display: block; margin: auto;"></p>
 <p>We can see that most features have a low weighting (less than 1’000), but a few features have very high weightings (greater than 500’000). Let’s make a new problem based on the original problem, add the feature weights to the new problem, and then solve this new problem.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># build on existing problem and add feature weights</span>
@@ -521,13 +521,13 @@ s3 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/solve.ht
 <p>We obtained 83 solutions. Let’s briefly explore them.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plot histogram of objective values, and add red dashed line to indicate the</span>
 <span class="co"># objective value for the optimal solution</span>
-<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="dt">data =</span> s3, <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(obj)) <span class="op">+</span>
-<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span>(<span class="dt">bins =</span> <span class="dv">10</span>) <span class="op">+</span>
-<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span>(<span class="dt">xintercept =</span> s2<span class="op">$</span>obj, <span class="dt">color =</span> <span class="st">"red"</span>, <span class="dt">linetype =</span> <span class="st">"dashed"</span>) <span class="op">+</span>
-<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span>(<span class="dt">labels =</span> scales<span class="op">::</span>comma) <span class="op">+</span>
-<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span>(<span class="st">"Expected richness (objective function)"</span>) <span class="op">+</span>
-<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span>(<span class="st">"Frequency"</span>) <span class="op">+</span>
-<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">plot.margin =</span> <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/reexports.html">unit</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">5.5</span>, <span class="fl">10.5</span>, <span class="fl">5.5</span>, <span class="fl">5.5</span>), <span class="st">"pt"</span>))</code></pre></div>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(<span class="dt">data =</span> s3, <span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(obj)) <span class="op">+</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/geom_histogram">geom_histogram</a></span>(<span class="dt">bins =</span> <span class="dv">10</span>) <span class="op">+</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/geom_abline">geom_vline</a></span>(<span class="dt">xintercept =</span> s2<span class="op">$</span>obj, <span class="dt">color =</span> <span class="st">"red"</span>, <span class="dt">linetype =</span> <span class="st">"dashed"</span>) <span class="op">+</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/scale_continuous">scale_x_continuous</a></span>(<span class="dt">labels =</span> scales<span class="op">::</span>comma) <span class="op">+</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/labs">xlab</a></span>(<span class="st">"Expected richness (objective function)"</span>) <span class="op">+</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/labs">ylab</a></span>(<span class="st">"Frequency"</span>) <span class="op">+</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/theme">theme</a></span>(<span class="dt">plot.margin =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/reexports">unit</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">5.5</span>, <span class="fl">10.5</span>, <span class="fl">5.5</span>, <span class="fl">5.5</span>), <span class="st">"pt"</span>))</code></pre></div>
 <p><img src="oppr_files/figure-html/unnamed-chunk-26-1.png" width="528" style="display: block; margin: auto;"></p>
 <p>We can see that some of our solutions performed much better than other solutions. And we can also see that there are several solutions that perform nearly as well as the optimal solution.</p>
 </div>
@@ -629,11 +629,11 @@ actions<span class="op">$</span>sel_freq &lt;-<span class="st"> </span><span cla
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
 <span class="co"># plot histogram showing solution frequency</span>
-<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="dt">data =</span> actions, <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(sel_freq)) <span class="op">+</span>
-<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span>(<span class="dt">bins =</span> <span class="dv">30</span>) <span class="op">+</span>
-<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html">coord_cartesian</a></span>(<span class="dt">xlim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>, <span class="dv">100</span>)) <span class="op">+</span>
-<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span>(<span class="st">"Selection frequency (%)"</span>) <span class="op">+</span>
-<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span>(<span class="st">"Frequency"</span>)</code></pre></div>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(<span class="dt">data =</span> actions, <span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(sel_freq)) <span class="op">+</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/geom_histogram">geom_histogram</a></span>(<span class="dt">bins =</span> <span class="dv">30</span>) <span class="op">+</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/coord_cartesian">coord_cartesian</a></span>(<span class="dt">xlim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>, <span class="dv">100</span>)) <span class="op">+</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/labs">xlab</a></span>(<span class="st">"Selection frequency (%)"</span>) <span class="op">+</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/labs">ylab</a></span>(<span class="st">"Frequency"</span>)</code></pre></div>
 <p><img src="oppr_files/figure-html/unnamed-chunk-27-1.png" width="528" style="display: block; margin: auto;"></p>
 <p>Although selection frequency might seem like an appealing metric, it suffers from an assumption that is unrealistic for most large-scale problems. Specifically, it assumes that our portfolio of solutions is a representative sample of the near-optimal solutions to the problem. And we do not currently have any method to verify this, except by enumerating all possible solutions—which is not feasible for reasonably sized project prioritization exercises. So now we shall examine a superior metric termed the “replacement cost” <span class="citation">(Moilanen <em>et al.</em> 2009)</span>. Given a set of priority actions and a project prioritization problem, the replacement cost can be calculated for a given priority action by re-solving the problem with the priority action locked out, and calculating the difference between the objective value based on the priority actions and the new objective value with the priority action locked out. So let’s calculate the replacement cost for the priority actions in object <code>s2</code> using the problem <code>p2</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># print p2 to remind ourselves about the problem</span>
@@ -759,11 +759,11 @@ actions<span class="op">$</span>rep_cost &lt;-<span class="st"> </span>r2<span c
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
 <span class="co"># plot histogram of replacement costs,</span>
-<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="dt">data =</span> actions, <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(rep_cost)) <span class="op">+</span>
-<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span>(<span class="dt">bins =</span> <span class="dv">30</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
-<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span>(<span class="dt">labels =</span> scales<span class="op">::</span>comma) <span class="op">+</span>
-<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span>(<span class="st">"Replacement cost"</span>) <span class="op">+</span>
-<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span>(<span class="st">"Frequency"</span>)</code></pre></div>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(<span class="dt">data =</span> actions, <span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(rep_cost)) <span class="op">+</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/geom_histogram">geom_histogram</a></span>(<span class="dt">bins =</span> <span class="dv">30</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/scale_continuous">scale_x_continuous</a></span>(<span class="dt">labels =</span> scales<span class="op">::</span>comma) <span class="op">+</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/labs">xlab</a></span>(<span class="st">"Replacement cost"</span>) <span class="op">+</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/labs">ylab</a></span>(<span class="st">"Frequency"</span>)</code></pre></div>
 <p><img src="oppr_files/figure-html/unnamed-chunk-29-1.png" width="528" style="display: block; margin: auto;"></p>
 </div>
 <div id="complementarity-in-project-prioritizations" class="section level2">
@@ -869,11 +869,11 @@ comp_data &lt;-<span class="st"> </span><span class="kw"><a href="https://tibble
 
 <span class="co"># plot the relationship between the number of features that meet the target</span>
 <span class="co"># in a solution and the cost of a solution</span>
-<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(comp_data, <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> cost, <span class="dt">y =</span> obj, <span class="dt">color =</span> target)) <span class="op">+</span>
-<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_step</a></span>() <span class="op">+</span>
-<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span>(<span class="st">"Solution cost ($)"</span>) <span class="op">+</span>
-<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span>(<span class="st">"Number of features with targets"</span>) <span class="op">+</span>
-<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">color =</span> <span class="st">"Target"</span>)</code></pre></div>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(comp_data, <span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> cost, <span class="dt">y =</span> obj, <span class="dt">color =</span> target)) <span class="op">+</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/geom_path">geom_step</a></span>() <span class="op">+</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/labs">xlab</a></span>(<span class="st">"Solution cost ($)"</span>) <span class="op">+</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/labs">ylab</a></span>(<span class="st">"Number of features with targets"</span>) <span class="op">+</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">color =</span> <span class="st">"Target"</span>)</code></pre></div>
 <p><img src="oppr_files/figure-html/unnamed-chunk-33-1.png" width="432" style="display: block; margin: auto;"></p>
 <p>We might also be interested in understanding how exactly how much it would cost to implement a set of management actions that would result in all of the features meeting a specific target. Let’s see if we can find out how much it would cost to ensure that every feature has a 99% probability of persistence.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># build problem</span>
@@ -1101,15 +1101,15 @@ s8 &lt;-<span class="st"> </span><span class="kw"><a href="https://tibble.tidyve
 </div>
 <p>Now we can visualize how well the solutions identified using the heuristic algorithm compare to solutions generated using random processes. In the plot below, the orange line shows the performance of solutions generated using the heuristic algorithm, and the blue ribbon shows the performance of the best and worst solutions generated using random processes.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># make plot</span>
-<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>() <span class="op">+</span>
-<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_ribbon.html">geom_ribbon</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> budget, <span class="dt">ymin =</span> min_obj, <span class="dt">ymax =</span> max_obj), <span class="dt">data =</span> s8,
+<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>() <span class="op">+</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/geom_ribbon">geom_ribbon</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> budget, <span class="dt">ymin =</span> min_obj, <span class="dt">ymax =</span> max_obj), <span class="dt">data =</span> s8,
             <span class="dt">color =</span> <span class="st">"#3366FF26"</span>, <span class="dt">fill =</span> <span class="st">"#3366FF26"</span>) <span class="op">+</span>
-<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_step</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> budget, <span class="dt">y =</span> obj), <span class="dt">data =</span> s7, <span class="dt">color =</span> <span class="st">"orange"</span>) <span class="op">+</span>
-<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span>(<span class="dt">labels =</span> scales<span class="op">::</span>comma) <span class="op">+</span>
-<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span>(<span class="dt">labels =</span> scales<span class="op">::</span>comma) <span class="op">+</span>
-<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span>(<span class="st">"Budget available ($)"</span>) <span class="op">+</span>
-<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span>(<span class="st">"Expected richness (objective function)"</span>) <span class="op">+</span>
-<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">axis.text.y =</span> <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">vjust =</span> <span class="dv">1</span>))</code></pre></div>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/geom_path">geom_step</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> budget, <span class="dt">y =</span> obj), <span class="dt">data =</span> s7, <span class="dt">color =</span> <span class="st">"orange"</span>) <span class="op">+</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/scale_continuous">scale_x_continuous</a></span>(<span class="dt">labels =</span> scales<span class="op">::</span>comma) <span class="op">+</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/scale_continuous">scale_y_continuous</a></span>(<span class="dt">labels =</span> scales<span class="op">::</span>comma) <span class="op">+</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/labs">xlab</a></span>(<span class="st">"Budget available ($)"</span>) <span class="op">+</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/labs">ylab</a></span>(<span class="st">"Expected richness (objective function)"</span>) <span class="op">+</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/theme">theme</a></span>(<span class="dt">axis.text.y =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/element">element_text</a></span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">vjust =</span> <span class="dv">1</span>))</code></pre></div>
 <p><img src="oppr_files/figure-html/unnamed-chunk-43-1.png" width="432" style="display: block; margin: auto;"></p>
 <p>Here, we can see the that heuristic algorithm generally performs better than funding conservation projects using random processes. We can also see that for some budgets, the heuristic algorithm returns a worse solution (i.e. has a lower objective value) then solutions it found for lower budgets (i.e. where there is a step down in the orange line). Unfortunately, this behavior is normal because heuristic algorithms often deliver suboptimal solutions and the degree of suboptimality often varies depending on the budget. Despite these occasional drops in solution quality, you might be tempted to think that these results show that heuristic algorithms can perform pretty well on balance. But we can do better. Let’s generate a series of solutions using exact algorithms.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># generate solutions</span>
@@ -1176,16 +1176,16 @@ s9<span class="op">$</span>budget &lt;-<span class="st"> </span>budgets
 </div>
 <p>Now let’s redraw the previous graph and add a red line to the plot to represent the solutions generated using the exact algorithm solver.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># make plot</span>
-<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>() <span class="op">+</span>
-<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_ribbon.html">geom_ribbon</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> budget, <span class="dt">ymin =</span> min_obj, <span class="dt">ymax =</span> max_obj), <span class="dt">data =</span> s8,
+<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>() <span class="op">+</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/geom_ribbon">geom_ribbon</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> budget, <span class="dt">ymin =</span> min_obj, <span class="dt">ymax =</span> max_obj), <span class="dt">data =</span> s8,
             <span class="dt">color =</span> <span class="st">"#3366FF26"</span>, <span class="dt">fill =</span> <span class="st">"#3366FF26"</span>) <span class="op">+</span>
-<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_step</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> budget, <span class="dt">y =</span> obj), <span class="dt">data =</span> s7, <span class="dt">color =</span> <span class="st">"orange"</span>) <span class="op">+</span>
-<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_step</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> budget, <span class="dt">y =</span> obj), <span class="dt">data =</span> s9, <span class="dt">color =</span> <span class="st">"red"</span>) <span class="op">+</span>
-<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span>(<span class="dt">labels =</span> scales<span class="op">::</span>comma) <span class="op">+</span>
-<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span>(<span class="dt">labels =</span> scales<span class="op">::</span>comma) <span class="op">+</span>
-<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span>(<span class="st">"Budget available ($)"</span>) <span class="op">+</span>
-<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span>(<span class="st">"Expected richness (objective function)"</span>) <span class="op">+</span>
-<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">axis.text.y =</span> <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="fl">0.5</span>, <span class="dt">vjust =</span> <span class="dv">1</span>))</code></pre></div>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/geom_path">geom_step</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> budget, <span class="dt">y =</span> obj), <span class="dt">data =</span> s7, <span class="dt">color =</span> <span class="st">"orange"</span>) <span class="op">+</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/geom_path">geom_step</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> budget, <span class="dt">y =</span> obj), <span class="dt">data =</span> s9, <span class="dt">color =</span> <span class="st">"red"</span>) <span class="op">+</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/scale_continuous">scale_x_continuous</a></span>(<span class="dt">labels =</span> scales<span class="op">::</span>comma) <span class="op">+</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/scale_continuous">scale_y_continuous</a></span>(<span class="dt">labels =</span> scales<span class="op">::</span>comma) <span class="op">+</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/labs">xlab</a></span>(<span class="st">"Budget available ($)"</span>) <span class="op">+</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/labs">ylab</a></span>(<span class="st">"Expected richness (objective function)"</span>) <span class="op">+</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/theme">theme</a></span>(<span class="dt">axis.text.y =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/element">element_text</a></span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="fl">0.5</span>, <span class="dt">vjust =</span> <span class="dv">1</span>))</code></pre></div>
 <p><img src="oppr_files/figure-html/unnamed-chunk-45-1.png" width="432" style="display: block; margin: auto;"></p>
 <p>So, we can see that the exact algorithm solver performs much better than heuristic algorithms—even if heuristic algorithms perform better than random on average.</p>
 </div>
@@ -1204,8 +1204,8 @@ s9<span class="op">$</span>budget &lt;-<span class="st"> </span>budgets
 To cite the oppr package in publications, please use:
 
   Hanson JO, Schuster R, Strimas-Mackey M, Bennett J (2019) oppr:
-  Optimal Project Prioritization R package version 0.0.1.
-  https://CRAN.R-project.org/package=oppr
+  Optimal Project Prioritization R package version 0.0.1.1.
+  https://github.com/prioritizr/oppr
 
 A BibTeX entry for LaTeX users is
 
@@ -1213,8 +1213,8 @@ A BibTeX entry for LaTeX users is
     author = {Jeffrey O Hanson and Richard Schuster and Matthew Strimas-Mackey and Joeseph Bennett},
     title = {oppr: Optimal Project Prioritization},
     year = {2019},
-    note = {R package version 0.0.1},
-    url = {https://CRAN.R-project.org/package=oppr},
+    note = {R package version 0.0.1.1},
+    url = {https://github.com/prioritizr/oppr},
   }
 </code></pre>
 </div>

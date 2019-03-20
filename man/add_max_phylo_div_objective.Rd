@@ -159,7 +159,6 @@ A problem objective is used to specify the overall goal of the
  Hillier & Price 2005 pp. 390--392) to approximate the exponent of this term.
 }
 \examples{
-\donttest{
 # load data
 data(sim_projects, sim_features, sim_actions, sim_tree)
 
@@ -172,6 +171,7 @@ p1 <- problem(sim_projects, sim_actions, sim_features,
       add_max_phylo_div_objective(budget = 300, tree = sim_tree) \%>\%
       add_binary_decisions()
 
+\donttest{
 # solve problem
 s1 <- solve(p1)
 

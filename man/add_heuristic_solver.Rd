@@ -158,6 +158,7 @@ p1 <- problem(sim_projects, sim_actions, sim_features,
 # print problem
 print(p1)
 
+\donttest{
 # solve problem
 s1 <- solve(p1)
 
@@ -166,6 +167,7 @@ print(s1)
 
 # plot solution
 plot(p1, s1)
+}
 }
 \references{
 Rodrigues AS & Gaston KJ (2002) Optimisation in reserve selection

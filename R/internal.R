@@ -203,6 +203,8 @@ default_solver_name <- function() {
     return("Rsymphony")
   } else if (requireNamespace("lpsymphony", quietly = TRUE)) {
     return("lpsymphony")
+  } else if (requireNamespace("lpSolveAPI", quietly = TRUE)) {
+    return("lpSolveAPI")
   } else {
     return(NULL)
   }

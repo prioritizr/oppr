@@ -66,7 +66,7 @@ pre-specified budget (Bennett et al. 2014, Faith 2008)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.1</span>
       </span>
     </div>
 
@@ -293,9 +293,7 @@ research &amp; management science</em>. Springer.</p>
 <span class='no'>p1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_actions</span>, <span class='no'>sim_features</span>,
              <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span>) <span class='kw'>%&gt;%</span>
       <span class='fu'>add_max_phylo_div_objective</span>(<span class='kw'>budget</span> <span class='kw'>=</span> <span class='fl'>300</span>, <span class='kw'>tree</span> <span class='kw'>=</span> <span class='no'>sim_tree</span>) <span class='kw'>%&gt;%</span>
-      <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span>()
-
-<span class='co'># solve problem</span>
+      <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span>()</div><div class='input'><span class='co'># solve problem</span>
 <span class='no'>s1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p1</span>)</div><div class='output co'>#&gt; Optimize a model with 50 rows, 50 columns and 123 nonzeros
 #&gt; Model has 3 piecewise-linear objective terms
 #&gt; Variable types: 3 continuous, 42 integer (42 binary)
@@ -314,14 +312,14 @@ research &amp; management science</em>. Springer.</p>
 #&gt; Presolved: 34 rows, 2992 columns, 3030 nonzeros
 #&gt; 
 #&gt; 
-#&gt; Root relaxation: objective 2.904788e+00, 14 iterations, 0.01 seconds
+#&gt; Root relaxation: objective 2.904788e+00, 14 iterations, 0.00 seconds
 #&gt; 
 #&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
 #&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #&gt; 
 #&gt; *    0     0               0       2.9047879    2.90479  0.00%     -    0s
 #&gt; 
-#&gt; Explored 0 nodes (14 simplex iterations) in 0.02 seconds
+#&gt; Explored 0 nodes (14 simplex iterations) in 0.01 seconds
 #&gt; Thread count was 1 (of 4 available processors)
 #&gt; 
 #&gt; Solution count 1: 2.90479 
@@ -361,14 +359,14 @@ research &amp; management science</em>. Springer.</p>
 #&gt; Presolved: 34 rows, 2992 columns, 3030 nonzeros
 #&gt; 
 #&gt; 
-#&gt; Root relaxation: objective 4.523860e+00, 14 iterations, 0.01 seconds
+#&gt; Root relaxation: objective 4.523860e+00, 14 iterations, 0.00 seconds
 #&gt; 
 #&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
 #&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #&gt; 
 #&gt; *    0     0               0       4.5238601    4.52386  0.00%     -    0s
 #&gt; 
-#&gt; Explored 0 nodes (14 simplex iterations) in 0.02 seconds
+#&gt; Explored 0 nodes (14 simplex iterations) in 0.01 seconds
 #&gt; Thread count was 1 (of 4 available processors)
 #&gt; 
 #&gt; Solution count 1: 4.52386 

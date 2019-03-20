@@ -87,6 +87,7 @@ p3 <- p1 \%>\%
 # print problem
 print(p3)
 
+\donttest{
 # solve the problems
 s1 <- solve(p1)
 s2 <- solve(p2)
@@ -101,7 +102,7 @@ print(s3)
 plot(p1, s1)
 plot(p2, s2)
 plot(p3, s3)
-
+}
 }
 \seealso{
 \code{\link{weights}}.

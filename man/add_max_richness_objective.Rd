@@ -133,6 +133,7 @@ p1 <- problem(sim_projects, sim_actions, sim_features,
      add_max_richness_objective(budget = 200) \%>\%
      add_binary_decisions()
 
+\donttest{
 # solve problem
 s1 <- solve(p1)
 
@@ -141,11 +142,13 @@ print(s1)
 
 # plot solution
 plot(p1, s1)
+}
 
 # build another problem that includes feature weights
 p2 <- p1 \%>\%
      add_feature_weights("weight")
 
+\donttest{
 # solve problem with feature weights
 s2 <- solve(p2)
 
@@ -154,7 +157,7 @@ print(s2)
 
 # plot solution based on feature weights
 plot(p2, s2)
-
+}
 }
 \references{
 Joseph LN, Maloney RF & Possingham HP (2009) Optimal allocation of

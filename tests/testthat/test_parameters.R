@@ -22,7 +22,6 @@ test_that("proportion_parameter", {
   expect_equal(x$get(), 0.6)
   x$reset()
   expect_equal(x$get(), 0.1)
-  expect_true(inherits(x$render(), "shiny.tag"))
   # errors
   expect_error(proportion_parameter("test", NA_real_))
   expect_error(proportion_parameter("test", Inf))
@@ -33,6 +32,9 @@ test_that("proportion_parameter", {
   expect_error(x$set(-5))
   expect_error(x$set(5))
   expect_error(x$set("a"))
+  # render
+  skip_if_not_installed("shiny")
+  expect_true(inherits(x$render(), "shiny.tag"))
 })
 
 test_that("integer_parameter", {
@@ -57,7 +59,6 @@ test_that("integer_parameter", {
   expect_equal(x$get(), 4L)
   x$reset()
   expect_equal(x$get(), 1L)
-  expect_true(inherits(x$render(), "shiny.tag"))
   # errors
   expect_error(integer_parameter("test", NA_real_))
   expect_error(integer_parameter("test", Inf))
@@ -68,6 +69,9 @@ test_that("integer_parameter", {
   expect_error(x$set(-5.5))
   expect_error(x$set(5.5))
   expect_error(x$set("a"))
+  # render
+  skip_if_not_installed("shiny")
+  expect_true(inherits(x$render(), "shiny.tag"))
 })
 
 test_that("numeric_parameter", {
@@ -91,13 +95,15 @@ test_that("numeric_parameter", {
   expect_equal(x$get(), 4)
   x$reset()
   expect_equal(x$get(), 1)
-  expect_true(inherits(x$render(), "shiny.tag"))
   # errors
   expect_error(numeric_parameter("test", NA_real_))
   expect_error(numeric_parameter("test", Inf))
   expect_error(x$set(NA_real_))
   expect_error(x$set(Inf))
   expect_error(x$set("a"))
+  # render
+  skip_if_not_installed("shiny")
+  expect_true(inherits(x$render(), "shiny.tag"))
 })
 
 test_that("binary_parameter", {
@@ -122,7 +128,6 @@ test_that("binary_parameter", {
   expect_equal(x$get(), 0L)
   x$reset()
   expect_equal(x$get(), 1L)
-  expect_true(inherits(x$render(), "shiny.tag"))
   # errors
   expect_error(binary_parameter("test", NA_real_))
   expect_error(binary_parameter("test", Inf))
@@ -133,6 +138,9 @@ test_that("binary_parameter", {
   expect_error(x$set(0))
   expect_error(x$set(-1L))
   expect_error(x$set("a"))
+  ## shiny
+  skip_if_not_installed("shiny")
+  expect_true(inherits(x$render(), "shiny.tag"))
 })
 
 test_that("proportion_parameter_array", {
@@ -402,8 +410,6 @@ test_that("parameters", {
   expect_equal(unname(sort(x$names())), c(p1$name, p2$name))
   expect_equal(x$get(p1$id), p1$get())
   expect_equal(x$get(p1$name), p1$get())
-  expect_equal(x$render(p1$id), p1$render())
-  expect_equal(x$render(p1$name), p1$render())
   x$set(p1$id, 0.9)
   x$set(p2$name, data.frame(value = c(0.1, 5, 0.2),
                             row.names = c("a", "b", "c")))
@@ -428,5 +434,8 @@ test_that("parameters", {
                                 row.names = c("a", "b", "d"))))
   # render
   skip_if_not_installed("rhandsontable")
+  skip_if_not_installed("shiny")
+  expect_equal(x$render(p1$id), p1$render())
+  expect_equal(x$render(p1$name), p1$render())
   expect_is(x$render_all(), "shiny.tag")
 })

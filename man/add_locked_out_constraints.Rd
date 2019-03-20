@@ -70,6 +70,7 @@ p4 <- p1 \%>\%
 # print problem
 print(p4)
 
+\donttest{
 # solve problems
 s1 <- solve(p1)
 s2 <- solve(p2)
@@ -81,5 +82,5 @@ print(s1[, sim_actions$name])
 print(s2[, sim_actions$name])
 print(s3[, sim_actions$name])
 print(s4[, sim_actions$name])
-
+}
 }

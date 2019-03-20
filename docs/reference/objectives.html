@@ -74,7 +74,7 @@ a specified objective will throw an error." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.1</span>
       </span>
     </div>
 
@@ -196,9 +196,7 @@ resources among threatened species: A project prioritization protocol.
 <span class='no'>p1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_actions</span>, <span class='no'>sim_features</span>,
              <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span>) <span class='kw'>%&gt;%</span>
      <span class='fu'><a href='add_max_richness_objective.html'>add_max_richness_objective</a></span>(<span class='kw'>budget</span> <span class='kw'>=</span> <span class='fl'>200</span>) <span class='kw'>%&gt;%</span>
-     <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span>()
-
-<span class='co'># solve problem</span>
+     <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span>()</div><div class='input'><span class='co'># solve problem</span>
 <span class='no'>s1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p1</span>)</div><div class='output co'>#&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
 #&gt; Variable types: 0 continuous, 42 integer (42 binary)
 #&gt; Semi-Variable types: 5 continuous, 0 integer
@@ -238,12 +236,12 @@ resources among threatened species: A project prioritization protocol.
 #&gt; #   F2_project </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F3_project </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F4_project </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F5_project </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
 #&gt; #   baseline_project </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F1 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F2 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F3 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F4 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F5 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># plot solution</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>p1</span>, <span class='no'>s1</span>)</div><div class='img'><img src='objectives-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>p1</span>, <span class='no'>s1</span>)</div><div class='img'><img src='objectives-1.png' alt='' width='700' height='433' /></div></span><div class='input'>
 <span class='co'># build problem with maximum phylogenetic diversity objective and $200 budget</span>
 <span class='no'>p2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_actions</span>, <span class='no'>sim_features</span>,
              <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span>) <span class='kw'>%&gt;%</span>
      <span class='fu'><a href='add_max_phylo_div_objective.html'>add_max_phylo_div_objective</a></span>(<span class='kw'>budget</span> <span class='kw'>=</span> <span class='fl'>200</span>, <span class='kw'>tree</span> <span class='kw'>=</span> <span class='no'>sim_tree</span>) <span class='kw'>%&gt;%</span>
-     <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span>()</div></span><div class='input'><span class='co'># solve problem</span>
+     <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span>()</div><div class='input'><span class='co'># solve problem</span>
 <span class='no'>s2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p2</span>)</div><div class='output co'>#&gt; Optimize a model with 50 rows, 50 columns and 123 nonzeros
 #&gt; Model has 3 piecewise-linear objective terms
 #&gt; Variable types: 3 continuous, 42 integer (42 binary)
@@ -273,7 +271,7 @@ resources among threatened species: A project prioritization protocol.
 #&gt; *    1     3               1       2.1724148    2.59317  19.4%   3.0    0s
 #&gt; *    5     3               2       2.5726722    2.57267  0.00%   3.6    0s
 #&gt; 
-#&gt; Explored 6 nodes (37 simplex iterations) in 0.04 seconds
+#&gt; Explored 6 nodes (37 simplex iterations) in 0.02 seconds
 #&gt; Thread count was 1 (of 4 available processors)
 #&gt; 
 #&gt; Solution count 1: 2.57267 
@@ -295,9 +293,7 @@ resources among threatened species: A project prioritization protocol.
              <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span>) <span class='kw'>%&gt;%</span>
      <span class='fu'><a href='add_max_targets_met_objective.html'>add_max_targets_met_objective</a></span>(<span class='kw'>budget</span> <span class='kw'>=</span> <span class='fl'>200</span>) <span class='kw'>%&gt;%</span>
      <span class='fu'><a href='add_absolute_targets.html'>add_absolute_targets</a></span>(<span class='fl'>0.4</span>) <span class='kw'>%&gt;%</span>
-     <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span>()
-
-<span class='co'># solve problem</span>
+     <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span>()</div><div class='input'><span class='co'># solve problem</span>
 <span class='no'>s3</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p3</span>)</div><div class='output co'>#&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
 #&gt; Variable types: 0 continuous, 47 integer (47 binary)
 #&gt; Coefficient statistics:
@@ -336,16 +332,14 @@ resources among threatened species: A project prioritization protocol.
 #&gt; #   F2_project </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F3_project </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F4_project </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F5_project </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
 #&gt; #   baseline_project </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F1 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F2 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F3 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F4 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, F5 </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># plot solution</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>p3</span>, <span class='no'>s3</span>)</div><div class='img'><img src='objectives-3.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>p3</span>, <span class='no'>s3</span>)</div><div class='img'><img src='objectives-3.png' alt='' width='700' height='433' /></div></span><div class='input'>
 <span class='co'># build problem with minimum set objective, $200 budget, and 40\%</span>
 <span class='co'># persistence targets</span>
 <span class='no'>p4</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_actions</span>, <span class='no'>sim_features</span>,
              <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span>) <span class='kw'>%&gt;%</span>
      <span class='fu'><a href='add_min_set_objective.html'>add_min_set_objective</a></span>() <span class='kw'>%&gt;%</span>
      <span class='fu'><a href='add_absolute_targets.html'>add_absolute_targets</a></span>(<span class='fl'>0.4</span>) <span class='kw'>%&gt;%</span>
-     <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span>()
-
-<span class='co'># solve problem</span>
+     <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span>()</div><div class='input'><span class='co'># solve problem</span>
 <span class='no'>s4</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p4</span>)</div><div class='output co'>#&gt; Optimize a model with 46 rows, 42 columns and 92 nonzeros
 #&gt; Variable types: 0 continuous, 42 integer (42 binary)
 #&gt; Coefficient statistics:
@@ -367,7 +361,7 @@ resources among threatened species: A project prioritization protocol.
 #&gt; Optimal solution found (tolerance 0.00e+00)
 #&gt; Best objective 4.977671458279e+02, best bound 4.977671458279e+02, gap 0.0000%</div><div class='input'>
 <span class='co'># print solution</span>
-<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s4</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 21</span><span>
+<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s4</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 21</span><span>
 #&gt;   solution status   obj  cost F1_action F2_action F3_action F4_action F5_action
 #&gt;      </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 OPTIM~  498.  498.         1         1         1         1         1

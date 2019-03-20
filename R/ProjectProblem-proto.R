@@ -307,7 +307,7 @@ ProjectProblem <- pproto(
   decisions = new_waiver(),
   targets = new_waiver(),
   constraints = pproto(NULL, Collection),
-  solver  = new_waiver(),
+  solver = new_waiver(),
   print = function(self) {
     r <- vapply(list(self$objective, self$targets), function(x) {
       if (is.Waiver(x))

@@ -69,7 +69,6 @@ set.seed(500)
 # load the ggplot2 R package to customize plots
 library(ggplot2)
 
-\donttest{
 data(sim_projects, sim_features, sim_actions)
 
 # build problem
@@ -79,6 +78,7 @@ p <- problem(sim_projects, sim_actions, sim_features,
      add_binary_decisions() \%>\%
      add_heuristic_solver(number_solutions = 10)
 
+\donttest{
 # solve problem
 s <- solve(p)
 

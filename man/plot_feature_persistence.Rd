@@ -72,6 +72,7 @@ p <- problem(sim_projects, sim_actions, sim_features,
       add_binary_decisions() \%>\%
       add_heuristic_solver(n = 10)
 
+\donttest{
 # solve problem
 s <- solve(p)
 
@@ -89,4 +90,5 @@ plot(p, s) + ggtitle("solution")
 # we can also obtain the raw plotting data using return_data=TRUE
 plot_data <- plot(p, s, return_data = TRUE)
 print(plot_data)
+}
 }

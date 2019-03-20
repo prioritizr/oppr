@@ -62,6 +62,7 @@ p2 <- problem(sim_projects, sim_actions, sim_features,
 # print problem
 print(p2)
 
+\donttest{
 # solve problems
 s1 <- solve(p1)
 s2 <- solve(p2)
@@ -73,6 +74,7 @@ print(s2)
 # plot solutions
 plot(p1, s1)
 plot(p2, s2)
+}
 }
 \seealso{
 \code{\link{constraints}}, \code{\link{decisions}},

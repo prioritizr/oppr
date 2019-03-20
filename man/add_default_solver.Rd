@@ -40,6 +40,7 @@ p <- problem(sim_projects, sim_actions, sim_features,
 # print problem
 print(p)
 
+\donttest{
 # solve problem
 s <- solve(p)
 
@@ -48,7 +49,7 @@ print(s)
 
 # plot solution
 plot(p, s)
-
+}
 }
 \seealso{
 \code{\link{solvers}}.

@@ -55,6 +55,7 @@ p1 <- problem(sim_projects, sim_actions, sim_features,
      add_max_richness_objective(budget = 200) \%>\%
      add_binary_decisions()
 
+\donttest{
 # solve problem
 s1 <- solve(p1)
 
@@ -63,12 +64,14 @@ print(s1)
 
 # plot solution
 plot(p1, s1)
+}
 
 # build problem with maximum phylogenetic diversity objective and $200 budget
 p2 <- problem(sim_projects, sim_actions, sim_features,
              "name", "success", "name", "cost", "name") \%>\%
      add_max_phylo_div_objective(budget = 200, tree = sim_tree) \%>\%
      add_binary_decisions()
+
 \donttest{
 # solve problem
 s2 <- solve(p2)
@@ -87,6 +90,7 @@ p3 <- problem(sim_projects, sim_actions, sim_features,
      add_absolute_targets(0.4) \%>\%
      add_binary_decisions()
 
+\donttest{
 # solve problem
 s3 <- solve(p3)
 
@@ -95,6 +99,7 @@ print(s3)
 
 # plot solution
 plot(p3, s3)
+}
 
 # build problem with minimum set objective, $200 budget, and 40\\\%
 # persistence targets
@@ -104,6 +109,7 @@ p4 <- problem(sim_projects, sim_actions, sim_features,
      add_absolute_targets(0.4) \%>\%
      add_binary_decisions()
 
+\donttest{
 # solve problem
 s4 <- solve(p4)
 
@@ -112,6 +118,7 @@ print(s4)
 
 # plot solution
 plot(p4, s4)
+}
 }
 \references{
 Ball IR, Possingham HP & Watts M (2009) Marxan and relatives: software for

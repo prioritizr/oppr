@@ -41,6 +41,7 @@ NULL
 #'       add_binary_decisions() %>%
 #'       add_heuristic_solver(n = 10)
 #'
+#' \donttest{
 #' # solve problem
 #' s <- solve(p)
 #'
@@ -58,6 +59,7 @@ NULL
 #' # we can also obtain the raw plotting data using return_data=TRUE
 #' plot_data <- plot(p, s, return_data = TRUE)
 #' print(plot_data)
+#' }
 #' @export
 plot_feature_persistence <- function(x, solution, n = 1, symbol_hjust = 0.007,
                                      return_data = FALSE) {

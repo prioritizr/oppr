@@ -132,6 +132,7 @@ p <- problem(sim_projects, sim_actions, sim_features,
       add_absolute_targets(0.3) \%>\%
       add_binary_decisions()
 
+\donttest{
 # solve problem
 s <- solve(p)
 
@@ -141,7 +142,7 @@ print(s)
 # plot solution, and add a dashed line to indicate the feature targets
 plot(p, s) +
 geom_hline(yintercept = 0.3, linetype = "dashed")
-
+}
 }
 \references{
 Ball IR, Possingham HP & Watts M (2009) Marxan and relatives: software for

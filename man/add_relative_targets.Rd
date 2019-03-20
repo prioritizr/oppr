@@ -89,6 +89,7 @@ p3 <- problem(sim_projects, sim_actions, sim_features,
       add_relative_targets("target") \%>\%
       add_binary_decisions()
 
+\donttest{
 # print problem
 print(p3)
 
@@ -106,7 +107,7 @@ print(s3)
 plot(p1, s1)
 plot(p2, s2)
 plot(p3, s3)
-
+}
 }
 \seealso{
 \code{\link{targets}}.

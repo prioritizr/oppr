@@ -132,6 +132,7 @@ NULL
 #'       add_absolute_targets(0.3) %>%
 #'       add_binary_decisions()
 #'
+#' \donttest{
 #' # solve problem
 #' s <- solve(p)
 #'
@@ -141,7 +142,7 @@ NULL
 #' # plot solution, and add a dashed line to indicate the feature targets
 #' plot(p, s) +
 #' geom_hline(yintercept = 0.3, linetype = "dashed")
-#'
+#' }
 #' @name add_min_set_objective
 NULL
 
