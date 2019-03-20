@@ -1,3 +1,7 @@
+# oppr 0.0.2
+
+- CRAN release.
+
 # oppr 0.0.1.1
 
 - Fix address sanitizer issues causing CRAN checks to fail.
