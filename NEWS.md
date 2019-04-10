@@ -1,3 +1,11 @@
+# oppr 0.0.3
+
+- CRAN release.
+
+# oppr 0.0.2.1
+
+- Retain debugging symbols to conform with CRAN policies.
+
 # oppr 0.0.2
 
 - CRAN release.
