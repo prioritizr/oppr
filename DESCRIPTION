@@ -1,6 +1,6 @@
 Package: oppr
 Type: Package
-Version: 0.0.3
+Version: 0.0.4
 Title: Optimal Project Prioritization
 Description: A decision support tool for prioritizing conservation projects.
     Prioritizations can be developed by maximizing expected feature richness,
@@ -20,7 +20,7 @@ Authors@R: c(person(c('Jeffrey', 'O'), 'Hanson',
                email='mail@richard-schuster.com', role = c('aut')),
              person(c('Matthew'), 'Strimas-Mackey',
                email='mstrimas@gmail.com', role = c('aut')),
-             person(c('Joeseph'), 'Bennett',
+             person(c('Joseph'), 'Bennett',
                email='joseph.bennett@carleton.ca', role = c('aut')))
 Imports:
     utils,

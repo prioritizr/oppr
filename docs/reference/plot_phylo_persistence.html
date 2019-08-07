@@ -65,7 +65,7 @@ into the future under a solution to a project prioritization problem." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3.1</span>
       </span>
     </div>
 
@@ -224,28 +224,28 @@ Evolution</em>, <strong>8</strong>: 28--36.</p>
 <span class='co'># since this function returns a ggplot2 plot object, we can customize the</span>
 <span class='co'># appearance of the plot using standard ggplot2 commands!</span>
 <span class='co'># for example, we can add a title</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>p</span>, <span class='no'>s</span>) + <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/labs'>ggtitle</a></span>(<span class='st'>"solution"</span>)</div><div class='img'><img src='plot_phylo_persistence-3.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>p</span>, <span class='no'>s</span>) + <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ggtitle</a></span>(<span class='st'>"solution"</span>)</div><div class='img'><img src='plot_phylo_persistence-3.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># we could also also set the minimum and maximum values in the color ramp to</span>
 <span class='co'># correspond to those in the data, rather than being capped at 0 and 1</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>p</span>, <span class='no'>s</span>) +
-<span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/scale_gradient'>scale_color_gradientn</a></span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"Probability of\npersistence"</span>,
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_gradient.html'>scale_color_gradientn</a></span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"Probability of\npersistence"</span>,
                       <span class='kw'>colors</span> <span class='kw'>=</span> <span class='kw pkg'>viridisLite</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/viridisLite/topics/viridis'>inferno</a></span>(<span class='fl'>150</span>, <span class='kw'>begin</span> <span class='kw'>=</span> <span class='fl'>0</span>,
                                                     <span class='kw'>end</span> <span class='kw'>=</span> <span class='fl'>0.9</span>,
                                                     <span class='kw'>direction</span> <span class='kw'>=</span> -<span class='fl'>1</span>)) +
-<span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/labs'>ggtitle</a></span>(<span class='st'>"solution"</span>)</div><div class='output co'>#&gt; <span class='message'>Scale for 'colour' is already present. Adding another scale for 'colour',</span>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ggtitle</a></span>(<span class='st'>"solution"</span>)</div><div class='output co'>#&gt; <span class='message'>Scale for 'colour' is already present. Adding another scale for 'colour',</span>
 #&gt; <span class='message'>which will replace the existing scale.</span></div><div class='img'><img src='plot_phylo_persistence-4.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># we could also change the color ramp</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>p</span>, <span class='no'>s</span>) +
-<span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/scale_gradient'>scale_color_gradient</a></span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"Probability of\npersistence"</span>,
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_gradient.html'>scale_color_gradient</a></span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"Probability of\npersistence"</span>,
                      <span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='kw'>high</span> <span class='kw'>=</span> <span class='st'>"black"</span>) +
-<span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/labs'>ggtitle</a></span>(<span class='st'>"solution"</span>)</div><div class='output co'>#&gt; <span class='message'>Scale for 'colour' is already present. Adding another scale for 'colour',</span>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ggtitle</a></span>(<span class='st'>"solution"</span>)</div><div class='output co'>#&gt; <span class='message'>Scale for 'colour' is already present. Adding another scale for 'colour',</span>
 #&gt; <span class='message'>which will replace the existing scale.</span></div><div class='img'><img src='plot_phylo_persistence-5.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># we could even hide the legend if desired</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>p</span>, <span class='no'>s</span>) +
-<span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/scale_gradient'>scale_color_gradient</a></span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"Probability of\npersistence"</span>,
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_gradient.html'>scale_color_gradient</a></span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"Probability of\npersistence"</span>,
                      <span class='kw'>low</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='kw'>high</span> <span class='kw'>=</span> <span class='st'>"black"</span>) +
-<span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/theme'>theme</a></span>(<span class='kw'>legend.position</span> <span class='kw'>=</span> <span class='st'>"hide"</span>) +
-<span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/labs'>ggtitle</a></span>(<span class='st'>"solution"</span>)</div><div class='output co'>#&gt; <span class='message'>Scale for 'colour' is already present. Adding another scale for 'colour',</span>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span>(<span class='kw'>legend.position</span> <span class='kw'>=</span> <span class='st'>"hide"</span>) +
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ggtitle</a></span>(<span class='st'>"solution"</span>)</div><div class='output co'>#&gt; <span class='message'>Scale for 'colour' is already present. Adding another scale for 'colour',</span>
 #&gt; <span class='message'>which will replace the existing scale.</span></div><div class='img'><img src='plot_phylo_persistence-6.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># we can also obtain the raw plotting data using return_data=TRUE</span>
 <span class='no'>plot_data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>p</span>, <span class='no'>s</span>, <span class='kw'>return_data</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
@@ -283,7 +283,7 @@ Evolution</em>, <strong>8</strong>: 28--36.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://jeffrey-hanson.com'>Jeffrey O Hanson</a>, <a href='http://www.richard-schuster.com/'>Richard Schuster</a>, <a href='http://strimas.com'>Matthew Strimas-Mackey</a>, <a href='https://josephrbennett.wordpress.com/'>Joeseph Bennett</a>.</p>
+  <p>Developed by <a href='https://jeffrey-hanson.com'>Jeffrey O Hanson</a>, <a href='http://www.richard-schuster.com/'>Richard Schuster</a>, <a href='http://strimas.com'>Matthew Strimas-Mackey</a>, Joseph Bennett.</p>
 </div>
 
 <div class="pkgdown">

@@ -64,7 +64,7 @@ the future under a solution to a project prioritization problem." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3.1</span>
       </span>
     </div>
 
@@ -163,7 +163,7 @@ the plot be returned instead of the plot? Defaults to <code>FALSE</code>.</p></t
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code><a href='https://www.rdocumentation.org/packages/ggplot2/topics/ggplot'>ggplot</a></code> object, or a
+    <p>A <code><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></code> object, or a
   <code><a href='https://tibble.tidyverse.org/reference/tbl_df-class.html'>tbl_df</a></code> object if <code>return_data</code> is
   <code>TRUE</code>.</p>
     
@@ -207,7 +207,7 @@ the plot be returned instead of the plot? Defaults to <code>FALSE</code>.</p></t
 <span class='co'># since this function returns a ggplot2 plot object, we can customize the</span>
 <span class='co'># appearance of the plot using standard ggplot2 commands!</span>
 <span class='co'># for example, we can add a title</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>p</span>, <span class='no'>s</span>) + <span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/labs'>ggtitle</a></span>(<span class='st'>"solution"</span>)</div><div class='img'><img src='plot_feature_persistence-3.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>p</span>, <span class='no'>s</span>) + <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ggtitle</a></span>(<span class='st'>"solution"</span>)</div><div class='img'><img src='plot_feature_persistence-3.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># we can also obtain the raw plotting data using return_data=TRUE</span>
 <span class='no'>plot_data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>p</span>, <span class='no'>s</span>, <span class='kw'>return_data</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 <span class='fu'><a href='print.html'>print</a></span>(<span class='no'>plot_data</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 5 x 4</span><span>
@@ -236,7 +236,7 @@ the plot be returned instead of the plot? Defaults to <code>FALSE</code>.</p></t
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://jeffrey-hanson.com'>Jeffrey O Hanson</a>, <a href='http://www.richard-schuster.com/'>Richard Schuster</a>, <a href='http://strimas.com'>Matthew Strimas-Mackey</a>, <a href='https://josephrbennett.wordpress.com/'>Joeseph Bennett</a>.</p>
+  <p>Developed by <a href='https://jeffrey-hanson.com'>Jeffrey O Hanson</a>, <a href='http://www.richard-schuster.com/'>Richard Schuster</a>, <a href='http://strimas.com'>Matthew Strimas-Mackey</a>, Joseph Bennett.</p>
 </div>
 
 <div class="pkgdown">

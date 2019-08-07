@@ -78,7 +78,7 @@ for specific features (see add_feature_weights)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3.1</span>
       </span>
     </div>
 
@@ -329,7 +329,7 @@ threat management. <em>Conservation Biology</em>, <strong>29</strong>, 525--536.
 <span class='co'># scenario, and the project for F3 was prioritized for funding</span>
 <span class='co'># so that its probability of persistence meets the target</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>p1</span>, <span class='no'>s1</span>) +
-<span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/geom_abline'>geom_hline</a></span>(<span class='kw'>yintercept</span> <span class='kw'>=</span> <span class='fl'>0.2</span>, <span class='kw'>linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>)</div><div class='img'><img src='add_max_targets_met_objective-1.png' alt='' width='700' height='433' /></div></span><div class='input'>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_abline.html'>geom_hline</a></span>(<span class='kw'>yintercept</span> <span class='kw'>=</span> <span class='fl'>0.2</span>, <span class='kw'>linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>)</div><div class='img'><img src='add_max_targets_met_objective-1.png' alt='' width='700' height='433' /></div></span><div class='input'>
 <span class='co'># build another problem that includes feature weights</span>
 <span class='no'>p2</span> <span class='kw'>&lt;-</span> <span class='no'>p1</span> <span class='kw'>%&gt;%</span>
       <span class='fu'><a href='add_feature_weights.html'>add_feature_weights</a></span>(<span class='st'>"weight"</span>)</div><div class='input'><span class='co'># solve problem</span>
@@ -377,7 +377,7 @@ threat management. <em>Conservation Biology</em>, <strong>29</strong>, 525--536.
 <span class='co'># specifically, the projects for feature F1 and F5 have been funded</span>
 <span class='co'># to enhance their probability of persistence</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>p2</span>, <span class='no'>s2</span>) +
-<span class='fu'><a href='https://www.rdocumentation.org/packages/ggplot2/topics/geom_abline'>geom_hline</a></span>(<span class='kw'>yintercept</span> <span class='kw'>=</span> <span class='fl'>0.2</span>, <span class='kw'>linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>)</div><div class='img'><img src='add_max_targets_met_objective-2.png' alt='' width='700' height='433' /></div></span></pre>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_abline.html'>geom_hline</a></span>(<span class='kw'>yintercept</span> <span class='kw'>=</span> <span class='fl'>0.2</span>, <span class='kw'>linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>)</div><div class='img'><img src='add_max_targets_met_objective-2.png' alt='' width='700' height='433' /></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -400,7 +400,7 @@ threat management. <em>Conservation Biology</em>, <strong>29</strong>, 525--536.
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://jeffrey-hanson.com'>Jeffrey O Hanson</a>, <a href='http://www.richard-schuster.com/'>Richard Schuster</a>, <a href='http://strimas.com'>Matthew Strimas-Mackey</a>, <a href='https://josephrbennett.wordpress.com/'>Joeseph Bennett</a>.</p>
+  <p>Developed by <a href='https://jeffrey-hanson.com'>Jeffrey O Hanson</a>, <a href='http://www.richard-schuster.com/'>Richard Schuster</a>, <a href='http://strimas.com'>Matthew Strimas-Mackey</a>, Joseph Bennett.</p>
 </div>
 
 <div class="pkgdown">

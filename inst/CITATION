@@ -17,7 +17,7 @@ citEntry(
     person(c("Jeffrey", "O"), "Hanson"),
     person(c("Richard"), "Schuster"),
     person(c("Matthew"), "Strimas-Mackey"),
-    person(c("Joeseph"), "Bennett")),
+    person(c("Joseph"), "Bennett")),
   title = "oppr: Optimal Project Prioritization",
   year = year,
   note = paste("R package version", meta$Version),
