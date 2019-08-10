@@ -91,7 +91,7 @@ be installed.
   \href{http://www.gurobi.com/documentation/8.1/quickstart_windows/software_installation_guid.html}{Windows} operating systems). Although
   \href{https://www.gurobi.com}{Gurobi} is a commercial software, academics
   can obtain a
-  \href{https://user.gurobi.com/download/licenses/free-academic}{special license for no cost}. After installing the
+  \href{https://www.gurobi.com/downloads/end-user-license-agreement-academic/}{special license for no cost}. After installing the
   \href{https://www.gurobi.com}{Gurobi} optimization suite, the \pkg{gurobi}
   package can then be installed (see instructions for \href{http://www.gurobi.com/documentation/8.1/quickstart_linux/r_installing_the_r_package.html}{Linux},
   \href{http://www.gurobi.com/documentation/8.1/quickstart_mac/r_installing_the_r_package.html}{Mac OSX}, and

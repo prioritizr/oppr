@@ -4,7 +4,8 @@
 
 # oppr 0.0.3.1
 
-- Fix spelling of coauthor first name.
+- Fix typo.
+- Fix broken links to Gurobi academic licenses.
 
 # oppr 0.0.3 (released)
 

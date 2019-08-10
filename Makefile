@@ -48,11 +48,15 @@ check:
 	touch inst/doc/.gitkeep
 
 wbcheck:
-	R --slave -e "devtools::build_win()"
+	R --slave -e "devtools::check_win_devel()"
+	R --slave -e "devtools::check_win_release()"
 	cp -R doc inst/
 
 solarischeck:
 	R --slave -e "rhub::check(platform = 'solaris-x86-patched', email = 'jeffrey.hanson@uqconnect.edu.au', show_status = FALSE)"
+
+asancheck:
+	R --slave -e "rhub::check(platform = 'linux-x86_64-rocker-gcc-san', email = 'jeffrey.hanson@uqconnect.edu.au', show_status = FALSE)"
 
 build:
 	R --slave -e "devtools::build()"

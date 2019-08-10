@@ -29,7 +29,7 @@ The _oppr R_ package is decision support tool for prioritizing conservation proj
 
 ## Installation
 
-The latest official version of the _oppr R_ package can be installed using the following _R_ code. We also recommend installing the [Gurobi optimization suite](http://www.gurobi.com/) and [_gurobi R_ package](https://www.gurobi.com/documentation/8.1/refman/r_api_overview.html) to obtain solutions very quickly. For instructions on installing these software packages, please refer to [this installation guide](https://cran.r-project.org/web/packages/prioritizr/vignettes/gurobi_installation.html).
+The latest official version of the _oppr R_ package can be installed using the following _R_ code. We also recommend installing the [Gurobi optimization suite](http://www.gurobi.com/) and [_gurobi R_ package](https://www.gurobi.com/documentation/8.1/refman/r_api_overview.html) to obtain solutions very quickly. For instructions on installing these software packages, please refer to [this installation guide](https://CRAN.R-project.org/package=prioritizr/vignettes/gurobi_installation.html).
 
 ```{r, eval = FALSE}
 install.packages("oppr", repos = "https://cran.rstudio.com/")

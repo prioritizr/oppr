@@ -65,7 +65,7 @@ similar to species-based prioritizations (e.g. Bennett et al. 2014)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.4</span>
       </span>
     </div>
 
@@ -336,15 +336,15 @@ threatened species in New Zealand. <em>Biological Conservation</em>,
 <span class='co'># print data set</span>
 <span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s</span>)</div><div class='output co'>#&gt; $projects
 #&gt; <span style='color: #949494;'># A tibble: 6 x 13</span><span>
-#&gt;   name  success      F1      F2     F3     F4     F5 F1_action F2_action
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>    
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> F1_p~   0.738  0.651  </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     TRUE      FALSE    
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> F2_p~   0.720 </span><span style='color: #BB0000;'>NA</span><span>       0.837  </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     FALSE     TRUE     
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> F3_p~   0.711 </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>       0.830 </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     FALSE     FALSE    
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> F4_p~   0.879 </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>      0.516 </span><span style='color: #BB0000;'>NA</span><span>     FALSE     FALSE    
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> F5_p~   0.728 </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>      0.872 FALSE     FALSE    
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> base~   1      0.027</span><span style='text-decoration: underline;'>9</span><span>  0.085</span><span style='text-decoration: underline;'>9</span><span>  0.174  0.335  0.199 FALSE     FALSE    
-#&gt; </span><span style='color: #949494;'># ... with 4 more variables: F3_action </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #949494;'>, F4_action </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #949494;'>, F5_action </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #949494;'>,
+#&gt;   name  success     F1     F2     F3     F4     F5 F1_action F2_action F3_action
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>    
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> F1_p~   0.711  0.830 </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     TRUE      FALSE     FALSE    
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> F2_p~   0.879 </span><span style='color: #BB0000;'>NA</span><span>      0.516 </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     FALSE     TRUE      FALSE    
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> F3_p~   0.728 </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>      0.872 </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     FALSE     FALSE     TRUE     
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> F4_p~   0.809 </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>      0.518 </span><span style='color: #BB0000;'>NA</span><span>     FALSE     FALSE     FALSE    
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> F5_p~   0.944 </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>      0.578 FALSE     FALSE     FALSE    
+#&gt; </span><span style='color: #BCBCBC;'>6</span><span> base~   1      0.174  0.335  0.199  0.343  0.240 FALSE     FALSE     FALSE    
+#&gt; </span><span style='color: #949494;'># ... with 3 more variables: F4_action </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #949494;'>, F5_action </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #949494;'>,
 #&gt; #   baseline_action </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>
 #&gt; 
 #&gt; $actions
@@ -362,11 +362,11 @@ threatened species in New Zealand. <em>Biological Conservation</em>,
 #&gt; </span><span style='color: #949494;'># A tibble: 5 x 2</span><span>
 #&gt;   name  weight
 #&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> F1    0.336 
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> F2    0.336 
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> F3    0.491 
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> F4    0.052</span><span style='text-decoration: underline;'>9</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> F5    0.052</span><span style='text-decoration: underline;'>9</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> F1     0.483
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> F2     0.170
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> F3     0.170
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> F4     0.247
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> F5     0.499
 #&gt; 
 #&gt; $tree
 #&gt; 

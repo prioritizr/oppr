@@ -10,7 +10,7 @@ The *oppr R* package is decision support tool for prioritizing conservation proj
 Installation
 ------------
 
-The latest official version of the *oppr R* package can be installed using the following *R* code. We also recommend installing the [Gurobi optimization suite](http://www.gurobi.com/) and [*gurobi R* package](https://www.gurobi.com/documentation/8.1/refman/r_api_overview.html) to obtain solutions very quickly. For instructions on installing these software packages, please refer to [this installation guide](https://cran.r-project.org/web/packages/prioritizr/vignettes/gurobi_installation.html).
+The latest official version of the *oppr R* package can be installed using the following *R* code. We also recommend installing the [Gurobi optimization suite](http://www.gurobi.com/) and [*gurobi R* package](https://www.gurobi.com/documentation/8.1/refman/r_api_overview.html) to obtain solutions very quickly. For instructions on installing these software packages, please refer to [this installation guide](https://CRAN.R-project.org/package=prioritizr/vignettes/gurobi_installation.html).
 
 ``` r
 install.packages("oppr", repos = "https://cran.rstudio.com/")
@@ -181,8 +181,8 @@ Citation
     To cite the oppr package in publications, please use:
 
       Hanson JO, Schuster R, Strimas-Mackey M, Bennett J (2019) oppr:
-      Optimal Project Prioritization R package version 0.0.3.1.
-      https://github.com/prioritizr/oppr
+      Optimal Project Prioritization R package version 0.0.4.
+      https://CRAN.R-project.org/package=oppr
 
     A BibTeX entry for LaTeX users is
 
@@ -190,6 +190,6 @@ Citation
         author = {Jeffrey O Hanson and Richard Schuster and Matthew Strimas-Mackey and Joseph Bennett},
         title = {oppr: Optimal Project Prioritization},
         year = {2019},
-        note = {R package version 0.0.3.1},
-        url = {https://github.com/prioritizr/oppr},
+        note = {R package version 0.0.4},
+        url = {https://CRAN.R-project.org/package=oppr},
       }

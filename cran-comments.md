@@ -1,6 +1,6 @@
 Dear CRAN maintainers,
 
-I received an email from Prof Brian Ripley informing me that CRAN policies require packages to retain debugging symbols. In earlier versions of this package, debugging symbols were unconditionally stripped from shared object library files. This version addresses this issue.
+This update fixes a broken URL in the package documentation and a typo in the first name of one of the package authors.
 
 Cheers,
 
@@ -8,7 +8,7 @@ Jeff
 
 ## R CMD check results
 
-0 errors | 0 warnings | 3 note
+0 errors | 0 warnings | 2 note
 
 ## Notes
 
@@ -32,7 +32,6 @@ Jeff
 * [Windows Server 2012 R2 (x64), R-release (appveyor)](https://ci.appveyor.com/project/jeffreyhanson/oppr)
 * Windows Server 2008 (x64), R-release (win-builder)
 * Windows Server 2008 (x64), R-devel (win-builder)
-* [Ubuntu 18.04, R-devel, GCC ASAN](https://hub.docker.com/r/wch1/r-debug)
 
 ## Downstream dependencies
 

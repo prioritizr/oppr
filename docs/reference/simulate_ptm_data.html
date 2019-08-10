@@ -67,7 +67,7 @@ share actions." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.4</span>
       </span>
     </div>
 
@@ -353,15 +353,15 @@ Management for biodiversity conservation: A handbook.
 <span class='co'># print data set</span>
 <span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s</span>)</div><div class='output co'>#&gt; $projects
 #&gt; <span style='color: #949494;'># A tibble: 7 x 16</span><span>
-#&gt;   name  success     F1     F2      F3      F4     F5 action_1 action_2 action_3
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> proj~   0.770 </span><span style='color: #BB0000;'>NA</span><span>      0.556 </span><span style='color: #BB0000;'>NA</span><span>       0.755  </span><span style='color: #BB0000;'>NA</span><span>     FALSE    TRUE     FALSE   
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> proj~   0.840 </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>      0.894  </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>     TRUE     TRUE     TRUE    
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> proj~   0.954 </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>       0.679   0.760 FALSE    TRUE     FALSE   
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> proj~   0.931 </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>       0.880   0.878 TRUE     FALSE    TRUE    
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> proj~   0.899  0.691  0.839 </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>     FALSE    TRUE     TRUE    
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> proj~   0.867 </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>      0.845  </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>     TRUE     TRUE     TRUE    
-#&gt; </span><span style='color: #BCBCBC;'>7</span><span> base~   1      0.376  0.303  0.096</span><span style='text-decoration: underline;'>3</span><span>  0.013</span><span style='text-decoration: underline;'>0</span><span>  0.300 FALSE    FALSE    FALSE   
+#&gt;   name  success      F1      F2     F3     F4    F5 action_1 action_2 action_3
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>   
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> proj~   0.931 </span><span style='color: #BB0000;'>NA</span><span>       0.533   0.606 </span><span style='color: #BB0000;'>NA</span><span>     0.878 TRUE     TRUE     TRUE    
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> proj~   0.899  0.691  </span><span style='color: #BB0000;'>NA</span><span>       0.668  0.509 0.889 TRUE     TRUE     TRUE    
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> proj~   0.867  0.644   0.544   0.845 </span><span style='color: #BB0000;'>NA</span><span>     0.547 TRUE     TRUE     TRUE    
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> proj~   0.892 </span><span style='color: #BB0000;'>NA</span><span>       0.791  </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     0.666 TRUE     FALSE    TRUE    
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> proj~   0.876  0.556  </span><span style='color: #BB0000;'>NA</span><span>       0.755  0.837 0.800 TRUE     FALSE    FALSE   
+#&gt; </span><span style='color: #BCBCBC;'>6</span><span> proj~   0.932  0.517   0.894  </span><span style='color: #BB0000;'>NA</span><span>      0.520 0.663 TRUE     FALSE    TRUE    
+#&gt; </span><span style='color: #BCBCBC;'>7</span><span> base~   1      0.086</span><span style='text-decoration: underline;'>8</span><span>  0.069</span><span style='text-decoration: underline;'>2</span><span>  0.321  0.376 0.303 FALSE    FALSE    FALSE   
 #&gt; </span><span style='color: #949494;'># ... with 6 more variables: action_4 </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #949494;'>, action_5 </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #949494;'>, action_6 </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #949494;'>,
 #&gt; #   action_7 </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #949494;'>, action_8 </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #949494;'>, baseline_action </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>
 #&gt; 
@@ -369,25 +369,25 @@ Management for biodiversity conservation: A handbook.
 #&gt; </span><span style='color: #949494;'># A tibble: 9 x 4</span><span>
 #&gt;   name             cost locked_in locked_out
 #&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>     
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> action_1        105.  TRUE      FALSE     
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> action_2        101.  FALSE     FALSE     
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> action_3         96.4 FALSE     FALSE     
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> action_4         96.3 FALSE     FALSE     
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> action_5         99.6 FALSE     FALSE     
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> action_6         95.7 FALSE     FALSE     
-#&gt; </span><span style='color: #BCBCBC;'>7</span><span> action_7         93.0 FALSE     TRUE      
-#&gt; </span><span style='color: #BCBCBC;'>8</span><span> action_8        109.  FALSE     FALSE     
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> action_1        101.  FALSE     FALSE     
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> action_2         96.4 FALSE     FALSE     
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> action_3         96.3 FALSE     FALSE     
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> action_4         99.6 FALSE     FALSE     
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> action_5         95.7 TRUE      FALSE     
+#&gt; </span><span style='color: #BCBCBC;'>6</span><span> action_6         93.0 FALSE     FALSE     
+#&gt; </span><span style='color: #BCBCBC;'>7</span><span> action_7        109.  FALSE     FALSE     
+#&gt; </span><span style='color: #BCBCBC;'>8</span><span> action_8         90.4 FALSE     TRUE      
 #&gt; </span><span style='color: #BCBCBC;'>9</span><span> baseline_action   0   FALSE     FALSE     
 #&gt; 
 #&gt; $features
 #&gt; </span><span style='color: #949494;'># A tibble: 5 x 2</span><span>
 #&gt;   name  weight
 #&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> F1    1.79  
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> F2    0.275 
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> F3    0.068</span><span style='text-decoration: underline;'>9</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> F4    0.068</span><span style='text-decoration: underline;'>9</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> F5    0.283 
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> F1     0.125
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> F2     0.125
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> F3     0.376
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> F4     0.724
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> F5     3.13 
 #&gt; 
 #&gt; $tree
 #&gt; 
