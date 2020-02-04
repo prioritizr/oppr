@@ -1,6 +1,6 @@
 Dear CRAN maintainers,
 
-This update fixes a broken URL in the package documentation and a typo in the first name of one of the package authors.
+This update fixes documentation issues causing the package to fail R-devel checks on CRAN.
 
 Cheers,
 
