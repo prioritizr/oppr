@@ -8,10 +8,12 @@
 
 <title>Add a random solver — add_random_solver • oppr</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
@@ -30,13 +32,14 @@
 
 
 
-<meta property="og:title" content="Add a random solver — add_random_solver" />
 
+<meta property="og:title" content="Add a random solver — add_random_solver" />
 <meta property="og:description" content="Specify that solutions should be generated using random processes. Although
 prioritizations should be developed using optimization routines,
 a portfolio of randomly generated solutions can be useful for evaluating
 the effectiveness of solutions." />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -66,7 +69,7 @@ the effectiveness of solutions." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -88,7 +91,6 @@ the effectiveness of solutions." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/prioritizr/oppr">
@@ -114,16 +116,14 @@ the effectiveness of solutions." />
     </div>
 
     <div class="ref-description">
-    
     <p>Specify that solutions should be generated using random processes. Although
 prioritizations should be developed using optimization routines,
 a portfolio of randomly generated solutions can be useful for evaluating
 the effectiveness of solutions.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>add_random_solver</span>(<span class='no'>x</span>, <span class='kw'>number_solutions</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -146,12 +146,11 @@ solutions will be returned.</p></td>
 optimization problems?</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p><code><a href='ProjectProblem-class.html'>ProjectProblem-class</a></code> object with the solver added
   to it.</p>
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The algorithm used to randomly generate solutions depends on the
@@ -182,11 +181,9 @@ optimization problems?</p></td>
 <li><p>The previous step is repeated until all of the persistence targets
   are met.</p></li>
 </ol>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='solvers.html'>solvers</a></code>.</p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># load data</span>
@@ -287,13 +284,9 @@ optimization problems?</p></td>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-
       <li><a href="#details">Details</a></li>
-
       <li><a href="#see-also">See also</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 

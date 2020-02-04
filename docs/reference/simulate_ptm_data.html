@@ -8,10 +8,12 @@
 
 <title>Simulate data for 'Priority threat management' — simulate_ptm_data • oppr</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
@@ -30,14 +32,15 @@
 
 
 
-<meta property="og:title" content="Simulate data for 'Priority threat management' — simulate_ptm_data" />
 
+<meta property="og:title" content="Simulate data for 'Priority threat management' — simulate_ptm_data" />
 <meta property="og:description" content="Simulate data for developing project prioritizations for a priority threat
 management exercise (Carwardine et al. 2019). Here, data are
 simulated for a pre-specified number of features, actions, and projects.
 Features can benefit from multiple projects, and different projects can
 share actions." />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -67,7 +70,7 @@ share actions." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -89,7 +92,6 @@ share actions." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/prioritizr/oppr">
@@ -115,13 +117,11 @@ share actions." />
     </div>
 
     <div class="ref-description">
-    
     <p>Simulate data for developing project prioritizations for a priority threat
 management exercise (Carwardine <em>et al.</em> 2019). Here, data are
 simulated for a pre-specified number of features, actions, and projects.
 Features can benefit from multiple projects, and different projects can
 share actions.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>simulate_ptm_data</span>(<span class='no'>number_projects</span>, <span class='no'>number_actions</span>, <span class='no'>number_features</span>,
@@ -132,7 +132,7 @@ share actions.</p>
   <span class='kw'>baseline_min_persistence_probability</span> <span class='kw'>=</span> <span class='fl'>0.01</span>,
   <span class='kw'>baseline_max_persistence_probability</span> <span class='kw'>=</span> <span class='fl'>0.4</span>, <span class='kw'>locked_in_proportion</span> <span class='kw'>=</span> <span class='fl'>0</span>,
   <span class='kw'>locked_out_proportion</span> <span class='kw'>=</span> <span class='fl'>0</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -205,7 +205,7 @@ into the solution. Defaults to <code>0</code>.</p></td>
 into the solution. Defaults to <code>0</code>.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A <code>list</code> object containing the elements:</p>
@@ -282,7 +282,6 @@ into the solution. Defaults to <code>0</code>.</p></td>
 
  </dl>
 
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The simulated data set will contain one conservation project for
@@ -320,7 +319,6 @@ into the solution. Defaults to <code>0</code>.</p></td>
       weights are calculated as the amount of evolutionary history
       that has elapsed between each feature and its last common ancestor.</p></li>
 </ol>
-    
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Carwardine J, Martin TG, Firn J, Ponce-Reyes P, Nicol S, Reeson A,
@@ -328,11 +326,9 @@ Grantham HS, Stratford D, Kehoe L, Chades I (2019) Priority Threat
 Management for biodiversity conservation: A handbook.
 <em>Journal of Applied Ecology</em>,
 <strong>In press</strong>: <a href='https://doi.org/10.1111/1365-2664.13268'>https://doi.org/10.1111/1365-2664.13268</a>.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='simulate_ppp_data.html'>simulate_ppp_data</a></code>.</p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># create a simulated data set</span>
@@ -404,15 +400,10 @@ Management for biodiversity conservation: A handbook.
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-
       <li><a href="#details">Details</a></li>
-
       <li><a href="#references">References</a></li>
-
       <li><a href="#see-also">See also</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 

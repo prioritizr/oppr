@@ -1,3 +1,11 @@
+# oppr 1.0.0 (released)
+
+- CRAN release.
+
+# oppr 0.0.4.1
+
+- Fix warnings in R-devel CRAN checks related to documentation.
+
 # oppr 0.0.4 (released)
 
 - CRAN release.

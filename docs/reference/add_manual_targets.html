@@ -8,10 +8,12 @@
 
 <title>Add manual targets — add_manual_targets • oppr</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
@@ -30,8 +32,8 @@
 
 
 
-<meta property="og:title" content="Add manual targets — add_manual_targets" />
 
+<meta property="og:title" content="Add manual targets — add_manual_targets" />
 <meta property="og:description" content="Set targets for a project prioritization problem by manually
 specifying all the required information for each target. This function
 is useful because it can be used to customize all aspects of a target. For
@@ -40,6 +42,7 @@ add_absolute_targets and add_relative_targets
 functions. However, this function can be used to mix absolute and
 relative targets for different features." />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -69,7 +72,7 @@ relative targets for different features." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -91,7 +94,6 @@ relative targets for different features." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/prioritizr/oppr">
@@ -117,7 +119,6 @@ relative targets for different features." />
     </div>
 
     <div class="ref-description">
-    
     <p>Set targets for a project prioritization <code><a href='problem.html'>problem</a></code> by manually
 specifying all the required information for each target. This function
 is useful because it can be used to customize all aspects of a target. For
@@ -125,7 +126,6 @@ most cases, targets can be specified using the
 <code><a href='add_absolute_targets.html'>add_absolute_targets</a></code> and <code><a href='add_relative_targets.html'>add_relative_targets</a></code>
 functions. However, this function can be used to mix absolute and
 relative targets for different features.</p>
-    
     </div>
 
     <pre class="usage"><span class='co'># S4 method for ProjectProblem,data.frame</span>
@@ -133,7 +133,7 @@ relative targets for different features.</p>
 
 <span class='co'># S4 method for ProjectProblem,tbl_df</span>
 <span class='fu'>add_manual_targets</span>(<span class='no'>x</span>, <span class='no'>targets</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -147,12 +147,11 @@ relative targets for different features.</p>
 the Details section for more information.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p><code><a href='ProjectProblem-class.html'>ProjectProblem-class</a></code> object with the targets added
   to it.</p>
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Targets are used to specify the minimum probability of persistence
@@ -179,11 +178,9 @@ the Details section for more information.</p></td>
     default to <code>"&gt;="</code> values.</p></dd>
     <dt><code>"target"</code></dt><dd><p><code>numeric</code> target threshold.</p></dd>
     </dl>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='targets.html'>targets</a></code>.</p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># load data</span>
@@ -266,13 +263,9 @@ the Details section for more information.</p></td>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-
       <li><a href="#details">Details</a></li>
-
       <li><a href="#see-also">See also</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 

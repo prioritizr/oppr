@@ -8,10 +8,12 @@
 
 <title>Add maximum phylogenetic diversity objective — add_max_phylo_div_objective • oppr</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
@@ -30,13 +32,14 @@
 
 
 
-<meta property="og:title" content="Add maximum phylogenetic diversity objective — add_max_phylo_div_objective" />
 
+<meta property="og:title" content="Add maximum phylogenetic diversity objective — add_max_phylo_div_objective" />
 <meta property="og:description" content="Set the objective of a project prioritization problem to
 maximize the phylogenetic diversity that is expected to persist into the
 future, whilst ensuring that the cost of the solution is within a
 pre-specified budget (Bennett et al. 2014, Faith 2008)." />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -66,7 +69,7 @@ pre-specified budget (Bennett et al. 2014, Faith 2008)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -88,7 +91,6 @@ pre-specified budget (Bennett et al. 2014, Faith 2008)." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/prioritizr/oppr">
@@ -114,16 +116,14 @@ pre-specified budget (Bennett et al. 2014, Faith 2008)." />
     </div>
 
     <div class="ref-description">
-    
     <p>Set the objective of a project prioritization <code><a href='problem.html'>problem</a></code> to
 maximize the phylogenetic diversity that is expected to persist into the
 future, whilst ensuring that the cost of the solution is within a
 pre-specified budget (Bennett <em>et al.</em> 2014, Faith 2008).</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>add_max_phylo_div_objective</span>(<span class='no'>x</span>, <span class='no'>budget</span>, <span class='no'>tree</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -143,12 +143,11 @@ argument to <code>tree</code> must contain every feature, and only the
 features, present in the argument to <code>x</code>.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p><code><a href='ProjectProblem-class.html'>ProjectProblem-class</a></code> object with the objective
   added to it.</p>
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>A problem objective is used to specify the overall goal of the
@@ -262,7 +261,6 @@ features, present in the argument to <code>x</code>.</p></td>
  extinction probabilities (eqn 1c) with the sum of the log feature extinction
  probabilities and using piecewise linear approximations (described in
  Hillier &amp; Price 2005 pp. 390--392) to approximate the exponent of this term.</p>
-    
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Bennett JR, Elliott G, Mellish B, Joseph LN, Tulloch AI,
@@ -277,11 +275,9 @@ probabilities and phylogenetic risk analysis. <em>Conservation Biology</em>,
 <strong>22</strong>: 1461--1470.</p>
 <p>Hillier FS &amp; Price CC (2005) <em>International series in operations
 research &amp; management science</em>. Springer.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='objectives.html'>objectives</a></code>.</p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># load data</span>
@@ -390,15 +386,10 @@ research &amp; management science</em>. Springer.</p>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-
       <li><a href="#details">Details</a></li>
-
       <li><a href="#references">References</a></li>
-
       <li><a href="#see-also">See also</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 

@@ -180,8 +180,8 @@ Citation
 
     To cite the oppr package in publications, please use:
 
-      Hanson JO, Schuster R, Strimas-Mackey M, Bennett J (2019) oppr:
-      Optimal Project Prioritization R package version 0.0.4.
+      Hanson JO, Schuster R, Strimas-Mackey M, Bennett J (2020) oppr:
+      Optimal Project Prioritization R package version 1.0.0.
       https://CRAN.R-project.org/package=oppr
 
     A BibTeX entry for LaTeX users is
@@ -189,7 +189,7 @@ Citation
       @Manual{,
         author = {Jeffrey O Hanson and Richard Schuster and Matthew Strimas-Mackey and Joseph Bennett},
         title = {oppr: Optimal Project Prioritization},
-        year = {2019},
-        note = {R package version 0.0.4},
+        year = {2020},
+        note = {R package version 1.0.0},
         url = {https://CRAN.R-project.org/package=oppr},
       }

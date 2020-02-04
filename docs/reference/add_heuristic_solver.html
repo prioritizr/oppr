@@ -8,10 +8,12 @@
 
 <title>Add a heuristic solver — add_heuristic_solver • oppr</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
@@ -30,8 +32,8 @@
 
 
 
-<meta property="og:title" content="Add a heuristic solver — add_heuristic_solver" />
 
+<meta property="og:title" content="Add a heuristic solver — add_heuristic_solver" />
 <meta property="og:description" content="Specify that solutions should be generated using a backwards step-wise
 heuristic algorithm (inspired by Cabeza et al. 2004,
 Korte &amp;amp; Vygen 2000, Probert et al. 2016). Ideally,
@@ -40,6 +42,7 @@ add_rsymphony_solver or add_gurobi_solver)
 because they are guaranteed to identify optimal solutions (Rodrigues &amp;amp; Gaston
 2002)." />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -69,7 +72,7 @@ because they are guaranteed to identify optimal solutions (Rodrigues &amp;amp; G
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -91,7 +94,6 @@ because they are guaranteed to identify optimal solutions (Rodrigues &amp;amp; G
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/prioritizr/oppr">
@@ -117,7 +119,6 @@ because they are guaranteed to identify optimal solutions (Rodrigues &amp;amp; G
     </div>
 
     <div class="ref-description">
-    
     <p>Specify that solutions should be generated using a backwards step-wise
 heuristic algorithm (inspired by Cabeza <em>et al.</em> 2004,
 Korte &amp; Vygen 2000, Probert <em>et al.</em> 2016). Ideally,
@@ -125,12 +126,11 @@ solutions should be generated using exact algorithm solvers (e.g.
 <code><a href='add_rsymphony_solver.html'>add_rsymphony_solver</a></code> or <code><a href='add_gurobi_solver.html'>add_gurobi_solver</a></code>)
 because they are guaranteed to identify optimal solutions (Rodrigues &amp; Gaston
 2002).</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>add_heuristic_solver</span>(<span class='no'>x</span>, <span class='kw'>number_solutions</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>initial_sweep</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -164,12 +164,11 @@ Defaults to <code>TRUE</code>.</p></td>
 optimization problems?</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p><code><a href='ProjectProblem-class.html'>ProjectProblem-class</a></code> object with the solver added
   to it.</p>
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The heuristic algorithm used to generate solutions is described
@@ -252,7 +251,6 @@ optimization problems?</p></td>
    (including actions which are shared among multiple remaining projects)
    is deselected.</p></li>
 </ol>
-    
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Rodrigues AS &amp; Gaston KJ (2002) Optimisation in reserve selection
@@ -267,11 +265,9 @@ Berlin, Germany.</p>
 <p>Probert W, Maloney RF, Mellish B, and Joseph L (2016)
 Project Prioritisation Protocol (PPP). Available at
 <a href='https://github.com/p-robot/ppp'>https://github.com/p-robot/ppp</a>.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='solvers.html'>solvers</a></code>.</p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># load ggplot2 package for making plots</span>
@@ -318,15 +314,10 @@ Project Prioritisation Protocol (PPP). Available at
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-
       <li><a href="#details">Details</a></li>
-
       <li><a href="#references">References</a></li>
-
       <li><a href="#see-also">See also</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 

@@ -8,10 +8,12 @@
 
 <title>Problem solvers — solvers • oppr</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
@@ -30,12 +32,13 @@
 
 
 
-<meta property="og:title" content="Problem solvers — solvers" />
 
+<meta property="og:title" content="Problem solvers — solvers" />
 <meta property="og:description" content="Specify the software and configuration used to solve a project prioritization
 problem. By default, the best available exact algorithm
 solver will be used." />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -65,7 +68,7 @@ solver will be used." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -87,7 +90,6 @@ solver will be used." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/prioritizr/oppr">
@@ -113,14 +115,13 @@ solver will be used." />
     </div>
 
     <div class="ref-description">
-    
     <p>Specify the software and configuration used to solve a project prioritization
 <code><a href='problem.html'>problem</a></code>. By default, the best available exact algorithm
 solver will be used.</p>
-    
     </div>
 
-        
+
+
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The following solvers can be used to find solutions for a
@@ -167,12 +168,10 @@ solver will be used.</p>
     to an optimal solution identified using exact algorithms (e.g.
     <code><a href='add_gurobi_solver.html'>add_gurobi_solver</a></code>, <code><a href='add_rsymphony_solver.html'>add_rsymphony_solver</a></code>).</p></dd>
     </dl>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='constraints.html'>constraints</a></code>,  <code><a href='decisions.html'>decisions</a></code>,
  <code><a href='objectives.html'>objectives</a></code>, <code><a href='problem.html'>problem</a></code>, <code><a href='targets.html'>targets</a></code>.</p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># load data</span>
@@ -297,7 +296,7 @@ solver will be used.</p>
 #&gt;       The largest [LUSOL v2.2.1.0] fact(B) had 104 NZ entries, 1.0x largest basis.
 #&gt;       The maximum B&amp;B level was 6, 0.1x MIP order, 4 at the optimal solution.
 #&gt;       The constraint matrix inf-norm is 103.226, with a dynamic range of 1193.9.
-#&gt;       Time to load data was 0.008 seconds, presolve used 0.000 seconds,
+#&gt;       Time to load data was 0.007 seconds, presolve used 0.001 seconds,
 #&gt;        ... 0.000 seconds in simplex solver, in total 0.008 seconds.</div><div class='input'><span class='no'>s</span>$<span class='no'>solver</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"default"</span>, <span class='st'>"gurobi"</span>, <span class='st'>"Rsymphony"</span>, <span class='st'>"lpsymphony"</span>, <span class='st'>"lpSolveAPI"</span>,
               <span class='st'>"heuristic"</span>, <span class='st'>"random"</span>)
 
@@ -338,11 +337,8 @@ solver will be used.</p>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      
       <li><a href="#details">Details</a></li>
-
       <li><a href="#see-also">See also</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 

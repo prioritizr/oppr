@@ -8,10 +8,12 @@
 
 <title>Branch matrix — branch_matrix • oppr</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
@@ -30,8 +32,8 @@
 
 
 
-<meta property="og:title" content="Branch matrix — branch_matrix" />
 
+<meta property="og:title" content="Branch matrix — branch_matrix" />
 <meta property="og:description" content="Phylogenetic trees depict the evolutionary relationships between different
 species. Each branch in a phylogenetic tree represents a period of
 evolutionary history. Species that are connected to the same branch
@@ -41,6 +43,7 @@ a matrix that shows which species are connected with which branches. In
 other words, it creates a matrix that shows which periods of evolutionary
 history each species has experienced." />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -70,7 +73,7 @@ history each species has experienced." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -92,7 +95,6 @@ history each species has experienced." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/prioritizr/oppr">
@@ -118,7 +120,6 @@ history each species has experienced." />
     </div>
 
     <div class="ref-description">
-    
     <p>Phylogenetic trees depict the evolutionary relationships between different
 species. Each branch in a phylogenetic tree represents a period of
 evolutionary history. Species that are connected to the same branch
@@ -127,7 +128,6 @@ This function creates
 a matrix that shows which species are connected with which branches. In
 other words, it creates a matrix that shows which periods of evolutionary
 history each species has experienced.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>branch_matrix</span>(<span class='no'>x</span>, <span class='no'>...</span>)
@@ -137,7 +137,7 @@ history each species has experienced.</p>
 
 <span class='co'># S3 method for phylo</span>
 <span class='fu'>branch_matrix</span>(<span class='no'>x</span>, <span class='kw'>assert_validity</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -156,13 +156,12 @@ indicating if the argument to <code>x</code> should be checked for validity.
 Defaults to <code>TRUE</code>.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p><code><a href='https://www.rdocumentation.org/packages/Matrix/topics/dgCMatrix-class'>dgCMatrix-class</a></code> sparse matrix object. Each row
   corresponds to a different species. Each column corresponds to a different
   branch. Species that inherit from a given branch are indicated with a one.</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># load Matrix package to plot matrices</span>
@@ -183,9 +182,7 @@ Defaults to <code>TRUE</code>.</p></td>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
