@@ -10,10 +10,11 @@ Description: A decision support tool for prioritizing conservation projects.
     feature weights can also be specified to further customize prioritizations.
     After defining a project prioritization problem, solutions can be obtained
     using exact algorithms, heuristic algorithms, or random processes. In
-    particular, it is recommended to install the 'Gurobi' optimizer  (available
+    particular, it is recommended to install the 'Gurobi' optimizer (available
     from <https://www.gurobi.com>) because it can identify optimal solutions
     very quickly. Finally, methods are provided for comparing different
-    prioritizations and evaluating their benefits.
+    prioritizations and evaluating their benefits. For more information, see
+    Hanson et al. (2019) <doi:10.1111/2041-210X.13264>.
 Authors@R: c(person(c('Jeffrey', 'O'), 'Hanson',
                email='jeffrey.hanson@uqconnect.edu.au', role = c('aut', 'cre')),
              person(c('Richard'), 'Schuster',

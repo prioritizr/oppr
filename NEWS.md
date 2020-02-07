@@ -5,6 +5,7 @@
 # oppr 0.0.4.1
 
 - Fix warnings in R-devel CRAN checks related to documentation.
+- Add citation for the research article that accompanies this package.
 
 # oppr 0.0.4 (released)
 

@@ -180,16 +180,14 @@ Citation
 
     To cite the oppr package in publications, please use:
 
+      Hanson JO, Schuster R, Strimas-Mackey M & Bennett JR (2019)
+      Optimality in prioritizing conservation projects. Methods in
+      Ecology & Evolution, 10: 1655--1663.
+
       Hanson JO, Schuster R, Strimas-Mackey M, Bennett J (2020) oppr:
       Optimal Project Prioritization R package version 1.0.0.
       https://CRAN.R-project.org/package=oppr
 
-    A BibTeX entry for LaTeX users is
-
-      @Manual{,
-        author = {Jeffrey O Hanson and Richard Schuster and Matthew Strimas-Mackey and Joseph Bennett},
-        title = {oppr: Optimal Project Prioritization},
-        year = {2020},
-        note = {R package version 1.0.0},
-        url = {https://CRAN.R-project.org/package=oppr},
-      }
+    To see these entries in BibTeX format, use 'print(<citation>,
+    bibtex=TRUE)', 'toBibtex(.)', or set
+    'options(citation.bibtex.max=999)'.
