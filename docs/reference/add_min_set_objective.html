@@ -69,7 +69,7 @@ This objective is conceptually similar to that used in Marxan
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -243,7 +243,9 @@ computational tools</em>, 185-195.</p>
       <span class='fu'>add_min_set_objective</span>() <span class='kw'>%&gt;%</span>
       <span class='fu'><a href='add_absolute_targets.html'>add_absolute_targets</a></span>(<span class='fl'>0.3</span>) <span class='kw'>%&gt;%</span>
       <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span>()</div><div class='input'><span class='co'># solve problem</span>
-<span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p</span>)</div><div class='output co'>#&gt; Optimize a model with 46 rows, 42 columns and 92 nonzeros
+<span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p</span>)</div><div class='output co'>#&gt; Gurobi Optimizer version 9.0.1 build v9.0.1rc0 (linux64)
+#&gt; Optimize a model with 46 rows, 42 columns and 92 nonzeros
+#&gt; Model fingerprint: 0xde05e947
 #&gt; Variable types: 0 continuous, 42 integer (42 binary)
 #&gt; Coefficient statistics:
 #&gt;   Matrix range     [9e-02, 1e+00]

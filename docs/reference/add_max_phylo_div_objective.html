@@ -69,7 +69,7 @@ pre-specified budget (Bennett et al. 2014, Faith 2008)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -290,7 +290,9 @@ research &amp; management science</em>. Springer.</p>
              <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span>) <span class='kw'>%&gt;%</span>
       <span class='fu'>add_max_phylo_div_objective</span>(<span class='kw'>budget</span> <span class='kw'>=</span> <span class='fl'>300</span>, <span class='kw'>tree</span> <span class='kw'>=</span> <span class='no'>sim_tree</span>) <span class='kw'>%&gt;%</span>
       <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span>()</div><div class='input'><span class='co'># solve problem</span>
-<span class='no'>s1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p1</span>)</div><div class='output co'>#&gt; Optimize a model with 50 rows, 50 columns and 123 nonzeros
+<span class='no'>s1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p1</span>)</div><div class='output co'>#&gt; Gurobi Optimizer version 9.0.1 build v9.0.1rc0 (linux64)
+#&gt; Optimize a model with 50 rows, 50 columns and 123 nonzeros
+#&gt; Model fingerprint: 0xa4791041
 #&gt; Model has 3 piecewise-linear objective terms
 #&gt; Variable types: 3 continuous, 42 integer (42 binary)
 #&gt; Semi-Variable types: 5 continuous, 0 integer
@@ -302,20 +304,20 @@ research &amp; management science</em>. Springer.</p>
 #&gt; Found heuristic solution: objective 1.7230501
 #&gt; Presolve removed 16 rows and 12 columns
 #&gt; Presolve time: 0.00s
-#&gt; Presolved: 37 rows, 2995 columns, 3036 nonzeros
-#&gt; Variable types: 2960 continuous, 35 integer (35 binary)
+#&gt; Presolved: 37 rows, 3035 columns, 3076 nonzeros
+#&gt; Variable types: 3000 continuous, 35 integer (35 binary)
 #&gt; Presolve removed 3 rows and 3 columns
-#&gt; Presolved: 34 rows, 2992 columns, 3030 nonzeros
+#&gt; Presolved: 34 rows, 3032 columns, 3070 nonzeros
 #&gt; 
 #&gt; 
-#&gt; Root relaxation: objective 2.904788e+00, 14 iterations, 0.00 seconds
+#&gt; Root relaxation: objective 2.904788e+00, 17 iterations, 0.00 seconds
 #&gt; 
 #&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
 #&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #&gt; 
 #&gt; *    0     0               0       2.9047879    2.90479  0.00%     -    0s
 #&gt; 
-#&gt; Explored 0 nodes (14 simplex iterations) in 0.01 seconds
+#&gt; Explored 0 nodes (17 simplex iterations) in 0.01 seconds
 #&gt; Thread count was 1 (of 4 available processors)
 #&gt; 
 #&gt; Solution count 1: 2.90479 
@@ -339,7 +341,9 @@ research &amp; management science</em>. Springer.</p>
       <span class='fu'><a href='add_feature_weights.html'>add_feature_weights</a></span>(<span class='st'>"weight"</span>)
 
 <span class='co'># solve problem with feature weights</span>
-<span class='no'>s2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p2</span>)</div><div class='output co'>#&gt; Optimize a model with 50 rows, 50 columns and 123 nonzeros
+<span class='no'>s2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p2</span>)</div><div class='output co'>#&gt; Gurobi Optimizer version 9.0.1 build v9.0.1rc0 (linux64)
+#&gt; Optimize a model with 50 rows, 50 columns and 123 nonzeros
+#&gt; Model fingerprint: 0xc66c78c2
 #&gt; Model has 3 piecewise-linear objective terms
 #&gt; Variable types: 3 continuous, 42 integer (42 binary)
 #&gt; Semi-Variable types: 5 continuous, 0 integer
@@ -351,20 +355,20 @@ research &amp; management science</em>. Springer.</p>
 #&gt; Found heuristic solution: objective 2.3885146
 #&gt; Presolve removed 16 rows and 12 columns
 #&gt; Presolve time: 0.00s
-#&gt; Presolved: 37 rows, 2995 columns, 3036 nonzeros
-#&gt; Variable types: 2960 continuous, 35 integer (35 binary)
+#&gt; Presolved: 37 rows, 3035 columns, 3076 nonzeros
+#&gt; Variable types: 3000 continuous, 35 integer (35 binary)
 #&gt; Presolve removed 3 rows and 3 columns
-#&gt; Presolved: 34 rows, 2992 columns, 3030 nonzeros
+#&gt; Presolved: 34 rows, 3032 columns, 3070 nonzeros
 #&gt; 
 #&gt; 
-#&gt; Root relaxation: objective 4.523860e+00, 14 iterations, 0.00 seconds
+#&gt; Root relaxation: objective 4.523860e+00, 17 iterations, 0.00 seconds
 #&gt; 
 #&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
 #&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #&gt; 
 #&gt; *    0     0               0       4.5238601    4.52386  0.00%     -    0s
 #&gt; 
-#&gt; Explored 0 nodes (14 simplex iterations) in 0.01 seconds
+#&gt; Explored 0 nodes (17 simplex iterations) in 0.01 seconds
 #&gt; Thread count was 1 (of 4 available processors)
 #&gt; 
 #&gt; Solution count 1: 4.52386 

@@ -1,6 +1,7 @@
 Dear CRAN maintainers,
 
-This update fixes documentation issues causing the package to fail R-devel checks on CRAN.
+This update pre-emptively fixes compatibility issues with the upcoming new
+version of the tibble R package.
 
 Cheers,
 

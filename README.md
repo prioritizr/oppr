@@ -185,7 +185,7 @@ Citation
       Ecology & Evolution, 10: 1655--1663.
 
       Hanson JO, Schuster R, Strimas-Mackey M, Bennett J (2020) oppr:
-      Optimal Project Prioritization R package version 1.0.0.
+      Optimal Project Prioritization R package version 1.0.1.
       https://CRAN.R-project.org/package=oppr
 
     To see these entries in BibTeX format, use 'print(<citation>,

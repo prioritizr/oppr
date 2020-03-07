@@ -68,7 +68,7 @@ solver will be used." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -207,7 +207,9 @@ solver will be used.</p>
 <span class='no'>p8</span> <span class='kw'>&lt;-</span> <span class='no'>p1</span> <span class='kw'>%&gt;%</span>
       <span class='fu'><a href='add_random_solver.html'>add_random_solver</a></span>()</div><div class='input'><span class='co'># generate solutions using each of the solvers</span>
 <span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/cbind'>rbind</a></span>(<span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p2</span>), <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p3</span>), <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p4</span>), <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p5</span>), <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p6</span>), <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p7</span>),
-           <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p8</span>))</div><div class='output co'>#&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
+           <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p8</span>))</div><div class='output co'>#&gt; Gurobi Optimizer version 9.0.1 build v9.0.1rc0 (linux64)
+#&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
+#&gt; Model fingerprint: 0x35c8d3f0
 #&gt; Variable types: 0 continuous, 42 integer (42 binary)
 #&gt; Semi-Variable types: 5 continuous, 0 integer
 #&gt; Coefficient statistics:
@@ -237,7 +239,9 @@ solver will be used.</p>
 #&gt; 
 #&gt; Optimal solution found (tolerance 0.00e+00)
 #&gt; Best objective 2.190380737245e+00, best bound 2.190380737245e+00, gap 0.0000%
+#&gt; Gurobi Optimizer version 9.0.1 build v9.0.1rc0 (linux64)
 #&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
+#&gt; Model fingerprint: 0x35c8d3f0
 #&gt; Variable types: 0 continuous, 42 integer (42 binary)
 #&gt; Semi-Variable types: 5 continuous, 0 integer
 #&gt; Coefficient statistics:
@@ -296,8 +300,8 @@ solver will be used.</p>
 #&gt;       The largest [LUSOL v2.2.1.0] fact(B) had 104 NZ entries, 1.0x largest basis.
 #&gt;       The maximum B&amp;B level was 6, 0.1x MIP order, 4 at the optimal solution.
 #&gt;       The constraint matrix inf-norm is 103.226, with a dynamic range of 1193.9.
-#&gt;       Time to load data was 0.007 seconds, presolve used 0.000 seconds,
-#&gt;        ... 0.001 seconds in simplex solver, in total 0.008 seconds.</div><div class='input'><span class='no'>s</span>$<span class='no'>solver</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"default"</span>, <span class='st'>"gurobi"</span>, <span class='st'>"Rsymphony"</span>, <span class='st'>"lpsymphony"</span>, <span class='st'>"lpSolveAPI"</span>,
+#&gt;       Time to load data was 0.008 seconds, presolve used 0.000 seconds,
+#&gt;        ... 0.001 seconds in simplex solver, in total 0.009 seconds.</div><div class='input'><span class='no'>s</span>$<span class='no'>solver</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"default"</span>, <span class='st'>"gurobi"</span>, <span class='st'>"Rsymphony"</span>, <span class='st'>"lpsymphony"</span>, <span class='st'>"lpSolveAPI"</span>,
               <span class='st'>"heuristic"</span>, <span class='st'>"random"</span>)
 
 <span class='co'># print solutions</span>

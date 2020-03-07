@@ -102,7 +102,10 @@ project_cost_effectiveness <- function(x) {
   pp_costs <- x$project_costs()
   pp_ce <- (pp_obj - bp_obj) / pp_costs
   # return result
-  tibble::tibble(project = x$project_names(), cost = pp_costs,
-                 obj = pp_obj, benefit = pp_obj - bp_obj, ce = pp_ce,
-                 rank = rank(-pp_ce))
+  tibble::tibble(project = x$project_names(),
+                 cost = unname(pp_costs),
+                 obj = pp_obj,
+                 benefit = pp_obj - bp_obj,
+                 ce = unname(pp_ce),
+                 rank = unname(rank(-pp_ce)))
 }

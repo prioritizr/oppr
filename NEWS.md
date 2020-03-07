@@ -1,3 +1,11 @@
+# oppr 1.0.1 (released)
+
+- CRAN release.
+
+# oppr 1.0.0.1
+
+- Fix compatibility issues with upcoming _tibble_ (3.0.0) R package.
+
 # oppr 1.0.0 (released)
 
 - CRAN release.

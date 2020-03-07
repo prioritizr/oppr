@@ -81,7 +81,7 @@ for specific features (see add_feature_weights)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -281,7 +281,9 @@ threat management. <em>Conservation Biology</em>, <strong>29</strong>, 525--536.
       <span class='fu'><a href='add_absolute_targets.html'>add_absolute_targets</a></span>(<span class='fl'>0.2</span>) <span class='kw'>%&gt;%</span>
       <span class='fu'><a href='add_locked_in_constraints.html'>add_locked_in_constraints</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/which'>which</a></span>(<span class='no'>sim_actions</span>$<span class='no'>cost</span> <span class='kw'>&lt;</span> <span class='fl'>1e-5</span>)) <span class='kw'>%&gt;%</span>
       <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span>()</div><div class='input'><span class='co'># solve problem</span>
-<span class='no'>s1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p1</span>)</div><div class='output co'>#&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
+<span class='no'>s1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p1</span>)</div><div class='output co'>#&gt; Gurobi Optimizer version 9.0.1 build v9.0.1rc0 (linux64)
+#&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
+#&gt; Model fingerprint: 0x9c00c84d
 #&gt; Variable types: 0 continuous, 47 integer (47 binary)
 #&gt; Coefficient statistics:
 #&gt;   Matrix range     [9e-02, 1e+02]
@@ -329,7 +331,9 @@ threat management. <em>Conservation Biology</em>, <strong>29</strong>, 525--536.
 <span class='co'># build another problem that includes feature weights</span>
 <span class='no'>p2</span> <span class='kw'>&lt;-</span> <span class='no'>p1</span> <span class='kw'>%&gt;%</span>
       <span class='fu'><a href='add_feature_weights.html'>add_feature_weights</a></span>(<span class='st'>"weight"</span>)</div><div class='input'><span class='co'># solve problem</span>
-<span class='no'>s2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p2</span>)</div><div class='output co'>#&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
+<span class='no'>s2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p2</span>)</div><div class='output co'>#&gt; Gurobi Optimizer version 9.0.1 build v9.0.1rc0 (linux64)
+#&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
+#&gt; Model fingerprint: 0xc372f4ce
 #&gt; Variable types: 0 continuous, 47 integer (47 binary)
 #&gt; Coefficient statistics:
 #&gt;   Matrix range     [9e-02, 1e+02]
@@ -351,9 +355,8 @@ threat management. <em>Conservation Biology</em>, <strong>29</strong>, 525--536.
 #&gt; 
 #&gt;      0     0    2.85667    0    4    1.05235    2.85667   171%     -    0s
 #&gt; H    0     0                       2.6440241    2.85667  8.04%     -    0s
-#&gt;      0     0    2.85667    0    4    2.64402    2.85667  8.04%     -    0s
 #&gt; 
-#&gt; Explored 0 nodes (7 simplex iterations) in 0.00 seconds
+#&gt; Explored 1 nodes (7 simplex iterations) in 0.00 seconds
 #&gt; Thread count was 1 (of 4 available processors)
 #&gt; 
 #&gt; Solution count 1: 2.64402 
