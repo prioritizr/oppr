@@ -35,7 +35,6 @@ before_install:
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get install -y; fi;
   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install Caskroom/cask/xquartz; fi;
   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install ghostscript; fi;
-  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install pkg-config; fi;
   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew tap coin-or-tools/coinor; fi;
   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install symphony || true; fi;
   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew link --overwrite gcc; fi;
