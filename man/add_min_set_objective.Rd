@@ -125,7 +125,7 @@ library(ggplot2)
 data(sim_projects, sim_features, sim_actions)
 
 # build problem with minimum set objective and targets that require each
-# feature to have a 30\\\% chance of persisting into the future
+# feature to have a 30\\% chance of persisting into the future
 p <- problem(sim_projects, sim_actions, sim_features,
              "name", "success", "name", "cost", "name") \%>\%
       add_min_set_objective() \%>\%

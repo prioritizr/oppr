@@ -1,6 +1,6 @@
 Package: oppr
 Type: Package
-Version: 1.0.1
+Version: 1.0.2
 Title: Optimal Project Prioritization
 Description: A decision support tool for prioritizing conservation projects.
     Prioritizations can be developed by maximizing expected feature richness,
@@ -15,14 +15,19 @@ Description: A decision support tool for prioritizing conservation projects.
     very quickly. Finally, methods are provided for comparing different
     prioritizations and evaluating their benefits. For more information, see
     Hanson et al. (2019) <doi:10.1111/2041-210X.13264>.
-Authors@R: c(person(c('Jeffrey', 'O'), 'Hanson',
-               email='jeffrey.hanson@uqconnect.edu.au', role = c('aut', 'cre')),
-             person(c('Richard'), 'Schuster',
-               email='mail@richard-schuster.com', role = c('aut')),
-             person(c('Matthew'), 'Strimas-Mackey',
-               email='mstrimas@gmail.com', role = c('aut')),
-             person(c('Joseph'), 'Bennett',
-               email='joseph.bennett@carleton.ca', role = c('aut')))
+Authors@R:
+    c(person(c('Jeffrey', 'O'), 'Hanson',
+        email='jeffrey.hanson@uqconnect.edu.au', role = c('aut', 'cre'),
+        comment = c(ORCID = '0000-0002-4716-6134')),
+      person(c('Richard'), 'Schuster',
+        email='mail@richard-schuster.com', role = c('aut'),
+        comment = c(ORCID = '0000-0003-3191-7869')),
+      person(c('Matthew'), 'Strimas-Mackey',
+        email='mstrimas@gmail.com', role = c('aut'),
+        comment = c(ORCID = '0000-0001-8929-7776')),
+      person(c('Joseph', 'R'), 'Bennett',
+        email='joseph.bennett@carleton.ca', role = c('aut'),
+        comment = c(ORCID = '0000-0002-3901-9513')))
 Imports:
     utils,
     methods,
@@ -63,7 +68,7 @@ SystemRequirements: C++11
 URL: https://prioritizr.github.io/oppr, https://github.com/prioritizr/oppr
 BugReports: https://github.com/prioritizr/oppr/issues
 VignetteBuilder: knitr
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.0
 Collate:
     'internal.R'
     'pproto.R'

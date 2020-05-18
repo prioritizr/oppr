@@ -107,7 +107,7 @@ methods::setMethod(
   "add_manual_targets",
   methods::signature("ProjectProblem", "data.frame"),
   function(x, targets) {
-    add_manual_targets(x, tibble::as.tibble(targets))
+    add_manual_targets(x, tibble::as_tibble(targets))
 })
 
 #' @name add_manual_targets
@@ -185,7 +185,7 @@ methods::setMethod(
          targets <- rbind(targets, tibble::tibble(feature = missing_features,
                                                   type = "absolute",
                                                   sense = ">=", target = -1))
-         targets <- tibble::as.tibble(targets)
+         targets <- tibble::as_tibble(targets)
        }
        # convert feature names to indices
        targets$feature <- match(targets$feature, feature_names)

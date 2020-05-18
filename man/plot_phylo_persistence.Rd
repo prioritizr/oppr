@@ -4,8 +4,13 @@
 \alias{plot_phylo_persistence}
 \title{Plot a phylogram to visualize a project prioritization}
 \usage{
-plot_phylo_persistence(x, solution, n = 1, symbol_hjust = 0.007,
-  return_data = FALSE)
+plot_phylo_persistence(
+  x,
+  solution,
+  n = 1,
+  symbol_hjust = 0.007,
+  return_data = FALSE
+)
 }
 \arguments{
 \item{x}{project prioritization \code{\link{problem}}.}
@@ -96,7 +101,7 @@ plot(p, s) + ggtitle("solution")
 # we could also also set the minimum and maximum values in the color ramp to
 # correspond to those in the data, rather than being capped at 0 and 1
 plot(p, s) +
-scale_color_gradientn(name = "Probability of\\npersistence",
+scale_color_gradientn(name = "Probability of\npersistence",
                       colors = viridisLite::inferno(150, begin = 0,
                                                     end = 0.9,
                                                     direction = -1)) +
@@ -104,13 +109,13 @@ ggtitle("solution")
 
 # we could also change the color ramp
 plot(p, s) +
-scale_color_gradient(name = "Probability of\\npersistence",
+scale_color_gradient(name = "Probability of\npersistence",
                      low = "red", high = "black") +
 ggtitle("solution")
 
 # we could even hide the legend if desired
 plot(p, s) +
-scale_color_gradient(name = "Probability of\\npersistence",
+scale_color_gradient(name = "Probability of\npersistence",
                      low = "red", high = "black") +
 theme(legend.position = "hide") +
 ggtitle("solution")

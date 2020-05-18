@@ -3,11 +3,7 @@
 \docType{package}
 \name{oppr}
 \alias{oppr}
-\alias{oppr-package}
 \title{\pkg{oppr}: Optimal Project Prioritization}
-\description{
-\pkg{oppr}: Optimal Project Prioritization
-}
 \section{Description}{
 
   The \pkg{oppr} \emph{R} package a decision support tool for prioritizing

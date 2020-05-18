@@ -10,21 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -48,9 +54,10 @@
 <![endif]-->
 
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -64,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
@@ -72,7 +79,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -88,8 +95,8 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/prioritizr/oppr">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="https://github.com/prioritizr/oppr/">
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -100,25 +107,42 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Changelog <small></small></h1>
+      <h1 data-toc-skip>Changelog <small></small></h1>
       <small>Source: <a href='https://github.com/prioritizr/oppr/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="oppr-1-0-2-released" class="section level1">
+<h1 class="page-header" data-toc-text="1.0.2">
+<a href="#oppr-1-0-2-released" class="anchor"></a>oppr 1.0.2 (released)<small> Unreleased </small>
+</h1>
+<ul>
+<li>CRAN release.</li>
+</ul>
+</div>
+    <div id="oppr-1-0-1-1" class="section level1">
+<h1 class="page-header" data-toc-text="1.0.1.1">
+<a href="#oppr-1-0-1-1" class="anchor"></a>oppr 1.0.1.1<small> Unreleased </small>
+</h1>
+<ul>
+<li>Replace <code><a href="https://tibble.tidyverse.org/reference/deprecated.html">tibble::as.tibble</a></code> with <code><a href="https://tibble.tidyverse.org/reference/as_tibble.html">tibble::as_tibble</a></code> to avoid warnings.</li>
+</ul>
+</div>
     <div id="oppr-1-0-1-released" class="section level1">
-<h1 class="page-header">
-<a href="#oppr-1-0-1-released" class="anchor"></a>oppr 1.0.1 (released)<small> Unreleased </small>
+<h1 class="page-header" data-toc-text="1.0.1">
+<a href="#oppr-1-0-1-released" class="anchor"></a>oppr 1.0.1 (released)<small> 2020-03-11 </small>
 </h1>
 <ul>
 <li>CRAN release.</li>
 </ul>
 </div>
     <div id="oppr-1-0-0-1" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="1.0.0.1">
 <a href="#oppr-1-0-0-1" class="anchor"></a>oppr 1.0.0.1<small> Unreleased </small>
 </h1>
 <ul>
@@ -126,7 +150,7 @@
 </ul>
 </div>
     <div id="oppr-1-0-0-released" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="1.0.0">
 <a href="#oppr-1-0-0-released" class="anchor"></a>oppr 1.0.0 (released)<small> 2020-02-07 </small>
 </h1>
 <ul>
@@ -134,7 +158,7 @@
 </ul>
 </div>
     <div id="oppr-0-0-4-1" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.0.4.1">
 <a href="#oppr-0-0-4-1" class="anchor"></a>oppr 0.0.4.1<small> Unreleased </small>
 </h1>
 <ul>
@@ -143,7 +167,7 @@
 </ul>
 </div>
     <div id="oppr-0-0-4-released" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.0.4">
 <a href="#oppr-0-0-4-released" class="anchor"></a>oppr 0.0.4 (released)<small> 2019-08-10 </small>
 </h1>
 <ul>
@@ -151,7 +175,7 @@
 </ul>
 </div>
     <div id="oppr-0-0-3-1" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.0.3.1">
 <a href="#oppr-0-0-3-1" class="anchor"></a>oppr 0.0.3.1<small> Unreleased </small>
 </h1>
 <ul>
@@ -160,7 +184,7 @@
 </ul>
 </div>
     <div id="oppr-0-0-3-released" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.0.3">
 <a href="#oppr-0-0-3-released" class="anchor"></a>oppr 0.0.3 (released)<small> 2019-04-10 </small>
 </h1>
 <ul>
@@ -168,7 +192,7 @@
 </ul>
 </div>
     <div id="oppr-0-0-2-1" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.0.2.1">
 <a href="#oppr-0-0-2-1" class="anchor"></a>oppr 0.0.2.1<small> Unreleased </small>
 </h1>
 <ul>
@@ -176,7 +200,7 @@
 </ul>
 </div>
     <div id="oppr-0-0-2-released" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.0.2">
 <a href="#oppr-0-0-2-released" class="anchor"></a>oppr 0.0.2 (released)<small> 2019-03-20 </small>
 </h1>
 <ul>
@@ -184,7 +208,7 @@
 </ul>
 </div>
     <div id="oppr-0-0-1-1" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.0.1.1">
 <a href="#oppr-0-0-1-1" class="anchor"></a>oppr 0.0.1.1<small> Unreleased </small>
 </h1>
 <ul>
@@ -193,7 +217,7 @@
 </ul>
 </div>
     <div id="oppr-0-0-1-released" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.0.1">
 <a href="#oppr-0-0-1-released" class="anchor"></a>oppr 0.0.1 (released)<small> 2019-03-18 </small>
 </h1>
 <ul>
@@ -201,7 +225,7 @@
 </ul>
 </div>
     <div id="oppr-0-0-0-19" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.0.0.19">
 <a href="#oppr-0-0-0-19" class="anchor"></a>oppr 0.0.0.19<small> Unreleased </small>
 </h1>
 <ul>
@@ -209,7 +233,7 @@
 </ul>
 </div>
     <div id="oppr-0-0-0-18" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.0.0.18">
 <a href="#oppr-0-0-0-18" class="anchor"></a>oppr 0.0.0.18<small> Unreleased </small>
 </h1>
 <ul>
@@ -217,7 +241,7 @@
 </ul>
 </div>
     <div id="oppr-0-0-0-17" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.0.0.17">
 <a href="#oppr-0-0-0-17" class="anchor"></a>oppr 0.0.0.17<small> Unreleased </small>
 </h1>
 <ul>
@@ -225,7 +249,7 @@
 </ul>
 </div>
     <div id="oppr-0-0-0-16" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.0.0.16">
 <a href="#oppr-0-0-0-16" class="anchor"></a>oppr 0.0.0.16<small> Unreleased </small>
 </h1>
 <ul>
@@ -233,7 +257,7 @@
 </ul>
 </div>
     <div id="oppr-0-0-0-15" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.0.0.15">
 <a href="#oppr-0-0-0-15" class="anchor"></a>oppr 0.0.0.15<small> Unreleased </small>
 </h1>
 <ul>
@@ -241,7 +265,7 @@
 </ul>
 </div>
     <div id="oppr-0-0-0-14" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.0.0.14">
 <a href="#oppr-0-0-0-14" class="anchor"></a>oppr 0.0.0.14<small> Unreleased </small>
 </h1>
 <ul>
@@ -249,7 +273,7 @@
 </ul>
 </div>
     <div id="oppr-0-0-0-13" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.0.0.13">
 <a href="#oppr-0-0-0-13" class="anchor"></a>oppr 0.0.0.13<small> Unreleased </small>
 </h1>
 <ul>
@@ -257,7 +281,7 @@
 </ul>
 </div>
     <div id="oppr-0-0-0-12" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.0.0.12">
 <a href="#oppr-0-0-0-12" class="anchor"></a>oppr 0.0.0.12<small> Unreleased </small>
 </h1>
 <ul>
@@ -265,7 +289,7 @@
 </ul>
 </div>
     <div id="oppr-0-0-0-11" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.0.0.11">
 <a href="#oppr-0-0-0-11" class="anchor"></a>oppr 0.0.0.11<small> Unreleased </small>
 </h1>
 <ul>
@@ -274,7 +298,7 @@
 </ul>
 </div>
     <div id="oppr-0-0-0-10" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.0.0.10">
 <a href="#oppr-0-0-0-10" class="anchor"></a>oppr 0.0.0.10<small> Unreleased </small>
 </h1>
 <ul>
@@ -283,7 +307,7 @@
 </ul>
 </div>
     <div id="oppr-0-0-0-9" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.0.0.9">
 <a href="#oppr-0-0-0-9" class="anchor"></a>oppr 0.0.0.9<small> Unreleased </small>
 </h1>
 <ul>
@@ -291,7 +315,7 @@
 </ul>
 </div>
     <div id="oppr-0-0-0-8" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.0.0.8">
 <a href="#oppr-0-0-0-8" class="anchor"></a>oppr 0.0.0.8<small> Unreleased </small>
 </h1>
 <ul>
@@ -302,7 +326,7 @@
 </ul>
 </div>
     <div id="oppr-0-0-0-7" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.0.0.7">
 <a href="#oppr-0-0-0-7" class="anchor"></a>oppr 0.0.0.7<small> Unreleased </small>
 </h1>
 <ul>
@@ -310,7 +334,7 @@
 </ul>
 </div>
     <div id="oppr-0-0-0-6" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.0.0.6">
 <a href="#oppr-0-0-0-6" class="anchor"></a>oppr 0.0.0.6<small> Unreleased </small>
 </h1>
 <ul>
@@ -321,7 +345,7 @@
 </ul>
 </div>
     <div id="oppr-0-0-0-5" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.0.0.5">
 <a href="#oppr-0-0-0-5" class="anchor"></a>oppr 0.0.0.5<small> Unreleased </small>
 </h1>
 <ul>
@@ -329,7 +353,7 @@
 </ul>
 </div>
     <div id="oppr-0-0-0-4" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.0.0.4">
 <a href="#oppr-0-0-0-4" class="anchor"></a>oppr 0.0.0.4<small> Unreleased </small>
 </h1>
 <ul>
@@ -338,7 +362,7 @@
 </ul>
 </div>
     <div id="oppr-0-0-0-3" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.0.0.3">
 <a href="#oppr-0-0-0-3" class="anchor"></a>oppr 0.0.0.3<small> Unreleased </small>
 </h1>
 <ul>
@@ -347,7 +371,7 @@
 </ul>
 </div>
     <div id="oppr-0-0-0-2" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.0.0.2">
 <a href="#oppr-0-0-0-2" class="anchor"></a>oppr 0.0.0.2<small> Unreleased </small>
 </h1>
 <ul>
@@ -358,7 +382,7 @@
 </ul>
 </div>
     <div id="oppr-0-0-0-1" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.0.0.1">
 <a href="#oppr-0-0-0-1" class="anchor"></a>oppr 0.0.0.1<small> Unreleased </small>
 </h1>
 <ul>
@@ -367,59 +391,31 @@
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <div id="tocnav">
-      <h2>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-        <li><a href="#oppr-1-0-1-released">1.0.1</a></li>
-        <li><a href="#oppr-1-0-0-1">1.0.0.1</a></li>
-        <li><a href="#oppr-1-0-0-released">1.0.0</a></li>
-        <li><a href="#oppr-0-0-4-1">0.0.4.1</a></li>
-        <li><a href="#oppr-0-0-4-released">0.0.4</a></li>
-        <li><a href="#oppr-0-0-3-1">0.0.3.1</a></li>
-        <li><a href="#oppr-0-0-3-released">0.0.3</a></li>
-        <li><a href="#oppr-0-0-2-1">0.0.2.1</a></li>
-        <li><a href="#oppr-0-0-2-released">0.0.2</a></li>
-        <li><a href="#oppr-0-0-1-1">0.0.1.1</a></li>
-        <li><a href="#oppr-0-0-1-released">0.0.1</a></li>
-        <li><a href="#oppr-0-0-0-19">0.0.0.19</a></li>
-        <li><a href="#oppr-0-0-0-18">0.0.0.18</a></li>
-        <li><a href="#oppr-0-0-0-17">0.0.0.17</a></li>
-        <li><a href="#oppr-0-0-0-16">0.0.0.16</a></li>
-        <li><a href="#oppr-0-0-0-15">0.0.0.15</a></li>
-        <li><a href="#oppr-0-0-0-14">0.0.0.14</a></li>
-        <li><a href="#oppr-0-0-0-13">0.0.0.13</a></li>
-        <li><a href="#oppr-0-0-0-12">0.0.0.12</a></li>
-        <li><a href="#oppr-0-0-0-11">0.0.0.11</a></li>
-        <li><a href="#oppr-0-0-0-10">0.0.0.10</a></li>
-        <li><a href="#oppr-0-0-0-9">0.0.0.9</a></li>
-        <li><a href="#oppr-0-0-0-8">0.0.0.8</a></li>
-        <li><a href="#oppr-0-0-0-7">0.0.0.7</a></li>
-        <li><a href="#oppr-0-0-0-6">0.0.0.6</a></li>
-        <li><a href="#oppr-0-0-0-5">0.0.0.5</a></li>
-        <li><a href="#oppr-0-0-0-4">0.0.0.4</a></li>
-        <li><a href="#oppr-0-0-0-3">0.0.0.3</a></li>
-        <li><a href="#oppr-0-0-0-2">0.0.0.2</a></li>
-        <li><a href="#oppr-0-0-0-1">0.0.0.1</a></li>
-      </ul>
-    </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 
 </div>
 
+
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://jeffrey-hanson.com'>Jeffrey O Hanson</a>, <a href='http://www.richard-schuster.com/'>Richard Schuster</a>, <a href='http://strimas.com'>Matthew Strimas-Mackey</a>, Joseph Bennett.</p>
+  <p>Developed by <a href='https://jeffrey-hanson.com'>Jeffrey O Hanson</a>, <a href='http://www.richard-schuster.com'>Richard Schuster</a>, <a href='http://strimas.com'>Matthew Strimas-Mackey</a>, <a href='https://josephrbennett.wordpress.com'>Joseph R Bennett</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

@@ -10,21 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -37,7 +43,6 @@
 <meta property="og:description" content="Calculate the individual cost-effectiveness of each conservation project
 in a project prioritization problem
 (Joseph, Maloney &amp;amp; Possingham 2009)." />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -52,9 +57,10 @@ in a project prioritization problem
 <![endif]-->
 
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -68,7 +74,7 @@ in a project prioritization problem
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
@@ -76,7 +82,7 @@ in a project prioritization problem
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -92,8 +98,8 @@ in a project prioritization problem
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/prioritizr/oppr">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="https://github.com/prioritizr/oppr/">
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -104,6 +110,7 @@ in a project prioritization problem
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -135,7 +142,7 @@ in a project prioritization <code><a href='problem.html'>problem</a></code>
 
     <p>A <code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></code> table containing the following
   columns:</p>
-<p></p><dl class='dl-horizontal'>
+<p></p><dl'>
 
   <dt><code>"project"</code></dt><dd><p><code>character</code> name of each project</p></dd>
 
@@ -157,7 +164,8 @@ in a project prioritization <code><a href='problem.html'>problem</a></code>
    is cost-effectiveness value. The project with a rank of one is the
    most cost-effective project. Ties are accommodated using averages.</p></dd>
 
-  </dl>
+  
+</dl>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
@@ -176,39 +184,39 @@ resources among threatened species: A project prioritization protocol.
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># load data</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_features</span>, <span class='no'>sim_actions</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_features</span>, <span class='no'>sim_actions</span>)
 
 <span class='co'># print project data</span>
-<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>sim_projects</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 13</span><span>
+<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>sim_projects</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 6 x 13</span><span>
 #&gt;   name  success     F1     F2      F3     F4     F5 F1_action F2_action
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>    
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> F1_p~   0.919  0.791 </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     TRUE      FALSE    
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> F2_p~   0.923 </span><span style='color: #BB0000;'>NA</span><span>      0.888 </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     FALSE     TRUE     
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> F3_p~   0.829 </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>      0.502  </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     FALSE     FALSE    
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> F4_p~   0.848 </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>       0.690 </span><span style='color: #BB0000;'>NA</span><span>     FALSE     FALSE    
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> F5_p~   0.814 </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>      0.617 FALSE     FALSE    
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> base~   1      0.298  0.250  0.086</span><span style='text-decoration: underline;'>5</span><span>  0.249  0.182 FALSE     FALSE    
-#&gt; </span><span style='color: #949494;'># ... with 4 more variables: F3_action </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #949494;'>, F4_action </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #949494;'>, F5_action </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #949494;'>,
-#&gt; #   baseline_action </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span></div><div class='input'>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>    
+#&gt; </span><span style='color: #555555;'>1</span><span> F1_p~   0.919  0.791 </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     TRUE      FALSE    
+#&gt; </span><span style='color: #555555;'>2</span><span> F2_p~   0.923 </span><span style='color: #BB0000;'>NA</span><span>      0.888 </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     FALSE     TRUE     
+#&gt; </span><span style='color: #555555;'>3</span><span> F3_p~   0.829 </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>      0.502  </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     FALSE     FALSE    
+#&gt; </span><span style='color: #555555;'>4</span><span> F4_p~   0.848 </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>       0.690 </span><span style='color: #BB0000;'>NA</span><span>     FALSE     FALSE    
+#&gt; </span><span style='color: #555555;'>5</span><span> F5_p~   0.814 </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>      0.617 FALSE     FALSE    
+#&gt; </span><span style='color: #555555;'>6</span><span> base~   1      0.298  0.250  0.086</span><span style='text-decoration: underline;'>5</span><span>  0.249  0.182 FALSE     FALSE    
+#&gt; </span><span style='color: #555555;'># ... with 4 more variables: F3_action </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, F4_action </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, F5_action </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   baseline_action </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span></div><div class='input'>
 <span class='co'># print action data</span>
-<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>sim_features</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 5 x 2</span><span>
+<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>sim_features</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 5 x 2</span><span>
 #&gt;   name  weight
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> F1     0.211
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> F2     0.211
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> F3     0.221
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> F4     0.630
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> F5     1.59 </div><div class='input'>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> F1     0.211
+#&gt; </span><span style='color: #555555;'>2</span><span> F2     0.211
+#&gt; </span><span style='color: #555555;'>3</span><span> F3     0.221
+#&gt; </span><span style='color: #555555;'>4</span><span> F4     0.630
+#&gt; </span><span style='color: #555555;'>5</span><span> F5     1.59 </div><div class='input'>
 <span class='co'># print feature data</span>
-<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>sim_actions</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 6 x 4</span><span>
+<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>sim_actions</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 6 x 4</span><span>
 #&gt;   name             cost locked_in locked_out
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>     
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> F1_action        94.4 FALSE     FALSE     
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> F2_action       101.  FALSE     FALSE     
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> F3_action       103.  TRUE      FALSE     
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> F4_action        99.2 FALSE     FALSE     
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> F5_action        99.9 FALSE     TRUE      
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> baseline_action   0   FALSE     FALSE     </div><div class='input'>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>     
+#&gt; </span><span style='color: #555555;'>1</span><span> F1_action        94.4 FALSE     FALSE     
+#&gt; </span><span style='color: #555555;'>2</span><span> F2_action       101.  FALSE     FALSE     
+#&gt; </span><span style='color: #555555;'>3</span><span> F3_action       103.  TRUE      FALSE     
+#&gt; </span><span style='color: #555555;'>4</span><span> F4_action        99.2 FALSE     FALSE     
+#&gt; </span><span style='color: #555555;'>5</span><span> F5_action        99.9 FALSE     TRUE      
+#&gt; </span><span style='color: #555555;'>6</span><span> baseline_action   0   FALSE     FALSE     </div><div class='input'>
 <span class='co'># build problem</span>
 <span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_actions</span>, <span class='no'>sim_features</span>,
              <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span>) <span class='kw'>%&gt;%</span>
@@ -233,45 +241,42 @@ resources among threatened species: A project prioritization protocol.
 <span class='no'>pce</span> <span class='kw'>&lt;-</span> <span class='fu'>project_cost_effectiveness</span>(<span class='no'>p</span>)
 
 <span class='co'># print project costs, benefits, and cost-effectiveness values</span>
-<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>pce</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 6 x 6</span><span>
+<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>pce</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 6 x 6</span><span>
 #&gt;   project           cost   obj benefit         ce  rank
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> F1_project        94.4 0.689  0.108    0.001</span><span style='text-decoration: underline;'>14</span><span>      4
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> F2_project       101.  0.711  0.130    0.001</span><span style='text-decoration: underline;'>29</span><span>      3
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> F3_project       103.  0.665  0.084</span><span style='text-decoration: underline;'>1</span><span>   0.000</span><span style='text-decoration: underline;'>815</span><span>     5
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> F4_project        99.2 0.858  0.277    0.002</span><span style='text-decoration: underline;'>79</span><span>      2
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> F5_project        99.9 1.23   0.653    0.006</span><span style='text-decoration: underline;'>54</span><span>      1
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> baseline_project   0   0.581  0      </span><span style='color: #BB0000;'>NaN</span><span>            6</div><div class='input'>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> F1_project        94.4 0.689  0.108    0.001</span><span style='text-decoration: underline;'>14</span><span>      4
+#&gt; </span><span style='color: #555555;'>2</span><span> F2_project       101.  0.711  0.130    0.001</span><span style='text-decoration: underline;'>29</span><span>      3
+#&gt; </span><span style='color: #555555;'>3</span><span> F3_project       103.  0.665  0.084</span><span style='text-decoration: underline;'>1</span><span>   0.000</span><span style='text-decoration: underline;'>815</span><span>     5
+#&gt; </span><span style='color: #555555;'>4</span><span> F4_project        99.2 0.858  0.277    0.002</span><span style='text-decoration: underline;'>79</span><span>      2
+#&gt; </span><span style='color: #555555;'>5</span><span> F5_project        99.9 1.23   0.653    0.006</span><span style='text-decoration: underline;'>54</span><span>      1
+#&gt; </span><span style='color: #555555;'>6</span><span> baseline_project   0   0.581  0      </span><span style='color: #BB0000;'>NaN</span><span>            6</div><div class='input'>
 <span class='co'># plot histogram of cost-effectiveness values</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/hist'>hist</a></span>(<span class='no'>pce</span>$<span class='no'>ce</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"Cost effectiveness"</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>""</span>)</div><div class='img'><img src='project_cost_effectiveness-1.png' alt='' width='700' height='433' /></div></span></pre>
+<span class='fu'><a href='https://rdrr.io/r/graphics/hist.html'>hist</a></span>(<span class='no'>pce</span>$<span class='no'>ce</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"Cost effectiveness"</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>""</span>)</div><div class='img'><img src='project_cost_effectiveness-1.png' alt='' width='700' height='433' /></div></span></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#references">References</a></li>
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://jeffrey-hanson.com'>Jeffrey O Hanson</a>, <a href='http://www.richard-schuster.com/'>Richard Schuster</a>, <a href='http://strimas.com'>Matthew Strimas-Mackey</a>, Joseph Bennett.</p>
+  <p>Developed by <a href='https://jeffrey-hanson.com'>Jeffrey O Hanson</a>, <a href='http://www.richard-schuster.com'>Richard Schuster</a>, <a href='http://strimas.com'>Matthew Strimas-Mackey</a>, <a href='https://josephrbennett.wordpress.com'>Joseph R Bennett</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

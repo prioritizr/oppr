@@ -4,9 +4,17 @@
 \alias{problem}
 \title{Project prioritization problem}
 \usage{
-problem(projects, actions, features, project_name_column,
-  project_success_column, action_name_column, action_cost_column,
-  feature_name_column, adjust_for_baseline = TRUE)
+problem(
+  projects,
+  actions,
+  features,
+  project_name_column,
+  project_success_column,
+  action_name_column,
+  action_cost_column,
+  feature_name_column,
+  adjust_for_baseline = TRUE
+)
 }
 \arguments{
 \item{projects}{\code{\link[base]{data.frame}} or

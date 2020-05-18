@@ -4,14 +4,21 @@
 \alias{simulate_ptm_data}
 \title{Simulate data for 'Priority threat management'}
 \usage{
-simulate_ptm_data(number_projects, number_actions, number_features,
-  cost_mean = 100, cost_sd = 5, success_min_probability = 0.7,
+simulate_ptm_data(
+  number_projects,
+  number_actions,
+  number_features,
+  cost_mean = 100,
+  cost_sd = 5,
+  success_min_probability = 0.7,
   success_max_probability = 0.99,
   funded_min_persistence_probability = 0.5,
   funded_max_persistence_probability = 0.9,
   baseline_min_persistence_probability = 0.01,
-  baseline_max_persistence_probability = 0.4, locked_in_proportion = 0,
-  locked_out_proportion = 0)
+  baseline_max_persistence_probability = 0.4,
+  locked_in_proportion = 0,
+  locked_out_proportion = 0
+)
 }
 \arguments{
 \item{number_projects}{\code{numeric} number of projects. Note that this

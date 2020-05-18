@@ -10,28 +10,27 @@ The *oppr R* package is decision support tool for prioritizing conservation proj
 Installation
 ------------
 
-The latest official version of the *oppr R* package can be installed using the following *R* code. We also recommend installing the [Gurobi optimization suite](http://www.gurobi.com/) and [*gurobi R* package](https://www.gurobi.com/documentation/8.1/refman/r_api_overview.html) to obtain solutions very quickly. For instructions on installing these software packages, please refer to [this installation guide](https://CRAN.R-project.org/package=prioritizr/vignettes/gurobi_installation.html).
+The latest official version of the *oppr R* package can be installed from the [Comprehensive R Archive Network (CRAN)](https://cran.r-project.org/) using the following *R* code.
 
 ``` r
 install.packages("oppr", repos = "https://cran.rstudio.com/")
 ```
 
-If you wish to plot phylogenetic trees, you will need install the *ggtree* package from Bioconductor since it is not available on [The Comprehensive R Archive Network](https://cran.r-project.org/).
+Alternatively, the latest development version can be installed from [GitHub](https://github.com/prioritizr/oppr) using the following code. Please note that while developmental versions may contain additional features not present in the official version, they may also contain coding errors.
 
 ``` r
-if (!require(devtools))
-  install.packages("devtools")
-if (!require(ggtree))
-  devtools::install_bioc("ggtree")
+if (!require(remotes)) install.packages("remotes")
+remotes::install_github("prioritizr/oppr")
 ```
 
-Alternatively, the latest developmental version can be installed using the following code. Please note that while developmental versions may contain additional features not present in the official version, they may also contain coding errors.
+Citation
+--------
 
-``` r
-if (!require(devtools))
-  install.packages("devtools")
-devtools::install_github("prioritizr/oppr")
-```
+To cite the *oppr R* package in publications, please use:
+
+> Hanson JO, Schuster R, Strimas-Mackey M & Bennett JR (2019) Optimality in prioritizing conservation projects. *Methods in Ecology & Evolution*, **10**: 1655--1663.
+
+You can also use the following *R* code to determine which version you have installed: `packageVersion("oppr")`
 
 Usage
 -----
@@ -153,15 +152,15 @@ print(s, width = Inf)
 ```
 
     ## # A tibble: 1 x 21
-    ##   solution status    obj  cost F1_action F2_action F3_action F4_action
-    ##      <int> <chr>   <dbl> <dbl>     <dbl>     <dbl>     <dbl>     <dbl>
-    ## 1        1 OPTIMAL  1.75  395.         1         1         0         1
-    ##   F5_action baseline_action F1_project F2_project F3_project F4_project
-    ##       <dbl>           <dbl>      <dbl>      <dbl>      <dbl>      <dbl>
-    ## 1         1               1          1          1          0          1
-    ##   F5_project baseline_project    F1    F2     F3    F4    F5
-    ##        <dbl>            <dbl> <dbl> <dbl>  <dbl> <dbl> <dbl>
-    ## 1          1                1 0.808 0.865 0.0865 0.688 0.592
+    ##   solution status    obj  cost F1_action F2_action F3_action F4_action F5_action
+    ##      <int> <chr>   <dbl> <dbl>     <dbl>     <dbl>     <dbl>     <dbl>     <dbl>
+    ## 1        1 OPTIMAL  1.75  395.         1         1         0         1         1
+    ##   baseline_action F1_project F2_project F3_project F4_project F5_project
+    ##             <dbl>      <dbl>      <dbl>      <dbl>      <dbl>      <dbl>
+    ## 1               1          1          1          0          1          1
+    ##   baseline_project    F1    F2     F3    F4    F5
+    ##              <dbl> <dbl> <dbl>  <dbl> <dbl> <dbl>
+    ## 1                1 0.808 0.865 0.0865 0.688 0.592
 
 The `s` table contains the solution and also various statistics associated with the solution. Here, each row corresponds to a different solution. Specifically, the `"solution"` column contains an identifier for the solution (which may be useful for methods that output multiple solutions), the `"obj"` column contains the objective value (i.e. the expected feature richness for this problem), the `"cost"` column stores the cost of the solution, and the `"status"` column contains information from the solver about the solution. Additionally, it contains columns for each action (`"F1_action"`, `"F2_actions"`, `"F3_actions"`, ..., `"baseline_action"`) which indicate if each action was prioritized for funding in the solution. Additionally, it contains columns for each project (`"F1_project"`, `"F2_project"`, `"F3_project"`, ..., `"baseline_project"`) that indicate if the project was completely funded or not. Finally, it contains column for each feature (`"F1`, `"F2"`, `"F3`, ...) which indicate the probability that each feature is expected to persist into the future under each solution (for information on how this is calculated see `?add_max_richness_objective`). Since tabular data can be difficult to understand, let's visualize how well this solution would conserve the features. Note that features which benefit from fully funded projects, excepting the baseline project, are denoted with an asterisk.
 
@@ -174,20 +173,7 @@ plot(p, s)
 
 This has just been a taster of the *oppr R* package. For more information, see the [package vignette](https://prioritizr.github.io/oppr/articles/oppr.html).
 
-Citation
---------
+Getting help
+------------
 
-
-    To cite the oppr package in publications, please use:
-
-      Hanson JO, Schuster R, Strimas-Mackey M & Bennett JR (2019)
-      Optimality in prioritizing conservation projects. Methods in
-      Ecology & Evolution, 10: 1655--1663.
-
-      Hanson JO, Schuster R, Strimas-Mackey M, Bennett J (2020) oppr:
-      Optimal Project Prioritization R package version 1.0.1.
-      https://CRAN.R-project.org/package=oppr
-
-    To see these entries in BibTeX format, use 'print(<citation>,
-    bibtex=TRUE)', 'toBibtex(.)', or set
-    'options(citation.bibtex.max=999)'.
+If you have any questions about using the *oppr R* package or suggestions for improving it, please [file an issue at the package's online code repository](https://github.com/prioritizr/oppr/issues/new).

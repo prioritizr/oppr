@@ -75,7 +75,7 @@ compile.ProjectProblem <- function(x, ...) {
   if (is.Waiver(x$targets)) {
     # if objective doesn't actually use targets, create a "fake" targets tibble
     # to initialize the problem data
-    targets <- tibble::as.tibble(expand.grid(
+    targets <- tibble::as_tibble(expand.grid(
       feature = seq_along(x$feature_names()),
       sense = "?",
       value = 0))

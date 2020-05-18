@@ -10,21 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -39,7 +45,6 @@ management exercise (Carwardine et al. 2019). Here, data are
 simulated for a pre-specified number of features, actions, and projects.
 Features can benefit from multiple projects, and different projects can
 share actions." />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -54,9 +59,10 @@ share actions." />
 <![endif]-->
 
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -70,7 +76,7 @@ share actions." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
@@ -78,7 +84,7 @@ share actions." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -94,8 +100,8 @@ share actions." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/prioritizr/oppr">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="https://github.com/prioritizr/oppr/">
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -106,6 +112,7 @@ share actions." />
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -124,14 +131,21 @@ Features can benefit from multiple projects, and different projects can
 share actions.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>simulate_ptm_data</span>(<span class='no'>number_projects</span>, <span class='no'>number_actions</span>, <span class='no'>number_features</span>,
-  <span class='kw'>cost_mean</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>cost_sd</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>success_min_probability</span> <span class='kw'>=</span> <span class='fl'>0.7</span>,
+    <pre class="usage"><span class='fu'>simulate_ptm_data</span>(
+  <span class='no'>number_projects</span>,
+  <span class='no'>number_actions</span>,
+  <span class='no'>number_features</span>,
+  <span class='kw'>cost_mean</span> <span class='kw'>=</span> <span class='fl'>100</span>,
+  <span class='kw'>cost_sd</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+  <span class='kw'>success_min_probability</span> <span class='kw'>=</span> <span class='fl'>0.7</span>,
   <span class='kw'>success_max_probability</span> <span class='kw'>=</span> <span class='fl'>0.99</span>,
   <span class='kw'>funded_min_persistence_probability</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
   <span class='kw'>funded_max_persistence_probability</span> <span class='kw'>=</span> <span class='fl'>0.9</span>,
   <span class='kw'>baseline_min_persistence_probability</span> <span class='kw'>=</span> <span class='fl'>0.01</span>,
-  <span class='kw'>baseline_max_persistence_probability</span> <span class='kw'>=</span> <span class='fl'>0.4</span>, <span class='kw'>locked_in_proportion</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>locked_out_proportion</span> <span class='kw'>=</span> <span class='fl'>0</span>)</pre>
+  <span class='kw'>baseline_max_persistence_probability</span> <span class='kw'>=</span> <span class='fl'>0.4</span>,
+  <span class='kw'>locked_in_proportion</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>locked_out_proportion</span> <span class='kw'>=</span> <span class='fl'>0</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -209,78 +223,45 @@ into the solution. Defaults to <code>0</code>.</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A <code>list</code> object containing the elements:</p>
-<p></p><dl class='dl-horizontal'>
+<p></p><dl'>
 
     <dt><code>"projects"</code></dt><dd><p>A <code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></code> containing
       the data for the conservation projects. It contains the following
-      columns:
-
-      <dl class='dl-horizontal'>
-
-        <dt><code>"name"</code></dt><dd><p><code>character</code> name for each project.</p></dd>
-
-        <dt><code>"success"</code></dt><dd><p><code>numeric</code> probability of each project
-          succeeding if it is funded.</p></dd>
-
-        <dt><code>"F1"</code> ... <code>"FN"</code></dt><dd><p><code>numeric</code> columns for each
+      columns:      <dl'>        <dt><code>"name"</code></dt><dd><p><code>character</code> name for each project.</p></dd>        <dt><code>"success"</code></dt><dd><p><code>numeric</code> probability of each project
+          succeeding if it is funded.</p></dd>        <dt><code>"F1"</code> ... <code>"FN"</code></dt><dd><p><code>numeric</code> columns for each
           feature, ranging from <code>"F1"</code> to <code>"FN"</code> where <code>N</code>
           is the number of features, indicating the enhanced probability that
           each feature will persist if it funded. Missing values (<code>NA</code>)
           indicate that a feature does not benefit from a project being
-          funded.</p></dd>
-
-        <dt><code>"F1_action"</code> ... <code>"FN_action"</code></dt><dd><p><code>logical</code>
+          funded.</p></dd>        <dt><code>"F1_action"</code> ... <code>"FN_action"</code></dt><dd><p><code>logical</code>
           columns for each action, ranging from <code>"F1_action"</code> to
           <code>"FN_action"</code> where <code>N</code> is
           the number of actions (equal to the number of features in this
           simulated data), indicating if an action is associated with a
-          project (<code>TRUE</code>) or not (<code>FALSE</code>).</p></dd>
-
-       <dt><code>"baseline_action"</code></dt><dd><p><code>logical</code>
+          project (<code>TRUE</code>) or not (<code>FALSE</code>).</p></dd>       <dt><code>"baseline_action"</code></dt><dd><p><code>logical</code>
          column indicating if a project is associated with the baseline
          action (<code>TRUE</code>) or not (<code>FALSE</code>). This action is only
-         associated with the baseline project.</p></dd>
-
-    </dl></p></dd>
+         associated with the baseline project.</p></dd></dl></p></dd>
 
     <dt><code>"actions"</code></dt><dd><p>A <code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></code> containing
       the data for the conservation actions. It contains the following
-      columns:
-
-      <dl class='dl-horizontal'>
-
-        <dt><code>"name"</code></dt><dd><p><code>character</code> name for each action.</p></dd>
-
-        <dt><code>"cost"</code></dt><dd><p><code>numeric</code> cost for each action.</p></dd>
-
-        <dt><code>"locked_in"</code></dt><dd><p><code>logical</code> indicating if certain
-          actions should be locked into the solution.</p></dd>
-
-        <dt><code>"locked_out"</code></dt><dd><p><code>logical</code> indicating if certain
-          actions should be locked out of the solution.</p></dd>
-
-    </dl></p></dd>
+      columns:      <dl'>        <dt><code>"name"</code></dt><dd><p><code>character</code> name for each action.</p></dd>        <dt><code>"cost"</code></dt><dd><p><code>numeric</code> cost for each action.</p></dd>        <dt><code>"locked_in"</code></dt><dd><p><code>logical</code> indicating if certain
+          actions should be locked into the solution.</p></dd>        <dt><code>"locked_out"</code></dt><dd><p><code>logical</code> indicating if certain
+          actions should be locked out of the solution.</p></dd></dl></p></dd>
 
     <dt><code>"features"</code></dt><dd><p>A <code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></code> containing
       the data for the conservation features (e.g. species). It contains the
-      following columns:
-
-      <dl class='dl-horizontal'>
-
-       <dt><code>"name"</code></dt><dd><p><code>character</code> name for each feature.</p></dd>
-
-        <dt><code>"weight"</code></dt><dd><p><code>numeric</code> weight for each feature.
+      following columns:      <dl'>       <dt><code>"name"</code></dt><dd><p><code>character</code> name for each feature.</p></dd>        <dt><code>"weight"</code></dt><dd><p><code>numeric</code> weight for each feature.
           For each feature, this is calculated as the amount of time that
           elapsed between the present and the features' last common ancestor.
           In other words, the weights are calculated as the unique amount
-          of evolutionary history that each feature has experienced.</p></dd>
+          of evolutionary history that each feature has experienced.</p></dd></dl></p></dd>
 
-    </dl></p></dd>
-
-   <dt>"tree"</dt><dd><p><code><a href='https://www.rdocumentation.org/packages/ape/topics/read.tree'>phylo</a></code> phylogenetic tree for the
+   <dt>"tree"</dt><dd><p><code><a href='https://rdrr.io/pkg/ape/man/read.tree.html'>phylo</a></code> phylogenetic tree for the
      features.</p></dd>
 
- </dl>
+ 
+</dl>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
@@ -314,11 +295,12 @@ into the solution. Defaults to <code>0</code>.</p></td>
       set as the <code>baseline_min_persistence_probability</code>
       and <code>baseline_max_persistence_probability</code> arguments.</p></li>
 <li><p>A phylogenetic tree is simulated for the features using
-      <code><a href='https://www.rdocumentation.org/packages/ape/topics/rtree'>rcoal</a></code>.</p></li>
+      <code><a href='https://rdrr.io/pkg/ape/man/rtree.html'>rcoal</a></code>.</p></li>
 <li><p>Feature data are created from the phylogenetic tree. The
       weights are calculated as the amount of evolutionary history
       that has elapsed between each feature and its last common ancestor.</p></li>
 </ol>
+
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Carwardine J, Martin TG, Firn J, Ponce-Reyes P, Nicol S, Reeson A,
@@ -348,42 +330,42 @@ Management for biodiversity conservation: A handbook.
 
 <span class='co'># print data set</span>
 <span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s</span>)</div><div class='output co'>#&gt; $projects
-#&gt; <span style='color: #949494;'># A tibble: 7 x 16</span><span>
+#&gt; <span style='color: #555555;'># A tibble: 7 x 16</span><span>
 #&gt;   name  success      F1      F2     F3     F4    F5 action_1 action_2 action_3
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> proj~   0.931 </span><span style='color: #BB0000;'>NA</span><span>       0.533   0.606 </span><span style='color: #BB0000;'>NA</span><span>     0.878 TRUE     TRUE     TRUE    
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> proj~   0.899  0.691  </span><span style='color: #BB0000;'>NA</span><span>       0.668  0.509 0.889 TRUE     TRUE     TRUE    
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> proj~   0.867  0.644   0.544   0.845 </span><span style='color: #BB0000;'>NA</span><span>     0.547 TRUE     TRUE     TRUE    
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> proj~   0.892 </span><span style='color: #BB0000;'>NA</span><span>       0.791  </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     0.666 TRUE     FALSE    TRUE    
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> proj~   0.876  0.556  </span><span style='color: #BB0000;'>NA</span><span>       0.755  0.837 0.800 TRUE     FALSE    FALSE   
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> proj~   0.932  0.517   0.894  </span><span style='color: #BB0000;'>NA</span><span>      0.520 0.663 TRUE     FALSE    TRUE    
-#&gt; </span><span style='color: #BCBCBC;'>7</span><span> base~   1      0.086</span><span style='text-decoration: underline;'>8</span><span>  0.069</span><span style='text-decoration: underline;'>2</span><span>  0.321  0.376 0.303 FALSE    FALSE    FALSE   
-#&gt; </span><span style='color: #949494;'># ... with 6 more variables: action_4 </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #949494;'>, action_5 </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #949494;'>, action_6 </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #949494;'>,
-#&gt; #   action_7 </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #949494;'>, action_8 </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #949494;'>, baseline_action </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>   
+#&gt; </span><span style='color: #555555;'>1</span><span> proj~   0.931 </span><span style='color: #BB0000;'>NA</span><span>       0.533   0.606 </span><span style='color: #BB0000;'>NA</span><span>     0.878 TRUE     TRUE     TRUE    
+#&gt; </span><span style='color: #555555;'>2</span><span> proj~   0.899  0.691  </span><span style='color: #BB0000;'>NA</span><span>       0.668  0.509 0.889 TRUE     TRUE     TRUE    
+#&gt; </span><span style='color: #555555;'>3</span><span> proj~   0.867  0.644   0.544   0.845 </span><span style='color: #BB0000;'>NA</span><span>     0.547 TRUE     TRUE     TRUE    
+#&gt; </span><span style='color: #555555;'>4</span><span> proj~   0.892 </span><span style='color: #BB0000;'>NA</span><span>       0.791  </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     0.666 TRUE     FALSE    TRUE    
+#&gt; </span><span style='color: #555555;'>5</span><span> proj~   0.876  0.556  </span><span style='color: #BB0000;'>NA</span><span>       0.755  0.837 0.800 TRUE     FALSE    FALSE   
+#&gt; </span><span style='color: #555555;'>6</span><span> proj~   0.932  0.517   0.894  </span><span style='color: #BB0000;'>NA</span><span>      0.520 0.663 TRUE     FALSE    TRUE    
+#&gt; </span><span style='color: #555555;'>7</span><span> base~   1      0.086</span><span style='text-decoration: underline;'>8</span><span>  0.069</span><span style='text-decoration: underline;'>2</span><span>  0.321  0.376 0.303 FALSE    FALSE    FALSE   
+#&gt; </span><span style='color: #555555;'># ... with 6 more variables: action_4 </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, action_5 </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, action_6 </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   action_7 </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, action_8 </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, baseline_action </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>
 #&gt; 
 #&gt; $actions
-#&gt; </span><span style='color: #949494;'># A tibble: 9 x 4</span><span>
+#&gt; </span><span style='color: #555555;'># A tibble: 9 x 4</span><span>
 #&gt;   name             cost locked_in locked_out
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>     
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> action_1        101.  FALSE     FALSE     
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> action_2         96.4 FALSE     FALSE     
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> action_3         96.3 FALSE     FALSE     
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> action_4         99.6 FALSE     FALSE     
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> action_5         95.7 TRUE      FALSE     
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> action_6         93.0 FALSE     FALSE     
-#&gt; </span><span style='color: #BCBCBC;'>7</span><span> action_7        109.  FALSE     FALSE     
-#&gt; </span><span style='color: #BCBCBC;'>8</span><span> action_8         90.4 FALSE     TRUE      
-#&gt; </span><span style='color: #BCBCBC;'>9</span><span> baseline_action   0   FALSE     FALSE     
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>     
+#&gt; </span><span style='color: #555555;'>1</span><span> action_1        101.  FALSE     FALSE     
+#&gt; </span><span style='color: #555555;'>2</span><span> action_2         96.4 FALSE     FALSE     
+#&gt; </span><span style='color: #555555;'>3</span><span> action_3         96.3 FALSE     FALSE     
+#&gt; </span><span style='color: #555555;'>4</span><span> action_4         99.6 FALSE     FALSE     
+#&gt; </span><span style='color: #555555;'>5</span><span> action_5         95.7 TRUE      FALSE     
+#&gt; </span><span style='color: #555555;'>6</span><span> action_6         93.0 FALSE     FALSE     
+#&gt; </span><span style='color: #555555;'>7</span><span> action_7        109.  FALSE     FALSE     
+#&gt; </span><span style='color: #555555;'>8</span><span> action_8         90.4 FALSE     TRUE      
+#&gt; </span><span style='color: #555555;'>9</span><span> baseline_action   0   FALSE     FALSE     
 #&gt; 
 #&gt; $features
-#&gt; </span><span style='color: #949494;'># A tibble: 5 x 2</span><span>
+#&gt; </span><span style='color: #555555;'># A tibble: 5 x 2</span><span>
 #&gt;   name  weight
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> F1     0.125
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> F2     0.125
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> F3     0.376
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> F4     0.724
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> F5     3.13 
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> F1     0.125
+#&gt; </span><span style='color: #555555;'>2</span><span> F2     0.125
+#&gt; </span><span style='color: #555555;'>3</span><span> F3     0.376
+#&gt; </span><span style='color: #555555;'>4</span><span> F4     0.724
+#&gt; </span><span style='color: #555555;'>5</span><span> F5     3.13 
 #&gt; 
 #&gt; $tree
 #&gt; 
@@ -396,33 +378,30 @@ Management for biodiversity conservation: A handbook.
 #&gt; </div><div class='input'>
 </div></span></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#references">References</a></li>
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
+
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://jeffrey-hanson.com'>Jeffrey O Hanson</a>, <a href='http://www.richard-schuster.com/'>Richard Schuster</a>, <a href='http://strimas.com'>Matthew Strimas-Mackey</a>, Joseph Bennett.</p>
+  <p>Developed by <a href='https://jeffrey-hanson.com'>Jeffrey O Hanson</a>, <a href='http://www.richard-schuster.com'>Richard Schuster</a>, <a href='http://strimas.com'>Matthew Strimas-Mackey</a>, <a href='https://josephrbennett.wordpress.com'>Joseph R Bennett</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

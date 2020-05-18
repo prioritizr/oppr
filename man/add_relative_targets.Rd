@@ -6,6 +6,8 @@
 \alias{add_relative_targets,ProjectProblem,character-method}
 \title{Add relative targets}
 \usage{
+add_relative_targets(x, targets)
+
 \S4method{add_relative_targets}{ProjectProblem,numeric}(x, targets)
 
 \S4method{add_relative_targets}{ProjectProblem,character}(x, targets)

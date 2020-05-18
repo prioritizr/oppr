@@ -8,12 +8,22 @@
 \alias{sim_features}
 \alias{sim_tree}
 \title{Simulated data}
-\format{\describe{
+\format{
+\describe{
   \item{sim_projects}{\code{\link[tibble]{tibble}} object.}
   \item{sim_actions}{\code{\link[tibble]{tibble}} object.}
   \item{sim_features}{\code{\link[tibble]{tibble}} object.}
   \item{sim_tree}{\code{\link[ape]{phylo}} object.}
-}}
+}
+
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 6 rows and 13 columns.
+
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 6 rows and 4 columns.
+
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 5 rows and 2 columns.
+
+An object of class \code{phylo} of length 4.
+}
 \usage{
 data(sim_projects)
 

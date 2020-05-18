@@ -1,3 +1,11 @@
+# oppr 1.0.2 (released)
+
+- CRAN release.
+
+# oppr 1.0.1.1
+
+- Replace `tibble::as.tibble` with `tibble::as_tibble` to avoid warnings.
+
 # oppr 1.0.1 (released)
 
 - CRAN release.

@@ -5,6 +5,11 @@
 \alias{solve,OptimizationProblem,Solver-method}
 \alias{solve,ProjectProblem,missing-method}
 \title{Solve}
+\usage{
+\S4method{solve}{OptimizationProblem,Solver}(a, b, ...)
+
+\S4method{solve}{ProjectProblem,missing}(a, b, ...)
+}
 \arguments{
 \item{a}{\code{\link{ProjectProblem-class}} or an
 \code{\link{OptimizationProblem-class}} object.}

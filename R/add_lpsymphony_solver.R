@@ -53,6 +53,7 @@ NULL
 NULL
 
 #' @export
+#' @rdname Solver-class
 methods::setClass("LpsymphonySolver", contains = "Solver")
 
 #' @rdname add_lsymphony_solver

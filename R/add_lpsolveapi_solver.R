@@ -55,6 +55,7 @@ NULL
 NULL
 
 #' @export
+#' @rdname Solver-class
 methods::setClass("LpsolveapiSolver", contains = "Solver")
 
 #' @rdname add_lpsolveapi_solver

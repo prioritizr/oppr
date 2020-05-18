@@ -149,7 +149,7 @@ library(ggplot2)
 data(sim_projects, sim_features, sim_actions)
 
 # build problem with maximum targets met objective, a $200 budget,
-# targets that require each feature to have a 20\\\% chance of persisting into
+# targets that require each feature to have a 20\\% chance of persisting into
 # the future, and zero cost actions locked in
 p1 <- problem(sim_projects, sim_actions, sim_features,
              "name", "success", "name", "cost", "name") \%>\%

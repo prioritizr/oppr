@@ -6,6 +6,8 @@
 \alias{add_absolute_targets,ProjectProblem,character-method}
 \title{Add absolute targets}
 \usage{
+add_absolute_targets(x, targets)
+
 \S4method{add_absolute_targets}{ProjectProblem,numeric}(x, targets)
 
 \S4method{add_absolute_targets}{ProjectProblem,character}(x, targets)

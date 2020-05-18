@@ -4,8 +4,7 @@
 \alias{plot.ProjectProblem}
 \title{Plot a solution to a project prioritization problem}
 \usage{
-\method{plot}{ProjectProblem}(x, solution, n = 1, symbol_hjust = 0.007,
-  return_data = FALSE, ...)
+\method{plot}{ProjectProblem}(x, solution, n = 1, symbol_hjust = 0.007, return_data = FALSE, ...)
 }
 \arguments{
 \item{x}{project prioritization \code{\link{problem}}.}

@@ -6,6 +6,8 @@
 \alias{add_feature_weights,ProjectProblem,character-method}
 \title{Add feature weights}
 \usage{
+add_feature_weights(x, weights)
+
 \S4method{add_feature_weights}{ProjectProblem,numeric}(x, weights)
 
 \S4method{add_feature_weights}{ProjectProblem,character}(x, weights)

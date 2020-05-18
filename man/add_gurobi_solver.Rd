@@ -4,9 +4,17 @@
 \alias{add_gurobi_solver}
 \title{Add a \pkg{Gurobi} solver}
 \usage{
-add_gurobi_solver(x, gap = 0, number_solutions = 1,
-  solution_pool_method = 2, time_limit = .Machine$integer.max,
-  presolve = 2, threads = 1, first_feasible = 0, verbose = TRUE)
+add_gurobi_solver(
+  x,
+  gap = 0,
+  number_solutions = 1,
+  solution_pool_method = 2,
+  time_limit = .Machine$integer.max,
+  presolve = 2,
+  threads = 1,
+  first_feasible = 0,
+  verbose = TRUE
+)
 }
 \arguments{
 \item{x}{\code{\link{ProjectProblem-class}} object.}

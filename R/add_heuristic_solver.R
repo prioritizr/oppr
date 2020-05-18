@@ -170,6 +170,7 @@ NULL
 NULL
 
 #' @export
+#' @rdname Solver-class
 methods::setClass("HeuristicSolver", contains = "Solver")
 
 #' @rdname add_heuristic_solver

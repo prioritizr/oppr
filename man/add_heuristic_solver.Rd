@@ -4,8 +4,12 @@
 \alias{add_heuristic_solver}
 \title{Add a heuristic solver}
 \usage{
-add_heuristic_solver(x, number_solutions = 1, initial_sweep = TRUE,
-  verbose = TRUE)
+add_heuristic_solver(
+  x,
+  number_solutions = 1,
+  initial_sweep = TRUE,
+  verbose = TRUE
+)
 }
 \arguments{
 \item{x}{\code{\link{ProjectProblem-class}} object.}

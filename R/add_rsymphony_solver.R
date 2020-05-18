@@ -48,6 +48,7 @@ NULL
 NULL
 
 #' @export
+#' @rdname Solver-class
 methods::setClass("RsymphonySolver", contains = "Solver")
 
 #' @rdname add_rsymphony_solver

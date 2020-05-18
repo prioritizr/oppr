@@ -160,11 +160,11 @@ methods::setMethod(
     ## add status column
     out$status <- vapply(sol, `[[`, character(1), 3)
     ## add solution columns
-    s <- tibble::as.tibble(as.data.frame(action_status))
+    s <- tibble::as_tibble(as.data.frame(action_status))
     names(s) <- a$action_names()
-    out <- tibble::as.tibble(cbind(out, s))
+    out <- tibble::as_tibble(cbind(out, s))
     ### add remaining columns
-    out <- tibble::as.tibble(cbind(out, solution_statistics(a, s)))
+    out <- tibble::as_tibble(cbind(out, solution_statistics(a, s)))
     ### reorder columns
     out <- out[, c("solution", "status", "obj", "cost", a$action_names(),
                    a$project_names(), a$feature_names())]

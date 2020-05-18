@@ -4,8 +4,13 @@
 \alias{plot_feature_persistence}
 \title{Plot a bar plot to visualize a project prioritization}
 \usage{
-plot_feature_persistence(x, solution, n = 1, symbol_hjust = 0.007,
-  return_data = FALSE)
+plot_feature_persistence(
+  x,
+  solution,
+  n = 1,
+  symbol_hjust = 0.007,
+  return_data = FALSE
+)
 }
 \arguments{
 \item{x}{project prioritization \code{\link{problem}}.}

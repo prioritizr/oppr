@@ -29,28 +29,26 @@ The _oppr R_ package is decision support tool for prioritizing conservation proj
 
 ## Installation
 
-The latest official version of the _oppr R_ package can be installed using the following _R_ code. We also recommend installing the [Gurobi optimization suite](http://www.gurobi.com/) and [_gurobi R_ package](https://www.gurobi.com/documentation/8.1/refman/r_api_overview.html) to obtain solutions very quickly. For instructions on installing these software packages, please refer to [this installation guide](https://CRAN.R-project.org/package=prioritizr/vignettes/gurobi_installation.html).
+The latest official version of the _oppr R_ package can be installed from the [Comprehensive R Archive Network (CRAN)](https://cran.r-project.org/) using the following _R_ code.
 
 ```{r, eval = FALSE}
 install.packages("oppr", repos = "https://cran.rstudio.com/")
 ```
 
-If you wish to plot phylogenetic trees, you will need install the _ggtree_ package from Bioconductor since it is not available on [The Comprehensive R Archive Network](https://cran.r-project.org/).
+Alternatively, the latest development version can be installed from [GitHub](https://github.com/prioritizr/oppr) using the following code. Please note that while developmental versions may contain additional features not present in the official version, they may also contain coding errors.
 
 ```{r, eval = FALSE}
-if (!require(devtools))
-  install.packages("devtools")
-if (!require(ggtree))
-  devtools::install_bioc("ggtree")
+if (!require(remotes)) install.packages("remotes")
+remotes::install_github("prioritizr/oppr")
 ```
 
-Alternatively, the latest developmental version can be installed using the following code. Please note that while developmental versions may contain additional features not present in the official version, they may also contain coding errors.
+## Citation
 
-```{r, eval = FALSE}
-if (!require(devtools))
-  install.packages("devtools")
-devtools::install_github("prioritizr/oppr")
-```
+To cite the _oppr R_ package in publications, please use:
+
+> Hanson JO, Schuster R, Strimas-Mackey M & Bennett JR (2019) Optimality in prioritizing conservation projects. _Methods in Ecology & Evolution_, **10**: 1655--1663.
+
+You can also use the following _R_ code to determine which version you have installed: `packageVersion("oppr")`
 
 ## Usage
 
@@ -129,8 +127,6 @@ plot(p, s)
 
 This has just been a taster of the _oppr R_ package. For more information, see the [package vignette](https://prioritizr.github.io/oppr/articles/oppr.html).
 
-## Citation
+## Getting help
 
-```{r, echo = FALSE, result = "asis", comment = ""}
-citation("oppr")
-```
+If you have any questions about using the _oppr R_ package or suggestions for improving it, please [file an issue at the package's online code repository](https://github.com/prioritizr/oppr/issues/new).

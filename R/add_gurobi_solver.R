@@ -136,6 +136,7 @@ NULL
 NULL
 
 #' @export
+#' @rdname Solver-class
 methods::setClass("GurobiSolver", contains = "Solver")
 
 #' @rdname add_gurobi_solver

@@ -102,6 +102,7 @@ NULL
 NULL
 
 #' @export
+#' @rdname Solver-class
 methods::setClass("RandomSolver", contains = "Solver")
 
 #' @rdname add_random_solver
