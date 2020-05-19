@@ -3,7 +3,7 @@
 \docType{package}
 \name{oppr}
 \alias{oppr}
-\title{\pkg{oppr}: Optimal Project Prioritization}
+\title{oppr: Optimal Project Prioritization}
 \description{
 The \pkg{oppr} \emph{R} package a decision support tool for prioritizing
   conservation projects. Prioritizations can be developed by maximizing

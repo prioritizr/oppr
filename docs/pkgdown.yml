@@ -3,7 +3,7 @@ pkgdown: 1.5.1
 pkgdown_sha: ~
 articles:
   oppr: oppr.html
-last_built: 2020-05-19T01:24Z
+last_built: 2020-05-19T02:59Z
 urls:
   reference: https://prioritizr.github.io/oppr/reference
   article: https://prioritizr.github.io/oppr/articles

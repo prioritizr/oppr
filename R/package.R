@@ -8,7 +8,7 @@ NULL
 #' @export
 NULL
 
-#' \pkg{oppr}: Optimal Project Prioritization
+#' oppr: Optimal Project Prioritization
 #'
 #'   The \pkg{oppr} \emph{R} package a decision support tool for prioritizing
 #'   conservation projects. Prioritizations can be developed by maximizing
