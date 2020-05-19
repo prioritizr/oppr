@@ -1,7 +1,6 @@
 Dear CRAN maintainers,
 
-This update pre-emptively fixes compatibility issues with the upcoming new
-version of the tibble R package.
+This update address compatibility issues with a recent release of the tibble R package.
 
 Cheers,
 
