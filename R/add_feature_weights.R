@@ -34,10 +34,10 @@ NULL
 #'
 #'   \describe{
 #'
-#'   \item{\code{numeric}}{\code{vector} of weight values for each feature.}
+#'   \item{`numeric`}{`vector` of weight values for each feature.}
 #'
-#'   \item{\code{character}}{specifying the name of column in the
-#'     feature data (i.e. the argument to \code{features} in the
+#'   \item{`character`}{specifying the name of column in the
+#'     feature data (i.e. the argument to `features` in the
 #'     \code{\link{problem}} function) that contains the weights.}
 #'
 #'   }

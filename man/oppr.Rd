@@ -29,7 +29,7 @@ Since the \href{https://bioconductor.org/packages/release/bioc/html/ggtree.html}
 at \href{https://bioconductor.org}{Bioconductor}---and is not available on
 \href{https://cran.r-project.org/}{The Comprehensive R Archive Network}---please
 execute the following command to install it:
-\code{source("https://bioconductor.org/biocLite.R");biocLite("ggtree")}.
+\verb{source("https://bioconductor.org/biocLite.R");biocLite("ggtree")}.
 If the installation process fails, please consult the
 \href{https://bioconductor.org/packages/release/bioc/html/ggtree.html}{package's online documentation}. To install the \pkg{gurobi} package, the
 \href{https://www.gurobi.com}{Gurobi} optimization suite will first need to

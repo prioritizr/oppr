@@ -17,24 +17,24 @@ NULL
 #'
 #' \describe{
 #'
-#' \item{$name}{\code{character} name of solver.}
+#' \item{$name}{`character` name of solver.}
 #'
-#' \item{$parameters}{\code{Parameters} object with parameters used to customize
+#' \item{$parameters}{`Parameters` object with parameters used to customize
 #'   the the solver.}
 #'
-#' \item{$solve}{\code{function} used to solve a
+#' \item{$solve}{`function` used to solve a
 #'   \code{\link{OptimizationProblem-class}} object.}
 #' }
 #'
 #' @section Usage:
 #'
-#' \code{x$print()}
+#' `x$print()`
 #'
-#' \code{x$show()}
+#' `x$show()`
 #'
-#' \code{x$repr()}
+#' `x$repr()`
 #'
-#' \code{x$solve(op)}
+#' `x$solve(op)`
 #'
 #' @section Arguments:
 #' \describe{
@@ -52,7 +52,7 @@ NULL
 #'
 #' \item{show}{show the object.}
 #'
-#' \item{repr}{\code{character} representation of object.}
+#' \item{repr}{`character` representation of object.}
 #'
 #' \item{solve}{solve an \code{\link{OptimizationProblem-class}} using this
 #'   object.}

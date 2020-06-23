@@ -73,12 +73,12 @@ add_default_solver <- function(x, ...) {
 #' Default solver name
 #'
 #' This function returns the name of the default solver. If no solvers are
-#' detected on the system, then a \code{NULL} object is returned.
+#' detected on the system, then a `NULL` object is returned.
 #'
 #' @details This function tests if any of the following packages are installed:
 #'   \pkg{Rsymphony}, \pkg{lpsymphony}, \pkg{gurobi}, \pkg{lpSolveAPI}.
 #'
-#' @return \code{character} indicating the name of the default solver.
+#' @return `character` indicating the name of the default solver.
 #'
 #' @noRd
 default_solver_name <- function() {

@@ -20,8 +20,8 @@ NULL
 #'   completely funded project---are depicted with an open circle symbol.
 #'
 #' @return A \code{\link{ggplot}} object, or a
-#'   \code{\link[tibble]{tbl_df}} object if \code{return_data} is
-#'   \code{TRUE}.
+#'   \code{\link[tibble]{tbl_df}} object if `return_data` is
+#'   `TRUE`.
 #'
 #' @examples
 #' # set seed for reproducibility

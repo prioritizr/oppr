@@ -8,7 +8,7 @@ NULL
 #' @param x \code{\link{ProjectProblem-class}} or
 #'   \code{\link{OptimizationProblem-class}} object.
 #'
-#' @return \code{integer} number of features.
+#' @return `integer` number of features.
 #'
 #' @name number_of_features
 #'

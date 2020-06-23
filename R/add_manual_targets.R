@@ -13,7 +13,7 @@ NULL
 #'
 #' @param x \code{\link{ProjectProblem-class}} object.
 #'
-#' @param targets \code{data.frame} or \code{\link[tibble]{tibble}} object. See
+#' @param targets `data.frame` or \code{\link[tibble]{tibble}} object. See
 #'   the Details section for more information.
 #'
 #' @details Targets are used to specify the minimum probability of persistence
@@ -27,24 +27,24 @@ NULL
 #'   Please note that attempting to solve problems with objectives that require
 #'   targets without specifying targets will throw an error.
 #'
-#'   The \code{targets} argument should contain the following columns:
+#'   The `targets` argument should contain the following columns:
 #'
 #'   \describe{
 #'
-#'   \item{\code{"feature"}}{\code{character} name of features in argument
-#'     to \code{x}.}
+#'   \item{`"feature"`}{`character` name of features in argument
+#'     to `x`.}
 #'
-#'   \item{\code{"type"}}{\code{character} describing the type of target.
-#'     Acceptable values include \code{"absolute"} and \code{"relative"}.
+#'   \item{`"type"`}{`character` describing the type of target.
+#'     Acceptable values include `"absolute"` and `"relative"`.
 #'     These values correspond to \code{\link{add_absolute_targets}},
 #'     and \code{\link{add_relative_targets}} respectively.}
 #'
-#'   \item{\code{"sense"}}{\code{character} sense of the target. The
-#'     only acceptable value currently supported is: \code{">="}. This field
+#'   \item{`"sense"`}{`character` sense of the target. The
+#'     only acceptable value currently supported is: `">="`. This field
 #'     (column) is optional and if it is missing then target senses will
-#'     default to \code{">="} values.}
+#'     default to `">="` values.}
 #'
-#'   \item{\code{"target"}}{\code{numeric} target threshold.}
+#'   \item{`"target"`}{`numeric` target threshold.}
 #'
 #'   }
 #'

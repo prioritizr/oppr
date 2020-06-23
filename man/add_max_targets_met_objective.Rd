@@ -21,15 +21,15 @@ maximize the total number of persistence targets met for the features, whilst
 ensuring that the cost of the solution is within a pre-specified budget
 (Chades \emph{et al.} 2015). In some project prioritization exercises,
 decision makers may have a target level of persistence for each feature
-(e.g. a 90\\% persistence target corresponding to a 90\\% chance for the
+(e.g. a 90\% persistence target corresponding to a 90\% chance for the
 features persisting into the future). In such exercises, the decision makers
 do not perceive any benefit when a target is not met (e.g. if a feature
-has a persistence target of 90\\% and a solution only secures a 70\\% chance
+has a persistence target of 90\% and a solution only secures a 70\% chance
 of persistence then no benefit is accrued for that feature) or when a target
-is surpassed (e.g. if a feature has a persistence target of 50\\%, then a
+is surpassed (e.g. if a feature has a persistence target of 50\%, then a
 solution which
-secures a 95\\% chance of persistence will accrue the same benefit as a
-solution which secures a 50\\% chance of persistence). Furthermore, weights
+secures a 95\% chance of persistence will accrue the same benefit as a
+solution which secures a 50\% chance of persistence). Furthermore, weights
 can also be used to specify the relative importance of meeting targets
 for specific features (see \code{\link{add_feature_weights}}).
 }
@@ -149,7 +149,7 @@ library(ggplot2)
 data(sim_projects, sim_features, sim_actions)
 
 # build problem with maximum targets met objective, a $200 budget,
-# targets that require each feature to have a 20\\% chance of persisting into
+# targets that require each feature to have a 20\% chance of persisting into
 # the future, and zero cost actions locked in
 p1 <- problem(sim_projects, sim_actions, sim_features,
              "name", "success", "name", "cost", "name") \%>\%

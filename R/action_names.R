@@ -7,7 +7,7 @@ NULL
 #'
 #' @param x \code{\link{ProjectProblem-class}}.
 #'
-#' @return \code{character} action names.
+#' @return `character` action names.
 #'
 #' @name action_names
 #'

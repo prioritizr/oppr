@@ -13,7 +13,7 @@ NULL
 #'
 #' @param x \code{\link{ProjectProblem-class}} object.
 #'
-#' @param budget \code{numeric} budget for funding actions.
+#' @param budget `numeric` budget for funding actions.
 #'
 #' @details A problem objective is used to specify the overall goal of the
 #'   project prioritization problem.
@@ -42,17 +42,17 @@ NULL
 #'   let \eqn{Q_{fj}} denote the actual probability that each
 #'   \eqn{f \in F}{f in F} associated with the project \eqn{j \in J}{j in J}
 #'   is expected to persist if the project is funded. If the argument
-#'   to \code{adjust_for_baseline} in the \code{problem} function was set to
-#'   \code{TRUE}, and this is the default behavior, then
+#'   to `adjust_for_baseline` in the `problem` function was set to
+#'   `TRUE`, and this is the default behavior, then
 #'   \eqn{Q_{fj} = (P_{j} \times B_{fj}) + \bigg(\big(1 - (P_{j} B_{fj})\big)
 #'   \times (P_{n} \times B_{fn})\bigg)}{Q_{fj} = (P_j B_{fj}) + ((1 - (P_j
-#'   B_{fj})) * (P_n \times B_{fn}))}, where \code{n} corresponds to the
+#'   B_{fj})) * (P_n \times B_{fn}))}, where `n` corresponds to the
 #'   baseline "do nothing" project. This means that the probability
 #'   of a feature persisting if a project is allocated to a feature
 #'   depends on (i) the probability of the project succeeding, (ii) the
 #'   probability of the feature persisting if the project does not fail,
 #'   and (iii) the probability of the feature persisting even if the project
-#'   fails. Otherwise, if the argument is set to \code{FALSE}, then
+#'   fails. Otherwise, if the argument is set to `FALSE`, then
 #'   \eqn{Q_{fj} = P_{j} \times B_{fj}}{Q_{fj} = P_{j} * B_{fj}}.
 #'
 #'   The binary control variables \eqn{X_i} in this problem indicate whether
@@ -116,7 +116,7 @@ NULL
 #' @references
 #' Joseph LN, Maloney RF & Possingham HP (2009) Optimal allocation of
 #' resources among threatened species: A project prioritization protocol.
-#' \emph{Conservation Biology}, \strong{23}, 328--338.
+#' *Conservation Biology*, **23**, 328--338.
 #'
 #' @return \code{\link{ProjectProblem-class}} object with the objective
 #'   added to it.

@@ -5,7 +5,7 @@ NULL
 #'
 #' Set the objective of a project prioritization \code{\link{problem}} to
 #' minimize the cost of the solution whilst ensuring that all targets are met.
-#' This objective is conceptually similar to that used in \emph{Marxan}
+#' This objective is conceptually similar to that used in *Marxan*
 #' (Ball, Possingham & Watts 2009).
 #'
 #' @param x \code{\link{ProjectProblem-class}} object.
@@ -36,17 +36,17 @@ NULL
 #'   let \eqn{Q_{fj}} denote the actual probability that each
 #'   \eqn{f \in F}{f in F} associated with the project \eqn{j \in J}{j in J}
 #'   is expected to persist if the project is funded. If the argument
-#'   to \code{adjust_for_baseline} in the \code{problem} function was set to
-#'   \code{TRUE}, and this is the default behavior, then
+#'   to `adjust_for_baseline` in the `problem` function was set to
+#'   `TRUE`, and this is the default behavior, then
 #'   \eqn{Q_{fj} = (P_{j} \times B_{fj}) + \bigg(\big(1 - (P_{j} B_{fj})\big)
 #'   \times (P_{n} \times B_{fn})\bigg)}{Q_{fj} = (P_j B_{fj}) + ((1 - (P_j
-#'   B_{fj})) * (P_n \times B_{fn}))}, where \code{n} corresponds to the
+#'   B_{fj})) * (P_n \times B_{fn}))}, where `n` corresponds to the
 #'   baseline "do nothing" project. This means that the probability
 #'   of a feature persisting if a project is allocated to a feature
 #'   depends on (i) the probability of the project succeeding, (ii) the
 #'   probability of the feature persisting if the project does not fail,
 #'   and (iii) the probability of the feature persisting even if the project
-#'   fails. Otherwise, if the argument is set to \code{FALSE}, then
+#'   fails. Otherwise, if the argument is set to `FALSE`, then
 #'   \eqn{Q_{fj} = P_{j} \times B_{fj}}{Q_{fj} = P_{j} * B_{fj}}.
 #'
 #'   The binary control variables \eqn{X_i} in this problem indicate whether
@@ -110,8 +110,8 @@ NULL
 #' @references
 #' Ball IR, Possingham HP & Watts M (2009) Marxan and relatives: software for
 #' spatial conservation prioritisation.
-#' \emph{Spatial conservation prioritisation: Quantitative methods and
-#' computational tools}, 185-195.
+#' *Spatial conservation prioritisation: Quantitative methods and
+#' computational tools*, 185-195.
 #'
 #' @seealso \code{\link{objectives}}, \code{\link{targets}}.
 #'
@@ -125,7 +125,7 @@ NULL
 #' data(sim_projects, sim_features, sim_actions)
 #'
 #' # build problem with minimum set objective and targets that require each
-#' # feature to have a 30\% chance of persisting into the future
+#' # feature to have a 30% chance of persisting into the future
 #' p <- problem(sim_projects, sim_actions, sim_features,
 #'              "name", "success", "name", "cost", "name") %>%
 #'       add_min_set_objective() %>%

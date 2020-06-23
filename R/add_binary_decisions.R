@@ -12,7 +12,7 @@ NULL
 #' @details
 #'   Project prioritization problems involve making decisions about
 #'   how funding will be allocated to management actions.
-#'   Only a single decision should be added to a \code{ProjectProblem} object.
+#'   Only a single decision should be added to a `ProjectProblem` object.
 #'   If no decision is added to a problem then this decision type will
 #'   be used by default. Currently, this is the only supported decision type.
 #'

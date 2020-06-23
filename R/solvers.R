@@ -16,16 +16,16 @@ NULL
 #'     currently installed on the system.}
 #'
 #' \item{\code{\link{add_gurobi_solver}}}{
-#'     \href{http://gurobi.com}{\emph{Gurobi}}
+#'     [*Gurobi*](http://gurobi.com)
 #'     is a state-of-the-art commercial optimization software with an R package
 #'     interface. It is by far the fastest solver that can be used by
 #'     this package, however, it is also the only solver that is not freely
 #'     available. That said, licenses are available to academics at no cost. The
-#'     \pkg{gurobi} package is distributed with the \emph{Gurobi} software
+#'     \pkg{gurobi} package is distributed with the *Gurobi* software
 #'     suite. This solver uses the \pkg{gurobi} package to solve problems.}
 #'
 #'   \item{\code{\link{add_rsymphony_solver}}}{
-#'     \href{https://projects.coin-or.org/SYMPHONY}{\emph{SYMPHONY}} is an
+#'     [*SYMPHONY*](https://projects.coin-or.org/SYMPHONY) is an
 #'     open-source integer programming solver that is part of the Computational
 #'     Infrastructure for Operations Research (COIN-OR) project, an initiative
 #'     to promote development of open-source tools for operations research (a
@@ -37,12 +37,12 @@ NULL
 #'     provides a different interface to the COIN-OR software suite. Unlike the
 #'     \pkg{Rsymhpony} package, the \pkg{lpsymphony} package is distributed
 #'     through
-#'     \href{https://doi.org/doi:10.18129/B9.bioc.lpsymphony}{Bioconductor}.
+#'     [Bioconductor](https://doi.org/doi:10.18129/B9.bioc.lpsymphony).
 #'     The \pkg{lpsymphony} package may be easier to install on Windows or
 #'     Max OSX systems than the \pkg{Rsymphony} package.}
 #'
 #'   \item{\code{\link{add_lpsolveapi_solver}}}{
-#'     \href{http://lpsolve.sourceforge.net/5.5/}{\emph{lp_solve}} is an
+#'     [*lp_solve*](http://lpsolve.sourceforge.net/5.5/) is an
 #'     open-source integer programming solver. The \pkg{lpSolveAPI} package
 #'     provides an interface to this solver and is available on CRAN.
 #'     Although this solver is the slowest currently supported solver,

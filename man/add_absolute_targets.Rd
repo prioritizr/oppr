@@ -21,8 +21,8 @@ Details section for more information.}
 \description{
 Set targets for a project prioritization \code{\link{problem}} by
 specifying exactly what probability of persistence is required
-for each feature. For instance, setting an absolute target of 10\\%
-(i.e. \code{0.1}) corresponds to a threshold 10\\% probability of persisting.
+for each feature. For instance, setting an absolute target of 10\%
+(i.e. \code{0.1}) corresponds to a threshold 10\% probability of persisting.
 }
 \details{
 Targets are used to specify the minimum probability of persistence

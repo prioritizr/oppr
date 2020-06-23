@@ -8,7 +8,7 @@ NULL
 #' @param x \code{\link{ProjectProblem-class}} or
 #'   \code{\link{OptimizationProblem-class}} object.
 #'
-#' @return \code{integer} number of actions.
+#' @return `integer` number of actions.
 #'
 #' @name number_of_actions
 #'

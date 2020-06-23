@@ -4,8 +4,8 @@ NULL
 #' Add a heuristic solver
 #'
 #' Specify that solutions should be generated using a backwards step-wise
-#' heuristic algorithm (inspired by Cabeza \emph{et al.} 2004,
-#' Korte & Vygen 2000, Probert \emph{et al.} 2016). Ideally,
+#' heuristic algorithm (inspired by Cabeza *et al.* 2004,
+#' Korte & Vygen 2000, Probert *et al.* 2016). Ideally,
 #' solutions should be generated using exact algorithm solvers (e.g.
 #' \code{\link{add_rsymphony_solver}} or \code{\link{add_gurobi_solver}})
 #' because they are guaranteed to identify optimal solutions (Rodrigues & Gaston
@@ -13,19 +13,19 @@ NULL
 #'
 #' @inheritParams add_gurobi_solver
 #'
-#' @param initial_sweep \code{logical} value indicating if projects and
+#' @param initial_sweep `logical` value indicating if projects and
 #'   actions which exceed the budget should be automatically excluded
 #'   prior to running the backwards heuristic. This step prevents
 #'   projects which exceed the budget, and so would never be selected in
 #'   the final solution, from biasing the cost-sharing calculations.
 #'   However, previous algorithms for project prioritization have not
-#'   used this step (e.g. Probert \emph{et al.} 2016).
-#'   Defaults to \code{TRUE}.
+#'   used this step (e.g. Probert *et al.* 2016).
+#'   Defaults to `TRUE`.
 #
 #' @details The heuristic algorithm used to generate solutions is described
 #'  below. It is heavily inspired by the cost-sharing backwards heuristic
 #'  algorithm conventionally used to guide the prioritization of species
-#'  recovery projects (Probert \emph{et al.} 2016).
+#'  recovery projects (Probert *et al.* 2016).
 #'
 #'  \enumerate{
 #'
@@ -36,7 +36,7 @@ NULL
 #'    which are locked out are deselected, and (ii) projects which are
 #'    associated with actions that are locked out are also deselected.
 #'
-#'  \item If the argument to \code{initial_sweep} is \code{TRUE}, then a set of
+#'  \item If the argument to `initial_sweep` is `TRUE`, then a set of
 #'    rules are then used to deselect actions and projects
 #'    based on budgetary constraints (if present). Specifically, (i) actions
 #'    which exceed the budget are deselected, (ii) projects which are
@@ -124,20 +124,20 @@ NULL
 #'
 #' @references
 #' Rodrigues AS & Gaston KJ (2002) Optimisation in reserve selection
-#' procedures---why not? \emph{Biological Conservation}, \strong{107},
+#' procedures---why not? *Biological Conservation*, **107**,
 #' 123--129.
 #'
 #' Cabeza M, Araujo MB, Wilson RJ, Thomas CD, Cowley MJ & Moilanen A (2004)
 #' Combining probabilities of occurrence with spatial reserve design.
-#' \emph{Journal of Applied Ecology}, \strong{41}, 252--262.
+#' *Journal of Applied Ecology*, **41**, 252--262.
 #'
 #' Korte B & Vygen J (2000)
-#' \emph{Combinatorial Optimization. Theory and Algorithms}. Springer-Verlag,
+#' *Combinatorial Optimization. Theory and Algorithms*. Springer-Verlag,
 #' Berlin, Germany.
 #'
 #' Probert W, Maloney RF, Mellish B, and Joseph L (2016)
 #' Project Prioritisation Protocol (PPP). Available at
-#' \url{https://github.com/p-robot/ppp}.
+#' <https://github.com/p-robot/ppp>.
 #'
 #' @examples
 #' # load ggplot2 package for making plots

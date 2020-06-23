@@ -4,25 +4,25 @@ NULL
 #' Replacement cost
 #'
 #' Calculate the replacement cost for priority actions in a project
-#' prioritization problem (Moilanen \emph{et al.} 2009). Actions associated
+#' prioritization problem (Moilanen *et al.* 2009). Actions associated
 #' with larger replacement cost values are more irreplaceabe, and may
 #' need to be implemented sooner than actions with lower replacement cost
 #' values.
 #'
 #' @inheritParams solution_statistics
 #'
-#' @param n \code{integer} solution number to calculate replacement cost values.
-#'   Since each row in the argument to \code{solutions} corresponds to a
+#' @param n `integer` solution number to calculate replacement cost values.
+#'   Since each row in the argument to `solutions` corresponds to a
 #'   different solution, this argument should correspond to a row in
-#'   the argument to \code{solutions}. Defaults to 1.
+#'   the argument to `solutions`. Defaults to 1.
 #'
 #' @details Replacement cost values are calculated for each priority action
-#'  specified in the solution. Missing (\code{NA}) values are assigned to
+#'  specified in the solution. Missing (`NA`) values are assigned to
 #'  actions which are not selected for funding in the specified solution.
 #'  For a given action, its replacement cost is calculated by
 #'  (i) calculating the objective value for the optimal solution to
-#'  the argument to \code{x}, (ii) calculating the objective value for the
-#'  optimal solution to the argument to \code{x} with the given action locked
+#'  the argument to `x`, (ii) calculating the objective value for the
+#'  optimal solution to the argument to `x` with the given action locked
 #'  out, (iii) calculating the difference between the two objective
 #'  values, (iv) the problem has an objective which aims to minimize
 #'  the objective value (only \code{\link{add_min_set_objective}}, then
@@ -37,19 +37,19 @@ NULL
 #'
 #'   \describe{
 #'
-#'   \item{\code{"action"}}{\code{character} name of each action.}
+#'   \item{`"action"`}{`character` name of each action.}
 #'
-#'   \item{\code{"cost"}}{\code{numeric} cost of each solution when each
+#'   \item{`"cost"`}{`numeric` cost of each solution when each
 #'     action is locked out.}
 #'
-#'   \item{\code{"obj"}}{\code{numeric} objective value of each solution when
+#'   \item{`"obj"`}{`numeric` objective value of each solution when
 #'     each action is locked out. This is calculated using the objective
-#'     function defined for the argument to \code{x}.}
+#'     function defined for the argument to `x`.}
 #'
-#'   \item{\code{"rep_cost"}}{\code{numeric} replacement cost for each
+#'   \item{`"rep_cost"`}{`numeric` replacement cost for each
 #'     action. Greater values indicate greater irreplaceability. Missing
-#'     (\code{NA}) values are assigned to actions which are not selected for
-#'     funding in the specified solution, infinite (\code{Inf}) values are
+#'     (`NA`) values are assigned to actions which are not selected for
+#'     funding in the specified solution, infinite (`Inf`) values are
 #'     assigned to to actions which are required to meet feasibility
 #'     constraints, and negative values mean that superior solutions than
 #'     the specified solution exist.}
@@ -59,7 +59,7 @@ NULL
 #' @references
 #' Moilanen A, Arponen A, Stokland JN & Cabeza M (2009) Assessing replacement
 #' cost of conservation areas: how does habitat loss influence priorities?
-#' \emph{Biological Conservation}, \strong{142}, 575--585.
+#' *Biological Conservation*, **142**, 575--585.
 #'
 #' @seealso \code{\link{solution_statistics}},
 #'   \code{\link{project_cost_effectiveness}}.

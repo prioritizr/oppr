@@ -20,21 +20,21 @@ NULL
 #'
 #'   \describe{
 #'
-#'   \item{\code{integer}}{\code{vector} of indices pertaining to which
+#'   \item{`integer`}{`vector` of indices pertaining to which
 #'     actions should be locked in the solution (i.e. row numbers of the
-#'     actions in the argument to \code{actions} in \code{\link{problem}}).}
+#'     actions in the argument to `actions` in \code{\link{problem}}).}
 #'
-#'   \item{\code{logical}}{\code{vector} containing \code{logical}
-#'     (i.e. \code{TRUE} and/or \code{FALSE} values) that indicate which
-#'     actions should be locked in the solution. These \code{logical}
-#'     values should correspond to each row in the argument to \code{actions}
+#'   \item{`logical`}{`vector` containing `logical`
+#'     (i.e. `TRUE` and/or `FALSE` values) that indicate which
+#'     actions should be locked in the solution. These `logical`
+#'     values should correspond to each row in the argument to `actions`
 #'     in \code{\link{problem}}).}
 #'
-#'   \item{\code{character}}{column name that indicates if actions
+#'   \item{`character`}{column name that indicates if actions
 #'     units should be locked in the solution. This argument
-#'     should  denote a column in the argument to \code{actions}
-#'     in \code{\link{problem}} which contains \code{logical}
-#'     (i.e. \code{TRUE} and/or \code{FALSE} values) to indicate
+#'     should  denote a column in the argument to `actions`
+#'     in \code{\link{problem}} which contains `logical`
+#'     (i.e. `TRUE` and/or `FALSE` values) to indicate
 #'     which actions should be locked.}
 #'  }
 #'

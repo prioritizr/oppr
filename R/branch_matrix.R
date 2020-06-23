@@ -14,9 +14,9 @@ NULL
 #'
 #' @param x \code{\link[ape]{phylo}} tree object.
 #'
-#' @param assert_validity \code{logical} value (i.e. \code{TRUE} or \code{FALSE}
-#'   indicating if the argument to \code{x} should be checked for validity.
-#'   Defaults to \code{TRUE}.
+#' @param assert_validity `logical` value (i.e. `TRUE` or `FALSE`
+#'   indicating if the argument to `x` should be checked for validity.
+#'   Defaults to `TRUE`.
 #'
 #' @param ... not used.
 #'

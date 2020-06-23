@@ -3,13 +3,13 @@
 #' Check that the output from \code{\link[assert_that]{see_if}}
 #' is valid.
 #'
-#' @param x \code{character} or \code{object}
+#' @param x `character` or `object`
 #'
-#' @details This object will return an error if the argument to \code{x}
-#'   is \code{FALSE}, and for the error message, will show the error
+#' @details This object will return an error if the argument to `x`
+#'   is `FALSE`, and for the error message, will show the error
 #'   message attached to the object.
 #'
-#' @return invisible \code{TRUE}.
+#' @return invisible `TRUE`.
 #'
 #' @noRd
 check_that <- function(x) {
@@ -20,9 +20,9 @@ check_that <- function(x) {
 
 #' Convert sparse matrix to triplet data.frame
 #'
-#' Convert a sparse matrix to a triplet \code{data.frame}.
+#' Convert a sparse matrix to a triplet `data.frame`.
 #'
-#' @param x \code{Matrix} object.
+#' @param x `Matrix` object.
 #'
 #' @noRd
 matrix_to_triplet_dataframe <- function(x) {
@@ -37,7 +37,7 @@ matrix_to_triplet_dataframe <- function(x) {
 #'
 #' Convert a triplet data.framr object to a sparse matrix.
 #'
-#' @param x \code{data.frame} object. The first column contains the row
+#' @param x `data.frame` object. The first column contains the row
 #'   numbers, the second column contains the column numbers, and the
 #'   third column contains the cell values.
 #
@@ -68,11 +68,11 @@ triplet_dataframe_to_matrix <- function(x, forceSymmetric=FALSE, ...) {
 #'
 #' Format text by adding a certain number of spaces after new line characters.
 #'
-#' @param x \code{character} text.
+#' @param x `character` text.
 #'
-#' @param n \code{integer} number of spaces.
+#' @param n `integer` number of spaces.
 #'
-#' @return \code{character}.
+#' @return `character`.
 #'
 #' @examples
 #' # make some text
@@ -101,9 +101,9 @@ align_text <- function(x, n) {
 #' Return a pretty character representation of an object with elements and
 #  names.
 #'
-#' @param x \code{object}.
+#' @param x `object`.
 #'
-#' @return \code{character} object.
+#' @return `character` object.
 #'
 #' @examples
 #' repr_atomic(letters)
@@ -124,11 +124,11 @@ repr_atomic <- function(x, description = "") {
 #' No extra arguments
 #'
 #' Check that no additional unused arguments have been supplied to a function
-#' through the \code{...}.
+#' through the `...`.
 #'
 #' @param ... arguments that are not used.
 #'
-#' @return \code{logical} indicating success.
+#' @return `logical` indicating success.
 #'
 #' @noRd
 no_extra_arguments <- function(...) {
@@ -158,9 +158,9 @@ assertthat::on_failure(no_extra_arguments) <- function(call, env) {
 #' is not. This function is equivalent to \code{\link[assertthat]{assert_that}}
 #' except that it throws warnings and not errors.
 #'
-#' @param x \code{logical} condition.
+#' @param x `logical` condition.
 #'
-#' @return \code{logical} if assertion is met and a \code{warning} if it is not.
+#' @return `logical` if assertion is met and a `warning` if it is not.
 #'
 #' @noRd
 verify_that <- function(..., env = parent.frame()) {
@@ -178,7 +178,7 @@ verify_that <- function(..., env = parent.frame()) {
 #' @details This function tests if any of the following packages are installed:
 #'   \pkg{Rsymphony}, \pkg{lpsymphony}, \pkg{gurobi}.
 #'
-#' @return \code{logical} value indicating if any solvers are installed.
+#' @return `logical` value indicating if any solvers are installed.
 #'
 #' @noRd
 any_solvers_installed <- function() {
@@ -188,12 +188,12 @@ any_solvers_installed <- function() {
 #' Default solver name
 #'
 #' This function returns the name of the default solver. If no solvers are
-#' detected on the system, then a \code{NULL} object is returned.
+#' detected on the system, then a `NULL` object is returned.
 #'
 #' @details This function tests if any of the following packages are installed:
 #'   \pkg{Rsymphony}, \pkg{lpsymphony}, \pkg{gurobi}.
 #'
-#' @return \code{character} indicating the name of the default solver.
+#' @return `character` indicating the name of the default solver.
 #'
 #' @noRd
 default_solver_name <- function() {
@@ -216,7 +216,7 @@ default_solver_name <- function() {
 #'
 #' @param x object.
 #'
-#' @return \code{logical} indicating success.
+#' @return `logical` indicating success.
 #'
 #' @noRd
 is_valid_phylo <- function(x) {
@@ -235,9 +235,9 @@ assertthat::on_failure(is_valid_phylo) <- function(call, env) {
 #'
 #' Find a description of the solver status returned from SYMPHONY.
 #'
-#' @param x \code{numeric} status code.
+#' @param x `numeric` status code.
 #'
-#' @return \code{character} status description.
+#' @return `character` status description.
 #'
 #' @noRd
 symphony_status <- function(x) {
@@ -275,9 +275,9 @@ symphony_status <- function(x) {
 #'
 #' Find a description of the solver status returned from lp_solve.
 #'
-#' @param x \code{numeric} status code.
+#' @param x `numeric` status code.
 #'
-#' @return \code{character} status description.
+#' @return `character` status description.
 #'
 #' @noRd
 lp_solve_status <- function(x) {

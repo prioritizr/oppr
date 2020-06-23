@@ -26,7 +26,7 @@ correspond to a 40\% threshold probability of persisting.}
 \item{\code{\link{add_absolute_targets}}}{
 Set targets by specifying exactly what probability of persistence is
 required for each feature. For instance, setting an absolute target of
-10\\% (i.e. \code{0.1}) corresponds to a threshold 10\\% probability of
+10\% (i.e. \code{0.1}) corresponds to a threshold 10\% probability of
 persisting.}
 
 \item{\code{\link{add_manual_targets}}}{

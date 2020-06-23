@@ -12,17 +12,17 @@ NULL
 #'
 #' @param x \code{\link{ProjectProblem-class}} object.
 #'
-#' @param locked \code{data.frame} or \code{\link[tibble]{tibble}} object. See
+#' @param locked `data.frame` or \code{\link[tibble]{tibble}} object. See
 #'   the Details section for more information.
 #'
-#' @details The argument to \code{locked} must contain the following fields
+#' @details The argument to `locked` must contain the following fields
 #'   (columns):
 #'
 #'   \describe{
 #'
-#'   \item{\code{"action"}}{\code{character} action name.}
+#'   \item{`"action"`}{`character` action name.}
 #'
-#'   \item{\code{"status"}}{\code{numeric} values indicating if actions should
+#'   \item{`"status"`}{`numeric` values indicating if actions should
 #'      be funded (with a value of 1) or not (with a value of zero).}
 #'
 #'   }

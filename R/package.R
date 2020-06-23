@@ -10,7 +10,7 @@ NULL
 
 #' oppr: Optimal Project Prioritization
 #'
-#'   The \pkg{oppr} \emph{R} package a decision support tool for prioritizing
+#'   The \pkg{oppr} *R* package a decision support tool for prioritizing
 #'   conservation projects. Prioritizations can be developed by maximizing
 #'   expected feature richness, expected
 #'   phylogenetic diversity, the number of features that meet persistence
@@ -21,7 +21,7 @@ NULL
 #'   problem, solutions can be obtained using exact algorithms, heuristic
 #'   algorithms, or random processes. In particular, it is recommended to
 #'   install the 'Gurobi' optimizer (available from
-#'   \url{https://www.gurobi.com})
+#'   <https://www.gurobi.com>)
 #'   because it can identify optimal solutions very quickly. Finally, methods
 #'   are provided for comparing different prioritizations and evaluating their
 #'   benefits.
@@ -30,27 +30,27 @@ NULL
 #' To make the most of this package, the \href{https://bioconductor.org/packages/release/bioc/html/ggtree.html}{\pkg{ggtree}} and
 #' \href{http://www.gurobi.com/documentation/8.1/refman/r_api_overview.html}{\pkg{gurobi}} R packages will need to be installed.
 #' Since the \href{https://bioconductor.org/packages/release/bioc/html/ggtree.html}{\pkg{ggtree}} package is exclusively available
-#' at \href{https://bioconductor.org}{Bioconductor}---and is not available on
-#' \href{https://cran.r-project.org/}{The Comprehensive R Archive Network}---please
+#' at [Bioconductor](https://bioconductor.org)---and is not available on
+#' [The Comprehensive R Archive Network](https://cran.r-project.org/)---please
 #' execute the following command to install it:
-#' \code{source("https://bioconductor.org/biocLite.R");biocLite("ggtree")}.
+#' `source("https://bioconductor.org/biocLite.R");biocLite("ggtree")`.
 #' If the installation process fails, please consult the
-#' \href{https://bioconductor.org/packages/release/bioc/html/ggtree.html}{package's online documentation}. To install the \pkg{gurobi} package, the
-#' \href{https://www.gurobi.com}{Gurobi} optimization suite will first need to
-#' be installed (see instructions for \href{http://www.gurobi.com/documentation/8.1/quickstart_linux/software_installation_guid.html}{Linux},
-#'   \href{http://www.gurobi.com/documentation/8.1/quickstart_mac/software_installation_guid.html}{Mac OSX}, and
-#'   \href{http://www.gurobi.com/documentation/8.1/quickstart_windows/software_installation_guid.html}{Windows} operating systems). Although
-#' \href{https://www.gurobi.com}{Gurobi} is a commercial software, academics
+#' [package's online documentation](https://bioconductor.org/packages/release/bioc/html/ggtree.html). To install the \pkg{gurobi} package, the
+#' [Gurobi](https://www.gurobi.com) optimization suite will first need to
+#' be installed (see instructions for [Linux](http://www.gurobi.com/documentation/8.1/quickstart_linux/software_installation_guid.html),
+#'   [Mac OSX](http://www.gurobi.com/documentation/8.1/quickstart_mac/software_installation_guid.html), and
+#'   [Windows](http://www.gurobi.com/documentation/8.1/quickstart_windows/software_installation_guid.html) operating systems). Although
+#' [Gurobi](https://www.gurobi.com) is a commercial software, academics
 #' can obtain a
-#' \href{https://www.gurobi.com/downloads/end-user-license-agreement-academic/}{special license for no cost}. After installing the
-#' \href{https://www.gurobi.com}{Gurobi} optimization suite, the \pkg{gurobi}
-#'  package can then be installed (see instructions for \href{http://www.gurobi.com/documentation/8.1/quickstart_linux/r_installing_the_r_package.html}{Linux},
-#'   \href{http://www.gurobi.com/documentation/8.1/quickstart_mac/r_installing_the_r_package.html}{Mac OSX}, and
-#'   \href{http://www.gurobi.com/documentation/8.1/quickstart_windows/r_installing_the_r_package.html}{Windows} operating systems).
+#' [special license for no cost](https://www.gurobi.com/downloads/end-user-license-agreement-academic/). After installing the
+#' [Gurobi](https://www.gurobi.com) optimization suite, the \pkg{gurobi}
+#'  package can then be installed (see instructions for [Linux](http://www.gurobi.com/documentation/8.1/quickstart_linux/r_installing_the_r_package.html),
+#'   [Mac OSX](http://www.gurobi.com/documentation/8.1/quickstart_mac/r_installing_the_r_package.html), and
+#'   [Windows](http://www.gurobi.com/documentation/8.1/quickstart_windows/r_installing_the_r_package.html) operating systems).
 #'
 #' @seealso Please refer to the package vignette for more information and worked
 #'   examples. This can be accessed using the code
-#'   \code{vignette("oppr")}.
+#'   `vignette("oppr")`.
 #'
 #' @name oppr
 #'

@@ -55,7 +55,7 @@ through \href{https://bioconductor.org}{Bioconductor}, and is not
 available on the
 \href{https://cran.r-project.org/}{Comprehensive R Archive Network},
 please execute the following command to install it:
-\code{source("https://bioconductor.org/biocLite.R");biocLite("ggtree")}.
+\verb{source("https://bioconductor.org/biocLite.R");biocLite("ggtree")}.
 If the installation process fails, please consult the package's \href{https://bioconductor.org/packages/release/bioc/html/ggtree.html}{online documentation}.
 
 In this plot, each phylogenetic branch is colored according to probability
