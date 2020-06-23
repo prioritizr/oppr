@@ -9,7 +9,8 @@ NULL
 #'
 #' \describe{
 #'
-#'   \item{\code{sim_projects}}{A \code{\link[tibble]{tibble}} containing
+#'   \item{\code{sim_projects}}{
+#'      A \code{\link[tibble]{tibble}} containing
 #'     data for six simulated conservation projects. Each row corresponds to a
 #'     different project and each column contains information about the
 #'     projects. This table contains the following columns:
@@ -39,7 +40,8 @@ NULL
 #'         action (\code{TRUE}) or not (\code{FALSE}). This action is only
 #'         associated with the baseline project.}
 #'
-#'     }}
+#'     }
+#'  }
 #'
 #'   \item{\code{sim_actions}}{A \code{\link[tibble]{tibble}} containing
 #'     data for six simulated actions. Each row corresponds to a
@@ -58,7 +60,8 @@ NULL
 #'       \item{\code{"locked_out"}}{\code{logical} indicating if certain
 #'         actions should be locked out of the solution.}
 #'
-#'     }}
+#'     }
+#'   }
 #'
 #'   \item{\code{sim_features}}{A \code{\link[tibble]{tibble}} containing
 #'     data for five simulated features. Each row corresponds to a
@@ -71,7 +74,8 @@ NULL
 #'
 #'       \item{\code{"weight"}}{\code{numeric} weight for each feature.}
 #'
-#'     }}
+#'     }
+#'  }
 #'
 #'     \item{tree}{\code{\link[ape]{phylo}} phylogenetic tree for the features.}
 #'

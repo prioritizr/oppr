@@ -13,7 +13,7 @@ add_max_richness_objective(x, budget)
 }
 \value{
 \code{\link{ProjectProblem-class}} object with the objective
-  added to it.
+added to it.
 }
 \description{
 Set the objective of a project prioritization \code{\link{problem}} to
@@ -26,59 +26,59 @@ features (see \code{\link{add_feature_weights}}).
 }
 \details{
 A problem objective is used to specify the overall goal of the
-  project prioritization problem.
-  Here, the maximum richness objective seeks to find the set of actions that
-  maximizes the total number of features  (e.g. populations, species,
-  ecosystems) that is expected to persist within a pre-specified budget.
-  Let \eqn{I} represent the set of conservation actions (indexed by
-  \eqn{i}). Let \eqn{C_i} denote the cost for funding action \eqn{i}, and
-  let \eqn{m} denote the maximum expenditure (i.e. the budget). Also,
-  let \eqn{F} represent each feature (indexed by \eqn{f}), \eqn{W_f}
-  represent the weight for each feature \eqn{f} (defaults to one for
-  each feature unless specified otherwise), and \eqn{E_f} denote the
-  probability that each feature will go extinct given the funded
-  conservation projects.
+project prioritization problem.
+Here, the maximum richness objective seeks to find the set of actions that
+maximizes the total number of features  (e.g. populations, species,
+ecosystems) that is expected to persist within a pre-specified budget.
+Let \eqn{I} represent the set of conservation actions (indexed by
+\eqn{i}). Let \eqn{C_i} denote the cost for funding action \eqn{i}, and
+let \eqn{m} denote the maximum expenditure (i.e. the budget). Also,
+let \eqn{F} represent each feature (indexed by \eqn{f}), \eqn{W_f}
+represent the weight for each feature \eqn{f} (defaults to one for
+each feature unless specified otherwise), and \eqn{E_f} denote the
+probability that each feature will go extinct given the funded
+conservation projects.
 
-  To guide the prioritization, the conservation actions are organized into
-  conservation projects. Let \eqn{J} denote the set of conservation projects
-  (indexed by \eqn{j}), and let \eqn{A_{ij}} denote which actions
-  \eqn{i \in I}{i in I} comprise each conservation project
-  \eqn{j \in J}{j in J} using zeros and ones. Next, let \eqn{P_j} represent
-  the probability of project \eqn{j} being successful if it is funded. Also,
-  let \eqn{B_{fj}} denote the probability that each feature
-  \eqn{f \in F}{f in F} associated with the project \eqn{j \in J}{j in J}
-  will persist if all of the actions that comprise project \eqn{j} are funded
-  and that project is allocated to feature \eqn{f}. For convenience,
-  let \eqn{Q_{fj}} denote the actual probability that each
-  \eqn{f \in F}{f in F} associated with the project \eqn{j \in J}{j in J}
-  is expected to persist if the project is funded. If the argument
-  to \code{adjust_for_baseline} in the \code{problem} function was set to
-  \code{TRUE}, and this is the default behavior, then
-  \eqn{Q_{fj} = (P_{j} \times B_{fj}) + \bigg(\big(1 - (P_{j} B_{fj})\big)
+To guide the prioritization, the conservation actions are organized into
+conservation projects. Let \eqn{J} denote the set of conservation projects
+(indexed by \eqn{j}), and let \eqn{A_{ij}} denote which actions
+\eqn{i \in I}{i in I} comprise each conservation project
+\eqn{j \in J}{j in J} using zeros and ones. Next, let \eqn{P_j} represent
+the probability of project \eqn{j} being successful if it is funded. Also,
+let \eqn{B_{fj}} denote the probability that each feature
+\eqn{f \in F}{f in F} associated with the project \eqn{j \in J}{j in J}
+will persist if all of the actions that comprise project \eqn{j} are funded
+and that project is allocated to feature \eqn{f}. For convenience,
+let \eqn{Q_{fj}} denote the actual probability that each
+\eqn{f \in F}{f in F} associated with the project \eqn{j \in J}{j in J}
+is expected to persist if the project is funded. If the argument
+to \code{adjust_for_baseline} in the \code{problem} function was set to
+\code{TRUE}, and this is the default behavior, then
+\eqn{Q_{fj} = (P_{j} \times B_{fj}) + \bigg(\big(1 - (P_{j} B_{fj})\big)
   \times (P_{n} \times B_{fn})\bigg)}{Q_{fj} = (P_j B_{fj}) + ((1 - (P_j
   B_{fj})) * (P_n \times B_{fn}))}, where \code{n} corresponds to the
-  baseline "do nothing" project. This means that the probability
-  of a feature persisting if a project is allocated to a feature
-  depends on (i) the probability of the project succeeding, (ii) the
-  probability of the feature persisting if the project does not fail,
-  and (iii) the probability of the feature persisting even if the project
-  fails. Otherwise, if the argument is set to \code{FALSE}, then
-  \eqn{Q_{fj} = P_{j} \times B_{fj}}{Q_{fj} = P_{j} * B_{fj}}.
+baseline "do nothing" project. This means that the probability
+of a feature persisting if a project is allocated to a feature
+depends on (i) the probability of the project succeeding, (ii) the
+probability of the feature persisting if the project does not fail,
+and (iii) the probability of the feature persisting even if the project
+fails. Otherwise, if the argument is set to \code{FALSE}, then
+\eqn{Q_{fj} = P_{j} \times B_{fj}}{Q_{fj} = P_{j} * B_{fj}}.
 
-  The binary control variables \eqn{X_i} in this problem indicate whether
-  each project \eqn{i \in I}{i in I} is funded or not. The decision
-  variables in this problem are the \eqn{Y_{j}}, \eqn{Z_{fj}}, and \eqn{E_f}
-  variables.
-  Specifically, the binary \eqn{Y_{j}} variables indicate if project \eqn{j}
-  is funded or not based on which actions are funded; the binary
-  \eqn{Z_{fj}} variables indicate if project \eqn{j} is used to manage
-  feature \eqn{f} or not; and the semi-continuous \eqn{E_f} variables
-  denote the probability that feature \eqn{f} will go extinct.
+The binary control variables \eqn{X_i} in this problem indicate whether
+each project \eqn{i \in I}{i in I} is funded or not. The decision
+variables in this problem are the \eqn{Y_{j}}, \eqn{Z_{fj}}, and \eqn{E_f}
+variables.
+Specifically, the binary \eqn{Y_{j}} variables indicate if project \eqn{j}
+is funded or not based on which actions are funded; the binary
+\eqn{Z_{fj}} variables indicate if project \eqn{j} is used to manage
+feature \eqn{f} or not; and the semi-continuous \eqn{E_f} variables
+denote the probability that feature \eqn{f} will go extinct.
 
-  Now that we have defined all the data and variables, we can formulate
-  the problem. For convenience, let the symbol used to denote each set also
-  represent its cardinality (e.g. if there are ten features, let \eqn{F}
-  represent the set of ten features and also the number ten).
+Now that we have defined all the data and variables, we can formulate
+the problem. For convenience, let the symbol used to denote each set also
+represent its cardinality (e.g. if there are ten features, let \eqn{F}
+represent the set of ten features and also the number ten).
 
 \deqn{
   \mathrm{Maximize} \space \sum_{f = 0}^{F} (1 - E_f) W_f \space

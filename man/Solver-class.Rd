@@ -28,10 +28,10 @@ help page on \code{\link{solvers}}}.
 \item{$name}{\code{character} name of solver.}
 
 \item{$parameters}{\code{Parameters} object with parameters used to customize
-  the the solver.}
+the the solver.}
 
 \item{$solve}{\code{function} used to solve a
-  \code{\link{OptimizationProblem-class}} object.}
+\code{\link{OptimizationProblem-class}} object.}
 }
 }
 
@@ -69,7 +69,7 @@ help page on \code{\link{solvers}}}.
 \item{repr}{\code{character} representation of object.}
 
 \item{solve}{solve an \code{\link{OptimizationProblem-class}} using this
-  object.}
+object.}
 
 }
 }

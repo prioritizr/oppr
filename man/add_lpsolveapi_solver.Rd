@@ -29,7 +29,7 @@ optimization problems?}
 }
 \value{
 \code{\link{ProjectProblem-class}} object with the solver added
-  to it.
+to it.
 }
 \description{
 Specify that the \emph{lp_solve} software should be used to solve a
@@ -39,15 +39,15 @@ solver. It requires the \pkg{lpSolveAPI} package.
 }
 \details{
 \href{http://lpsolve.sourceforge.net/5.5/}{\emph{lp_solve}} is an
-  open-source integer programming solver.
-  Although this solver is the slowest currently supported solver,
-  it is also the only exact algorithm solver that can be installed on all
-  operating systems without any manual installation steps. This solver is
-  provided so that
-  users can try solving small project prioritization problems, without
-  needing to install additional software. When solve moderate or large
-  project prioritization problems, consider using
-  \code{\link{add_gurobi_solver}}.
+open-source integer programming solver.
+Although this solver is the slowest currently supported solver,
+it is also the only exact algorithm solver that can be installed on all
+operating systems without any manual installation steps. This solver is
+provided so that
+users can try solving small project prioritization problems, without
+needing to install additional software. When solve moderate or large
+project prioritization problems, consider using
+\code{\link{add_gurobi_solver}}.
 }
 \examples{
 # load data

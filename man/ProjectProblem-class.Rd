@@ -53,19 +53,19 @@ experts should use this class directly.}
 \item{$data}{\code{list} object containing data.}
 
 \item{$objective}{\code{\link{Objective-class}} object used to represent how
-  the targets relate to the solution.}
+the targets relate to the solution.}
 
 \item{$decisions}{\code{\link{Decision-class}} object used to represent the
-  type of decision made on planning units.}
+type of decision made on planning units.}
 
 \item{$targets}{\code{\link{Target-class}} object used to represent
-  representation targets for features.}
+representation targets for features.}
 
 \item{$weights}{\code{\link{Weight-class}} object used to represent
-  feature weights.}
+feature weights.}
 
 \item{$constraints}{\code{\link{Collection-class}} object used to represent
-  additional \code{\link{constraints}} that the problem is subject to.}
+additional \code{\link{constraints}} that the problem is subject to.}
 
 \item{$solver}{\code{\link{Solver-class}} object used to solve the problem.}
 
@@ -191,12 +191,12 @@ experts should use this class directly.}
 \item{repr}{return \code{character} representation of the object.}
 
 \item{get_data}{return an object stored in the \code{data} field with
-  the corresponding \code{name}. If the object is not present in the
-  \code{data} field, a \code{waiver} object is returned.}
+the corresponding \code{name}. If the object is not present in the
+\code{data} field, a \code{waiver} object is returned.}
 
 \item{set_data}{store an object stored in the \code{data} field with
-  the corresponding name. If an object with that name already
-  exists then the object is overwritten.}
+the corresponding name. If an object with that name already
+exists then the object is overwritten.}
 
 \item{number_of_actions}{\code{integer} number of actions.}
 
@@ -219,86 +219,86 @@ experts should use this class directly.}
 \item{project_costs}{\code{numeric} costs for each project.}
 
 \item{project_success_probabilities}{\code{numeric} probability that
-  each project will succeed.}
+each project will succeed.}
 
 \item{pf_matrix}{
-  \code{\link[Matrix]{dgCMatrix-class}} object denoting the enhanced
-  probability that features will persist if different projects are funded.}
+\code{\link[Matrix]{dgCMatrix-class}} object denoting the enhanced
+probability that features will persist if different projects are funded.}
 
 \item{epf_matrix}{
-  \code{\link[Matrix]{dgCMatrix-class}} object denoting the enhanced
-  probability that features is expected to persist if different projects are
- funded. This is calculated as the \code{pf_matrix} multiplied by the
- project success probabilities.}
+\code{\link[Matrix]{dgCMatrix-class}} object denoting the enhanced
+probability that features is expected to persist if different projects are
+funded. This is calculated as the \code{pf_matrix} multiplied by the
+project success probabilities.}
 
 \item{pa_matrix}{
-  \code{\link[Matrix]{dgCMatrix-class}} object indicating which actions are
-  associated with which projects.}
+\code{\link[Matrix]{dgCMatrix-class}} object indicating which actions are
+associated with which projects.}
 
 \item{feature_targets}{\code{\link[tibble]{tibble}} with feature targets.}
 
 \item{add_objective}{return a new  \code{\link{ProjectProblem-class}}
-  with the objective added to it.}
+with the objective added to it.}
 
 \item{add_decisions}{return a new \code{\link{ProjectProblem-class}}
-  object with the decision added to it.}
+object with the decision added to it.}
 
 \item{add_solver}{return a new \code{\link{ProjectProblem-class}} object
-  with the solver added to it.}
+with the solver added to it.}
 
 \item{add_constraint}{return a new \code{\link{ProjectProblem-class}}
-  object with the constraint added to it.}
+object with the constraint added to it.}
 
 \item{add_targets}{return a copy with the targets added to the problem.}
 
 \item{get_constraint_parameter}{get the value of a parameter (specified by
-  argument \code{id}) used in one of the constraints in the object.}
+argument \code{id}) used in one of the constraints in the object.}
 
 \item{set_constraint_parameter}{set the value of a parameter (specified by
-  argument \code{id}) used in one of the constraints in the object to
-  \code{value}.}
+argument \code{id}) used in one of the constraints in the object to
+\code{value}.}
 
 \item{render_constraint_parameter}{generate a \emph{shiny} widget to modify
- the value of a parameter (specified by argument \code{id}).}
+the value of a parameter (specified by argument \code{id}).}
 
 \item{render_all_constraint_parameters}{generate a \emph{shiny} \code{div}
-  containing all the parameters' widgets.}
+containing all the parameters' widgets.}
 
 \item{get_objective_parameter}{get the value of a parameter (specified by
-  argument \code{id}) used in the object's objective.}
+argument \code{id}) used in the object's objective.}
 
 \item{set_objective_parameter}{set the value of a parameter (specified by
-  argument \code{id}) used in the object's objective to \code{value}.}
+argument \code{id}) used in the object's objective to \code{value}.}
 
 \item{render_objective_parameter}{generate a \emph{shiny} widget to modify
-  the value of a parameter (specified by argument \code{id}).}
+the value of a parameter (specified by argument \code{id}).}
 
 \item{render_all_objective_parameters}{generate a \emph{shiny} \code{div}
-  containing all the parameters' widgets.}
+containing all the parameters' widgets.}
 
 \item{get_weight_parameter}{get the value of a parameter (specified by
-  argument \code{id}) used in the object's weights.}
+argument \code{id}) used in the object's weights.}
 
 \item{set_weight_parameter}{set the value of a parameter (specified by
-  argument \code{id}) used in the object's weights to \code{value}.}
+argument \code{id}) used in the object's weights to \code{value}.}
 
 \item{render_weight_parameter}{generate a \emph{shiny} widget to modify
-  the value of a parameter (specified by argument \code{id}).}
+the value of a parameter (specified by argument \code{id}).}
 
 \item{render_all_weight_parameters}{generate a \emph{shiny} \code{div}
-  containing all the parameters' widgets.}
+containing all the parameters' widgets.}
 
 \item{get_solver_parameter}{get the value of a parameter (specified by
-  argument \code{id}) used in the object's solver.}
+argument \code{id}) used in the object's solver.}
 
 \item{set_solver_parameter}{set the value of a parameter (specified by
-  argument \code{id}) used in the object's solver to \code{value}.}
+argument \code{id}) used in the object's solver to \code{value}.}
 
 \item{render_solver_parameter}{generate a \emph{shiny} widget to modify
-  the value of a parameter (specified by argument \code{id}).}
+the value of a parameter (specified by argument \code{id}).}
 
 \item{render_all_solver_parameters}{generate a \emph{shiny} \code{div}
-  containing all the parameters' widgets.}
+containing all the parameters' widgets.}
 
 }
 }

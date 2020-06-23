@@ -43,7 +43,7 @@ optimization problems?}
 }
 \value{
 \code{\link{ProjectProblem-class}} object with the solver added
-  to it.
+to it.
 }
 \description{
 Specify that the \emph{SYMPHONY} software should be used to solve a
@@ -53,12 +53,12 @@ solver. It requires the \pkg{Rsymphony} package.
 }
 \details{
 \href{https://projects.coin-or.org/SYMPHONY}{\emph{SYMPHONY}} is an
-  open-source integer programming solver that is part of the Computational
-  Infrastructure for Operations Research (COIN-OR) project, an initiative
-  to promote development of open-source tools for operations research (a
-  field that includes linear programming). The \pkg{Rsymphony} package
-  provides an interface to COIN-OR and is available on \emph{CRAN}.
-  This solver uses the \pkg{Rsymphony} package to solve problems.
+open-source integer programming solver that is part of the Computational
+Infrastructure for Operations Research (COIN-OR) project, an initiative
+to promote development of open-source tools for operations research (a
+field that includes linear programming). The \pkg{Rsymphony} package
+provides an interface to COIN-OR and is available on \emph{CRAN}.
+This solver uses the \pkg{Rsymphony} package to solve problems.
 }
 \examples{
 \donttest{

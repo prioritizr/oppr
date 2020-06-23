@@ -44,7 +44,7 @@ optimization problems?}
 }
 \value{
 \code{\link{ProjectProblem-class}} object with the solver added
-  to it.
+to it.
 }
 \description{
 Specify that the \emph{SYMPHONY} software should be used to solve a
@@ -54,15 +54,15 @@ solver. It requires the \pkg{lpsymphony} package.
 }
 \details{
 \href{https://projects.coin-or.org/SYMPHONY}{\emph{SYMPHONY}} is an
-  open-source integer programming solver that is part of the Computational
-  Infrastructure for Operations Research (COIN-OR) project, an initiative
-  to promote development of open-source tools for operations research (a
-  field that includes linear programming). The \pkg{lpsymphony} package is
-  distributed through
-  \href{https://doi.org/doi:10.18129/B9.bioc.lpsymphony}{Bioconductor}.
-  This functionality is provided because the \pkg{lpsymphony} package may
-  be easier to install to install on Windows and Mac OSX systems than the
-  \pkg{Rsymphony} package.
+open-source integer programming solver that is part of the Computational
+Infrastructure for Operations Research (COIN-OR) project, an initiative
+to promote development of open-source tools for operations research (a
+field that includes linear programming). The \pkg{lpsymphony} package is
+distributed through
+\href{https://doi.org/doi:10.18129/B9.bioc.lpsymphony}{Bioconductor}.
+This functionality is provided because the \pkg{lpsymphony} package may
+be easier to install to install on Windows and Mac OSX systems than the
+\pkg{Rsymphony} package.
 }
 \examples{
 \donttest{

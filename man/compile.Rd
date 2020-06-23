@@ -23,9 +23,9 @@ purpose format for optimization.
 }
 \details{
 This function might be useful for those interested in understanding
-  how their project prioritization \code{\link{problem}} is expressed
-  as a mathematical problem. However, if the problem just needs to
-  be solved, then the \code{\link{solve}} function should be used instead.
+how their project prioritization \code{\link{problem}} is expressed
+as a mathematical problem. However, if the problem just needs to
+be solved, then the \code{\link{solve}} function should be used instead.
 }
 \examples{
 # load data

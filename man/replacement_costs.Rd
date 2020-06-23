@@ -25,28 +25,28 @@ the argument to \code{solutions}. Defaults to 1.}
 }
 \value{
 A \code{\link[tibble]{tibble}} table containing the following
-  columns:
+columns:
 
-  \describe{
+\describe{
 
-  \item{\code{"action"}}{\code{character} name of each action.}
+\item{\code{"action"}}{\code{character} name of each action.}
 
-  \item{\code{"cost"}}{\code{numeric} cost of each solution when each
-    action is locked out.}
+\item{\code{"cost"}}{\code{numeric} cost of each solution when each
+action is locked out.}
 
-  \item{\code{"obj"}}{\code{numeric} objective value of each solution when
-    each action is locked out. This is calculated using the objective
-    function defined for the argument to \code{x}.}
+\item{\code{"obj"}}{\code{numeric} objective value of each solution when
+each action is locked out. This is calculated using the objective
+function defined for the argument to \code{x}.}
 
-  \item{\code{"rep_cost"}}{\code{numeric} replacement cost for each
-    action. Greater values indicate greater irreplaceability. Missing
-    (\code{NA}) values are assigned to actions which are not selected for
-    funding in the specified solution, infinite (\code{Inf}) values are
-    assigned to to actions which are required to meet feasibility
-    constraints, and negative values mean that superior solutions than
-    the specified solution exist.}
+\item{\code{"rep_cost"}}{\code{numeric} replacement cost for each
+action. Greater values indicate greater irreplaceability. Missing
+(\code{NA}) values are assigned to actions which are not selected for
+funding in the specified solution, infinite (\code{Inf}) values are
+assigned to to actions which are required to meet feasibility
+constraints, and negative values mean that superior solutions than
+the specified solution exist.}
 
-  }
+}
 }
 \description{
 Calculate the replacement cost for priority actions in a project
@@ -57,20 +57,20 @@ values.
 }
 \details{
 Replacement cost values are calculated for each priority action
- specified in the solution. Missing (\code{NA}) values are assigned to
- actions which are not selected for funding in the specified solution.
- For a given action, its replacement cost is calculated by
- (i) calculating the objective value for the optimal solution to
- the argument to \code{x}, (ii) calculating the objective value for the
- optimal solution to the argument to \code{x} with the given action locked
- out, (iii) calculating the difference between the two objective
- values, (iv) the problem has an objective which aims to minimize
- the objective value (only \code{\link{add_min_set_objective}}, then
- the resulting value is multiplied by minus one so that larger values
- always indicate actions with greater irreplaceability. Please note this
- function can take a long time to complete
- for large problems since it involves re-solving the problem for every
- action selected for funding.
+specified in the solution. Missing (\code{NA}) values are assigned to
+actions which are not selected for funding in the specified solution.
+For a given action, its replacement cost is calculated by
+(i) calculating the objective value for the optimal solution to
+the argument to \code{x}, (ii) calculating the objective value for the
+optimal solution to the argument to \code{x} with the given action locked
+out, (iii) calculating the difference between the two objective
+values, (iv) the problem has an objective which aims to minimize
+the objective value (only \code{\link{add_min_set_objective}}, then
+the resulting value is multiplied by minus one so that larger values
+always indicate actions with greater irreplaceability. Please note this
+function can take a long time to complete
+for large problems since it involves re-solving the problem for every
+action selected for funding.
 }
 \examples{
 \donttest{
@@ -108,5 +108,5 @@ cost of conservation areas: how does habitat loss influence priorities?
 }
 \seealso{
 \code{\link{solution_statistics}},
-  \code{\link{project_cost_effectiveness}}.
+\code{\link{project_cost_effectiveness}}.
 }

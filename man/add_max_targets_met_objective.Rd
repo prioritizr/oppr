@@ -13,7 +13,7 @@ add_max_targets_met_objective(x, budget)
 }
 \value{
 \code{\link{ProjectProblem-class}} object with the objective
-  added to it.
+added to it.
 }
 \description{
 Set the objective of a project prioritization \code{\link{problem}} to
@@ -21,77 +21,77 @@ maximize the total number of persistence targets met for the features, whilst
 ensuring that the cost of the solution is within a pre-specified budget
 (Chades \emph{et al.} 2015). In some project prioritization exercises,
 decision makers may have a target level of persistence for each feature
-(e.g. a 90\% persistence target corresponding to a 90\% chance for the
+(e.g. a 90\\% persistence target corresponding to a 90\\% chance for the
 features persisting into the future). In such exercises, the decision makers
 do not perceive any benefit when a target is not met (e.g. if a feature
-has a persistence target of 90\% and a solution only secures a 70\% chance
+has a persistence target of 90\\% and a solution only secures a 70\\% chance
 of persistence then no benefit is accrued for that feature) or when a target
-is surpassed (e.g. if a feature has a persistence target of 50\%, then a
+is surpassed (e.g. if a feature has a persistence target of 50\\%, then a
 solution which
-secures a 95\% chance of persistence will accrue the same benefit as a
-solution which secures a 50\% chance of persistence). Furthermore, weights
+secures a 95\\% chance of persistence will accrue the same benefit as a
+solution which secures a 50\\% chance of persistence). Furthermore, weights
 can also be used to specify the relative importance of meeting targets
 for specific features (see \code{\link{add_feature_weights}}).
 }
 \details{
 A problem objective is used to specify the overall goal of the
-  project prioritization problem.
-  Here, the maximum targets met objective seeks to find the set of actions
-  that maximizes the total number of features (e.g. populations, species,
-  ecosystems) that have met their persistence targets within a
-  pre-specified budget. Let \eqn{I} represent the set of conservation
-  actions (indexed by \eqn{i}). Let \eqn{C_i} denote the cost for funding
-  action \eqn{i}, and let \eqn{m} denote the maximum expenditure (i.e. the
-  budget). Also, let \eqn{F} represent each feature (indexed by \eqn{f}),
-  \eqn{W_f} represent the weight for each feature \eqn{f} (defaults to one
-  for each feature unless specified otherwise), \eqn{T_f} represent the
-  persistence target for each feature \eqn{f}, and \eqn{E_f} denote the
-  probability that each feature will go extinct given the funded
-  conservation projects.
+project prioritization problem.
+Here, the maximum targets met objective seeks to find the set of actions
+that maximizes the total number of features (e.g. populations, species,
+ecosystems) that have met their persistence targets within a
+pre-specified budget. Let \eqn{I} represent the set of conservation
+actions (indexed by \eqn{i}). Let \eqn{C_i} denote the cost for funding
+action \eqn{i}, and let \eqn{m} denote the maximum expenditure (i.e. the
+budget). Also, let \eqn{F} represent each feature (indexed by \eqn{f}),
+\eqn{W_f} represent the weight for each feature \eqn{f} (defaults to one
+for each feature unless specified otherwise), \eqn{T_f} represent the
+persistence target for each feature \eqn{f}, and \eqn{E_f} denote the
+probability that each feature will go extinct given the funded
+conservation projects.
 
-  To guide the prioritization, the conservation actions are organized into
-  conservation projects. Let \eqn{J} denote the set of conservation projects
-  (indexed by \eqn{j}), and let \eqn{A_{ij}} denote which actions
-  \eqn{i \in I}{i in I} comprise each conservation project
-  \eqn{j \in J}{j in J} using zeros and ones. Next, let \eqn{P_j} represent
-  the probability of project \eqn{j} being successful if it is funded. Also,
-  let \eqn{B_{fj}} denote the enhanced probability that each feature
-  \eqn{f \in F}{f in F} associated with the project \eqn{j \in J}{j in J}
-  will persist if all of the actions that comprise project \eqn{j} are funded
-  and that project is allocated to feature \eqn{f}.
-  For convenience,
-  let \eqn{Q_{fj}} denote the actual probability that each
-  \eqn{f \in F}{f in F} associated with the project \eqn{j \in J}{j in J}
-  is expected to persist if the project is funded. If the argument
-  to \code{adjust_for_baseline} in the \code{problem} function was set to
-  \code{TRUE}, and this is the default behavior, then
-  \eqn{Q_{fj} = (P_{j} \times B_{fj}) + \bigg(\big(1 - (P_{j} B_{fj})\big)
+To guide the prioritization, the conservation actions are organized into
+conservation projects. Let \eqn{J} denote the set of conservation projects
+(indexed by \eqn{j}), and let \eqn{A_{ij}} denote which actions
+\eqn{i \in I}{i in I} comprise each conservation project
+\eqn{j \in J}{j in J} using zeros and ones. Next, let \eqn{P_j} represent
+the probability of project \eqn{j} being successful if it is funded. Also,
+let \eqn{B_{fj}} denote the enhanced probability that each feature
+\eqn{f \in F}{f in F} associated with the project \eqn{j \in J}{j in J}
+will persist if all of the actions that comprise project \eqn{j} are funded
+and that project is allocated to feature \eqn{f}.
+For convenience,
+let \eqn{Q_{fj}} denote the actual probability that each
+\eqn{f \in F}{f in F} associated with the project \eqn{j \in J}{j in J}
+is expected to persist if the project is funded. If the argument
+to \code{adjust_for_baseline} in the \code{problem} function was set to
+\code{TRUE}, and this is the default behavior, then
+\eqn{Q_{fj} = (P_{j} \times B_{fj}) + \bigg(\big(1 - (P_{j} B_{fj})\big)
   \times (P_{n} \times B_{fn})\bigg)}{Q_{fj} = (P_j B_{fj}) + ((1 - (P_j
   B_{fj})) * (P_n \times B_{fn}))}, where \code{n} corresponds to the
-  baseline "do nothing" project. This means that the probability
-  of a feature persisting if a project is allocated to a feature
-  depends on (i) the probability of the project succeeding, (ii) the
-  probability of the feature persisting if the project does not fail,
-  and (iii) the probability of the feature persisting even if the project
-  fails. Otherwise, if the argument is set to \code{FALSE}, then
-  \eqn{Q_{fj} = P_{j} \times B_{fj}}{Q_{fj} = P_{j} * B_{fj}}.
+baseline "do nothing" project. This means that the probability
+of a feature persisting if a project is allocated to a feature
+depends on (i) the probability of the project succeeding, (ii) the
+probability of the feature persisting if the project does not fail,
+and (iii) the probability of the feature persisting even if the project
+fails. Otherwise, if the argument is set to \code{FALSE}, then
+\eqn{Q_{fj} = P_{j} \times B_{fj}}{Q_{fj} = P_{j} * B_{fj}}.
 
-  The binary control variables \eqn{X_i} in this problem indicate whether
-  each project \eqn{i \in I}{i in I} is funded or not. The decision
-  variables in this problem are the \eqn{Y_{j}}, \eqn{Z_{fj}}, \eqn{E_f},
-  and \eqn{G_f} variables.
-  Specifically, the binary \eqn{Y_{j}} variables indicate if project \eqn{j}
-  is funded or not based on which actions are funded; the binary
-  \eqn{Z_{fj}} variables indicate if project \eqn{j} is used to manage
-  feature \eqn{f} or not; the semi-continuous \eqn{E_f} variables
-  denote the probability that feature \eqn{f} will go extinct; and the
-  \eqn{G_f} variables indicate if the persistence target for feature
-  \eqn{f} is met.
+The binary control variables \eqn{X_i} in this problem indicate whether
+each project \eqn{i \in I}{i in I} is funded or not. The decision
+variables in this problem are the \eqn{Y_{j}}, \eqn{Z_{fj}}, \eqn{E_f},
+and \eqn{G_f} variables.
+Specifically, the binary \eqn{Y_{j}} variables indicate if project \eqn{j}
+is funded or not based on which actions are funded; the binary
+\eqn{Z_{fj}} variables indicate if project \eqn{j} is used to manage
+feature \eqn{f} or not; the semi-continuous \eqn{E_f} variables
+denote the probability that feature \eqn{f} will go extinct; and the
+\eqn{G_f} variables indicate if the persistence target for feature
+\eqn{f} is met.
 
-  Now that we have defined all the data and variables, we can formulate
-  the problem. For convenience, let the symbol used to denote each set also
-  represent its cardinality (e.g. if there are ten features, let \eqn{F}
-  represent the set of ten features and also the number ten).
+Now that we have defined all the data and variables, we can formulate
+the problem. For convenience, let the symbol used to denote each set also
+represent its cardinality (e.g. if there are ten features, let \eqn{F}
+represent the set of ten features and also the number ten).
 
 \deqn{
   \mathrm{Maximize} \space \sum_{f = 0}^{F} G_f W_f \space
@@ -125,21 +125,21 @@ A problem objective is used to specify the overall goal of the
   G_f, X_i, Y_j, Z_{fj} in [0, 1] for all i in I, j in J, f in F (eqn 1i)
   }
 
- The objective (eqn 1a) is to maximize the weighted total number of the
- features that have their persistence targets met.
- Constraints (eqn 1b) calculate which persistence targets have been met.
- Constraint (eqn 1c) limits the maximum expenditure (i.e. ensures
- that the cost of the funded actions do not exceed the budget).
- Constraints (eqn 1d) calculate the probability that each feature
- will go extinct according to their allocated project.
- Constraints (eqn 1e) ensure that feature can only be allocated to projects
- that have all of their actions funded. Constraints (eqn 1f) state that each
- feature can only be allocated to a single project. Constraints (eqn 1g)
- ensure that a project cannot be funded unless all of its actions are funded.
- Constraints (eqns 1h) ensure that the probability variables
- (\eqn{E_f}) are bounded between zero and one. Constraints (eqns 1i) ensure
- that the target met (\eqn{G_f}), action funding (\eqn{X_i}), project funding
- (\eqn{Y_j}), and project allocation (\eqn{Z_{fj}}) variables are binary.
+The objective (eqn 1a) is to maximize the weighted total number of the
+features that have their persistence targets met.
+Constraints (eqn 1b) calculate which persistence targets have been met.
+Constraint (eqn 1c) limits the maximum expenditure (i.e. ensures
+that the cost of the funded actions do not exceed the budget).
+Constraints (eqn 1d) calculate the probability that each feature
+will go extinct according to their allocated project.
+Constraints (eqn 1e) ensure that feature can only be allocated to projects
+that have all of their actions funded. Constraints (eqn 1f) state that each
+feature can only be allocated to a single project. Constraints (eqn 1g)
+ensure that a project cannot be funded unless all of its actions are funded.
+Constraints (eqns 1h) ensure that the probability variables
+(\eqn{E_f}) are bounded between zero and one. Constraints (eqns 1i) ensure
+that the target met (\eqn{G_f}), action funding (\eqn{X_i}), project funding
+(\eqn{Y_j}), and project allocation (\eqn{Z_{fj}}) variables are binary.
 }
 \examples{
 # load the ggplot2 R package to customize plot

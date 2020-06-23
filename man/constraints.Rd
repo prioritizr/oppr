@@ -9,17 +9,17 @@ to ensure that solutions exhibit a specific characteristic.
 }
 \details{
 The following constraints can be added to a project prioritization
-  \code{\link{problem}}:
+\code{\link{problem}}:
 
-  \describe{
+\describe{
 
-  \item{\code{\link{add_locked_in_constraints}}}{Add constraints to ensure
-    that certain actions are prioritized for funding.}
+\item{\code{\link{add_locked_in_constraints}}}{Add constraints to ensure
+that certain actions are prioritized for funding.}
 
-  \item{\code{\link{add_locked_out_constraints}}}{Add constraints to ensure
-    that certain actions are not prioritized for funding.}
+\item{\code{\link{add_locked_out_constraints}}}{Add constraints to ensure
+that certain actions are not prioritized for funding.}
 
- }
+}
 }
 \examples{
 # load data
@@ -62,6 +62,6 @@ print(s3[, sim_actions$name])
 }
 \seealso{
 \code{\link{decisions}}, \code{\link{objectives}},
- \code{\link{problem}}, \code{\link{solvers}}, \code{\link{targets}},
- \code{\link{weights}}.
+\code{\link{problem}}, \code{\link{solvers}}, \code{\link{targets}},
+\code{\link{weights}}.
 }

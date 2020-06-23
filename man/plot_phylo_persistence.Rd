@@ -40,8 +40,8 @@ the plot be returned instead of the plot? Defaults to \code{FALSE}.}
 }
 \value{
 A \code{\link[ggtree]{ggtree}} object, or a
-  \code{\link[tidytree]{treedata}} object if \code{return_data} is
-  \code{TRUE}.
+\code{\link[tidytree]{treedata}} object if \code{return_data} is
+\code{TRUE}.
 }
 \description{
 Create a plot showing a phylogenetic tree (i.e. a "phylogram") to visualize
@@ -50,22 +50,22 @@ into the future under a solution to a project prioritization problem.
 }
 \details{
 This function requires the \pkg{ggtree} (Yu \emph{et al.} 2017).
-  Since this package is distributed exclusively
-  through \href{https://bioconductor.org}{Bioconductor}, and is not
-  available on the
-  \href{https://cran.r-project.org/}{Comprehensive R Archive Network},
-  please execute the following command to install it:
-  \code{source("https://bioconductor.org/biocLite.R");biocLite("ggtree")}.
-  If the installation process fails, please consult the package's \href{https://bioconductor.org/packages/release/bioc/html/ggtree.html}{online documentation}.
+Since this package is distributed exclusively
+through \href{https://bioconductor.org}{Bioconductor}, and is not
+available on the
+\href{https://cran.r-project.org/}{Comprehensive R Archive Network},
+please execute the following command to install it:
+\code{source("https://bioconductor.org/biocLite.R");biocLite("ggtree")}.
+If the installation process fails, please consult the package's \href{https://bioconductor.org/packages/release/bioc/html/ggtree.html}{online documentation}.
 
-  In this plot, each phylogenetic branch is colored according to probability
-  that it is expected to persist into the future (see Faith 2008).
-  Features that directly benefit from at least a single
-  completely funded project with a non-zero cost are depicted with an
-  asterisk symbol. Additionally, features that indirectly benefit from funded
-  projects---because they are associated with partially funded projects that
-  have non-zero costs and share actions with at least one completely funded
-  project---are depicted with an open circle symbol.
+In this plot, each phylogenetic branch is colored according to probability
+that it is expected to persist into the future (see Faith 2008).
+Features that directly benefit from at least a single
+completely funded project with a non-zero cost are depicted with an
+asterisk symbol. Additionally, features that indirectly benefit from funded
+projects---because they are associated with partially funded projects that
+have non-zero costs and share actions with at least one completely funded
+project---are depicted with an open circle symbol.
 }
 \examples{
 # set seed for reproducibility

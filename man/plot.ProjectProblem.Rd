@@ -43,20 +43,20 @@ problem will maintain biodiversity.
 }
 \details{
 The type of plot that this function creates depends on the
-  problem objective. If the problem objective contains phylogenetic data,
-  then this function plots a phylogenetic tree where each branch
-  is colored according to its probability of persistence. Otherwise,
-  if the problem does not contain phylogenetic data, then this function
-  creates a bar plot where each bar corresponds to a different feature.
-  The height of the bars indicate each feature's probability of
-  persistence, and the width of the bars indicate each feature's weight.
+problem objective. If the problem objective contains phylogenetic data,
+then this function plots a phylogenetic tree where each branch
+is colored according to its probability of persistence. Otherwise,
+if the problem does not contain phylogenetic data, then this function
+creates a bar plot where each bar corresponds to a different feature.
+The height of the bars indicate each feature's probability of
+persistence, and the width of the bars indicate each feature's weight.
 
-  Features that directly benefit from at least a single
-  completely funded project with a non-zero cost are depicted with an
-  asterisk symbol. Additionally, features that indirectly benefit from funded
-  projects---because they are associated with partially funded projects that
-  have non-zero costs and share actions with at least one funded
-  project---are depicted with an open circle symbol.
+Features that directly benefit from at least a single
+completely funded project with a non-zero cost are depicted with an
+asterisk symbol. Additionally, features that indirectly benefit from funded
+projects---because they are associated with partially funded projects that
+have non-zero costs and share actions with at least one funded
+project---are depicted with an open circle symbol.
 }
 \examples{
 # load data
@@ -93,7 +93,7 @@ plot(p2, s2)
 }
 \seealso{
 This function is essentially a wrapper for
-  \code{\link{plot_feature_persistence}} and
-  \code{\link{plot_phylo_persistence}}, so refer to the documentation
-  for these functions for more information.
+\code{\link{plot_feature_persistence}} and
+\code{\link{plot_phylo_persistence}}, so refer to the documentation
+for these functions for more information.
 }

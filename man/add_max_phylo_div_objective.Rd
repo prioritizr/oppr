@@ -18,7 +18,7 @@ features, present in the argument to \code{x}.}
 }
 \value{
 \code{\link{ProjectProblem-class}} object with the objective
-  added to it.
+added to it.
 }
 \description{
 Set the objective of a project prioritization \code{\link{problem}} to
@@ -28,75 +28,75 @@ pre-specified budget (Bennett \emph{et al.} 2014, Faith 2008).
 }
 \details{
 A problem objective is used to specify the overall goal of the
-  project prioritization problem.
-  Here, the maximum phylogenetic diversity objective seeks to find the set
-  of actions that maximizes the expected amount of evolutionary history
-  that is expected to persist into the future given the evolutionary
-  relationships between the features (e.g. populations, species).
-  Let \eqn{I} represent the set of conservation actions (indexed by
-  \eqn{i}). Let \eqn{C_i} denote the cost for funding action \eqn{i}, and
-  let \eqn{m} denote the maximum expenditure (i.e. the budget). Also,
-  let \eqn{F} represent each feature (indexed by \eqn{f}), \eqn{W_f}
-  represent the weight for each feature \eqn{f} (defaults to zero for
-  each feature unless specified otherwise), and \eqn{E_f}
-  denote the probability that each feature will go extinct given the funded
-  conservation projects.
+project prioritization problem.
+Here, the maximum phylogenetic diversity objective seeks to find the set
+of actions that maximizes the expected amount of evolutionary history
+that is expected to persist into the future given the evolutionary
+relationships between the features (e.g. populations, species).
+Let \eqn{I} represent the set of conservation actions (indexed by
+\eqn{i}). Let \eqn{C_i} denote the cost for funding action \eqn{i}, and
+let \eqn{m} denote the maximum expenditure (i.e. the budget). Also,
+let \eqn{F} represent each feature (indexed by \eqn{f}), \eqn{W_f}
+represent the weight for each feature \eqn{f} (defaults to zero for
+each feature unless specified otherwise), and \eqn{E_f}
+denote the probability that each feature will go extinct given the funded
+conservation projects.
 
-  To describe the
-  evolutionary relationships between the features \eqn{f \in F}{f in F},
-  consider a phylogenetic tree that contains features \eqn{f \in F}{f in F}
-  with branches of known lengths. This tree can be described using
-  mathematical notation by letting \eqn{B} represent the branches (indexed by
-  \eqn{b}) with lengths \eqn{L_b} and letting \eqn{T_{bf}} indicate which
-  features \eqn{f \in F}{f in F} are associated with which phylogenetic
-  branches \eqn{b \in B}{b in B} using zeros and ones. Ideally, the set of
-  features \eqn{F} would contain all of the species in the study
-  area---including non-threatened species---to fully account for the benefits
-  for funding different actions.
+To describe the
+evolutionary relationships between the features \eqn{f \in F}{f in F},
+consider a phylogenetic tree that contains features \eqn{f \in F}{f in F}
+with branches of known lengths. This tree can be described using
+mathematical notation by letting \eqn{B} represent the branches (indexed by
+\eqn{b}) with lengths \eqn{L_b} and letting \eqn{T_{bf}} indicate which
+features \eqn{f \in F}{f in F} are associated with which phylogenetic
+branches \eqn{b \in B}{b in B} using zeros and ones. Ideally, the set of
+features \eqn{F} would contain all of the species in the study
+area---including non-threatened species---to fully account for the benefits
+for funding different actions.
 
-  To guide the prioritization, the conservation actions are organized into
-  conservation projects. Let \eqn{J} denote the set of conservation projects
-  (indexed by \eqn{j}), and let \eqn{A_{ij}} denote which actions
-  \eqn{i \in I}{i in I} comprise each conservation project
-  \eqn{j \in J}{j in J} using zeros and ones. Next, let \eqn{P_j} represent
-  the probability of project \eqn{j} being successful if it is funded. Also,
-  let \eqn{B_{fj}} denote the enhanced probability that each feature
-  \eqn{f \in F}{f in F} associated with the project \eqn{j \in J}{j in J}
-  will persist if all of the actions that comprise project \eqn{j} are funded
-  and that project is allocated to feature \eqn{f}.
-  For convenience,
-  let \eqn{Q_{fj}} denote the actual probability that each
-  \eqn{f \in F}{f in F} associated with the project \eqn{j \in J}{j in J}
-  is expected to persist if the project is funded. If the argument
-  to \code{adjust_for_baseline} in the \code{problem} function was set to
-  \code{TRUE}, and this is the default behavior, then
-  \eqn{Q_{fj} = (P_{j} \times B_{fj}) + \bigg(\big(1 - (P_{j} B_{fj})\big)
+To guide the prioritization, the conservation actions are organized into
+conservation projects. Let \eqn{J} denote the set of conservation projects
+(indexed by \eqn{j}), and let \eqn{A_{ij}} denote which actions
+\eqn{i \in I}{i in I} comprise each conservation project
+\eqn{j \in J}{j in J} using zeros and ones. Next, let \eqn{P_j} represent
+the probability of project \eqn{j} being successful if it is funded. Also,
+let \eqn{B_{fj}} denote the enhanced probability that each feature
+\eqn{f \in F}{f in F} associated with the project \eqn{j \in J}{j in J}
+will persist if all of the actions that comprise project \eqn{j} are funded
+and that project is allocated to feature \eqn{f}.
+For convenience,
+let \eqn{Q_{fj}} denote the actual probability that each
+\eqn{f \in F}{f in F} associated with the project \eqn{j \in J}{j in J}
+is expected to persist if the project is funded. If the argument
+to \code{adjust_for_baseline} in the \code{problem} function was set to
+\code{TRUE}, and this is the default behavior, then
+\eqn{Q_{fj} = (P_{j} \times B_{fj}) + \bigg(\big(1 - (P_{j} B_{fj})\big)
   \times (P_{n} \times B_{fn})\bigg)}{Q_{fj} = (P_j B_{fj}) + ((1 - (P_j
   B_{fj})) * (P_n \times B_{fn}))}, where \code{n} corresponds to the
-  baseline "do nothing" project. This means that the probability
-  of a feature persisting if a project is allocated to a feature
-  depends on (i) the probability of the project succeeding, (ii) the
-  probability of the feature persisting if the project does not fail,
-  and (iii) the probability of the feature persisting even if the project
-  fails. Otherwise, if the argument is set to \code{FALSE}, then
-  \eqn{Q_{fj} = P_{j} \times B_{fj}}{Q_{fj} = P_{j} * B_{fj}}.
+baseline "do nothing" project. This means that the probability
+of a feature persisting if a project is allocated to a feature
+depends on (i) the probability of the project succeeding, (ii) the
+probability of the feature persisting if the project does not fail,
+and (iii) the probability of the feature persisting even if the project
+fails. Otherwise, if the argument is set to \code{FALSE}, then
+\eqn{Q_{fj} = P_{j} \times B_{fj}}{Q_{fj} = P_{j} * B_{fj}}.
 
-  The binary control variables \eqn{X_i} in this problem indicate whether
-  each project \eqn{i \in I}{i in I} is funded or not. The decision
-  variables in this problem are the \eqn{Y_{j}}, \eqn{Z_{fj}}, \eqn{E_f},
-  and \eqn{R_b} variables.
-  Specifically, the binary \eqn{Y_{j}} variables indicate if project \eqn{j}
-  is funded or not based on which actions are funded; the binary
-  \eqn{Z_{fj}} variables indicate if project \eqn{j} is used to manage
-  feature \eqn{f} or not; the semi-continuous \eqn{E_f} variables
-  denote the probability that feature \eqn{f} will go extinct; and
-  the semi-continuous \eqn{R_b} variables denote the probability that
-  phylogenetic branch \eqn{b} will remain in the future.
+The binary control variables \eqn{X_i} in this problem indicate whether
+each project \eqn{i \in I}{i in I} is funded or not. The decision
+variables in this problem are the \eqn{Y_{j}}, \eqn{Z_{fj}}, \eqn{E_f},
+and \eqn{R_b} variables.
+Specifically, the binary \eqn{Y_{j}} variables indicate if project \eqn{j}
+is funded or not based on which actions are funded; the binary
+\eqn{Z_{fj}} variables indicate if project \eqn{j} is used to manage
+feature \eqn{f} or not; the semi-continuous \eqn{E_f} variables
+denote the probability that feature \eqn{f} will go extinct; and
+the semi-continuous \eqn{R_b} variables denote the probability that
+phylogenetic branch \eqn{b} will remain in the future.
 
-  Now that we have defined all the data and variables, we can formulate
-  the problem. For convenience, let the symbol used to denote each set also
-  represent its cardinality (e.g. if there are ten features, let \eqn{F}
-  represent the set of ten features and also the number ten).
+Now that we have defined all the data and variables, we can formulate
+the problem. For convenience, let the symbol used to denote each set also
+represent its cardinality (e.g. if there are ten features, let \eqn{F}
+represent the set of ten features and also the number ten).
 
 \deqn{
   \mathrm{Maximize} \space (\sum_{b = 0}^{B} L_b R_b) + \sum_{f}^{F}
@@ -130,33 +130,33 @@ A problem objective is used to specify the overall goal of the
   X_i, Y_j, Z_{fj} in [0, 1] for all i in I, j in J, f in F (eqn 1i)
   }
 
- The objective (eqn 1a) is to maximize the expected phylogenetic diversity
- (Faith 2008) plus the probability each feature will remain multiplied
- by their weights (noting that the feature weights default to zero).
- Constraint (eqn 1b) limits the maximum expenditure (i.e.
- ensures that the cost of the funded actions do not exceed the budget).
- Constraints (eqn 1c) calculate the probability that each branch
- (including tips that correspond to a single feature) will go extinct
- according to the probability that the features which share a given
-  branch will go extinct.
- Constraints (eqn 1d) calculate the probability that each feature
- will go extinct according to their allocated project.
- Constraints (eqn 1e) ensure that feature can only be allocated to projects
- that have all of their actions funded. Constraints (eqn 1f) state that each
- feature can only be allocated to a single project. Constraints (eqn 1g)
- ensure that a project cannot be funded unless all of its actions are funded.
- Constraints (eqns 1h) ensure that the probability variables
- (\eqn{E_f}) are bounded between zero and one. Constraints (eqns 1i) ensure
- that the action funding (\eqn{X_i}), project funding (\eqn{Y_j}), and
- project allocation (\eqn{Z_{fj}}) variables are binary.
+The objective (eqn 1a) is to maximize the expected phylogenetic diversity
+(Faith 2008) plus the probability each feature will remain multiplied
+by their weights (noting that the feature weights default to zero).
+Constraint (eqn 1b) limits the maximum expenditure (i.e.
+ensures that the cost of the funded actions do not exceed the budget).
+Constraints (eqn 1c) calculate the probability that each branch
+(including tips that correspond to a single feature) will go extinct
+according to the probability that the features which share a given
+branch will go extinct.
+Constraints (eqn 1d) calculate the probability that each feature
+will go extinct according to their allocated project.
+Constraints (eqn 1e) ensure that feature can only be allocated to projects
+that have all of their actions funded. Constraints (eqn 1f) state that each
+feature can only be allocated to a single project. Constraints (eqn 1g)
+ensure that a project cannot be funded unless all of its actions are funded.
+Constraints (eqns 1h) ensure that the probability variables
+(\eqn{E_f}) are bounded between zero and one. Constraints (eqns 1i) ensure
+that the action funding (\eqn{X_i}), project funding (\eqn{Y_j}), and
+project allocation (\eqn{Z_{fj}}) variables are binary.
 
- Although this formulation is a mixed integer quadratically constrained
- programming problem (due to eqn 1c), it can be approximated using
- linear terms and then solved using commercial mixed integer programming
- solvers. This can be achieved by substituting the product of the feature
- extinction probabilities (eqn 1c) with the sum of the log feature extinction
- probabilities and using piecewise linear approximations (described in
- Hillier & Price 2005 pp. 390--392) to approximate the exponent of this term.
+Although this formulation is a mixed integer quadratically constrained
+programming problem (due to eqn 1c), it can be approximated using
+linear terms and then solved using commercial mixed integer programming
+solvers. This can be achieved by substituting the product of the feature
+extinction probabilities (eqn 1c) with the sum of the log feature extinction
+probabilities and using piecewise linear approximations (described in
+Hillier & Price 2005 pp. 390--392) to approximate the exponent of this term.
 }
 \examples{
 # load data

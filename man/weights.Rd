@@ -12,12 +12,12 @@ require weights will throw a warning and the weights will be ignored.
 \details{
 Currently, only one function can be used to specify weights:
 
-  \describe{
+\describe{
 
-  \item{\code{\link{add_feature_weights}}}{
-    Set feature weights for a project prioritization \code{\link{problem}}.}
+\item{\code{\link{add_feature_weights}}}{
+Set feature weights for a project prioritization \code{\link{problem}}.}
 
-  }
+}
 }
 \examples{
 # load data
@@ -44,6 +44,6 @@ plot(p, s)
 }
 \seealso{
 \code{\link{constraints}}, \code{\link{decisions}},
- \code{\link{objectives}}, \code{\link{problem}},
- \code{\link{solvers}}, \code{\link{targets}}.
+\code{\link{objectives}}, \code{\link{problem}},
+\code{\link{solvers}}, \code{\link{targets}}.
 }

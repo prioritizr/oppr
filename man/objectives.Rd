@@ -19,31 +19,31 @@ a specified objective will throw an error.
 }
 \details{
 The following objectives can be added to a conservation planning
-  \code{\link{problem}}:
+\code{\link{problem}}:
 
-  \describe{
+\describe{
 
-  \item{\code{\link{add_max_richness_objective}}}{
-    Maximize the total number of features that are expected to persist,
-    whilst ensuring that the cost of the solution is within a pre-specified
-    budget (Joseph, Maloney & Possingham 2009).}
+\item{\code{\link{add_max_richness_objective}}}{
+Maximize the total number of features that are expected to persist,
+whilst ensuring that the cost of the solution is within a pre-specified
+budget (Joseph, Maloney & Possingham 2009).}
 
-  \item{\code{\link{add_max_targets_met_objective}}}{
-    Maximize the total number of persistence targets met for the features,
-    whilst ensuring that the cost of the solution is within a pre-specified
-    budget (Chades \emph{et al.} 2015).}
+\item{\code{\link{add_max_targets_met_objective}}}{
+Maximize the total number of persistence targets met for the features,
+whilst ensuring that the cost of the solution is within a pre-specified
+budget (Chades \emph{et al.} 2015).}
 
-  \item{\code{\link{add_max_phylo_div_objective}}}{
-    Maximize the phylogenetic diversity that is expected to persist into the
-    future, whilst ensuring that the cost of the solution is within a
-    pre-specified budget (Bennett \emph{et al.} 2014, Faith 2008).}
+\item{\code{\link{add_max_phylo_div_objective}}}{
+Maximize the phylogenetic diversity that is expected to persist into the
+future, whilst ensuring that the cost of the solution is within a
+pre-specified budget (Bennett \emph{et al.} 2014, Faith 2008).}
 
-  \item{\code{\link{add_min_set_objective}}}{
-    Minimize the cost of the solution whilst ensuring that all targets are
-    met. This objective is conceptually similar to that used in \emph{Marxan}
-    (Ball, Possingham & Watts 2009).}
+\item{\code{\link{add_min_set_objective}}}{
+Minimize the cost of the solution whilst ensuring that all targets are
+met. This objective is conceptually similar to that used in \emph{Marxan}
+(Ball, Possingham & Watts 2009).}
 
-  }
+}
 }
 \examples{
 # load data
@@ -148,6 +148,6 @@ resources among threatened species: A project prioritization protocol.
 }
 \seealso{
 \code{\link{constraints}}, \code{\link{decisions}},
-  \code{\link{problem}}, \code{\link{solvers}}, \code{\link{targets}},
-  \code{\link{weights}}.
+\code{\link{problem}}, \code{\link{solvers}}, \code{\link{targets}},
+\code{\link{weights}}.
 }

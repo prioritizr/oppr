@@ -23,7 +23,7 @@ locked in. See the Details section for more information.}
 }
 \value{
 \code{\link{ProjectProblem-class}} object with the constraints
-  added to it.
+added to it.
 }
 \description{
 Add constraints to a project prioritization \code{\link{problem}} to ensure
@@ -33,27 +33,27 @@ taxonomically important species.
 }
 \details{
 The locked actions can be specified in several different
-  ways:
+ways:
 
-  \describe{
+\describe{
 
-  \item{\code{integer}}{\code{vector} of indices pertaining to which
-    actions should be locked in the solution (i.e. row numbers of the
-    actions in the argument to \code{actions} in \code{\link{problem}}).}
+\item{\code{integer}}{\code{vector} of indices pertaining to which
+actions should be locked in the solution (i.e. row numbers of the
+actions in the argument to \code{actions} in \code{\link{problem}}).}
 
-  \item{\code{logical}}{\code{vector} containing \code{logical}
-    (i.e. \code{TRUE} and/or \code{FALSE} values) that indicate which
-    actions should be locked in the solution. These \code{logical}
-    values should correspond to each row in the argument to \code{actions}
-    in \code{\link{problem}}).}
+\item{\code{logical}}{\code{vector} containing \code{logical}
+(i.e. \code{TRUE} and/or \code{FALSE} values) that indicate which
+actions should be locked in the solution. These \code{logical}
+values should correspond to each row in the argument to \code{actions}
+in \code{\link{problem}}).}
 
-  \item{\code{character}}{column name that indicates if actions
-    units should be locked in the solution. This argument
-    should  denote a column in the argument to \code{actions}
-    in \code{\link{problem}} which contains \code{logical}
-    (i.e. \code{TRUE} and/or \code{FALSE} values) to indicate
-    which actions should be locked.}
- }
+\item{\code{character}}{column name that indicates if actions
+units should be locked in the solution. This argument
+should  denote a column in the argument to \code{actions}
+in \code{\link{problem}} which contains \code{logical}
+(i.e. \code{TRUE} and/or \code{FALSE} values) to indicate
+which actions should be locked.}
+}
 }
 \examples{
 # load data

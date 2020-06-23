@@ -20,7 +20,7 @@ the Details section for more information.}
 }
 \value{
 \code{\link{ProjectProblem-class}} object with the constraints
-  added to it.
+added to it.
 }
 \description{
 Add constraints to a project prioritization \code{\link{problem}} to ensure
@@ -30,16 +30,16 @@ and \code{\link{add_locked_out_constraints}} functions.
 }
 \details{
 The argument to \code{locked} must contain the following fields
-  (columns):
+(columns):
 
-  \describe{
+\describe{
 
-  \item{\code{"action"}}{\code{character} action name.}
+\item{\code{"action"}}{\code{character} action name.}
 
-  \item{\code{"status"}}{\code{numeric} values indicating if actions should
-     be funded (with a value of 1) or not (with a value of zero).}
+\item{\code{"status"}}{\code{numeric} values indicating if actions should
+be funded (with a value of 1) or not (with a value of zero).}
 
-  }
+}
 }
 \examples{
 # load data
