@@ -11,7 +11,7 @@ add_max_phylo_div_objective(x, budget, tree)
 
 \item{budget}{\code{numeric} budget for funding actions.}
 
-\item{tree}{\code{\link[ape:phylo]{ape::phylo()}} phylogenetic tree describing the
+\item{tree}{\code{\link[ape:read.tree]{ape::phylo()}} phylogenetic tree describing the
 evolutionary relationships between the features. Note that the
 argument to \code{tree} must contain every feature, and only the
 features, present in the argument to \code{x}.}

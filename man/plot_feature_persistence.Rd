@@ -40,7 +40,7 @@ the plot be returned instead of the plot? Defaults to \code{FALSE}.}
 }
 \value{
 A \code{\link[=ggplot]{ggplot()}} object, or a
-\code{\link[tibble:tbl_df]{tibble::tbl_df()}} object if \code{return_data} is
+\code{\link[tibble:tbl_df-class]{tibble::tbl_df()}} object if \code{return_data} is
 \code{TRUE}.
 }
 \description{

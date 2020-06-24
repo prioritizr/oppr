@@ -35,7 +35,7 @@ permitted values.}
 permitted values.}
 
 \item{$widget}{\code{function} used to construct a
-\code{\link[shiny:shiny]{shiny::shiny()}} interface for modifying values.}
+\code{\link[shiny:shiny-package]{shiny::shiny()}} interface for modifying values.}
 }
 }
 
@@ -89,7 +89,7 @@ parameter values.}
 
 \item{reset}{update the parameter values to be the default values.}
 
-\item{render}{create a \code{\link[shiny:shiny]{shiny::shiny()}} widget to modify
+\item{render}{create a \code{\link[shiny:shiny-package]{shiny::shiny()}} widget to modify
 parameter values.}
 
 }

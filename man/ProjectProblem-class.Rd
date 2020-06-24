@@ -212,7 +212,7 @@ exists then the object is overwritten.}
 
 \item{feature_weights}{\code{character} feature weights.}
 
-\item{feature_phylogeny}{\code{\link[ape:phylo]{ape::phylo()}} phylogenetic tree object.}
+\item{feature_phylogeny}{\code{\link[ape:read.tree]{ape::phylo()}} phylogenetic tree object.}
 
 \item{action_costs}{\code{numeric} costs for each action.}
 

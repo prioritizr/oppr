@@ -82,7 +82,7 @@ to a new object.}
 \item{render}{generate a \emph{shiny} widget to modify the
 the value of a parameter (specified by argument \code{Id}).}
 
-\item{render_all}{generate a \code{\link[shiny:div]{shiny::div()}}
+\item{render_all}{generate a \code{\link[shiny:builder]{shiny::div()}}
 containing all the parameters" widgets.}
 
 }

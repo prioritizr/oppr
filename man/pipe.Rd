@@ -27,5 +27,5 @@ runif(100) \%>\% mean()
 
 }
 \seealso{
-\code{\link[magrittr:\%>\%]{magrittr::\%>\%()}}, \code{\link[=tee]{tee()}}.
+\code{\link[magrittr:pipe]{magrittr::\%>\%()}}, \code{\link[=tee]{tee()}}.
 }

@@ -120,7 +120,7 @@ parameters.}
 \item{render_parameter}{generate a \emph{shiny} widget to modify the
 the value of a parameter (specified by argument \code{id}).}
 
-\item{render_all_parameters}{generate a \code{\link[shiny:div]{shiny::div()}}
+\item{render_all_parameters}{generate a \code{\link[shiny:builder]{shiny::div()}}
 containing all the parameters" widgets.}
 
 }

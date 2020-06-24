@@ -33,5 +33,5 @@ print(e3)
 
 }
 \seealso{
-\code{\link[magrittr:\%T>\%]{magrittr::\%T>\%()}}, \code{\link[=pipe]{pipe()}}.
+\code{\link[magrittr:tee]{magrittr::\%T>\%()}}, \code{\link[=pipe]{pipe()}}.
 }

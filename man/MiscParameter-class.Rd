@@ -72,7 +72,7 @@ construct a \emph{shiny} interface for modifying values.}
 
 \item{reset}{update the parameter value to be the default value.}
 
-\item{render}{create a \code{\link[shiny:shiny]{shiny::shiny()}} widget to modify
+\item{render}{create a \code{\link[shiny:shiny-package]{shiny::shiny()}} widget to modify
 parameter values.}
 
 }

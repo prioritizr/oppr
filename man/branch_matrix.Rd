@@ -13,7 +13,7 @@ branch_matrix(x, ...)
 \method{branch_matrix}{phylo}(x, assert_validity = TRUE, ...)
 }
 \arguments{
-\item{x}{\code{\link[ape:phylo]{ape::phylo()}} tree object.}
+\item{x}{\code{\link[ape:read.tree]{ape::phylo()}} tree object.}
 
 \item{...}{not used.}
 

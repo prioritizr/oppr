@@ -116,7 +116,7 @@ In other words, the weights are calculated as the unique amount
 of evolutionary history that each feature has experienced.}
 }
 }
-\item{"tree"}{\code{\link[ape:phylo]{ape::phylo()}} phylogenetic tree for the
+\item{"tree"}{\code{\link[ape:read.tree]{ape::phylo()}} phylogenetic tree for the
 features.}
 }
 }
@@ -159,7 +159,7 @@ from a uniform distribution with the upper and lower bounds
 set as the \code{baseline_min_persistence_probability}
 and \code{baseline_max_persistence_probability} arguments.
 \item A phylogenetic tree is simulated for the features using
-\code{\link[ape:rcoal]{ape::rcoal()}}.
+\code{\link[ape:rtree]{ape::rcoal()}}.
 \item Feature data are created from the phylogenetic tree. The
 weights are calculated as the amount of evolutionary history
 that has elapsed between each feature and its last common ancestor.

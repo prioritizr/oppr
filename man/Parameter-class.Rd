@@ -31,7 +31,7 @@ permitted value for each element in \verb{$value}.}
 permitted value for each element in \verb{$value}.}
 
 \item{$widget}{\code{function} used to construct a
-\code{\link[shiny:shiny]{shiny::shiny()}} interface for modifying values.}
+\code{\link[shiny:shiny-package]{shiny::shiny()}} interface for modifying values.}
 }
 }
 

@@ -13,7 +13,7 @@
 \item{sim_projects}{\code{\link[tibble:tibble]{tibble::tibble()}} object.}
 \item{sim_actions}{\code{\link[tibble:tibble]{tibble::tibble()}} object.}
 \item{sim_features}{\code{\link[tibble:tibble]{tibble::tibble()}} object.}
-\item{sim_tree}{\code{\link[ape:phylo]{ape::phylo()}} object.}
+\item{sim_tree}{\code{\link[ape:read.tree]{ape::phylo()}} object.}
 }
 }
 \usage{
@@ -79,7 +79,7 @@ features. This table contains the following columns:
 \item{\code{"weight"}}{\code{numeric} weight for each feature.}
 }
 }
-\item{tree}{\code{\link[ape:phylo]{ape::phylo()}} phylogenetic tree for the features.}
+\item{tree}{\code{\link[ape:read.tree]{ape::phylo()}} phylogenetic tree for the features.}
 }
 }
 \examples{
