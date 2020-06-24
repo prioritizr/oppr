@@ -41,7 +41,7 @@
 
 <meta property="og:title" content="Project cost effectiveness — project_cost_effectiveness" />
 <meta property="og:description" content="Calculate the individual cost-effectiveness of each conservation project
-in a project prioritization problem
+in a project prioritization problem()
 (Joseph, Maloney &amp;amp; Possingham 2009)." />
 
 
@@ -74,7 +74,7 @@ in a project prioritization problem
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2.1</span>
       </span>
     </div>
 
@@ -123,7 +123,7 @@ in a project prioritization problem
 
     <div class="ref-description">
     <p>Calculate the individual cost-effectiveness of each conservation project
-in a project prioritization <code><a href='problem.html'>problem</a></code>
+in a project prioritization <code><a href='problem.html'>problem()</a></code>
 (Joseph, Maloney &amp; Possingham 2009).</p>
     </div>
 
@@ -134,45 +134,45 @@ in a project prioritization <code><a href='problem.html'>problem</a></code>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>project prioritization <code><a href='problem.html'>problem</a></code>.</p></td>
+      <td><p>project prioritization <code><a href='problem.html'>problem()</a></code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></code> table containing the following
-  columns:</p>
-<p></p><dl'>
+    <p>A <code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble::tibble()</a></code> table containing the following
+columns:</p>
+<dl'>
 
-  <dt><code>"project"</code></dt><dd><p><code>character</code> name of each project</p></dd>
+<dt><code>"project"</code></dt><dd><p><code>character</code> name of each project</p></dd>
 
-  <dt><code>"cost"</code></dt><dd><p><code>numeric</code> cost of each project.</p></dd>
+<dt><code>"cost"</code></dt><dd><p><code>numeric</code> cost of each project.</p></dd>
 
-  <dt><code>"benefit"</code></dt><dd><p><code>numeric</code> benefit for each project. For a
-    given project, this is calculated as the difference between (i) the
-    objective value for a solution containing all of the management actions
-    associated with the project and all zero cost actions, and (ii) the
-    objective value for a solution containing the baseline project.</p></dd>
+<dt><code>"benefit"</code></dt><dd><p><code>numeric</code> benefit for each project. For a
+given project, this is calculated as the difference between (i) the
+objective value for a solution containing all of the management actions
+associated with the project and all zero cost actions, and (ii) the
+objective value for a solution containing the baseline project.</p></dd>
 
-  <dt><code>"ce"</code></dt><dd><p><code>numeric</code> cost-effectiveness of each project.
-    For a given project, this is calculated as the difference between the
-    the benefit for the project and the benefit for the baseline project,
-    divided by the cost of the project. Note that the baseline
-    project will have a <code>NaN</code> value because it has a zero cost.</p></dd>
+<dt><code>"ce"</code></dt><dd><p><code>numeric</code> cost-effectiveness of each project.
+For a given project, this is calculated as the difference between the
+the benefit for the project and the benefit for the baseline project,
+divided by the cost of the project. Note that the baseline
+project will have a <code>NaN</code> value because it has a zero cost.</p></dd>
 
- <dt><code>"rank"</code></dt><dd><p><code>numeric</code> rank for each project according to
-   is cost-effectiveness value. The project with a rank of one is the
-   most cost-effective project. Ties are accommodated using averages.</p></dd>
+<dt><code>"rank"</code></dt><dd><p><code>numeric</code> rank for each project according to
+is cost-effectiveness value. The project with a rank of one is the
+most cost-effective project. Ties are accommodated using averages.</p></dd>
 
-  
+
 </dl>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Note that project cost-effectiveness cannot be calculated for
-  problems with minimum set objectives because the objective function
-  for these problems is to minimize cost and not maximize some measure
-  of biodiversity persistence.</p>
+problems with minimum set objectives because the objective function
+for these problems is to minimize cost and not maximize some measure
+of biodiversity persistence.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Joseph LN, Maloney RF &amp; Possingham HP (2009) Optimal allocation of
@@ -180,7 +180,7 @@ resources among threatened species: A project prioritization protocol.
 <em>Conservation Biology</em>, <strong>23</strong>, 328--338.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='solution_statistics.html'>solution_statistics</a></code>, <code><a href='replacement_costs.html'>replacement_costs</a></code>.</p></div>
+    <div class='dont-index'><p><code><a href='solution_statistics.html'>solution_statistics()</a></code>, <code><a href='replacement_costs.html'>replacement_costs()</a></code>.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># load data</span>

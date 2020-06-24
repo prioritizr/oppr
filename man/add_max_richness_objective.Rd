@@ -7,22 +7,22 @@
 add_max_richness_objective(x, budget)
 }
 \arguments{
-\item{x}{\code{\link{ProjectProblem-class}} object.}
+\item{x}{\linkS4class{ProjectProblem} object.}
 
 \item{budget}{\code{numeric} budget for funding actions.}
 }
 \value{
-\code{\link{ProjectProblem-class}} object with the objective
+\linkS4class{ProjectProblem} object with the objective
 added to it.
 }
 \description{
-Set the objective of a project prioritization \code{\link{problem}} to
+Set the objective of a project prioritization \code{\link[=problem]{problem()}} to
 maximize the total number of features that are expected to persist, whilst
 ensuring that the cost of the solution is within a pre-specified budget
 (Joseph, Maloney & Possingham 2009). This objective is conceptually similar
 to maximizing species richness in a study area. Furthermore, weights can
 also be used to specify the relative importance of conserving specific
-features (see \code{\link{add_feature_weights}}).
+features (see \code{\link[=add_feature_weights]{add_feature_weights()}}).
 }
 \details{
 A problem objective is used to specify the overall goal of the
@@ -165,5 +165,5 @@ resources among threatened species: A project prioritization protocol.
 \emph{Conservation Biology}, \strong{23}, 328--338.
 }
 \seealso{
-\code{\link{objectives}}.
+\link{objectives}.
 }

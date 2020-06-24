@@ -10,7 +10,7 @@ action_names(x)
 \S4method{action_names}{ProjectProblem}(x)
 }
 \arguments{
-\item{x}{\code{\link{ProjectProblem-class}}.}
+\item{x}{\linkS4class{ProjectProblem}.}
 }
 \value{
 \code{character} action names.

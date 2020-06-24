@@ -11,23 +11,23 @@
 \S4method{solve}{ProjectProblem,missing}(a, b, ...)
 }
 \arguments{
-\item{a}{\code{\link{ProjectProblem-class}} or an
-\code{\link{OptimizationProblem-class}} object.}
+\item{a}{\linkS4class{ProjectProblem} or an
+\linkS4class{OptimizationProblem} object.}
 
-\item{b}{\code{\link{Solver-class}} object. Not used if \code{a} is an
-\code{\link{ProjectProblem-class}} object.}
+\item{b}{\linkS4class{Solver} object. Not used if \code{a} is an
+\linkS4class{ProjectProblem} object.}
 
-\item{...}{arguments passed to \code{\link{compile}}.}
+\item{...}{arguments passed to \code{\link[=compile]{compile()}}.}
 }
 \value{
 The type of object returned from this function depends on the
 argument to \code{a}. If the argument to \code{a} is an
-\code{\link{OptimizationProblem-class}} object, then the
+\linkS4class{OptimizationProblem} object, then the
 solution is returned as a \code{list} containing the prioritization and
 additional information (e.g. run time, solver status). On the other hand,
 if the argument
-to \code{a} is an \code{\link{ProjectProblem-class}} object,
-then a \code{\link[tibble]{tibble}} table object will be returned. In this
+to \code{a} is an \linkS4class{ProjectProblem} object,
+then a \code{\link[tibble:tibble]{tibble::tibble()}} table object will be returned. In this
 table, each row row corresponds to a different solution and each column
 describes a different property or result associated with each solution:
 
@@ -60,7 +60,7 @@ the future given each solution.}
 }
 }
 \description{
-Solve a conservation planning \code{\link{problem}}.
+Solve a conservation planning \code{\link[=problem]{problem()}}.
 }
 \examples{
 # load data
@@ -110,6 +110,6 @@ s[, sim_features$name, drop = FALSE]
 }
 }
 \seealso{
-\code{\link{problem}}, \code{\link{solution_statistics}},
-\code{\link{solvers}}.
+\code{\link[=problem]{problem()}}, \code{\link[=solution_statistics]{solution_statistics()}},
+\link{solvers}.
 }

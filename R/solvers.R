@@ -4,18 +4,18 @@ NULL
 #' Problem solvers
 #'
 #' Specify the software and configuration used to solve a project prioritization
-#' \code{\link{problem}}. By default, the best available exact algorithm
+#' [problem()]. By default, the best available exact algorithm
 #' solver will be used.
 #'
 #' @details The following solvers can be used to find solutions for a
-#'   project prioritization \code{\link{problem}}:
+#'   project prioritization [problem()]:
 #'
 #'   \describe{
 #'
-#'   \item{\code{\link{add_default_solver}}}{This solver uses the best software
+#'   \item{[add_default_solver()]}{This solver uses the best software
 #'     currently installed on the system.}
 #'
-#' \item{\code{\link{add_gurobi_solver}}}{
+#' \item{[add_gurobi_solver()]}{
 #'     [*Gurobi*](http://gurobi.com)
 #'     is a state-of-the-art commercial optimization software with an R package
 #'     interface. It is by far the fastest solver that can be used by
@@ -24,7 +24,7 @@ NULL
 #'     \pkg{gurobi} package is distributed with the *Gurobi* software
 #'     suite. This solver uses the \pkg{gurobi} package to solve problems.}
 #'
-#'   \item{\code{\link{add_rsymphony_solver}}}{
+#'   \item{[add_rsymphony_solver()]}{
 #'     [*SYMPHONY*](https://projects.coin-or.org/SYMPHONY) is an
 #'     open-source integer programming solver that is part of the Computational
 #'     Infrastructure for Operations Research (COIN-OR) project, an initiative
@@ -33,7 +33,7 @@ NULL
 #'     provides an interface to COIN-OR and is available on CRAN. This solver
 #'     uses the \pkg{Rsymphony} package to solve problems.}
 #'
-#'   \item{\code{\link{add_lpsymphony_solver}}}{The \pkg{lpsymphony} package
+#'   \item{[add_lpsymphony_solver()]}{The \pkg{lpsymphony} package
 #'     provides a different interface to the COIN-OR software suite. Unlike the
 #'     \pkg{Rsymhpony} package, the \pkg{lpsymphony} package is distributed
 #'     through
@@ -41,7 +41,7 @@ NULL
 #'     The \pkg{lpsymphony} package may be easier to install on Windows or
 #'     Max OSX systems than the \pkg{Rsymphony} package.}
 #'
-#'   \item{\code{\link{add_lpsolveapi_solver}}}{
+#'   \item{[add_lpsolveapi_solver()]}{
 #'     [*lp_solve*](http://lpsolve.sourceforge.net/5.5/) is an
 #'     open-source integer programming solver. The \pkg{lpSolveAPI} package
 #'     provides an interface to this solver and is available on CRAN.
@@ -49,25 +49,25 @@ NULL
 #'     it is also the only exact algorithm solver that can be installed on all
 #'     operating systems without any manual installation steps.}
 #'
-#'   \item{\code{\link{add_heuristic_solver}}}{Generate solutions using
+#'   \item{[add_heuristic_solver()]}{Generate solutions using
 #'     a backwards heuristic algorithm. Although these types of algorithms have
 #'     conventionally been used to solve project prioritization problems,
 #'     they are extremely unlikely to identify optimal solutions and provide
 #'     no guarantees concerning solution quality.}
 #'
-#'   \item{\code{\link{add_random_solver}}}{Generate solutions by
+#'   \item{[add_random_solver()]}{Generate solutions by
 #'     randomly funding actions. This can be useful when evaluating the
 #'     performance of a funding scheme---though it is strongly recommended
 #'     to evaluate the performance of a funding scheme by comparing it
 #'     to an optimal solution identified using exact algorithms (e.g.
-#'     \code{\link{add_gurobi_solver}}, \code{\link{add_rsymphony_solver}}).}
+#'     [add_gurobi_solver()], [add_rsymphony_solver()]).}
 #'
 #' }
 #'
 #' @name solvers
 #'
-#' @seealso \code{\link{constraints}},  \code{\link{decisions}},
-#'  \code{\link{objectives}}, \code{\link{problem}}, \code{\link{targets}}.
+#' @seealso [constraints],  [decisions],
+#'  [objectives], [problem()], [targets].
 #'
 #' @examples
 #' # load data

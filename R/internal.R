@@ -1,6 +1,6 @@
 #' Check
 #'
-#' Check that the output from \code{\link[assert_that]{see_if}}
+#' Check that the output from [assert_that::see_if()]
 #' is valid.
 #'
 #' @param x `character` or `object`
@@ -41,7 +41,7 @@ matrix_to_triplet_dataframe <- function(x) {
 #'   numbers, the second column contains the column numbers, and the
 #'   third column contains the cell values.
 #
-#' @return \code{\link[Matrix]{dgCMatrix-class}} object.
+#' @return [Matrix::dgCMatrix-class] object.
 #'
 #' @noRd
 triplet_dataframe_to_matrix <- function(x, forceSymmetric=FALSE, ...) {
@@ -154,8 +154,8 @@ assertthat::on_failure(no_extra_arguments) <- function(call, env) {
 
 #' Verify if assertion is met
 #'
-#' Verify if an assertion is tmet and throw a \code{\link{warning}} if it
-#' is not. This function is equivalent to \code{\link[assertthat]{assert_that}}
+#' Verify if an assertion is tmet and throw a [warning()] if it
+#' is not. This function is equivalent to [assertthat::assert_that()]
 #' except that it throws warnings and not errors.
 #'
 #' @param x `logical` condition.

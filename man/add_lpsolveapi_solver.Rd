@@ -7,7 +7,7 @@
 add_lpsolveapi_solver(x, gap = 0, presolve = FALSE, verbose = TRUE)
 }
 \arguments{
-\item{x}{\code{\link{ProjectProblem-class}} object.}
+\item{x}{\linkS4class{ProjectProblem} object.}
 
 \item{gap}{\code{numeric} gap to optimality. This gap is relative when
 solving problems using \pkg{gurobi}, and will cause the optimizer to
@@ -28,12 +28,12 @@ Defaults to \code{TRUE}.}
 optimization problems?}
 }
 \value{
-\code{\link{ProjectProblem-class}} object with the solver added
+\linkS4class{ProjectProblem} object with the solver added
 to it.
 }
 \description{
 Specify that the \emph{lp_solve} software should be used to solve a
-project prioritization \code{\link{problem}} using the \pkg{lpSolveAPI}
+project prioritization \code{\link[=problem]{problem()}} using the \pkg{lpSolveAPI}
 package. This function can also be used to customize the behavior of the
 solver. It requires the \pkg{lpSolveAPI} package.
 }
@@ -47,7 +47,7 @@ provided so that
 users can try solving small project prioritization problems, without
 needing to install additional software. When solve moderate or large
 project prioritization problems, consider using
-\code{\link{add_gurobi_solver}}.
+\code{\link[=add_gurobi_solver]{add_gurobi_solver()}}.
 }
 \examples{
 # load data
@@ -73,5 +73,5 @@ print(s)
 plot(p, s)
 }
 \seealso{
-\code{\link{solvers}}.
+\link{solvers}.
 }

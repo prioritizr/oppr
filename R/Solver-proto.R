@@ -8,10 +8,10 @@ NULL
 #' Solver prototype
 #'
 #' This prototype is used to generate objects that represent methods for solving
-#' optimization problems. \strong{This class represents a recipe to
+#' optimization problems. **This class represents a recipe to
 #' create solver and and is only recommended for use by expert users. To
 #' customize the method used to solve optimization problems, please see the
-#' help page on \code{\link{solvers}}}.
+#' help page on [solvers]**.
 #'
 #' @section Fields:
 #'
@@ -23,7 +23,7 @@ NULL
 #'   the the solver.}
 #'
 #' \item{$solve}{`function` used to solve a
-#'   \code{\link{OptimizationProblem-class}} object.}
+#'   [OptimizationProblem-class] object.}
 #' }
 #'
 #' @section Usage:
@@ -39,9 +39,9 @@ NULL
 #' @section Arguments:
 #' \describe{
 #'
-#' \item{x}{\code{\link{Solver-class}} object.}
+#' \item{x}{[Solver-class] object.}
 #'
-#' \item{op}{\code{\link{OptimizationProblem-class}} object.}
+#' \item{op}{[OptimizationProblem-class] object.}
 #'
 #' }
 #'
@@ -54,7 +54,7 @@ NULL
 #'
 #' \item{repr}{`character` representation of object.}
 #'
-#' \item{solve}{solve an \code{\link{OptimizationProblem-class}} using this
+#' \item{solve}{solve an [OptimizationProblem-class] using this
 #'   object.}
 #'
 #' }

@@ -42,7 +42,7 @@ problem can be used to specify additional requirements (e.g. certain
 actions must be funded). Finally, a project prioritization problem---unlike
 an optimization problem---also requires a method to solve the problem.
 \strong{This class represents a planning problem, to actually build and then
-solve a planning problem, use the \code{\link{problem}} function. Only
+solve a planning problem, use the \code{\link[=problem]{problem()}} function. Only
 experts should use this class directly.}
 }
 
@@ -52,22 +52,22 @@ experts should use this class directly.}
 
 \item{$data}{\code{list} object containing data.}
 
-\item{$objective}{\code{\link{Objective-class}} object used to represent how
+\item{$objective}{\linkS4class{Objective} object used to represent how
 the targets relate to the solution.}
 
-\item{$decisions}{\code{\link{Decision-class}} object used to represent the
+\item{$decisions}{\linkS4class{Decision} object used to represent the
 type of decision made on planning units.}
 
-\item{$targets}{\code{\link{Target-class}} object used to represent
+\item{$targets}{\linkS4class{Target} object used to represent
 representation targets for features.}
 
-\item{$weights}{\code{\link{Weight-class}} object used to represent
+\item{$weights}{\linkS4class{Weight} object used to represent
 feature weights.}
 
-\item{$constraints}{\code{\link{Collection-class}} object used to represent
-additional \code{\link{constraints}} that the problem is subject to.}
+\item{$constraints}{\linkS4class{Collection} object used to represent
+additional \link{constraints} that the problem is subject to.}
 
-\item{$solver}{\code{\link{Solver-class}} object used to solve the problem.}
+\item{$solver}{\linkS4class{Solver} object used to solve the problem.}
 
 }
 }
@@ -159,19 +159,19 @@ additional \code{\link{constraints}} that the problem is subject to.}
 
 \item{value}{an object.}
 
-\item{obj}{\code{\link{Objective-class}} object.}
+\item{obj}{\linkS4class{Objective} object.}
 
-\item{wt}{\code{\link{Weight-class}} object.}
+\item{wt}{\linkS4class{Weight} object.}
 
-\item{dec}{\code{\link{Decision-class}} object.}
+\item{dec}{\linkS4class{Decision} object.}
 
-\item{con}{\code{\link{Constraint-class}} object.}
+\item{con}{\linkS4class{Constraint} object.}
 
-\item{sol}{\code{\link{Solver-class}} object.}
+\item{sol}{\linkS4class{Solver} object.}
 
-\item{targ}{\code{\link{Target-class}} object.}
+\item{targ}{\linkS4class{Target} object.}
 
-\item{wt}{\code{\link{Weight-class}} object.}
+\item{wt}{\linkS4class{Weight} object.}
 
 \item{id}{\code{Id} object that refers to a specific parameter.}
 
@@ -212,7 +212,7 @@ exists then the object is overwritten.}
 
 \item{feature_weights}{\code{character} feature weights.}
 
-\item{feature_phylogeny}{\code{\link[ape]{phylo}} phylogenetic tree object.}
+\item{feature_phylogeny}{\code{\link[ape:phylo]{ape::phylo()}} phylogenetic tree object.}
 
 \item{action_costs}{\code{numeric} costs for each action.}
 
@@ -222,31 +222,31 @@ exists then the object is overwritten.}
 each project will succeed.}
 
 \item{pf_matrix}{
-\code{\link[Matrix]{dgCMatrix-class}} object denoting the enhanced
+\link[Matrix:dgCMatrix-class]{Matrix::dgCMatrix} object denoting the enhanced
 probability that features will persist if different projects are funded.}
 
 \item{epf_matrix}{
-\code{\link[Matrix]{dgCMatrix-class}} object denoting the enhanced
+\link[Matrix:dgCMatrix-class]{Matrix::dgCMatrix} object denoting the enhanced
 probability that features is expected to persist if different projects are
 funded. This is calculated as the \code{pf_matrix} multiplied by the
 project success probabilities.}
 
 \item{pa_matrix}{
-\code{\link[Matrix]{dgCMatrix-class}} object indicating which actions are
+\link[Matrix:dgCMatrix-class]{Matrix::dgCMatrix} object indicating which actions are
 associated with which projects.}
 
-\item{feature_targets}{\code{\link[tibble]{tibble}} with feature targets.}
+\item{feature_targets}{\code{\link[tibble:tibble]{tibble::tibble()}} with feature targets.}
 
-\item{add_objective}{return a new  \code{\link{ProjectProblem-class}}
+\item{add_objective}{return a new  \linkS4class{ProjectProblem}
 with the objective added to it.}
 
-\item{add_decisions}{return a new \code{\link{ProjectProblem-class}}
+\item{add_decisions}{return a new \linkS4class{ProjectProblem}
 object with the decision added to it.}
 
-\item{add_solver}{return a new \code{\link{ProjectProblem-class}} object
+\item{add_solver}{return a new \linkS4class{ProjectProblem} object
 with the solver added to it.}
 
-\item{add_constraint}{return a new \code{\link{ProjectProblem-class}}
+\item{add_constraint}{return a new \linkS4class{ProjectProblem}
 object with the constraint added to it.}
 
 \item{add_targets}{return a copy with the targets added to the problem.}

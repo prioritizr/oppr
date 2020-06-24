@@ -13,8 +13,8 @@ number_of_projects(x)
 \S4method{number_of_projects}{OptimizationProblem}(x)
 }
 \arguments{
-\item{x}{\code{\link{ProjectProblem-class}} or
-\code{\link{OptimizationProblem-class}} object.}
+\item{x}{\linkS4class{ProjectProblem} or
+\linkS4class{OptimizationProblem} object.}
 }
 \value{
 \code{integer} number of projects.

@@ -8,11 +8,11 @@ NULL
 #' Collection prototype
 #'
 #' This prototype represents a collection of
-#' \code{\link{ProjectModifier-class}} objects.
+#' [ProjectModifier-class] objects.
 #'
 #' @section Fields:
 #' \describe{
-#'   \item{$...}{\code{\link{ProjectModifier-class}} objects stored
+#'   \item{$...}{[ProjectModifier-class] objects stored
 #'      in the collection.}
 #' }
 #'
@@ -62,7 +62,7 @@ NULL
 #'
 #' \item{length}{`integer` number of objects inside collection.}
 #'
-#' \item{add}{add \code{\link{ProjectModifier-class}} object.}
+#' \item{add}{add [ProjectModifier-class] object.}
 #'
 #' \item{remove}{remove an item from the collection.}
 #'
@@ -75,12 +75,12 @@ NULL
 #' \item{render_parameter}{generate a *shiny* widget to modify the
 #'   the value of a parameter (specified by argument `id`).}
 #'
-#' \item{render_all_parameters}{generate a \code{\link[shiny]{div}}
+#' \item{render_all_parameters}{generate a [shiny::div()]
 #'   containing all the parameters" widgets.}
 #'
 #' }
 #'
-#' @seealso \code{\link{Constraint-class}}.
+#' @seealso [Constraint-class].
 #'
 #' @name Collection-class
 #'

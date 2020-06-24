@@ -7,10 +7,10 @@
 replacement_costs(x, solution, n = 1)
 }
 \arguments{
-\item{x}{project prioritization \code{\link{problem}}.}
+\item{x}{project prioritization \code{\link[=problem]{problem()}}.}
 
-\item{solution}{\code{\link[base]{data.frame}} or
-\code{\link[tibble]{tibble}} table containing the solutions. Here,
+\item{solution}{\code{\link[base:data.frame]{base::data.frame()}} or
+\code{\link[tibble:tibble]{tibble::tibble()}} table containing the solutions. Here,
 rows correspond to different solutions and columns correspond to
 different actions. Each column in the argument to \code{solution} should
 be named according to a different action in \code{x}.
@@ -24,7 +24,7 @@ different solution, this argument should correspond to a row in
 the argument to \code{solutions}. Defaults to 1.}
 }
 \value{
-A \code{\link[tibble]{tibble}} table containing the following
+A \code{\link[tibble:tibble]{tibble::tibble()}} table containing the following
 columns:
 
 \describe{
@@ -50,7 +50,7 @@ the specified solution exist.}
 }
 \description{
 Calculate the replacement cost for priority actions in a project
-prioritization problem (Moilanen \emph{et al.} 2009). Actions associated
+prioritization \code{\link[=problem]{problem()}} (Moilanen \emph{et al.} 2009). Actions associated
 with larger replacement cost values are more irreplaceabe, and may
 need to be implemented sooner than actions with lower replacement cost
 values.
@@ -65,7 +65,7 @@ the argument to \code{x}, (ii) calculating the objective value for the
 optimal solution to the argument to \code{x} with the given action locked
 out, (iii) calculating the difference between the two objective
 values, (iv) the problem has an objective which aims to minimize
-the objective value (only \code{\link{add_min_set_objective}}, then
+the objective value (only \code{\link[=add_min_set_objective]{add_min_set_objective()}}, then
 the resulting value is multiplied by minus one so that larger values
 always indicate actions with greater irreplaceability. Please note this
 function can take a long time to complete
@@ -107,6 +107,6 @@ cost of conservation areas: how does habitat loss influence priorities?
 \emph{Biological Conservation}, \strong{142}, 575--585.
 }
 \seealso{
-\code{\link{solution_statistics}},
-\code{\link{project_cost_effectiveness}}.
+\code{\link[=solution_statistics]{solution_statistics()}},
+\code{\link[=project_cost_effectiveness]{project_cost_effectiveness()}}.
 }

@@ -4,12 +4,12 @@ NULL
 #' Solution statistics
 #'
 #' Calculate statistics describing a solution to a project prioritization
-#' \code{\link{problem}}.
+#' [problem()].
 #'
-#' @param x project prioritization \code{\link{problem}}.
+#' @param x project prioritization [problem()].
 #'
-#' @param solution \code{\link[base]{data.frame}} or
-#'   \code{\link[tibble]{tibble}} table containing the solutions. Here,
+#' @param solution [base::data.frame()] or
+#'   [tibble::tibble()] table containing the solutions. Here,
 #'   rows correspond to different solutions and columns correspond to
 #'   different actions. Each column in the argument to `solution` should
 #'   be named according to a different action in `x`.
@@ -17,7 +17,7 @@ NULL
 #'   and should be either zero or one. Arguments to `solution` can
 #'   contain additional columns, and they will be ignored.
 #'
-#' @return A \code{\link[tibble]{tibble}} table containing the following
+#' @return A [tibble::tibble()] table containing the following
 #'   columns:
 #'
 #'   \describe{
@@ -38,8 +38,8 @@ NULL
 #'
 #'   }
 #'
-#' @seealso \code{\link{objectives}}, \code{\link{replacement_costs}},
-#'   \code{\link{project_cost_effectiveness}}.
+#' @seealso [objectives], [replacement_costs()],
+#'   [project_cost_effectiveness()].
 #'
 #' @examples
 #' # load data

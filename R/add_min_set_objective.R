@@ -3,12 +3,12 @@ NULL
 
 #' Add minimum set objective
 #'
-#' Set the objective of a project prioritization \code{\link{problem}} to
+#' Set the objective of a project prioritization [problem()] to
 #' minimize the cost of the solution whilst ensuring that all targets are met.
 #' This objective is conceptually similar to that used in *Marxan*
 #' (Ball, Possingham & Watts 2009).
 #'
-#' @param x \code{\link{ProjectProblem-class}} object.
+#' @param x [ProjectProblem-class] object.
 #'
 #' @details A problem objective is used to specify the overall goal of the
 #'   project prioritization problem.
@@ -113,7 +113,7 @@ NULL
 #' *Spatial conservation prioritisation: Quantitative methods and
 #' computational tools*, 185-195.
 #'
-#' @seealso \code{\link{objectives}}, \code{\link{targets}}.
+#' @seealso [objectives], [targets].
 #'
 #' @inherit add_max_richness_objective return
 #'

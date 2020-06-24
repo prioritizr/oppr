@@ -3,16 +3,16 @@ NULL
 
 #' Add maximum phylogenetic diversity objective
 #'
-#' Set the objective of a project prioritization \code{\link{problem}} to
+#' Set the objective of a project prioritization [problem()] to
 #' maximize the phylogenetic diversity that is expected to persist into the
 #' future, whilst ensuring that the cost of the solution is within a
 #' pre-specified budget (Bennett *et al.* 2014, Faith 2008).
 #'
-#' @param x \code{\link{ProjectProblem-class}} object.
+#' @param x [ProjectProblem-class] object.
 #'
 #' @param budget `numeric` budget for funding actions.
 #'
-#' @param tree \code{\link[ape]{phylo}} phylogenetic tree describing the
+#' @param tree [ape::phylo()] phylogenetic tree describing the
 #'   evolutionary relationships between the features. Note that the
 #'   argument to `tree` must contain every feature, and only the
 #'   features, present in the argument to `x`.
@@ -173,10 +173,10 @@ NULL
 #' # plot tree
 #' plot(sim_tree)
 #'
-#' # build problem with maximum phylogenetic diversity objective and $300 budget
+#' # build problem with maximum phylogenetic diversity objective and $200 budget
 #' p1 <- problem(sim_projects, sim_actions, sim_features,
 #'              "name", "success", "name", "cost", "name") %>%
-#'       add_max_phylo_div_objective(budget = 300, tree = sim_tree) %>%
+#'       add_max_phylo_div_objective(budget = 200, tree = sim_tree) %>%
 #'       add_binary_decisions()
 #'
 #' \donttest{

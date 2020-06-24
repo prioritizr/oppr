@@ -13,10 +13,10 @@ plot_phylo_persistence(
 )
 }
 \arguments{
-\item{x}{project prioritization \code{\link{problem}}.}
+\item{x}{project prioritization \code{\link[=problem]{problem()}}.}
 
-\item{solution}{\code{\link[base]{data.frame}} or
-\code{\link[tibble]{tibble}} table containing the solutions. Here,
+\item{solution}{\code{\link[base:data.frame]{base::data.frame()}} or
+\code{\link[tibble:tibble]{tibble::tibble()}} table containing the solutions. Here,
 rows correspond to different solutions and columns correspond to
 different actions. Each column in the argument to \code{solution} should
 be named according to a different action in \code{x}.
@@ -39,14 +39,14 @@ to produce visually appealing publication quality plots.}
 the plot be returned instead of the plot? Defaults to \code{FALSE}.}
 }
 \value{
-A \code{\link[ggtree]{ggtree}} object, or a
-\code{\link[tidytree]{treedata}} object if \code{return_data} is
+A \code{\link[ggtree:ggtree]{ggtree::ggtree()}} object, or a
+\code{\link[tidytree:treedata]{tidytree::treedata()}} object if \code{return_data} is
 \code{TRUE}.
 }
 \description{
 Create a plot showing a phylogenetic tree (i.e. a "phylogram") to visualize
 the probability that phylogenetic branches are expected to persist
-into the future under a solution to a project prioritization problem.
+into the future under a solution to a project prioritization \code{\link[=problem]{problem()}}.
 }
 \details{
 This function requires the \pkg{ggtree} (Yu \emph{et al.} 2017).

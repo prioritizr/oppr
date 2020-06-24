@@ -101,16 +101,16 @@ get_data(x)
 \S4method{get_data}{OptimizationProblem}(x)
 }
 \arguments{
-\item{x}{\code{\link{OptimizationProblem-class}} object.}
+\item{x}{\linkS4class{OptimizationProblem} object.}
 }
 \value{
-\code{list}, \code{\link[Matrix]{dgCMatrix-class}}, \code{numeric}
+\code{list}, \link[Matrix:dgCMatrix-class]{Matrix::dgCMatrix}, \code{numeric}
 vector, \code{numeric} vector, or scalar \code{integer} depending on the
 method used.
 }
 \description{
 These functions are used to access data from an
-\code{\link{OptimizationProblem-class}} object.
+\linkS4class{OptimizationProblem} object.
 }
 \details{
 The functions return the following data:
@@ -136,7 +136,7 @@ objective function.}
 \item{pwlobj}{\code{list} object defining the piece-wise linear components
 of the objective function.}
 
-\item{A}{\code{\link[Matrix]{dgCMatrix-class}} matrix object defining the
+\item{A}{\link[Matrix:dgCMatrix-class]{Matrix::dgCMatrix} matrix object defining the
 problem matrix.}
 
 \item{rhs}{\code{numeric} vector with right-hand-side linear constraints}

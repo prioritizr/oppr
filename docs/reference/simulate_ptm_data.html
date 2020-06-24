@@ -76,7 +76,7 @@ share actions." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2.1</span>
       </span>
     </div>
 
@@ -223,82 +223,91 @@ into the solution. Defaults to <code>0</code>.</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A <code>list</code> object containing the elements:</p>
-<p></p><dl'>
+<dl'>
+<dt><code>"projects"</code></dt><dd><p>A <code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble::tibble()</a></code> containing
+the data for the conservation projects. It contains the following
+columns:
+<dl'>
+<dt><code>"name"</code></dt><dd><p><code>character</code> name for each project.</p></dd>
+<dt><code>"success"</code></dt><dd><p><code>numeric</code> probability of each project
+succeeding if it is funded.</p></dd>
+<dt><code>"F1"</code> ... <code>"FN"</code></dt><dd><p><code>numeric</code> columns for each
+feature, ranging from <code>"F1"</code> to <code>"FN"</code> where <code>N</code>
+is the number of features, indicating the enhanced probability that
+each feature will persist if it funded. Missing values (<code>NA</code>)
+indicate that a feature does not benefit from a project being
+funded.</p></dd>
+<dt><code>"F1_action"</code> ... <code>"FN_action"</code></dt><dd><p><code>logical</code>
+columns for each action, ranging from <code>"F1_action"</code> to
+<code>"FN_action"</code> where <code>N</code> is
+the number of actions (equal to the number of features in this
+simulated data), indicating if an action is associated with a
+project (<code>TRUE</code>) or not (<code>FALSE</code>).</p></dd>
+<dt><code>"baseline_action"</code></dt><dd><p><code>logical</code>
+column indicating if a project is associated with the baseline
+action (<code>TRUE</code>) or not (<code>FALSE</code>). This action is only
+associated with the baseline project.</p></dd></dl></p></dd>
+<dt><code>"actions"</code></dt><dd><p>A <code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble::tibble()</a></code> containing
+the data for the conservation actions. It contains the following
+columns:
+<dl'>
+<dt><code>"name"</code></dt><dd><p><code>character</code> name for each action.</p></dd>
+<dt><code>"cost"</code></dt><dd><p><code>numeric</code> cost for each action.</p></dd>
+<dt><code>"locked_in"</code></dt><dd><p><code>logical</code> indicating if certain
+actions should be locked into the solution.</p></dd>
+<dt><code>"locked_out"</code></dt><dd><p><code>logical</code> indicating if certain
+actions should be locked out of the solution.</p></dd></dl></p></dd>
+<dt><code>"features"</code></dt><dd><p>A <code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble::tibble()</a></code> containing
+the data for the conservation features (e.g. species). It contains the
+following columns:
+<dl'>
+<dt><code>"name"</code></dt><dd><p><code>character</code> name for each feature.</p></dd>
+<dt><code>"weight"</code></dt><dd><p><code>numeric</code> weight for each feature.
+For each feature, this is calculated as the amount of time that
+elapsed between the present and the features' last common ancestor.
+In other words, the weights are calculated as the unique amount
+of evolutionary history that each feature has experienced.</p></dd></dl></p></dd>
+<dt>"tree"</dt><dd><p><code><a href='https://rdrr.io/pkg/ape/man/read.tree.html'>ape::phylo()</a></code> phylogenetic tree for the
+features.</p></dd>
 
-    <dt><code>"projects"</code></dt><dd><p>A <code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></code> containing
-      the data for the conservation projects. It contains the following
-      columns:      <dl'>        <dt><code>"name"</code></dt><dd><p><code>character</code> name for each project.</p></dd>        <dt><code>"success"</code></dt><dd><p><code>numeric</code> probability of each project
-          succeeding if it is funded.</p></dd>        <dt><code>"F1"</code> ... <code>"FN"</code></dt><dd><p><code>numeric</code> columns for each
-          feature, ranging from <code>"F1"</code> to <code>"FN"</code> where <code>N</code>
-          is the number of features, indicating the enhanced probability that
-          each feature will persist if it funded. Missing values (<code>NA</code>)
-          indicate that a feature does not benefit from a project being
-          funded.</p></dd>        <dt><code>"F1_action"</code> ... <code>"FN_action"</code></dt><dd><p><code>logical</code>
-          columns for each action, ranging from <code>"F1_action"</code> to
-          <code>"FN_action"</code> where <code>N</code> is
-          the number of actions (equal to the number of features in this
-          simulated data), indicating if an action is associated with a
-          project (<code>TRUE</code>) or not (<code>FALSE</code>).</p></dd>       <dt><code>"baseline_action"</code></dt><dd><p><code>logical</code>
-         column indicating if a project is associated with the baseline
-         action (<code>TRUE</code>) or not (<code>FALSE</code>). This action is only
-         associated with the baseline project.</p></dd></dl></p></dd>
-
-    <dt><code>"actions"</code></dt><dd><p>A <code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></code> containing
-      the data for the conservation actions. It contains the following
-      columns:      <dl'>        <dt><code>"name"</code></dt><dd><p><code>character</code> name for each action.</p></dd>        <dt><code>"cost"</code></dt><dd><p><code>numeric</code> cost for each action.</p></dd>        <dt><code>"locked_in"</code></dt><dd><p><code>logical</code> indicating if certain
-          actions should be locked into the solution.</p></dd>        <dt><code>"locked_out"</code></dt><dd><p><code>logical</code> indicating if certain
-          actions should be locked out of the solution.</p></dd></dl></p></dd>
-
-    <dt><code>"features"</code></dt><dd><p>A <code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></code> containing
-      the data for the conservation features (e.g. species). It contains the
-      following columns:      <dl'>       <dt><code>"name"</code></dt><dd><p><code>character</code> name for each feature.</p></dd>        <dt><code>"weight"</code></dt><dd><p><code>numeric</code> weight for each feature.
-          For each feature, this is calculated as the amount of time that
-          elapsed between the present and the features' last common ancestor.
-          In other words, the weights are calculated as the unique amount
-          of evolutionary history that each feature has experienced.</p></dd></dl></p></dd>
-
-   <dt>"tree"</dt><dd><p><code><a href='https://rdrr.io/pkg/ape/man/read.tree.html'>phylo</a></code> phylogenetic tree for the
-     features.</p></dd>
-
- 
 </dl>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The simulated data set will contain one conservation project for
-  each features, and also a "baseline" (do nothing) project to reflect
-  features' persistence when their conservation project is not
-  funded. Each conservation project is associated with a single action, and
-  no conservation projects share any actions. Specifically, the data are
-  simulated as follows:</p>
-<p></p><ol>
+each features, and also a "baseline" (do nothing) project to reflect
+features' persistence when their conservation project is not
+funded. Each conservation project is associated with a single action, and
+no conservation projects share any actions. Specifically, the data are
+simulated as follows:</p>
+<ol>
 <li><p>A specified number of conservation projects, features, and
-      management actions are created.</p></li>
+management actions are created.</p></li>
 <li><p>Cost data for each action are simulated using a normal
-      distribution and the <code>cost_mean</code> and <code>cost_sd</code> arguments.</p></li>
+distribution and the <code>cost_mean</code> and <code>cost_sd</code> arguments.</p></li>
 <li><p>A set proportion of the actions are randomly set to be locked
-      in and out of the solutions using the <code>locked_in_proportion</code> and
-      <code>locked_out_proportion</code> arguments.</p></li>
+in and out of the solutions using the <code>locked_in_proportion</code> and
+<code>locked_out_proportion</code> arguments.</p></li>
 <li><p>The probability of each project succeeding if its action is funded
-      is simulated by drawing probabilities from a uniform distribution with
-      the upper and lower bounds set as the <code>success_min_probability</code>
-      and <code>success_max_probability</code> arguments.</p></li>
+is simulated by drawing probabilities from a uniform distribution with
+the upper and lower bounds set as the <code>success_min_probability</code>
+and <code>success_max_probability</code> arguments.</p></li>
 <li><p>The probability of each feature persisting if various projects
-      are funded and is successful is simulated by drawing probabilities
-      from a uniform distribution with the upper and lower bounds set as the
-      <code>funded_min_persistence_probability</code> and
-      <code>funded_max_persistence_probability</code> arguments. To prevent</p></li>
+are funded and is successful is simulated by drawing probabilities
+from a uniform distribution with the upper and lower bounds set as the
+<code>funded_min_persistence_probability</code> and
+<code>funded_max_persistence_probability</code> arguments. To prevent</p></li>
 <li><p>An additional project is created which represents the "baseline"
-      (do nothing) scenario. The probability of each feature persisting
-      when managed under this project is simulated by drawing probabilities
-      from a uniform distribution with the upper and lower bounds
-      set as the <code>baseline_min_persistence_probability</code>
-      and <code>baseline_max_persistence_probability</code> arguments.</p></li>
+(do nothing) scenario. The probability of each feature persisting
+when managed under this project is simulated by drawing probabilities
+from a uniform distribution with the upper and lower bounds
+set as the <code>baseline_min_persistence_probability</code>
+and <code>baseline_max_persistence_probability</code> arguments.</p></li>
 <li><p>A phylogenetic tree is simulated for the features using
-      <code><a href='https://rdrr.io/pkg/ape/man/rtree.html'>rcoal</a></code>.</p></li>
+<code><a href='https://rdrr.io/pkg/ape/man/rtree.html'>ape::rcoal()</a></code>.</p></li>
 <li><p>Feature data are created from the phylogenetic tree. The
-      weights are calculated as the amount of evolutionary history
-      that has elapsed between each feature and its last common ancestor.</p></li>
+weights are calculated as the amount of evolutionary history
+that has elapsed between each feature and its last common ancestor.</p></li>
 </ol>
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
@@ -310,7 +319,7 @@ Management for biodiversity conservation: A handbook.
 <strong>In press</strong>: <a href='https://doi.org/10.1111/1365-2664.13268'>https://doi.org/10.1111/1365-2664.13268</a>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='simulate_ppp_data.html'>simulate_ppp_data</a></code>.</p></div>
+    <div class='dont-index'><p><code><a href='simulate_ppp_data.html'>simulate_ppp_data()</a></code>.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># create a simulated data set</span>

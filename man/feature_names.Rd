@@ -10,7 +10,7 @@ feature_names(x)
 \S4method{feature_names}{ProjectProblem}(x)
 }
 \arguments{
-\item{x}{\code{\link{ProjectProblem-class}}.}
+\item{x}{\linkS4class{ProjectProblem}.}
 }
 \value{
 \code{character} feature names.

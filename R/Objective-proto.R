@@ -8,10 +8,10 @@ NULL
 #' Objective prototype
 #'
 #' This prototype is used to represent an objective that can be added to a
-#' \code{\link{ProjectProblem-class}} object. \strong{This prototype
+#' [ProjectProblem-class] object. **This prototype
 #' represents a recipe to make an objective, to actually add an objective to a
-#' planning  problem: see \code{\link{objectives}}. Only experts should use this
-#' class directly.}
+#' planning  problem: see [objectives]. Only experts should use this
+#' class directly.**
 #'
 #' @name Objective-class
 #'

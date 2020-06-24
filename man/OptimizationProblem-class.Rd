@@ -100,7 +100,7 @@ objective function.}
 \item{pwlobj}{\code{list} object containing the piece-wise linear components
 of the objective function.}
 
-\item{A}{\code{\link[Matrix]{dgCMatrix-class}} model matrix }
+\item{A}{\link[Matrix:dgCMatrix-class]{Matrix::dgCMatrix} model matrix }
 
 \item{rhs}{\code{numeric} vector of right-hand-side constraints.}
 

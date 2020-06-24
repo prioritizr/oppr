@@ -7,10 +7,10 @@
 \method{plot}{ProjectProblem}(x, solution, n = 1, symbol_hjust = 0.007, return_data = FALSE, ...)
 }
 \arguments{
-\item{x}{project prioritization \code{\link{problem}}.}
+\item{x}{project prioritization \code{\link[=problem]{problem()}}.}
 
-\item{solution}{\code{\link[base]{data.frame}} or
-\code{\link[tibble]{tibble}} table containing the solutions. Here,
+\item{solution}{\code{\link[base:data.frame]{base::data.frame()}} or
+\code{\link[tibble:tibble]{tibble::tibble()}} table containing the solutions. Here,
 rows correspond to different solutions and columns correspond to
 different actions. Each column in the argument to \code{solution} should
 be named according to a different action in \code{x}.
@@ -35,11 +35,11 @@ the plot be returned instead of the plot? Defaults to \code{FALSE}.}
 \item{...}{not used.}
 }
 \value{
-A \code{\link{ggplot}} object.
+A \code{\link[=ggplot]{ggplot()}} object.
 }
 \description{
 Create a plot to visualize how well a solution to a project prioritization
-problem will maintain biodiversity.
+\code{\link[=problem]{problem()}} will maintain biodiversity.
 }
 \details{
 The type of plot that this function creates depends on the
@@ -93,7 +93,7 @@ plot(p2, s2)
 }
 \seealso{
 This function is essentially a wrapper for
-\code{\link{plot_feature_persistence}} and
-\code{\link{plot_phylo_persistence}}, so refer to the documentation
+\code{\link[=plot_feature_persistence]{plot_feature_persistence()}} and
+\code{\link[=plot_phylo_persistence]{plot_phylo_persistence()}}, so refer to the documentation
 for these functions for more information.
 }

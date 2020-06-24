@@ -13,7 +13,7 @@ branch_matrix(x, ...)
 \method{branch_matrix}{phylo}(x, assert_validity = TRUE, ...)
 }
 \arguments{
-\item{x}{\code{\link[ape]{phylo}} tree object.}
+\item{x}{\code{\link[ape:phylo]{ape::phylo()}} tree object.}
 
 \item{...}{not used.}
 
@@ -22,7 +22,7 @@ indicating if the argument to \code{x} should be checked for validity.
 Defaults to \code{TRUE}.}
 }
 \value{
-\code{\link[Matrix]{dgCMatrix-class}} sparse matrix object. Each row
+\link[Matrix:dgCMatrix-class]{Matrix::dgCMatrix} sparse matrix object. Each row
 corresponds to a different species. Each column corresponds to a different
 branch. Species that inherit from a given branch are indicated with a one.
 }

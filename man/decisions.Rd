@@ -12,7 +12,7 @@ Please note that only one type of decision is currently supported:
 
 \describe{
 
-\item{\code{\link{add_binary_decisions}}}{
+\item{\code{\link[=add_binary_decisions]{add_binary_decisions()}}}{
 This is the conventional type of decision where management actions are
 either prioritized for funding or not.}
 
@@ -44,7 +44,7 @@ plot(p, s)
 }
 }
 \seealso{
-\code{\link{constraints}}, \code{\link{objectives}},
-\code{\link{problem}}, \code{\link{solvers}}, \code{\link{targets}},
-\code{\link{weights}}.
+\link{constraints}, \link{objectives},
+\code{\link[=problem]{problem()}}, \link{solvers}, \link{targets},
+\link{weights}.
 }

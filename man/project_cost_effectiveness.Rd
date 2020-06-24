@@ -7,10 +7,10 @@
 project_cost_effectiveness(x)
 }
 \arguments{
-\item{x}{project prioritization \code{\link{problem}}.}
+\item{x}{project prioritization \code{\link[=problem]{problem()}}.}
 }
 \value{
-A \code{\link[tibble]{tibble}} table containing the following
+A \code{\link[tibble:tibble]{tibble::tibble()}} table containing the following
 columns:
 
 \describe{
@@ -39,7 +39,7 @@ most cost-effective project. Ties are accommodated using averages.}
 }
 \description{
 Calculate the individual cost-effectiveness of each conservation project
-in a project prioritization \code{\link{problem}}
+in a project prioritization \code{\link[=problem]{problem()}}
 (Joseph, Maloney & Possingham 2009).
 }
 \details{
@@ -86,5 +86,5 @@ resources among threatened species: A project prioritization protocol.
 \emph{Conservation Biology}, \strong{23}, 328--338.
 }
 \seealso{
-\code{\link{solution_statistics}}, \code{\link{replacement_costs}}.
+\code{\link[=solution_statistics]{solution_statistics()}}, \code{\link[=replacement_costs]{replacement_costs()}}.
 }

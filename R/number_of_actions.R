@@ -5,8 +5,8 @@ NULL
 #'
 #' Extract the number of actions in an object.
 #'
-#' @param x \code{\link{ProjectProblem-class}} or
-#'   \code{\link{OptimizationProblem-class}} object.
+#' @param x [ProjectProblem-class] or
+#'   [OptimizationProblem-class] object.
 #'
 #' @return `integer` number of actions.
 #'

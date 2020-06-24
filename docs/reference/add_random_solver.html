@@ -75,7 +75,7 @@ the effectiveness of solutions." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2.1</span>
       </span>
     </div>
 
@@ -136,7 +136,7 @@ the effectiveness of solutions.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p><code><a href='ProjectProblem-class.html'>ProjectProblem-class</a></code> object.</p></td>
+      <td><p><a href='ProjectProblem-class.html'>ProjectProblem</a> object.</p></td>
     </tr>
     <tr>
       <th>number_solutions</th>
@@ -156,43 +156,43 @@ optimization problems?</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code><a href='ProjectProblem-class.html'>ProjectProblem-class</a></code> object with the solver added
-  to it.</p>
+    <p><a href='ProjectProblem-class.html'>ProjectProblem</a> object with the solver added
+to it.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The algorithm used to randomly generate solutions depends on the
- the objective specified for the project prioritization
- <code><a href='problem.html'>problem</a></code>.</p>
+the objective specified for the project prioritization
+<code><a href='problem.html'>problem()</a></code>.</p>
 <p>For objectives which maximize benefit subject to budgetary constraints
- (e.g. <code><a href='add_max_richness_objective.html'>add_max_richness_objective</a></code>):</p>
-<p></p><ol>
+(e.g. <code><a href='add_max_richness_objective.html'>add_max_richness_objective()</a></code>):</p>
+<ol>
 <li><p>All locked in and zero-cost actions are initially
-  selected for funding (excepting actions which are locked out).</p></li>
+selected for funding (excepting actions which are locked out).</p></li>
 <li><p>A project---and all of its associated actions---is randomly selected
-   for funding (excepting projects associated with locked out actions,
-   and projects which would cause the budget to be exceeded when added
-   to the existing set of selected actions).</p></li>
+for funding (excepting projects associated with locked out actions,
+and projects which would cause the budget to be exceeded when added
+to the existing set of selected actions).</p></li>
 <li><p>The previous step is repeated until no more projects can be
-  selected for funding without the total cost of the prioritized actions
-  exceeding the budget.</p></li>
+selected for funding without the total cost of the prioritized actions
+exceeding the budget.</p></li>
 </ol>
 
 <p>For objectives which minimize cost subject to biodiversity constraints
-(i.e. <code><a href='add_min_set_objective.html'>add_min_set_objective</a></code>:</p>
-<p></p><ol>
+(i.e. <code><a href='add_min_set_objective.html'>add_min_set_objective()</a></code>:</p>
+<ol>
 <li><p>All locked in and zero-cost actions are initially
-  selected for funding (excepting actions which are locked out).</p></li>
+selected for funding (excepting actions which are locked out).</p></li>
 <li><p>A project---and all of its associated actions---is randomly selected
-   for funding (excepting projects associated with locked out actions,
-   and projects which would cause the budget to be exceeded when added
-   to the existing set of selected actions).</p></li>
+for funding (excepting projects associated with locked out actions,
+and projects which would cause the budget to be exceeded when added
+to the existing set of selected actions).</p></li>
 <li><p>The previous step is repeated until all of the persistence targets
-  are met.</p></li>
+are met.</p></li>
 </ol>
 
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='solvers.html'>solvers</a></code>.</p></div>
+    <div class='dont-index'><p><a href='solvers.html'>solvers</a>.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># load data</span>

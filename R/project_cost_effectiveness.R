@@ -4,17 +4,17 @@ NULL
 #' Project cost effectiveness
 #'
 #' Calculate the individual cost-effectiveness of each conservation project
-#' in a project prioritization \code{\link{problem}}
+#' in a project prioritization [problem()]
 #' (Joseph, Maloney & Possingham 2009).
 #'
-#' @param x project prioritization \code{\link{problem}}.
+#' @param x project prioritization [problem()].
 #'
 #' @details Note that project cost-effectiveness cannot be calculated for
 #'   problems with minimum set objectives because the objective function
 #'   for these problems is to minimize cost and not maximize some measure
 #'   of biodiversity persistence.
 #'
-#' @return A \code{\link[tibble]{tibble}} table containing the following
+#' @return A [tibble::tibble()] table containing the following
 #'   columns:
 #'
 #'   \describe{
@@ -46,7 +46,7 @@ NULL
 #' resources among threatened species: A project prioritization protocol.
 #' *Conservation Biology*, **23**, 328--338.
 #'
-#' @seealso \code{\link{solution_statistics}}, \code{\link{replacement_costs}}.
+#' @seealso [solution_statistics()], [replacement_costs()].
 #'
 #' @examples
 #' # load data

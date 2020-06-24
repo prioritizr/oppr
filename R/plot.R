@@ -4,7 +4,7 @@ NULL
 #' Plot a solution to a project prioritization problem
 #'
 #' Create a plot to visualize how well a solution to a project prioritization
-#' problem will maintain biodiversity.
+#' [problem()] will maintain biodiversity.
 #'
 #' @inheritParams solution_statistics
 #'
@@ -40,11 +40,11 @@ NULL
 #'   have non-zero costs and share actions with at least one funded
 #'   project---are depicted with an open circle symbol.
 #'
-#' @return A \code{\link{ggplot}} object.
+#' @return A [ggplot()] object.
 #'
 #' @seealso This function is essentially a wrapper for
-#'   \code{\link{plot_feature_persistence}} and
-#'   \code{\link{plot_phylo_persistence}}, so refer to the documentation
+#'   [plot_feature_persistence()] and
+#'   [plot_phylo_persistence()], so refer to the documentation
 #'   for these functions for more information.
 #'
 #' @examples

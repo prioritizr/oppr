@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2.1</span>
       </span>
     </div>
 
@@ -161,7 +161,7 @@ problem can be used to specify additional requirements (e.g. certain
 actions must be funded). Finally, a project prioritization problem---unlike
 an optimization problem---also requires a method to solve the problem.
 <strong>This class represents a planning problem, to actually build and then
-solve a planning problem, use the <code><a href='problem.html'>problem</a></code> function. Only
+solve a planning problem, use the <code><a href='problem.html'>problem()</a></code> function. Only
 experts should use this class directly.</strong></p>
     <h2 class="hasAnchor" id="fields"><a class="anchor" href="#fields"></a>Fields</h2>
 
@@ -171,22 +171,22 @@ experts should use this class directly.</strong></p>
 
 <dt>$data</dt><dd><p><code>list</code> object containing data.</p></dd>
 
-<dt>$objective</dt><dd><p><code><a href='Objective-class.html'>Objective-class</a></code> object used to represent how
-  the targets relate to the solution.</p></dd>
+<dt>$objective</dt><dd><p><a href='Objective-class.html'>Objective</a> object used to represent how
+the targets relate to the solution.</p></dd>
 
-<dt>$decisions</dt><dd><p><code><a href='Decision-class.html'>Decision-class</a></code> object used to represent the
-  type of decision made on planning units.</p></dd>
+<dt>$decisions</dt><dd><p><a href='Decision-class.html'>Decision</a> object used to represent the
+type of decision made on planning units.</p></dd>
 
-<dt>$targets</dt><dd><p><code><a href='Target-class.html'>Target-class</a></code> object used to represent
-  representation targets for features.</p></dd>
+<dt>$targets</dt><dd><p><a href='Target-class.html'>Target</a> object used to represent
+representation targets for features.</p></dd>
 
-<dt>$weights</dt><dd><p><code><a href='Weight-class.html'>Weight-class</a></code> object used to represent
-  feature weights.</p></dd>
+<dt>$weights</dt><dd><p><a href='Weight-class.html'>Weight</a> object used to represent
+feature weights.</p></dd>
 
-<dt>$constraints</dt><dd><p><code><a href='Collection-class.html'>Collection-class</a></code> object used to represent
-  additional <code><a href='constraints.html'>constraints</a></code> that the problem is subject to.</p></dd>
+<dt>$constraints</dt><dd><p><a href='Collection-class.html'>Collection</a> object used to represent
+additional <a href='constraints.html'>constraints</a> that the problem is subject to.</p></dd>
 
-<dt>$solver</dt><dd><p><code><a href='Solver-class.html'>Solver-class</a></code> object used to solve the problem.</p></dd>
+<dt>$solver</dt><dd><p><a href='Solver-class.html'>Solver</a> object used to solve the problem.</p></dd>
 
 
 </dl>
@@ -244,19 +244,19 @@ experts should use this class directly.</strong></p>
 
 <dt>value</dt><dd><p>an object.</p></dd>
 
-<dt>obj</dt><dd><p><code><a href='Objective-class.html'>Objective-class</a></code> object.</p></dd>
+<dt>obj</dt><dd><p><a href='Objective-class.html'>Objective</a> object.</p></dd>
 
-<dt>wt</dt><dd><p><code><a href='Weight-class.html'>Weight-class</a></code> object.</p></dd>
+<dt>wt</dt><dd><p><a href='Weight-class.html'>Weight</a> object.</p></dd>
 
-<dt>dec</dt><dd><p><code><a href='Decision-class.html'>Decision-class</a></code> object.</p></dd>
+<dt>dec</dt><dd><p><a href='Decision-class.html'>Decision</a> object.</p></dd>
 
-<dt>con</dt><dd><p><code><a href='Constraint-class.html'>Constraint-class</a></code> object.</p></dd>
+<dt>con</dt><dd><p><a href='Constraint-class.html'>Constraint</a> object.</p></dd>
 
-<dt>sol</dt><dd><p><code><a href='Solver-class.html'>Solver-class</a></code> object.</p></dd>
+<dt>sol</dt><dd><p><a href='Solver-class.html'>Solver</a> object.</p></dd>
 
-<dt>targ</dt><dd><p><code><a href='Target-class.html'>Target-class</a></code> object.</p></dd>
+<dt>targ</dt><dd><p><a href='Target-class.html'>Target</a> object.</p></dd>
 
-<dt>wt</dt><dd><p><code><a href='Weight-class.html'>Weight-class</a></code> object.</p></dd>
+<dt>wt</dt><dd><p><a href='Weight-class.html'>Weight</a> object.</p></dd>
 
 <dt>id</dt><dd><p><code>Id</code> object that refers to a specific parameter.</p></dd>
 
@@ -278,12 +278,12 @@ experts should use this class directly.</strong></p>
 <dt>repr</dt><dd><p>return <code>character</code> representation of the object.</p></dd>
 
 <dt>get_data</dt><dd><p>return an object stored in the <code>data</code> field with
-  the corresponding <code>name</code>. If the object is not present in the
-  <code>data</code> field, a <code>waiver</code> object is returned.</p></dd>
+the corresponding <code>name</code>. If the object is not present in the
+<code>data</code> field, a <code>waiver</code> object is returned.</p></dd>
 
 <dt>set_data</dt><dd><p>store an object stored in the <code>data</code> field with
-  the corresponding name. If an object with that name already
-  exists then the object is overwritten.</p></dd>
+the corresponding name. If an object with that name already
+exists then the object is overwritten.</p></dd>
 
 <dt>number_of_actions</dt><dd><p><code>integer</code> number of actions.</p></dd>
 
@@ -299,90 +299,90 @@ experts should use this class directly.</strong></p>
 
 <dt>feature_weights</dt><dd><p><code>character</code> feature weights.</p></dd>
 
-<dt>feature_phylogeny</dt><dd><p><code><a href='https://rdrr.io/pkg/ape/man/read.tree.html'>phylo</a></code> phylogenetic tree object.</p></dd>
+<dt>feature_phylogeny</dt><dd><p><code><a href='https://rdrr.io/pkg/ape/man/read.tree.html'>ape::phylo()</a></code> phylogenetic tree object.</p></dd>
 
 <dt>action_costs</dt><dd><p><code>numeric</code> costs for each action.</p></dd>
 
 <dt>project_costs</dt><dd><p><code>numeric</code> costs for each project.</p></dd>
 
 <dt>project_success_probabilities</dt><dd><p><code>numeric</code> probability that
-  each project will succeed.</p></dd>
+each project will succeed.</p></dd>
 
-<dt>pf_matrix</dt><dd><p><code><a href='https://rdrr.io/pkg/Matrix/man/dgCMatrix-class.html'>dgCMatrix-class</a></code> object denoting the enhanced
-  probability that features will persist if different projects are funded.</p></dd>
+<dt>pf_matrix</dt><dd><p><a href='https://rdrr.io/pkg/Matrix/man/dgCMatrix-class.html'>Matrix::dgCMatrix</a> object denoting the enhanced
+probability that features will persist if different projects are funded.</p></dd>
 
-<dt>epf_matrix</dt><dd><p><code><a href='https://rdrr.io/pkg/Matrix/man/dgCMatrix-class.html'>dgCMatrix-class</a></code> object denoting the enhanced
-  probability that features is expected to persist if different projects are
- funded. This is calculated as the <code>pf_matrix</code> multiplied by the
- project success probabilities.</p></dd>
+<dt>epf_matrix</dt><dd><p><a href='https://rdrr.io/pkg/Matrix/man/dgCMatrix-class.html'>Matrix::dgCMatrix</a> object denoting the enhanced
+probability that features is expected to persist if different projects are
+funded. This is calculated as the <code>pf_matrix</code> multiplied by the
+project success probabilities.</p></dd>
 
-<dt>pa_matrix</dt><dd><p><code><a href='https://rdrr.io/pkg/Matrix/man/dgCMatrix-class.html'>dgCMatrix-class</a></code> object indicating which actions are
-  associated with which projects.</p></dd>
+<dt>pa_matrix</dt><dd><p><a href='https://rdrr.io/pkg/Matrix/man/dgCMatrix-class.html'>Matrix::dgCMatrix</a> object indicating which actions are
+associated with which projects.</p></dd>
 
-<dt>feature_targets</dt><dd><p><code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></code> with feature targets.</p></dd>
+<dt>feature_targets</dt><dd><p><code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble::tibble()</a></code> with feature targets.</p></dd>
 
-<dt>add_objective</dt><dd><p>return a new  <code>ProjectProblem-class</code>
-  with the objective added to it.</p></dd>
+<dt>add_objective</dt><dd><p>return a new  ProjectProblem
+with the objective added to it.</p></dd>
 
-<dt>add_decisions</dt><dd><p>return a new <code>ProjectProblem-class</code>
-  object with the decision added to it.</p></dd>
+<dt>add_decisions</dt><dd><p>return a new ProjectProblem
+object with the decision added to it.</p></dd>
 
-<dt>add_solver</dt><dd><p>return a new <code>ProjectProblem-class</code> object
-  with the solver added to it.</p></dd>
+<dt>add_solver</dt><dd><p>return a new ProjectProblem object
+with the solver added to it.</p></dd>
 
-<dt>add_constraint</dt><dd><p>return a new <code>ProjectProblem-class</code>
-  object with the constraint added to it.</p></dd>
+<dt>add_constraint</dt><dd><p>return a new ProjectProblem
+object with the constraint added to it.</p></dd>
 
 <dt>add_targets</dt><dd><p>return a copy with the targets added to the problem.</p></dd>
 
 <dt>get_constraint_parameter</dt><dd><p>get the value of a parameter (specified by
-  argument <code>id</code>) used in one of the constraints in the object.</p></dd>
+argument <code>id</code>) used in one of the constraints in the object.</p></dd>
 
 <dt>set_constraint_parameter</dt><dd><p>set the value of a parameter (specified by
-  argument <code>id</code>) used in one of the constraints in the object to
-  <code>value</code>.</p></dd>
+argument <code>id</code>) used in one of the constraints in the object to
+<code>value</code>.</p></dd>
 
 <dt>render_constraint_parameter</dt><dd><p>generate a <em>shiny</em> widget to modify
- the value of a parameter (specified by argument <code>id</code>).</p></dd>
+the value of a parameter (specified by argument <code>id</code>).</p></dd>
 
 <dt>render_all_constraint_parameters</dt><dd><p>generate a <em>shiny</em> <code>div</code>
-  containing all the parameters' widgets.</p></dd>
+containing all the parameters' widgets.</p></dd>
 
 <dt>get_objective_parameter</dt><dd><p>get the value of a parameter (specified by
-  argument <code>id</code>) used in the object's objective.</p></dd>
+argument <code>id</code>) used in the object's objective.</p></dd>
 
 <dt>set_objective_parameter</dt><dd><p>set the value of a parameter (specified by
-  argument <code>id</code>) used in the object's objective to <code>value</code>.</p></dd>
+argument <code>id</code>) used in the object's objective to <code>value</code>.</p></dd>
 
 <dt>render_objective_parameter</dt><dd><p>generate a <em>shiny</em> widget to modify
-  the value of a parameter (specified by argument <code>id</code>).</p></dd>
+the value of a parameter (specified by argument <code>id</code>).</p></dd>
 
 <dt>render_all_objective_parameters</dt><dd><p>generate a <em>shiny</em> <code>div</code>
-  containing all the parameters' widgets.</p></dd>
+containing all the parameters' widgets.</p></dd>
 
 <dt>get_weight_parameter</dt><dd><p>get the value of a parameter (specified by
-  argument <code>id</code>) used in the object's weights.</p></dd>
+argument <code>id</code>) used in the object's weights.</p></dd>
 
 <dt>set_weight_parameter</dt><dd><p>set the value of a parameter (specified by
-  argument <code>id</code>) used in the object's weights to <code>value</code>.</p></dd>
+argument <code>id</code>) used in the object's weights to <code>value</code>.</p></dd>
 
 <dt>render_weight_parameter</dt><dd><p>generate a <em>shiny</em> widget to modify
-  the value of a parameter (specified by argument <code>id</code>).</p></dd>
+the value of a parameter (specified by argument <code>id</code>).</p></dd>
 
 <dt>render_all_weight_parameters</dt><dd><p>generate a <em>shiny</em> <code>div</code>
-  containing all the parameters' widgets.</p></dd>
+containing all the parameters' widgets.</p></dd>
 
 <dt>get_solver_parameter</dt><dd><p>get the value of a parameter (specified by
-  argument <code>id</code>) used in the object's solver.</p></dd>
+argument <code>id</code>) used in the object's solver.</p></dd>
 
 <dt>set_solver_parameter</dt><dd><p>set the value of a parameter (specified by
-  argument <code>id</code>) used in the object's solver to <code>value</code>.</p></dd>
+argument <code>id</code>) used in the object's solver to <code>value</code>.</p></dd>
 
 <dt>render_solver_parameter</dt><dd><p>generate a <em>shiny</em> widget to modify
-  the value of a parameter (specified by argument <code>id</code>).</p></dd>
+the value of a parameter (specified by argument <code>id</code>).</p></dd>
 
 <dt>render_all_solver_parameters</dt><dd><p>generate a <em>shiny</em> <code>div</code>
-  containing all the parameters' widgets.</p></dd>
+containing all the parameters' widgets.</p></dd>
 
 
 </dl>

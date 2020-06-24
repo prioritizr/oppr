@@ -95,7 +95,7 @@ NULL
 #' \item{pwlobj}{`list` object containing the piece-wise linear components
 #'   of the objective function.}
 #'
-#' \item{A}{\code{\link[Matrix]{dgCMatrix-class}} model matrix }
+#' \item{A}{[Matrix::dgCMatrix-class] model matrix }
 #'
 #' \item{rhs}{`numeric` vector of right-hand-side constraints.}
 #'

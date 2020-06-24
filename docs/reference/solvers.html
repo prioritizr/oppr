@@ -41,7 +41,7 @@
 
 <meta property="og:title" content="Problem solvers — solvers" />
 <meta property="og:description" content="Specify the software and configuration used to solve a project prioritization
-problem. By default, the best available exact algorithm
+problem(). By default, the best available exact algorithm
 solver will be used." />
 
 
@@ -74,7 +74,7 @@ solver will be used." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2.1</span>
       </span>
     </div>
 
@@ -123,7 +123,7 @@ solver will be used." />
 
     <div class="ref-description">
     <p>Specify the software and configuration used to solve a project prioritization
-<code><a href='problem.html'>problem</a></code>. By default, the best available exact algorithm
+<code><a href='problem.html'>problem()</a></code>. By default, the best available exact algorithm
 solver will be used.</p>
     </div>
 
@@ -132,63 +132,63 @@ solver will be used.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The following solvers can be used to find solutions for a
-  project prioritization <code><a href='problem.html'>problem</a></code>:</p>
-<p></p><dl'>
+project prioritization <code><a href='problem.html'>problem()</a></code>:</p>
+<dl'>
 
-  <dt><code><a href='add_default_solver.html'>add_default_solver</a></code></dt><dd><p>This solver uses the best software
-    currently installed on the system.</p></dd>
+<dt><code><a href='add_default_solver.html'>add_default_solver()</a></code></dt><dd><p>This solver uses the best software
+currently installed on the system.</p></dd>
 
-<dt><code><a href='add_gurobi_solver.html'>add_gurobi_solver</a></code></dt><dd><p><a href='http://gurobi.com'><em>Gurobi</em></a>
-    is a state-of-the-art commercial optimization software with an R package
-    interface. It is by far the fastest solver that can be used by
-    this package, however, it is also the only solver that is not freely
-    available. That said, licenses are available to academics at no cost. The
-    <span class="pkg">gurobi</span> package is distributed with the <em>Gurobi</em> software
-    suite. This solver uses the <span class="pkg">gurobi</span> package to solve problems.</p></dd>
+<dt><code><a href='add_gurobi_solver.html'>add_gurobi_solver()</a></code></dt><dd><p><a href='http://gurobi.com'><em>Gurobi</em></a>
+is a state-of-the-art commercial optimization software with an R package
+interface. It is by far the fastest solver that can be used by
+this package, however, it is also the only solver that is not freely
+available. That said, licenses are available to academics at no cost. The
+<span class="pkg">gurobi</span> package is distributed with the <em>Gurobi</em> software
+suite. This solver uses the <span class="pkg">gurobi</span> package to solve problems.</p></dd>
 
-  <dt><code><a href='add_rsymphony_solver.html'>add_rsymphony_solver</a></code></dt><dd><p><a href='https://projects.coin-or.org/SYMPHONY'><em>SYMPHONY</em></a> is an
-    open-source integer programming solver that is part of the Computational
-    Infrastructure for Operations Research (COIN-OR) project, an initiative
-    to promote development of open-source tools for operations research (a
-    field that includes linear programming). The <span class="pkg">Rsymphony</span> package
-    provides an interface to COIN-OR and is available on CRAN. This solver
-    uses the <span class="pkg">Rsymphony</span> package to solve problems.</p></dd>
+<dt><code><a href='add_rsymphony_solver.html'>add_rsymphony_solver()</a></code></dt><dd><p><a href='https://projects.coin-or.org/SYMPHONY'><em>SYMPHONY</em></a> is an
+open-source integer programming solver that is part of the Computational
+Infrastructure for Operations Research (COIN-OR) project, an initiative
+to promote development of open-source tools for operations research (a
+field that includes linear programming). The <span class="pkg">Rsymphony</span> package
+provides an interface to COIN-OR and is available on CRAN. This solver
+uses the <span class="pkg">Rsymphony</span> package to solve problems.</p></dd>
 
-  <dt><code><a href='add_lsymphony_solver.html'>add_lpsymphony_solver</a></code></dt><dd><p>The <span class="pkg">lpsymphony</span> package
-    provides a different interface to the COIN-OR software suite. Unlike the
-    <span class="pkg">Rsymhpony</span> package, the <span class="pkg">lpsymphony</span> package is distributed
-    through
-    <a href='https://doi.org/doi:10.18129/B9.bioc.lpsymphony'>Bioconductor</a>.
-    The <span class="pkg">lpsymphony</span> package may be easier to install on Windows or
-    Max OSX systems than the <span class="pkg">Rsymphony</span> package.</p></dd>
+<dt><code><a href='add_lsymphony_solver.html'>add_lpsymphony_solver()</a></code></dt><dd><p>The <span class="pkg">lpsymphony</span> package
+provides a different interface to the COIN-OR software suite. Unlike the
+<span class="pkg">Rsymhpony</span> package, the <span class="pkg">lpsymphony</span> package is distributed
+through
+<a href='https://doi.org/doi:10.18129/B9.bioc.lpsymphony'>Bioconductor</a>.
+The <span class="pkg">lpsymphony</span> package may be easier to install on Windows or
+Max OSX systems than the <span class="pkg">Rsymphony</span> package.</p></dd>
 
-  <dt><code><a href='add_lpsolveapi_solver.html'>add_lpsolveapi_solver</a></code></dt><dd><p><a href='http://lpsolve.sourceforge.net/5.5/'><em>lp_solve</em></a> is an
-    open-source integer programming solver. The <span class="pkg">lpSolveAPI</span> package
-    provides an interface to this solver and is available on CRAN.
-    Although this solver is the slowest currently supported solver,
-    it is also the only exact algorithm solver that can be installed on all
-    operating systems without any manual installation steps.</p></dd>
+<dt><code><a href='add_lpsolveapi_solver.html'>add_lpsolveapi_solver()</a></code></dt><dd><p><a href='http://lpsolve.sourceforge.net/5.5/'><em>lp_solve</em></a> is an
+open-source integer programming solver. The <span class="pkg">lpSolveAPI</span> package
+provides an interface to this solver and is available on CRAN.
+Although this solver is the slowest currently supported solver,
+it is also the only exact algorithm solver that can be installed on all
+operating systems without any manual installation steps.</p></dd>
 
-  <dt><code><a href='add_heuristic_solver.html'>add_heuristic_solver</a></code></dt><dd><p>Generate solutions using
-    a backwards heuristic algorithm. Although these types of algorithms have
-    conventionally been used to solve project prioritization problems,
-    they are extremely unlikely to identify optimal solutions and provide
-    no guarantees concerning solution quality.</p></dd>
+<dt><code><a href='add_heuristic_solver.html'>add_heuristic_solver()</a></code></dt><dd><p>Generate solutions using
+a backwards heuristic algorithm. Although these types of algorithms have
+conventionally been used to solve project prioritization problems,
+they are extremely unlikely to identify optimal solutions and provide
+no guarantees concerning solution quality.</p></dd>
 
-  <dt><code><a href='add_random_solver.html'>add_random_solver</a></code></dt><dd><p>Generate solutions by
-    randomly funding actions. This can be useful when evaluating the
-    performance of a funding scheme---though it is strongly recommended
-    to evaluate the performance of a funding scheme by comparing it
-    to an optimal solution identified using exact algorithms (e.g.
-    <code><a href='add_gurobi_solver.html'>add_gurobi_solver</a></code>, <code><a href='add_rsymphony_solver.html'>add_rsymphony_solver</a></code>).</p></dd>
+<dt><code><a href='add_random_solver.html'>add_random_solver()</a></code></dt><dd><p>Generate solutions by
+randomly funding actions. This can be useful when evaluating the
+performance of a funding scheme---though it is strongly recommended
+to evaluate the performance of a funding scheme by comparing it
+to an optimal solution identified using exact algorithms (e.g.
+<code><a href='add_gurobi_solver.html'>add_gurobi_solver()</a></code>, <code><a href='add_rsymphony_solver.html'>add_rsymphony_solver()</a></code>).</p></dd>
 
 
 </dl>
 
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='constraints.html'>constraints</a></code>,  <code><a href='decisions.html'>decisions</a></code>,
- <code><a href='objectives.html'>objectives</a></code>, <code><a href='problem.html'>problem</a></code>, <code><a href='targets.html'>targets</a></code>.</p></div>
+    <div class='dont-index'><p><a href='constraints.html'>constraints</a>,  <a href='decisions.html'>decisions</a>,
+<a href='objectives.html'>objectives</a>, <code><a href='problem.html'>problem()</a></code>, <a href='targets.html'>targets</a>.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># load data</span>
@@ -330,8 +330,8 @@ solver will be used.</p>
 #&gt;       The largest [LUSOL v2.2.1.0] fact(B) had 104 NZ entries, 1.0x largest basis.
 #&gt;       The maximum B&amp;B level was 6, 0.1x MIP order, 4 at the optimal solution.
 #&gt;       The constraint matrix inf-norm is 103.226, with a dynamic range of 1193.9.
-#&gt;       Time to load data was 0.009 seconds, presolve used 0.000 seconds,
-#&gt;        ... 0.001 seconds in simplex solver, in total 0.010 seconds.</div><div class='input'><span class='no'>s</span>$<span class='no'>solver</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"default"</span>, <span class='st'>"gurobi"</span>, <span class='st'>"Rsymphony"</span>, <span class='st'>"lpsymphony"</span>, <span class='st'>"lpSolveAPI"</span>,
+#&gt;       Time to load data was 0.014 seconds, presolve used 0.001 seconds,
+#&gt;        ... 0.000 seconds in simplex solver, in total 0.015 seconds.</div><div class='input'><span class='no'>s</span>$<span class='no'>solver</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"default"</span>, <span class='st'>"gurobi"</span>, <span class='st'>"Rsymphony"</span>, <span class='st'>"lpsymphony"</span>, <span class='st'>"lpSolveAPI"</span>,
               <span class='st'>"heuristic"</span>, <span class='st'>"random"</span>)
 
 <span class='co'># print solutions</span>
@@ -342,7 +342,7 @@ solver will be used.</p>
 #&gt; 4        1 TM_OPTIMAL_SOLUTION_FOUND 2.190381 195.3907         1         1
 #&gt; 5        1    optimal solution found 2.190381 195.3907         1         1
 #&gt; 6        1                      &lt;NA&gt; 2.190381 195.3907         1         1
-#&gt; 7        1                      &lt;NA&gt; 2.190381 195.3907         1         1
+#&gt; 7        1                      &lt;NA&gt; 1.985928 194.3072         1         0
 #&gt;   F3_action F4_action F5_action baseline_action F1_project F2_project
 #&gt; 1         0         0         0               1          1          1
 #&gt; 2         0         0         0               1          1          1
@@ -350,7 +350,7 @@ solver will be used.</p>
 #&gt; 4         0         0         0               1          1          1
 #&gt; 5         0         0         0               1          1          1
 #&gt; 6         0         0         0               1          1          1
-#&gt; 7         0         0         0               1          1          1
+#&gt; 7         0         0         1               1          1          0
 #&gt;   F3_project F4_project F5_project baseline_project        F1        F2
 #&gt; 1          0          0          0                1 0.8080322 0.8649623
 #&gt; 2          0          0          0                1 0.8080322 0.8649623
@@ -358,7 +358,7 @@ solver will be used.</p>
 #&gt; 4          0          0          0                1 0.8080322 0.8649623
 #&gt; 5          0          0          0                1 0.8080322 0.8649623
 #&gt; 6          0          0          0                1 0.8080322 0.8649623
-#&gt; 7          0          0          0                1 0.8080322 0.8649623
+#&gt; 7          0          0          1                1 0.8080322 0.2500224
 #&gt;          F3        F4        F5     solver
 #&gt; 1 0.0864612 0.2489246 0.1820005    default
 #&gt; 2 0.0864612 0.2489246 0.1820005     gurobi
@@ -366,7 +366,7 @@ solver will be used.</p>
 #&gt; 4 0.0864612 0.2489246 0.1820005 lpsymphony
 #&gt; 5 0.0864612 0.2489246 0.1820005 lpSolveAPI
 #&gt; 6 0.0864612 0.2489246 0.1820005  heuristic
-#&gt; 7 0.0864612 0.2489246 0.1820005     random</div><div class='input'># }
+#&gt; 7 0.0864612 0.2489246 0.5924880     random</div><div class='input'># }
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

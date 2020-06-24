@@ -59,120 +59,92 @@ NULL
 #'   simulated as follows:
 #'
 #'   \enumerate{
-#'
 #'     \item A specified number of conservation projects, features, and
 #'       management actions are created.
-#'
 #'     \item Cost data for each action are simulated using a normal
 #'       distribution and the `cost_mean` and `cost_sd` arguments.
-#'
 #'     \item A set proportion of the actions are randomly set to be locked
 #'       in and out of the solutions using the `locked_in_proportion` and
 #'       `locked_out_proportion` arguments.
-#'
 #'     \item The probability of each project succeeding if its action is funded
 #'       is simulated by drawing probabilities from a uniform distribution with
 #'       the upper and lower bounds set as the `success_min_probability`
 #'       and `success_max_probability` arguments.
-#'
 #'     \item The probability of each feature persisting if various projects
 #'       are funded and is successful is simulated by drawing probabilities
 #'       from a uniform distribution with the upper and lower bounds set as the
 #'       `funded_min_persistence_probability` and
 #'       `funded_max_persistence_probability` arguments. To prevent
-#'
 #'     \item An additional project is created which represents the "baseline"
 #'       (do nothing) scenario. The probability of each feature persisting
 #'       when managed under this project is simulated by drawing probabilities
 #'       from a uniform distribution with the upper and lower bounds
 #'       set as the `baseline_min_persistence_probability`
 #'       and `baseline_max_persistence_probability` arguments.
-#'
 #'     \item A phylogenetic tree is simulated for the features using
-#'       \code{\link[ape]{rcoal}}.
-#'
+#'       [ape::rcoal()].
 #'     \item Feature data are created from the phylogenetic tree. The
 #'       weights are calculated as the amount of evolutionary history
 #'       that has elapsed between each feature and its last common ancestor.
-#'
 #'  }
 #'
 #' @return A `list` object containing the elements:
 #'
 #'   \describe{
-#'
-#'     \item{`"projects"`}{A \code{\link[tibble]{tibble}} containing
+#'     \item{`"projects"`}{A [tibble::tibble()] containing
 #'       the data for the conservation projects. It contains the following
 #'       columns:
-#'
 #'       \describe{
-#'
 #'         \item{`"name"`}{`character` name for each project.}
-#'
 #'         \item{`"success"`}{`numeric` probability of each project
 #'           succeeding if it is funded.}
-#'
 #'         \item{`"F1"` ... `"FN"`}{`numeric` columns for each
 #'           feature, ranging from `"F1"` to `"FN"` where `N`
 #'           is the number of features, indicating the enhanced probability that
 #'           each feature will persist if it funded. Missing values (`NA`)
 #'           indicate that a feature does not benefit from a project being
 #'           funded.}
-#'
 #'         \item{`"F1_action"` ... `"FN_action"`}{`logical`
 #'           columns for each action, ranging from `"F1_action"` to
 #'           `"FN_action"` where `N` is
 #'           the number of actions (equal to the number of features in this
 #'           simulated data), indicating if an action is associated with a
 #'           project (`TRUE`) or not (`FALSE`).}
-#'
 #'        \item{`"baseline_action"`}{`logical`
 #'          column indicating if a project is associated with the baseline
 #'          action (`TRUE`) or not (`FALSE`). This action is only
 #'          associated with the baseline project.}
-#'
-#'     }}
-#'
-#'     \item{`"actions"`}{A \code{\link[tibble]{tibble}} containing
+#'        }
+#'     }
+#'     \item{`"actions"`}{A [tibble::tibble()] containing
 #'       the data for the conservation actions. It contains the following
 #'       columns:
-#'
 #'       \describe{
-#'
 #'         \item{`"name"`}{`character` name for each action.}
-#'
 #'         \item{`"cost"`}{`numeric` cost for each action.}
-#'
 #'         \item{`"locked_in"`}{`logical` indicating if certain
 #'           actions should be locked into the solution.}
-#'
 #'         \item{`"locked_out"`}{`logical` indicating if certain
 #'           actions should be locked out of the solution.}
-#'
-#'     }}
-#'
-#'     \item{`"features"`}{A \code{\link[tibble]{tibble}} containing
+#'       }
+#'     }
+#'     \item{`"features"`}{A [tibble::tibble()] containing
 #'       the data for the conservation features (e.g. species). It contains the
 #'       following columns:
-#'
 #'       \describe{
-#'
 #'        \item{`"name"`}{`character` name for each feature.}
-#'
 #'         \item{`"weight"`}{`numeric` weight for each feature.
 #'           For each feature, this is calculated as the amount of time that
 #'           elapsed between the present and the features' last common ancestor.
 #'           In other words, the weights are calculated as the unique amount
 #'           of evolutionary history that each feature has experienced.}
-#'
-#'     }}
-#'
-#'    \item{"tree"}{\code{\link[ape]{phylo}} phylogenetic tree for the
+#'         }
+#'     }
+#'    \item{"tree"}{[ape::phylo()] phylogenetic tree for the
 #'      features.}
-#'
 #'  }
 #'
-#' @seealso \code{\link{simulate_ppp_data}}.
+#' @seealso [simulate_ppp_data()].
 #'
 #' @references
 #' Carwardine J, Martin TG, Firn J, Ponce-Reyes P, Nicol S, Reeson A,

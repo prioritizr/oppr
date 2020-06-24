@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2.1</span>
       </span>
     </div>
 
@@ -135,7 +135,7 @@
 
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>%T&gt;%</code>, <code><a href='pipe.html'>pipe</a></code>.</p></div>
+    <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/magrittr/man/tee.html'>magrittr::%T&gt;%()</a></code>, <code><a href='pipe.html'>pipe()</a></code>.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># the tee operator returns the left-hand side of the result and can be</span>
@@ -155,7 +155,7 @@
 <span class='fu'><a href='print.html'>print</a></span>(<span class='no'>e2</span>)</div><div class='output co'>#&gt; NULL</div><div class='input'>
 <span class='co'># but if we use the tee operator then the result contains a copy of "e"</span>
 <span class='no'>e3</span> <span class='kw'>&lt;-</span> <span class='no'>e</span> <span class='kw'>%T&gt;%</span> <span class='fu'>f</span>()
-<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>e3</span>)</div><div class='output co'>#&gt; &lt;environment: 0xd20f120&gt;</div><div class='input'>
+<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>e3</span>)</div><div class='output co'>#&gt; &lt;environment: 0xd158228&gt;</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

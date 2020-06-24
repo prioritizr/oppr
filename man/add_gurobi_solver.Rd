@@ -17,7 +17,7 @@ add_gurobi_solver(
 )
 }
 \arguments{
-\item{x}{\code{\link{ProjectProblem-class}} object.}
+\item{x}{\linkS4class{ProjectProblem} object.}
 
 \item{gap}{\code{numeric} gap to optimality. This gap is relative when
 solving problems using \pkg{gurobi}, and will cause the optimizer to
@@ -73,12 +73,12 @@ Defaults to \code{FALSE}.}
 optimization problems?}
 }
 \value{
-\code{\link{ProjectProblem-class}} object with the solver added
+\linkS4class{ProjectProblem} object with the solver added
 to it.
 }
 \description{
 Specify that the \emph{Gurobi} software should be used to solve a
-project prioritization \code{\link{problem}}. This function can also be
+project prioritization \code{\link[=problem]{problem()}}. This function can also be
 used to customize the behavior of the solver. In addition to the
 \emph{Gurobi} software suite, it also requires the \pkg{gurobi} package to
 be installed.
@@ -149,5 +149,5 @@ print(s3)
 }
 }
 \seealso{
-\code{\link{solvers}}.
+\link{solvers}.
 }

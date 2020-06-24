@@ -3,19 +3,19 @@ NULL
 
 #' Compile a problem
 #'
-#' Compile a project prioritization \code{\link{problem}} into a general
+#' Compile a project prioritization [problem()] into a general
 #' purpose format for optimization.
 #'
-#' @param x \code{\link{ProjectProblem-class}} object.
+#' @param x [ProjectProblem-class] object.
 #'
 #' @param ... not used.
 #'
 #' @details This function might be useful for those interested in understanding
-#'   how their project prioritization \code{\link{problem}} is expressed
+#'   how their project prioritization [problem()] is expressed
 #'   as a mathematical problem. However, if the problem just needs to
-#'   be solved, then the \code{\link{solve}} function should be used instead.
+#'   be solved, then the [solve()] function should be used instead.
 #'
-#' @return \code{\link{OptimizationProblem-class}} object.
+#' @return [OptimizationProblem-class] object.
 #'
 #' @examples
 #' # load data

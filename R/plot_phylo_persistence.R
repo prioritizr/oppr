@@ -5,7 +5,7 @@ NULL
 #'
 #' Create a plot showing a phylogenetic tree (i.e. a "phylogram") to visualize
 #' the probability that phylogenetic branches are expected to persist
-#' into the future under a solution to a project prioritization problem.
+#' into the future under a solution to a project prioritization [problem()].
 #'
 #' @inheritParams plot.ProjectProblem
 #'
@@ -38,8 +38,8 @@ NULL
 #' covariates and other associated data. *Methods in Ecology and
 #' Evolution*, **8**: 28--36.
 #'
-#' @return A \code{\link[ggtree]{ggtree}} object, or a
-#'   \code{\link[tidytree]{treedata}} object if `return_data` is
+#' @return A [ggtree::ggtree()] object, or a
+#'   [tidytree::treedata()] object if `return_data` is
 #'   `TRUE`.
 #'
 #' @examples

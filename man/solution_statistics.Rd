@@ -7,10 +7,10 @@
 solution_statistics(x, solution)
 }
 \arguments{
-\item{x}{project prioritization \code{\link{problem}}.}
+\item{x}{project prioritization \code{\link[=problem]{problem()}}.}
 
-\item{solution}{\code{\link[base]{data.frame}} or
-\code{\link[tibble]{tibble}} table containing the solutions. Here,
+\item{solution}{\code{\link[base:data.frame]{base::data.frame()}} or
+\code{\link[tibble:tibble]{tibble::tibble()}} table containing the solutions. Here,
 rows correspond to different solutions and columns correspond to
 different actions. Each column in the argument to \code{solution} should
 be named according to a different action in \code{x}.
@@ -19,7 +19,7 @@ and should be either zero or one. Arguments to \code{solution} can
 contain additional columns, and they will be ignored.}
 }
 \value{
-A \code{\link[tibble]{tibble}} table containing the following
+A \code{\link[tibble:tibble]{tibble::tibble()}} table containing the following
 columns:
 
 \describe{
@@ -42,7 +42,7 @@ the future given each solution.}
 }
 \description{
 Calculate statistics describing a solution to a project prioritization
-\code{\link{problem}}.
+\code{\link[=problem]{problem()}}.
 }
 \examples{
 # load data
@@ -85,6 +85,6 @@ print(solutions)
 solution_statistics(p, solutions)
 }
 \seealso{
-\code{\link{objectives}}, \code{\link{replacement_costs}},
-\code{\link{project_cost_effectiveness}}.
+\link{objectives}, \code{\link[=replacement_costs]{replacement_costs()}},
+\code{\link[=project_cost_effectiveness]{project_cost_effectiveness()}}.
 }

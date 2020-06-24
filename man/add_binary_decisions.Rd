@@ -7,14 +7,14 @@
 add_binary_decisions(x)
 }
 \arguments{
-\item{x}{\code{\link{ProjectProblem-class}} object.}
+\item{x}{\linkS4class{ProjectProblem} object.}
 }
 \value{
-\code{\link{ProjectProblem-class}} object with the decisions
+\linkS4class{ProjectProblem} object with the decisions
 added to it.
 }
 \description{
-Add a binary decision to a project prioritization \code{\link{problem}}.
+Add a binary decision to a project prioritization \code{\link[=problem]{problem()}}.
 This is the conventional decision of either prioritizing funding
 for a management action or not.
 }
@@ -51,5 +51,5 @@ plot(p, s)
 }
 }
 \seealso{
-\code{\link{decisions}}.
+\link{decisions}.
 }

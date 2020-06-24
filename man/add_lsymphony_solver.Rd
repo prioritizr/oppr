@@ -14,7 +14,7 @@ add_lpsymphony_solver(
 )
 }
 \arguments{
-\item{x}{\code{\link{ProjectProblem-class}} object.}
+\item{x}{\linkS4class{ProjectProblem} object.}
 
 \item{gap}{\code{numeric} gap to optimality. This gap is relative when
 solving problems using \pkg{gurobi}, and will cause the optimizer to
@@ -43,12 +43,12 @@ Defaults to \code{FALSE}.}
 optimization problems?}
 }
 \value{
-\code{\link{ProjectProblem-class}} object with the solver added
+\linkS4class{ProjectProblem} object with the solver added
 to it.
 }
 \description{
 Specify that the \emph{SYMPHONY} software should be used to solve a
-project prioritization \code{\link{problem}} using the \pkg{lpsymphony}
+project prioritization \code{\link[=problem]{problem()}} using the \pkg{lpsymphony}
 package. This function can also be used to customize the behavior of the
 solver. It requires the \pkg{lpsymphony} package.
 }
@@ -90,5 +90,5 @@ plot(p, s)
 }
 }
 \seealso{
-\code{\link{solvers}}.
+\link{solvers}.
 }

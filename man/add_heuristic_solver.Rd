@@ -12,7 +12,7 @@ add_heuristic_solver(
 )
 }
 \arguments{
-\item{x}{\code{\link{ProjectProblem-class}} object.}
+\item{x}{\linkS4class{ProjectProblem} object.}
 
 \item{number_solutions}{\code{integer} number of solutions desired.
 Defaults to 1. Note that the number of returned solutions can sometimes
@@ -34,7 +34,7 @@ Defaults to \code{TRUE}.}
 optimization problems?}
 }
 \value{
-\code{\link{ProjectProblem-class}} object with the solver added
+\linkS4class{ProjectProblem} object with the solver added
 to it.
 }
 \description{
@@ -42,7 +42,7 @@ Specify that solutions should be generated using a backwards step-wise
 heuristic algorithm (inspired by Cabeza \emph{et al.} 2004,
 Korte & Vygen 2000, Probert \emph{et al.} 2016). Ideally,
 solutions should be generated using exact algorithm solvers (e.g.
-\code{\link{add_rsymphony_solver}} or \code{\link{add_gurobi_solver}})
+\code{\link[=add_rsymphony_solver]{add_rsymphony_solver()}} or \code{\link[=add_gurobi_solver]{add_gurobi_solver()}})
 because they are guaranteed to identify optimal solutions (Rodrigues & Gaston
 2002).
 }
@@ -70,10 +70,10 @@ and (iii) actions which are not associated with any project (excepting
 locked in actions) are also deselected.
 
 \item If the objective function is to maximize biodiversity subject
-to budgetary constraints (e.g. \code{\link{add_max_richness_objective}})
+to budgetary constraints (e.g. \code{\link[=add_max_richness_objective]{add_max_richness_objective()}})
 then go to step 5. Otherwise, if the objective is to minimize cost
 subject to biodiversity constraints (i.e.
-\code{\link{add_min_set_objective}}) then go to step 7.
+\code{\link[=add_min_set_objective]{add_min_set_objective()}}) then go to step 7.
 
 \item The next step is repeated until (i) the number of desired
 solutions is obtained, and (ii) the total cost of the remaining
@@ -191,5 +191,5 @@ Project Prioritisation Protocol (PPP). Available at
 \url{https://github.com/p-robot/ppp}.
 }
 \seealso{
-\code{\link{solvers}}.
+\link{solvers}.
 }

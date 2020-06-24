@@ -4,7 +4,7 @@ NULL
 #' Problem objective
 #'
 #' An objective is used to specify the overall goal of a project prioritization
-#' \code{\link{problem}}. All project prioritization problems involve
+#' [problem()]. All project prioritization problems involve
 #' minimizing or maximizing some kind of objective. For instance, the decision
 #' maker may require a funding scheme that maximizes the total number of
 #' species that are expected to persist into the future whilst ensuring that
@@ -12,31 +12,31 @@ NULL
 #' Alternatively, the planner may require a solution that ensures that
 #' each species meets a target level of persistence whilst minimizing the cost
 #' of  the funded actions. A project prioritization
-#' \code{\link{problem}} **must** have a specified objective before it can
+#' [problem()] **must** have a specified objective before it can
 #' be solved, and attempting to solve a problem which does not have
 #' a specified objective will throw an error.
 #'
 #' @details The following objectives can be added to a conservation planning
-#'   \code{\link{problem}}:
+#'   [problem()]:
 #'
 #'   \describe{
 #'
-#'   \item{\code{\link{add_max_richness_objective}}}{
+#'   \item{[add_max_richness_objective()]}{
 #'     Maximize the total number of features that are expected to persist,
 #'     whilst ensuring that the cost of the solution is within a pre-specified
 #'     budget (Joseph, Maloney & Possingham 2009).}
 #'
-#'   \item{\code{\link{add_max_targets_met_objective}}}{
+#'   \item{[add_max_targets_met_objective()]}{
 #'     Maximize the total number of persistence targets met for the features,
 #'     whilst ensuring that the cost of the solution is within a pre-specified
 #'     budget (Chades *et al.* 2015).}
 #'
-#'   \item{\code{\link{add_max_phylo_div_objective}}}{
+#'   \item{[add_max_phylo_div_objective()]}{
 #'     Maximize the phylogenetic diversity that is expected to persist into the
 #'     future, whilst ensuring that the cost of the solution is within a
 #'     pre-specified budget (Bennett *et al.* 2014, Faith 2008).}
 #'
-#'   \item{\code{\link{add_min_set_objective}}}{
+#'   \item{[add_min_set_objective()]}{
 #'     Minimize the cost of the solution whilst ensuring that all targets are
 #'     met. This objective is conceptually similar to that used in *Marxan*
 #'     (Ball, Possingham & Watts 2009).}
@@ -69,9 +69,9 @@ NULL
 #' resources among threatened species: A project prioritization protocol.
 #' *Conservation Biology*, **23**, 328--338.
 #'
-#' @seealso \code{\link{constraints}}, \code{\link{decisions}},
-#'   \code{\link{problem}}, \code{\link{solvers}}, \code{\link{targets}},
-#'   \code{\link{weights}}.
+#' @seealso [constraints], [decisions],
+#'   [problem()], [solvers], [targets],
+#'   [weights].
 #'
 #' @examples
 #' # load data

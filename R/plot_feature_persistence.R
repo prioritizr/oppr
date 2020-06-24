@@ -4,7 +4,7 @@ NULL
 #' Plot a bar plot to visualize a project prioritization
 #'
 #' Create a bar plot to visualize how likely features are to persist into
-#' the future under a solution to a project prioritization problem.
+#' the future under a solution to a project prioritization [problem()].
 #'
 #' @inheritParams plot.ProjectProblem
 #'
@@ -19,8 +19,8 @@ NULL
 #'   projects that have non-zero costs and share actions with at least one
 #'   completely funded project---are depicted with an open circle symbol.
 #'
-#' @return A \code{\link{ggplot}} object, or a
-#'   \code{\link[tibble]{tbl_df}} object if `return_data` is
+#' @return A [ggplot()] object, or a
+#'   [tibble::tbl_df()] object if `return_data` is
 #'   `TRUE`.
 #'
 #' @examples

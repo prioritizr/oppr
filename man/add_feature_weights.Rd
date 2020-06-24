@@ -13,19 +13,19 @@ add_feature_weights(x, weights)
 \S4method{add_feature_weights}{ProjectProblem,character}(x, weights)
 }
 \arguments{
-\item{x}{\code{\link{ProjectProblem-class}} object.}
+\item{x}{\linkS4class{ProjectProblem} object.}
 
 \item{weights}{Object that specifies the weights for each feature. See the
 Details section for more information.}
 }
 \description{
 Set weights for conserving features in a project prioritization
-\code{\link{problem}}.
+\code{\link[=problem]{problem()}}.
 }
 \details{
 Weights are used to specify the relative importance for
 maintaining the persistence of specific features. For budget constrained
-problems (e.g. \code{\link{add_max_richness_objective}}), these
+problems (e.g. \code{\link[=add_max_richness_objective]{add_max_richness_objective()}}), these
 weights
 could be used to specify which features are more important than other
 features according to evolutionary or cultural metrics. Specifically,
@@ -40,7 +40,7 @@ these features instead of setting really high weights for these features.
 Please note that a warning will be thrown if you attempt to solve
 problems with weights when an objective has been specified that does
 not use weights. Currently, all objectives---except for the minimum
-set objective (i.e. \code{\link{add_min_set_objective}})---can use weights.
+set objective (i.e. \code{\link[=add_min_set_objective]{add_min_set_objective()}})---can use weights.
 
 The weights for a problem can be specified in several different ways:
 
@@ -50,7 +50,7 @@ The weights for a problem can be specified in several different ways:
 
 \item{\code{character}}{specifying the name of column in the
 feature data (i.e. the argument to \code{features} in the
-\code{\link{problem}} function) that contains the weights.}
+\code{\link[=problem]{problem()}} function) that contains the weights.}
 
 }
 }
@@ -107,5 +107,5 @@ plot(p3, s3)
 }
 }
 \seealso{
-\code{\link{weights}}.
+\link{weights}.
 }

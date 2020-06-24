@@ -4,7 +4,7 @@ NULL
 #' Add a SYMPHONY solver with \pkg{lpsymphony}
 #'
 #' Specify that the *SYMPHONY* software should be used to solve a
-#' project prioritization \code{\link{problem}} using the \pkg{lpsymphony}
+#' project prioritization [problem()] using the \pkg{lpsymphony}
 #' package. This function can also be used to customize the behavior of the
 #' solver. It requires the \pkg{lpsymphony} package.
 #'
@@ -23,7 +23,7 @@ NULL
 #'
 #' @inherit add_gurobi_solver seealso return
 #'
-#' @seealso \code{\link{solvers}}.
+#' @seealso [solvers].
 #'
 #' @examples
 #' \donttest{

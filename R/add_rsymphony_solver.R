@@ -4,7 +4,7 @@ NULL
 #' Add a SYMPHONY solver with \pkg{Rsymphony}
 #'
 #' Specify that the *SYMPHONY* software should be used to solve a
-#' project prioritization \code{\link{problem}} using the \pkg{Rsymphony}
+#' project prioritization [problem()] using the \pkg{Rsymphony}
 #' package. This function can also be used to customize the behavior of the
 #' solver. It requires the \pkg{Rsymphony} package.
 #'

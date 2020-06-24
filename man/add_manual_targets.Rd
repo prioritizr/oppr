@@ -15,31 +15,31 @@ add_manual_targets(x, targets)
 \S4method{add_manual_targets}{ProjectProblem,tbl_df}(x, targets)
 }
 \arguments{
-\item{x}{\code{\link{ProjectProblem-class}} object.}
+\item{x}{\linkS4class{ProjectProblem} object.}
 
-\item{targets}{\code{data.frame} or \code{\link[tibble]{tibble}} object. See
+\item{targets}{\code{data.frame} or \code{\link[tibble:tibble]{tibble::tibble()}} object. See
 the Details section for more information.}
 }
 \value{
-\code{\link{ProjectProblem-class}} object with the targets added
+\linkS4class{ProjectProblem} object with the targets added
 to it.
 }
 \description{
-Set targets for a project prioritization \code{\link{problem}} by manually
+Set targets for a project prioritization \code{\link[=problem]{problem()}} by manually
 specifying all the required information for each target. This function
 is useful because it can be used to customize all aspects of a target. For
 most cases, targets can be specified using the
-\code{\link{add_absolute_targets}} and \code{\link{add_relative_targets}}
+\code{\link[=add_absolute_targets]{add_absolute_targets()}} and \code{\link[=add_relative_targets]{add_relative_targets()}}
 functions. However, this function can be used to mix absolute and
 relative targets for different features.
 }
 \details{
 Targets are used to specify the minimum probability of persistence
 for each feature in solutions. For minimum set objectives
-(i.e. \code{\link{add_min_set_objective}}, these targets
+(i.e. \code{\link[=add_min_set_objective]{add_min_set_objective()}}, these targets
 specify the minimum probability of persistence required for each species
 in the solution. And for budget constrained objectives that use targets
-(i.e. \code{\link{add_max_targets_met_objective}}), these targets
+(i.e. \code{\link[=add_max_targets_met_objective]{add_max_targets_met_objective()}}), these targets
 specify the minimum threshold probability of persistence that needs to be
 achieved to count the benefits for conserving these species.
 Please note that attempting to solve problems with objectives that require
@@ -54,8 +54,8 @@ to \code{x}.}
 
 \item{\code{"type"}}{\code{character} describing the type of target.
 Acceptable values include \code{"absolute"} and \code{"relative"}.
-These values correspond to \code{\link{add_absolute_targets}},
-and \code{\link{add_relative_targets}} respectively.}
+These values correspond to \code{\link[=add_absolute_targets]{add_absolute_targets()}},
+and \code{\link[=add_relative_targets]{add_relative_targets()}} respectively.}
 
 \item{\code{"sense"}}{\code{character} sense of the target. The
 only acceptable value currently supported is: \code{">="}. This field
@@ -99,5 +99,5 @@ print(s)
 }
 }
 \seealso{
-\code{\link{targets}}.
+\link{targets}.
 }

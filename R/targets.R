@@ -10,32 +10,32 @@ NULL
 #' does not require targets will throw a warning if targets are supplied.
 #'
 #' @details The following functions can be used to specify targets for a
-#'   project prioritization \code{\link{problem}}:
+#'   project prioritization [problem()]:
 #'
 #'   \describe{
 #'
-#'   \item{\code{\link{add_relative_targets}}}{
+#'   \item{[add_relative_targets()]}{
 #'     Set targets as a proportion (between 0 and 1) of the maximum probability
 #'     of persistence associated with the best project for each feature. For
 #'     instance, if the best project for a feature has an 80% probability of
 #'     persisting, setting a 50% (i.e. `0.5`) relative target will
 #'     correspond to a 40% threshold probability of persisting.}
 #'
-#'   \item{\code{\link{add_absolute_targets}}}{
+#'   \item{[add_absolute_targets()]}{
 #'     Set targets by specifying exactly what probability of persistence is
 #'     required for each feature. For instance, setting an absolute target of
 #'     10% (i.e. `0.1`) corresponds to a threshold 10% probability of
 #'     persisting.}
 #'
-#'   \item{\code{\link{add_manual_targets}}}{
+#'   \item{[add_manual_targets()]}{
 #'     Set targets by manually specifying all the required information for each
 #'     target.}
 #'
 #'   }
 #'
-#' @seealso \code{\link{constraints}}, \code{\link{decisions}},
-#'  \code{\link{objectives}}, \code{\link{problem}},
-#'  \code{\link{solvers}}.
+#' @seealso [constraints], [decisions],
+#'  [objectives], [problem()],
+#'  [solvers].
 #'
 #' @examples
 #' # load data

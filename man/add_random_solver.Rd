@@ -7,7 +7,7 @@
 add_random_solver(x, number_solutions = 1, verbose = TRUE)
 }
 \arguments{
-\item{x}{\code{\link{ProjectProblem-class}} object.}
+\item{x}{\linkS4class{ProjectProblem} object.}
 
 \item{number_solutions}{\code{integer} number of solutions desired.
 Defaults to 1. Note that the number of returned solutions can sometimes
@@ -20,7 +20,7 @@ solutions will be returned.}
 optimization problems?}
 }
 \value{
-\code{\link{ProjectProblem-class}} object with the solver added
+\linkS4class{ProjectProblem} object with the solver added
 to it.
 }
 \description{
@@ -32,10 +32,10 @@ the effectiveness of solutions.
 \details{
 The algorithm used to randomly generate solutions depends on the
 the objective specified for the project prioritization
-\code{\link{problem}}.
+\code{\link[=problem]{problem()}}.
 
 For objectives which maximize benefit subject to budgetary constraints
-(e.g. \code{\link{add_max_richness_objective}}):
+(e.g. \code{\link[=add_max_richness_objective]{add_max_richness_objective()}}):
 
 \enumerate{
 
@@ -54,7 +54,7 @@ exceeding the budget.
 }
 
 For objectives which minimize cost subject to biodiversity constraints
-(i.e. \code{\link{add_min_set_objective}}:
+(i.e. \code{\link[=add_min_set_objective]{add_min_set_objective()}}:
 
 \enumerate{
 
@@ -118,5 +118,5 @@ hist(s1$optimality_diff, xlab = "Difference from optimality (\%)",
 }
 }
 \seealso{
-\code{\link{solvers}}.
+\link{solvers}.
 }

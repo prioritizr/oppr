@@ -4,24 +4,24 @@ NULL
 #' Add a default solver
 #'
 #' Identify the best solver currently installed on the system and specify that
-#' it should be used to solve a project prioritization \code{\link{problem}}.
+#' it should be used to solve a project prioritization [problem()].
 #'
-#' @param x \code{\link{ProjectProblem-class}} object.
+#' @param x [ProjectProblem-class] object.
 #'
 #' @param ... arguments passed to the solver.
 #'
 #' @details
 #'   Ranked from best to worst, the solvers that can be used are:
-#'   \pkg{gurobi}, (\code{\link{add_gurobi_solver}}),
-#'   \pkg{Rsymphony} (\code{\link{add_rsymphony_solver}}), \pkg{lpsymphony}
-#'   (\code{\link{add_lpsymphony_solver}}), and \pkg{lpSolveAPI}
-#'   (\code{\link{add_lpsolveapi_solver}}). This function does not consider
+#'   \pkg{gurobi}, ([add_gurobi_solver()]),
+#'   \pkg{Rsymphony} ([add_rsymphony_solver()]), \pkg{lpsymphony}
+#'   ([add_lpsymphony_solver()]), and \pkg{lpSolveAPI}
+#'   ([add_lpsolveapi_solver()]). This function does not consider
 #'   solvers that generate solutions using heuristic algorithms (i.e.
-#'   \code{\link{add_heuristic_solver}}) or random processes
-#'   (i.e. \code{\link{add_random_solver}}) because they cannot provide
+#'   [add_heuristic_solver()]) or random processes
+#'   (i.e. [add_random_solver()]) because they cannot provide
 #'   any guarantees on solution quality.
 #'
-#' @seealso \code{\link{solvers}}.
+#' @seealso [solvers].
 #'
 #' @examples
 #' # load data

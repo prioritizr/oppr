@@ -46,9 +46,9 @@ the management actions, and the features that need
 to be conserved (e.g. species, ecosystems). After constructing this
 ProjectProblem-class object,
 it can be customized using objectives, targets,
-weights, constraints and
+weights, constraints, decisions and
 solvers. After building the problem, the
-solve function can be used to identify solutions." />
+solve() function can be used to identify solutions." />
 
 
 
@@ -80,7 +80,7 @@ solve function can be used to identify solutions." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2.1</span>
       </span>
     </div>
 
@@ -133,10 +133,10 @@ specify the underlying data used in a prioritization problem: the projects,
 the management actions, and the features that need
 to be conserved (e.g. species, ecosystems). After constructing this
 <code>ProjectProblem-class</code> object,
-it can be customized using <code><a href='objectives.html'>objectives</a></code>, <code><a href='targets.html'>targets</a></code>,
-<code><a href='weights.html'>weights</a></code>, <code><a href='constraints.html'>constraints</a></code> and
-<code><a href='solvers.html'>solvers</a></code>. After building the problem, the
-<code><a href='solve.html'>solve</a></code> function can be used to identify solutions.</p>
+it can be customized using <a href='objectives.html'>objectives</a>, <a href='targets.html'>targets</a>,
+<a href='weights.html'>weights</a>, <a href='constraints.html'>constraints</a>, <a href='decisions.html'>decisions</a> and
+<a href='solvers.html'>solvers</a>. After building the problem, the
+<code><a href='solve.html'>solve()</a></code> function can be used to identify solutions.</p>
     </div>
 
     <pre class="usage"><span class='fu'>problem</span>(
@@ -156,8 +156,8 @@ it can be customized using <code><a href='objectives.html'>objectives</a></code>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>projects</th>
-      <td><p><code><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></code> or
-<code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></code> table containing project data. Here, each row
+      <td><p><code><a href='https://rdrr.io/r/base/data.frame.html'>base::data.frame()</a></code> or
+<code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble::tibble()</a></code> table containing project data. Here, each row
 should correspond to a different project and columns should contain data
 that correspond to each project. This object should contain data that
 denote (i)
@@ -186,7 +186,7 @@ of persistence.</p></td>
     </tr>
     <tr>
       <th>actions</th>
-      <td><p><code><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></code> or <code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></code>
+      <td><p><code><a href='https://rdrr.io/r/base/data.frame.html'>base::data.frame()</a></code> or <code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble::tibble()</a></code>
 table containing the action data. Here, each row should correspond to a
 different action and columns should contain data that correspond to
 each action. At a minimum, this object should contain data that denote (i)
@@ -194,14 +194,14 @@ the name of each action (specified in the argument to
 <code>action_name_column</code>), (ii) the cost of each action (specified in the
 argument to <code>action_cost_column</code>). Optionally, it may also contain
 data that indicate actions should be (iii) locked in or (iv) locked
-out (see <code><a href='add_locked_in_constraints.html'>add_locked_in_constraints</a></code> and
-<code><a href='add_locked_out_constraints.html'>add_locked_out_constraints</a></code>). It should also contain a
+out (see <code><a href='add_locked_in_constraints.html'>add_locked_in_constraints()</a></code> and
+<code><a href='add_locked_out_constraints.html'>add_locked_out_constraints()</a></code>). It should also contain a
 zero-cost baseline action that is associated with the baseline project.</p></td>
     </tr>
     <tr>
       <th>features</th>
-      <td><p><code><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></code> or
-<code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></code>
+      <td><p><code><a href='https://rdrr.io/r/base/data.frame.html'>base::data.frame()</a></code> or
+<code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble::tibble()</a></code>
 table containing the feature data. Here, each row should correspond
 to a different feature and columns should contain data that correspond
 to each feature. At a minimum, this object should contain data that denote
@@ -260,48 +260,48 @@ project fails. Defaults to <code>TRUE</code>.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A fresh <code><a href='ProjectProblem-class.html'>ProjectProblem-class</a></code> object.</p>
+    <p>A new <a href='ProjectProblem-class.html'>ProjectProblem</a> object.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>A project prioritization problem has actions, projects,
-  and features. Features are the biological entities that need to
-  be conserved (e.g. species, populations, ecosystems). Actions are
-  real-world management actions that can be implemented to enhance
-  biodiversity (e.g. habitat restoration, monitoring, pest eradication). Each
-  action should have a known cost, and this usually means that each
-  action should have a defined spatial extent and time period (though this
-  is not necessary). Conservation projects are groups of management actions
-  (they can also comprise a singular action too), and each project is
-  associated with a probability of success if all of its associated actions
-  are funded. To determine which projects should be funded, each project is
-  associated with an probability of persistence for the
-  features that they benefit. These values should indicate the
-  probability that each feature will persist if only that project funded
-  and not the additional benefit relative to the baseline project. Missing
-  (<code>NA</code>) values should be used to indicate which projects do not
-  enhance the probability of certain features.</p>
+and features. Features are the biological entities that need to
+be conserved (e.g. species, populations, ecosystems). Actions are
+real-world management actions that can be implemented to enhance
+biodiversity (e.g. habitat restoration, monitoring, pest eradication). Each
+action should have a known cost, and this usually means that each
+action should have a defined spatial extent and time period (though this
+is not necessary). Conservation projects are groups of management actions
+(they can also comprise a singular action too), and each project is
+associated with a probability of success if all of its associated actions
+are funded. To determine which projects should be funded, each project is
+associated with an probability of persistence for the
+features that they benefit. These values should indicate the
+probability that each feature will persist if only that project funded
+and not the additional benefit relative to the baseline project. Missing
+(<code>NA</code>) values should be used to indicate which projects do not
+enhance the probability of certain features.</p>
 <p>The goal of a project prioritization exercise is then to identify which
-  management actions---and as a consequence which conservation
-  projects---should be funded. Broadly speaking, the goal
-  of an optimization problem is to minimize (or maximize) an objective
-  function given a set of control variables and decision variables that are
-  subject to a series of constraints. In the context of project
-  prioritization problems, the
-  objective is usually some measure of utility (e.g. the net
-  probability of each feature persisting into the future), the
-  control variables determine which actions should be funded or not,
-  the decision variables contain additional information needed to
-  ensure correct calculations,  and the
-  constraints impose limits such as the total budget available for funding
-  management actions. For more information on the mathematical
-  formulations used in this package, please refer to the manual entries for
-  the available objectives (listed in <code><a href='objectives.html'>objectives</a></code>).</p>
+management actions---and as a consequence which conservation
+projects---should be funded. Broadly speaking, the goal
+of an optimization problem is to minimize (or maximize) an objective
+function given a set of control variables and decision variables that are
+subject to a series of constraints. In the context of project
+prioritization problems, the
+objective is usually some measure of utility (e.g. the net
+probability of each feature persisting into the future), the
+control variables determine which actions should be funded or not,
+the decision variables contain additional information needed to
+ensure correct calculations,  and the
+constraints impose limits such as the total budget available for funding
+management actions. For more information on the mathematical
+formulations used in this package, please refer to the manual entries for
+the available objectives (listed in <a href='objectives.html'>objectives</a>).</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='constraints.html'>constraints</a></code>, <code><a href='decisions.html'>decisions</a></code>,
- <code><a href='objectives.html'>objectives</a></code>, <code><a href='solvers.html'>solvers</a></code>, <code><a href='targets.html'>targets</a></code>,
- <code><a href='weights.html'>weights</a></code>, <code><a href='solution_statistics.html'>solution_statistics</a></code>,
- <code><a href='plot.ProjectProblem.html'>plot.ProjectProblem</a></code>.</p></div>
+    <div class='dont-index'><p><a href='constraints.html'>constraints</a>, <a href='decisions.html'>decisions</a>,
+<a href='objectives.html'>objectives</a>, <a href='solvers.html'>solvers</a>, <a href='targets.html'>targets</a>,
+<a href='weights.html'>weights</a>, <code><a href='solution_statistics.html'>solution_statistics()</a></code>,
+<code><a href='plot.ProjectProblem.html'>plot.ProjectProblem()</a></code>.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># load data</span>

@@ -40,7 +40,7 @@
 
 
 <meta property="og:title" content="Add maximum phylogenetic diversity objective — add_max_phylo_div_objective" />
-<meta property="og:description" content="Set the objective of a project prioritization problem to
+<meta property="og:description" content="Set the objective of a project prioritization problem() to
 maximize the phylogenetic diversity that is expected to persist into the
 future, whilst ensuring that the cost of the solution is within a
 pre-specified budget (Bennett et al. 2014, Faith 2008)." />
@@ -75,7 +75,7 @@ pre-specified budget (Bennett et al. 2014, Faith 2008)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2.1</span>
       </span>
     </div>
 
@@ -123,7 +123,7 @@ pre-specified budget (Bennett et al. 2014, Faith 2008)." />
     </div>
 
     <div class="ref-description">
-    <p>Set the objective of a project prioritization <code><a href='problem.html'>problem</a></code> to
+    <p>Set the objective of a project prioritization <code><a href='problem.html'>problem()</a></code> to
 maximize the phylogenetic diversity that is expected to persist into the
 future, whilst ensuring that the cost of the solution is within a
 pre-specified budget (Bennett <em>et al.</em> 2014, Faith 2008).</p>
@@ -136,7 +136,7 @@ pre-specified budget (Bennett <em>et al.</em> 2014, Faith 2008).</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p><code><a href='ProjectProblem-class.html'>ProjectProblem-class</a></code> object.</p></td>
+      <td><p><a href='ProjectProblem-class.html'>ProjectProblem</a> object.</p></td>
     </tr>
     <tr>
       <th>budget</th>
@@ -144,7 +144,7 @@ pre-specified budget (Bennett <em>et al.</em> 2014, Faith 2008).</p>
     </tr>
     <tr>
       <th>tree</th>
-      <td><p><code><a href='https://rdrr.io/pkg/ape/man/read.tree.html'>phylo</a></code> phylogenetic tree describing the
+      <td><p><code><a href='https://rdrr.io/pkg/ape/man/read.tree.html'>ape::phylo()</a></code> phylogenetic tree describing the
 evolutionary relationships between the features. Note that the
 argument to <code>tree</code> must contain every feature, and only the
 features, present in the argument to <code>x</code>.</p></td>
@@ -153,75 +153,75 @@ features, present in the argument to <code>x</code>.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code><a href='ProjectProblem-class.html'>ProjectProblem-class</a></code> object with the objective
-  added to it.</p>
+    <p><a href='ProjectProblem-class.html'>ProjectProblem</a> object with the objective
+added to it.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>A problem objective is used to specify the overall goal of the
-  project prioritization problem.
-  Here, the maximum phylogenetic diversity objective seeks to find the set
-  of actions that maximizes the expected amount of evolutionary history
-  that is expected to persist into the future given the evolutionary
-  relationships between the features (e.g. populations, species).
-  Let \(I\) represent the set of conservation actions (indexed by
-  \(i\)). Let \(C_i\) denote the cost for funding action \(i\), and
-  let \(m\) denote the maximum expenditure (i.e. the budget). Also,
-  let \(F\) represent each feature (indexed by \(f\)), \(W_f\)
-  represent the weight for each feature \(f\) (defaults to zero for
-  each feature unless specified otherwise), and \(E_f\)
-  denote the probability that each feature will go extinct given the funded
-  conservation projects.</p>
+project prioritization problem.
+Here, the maximum phylogenetic diversity objective seeks to find the set
+of actions that maximizes the expected amount of evolutionary history
+that is expected to persist into the future given the evolutionary
+relationships between the features (e.g. populations, species).
+Let \(I\) represent the set of conservation actions (indexed by
+\(i\)). Let \(C_i\) denote the cost for funding action \(i\), and
+let \(m\) denote the maximum expenditure (i.e. the budget). Also,
+let \(F\) represent each feature (indexed by \(f\)), \(W_f\)
+represent the weight for each feature \(f\) (defaults to zero for
+each feature unless specified otherwise), and \(E_f\)
+denote the probability that each feature will go extinct given the funded
+conservation projects.</p>
 <p>To describe the
-  evolutionary relationships between the features \(f \in F\),
-  consider a phylogenetic tree that contains features \(f \in F\)
-  with branches of known lengths. This tree can be described using
-  mathematical notation by letting \(B\) represent the branches (indexed by
-  \(b\)) with lengths \(L_b\) and letting \(T_{bf}\) indicate which
-  features \(f \in F\) are associated with which phylogenetic
-  branches \(b \in B\) using zeros and ones. Ideally, the set of
-  features \(F\) would contain all of the species in the study
-  area---including non-threatened species---to fully account for the benefits
-  for funding different actions.</p>
+evolutionary relationships between the features \(f \in F\),
+consider a phylogenetic tree that contains features \(f \in F\)
+with branches of known lengths. This tree can be described using
+mathematical notation by letting \(B\) represent the branches (indexed by
+\(b\)) with lengths \(L_b\) and letting \(T_{bf}\) indicate which
+features \(f \in F\) are associated with which phylogenetic
+branches \(b \in B\) using zeros and ones. Ideally, the set of
+features \(F\) would contain all of the species in the study
+area---including non-threatened species---to fully account for the benefits
+for funding different actions.</p>
 <p>To guide the prioritization, the conservation actions are organized into
-  conservation projects. Let \(J\) denote the set of conservation projects
-  (indexed by \(j\)), and let \(A_{ij}\) denote which actions
-  \(i \in I\) comprise each conservation project
-  \(j \in J\) using zeros and ones. Next, let \(P_j\) represent
-  the probability of project \(j\) being successful if it is funded. Also,
-  let \(B_{fj}\) denote the enhanced probability that each feature
-  \(f \in F\) associated with the project \(j \in J\)
-  will persist if all of the actions that comprise project \(j\) are funded
-  and that project is allocated to feature \(f\).
-  For convenience,
-  let \(Q_{fj}\) denote the actual probability that each
-  \(f \in F\) associated with the project \(j \in J\)
-  is expected to persist if the project is funded. If the argument
-  to <code>adjust_for_baseline</code> in the <code>problem</code> function was set to
-  <code>TRUE</code>, and this is the default behavior, then
-  \(Q_{fj} = (P_{j} \times B_{fj}) + \bigg(\big(1 - (P_{j} B_{fj})\big)
+conservation projects. Let \(J\) denote the set of conservation projects
+(indexed by \(j\)), and let \(A_{ij}\) denote which actions
+\(i \in I\) comprise each conservation project
+\(j \in J\) using zeros and ones. Next, let \(P_j\) represent
+the probability of project \(j\) being successful if it is funded. Also,
+let \(B_{fj}\) denote the enhanced probability that each feature
+\(f \in F\) associated with the project \(j \in J\)
+will persist if all of the actions that comprise project \(j\) are funded
+and that project is allocated to feature \(f\).
+For convenience,
+let \(Q_{fj}\) denote the actual probability that each
+\(f \in F\) associated with the project \(j \in J\)
+is expected to persist if the project is funded. If the argument
+to <code>adjust_for_baseline</code> in the <code>problem</code> function was set to
+<code>TRUE</code>, and this is the default behavior, then
+\(Q_{fj} = (P_{j} \times B_{fj}) + \bigg(\big(1 - (P_{j} B_{fj})\big)
   \times (P_{n} \times B_{fn})\bigg)\), where <code>n</code> corresponds to the
-  baseline "do nothing" project. This means that the probability
-  of a feature persisting if a project is allocated to a feature
-  depends on (i) the probability of the project succeeding, (ii) the
-  probability of the feature persisting if the project does not fail,
-  and (iii) the probability of the feature persisting even if the project
-  fails. Otherwise, if the argument is set to <code>FALSE</code>, then
-  \(Q_{fj} = P_{j} \times B_{fj}\).</p>
+baseline "do nothing" project. This means that the probability
+of a feature persisting if a project is allocated to a feature
+depends on (i) the probability of the project succeeding, (ii) the
+probability of the feature persisting if the project does not fail,
+and (iii) the probability of the feature persisting even if the project
+fails. Otherwise, if the argument is set to <code>FALSE</code>, then
+\(Q_{fj} = P_{j} \times B_{fj}\).</p>
 <p>The binary control variables \(X_i\) in this problem indicate whether
-  each project \(i \in I\) is funded or not. The decision
-  variables in this problem are the \(Y_{j}\), \(Z_{fj}\), \(E_f\),
-  and \(R_b\) variables.
-  Specifically, the binary \(Y_{j}\) variables indicate if project \(j\)
-  is funded or not based on which actions are funded; the binary
-  \(Z_{fj}\) variables indicate if project \(j\) is used to manage
-  feature \(f\) or not; the semi-continuous \(E_f\) variables
-  denote the probability that feature \(f\) will go extinct; and
-  the semi-continuous \(R_b\) variables denote the probability that
-  phylogenetic branch \(b\) will remain in the future.</p>
+each project \(i \in I\) is funded or not. The decision
+variables in this problem are the \(Y_{j}\), \(Z_{fj}\), \(E_f\),
+and \(R_b\) variables.
+Specifically, the binary \(Y_{j}\) variables indicate if project \(j\)
+is funded or not based on which actions are funded; the binary
+\(Z_{fj}\) variables indicate if project \(j\) is used to manage
+feature \(f\) or not; the semi-continuous \(E_f\) variables
+denote the probability that feature \(f\) will go extinct; and
+the semi-continuous \(R_b\) variables denote the probability that
+phylogenetic branch \(b\) will remain in the future.</p>
 <p>Now that we have defined all the data and variables, we can formulate
-  the problem. For convenience, let the symbol used to denote each set also
-  represent its cardinality (e.g. if there are ten features, let \(F\)
-  represent the set of ten features and also the number ten).</p>
+the problem. For convenience, let the symbol used to denote each set also
+represent its cardinality (e.g. if there are ten features, let \(F\)
+represent the set of ten features and also the number ten).</p>
 <p>$$
   \mathrm{Maximize} \space (\sum_{b = 0}^{B} L_b R_b) + \sum_{f}^{F}
   (1 - E_f) W_f \space \mathrm{(eqn \space 1a)} \\
@@ -243,31 +243,31 @@ features, present in the argument to <code>x</code>.</p></td>
   \in F \space \mathrm{(eqn \space 1i)}
   $$</p>
 <p>The objective (eqn 1a) is to maximize the expected phylogenetic diversity
- (Faith 2008) plus the probability each feature will remain multiplied
- by their weights (noting that the feature weights default to zero).
- Constraint (eqn 1b) limits the maximum expenditure (i.e.
- ensures that the cost of the funded actions do not exceed the budget).
- Constraints (eqn 1c) calculate the probability that each branch
- (including tips that correspond to a single feature) will go extinct
- according to the probability that the features which share a given
-  branch will go extinct.
- Constraints (eqn 1d) calculate the probability that each feature
- will go extinct according to their allocated project.
- Constraints (eqn 1e) ensure that feature can only be allocated to projects
- that have all of their actions funded. Constraints (eqn 1f) state that each
- feature can only be allocated to a single project. Constraints (eqn 1g)
- ensure that a project cannot be funded unless all of its actions are funded.
- Constraints (eqns 1h) ensure that the probability variables
- (\(E_f\)) are bounded between zero and one. Constraints (eqns 1i) ensure
- that the action funding (\(X_i\)), project funding (\(Y_j\)), and
- project allocation (\(Z_{fj}\)) variables are binary.</p>
+(Faith 2008) plus the probability each feature will remain multiplied
+by their weights (noting that the feature weights default to zero).
+Constraint (eqn 1b) limits the maximum expenditure (i.e.
+ensures that the cost of the funded actions do not exceed the budget).
+Constraints (eqn 1c) calculate the probability that each branch
+(including tips that correspond to a single feature) will go extinct
+according to the probability that the features which share a given
+branch will go extinct.
+Constraints (eqn 1d) calculate the probability that each feature
+will go extinct according to their allocated project.
+Constraints (eqn 1e) ensure that feature can only be allocated to projects
+that have all of their actions funded. Constraints (eqn 1f) state that each
+feature can only be allocated to a single project. Constraints (eqn 1g)
+ensure that a project cannot be funded unless all of its actions are funded.
+Constraints (eqns 1h) ensure that the probability variables
+(\(E_f\)) are bounded between zero and one. Constraints (eqns 1i) ensure
+that the action funding (\(X_i\)), project funding (\(Y_j\)), and
+project allocation (\(Z_{fj}\)) variables are binary.</p>
 <p>Although this formulation is a mixed integer quadratically constrained
- programming problem (due to eqn 1c), it can be approximated using
- linear terms and then solved using commercial mixed integer programming
- solvers. This can be achieved by substituting the product of the feature
- extinction probabilities (eqn 1c) with the sum of the log feature extinction
- probabilities and using piecewise linear approximations (described in
- Hillier &amp; Price 2005 pp. 390--392) to approximate the exponent of this term.</p>
+programming problem (due to eqn 1c), it can be approximated using
+linear terms and then solved using commercial mixed integer programming
+solvers. This can be achieved by substituting the product of the feature
+extinction probabilities (eqn 1c) with the sum of the log feature extinction
+probabilities and using piecewise linear approximations (described in
+Hillier &amp; Price 2005 pp. 390--392) to approximate the exponent of this term.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Bennett JR, Elliott G, Mellish B, Joseph LN, Tulloch AI,
@@ -284,7 +284,7 @@ probabilities and phylogenetic risk analysis. <em>Conservation Biology</em>,
 research &amp; management science</em>. Springer.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='objectives.html'>objectives</a></code>.</p></div>
+    <div class='dont-index'><p><a href='objectives.html'>objectives</a>.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># load data</span>
@@ -292,17 +292,17 @@ research &amp; management science</em>. Springer.</p>
 
 <span class='co'># plot tree</span>
 <span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>sim_tree</span>)</div><div class='img'><img src='add_max_phylo_div_objective-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># build problem with maximum phylogenetic diversity objective and $300 budget</span>
+<span class='co'># build problem with maximum phylogenetic diversity objective and $200 budget</span>
 <span class='no'>p1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_actions</span>, <span class='no'>sim_features</span>,
              <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span>) <span class='kw'>%&gt;%</span>
-      <span class='fu'>add_max_phylo_div_objective</span>(<span class='kw'>budget</span> <span class='kw'>=</span> <span class='fl'>300</span>, <span class='kw'>tree</span> <span class='kw'>=</span> <span class='no'>sim_tree</span>) <span class='kw'>%&gt;%</span>
+      <span class='fu'>add_max_phylo_div_objective</span>(<span class='kw'>budget</span> <span class='kw'>=</span> <span class='fl'>200</span>, <span class='kw'>tree</span> <span class='kw'>=</span> <span class='no'>sim_tree</span>) <span class='kw'>%&gt;%</span>
       <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span>()
 
 <span class='co'># \donttest{</span>
 <span class='co'># solve problem</span>
 <span class='no'>s1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p1</span>)</div><div class='output co'>#&gt; Gurobi Optimizer version 9.0.1 build v9.0.1rc0 (linux64)
 #&gt; Optimize a model with 50 rows, 50 columns and 123 nonzeros
-#&gt; Model fingerprint: 0xa4791041
+#&gt; Model fingerprint: 0x4b572399
 #&gt; Model has 3 piecewise-linear objective terms
 #&gt; Variable types: 3 continuous, 42 integer (42 binary)
 #&gt; Semi-Variable types: 5 continuous, 0 integer
@@ -310,36 +310,40 @@ research &amp; management science</em>. Springer.</p>
 #&gt;   Matrix range     [9e-02, 1e+02]
 #&gt;   Objective range  [2e-01, 2e+00]
 #&gt;   Bounds range     [1e+00, 1e+00]
-#&gt;   RHS range        [1e+00, 3e+02]
+#&gt;   RHS range        [1e+00, 2e+02]
 #&gt; Found heuristic solution: objective 1.7230501
 #&gt; Presolve removed 16 rows and 12 columns
 #&gt; Presolve time: 0.00s
-#&gt; Presolved: 37 rows, 3035 columns, 3076 nonzeros
-#&gt; Variable types: 3000 continuous, 35 integer (35 binary)
+#&gt; Presolved: 37 rows, 2547 columns, 2589 nonzeros
+#&gt; Variable types: 2512 continuous, 35 integer (35 binary)
 #&gt; Presolve removed 3 rows and 3 columns
-#&gt; Presolved: 34 rows, 3032 columns, 3070 nonzeros
+#&gt; Presolved: 34 rows, 2544 columns, 2583 nonzeros
 #&gt; 
 #&gt; 
-#&gt; Root relaxation: objective 2.904788e+00, 17 iterations, 0.00 seconds
+#&gt; Root relaxation: objective 2.638346e+00, 20 iterations, 0.00 seconds
 #&gt; 
 #&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
 #&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #&gt; 
-#&gt; *    0     0               0       2.9047879    2.90479  0.00%     -    0s
+#&gt;      0     0    2.63835    0    6    1.72305    2.63835  53.1%     -    0s
+#&gt; H    0     0                       1.9924877    2.63835  32.4%     -    0s
+#&gt;      0     2    2.63696    0    6    1.99249    2.63696  32.3%     -    0s
+#&gt; *    1     3               1       2.1724148    2.59317  19.4%   3.0    0s
+#&gt; *    5     3               2       2.5726722    2.57267  0.00%   3.6    0s
 #&gt; 
-#&gt; Explored 0 nodes (17 simplex iterations) in 0.01 seconds
+#&gt; Explored 6 nodes (38 simplex iterations) in 0.02 seconds
 #&gt; Thread count was 1 (of 4 available processors)
 #&gt; 
-#&gt; Solution count 1: 2.90479 
+#&gt; Solution count 1: 2.57267 
 #&gt; 
 #&gt; Optimal solution found (tolerance 0.00e+00)
-#&gt; Best objective 2.904787920708e+00, best bound 2.904787920708e+00, gap 0.0000%</div><div class='input'>
+#&gt; Best objective 2.572672188340e+00, best bound 2.572672188340e+00, gap 0.0000%</div><div class='input'>
 <span class='co'># print solution</span>
 <span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s1</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 1 x 21</span><span>
 #&gt;   solution status   obj  cost F1_action F2_action F3_action F4_action F5_action
 #&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span>        1 OPTIM~  2.90  294.         1         0         0         1         1
-#&gt; </span><span style='color: #555555;'># ... with 12 more variables: baseline_action </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F1_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>        1 OPTIM…  2.57  194.         1         0         0         0         1
+#&gt; </span><span style='color: #555555;'># … with 12 more variables: baseline_action </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F1_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   F2_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F3_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F4_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F5_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   baseline_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F1 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F2 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F3 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F4 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F5 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># plot solution</span>
@@ -353,7 +357,7 @@ research &amp; management science</em>. Springer.</p>
 <span class='co'># solve problem with feature weights</span>
 <span class='no'>s2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p2</span>)</div><div class='output co'>#&gt; Gurobi Optimizer version 9.0.1 build v9.0.1rc0 (linux64)
 #&gt; Optimize a model with 50 rows, 50 columns and 123 nonzeros
-#&gt; Model fingerprint: 0xc66c78c2
+#&gt; Model fingerprint: 0xd55461e2
 #&gt; Model has 3 piecewise-linear objective terms
 #&gt; Variable types: 3 continuous, 42 integer (42 binary)
 #&gt; Semi-Variable types: 5 continuous, 0 integer
@@ -361,36 +365,37 @@ research &amp; management science</em>. Springer.</p>
 #&gt;   Matrix range     [9e-02, 1e+02]
 #&gt;   Objective range  [4e-01, 3e+00]
 #&gt;   Bounds range     [1e+00, 1e+00]
-#&gt;   RHS range        [1e+00, 3e+02]
+#&gt;   RHS range        [1e+00, 2e+02]
 #&gt; Found heuristic solution: objective 2.3885146
 #&gt; Presolve removed 16 rows and 12 columns
 #&gt; Presolve time: 0.00s
-#&gt; Presolved: 37 rows, 3035 columns, 3076 nonzeros
-#&gt; Variable types: 3000 continuous, 35 integer (35 binary)
+#&gt; Presolved: 37 rows, 2547 columns, 2589 nonzeros
+#&gt; Variable types: 2512 continuous, 35 integer (35 binary)
 #&gt; Presolve removed 3 rows and 3 columns
-#&gt; Presolved: 34 rows, 3032 columns, 3070 nonzeros
+#&gt; Presolved: 34 rows, 2544 columns, 2583 nonzeros
 #&gt; 
 #&gt; 
-#&gt; Root relaxation: objective 4.523860e+00, 17 iterations, 0.00 seconds
+#&gt; Root relaxation: objective 4.074411e+00, 20 iterations, 0.00 seconds
 #&gt; 
 #&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
 #&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #&gt; 
-#&gt; *    0     0               0       4.5238601    4.52386  0.00%     -    0s
+#&gt;      0     0    4.07441    0    6    2.38851    4.07441  70.6%     -    0s
+#&gt; H    0     0                       4.0567449    4.07441  0.44%     -    0s
 #&gt; 
-#&gt; Explored 0 nodes (17 simplex iterations) in 0.01 seconds
+#&gt; Explored 0 nodes (20 simplex iterations) in 0.03 seconds
 #&gt; Thread count was 1 (of 4 available processors)
 #&gt; 
-#&gt; Solution count 1: 4.52386 
+#&gt; Solution count 1: 4.05674 
 #&gt; 
 #&gt; Optimal solution found (tolerance 0.00e+00)
-#&gt; Best objective 4.523860094486e+00, best bound 4.523860094486e+00, gap 0.0000%</div><div class='input'>
+#&gt; Best objective 4.056744940702e+00, best bound 4.056744940702e+00, gap 0.0000%</div><div class='input'>
 <span class='co'># print solution based on feature weights</span>
 <span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s2</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 21</span><span>
 #&gt;   solution status   obj  cost F1_action F2_action F3_action F4_action F5_action
 #&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span>        1 OPTIM~  4.52  294.         1         0         0         1         1
-#&gt; </span><span style='color: #555555;'># ... with 12 more variables: baseline_action </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F1_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>        1 OPTIM…  4.06  199.         0         0         0         1         1
+#&gt; </span><span style='color: #555555;'># … with 12 more variables: baseline_action </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F1_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   F2_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F3_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F4_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F5_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   baseline_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F1 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F2 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F3 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F4 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F5 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># plot solution based on feature weights</span>

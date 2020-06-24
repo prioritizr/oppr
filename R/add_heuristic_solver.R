@@ -7,7 +7,7 @@ NULL
 #' heuristic algorithm (inspired by Cabeza *et al.* 2004,
 #' Korte & Vygen 2000, Probert *et al.* 2016). Ideally,
 #' solutions should be generated using exact algorithm solvers (e.g.
-#' \code{\link{add_rsymphony_solver}} or \code{\link{add_gurobi_solver}})
+#' [add_rsymphony_solver()] or [add_gurobi_solver()])
 #' because they are guaranteed to identify optimal solutions (Rodrigues & Gaston
 #' 2002).
 #'
@@ -45,10 +45,10 @@ NULL
 #'    locked in actions) are also deselected.
 #'
 #'  \item If the objective function is to maximize biodiversity subject
-#'    to budgetary constraints (e.g. \code{\link{add_max_richness_objective}})
+#'    to budgetary constraints (e.g. [add_max_richness_objective()])
 #'    then go to step 5. Otherwise, if the objective is to minimize cost
 #'    subject to biodiversity constraints (i.e.
-#'    \code{\link{add_min_set_objective}}) then go to step 7.
+#'    [add_min_set_objective()]) then go to step 7.
 #'
 #'  \item The next step is repeated until (i) the number of desired
 #'    solutions is obtained, and (ii) the total cost of the remaining

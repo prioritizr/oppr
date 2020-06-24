@@ -3,14 +3,14 @@ NULL
 
 #' Add locked out constraints
 #'
-#' Add constraints to a project prioritization \code{\link{problem}} to ensure
+#' Add constraints to a project prioritization [problem()] to ensure
 #' that specific actions are not prioritized for funding in the solution. For
 #' example, it may be desirable to lock out specific actions to examine their
 #' importance to the optimal funding scheme.
 #'
 #' @usage add_locked_out_constraints(x, locked_out)
 #'
-#' @param x \code{\link{ProjectProblem-class}} object.
+#' @param x [ProjectProblem-class] object.
 #'
 #' @param locked_out Object that determines which planning units that should be
 #'   locked out. See the Details section for more information.

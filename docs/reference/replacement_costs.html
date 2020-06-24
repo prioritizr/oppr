@@ -41,7 +41,7 @@
 
 <meta property="og:title" content="Replacement cost — replacement_costs" />
 <meta property="og:description" content="Calculate the replacement cost for priority actions in a project
-prioritization problem (Moilanen et al. 2009). Actions associated
+prioritization problem() (Moilanen et al. 2009). Actions associated
 with larger replacement cost values are more irreplaceabe, and may
 need to be implemented sooner than actions with lower replacement cost
 values." />
@@ -76,7 +76,7 @@ values." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2.1</span>
       </span>
     </div>
 
@@ -125,7 +125,7 @@ values." />
 
     <div class="ref-description">
     <p>Calculate the replacement cost for priority actions in a project
-prioritization problem (Moilanen <em>et al.</em> 2009). Actions associated
+prioritization <code><a href='problem.html'>problem()</a></code> (Moilanen <em>et al.</em> 2009). Actions associated
 with larger replacement cost values are more irreplaceabe, and may
 need to be implemented sooner than actions with lower replacement cost
 values.</p>
@@ -138,12 +138,12 @@ values.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>project prioritization <code><a href='problem.html'>problem</a></code>.</p></td>
+      <td><p>project prioritization <code><a href='problem.html'>problem()</a></code>.</p></td>
     </tr>
     <tr>
       <th>solution</th>
-      <td><p><code><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></code> or
-<code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></code> table containing the solutions. Here,
+      <td><p><code><a href='https://rdrr.io/r/base/data.frame.html'>base::data.frame()</a></code> or
+<code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble::tibble()</a></code> table containing the solutions. Here,
 rows correspond to different solutions and columns correspond to
 different actions. Each column in the argument to <code>solution</code> should
 be named according to a different action in <code>x</code>.
@@ -162,47 +162,47 @@ the argument to <code>solutions</code>. Defaults to 1.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></code> table containing the following
-  columns:</p>
-<p></p><dl'>
+    <p>A <code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble::tibble()</a></code> table containing the following
+columns:</p>
+<dl'>
 
-  <dt><code>"action"</code></dt><dd><p><code>character</code> name of each action.</p></dd>
+<dt><code>"action"</code></dt><dd><p><code>character</code> name of each action.</p></dd>
 
-  <dt><code>"cost"</code></dt><dd><p><code>numeric</code> cost of each solution when each
-    action is locked out.</p></dd>
+<dt><code>"cost"</code></dt><dd><p><code>numeric</code> cost of each solution when each
+action is locked out.</p></dd>
 
-  <dt><code>"obj"</code></dt><dd><p><code>numeric</code> objective value of each solution when
-    each action is locked out. This is calculated using the objective
-    function defined for the argument to <code>x</code>.</p></dd>
+<dt><code>"obj"</code></dt><dd><p><code>numeric</code> objective value of each solution when
+each action is locked out. This is calculated using the objective
+function defined for the argument to <code>x</code>.</p></dd>
 
-  <dt><code>"rep_cost"</code></dt><dd><p><code>numeric</code> replacement cost for each
-    action. Greater values indicate greater irreplaceability. Missing
-    (<code>NA</code>) values are assigned to actions which are not selected for
-    funding in the specified solution, infinite (<code>Inf</code>) values are
-    assigned to to actions which are required to meet feasibility
-    constraints, and negative values mean that superior solutions than
-    the specified solution exist.</p></dd>
+<dt><code>"rep_cost"</code></dt><dd><p><code>numeric</code> replacement cost for each
+action. Greater values indicate greater irreplaceability. Missing
+(<code>NA</code>) values are assigned to actions which are not selected for
+funding in the specified solution, infinite (<code>Inf</code>) values are
+assigned to to actions which are required to meet feasibility
+constraints, and negative values mean that superior solutions than
+the specified solution exist.</p></dd>
 
-  
+
 </dl>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Replacement cost values are calculated for each priority action
- specified in the solution. Missing (<code>NA</code>) values are assigned to
- actions which are not selected for funding in the specified solution.
- For a given action, its replacement cost is calculated by
- (i) calculating the objective value for the optimal solution to
- the argument to <code>x</code>, (ii) calculating the objective value for the
- optimal solution to the argument to <code>x</code> with the given action locked
- out, (iii) calculating the difference between the two objective
- values, (iv) the problem has an objective which aims to minimize
- the objective value (only <code><a href='add_min_set_objective.html'>add_min_set_objective</a></code>, then
- the resulting value is multiplied by minus one so that larger values
- always indicate actions with greater irreplaceability. Please note this
- function can take a long time to complete
- for large problems since it involves re-solving the problem for every
- action selected for funding.</p>
+specified in the solution. Missing (<code>NA</code>) values are assigned to
+actions which are not selected for funding in the specified solution.
+For a given action, its replacement cost is calculated by
+(i) calculating the objective value for the optimal solution to
+the argument to <code>x</code>, (ii) calculating the objective value for the
+optimal solution to the argument to <code>x</code> with the given action locked
+out, (iii) calculating the difference between the two objective
+values, (iv) the problem has an objective which aims to minimize
+the objective value (only <code><a href='add_min_set_objective.html'>add_min_set_objective()</a></code>, then
+the resulting value is multiplied by minus one so that larger values
+always indicate actions with greater irreplaceability. Please note this
+function can take a long time to complete
+for large problems since it involves re-solving the problem for every
+action selected for funding.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Moilanen A, Arponen A, Stokland JN &amp; Cabeza M (2009) Assessing replacement
@@ -210,8 +210,8 @@ cost of conservation areas: how does habitat loss influence priorities?
 <em>Biological Conservation</em>, <strong>142</strong>, 575--585.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='solution_statistics.html'>solution_statistics</a></code>,
-  <code><a href='project_cost_effectiveness.html'>project_cost_effectiveness</a></code>.</p></div>
+    <div class='dont-index'><p><code><a href='solution_statistics.html'>solution_statistics()</a></code>,
+<code><a href='project_cost_effectiveness.html'>project_cost_effectiveness()</a></code>.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
@@ -262,8 +262,8 @@ cost of conservation areas: how does habitat loss influence priorities?
 <span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 1 x 21</span><span>
 #&gt;   solution status   obj  cost F1_action F2_action F3_action F4_action F5_action
 #&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span>        1 OPTIM~  1.75  395.         1         1         0         1         1
-#&gt; </span><span style='color: #555555;'># ... with 12 more variables: baseline_action </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F1_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>        1 OPTIM…  1.75  395.         1         1         0         1         1
+#&gt; </span><span style='color: #555555;'># … with 12 more variables: baseline_action </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F1_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   F2_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F3_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F4_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F5_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   baseline_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F1 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F2 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F3 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F4 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F5 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># calculate replacement cost values</span>

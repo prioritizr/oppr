@@ -8,13 +8,13 @@ NULL
 #' the management actions, and the features that need
 #' to be conserved (e.g. species, ecosystems). After constructing this
 #' `ProjectProblem-class` object,
-#' it can be customized using \code{\link{objectives}}, \code{\link{targets}},
-#' \code{\link{weights}}, \code{\link{constraints}} and
-#' \code{\link{solvers}}. After building the problem, the
-#' \code{\link{solve}} function can be used to identify solutions.
+#' it can be customized using [objectives], [targets],
+#' [weights], [constraints], [decisions] and
+#' [solvers]. After building the problem, the
+#' [solve()] function can be used to identify solutions.
 #'
-#' @param projects \code{\link[base]{data.frame}} or
-#'   \code{\link[tibble]{tibble}} table containing project data. Here, each row
+#' @param projects [base::data.frame()] or
+#'   [tibble::tibble()] table containing project data. Here, each row
 #'   should correspond to a different project and columns should contain data
 #'   that correspond to each project. This object should contain data that
 #'   denote (i)
@@ -41,7 +41,7 @@ NULL
 #'   funding of both projects, which costs \$150 and provides a 90% chance
 #'   of persistence.
 #'
-#' @param actions \code{\link[base]{data.frame}} or \code{\link[tibble]{tibble}}
+#' @param actions [base::data.frame()] or [tibble::tibble()]
 #'   table containing the action data. Here, each row should correspond to a
 #'   different action and columns should contain data that correspond to
 #'   each action. At a minimum, this object should contain data that denote (i)
@@ -49,13 +49,13 @@ NULL
 #'   `action_name_column`), (ii) the cost of each action (specified in the
 #'   argument to `action_cost_column`). Optionally, it may also contain
 #'   data that indicate actions should be (iii) locked in or (iv) locked
-#'   out (see \code{\link{add_locked_in_constraints}} and
-#'   \code{\link{add_locked_out_constraints}}). It should also contain a
+#'   out (see [add_locked_in_constraints()] and
+#'   [add_locked_out_constraints()]). It should also contain a
 #'   zero-cost baseline action that is associated with the baseline project.
 #
 #'
-#' @param features \code{\link[base]{data.frame}} or
-#'   \code{\link[tibble]{tibble}}
+#' @param features [base::data.frame()] or
+#'   [tibble::tibble()]
 #'   table containing the feature data. Here, each row should correspond
 #'   to a different feature and columns should contain data that correspond
 #'   to each feature. At a minimum, this object should contain data that denote
@@ -132,14 +132,14 @@ NULL
 #'   constraints impose limits such as the total budget available for funding
 #'   management actions. For more information on the mathematical
 #'   formulations used in this package, please refer to the manual entries for
-#'   the available objectives (listed in \code{\link{objectives}}).
+#'   the available objectives (listed in [objectives]).
 #'
-#' @return A fresh \code{\link{ProjectProblem-class}} object.
+#' @return A new [ProjectProblem-class] object.
 #'
-#' @seealso \code{\link{constraints}}, \code{\link{decisions}},
-#'  \code{\link{objectives}}, \code{\link{solvers}}, \code{\link{targets}},
-#'  \code{\link{weights}}, \code{\link{solution_statistics}},
-#'  \code{\link{plot.ProjectProblem}}.
+#' @seealso [constraints], [decisions],
+#'  [objectives], [solvers], [targets],
+#'  [weights], [solution_statistics()],
+#'  [plot.ProjectProblem()].
 #'
 #' @name problem
 #'

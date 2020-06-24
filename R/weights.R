@@ -12,14 +12,14 @@ NULL
 #'
 #'   \describe{
 #'
-#'   \item{\code{\link{add_feature_weights}}}{
-#'     Set feature weights for a project prioritization \code{\link{problem}}.}
+#'   \item{[add_feature_weights()]}{
+#'     Set feature weights for a project prioritization [problem()].}
 #'
 #'   }
 #'
-#' @seealso \code{\link{constraints}}, \code{\link{decisions}},
-#'  \code{\link{objectives}}, \code{\link{problem}},
-#'  \code{\link{solvers}}, \code{\link{targets}}.
+#' @seealso [constraints], [decisions],
+#'  [objectives], [problem()],
+#'  [solvers], [targets].
 #'
 #' @examples
 #' # load data

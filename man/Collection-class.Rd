@@ -6,12 +6,12 @@
 \title{Collection prototype}
 \description{
 This prototype represents a collection of
-\code{\link{ProjectModifier-class}} objects.
+\linkS4class{ProjectModifier} objects.
 }
 \section{Fields}{
 
 \describe{
-\item{$...}{\code{\link{ProjectModifier-class}} objects stored
+\item{$...}{\linkS4class{ProjectModifier} objects stored
 in the collection.}
 }
 }
@@ -67,7 +67,7 @@ in the collection.}
 
 \item{length}{\code{integer} number of objects inside collection.}
 
-\item{add}{add \code{\link{ProjectModifier-class}} object.}
+\item{add}{add \linkS4class{ProjectModifier} object.}
 
 \item{remove}{remove an item from the collection.}
 
@@ -80,12 +80,12 @@ to a new object.}
 \item{render_parameter}{generate a \emph{shiny} widget to modify the
 the value of a parameter (specified by argument \code{id}).}
 
-\item{render_all_parameters}{generate a \code{\link[shiny]{div}}
+\item{render_all_parameters}{generate a \code{\link[shiny:div]{shiny::div()}}
 containing all the parameters" widgets.}
 
 }
 }
 
 \seealso{
-\code{\link{Constraint-class}}.
+\linkS4class{Constraint}.
 }

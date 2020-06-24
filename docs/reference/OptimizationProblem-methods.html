@@ -41,7 +41,7 @@
 
 <meta property="og:title" content="Optimization problem methods — OptimizationProblem-methods" />
 <meta property="og:description" content="These functions are used to access data from an
-OptimizationProblem-class object." />
+OptimizationProblem object." />
 
 
 
@@ -73,7 +73,7 @@ OptimizationProblem-class object." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2.1</span>
       </span>
     </div>
 
@@ -122,7 +122,7 @@ OptimizationProblem-class object." />
 
     <div class="ref-description">
     <p>These functions are used to access data from an
-<code><a href='OptimizationProblem-class.html'>OptimizationProblem-class</a></code> object.</p>
+<a href='OptimizationProblem-class.html'>OptimizationProblem</a> object.</p>
     </div>
 
     <pre class="usage"><span class='fu'>nrow</span>(<span class='no'>x</span>)
@@ -210,15 +210,15 @@ OptimizationProblem-class object." />
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p><code><a href='OptimizationProblem-class.html'>OptimizationProblem-class</a></code> object.</p></td>
+      <td><p><a href='OptimizationProblem-class.html'>OptimizationProblem</a> object.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>list</code>, <code><a href='https://rdrr.io/pkg/Matrix/man/dgCMatrix-class.html'>dgCMatrix-class</a></code>, <code>numeric</code>
-  vector, <code>numeric</code> vector, or scalar <code>integer</code> depending on the
-  method used.</p>
+    <p><code>list</code>, <a href='https://rdrr.io/pkg/Matrix/man/dgCMatrix-class.html'>Matrix::dgCMatrix</a>, <code>numeric</code>
+vector, <code>numeric</code> vector, or scalar <code>integer</code> depending on the
+method used.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The functions return the following data:</p>
@@ -231,31 +231,31 @@ OptimizationProblem-class object." />
 <dt>ncell</dt><dd><p><code>integer</code> number of cells.</p></dd>
 
 <dt>modelsense</dt><dd><p><code>character</code> describing if the problem is to be
-  maximized (<code>"max"</code>) or minimized (<code>"min"</code>).</p></dd>
+maximized (<code>"max"</code>) or minimized (<code>"min"</code>).</p></dd>
 
 <dt>vtype</dt><dd><p><code>character</code> describing the type of each decision variable:
-  binary (<code>"B"</code>), semi-continuous (<code>"S"</code>), or continuous
-  (<code>"C"</code>)</p></dd>
+binary (<code>"B"</code>), semi-continuous (<code>"S"</code>), or continuous
+(<code>"C"</code>)</p></dd>
 
 <dt>obj</dt><dd><p><code>numeric</code> vector defining the linear components of the
-  objective function.</p></dd>
+objective function.</p></dd>
 
 <dt>pwlobj</dt><dd><p><code>list</code> object defining the piece-wise linear components
-  of the objective function.</p></dd>
+of the objective function.</p></dd>
 
-<dt>A</dt><dd><p><code><a href='https://rdrr.io/pkg/Matrix/man/dgCMatrix-class.html'>dgCMatrix-class</a></code> matrix object defining the
-  problem matrix.</p></dd>
+<dt>A</dt><dd><p><a href='https://rdrr.io/pkg/Matrix/man/dgCMatrix-class.html'>Matrix::dgCMatrix</a> matrix object defining the
+problem matrix.</p></dd>
 
 <dt>rhs</dt><dd><p><code>numeric</code> vector with right-hand-side linear constraints</p></dd>
 
 <dt>sense</dt><dd><p><code>character</code> vector with the senses of the linear
-  constraints (<code>"&lt;="</code>, <code>"&gt;="</code>, <code>"="</code>).</p></dd>
+constraints (<code>"&lt;="</code>, <code>"&gt;="</code>, <code>"="</code>).</p></dd>
 
 <dt>lb</dt><dd><p><code>numeric</code> lower bound for each decision variable. Missing data
-  values (<code>NA</code>) indicate no lower bound for a given variable.</p></dd>
+values (<code>NA</code>) indicate no lower bound for a given variable.</p></dd>
 
 <dt>ub</dt><dd><p><code>numeric</code> upper bounds for each decision variable. Missing
-  data values (<code>NA</code>) indicate no upper bound for a given variable.</p></dd>
+data values (<code>NA</code>) indicate no upper bound for a given variable.</p></dd>
 
 <dt>number_of_projects</dt><dd><p><code>integer</code> number of projects in the problem.</p></dd>
 
@@ -264,7 +264,7 @@ OptimizationProblem-class object." />
 <dt>number_of_features</dt><dd><p><code>integer</code> number of features in the problem.</p></dd>
 
 <dt>number_of_branches</dt><dd><p><code>integer</code> number of phylogenetic branches in
-  the problem.</p></dd>
+the problem.</p></dd>
 
 
 </dl>

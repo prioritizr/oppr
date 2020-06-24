@@ -4,12 +4,12 @@ NULL
 #' Add a \pkg{Gurobi} solver
 #'
 #' Specify that the *Gurobi* software should be used to solve a
-#' project prioritization \code{\link{problem}}. This function can also be
+#' project prioritization [problem()]. This function can also be
 #' used to customize the behavior of the solver. In addition to the
 #' *Gurobi* software suite, it also requires the \pkg{gurobi} package to
 #' be installed.
 #'
-#' @param x \code{\link{ProjectProblem-class}} object.
+#' @param x [ProjectProblem-class] object.
 #'
 #' @param gap `numeric` gap to optimality. This gap is relative when
 #'   solving problems using \pkg{gurobi}, and will cause the optimizer to
@@ -85,10 +85,10 @@ NULL
 #'   [Mac OSX](http://www.gurobi.com/documentation/8.1/quickstart_mac/r_installing_the_r_package.html), and
 #'   [Windows](http://www.gurobi.com/documentation/8.1/quickstart_windows/r_installing_the_r_package.html) operating systems).
 #'
-#' @return \code{\link{ProjectProblem-class}} object with the solver added
+#' @return [ProjectProblem-class] object with the solver added
 #'   to it.
 #'
-#' @seealso \code{\link{solvers}}.
+#' @seealso [solvers].
 #'
 #' @examples
 #' \donttest{

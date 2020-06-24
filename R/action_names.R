@@ -5,7 +5,7 @@ NULL
 #'
 #' Extract the names of the actions in an object.
 #'
-#' @param x \code{\link{ProjectProblem-class}}.
+#' @param x [ProjectProblem-class].
 #'
 #' @return `character` action names.
 #'

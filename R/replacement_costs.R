@@ -4,7 +4,7 @@ NULL
 #' Replacement cost
 #'
 #' Calculate the replacement cost for priority actions in a project
-#' prioritization problem (Moilanen *et al.* 2009). Actions associated
+#' prioritization [problem()] (Moilanen *et al.* 2009). Actions associated
 #' with larger replacement cost values are more irreplaceabe, and may
 #' need to be implemented sooner than actions with lower replacement cost
 #' values.
@@ -25,14 +25,14 @@ NULL
 #'  optimal solution to the argument to `x` with the given action locked
 #'  out, (iii) calculating the difference between the two objective
 #'  values, (iv) the problem has an objective which aims to minimize
-#'  the objective value (only \code{\link{add_min_set_objective}}, then
+#'  the objective value (only [add_min_set_objective()], then
 #'  the resulting value is multiplied by minus one so that larger values
 #'  always indicate actions with greater irreplaceability. Please note this
 #'  function can take a long time to complete
 #'  for large problems since it involves re-solving the problem for every
 #'  action selected for funding.
 #'
-#' @return A \code{\link[tibble]{tibble}} table containing the following
+#' @return A [tibble::tibble()] table containing the following
 #'   columns:
 #'
 #'   \describe{
@@ -61,8 +61,8 @@ NULL
 #' cost of conservation areas: how does habitat loss influence priorities?
 #' *Biological Conservation*, **142**, 575--585.
 #'
-#' @seealso \code{\link{solution_statistics}},
-#'   \code{\link{project_cost_effectiveness}}.
+#' @seealso [solution_statistics()],
+#'   [project_cost_effectiveness()].
 #'
 #' @examples
 #' \donttest{

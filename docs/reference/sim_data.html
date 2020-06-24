@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2.1</span>
       </span>
     </div>
 
@@ -123,9 +123,9 @@
     <p>Simulated data for prioritizing conservations projects.</p>
     </div>
 
-    <pre class="usage"><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>sim_projects</span>)
+    <pre class="usage"><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>sim_actions</span>)
 
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>sim_actions</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>sim_projects</span>)
 
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>sim_features</span>)
 
@@ -136,54 +136,59 @@
 
     
 <dl'>
-  <dt>sim_projects</dt><dd><p><code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></code> object.</p></dd>
-  <dt>sim_actions</dt><dd><p><code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></code> object.</p></dd>
-  <dt>sim_features</dt><dd><p><code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></code> object.</p></dd>
-  <dt>sim_tree</dt><dd><p><code><a href='https://rdrr.io/pkg/ape/man/read.tree.html'>phylo</a></code> object.</p></dd>
+<dt>sim_projects</dt><dd><p><code><a href='https://rdrr.io/pkg/tibble/man/tibble.html'>tibble::tibble()</a></code> object.</p></dd>
+<dt>sim_actions</dt><dd><p><code><a href='https://rdrr.io/pkg/tibble/man/tibble.html'>tibble::tibble()</a></code> object.</p></dd>
+<dt>sim_features</dt><dd><p><code><a href='https://rdrr.io/pkg/tibble/man/tibble.html'>tibble::tibble()</a></code> object.</p></dd>
+<dt>sim_tree</dt><dd><p><code><a href='https://rdrr.io/pkg/ape/man/read.tree.html'>ape::phylo()</a></code> object.</p></dd>
 
 </dl>
 
-<p>An object of class <code>tbl_df</code> (inherits from <code>tbl</code>, <code>data.frame</code>) with 6 rows and 13 columns.</p>
-<p>An object of class <code>tbl_df</code> (inherits from <code>tbl</code>, <code>data.frame</code>) with 6 rows and 4 columns.</p>
-<p>An object of class <code>tbl_df</code> (inherits from <code>tbl</code>, <code>data.frame</code>) with 5 rows and 2 columns.</p>
-<p>An object of class <code>phylo</code> of length 4.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The data set contains the following objects:</p>
 <dl'>
-
-  <dt><code>sim_projects</code></dt><dd><p>A <code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></code> containing
-    data for six simulated conservation projects. Each row corresponds to a
-    different project and each column contains information about the
-    projects. This table contains the following columns:    <dl'>      <dt><code>"name"</code></dt><dd><p><code>character</code> name for each project.</p></dd>      <dt><code>"success"</code></dt><dd><p><code>numeric</code> probability of each project
-        succeeding if it is funded.</p></dd>      <dt><code>"F1"</code> ... <code>"F5"</code></dt><dd><p><code>numeric</code> columns for each
-        feature (i.e. <code>"F1"</code>, <code>"F2"</code>, <code>"F3"</code>, <code>"F4"</code>,
-        <code>"F5"</code>, indicating the enhanced probability that each
-        feature will survive if it funded. Missing values (<code>NA</code>)
-        indicate that a feature does not benefit from a project being
-        funded.</p></dd>      <dt><code>"F1_action"</code> ... <code>"F5_action"</code></dt><dd><p><code>logical</code>
-        columns for each action, ranging from <code>"F1_action"</code> to
-        <code>"F5_action"</code> indicating if
-        an action is associated with a project (<code>TRUE</code>) or not
-        (<code>FALSE</code>).</p></dd>      <dt><code>"baseline_action"</code></dt><dd><p><code>logical</code>
-        column indicating if a project is associated with the baseline
-        action (<code>TRUE</code>) or not (<code>FALSE</code>). This action is only
-        associated with the baseline project.</p></dd></dl></p></dd>
-
-  <dt><code>sim_actions</code></dt><dd><p>A <code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></code> containing
-    data for six simulated actions. Each row corresponds to a
-    different action and each column contains information about the
-    actions. This table contains the following columns:    <dl'>      <dt><code>"name"</code></dt><dd><p><code>character</code> name for each action.</p></dd>      <dt><code>"cost"</code></dt><dd><p><code>numeric</code> cost for each action.</p></dd>      <dt><code>"locked_in"</code></dt><dd><p><code>logical</code> indicating if certain
-        actions should be locked into the solution.</p></dd>      <dt><code>"locked_out"</code></dt><dd><p><code>logical</code> indicating if certain
-        actions should be locked out of the solution.</p></dd></dl></p></dd>
-
-  <dt><code>sim_features</code></dt><dd><p>A <code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></code> containing
-    data for five simulated features. Each row corresponds to a
-    different feature and each column contains information about the
-    features. This table contains the following columns:    <dl'>      <dt><code>"name"</code></dt><dd><p><code>character</code> name for each feature.</p></dd>      <dt><code>"weight"</code></dt><dd><p><code>numeric</code> weight for each feature.</p></dd></dl></p></dd>
-
-    <dt>tree</dt><dd><p><code><a href='https://rdrr.io/pkg/ape/man/read.tree.html'>phylo</a></code> phylogenetic tree for the features.</p></dd>
-
+<dt><code>sim_projects</code></dt><dd><p>A <code><a href='https://rdrr.io/pkg/tibble/man/tibble.html'>tibble::tibble()</a></code> object containing
+data for six simulated conservation projects. Each row corresponds to a
+different project and each column contains information about the
+projects. This table contains the following columns:
+<dl'>
+<dt><code>"name"</code></dt><dd><p><code>character</code> name for each project.</p></dd>
+<dt><code>"success"</code></dt><dd><p><code>numeric</code> probability of each project
+succeeding if it is funded.</p></dd>
+<dt><code>"F1"</code> ... <code>"F5"</code></dt><dd><p><code>numeric</code> columns for each
+feature (i.e. <code>"F1"</code>, <code>"F2"</code>, <code>"F3"</code>, <code>"F4"</code>,
+<code>"F5"</code>, indicating the enhanced probability that each
+feature will survive if it funded. Missing values (<code>NA</code>)
+indicate that a feature does not benefit from a project being
+funded.</p></dd>
+<dt><code>"F1_action"</code> ... <code>"F5_action"</code></dt><dd><p><code>logical</code>
+columns for each action, ranging from <code>"F1_action"</code> to
+<code>"F5_action"</code> indicating if
+an action is associated with a project (<code>TRUE</code>) or not
+(<code>FALSE</code>).</p></dd>
+<dt><code>"baseline_action"</code></dt><dd><p><code>logical</code>
+column indicating if a project is associated with the baseline
+action (<code>TRUE</code>) or not (<code>FALSE</code>). This action is only
+associated with the baseline project.</p></dd></dl></p></dd>
+<dt><code>sim_actions</code></dt><dd><p>A <code><a href='https://rdrr.io/pkg/tibble/man/tibble.html'>tibble::tibble()</a></code> object containing
+data for six simulated actions. Each row corresponds to a
+different action and each column contains information about the
+actions. This table contains the following columns:
+<dl'>
+<dt><code>"name"</code></dt><dd><p><code>character</code> name for each action.</p></dd>
+<dt><code>"cost"</code></dt><dd><p><code>numeric</code> cost for each action.</p></dd>
+<dt><code>"locked_in"</code></dt><dd><p><code>logical</code> indicating if certain
+actions should be locked into the solution.</p></dd>
+<dt><code>"locked_out"</code></dt><dd><p><code>logical</code> indicating if certain
+actions should be locked out of the solution.</p></dd></dl></p></dd>
+<dt><code>sim_features</code></dt><dd><p>A <code><a href='https://rdrr.io/pkg/tibble/man/tibble.html'>tibble::tibble()</a></code> object containing
+data for five simulated features. Each row corresponds to a
+different feature and each column contains information about the
+features. This table contains the following columns:
+<dl'>
+<dt><code>"name"</code></dt><dd><p><code>character</code> name for each feature.</p></dd>
+<dt><code>"weight"</code></dt><dd><p><code>numeric</code> weight for each feature.</p></dd></dl></p></dd>
+<dt>tree</dt><dd><p><code><a href='https://rdrr.io/pkg/ape/man/read.tree.html'>ape::phylo()</a></code> phylogenetic tree for the features.</p></dd>
 
 </dl>
 
@@ -196,13 +201,13 @@
 <span class='fu'><a href='print.html'>print</a></span>(<span class='no'>sim_projects</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 6 x 13</span><span>
 #&gt;   name  success     F1     F2      F3     F4     F5 F1_action F2_action
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>    
-#&gt; </span><span style='color: #555555;'>1</span><span> F1_p~   0.919  0.791 </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     TRUE      FALSE    
-#&gt; </span><span style='color: #555555;'>2</span><span> F2_p~   0.923 </span><span style='color: #BB0000;'>NA</span><span>      0.888 </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     FALSE     TRUE     
-#&gt; </span><span style='color: #555555;'>3</span><span> F3_p~   0.829 </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>      0.502  </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     FALSE     FALSE    
-#&gt; </span><span style='color: #555555;'>4</span><span> F4_p~   0.848 </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>       0.690 </span><span style='color: #BB0000;'>NA</span><span>     FALSE     FALSE    
-#&gt; </span><span style='color: #555555;'>5</span><span> F5_p~   0.814 </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>      0.617 FALSE     FALSE    
-#&gt; </span><span style='color: #555555;'>6</span><span> base~   1      0.298  0.250  0.086</span><span style='text-decoration: underline;'>5</span><span>  0.249  0.182 FALSE     FALSE    
-#&gt; </span><span style='color: #555555;'># ... with 4 more variables: F3_action </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, F4_action </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, F5_action </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> F1_p…   0.919  0.791 </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     TRUE      FALSE    
+#&gt; </span><span style='color: #555555;'>2</span><span> F2_p…   0.923 </span><span style='color: #BB0000;'>NA</span><span>      0.888 </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     FALSE     TRUE     
+#&gt; </span><span style='color: #555555;'>3</span><span> F3_p…   0.829 </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>      0.502  </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     FALSE     FALSE    
+#&gt; </span><span style='color: #555555;'>4</span><span> F4_p…   0.848 </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>       0.690 </span><span style='color: #BB0000;'>NA</span><span>     FALSE     FALSE    
+#&gt; </span><span style='color: #555555;'>5</span><span> F5_p…   0.814 </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>      0.617 FALSE     FALSE    
+#&gt; </span><span style='color: #555555;'>6</span><span> base…   1      0.298  0.250  0.086</span><span style='text-decoration: underline;'>5</span><span>  0.249  0.182 FALSE     FALSE    
+#&gt; </span><span style='color: #555555;'># … with 4 more variables: F3_action </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, F4_action </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, F5_action </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   baseline_action </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span></div><div class='input'><span class='co'># print action data</span>
 <span class='fu'><a href='print.html'>print</a></span>(<span class='no'>sim_actions</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 6 x 4</span><span>
 #&gt;   name             cost locked_in locked_out

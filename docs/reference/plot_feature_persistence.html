@@ -41,7 +41,7 @@
 
 <meta property="og:title" content="Plot a bar plot to visualize a project prioritization — plot_feature_persistence" />
 <meta property="og:description" content="Create a bar plot to visualize how likely features are to persist into
-the future under a solution to a project prioritization problem." />
+the future under a solution to a project prioritization problem()." />
 
 
 
@@ -73,7 +73,7 @@ the future under a solution to a project prioritization problem." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2.1</span>
       </span>
     </div>
 
@@ -122,7 +122,7 @@ the future under a solution to a project prioritization problem." />
 
     <div class="ref-description">
     <p>Create a bar plot to visualize how likely features are to persist into
-the future under a solution to a project prioritization problem.</p>
+the future under a solution to a project prioritization <code><a href='problem.html'>problem()</a></code>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>plot_feature_persistence</span>(
@@ -138,12 +138,12 @@ the future under a solution to a project prioritization problem.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>project prioritization <code><a href='problem.html'>problem</a></code>.</p></td>
+      <td><p>project prioritization <code><a href='problem.html'>problem()</a></code>.</p></td>
     </tr>
     <tr>
       <th>solution</th>
-      <td><p><code><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></code> or
-<code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></code> table containing the solutions. Here,
+      <td><p><code><a href='https://rdrr.io/r/base/data.frame.html'>base::data.frame()</a></code> or
+<code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble::tibble()</a></code> table containing the solutions. Here,
 rows correspond to different solutions and columns correspond to
 different actions. Each column in the argument to <code>solution</code> should
 be named according to a different action in <code>x</code>.
@@ -175,21 +175,21 @@ the plot be returned instead of the plot? Defaults to <code>FALSE</code>.</p></t
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></code> object, or a
-  <code><a href='https://tibble.tidyverse.org/reference/tbl_df-class.html'>tbl_df</a></code> object if <code>return_data</code> is
-  <code>TRUE</code>.</p>
+    <p>A <code><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot()</a></code> object, or a
+<code><a href='https://tibble.tidyverse.org/reference/tbl_df-class.html'>tibble::tbl_df()</a></code> object if <code>return_data</code> is
+<code>TRUE</code>.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>In this plot, each bar corresponds to a different feature.
-  The length of each bar indicates the probability that a given feature
-  will persist into the future, and the color of each bar indicates
-  the weight for a given feature.
-  Features that directly benefit from at least a single completely funded
-  project with a non-zero cost are depicted with an asterisk symbol.
-  Additionally, features that indirectly benefit from funded
-  projects---because they are associated with partially funded
-  projects that have non-zero costs and share actions with at least one
-  completely funded project---are depicted with an open circle symbol.</p>
+The length of each bar indicates the probability that a given feature
+will persist into the future, and the color of each bar indicates
+the weight for a given feature.
+Features that directly benefit from at least a single completely funded
+project with a non-zero cost are depicted with an asterisk symbol.
+Additionally, features that indirectly benefit from funded
+projects---because they are associated with partially funded
+projects that have non-zero costs and share actions with at least one
+completely funded project---are depicted with an open circle symbol.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># set seed for reproducibility</span>

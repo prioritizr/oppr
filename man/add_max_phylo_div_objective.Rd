@@ -7,21 +7,21 @@
 add_max_phylo_div_objective(x, budget, tree)
 }
 \arguments{
-\item{x}{\code{\link{ProjectProblem-class}} object.}
+\item{x}{\linkS4class{ProjectProblem} object.}
 
 \item{budget}{\code{numeric} budget for funding actions.}
 
-\item{tree}{\code{\link[ape]{phylo}} phylogenetic tree describing the
+\item{tree}{\code{\link[ape:phylo]{ape::phylo()}} phylogenetic tree describing the
 evolutionary relationships between the features. Note that the
 argument to \code{tree} must contain every feature, and only the
 features, present in the argument to \code{x}.}
 }
 \value{
-\code{\link{ProjectProblem-class}} object with the objective
+\linkS4class{ProjectProblem} object with the objective
 added to it.
 }
 \description{
-Set the objective of a project prioritization \code{\link{problem}} to
+Set the objective of a project prioritization \code{\link[=problem]{problem()}} to
 maximize the phylogenetic diversity that is expected to persist into the
 future, whilst ensuring that the cost of the solution is within a
 pre-specified budget (Bennett \emph{et al.} 2014, Faith 2008).
@@ -165,10 +165,10 @@ data(sim_projects, sim_features, sim_actions, sim_tree)
 # plot tree
 plot(sim_tree)
 
-# build problem with maximum phylogenetic diversity objective and $300 budget
+# build problem with maximum phylogenetic diversity objective and $200 budget
 p1 <- problem(sim_projects, sim_actions, sim_features,
              "name", "success", "name", "cost", "name") \%>\%
-      add_max_phylo_div_objective(budget = 300, tree = sim_tree) \%>\%
+      add_max_phylo_div_objective(budget = 200, tree = sim_tree) \%>\%
       add_binary_decisions()
 
 \donttest{
@@ -212,5 +212,5 @@ Hillier FS & Price CC (2005) \emph{International series in operations
 research & management science}. Springer.
 }
 \seealso{
-\code{\link{objectives}}.
+\link{objectives}.
 }

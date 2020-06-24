@@ -40,7 +40,7 @@
 
 
 <meta property="og:title" content="Add maximum targets met objective — add_max_targets_met_objective" />
-<meta property="og:description" content="Set the objective of a project prioritization problem to
+<meta property="og:description" content="Set the objective of a project prioritization problem() to
 maximize the total number of persistence targets met for the features, whilst
 ensuring that the cost of the solution is within a pre-specified budget
 (Chades et al. 2015). In some project prioritization exercises,
@@ -55,7 +55,7 @@ solution which
 secures a 95% chance of persistence will accrue the same benefit as a
 solution which secures a 50% chance of persistence). Furthermore, weights
 can also be used to specify the relative importance of meeting targets
-for specific features (see add_feature_weights)." />
+for specific features (see add_feature_weights())." />
 
 
 
@@ -87,7 +87,7 @@ for specific features (see add_feature_weights)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2.1</span>
       </span>
     </div>
 
@@ -135,7 +135,7 @@ for specific features (see add_feature_weights)." />
     </div>
 
     <div class="ref-description">
-    <p>Set the objective of a project prioritization <code><a href='problem.html'>problem</a></code> to
+    <p>Set the objective of a project prioritization <code><a href='problem.html'>problem()</a></code> to
 maximize the total number of persistence targets met for the features, whilst
 ensuring that the cost of the solution is within a pre-specified budget
 (Chades <em>et al.</em> 2015). In some project prioritization exercises,
@@ -150,7 +150,7 @@ solution which
 secures a 95% chance of persistence will accrue the same benefit as a
 solution which secures a 50% chance of persistence). Furthermore, weights
 can also be used to specify the relative importance of meeting targets
-for specific features (see <code><a href='add_feature_weights.html'>add_feature_weights</a></code>).</p>
+for specific features (see <code><a href='add_feature_weights.html'>add_feature_weights()</a></code>).</p>
     </div>
 
     <pre class="usage"><span class='fu'>add_max_targets_met_objective</span>(<span class='no'>x</span>, <span class='no'>budget</span>)</pre>
@@ -160,7 +160,7 @@ for specific features (see <code><a href='add_feature_weights.html'>add_feature_
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p><code><a href='ProjectProblem-class.html'>ProjectProblem-class</a></code> object.</p></td>
+      <td><p><a href='ProjectProblem-class.html'>ProjectProblem</a> object.</p></td>
     </tr>
     <tr>
       <th>budget</th>
@@ -170,64 +170,64 @@ for specific features (see <code><a href='add_feature_weights.html'>add_feature_
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code><a href='ProjectProblem-class.html'>ProjectProblem-class</a></code> object with the objective
-  added to it.</p>
+    <p><a href='ProjectProblem-class.html'>ProjectProblem</a> object with the objective
+added to it.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>A problem objective is used to specify the overall goal of the
-  project prioritization problem.
-  Here, the maximum targets met objective seeks to find the set of actions
-  that maximizes the total number of features (e.g. populations, species,
-  ecosystems) that have met their persistence targets within a
-  pre-specified budget. Let \(I\) represent the set of conservation
-  actions (indexed by \(i\)). Let \(C_i\) denote the cost for funding
-  action \(i\), and let \(m\) denote the maximum expenditure (i.e. the
-  budget). Also, let \(F\) represent each feature (indexed by \(f\)),
-  \(W_f\) represent the weight for each feature \(f\) (defaults to one
-  for each feature unless specified otherwise), \(T_f\) represent the
-  persistence target for each feature \(f\), and \(E_f\) denote the
-  probability that each feature will go extinct given the funded
-  conservation projects.</p>
+project prioritization problem.
+Here, the maximum targets met objective seeks to find the set of actions
+that maximizes the total number of features (e.g. populations, species,
+ecosystems) that have met their persistence targets within a
+pre-specified budget. Let \(I\) represent the set of conservation
+actions (indexed by \(i\)). Let \(C_i\) denote the cost for funding
+action \(i\), and let \(m\) denote the maximum expenditure (i.e. the
+budget). Also, let \(F\) represent each feature (indexed by \(f\)),
+\(W_f\) represent the weight for each feature \(f\) (defaults to one
+for each feature unless specified otherwise), \(T_f\) represent the
+persistence target for each feature \(f\), and \(E_f\) denote the
+probability that each feature will go extinct given the funded
+conservation projects.</p>
 <p>To guide the prioritization, the conservation actions are organized into
-  conservation projects. Let \(J\) denote the set of conservation projects
-  (indexed by \(j\)), and let \(A_{ij}\) denote which actions
-  \(i \in I\) comprise each conservation project
-  \(j \in J\) using zeros and ones. Next, let \(P_j\) represent
-  the probability of project \(j\) being successful if it is funded. Also,
-  let \(B_{fj}\) denote the enhanced probability that each feature
-  \(f \in F\) associated with the project \(j \in J\)
-  will persist if all of the actions that comprise project \(j\) are funded
-  and that project is allocated to feature \(f\).
-  For convenience,
-  let \(Q_{fj}\) denote the actual probability that each
-  \(f \in F\) associated with the project \(j \in J\)
-  is expected to persist if the project is funded. If the argument
-  to <code>adjust_for_baseline</code> in the <code>problem</code> function was set to
-  <code>TRUE</code>, and this is the default behavior, then
-  \(Q_{fj} = (P_{j} \times B_{fj}) + \bigg(\big(1 - (P_{j} B_{fj})\big)
+conservation projects. Let \(J\) denote the set of conservation projects
+(indexed by \(j\)), and let \(A_{ij}\) denote which actions
+\(i \in I\) comprise each conservation project
+\(j \in J\) using zeros and ones. Next, let \(P_j\) represent
+the probability of project \(j\) being successful if it is funded. Also,
+let \(B_{fj}\) denote the enhanced probability that each feature
+\(f \in F\) associated with the project \(j \in J\)
+will persist if all of the actions that comprise project \(j\) are funded
+and that project is allocated to feature \(f\).
+For convenience,
+let \(Q_{fj}\) denote the actual probability that each
+\(f \in F\) associated with the project \(j \in J\)
+is expected to persist if the project is funded. If the argument
+to <code>adjust_for_baseline</code> in the <code>problem</code> function was set to
+<code>TRUE</code>, and this is the default behavior, then
+\(Q_{fj} = (P_{j} \times B_{fj}) + \bigg(\big(1 - (P_{j} B_{fj})\big)
   \times (P_{n} \times B_{fn})\bigg)\), where <code>n</code> corresponds to the
-  baseline "do nothing" project. This means that the probability
-  of a feature persisting if a project is allocated to a feature
-  depends on (i) the probability of the project succeeding, (ii) the
-  probability of the feature persisting if the project does not fail,
-  and (iii) the probability of the feature persisting even if the project
-  fails. Otherwise, if the argument is set to <code>FALSE</code>, then
-  \(Q_{fj} = P_{j} \times B_{fj}\).</p>
+baseline "do nothing" project. This means that the probability
+of a feature persisting if a project is allocated to a feature
+depends on (i) the probability of the project succeeding, (ii) the
+probability of the feature persisting if the project does not fail,
+and (iii) the probability of the feature persisting even if the project
+fails. Otherwise, if the argument is set to <code>FALSE</code>, then
+\(Q_{fj} = P_{j} \times B_{fj}\).</p>
 <p>The binary control variables \(X_i\) in this problem indicate whether
-  each project \(i \in I\) is funded or not. The decision
-  variables in this problem are the \(Y_{j}\), \(Z_{fj}\), \(E_f\),
-  and \(G_f\) variables.
-  Specifically, the binary \(Y_{j}\) variables indicate if project \(j\)
-  is funded or not based on which actions are funded; the binary
-  \(Z_{fj}\) variables indicate if project \(j\) is used to manage
-  feature \(f\) or not; the semi-continuous \(E_f\) variables
-  denote the probability that feature \(f\) will go extinct; and the
-  \(G_f\) variables indicate if the persistence target for feature
-  \(f\) is met.</p>
+each project \(i \in I\) is funded or not. The decision
+variables in this problem are the \(Y_{j}\), \(Z_{fj}\), \(E_f\),
+and \(G_f\) variables.
+Specifically, the binary \(Y_{j}\) variables indicate if project \(j\)
+is funded or not based on which actions are funded; the binary
+\(Z_{fj}\) variables indicate if project \(j\) is used to manage
+feature \(f\) or not; the semi-continuous \(E_f\) variables
+denote the probability that feature \(f\) will go extinct; and the
+\(G_f\) variables indicate if the persistence target for feature
+\(f\) is met.</p>
 <p>Now that we have defined all the data and variables, we can formulate
-  the problem. For convenience, let the symbol used to denote each set also
-  represent its cardinality (e.g. if there are ten features, let \(F\)
-  represent the set of ten features and also the number ten).</p>
+the problem. For convenience, let the symbol used to denote each set also
+represent its cardinality (e.g. if there are ten features, let \(F\)
+represent the set of ten features and also the number ten).</p>
 <p>$$
   \mathrm{Maximize} \space \sum_{f = 0}^{F} G_f W_f \space
   \mathrm{(eqn \space 1a)} \\
@@ -249,20 +249,20 @@ for specific features (see <code><a href='add_feature_weights.html'>add_feature_
   \in J, f \in F \space \mathrm{(eqn \space 1i)}
   $$</p>
 <p>The objective (eqn 1a) is to maximize the weighted total number of the
- features that have their persistence targets met.
- Constraints (eqn 1b) calculate which persistence targets have been met.
- Constraint (eqn 1c) limits the maximum expenditure (i.e. ensures
- that the cost of the funded actions do not exceed the budget).
- Constraints (eqn 1d) calculate the probability that each feature
- will go extinct according to their allocated project.
- Constraints (eqn 1e) ensure that feature can only be allocated to projects
- that have all of their actions funded. Constraints (eqn 1f) state that each
- feature can only be allocated to a single project. Constraints (eqn 1g)
- ensure that a project cannot be funded unless all of its actions are funded.
- Constraints (eqns 1h) ensure that the probability variables
- (\(E_f\)) are bounded between zero and one. Constraints (eqns 1i) ensure
- that the target met (\(G_f\)), action funding (\(X_i\)), project funding
- (\(Y_j\)), and project allocation (\(Z_{fj}\)) variables are binary.</p>
+features that have their persistence targets met.
+Constraints (eqn 1b) calculate which persistence targets have been met.
+Constraint (eqn 1c) limits the maximum expenditure (i.e. ensures
+that the cost of the funded actions do not exceed the budget).
+Constraints (eqn 1d) calculate the probability that each feature
+will go extinct according to their allocated project.
+Constraints (eqn 1e) ensure that feature can only be allocated to projects
+that have all of their actions funded. Constraints (eqn 1f) state that each
+feature can only be allocated to a single project. Constraints (eqn 1g)
+ensure that a project cannot be funded unless all of its actions are funded.
+Constraints (eqns 1h) ensure that the probability variables
+(\(E_f\)) are bounded between zero and one. Constraints (eqns 1i) ensure
+that the target met (\(G_f\)), action funding (\(X_i\)), project funding
+(\(Y_j\)), and project allocation (\(Z_{fj}\)) variables are binary.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Chades I, Nicol S, van Leeuwen S, Walters B, Firn J, Reeson A, Martin TG &amp;
@@ -270,7 +270,7 @@ Carwardine J (2015) Benefits of integrating complementarity into priority
 threat management. <em>Conservation Biology</em>, <strong>29</strong>, 525--536.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='objectives.html'>objectives</a></code>.</p></div>
+    <div class='dont-index'><p><a href='objectives.html'>objectives</a>.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># load the ggplot2 R package to customize plot</span>
@@ -279,8 +279,11 @@ threat management. <em>Conservation Biology</em>, <strong>29</strong>, 525--536.
 <span class='co'># load data</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_features</span>, <span class='no'>sim_actions</span>)
 
+<span class='co'># manually adjust feature weights</span>
+<span class='no'>sim_features</span>$<span class='no'>weight</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>8</span>, <span class='fl'>2</span>, <span class='fl'>6</span>, <span class='fl'>3</span>, <span class='fl'>1</span>)
+
 <span class='co'># build problem with maximum targets met objective, a $200 budget,</span>
-<span class='co'># targets that require each feature to have a 20\% chance of persisting into</span>
+<span class='co'># targets that require each feature to have a 20% chance of persisting into</span>
 <span class='co'># the future, and zero cost actions locked in</span>
 <span class='no'>p1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_actions</span>, <span class='no'>sim_features</span>,
              <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span>) <span class='kw'>%&gt;%</span>
@@ -328,13 +331,13 @@ threat management. <em>Conservation Biology</em>, <strong>29</strong>, 525--536.
 <span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s1</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 1 x 21</span><span>
 #&gt;   solution status   obj  cost F1_action F2_action F3_action F4_action F5_action
 #&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span>        1 OPTIM~     4  99.9         0         0         0         0         1
-#&gt; </span><span style='color: #555555;'># ... with 12 more variables: baseline_action </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F1_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>        1 OPTIM…     4  99.9         0         0         0         0         1
+#&gt; </span><span style='color: #555555;'># … with 12 more variables: baseline_action </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F1_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   F2_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F3_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F4_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F5_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   baseline_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F1 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F2 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F3 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F4 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F5 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># plot solution, and add a dashed line to indicate the feature targets</span>
 <span class='co'># we can see the three features meet the targets under the baseline</span>
-<span class='co'># scenario, and the project for F3 was prioritized for funding</span>
+<span class='co'># scenario, and the project for F5 was prioritized for funding</span>
 <span class='co'># so that its probability of persistence meets the target</span>
 <span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>p1</span>, <span class='no'>s1</span>) +
 <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_abline.html'>geom_hline</a></span>(<span class='kw'>yintercept</span> <span class='kw'>=</span> <span class='fl'>0.2</span>, <span class='kw'>linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>)</div><div class='img'><img src='add_max_targets_met_objective-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
@@ -347,14 +350,14 @@ threat management. <em>Conservation Biology</em>, <strong>29</strong>, 525--536.
 <span class='co'># solve problem</span>
 <span class='no'>s2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p2</span>)</div><div class='output co'>#&gt; Gurobi Optimizer version 9.0.1 build v9.0.1rc0 (linux64)
 #&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
-#&gt; Model fingerprint: 0xc372f4ce
+#&gt; Model fingerprint: 0x8be67228
 #&gt; Variable types: 0 continuous, 47 integer (47 binary)
 #&gt; Coefficient statistics:
 #&gt;   Matrix range     [9e-02, 1e+02]
-#&gt;   Objective range  [2e-01, 2e+00]
+#&gt;   Objective range  [1e+00, 8e+00]
 #&gt;   Bounds range     [1e+00, 1e+00]
 #&gt;   RHS range        [1e+00, 2e+02]
-#&gt; Found heuristic solution: objective 1.0523538
+#&gt; Found heuristic solution: objective 13.0000000
 #&gt; Presolve removed 14 rows and 7 columns
 #&gt; Presolve time: 0.00s
 #&gt; Presolved: 33 rows, 40 columns, 69 nonzeros
@@ -362,33 +365,34 @@ threat management. <em>Conservation Biology</em>, <strong>29</strong>, 525--536.
 #&gt; Presolved: 33 rows, 40 columns, 69 nonzeros
 #&gt; 
 #&gt; 
-#&gt; Root relaxation: objective 2.856670e+00, 7 iterations, 0.00 seconds
+#&gt; Root relaxation: objective 1.996013e+01, 7 iterations, 0.00 seconds
 #&gt; 
 #&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
 #&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #&gt; 
-#&gt;      0     0    2.85667    0    4    1.05235    2.85667   171%     -    0s
-#&gt; H    0     0                       2.6440241    2.85667  8.04%     -    0s
+#&gt;      0     0   19.96013    0    4   13.00000   19.96013  53.5%     -    0s
+#&gt; H    0     0                      19.0000000   19.96013  5.05%     -    0s
+#&gt;      0     0   19.96013    0    4   19.00000   19.96013  5.05%     -    0s
 #&gt; 
-#&gt; Explored 1 nodes (7 simplex iterations) in 0.00 seconds
+#&gt; Explored 0 nodes (7 simplex iterations) in 0.00 seconds
 #&gt; Thread count was 1 (of 4 available processors)
 #&gt; 
-#&gt; Solution count 1: 2.64402 
+#&gt; Solution count 1: 19 
 #&gt; 
 #&gt; Optimal solution found (tolerance 0.00e+00)
-#&gt; Best objective 2.644024124262e+00, best bound 2.644024124262e+00, gap 0.0000%</div><div class='input'>
+#&gt; Best objective 1.900000000000e+01, best bound 1.900000000000e+01, gap 0.0000%</div><div class='input'>
 <span class='co'># print solution</span>
 <span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s2</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 21</span><span>
 #&gt;   solution status   obj  cost F1_action F2_action F3_action F4_action F5_action
 #&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span>        1 OPTIM~  2.64  99.9         0         0         0         0         1
-#&gt; </span><span style='color: #555555;'># ... with 12 more variables: baseline_action </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F1_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>        1 OPTIM…    19  103.         0         0         1         0         0
+#&gt; </span><span style='color: #555555;'># … with 12 more variables: baseline_action </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F1_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   F2_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F3_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F4_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F5_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   baseline_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F1 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F2 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F3 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F4 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F5 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># plot solution, and add a dashed line to indicate the feature targets</span>
 <span class='co'># we can see that adding weights to the problem has changed the solution</span>
-<span class='co'># specifically, the projects for feature F1 and F5 have been funded</span>
-<span class='co'># to enhance their probability of persistence</span>
+<span class='co'># specifically, the projects for the feature F3 is now funded</span>
+<span class='co'># to enhance its probability of persistence</span>
 <span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>p2</span>, <span class='no'>s2</span>) +
 <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_abline.html'>geom_hline</a></span>(<span class='kw'>yintercept</span> <span class='kw'>=</span> <span class='fl'>0.2</span>, <span class='kw'>linetype</span> <span class='kw'>=</span> <span class='st'>"dashed"</span>)</div><div class='img'><img src='add_max_targets_met_objective-2.png' alt='' width='700' height='433' /></div><div class='input'># }
 </div></span></pre>

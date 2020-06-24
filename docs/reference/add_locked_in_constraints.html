@@ -40,7 +40,7 @@
 
 
 <meta property="og:title" content="Add locked in constraints — add_locked_in_constraints" />
-<meta property="og:description" content="Add constraints to a project prioritization problem to ensure
+<meta property="og:description" content="Add constraints to a project prioritization problem() to ensure
 that specific actions are prioritized for funding in the solution. For
 example, it may be desirable to lock in actions for conserving culturally or
 taxonomically important species." />
@@ -75,7 +75,7 @@ taxonomically important species." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2.1</span>
       </span>
     </div>
 
@@ -123,7 +123,7 @@ taxonomically important species." />
     </div>
 
     <div class="ref-description">
-    <p>Add constraints to a project prioritization <code><a href='problem.html'>problem</a></code> to ensure
+    <p>Add constraints to a project prioritization <code><a href='problem.html'>problem()</a></code> to ensure
 that specific actions are prioritized for funding in the solution. For
 example, it may be desirable to lock in actions for conserving culturally or
 taxonomically important species.</p>
@@ -145,7 +145,7 @@ taxonomically important species.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p><code><a href='ProjectProblem-class.html'>ProjectProblem-class</a></code> object.</p></td>
+      <td><p><a href='ProjectProblem-class.html'>ProjectProblem</a> object.</p></td>
     </tr>
     <tr>
       <th>locked_in</th>
@@ -156,36 +156,36 @@ locked in. See the Details section for more information.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code><a href='ProjectProblem-class.html'>ProjectProblem-class</a></code> object with the constraints
-  added to it.</p>
+    <p><a href='ProjectProblem-class.html'>ProjectProblem</a> object with the constraints
+added to it.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The locked actions can be specified in several different
-  ways:</p>
-<p></p><dl'>
+ways:</p>
+<dl'>
 
-  <dt><code>integer</code></dt><dd><p><code>vector</code> of indices pertaining to which
-    actions should be locked in the solution (i.e. row numbers of the
-    actions in the argument to <code>actions</code> in <code><a href='problem.html'>problem</a></code>).</p></dd>
+<dt><code>integer</code></dt><dd><p><code>vector</code> of indices pertaining to which
+actions should be locked in the solution (i.e. row numbers of the
+actions in the argument to <code>actions</code> in <code><a href='problem.html'>problem()</a></code>).</p></dd>
 
-  <dt><code>logical</code></dt><dd><p><code>vector</code> containing <code>logical</code>
-    (i.e. <code>TRUE</code> and/or <code>FALSE</code> values) that indicate which
-    actions should be locked in the solution. These <code>logical</code>
-    values should correspond to each row in the argument to <code>actions</code>
-    in <code><a href='problem.html'>problem</a></code>).</p></dd>
+<dt><code>logical</code></dt><dd><p><code>vector</code> containing <code>logical</code>
+(i.e. <code>TRUE</code> and/or <code>FALSE</code> values) that indicate which
+actions should be locked in the solution. These <code>logical</code>
+values should correspond to each row in the argument to <code>actions</code>
+in <code><a href='problem.html'>problem()</a></code>).</p></dd>
 
-  <dt><code>character</code></dt><dd><p>column name that indicates if actions
-    units should be locked in the solution. This argument
-    should  denote a column in the argument to <code>actions</code>
-    in <code><a href='problem.html'>problem</a></code> which contains <code>logical</code>
-    (i.e. <code>TRUE</code> and/or <code>FALSE</code> values) to indicate
-    which actions should be locked.</p></dd>
- 
+<dt><code>character</code></dt><dd><p>column name that indicates if actions
+units should be locked in the solution. This argument
+should  denote a column in the argument to <code>actions</code>
+in <code><a href='problem.html'>problem()</a></code> which contains <code>logical</code>
+(i.e. <code>TRUE</code> and/or <code>FALSE</code> values) to indicate
+which actions should be locked.</p></dd>
+
 </dl>
 
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='constraints.html'>constraints</a></code>.</p></div>
+    <div class='dont-index'><p><a href='constraints.html'>constraints</a>.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># load data</span>

@@ -18,7 +18,7 @@ This prototype is used to generate objects that represent methods for solving
 optimization problems. \strong{This class represents a recipe to
 create solver and and is only recommended for use by expert users. To
 customize the method used to solve optimization problems, please see the
-help page on \code{\link{solvers}}}.
+help page on \link{solvers}}.
 }
 \section{Fields}{
 
@@ -31,7 +31,7 @@ help page on \code{\link{solvers}}}.
 the the solver.}
 
 \item{$solve}{\code{function} used to solve a
-\code{\link{OptimizationProblem-class}} object.}
+\linkS4class{OptimizationProblem} object.}
 }
 }
 
@@ -51,9 +51,9 @@ the the solver.}
 
 \describe{
 
-\item{x}{\code{\link{Solver-class}} object.}
+\item{x}{\linkS4class{Solver} object.}
 
-\item{op}{\code{\link{OptimizationProblem-class}} object.}
+\item{op}{\linkS4class{OptimizationProblem} object.}
 
 }
 }
@@ -68,7 +68,7 @@ the the solver.}
 
 \item{repr}{\code{character} representation of object.}
 
-\item{solve}{solve an \code{\link{OptimizationProblem-class}} using this
+\item{solve}{solve an \linkS4class{OptimizationProblem} using this
 object.}
 
 }

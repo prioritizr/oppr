@@ -3,7 +3,7 @@ NULL
 
 #' Add maximum targets met objective
 #'
-#' Set the objective of a project prioritization \code{\link{problem}} to
+#' Set the objective of a project prioritization [problem()] to
 #' maximize the total number of persistence targets met for the features, whilst
 #' ensuring that the cost of the solution is within a pre-specified budget
 #' (Chades *et al.* 2015). In some project prioritization exercises,
@@ -18,9 +18,9 @@ NULL
 #' secures a 95% chance of persistence will accrue the same benefit as a
 #' solution which secures a 50% chance of persistence). Furthermore, weights
 #' can also be used to specify the relative importance of meeting targets
-#' for specific features (see \code{\link{add_feature_weights}}).
+#' for specific features (see [add_feature_weights()]).
 #'
-#' @param x \code{\link{ProjectProblem-class}} object.
+#' @param x [ProjectProblem-class] object.
 #'
 #' @param budget `numeric` budget for funding actions.
 #'
@@ -145,6 +145,9 @@ NULL
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
+#' # manually adjust feature weights
+#' sim_features$weight <- c(8, 2, 6, 3, 1)
+#'
 #' # build problem with maximum targets met objective, a $200 budget,
 #' # targets that require each feature to have a 20% chance of persisting into
 #' # the future, and zero cost actions locked in
@@ -164,7 +167,7 @@ NULL
 #'
 #' # plot solution, and add a dashed line to indicate the feature targets
 #' # we can see the three features meet the targets under the baseline
-#' # scenario, and the project for F3 was prioritized for funding
+#' # scenario, and the project for F5 was prioritized for funding
 #' # so that its probability of persistence meets the target
 #' plot(p1, s1) +
 #' geom_hline(yintercept = 0.2, linetype = "dashed")
@@ -183,8 +186,8 @@ NULL
 #'
 #' # plot solution, and add a dashed line to indicate the feature targets
 #' # we can see that adding weights to the problem has changed the solution
-#' # specifically, the projects for feature F1 and F5 have been funded
-#' # to enhance their probability of persistence
+#' # specifically, the projects for the feature F3 is now funded
+#' # to enhance its probability of persistence
 #' plot(p2, s2) +
 #' geom_hline(yintercept = 0.2, linetype = "dashed")
 #' }

@@ -13,20 +13,20 @@ add_manual_locked_constraints(x, locked)
 \S4method{add_manual_locked_constraints}{ProjectProblem,tbl_df}(x, locked)
 }
 \arguments{
-\item{x}{\code{\link{ProjectProblem-class}} object.}
+\item{x}{\linkS4class{ProjectProblem} object.}
 
-\item{locked}{\code{data.frame} or \code{\link[tibble]{tibble}} object. See
+\item{locked}{\code{data.frame} or \code{\link[tibble:tibble]{tibble::tibble()}} object. See
 the Details section for more information.}
 }
 \value{
-\code{\link{ProjectProblem-class}} object with the constraints
+\linkS4class{ProjectProblem} object with the constraints
 added to it.
 }
 \description{
-Add constraints to a project prioritization \code{\link{problem}} to ensure
+Add constraints to a project prioritization \code{\link[=problem]{problem()}} to ensure
 that solutions fund (or do not fund) specific actions. This function offers
-more fine-grained control than the \code{\link{add_locked_in_constraints}}
-and \code{\link{add_locked_out_constraints}} functions.
+more fine-grained control than the \code{\link[=add_locked_in_constraints]{add_locked_in_constraints()}}
+and \code{\link[=add_locked_out_constraints]{add_locked_out_constraints()}} functions.
 }
 \details{
 The argument to \code{locked} must contain the following fields
@@ -74,5 +74,5 @@ print(s)
 
 }
 \seealso{
-\code{\link{constraints}}.
+\link{constraints}.
 }

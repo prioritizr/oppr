@@ -3,13 +3,14 @@ NULL
 
 #' Add relative targets
 #'
-#' Set targets as a proportion (between 0 and 1) of the maximum probability of
+#' Set targets for a project prioritization [problem()] as a proportion
+#' (between 0 and 1) of the maximum probability of
 #' persistence associated with the best project for feature. For instance,
 #' if the best project for a feature has an 80% probability of persisting,
 #' setting a 50% (i.e. `0.5`) relative target will correspond to a 40%
 #' threshold probability of persisting.
 #'
-#' @param x \code{\link{ProjectProblem-class}} object.
+#' @param x [ProjectProblem-class] object.
 #'
 #' @param targets Object that specifies the targets for each feature. See the
 #'   Details section for more information.

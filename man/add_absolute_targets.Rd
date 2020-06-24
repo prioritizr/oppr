@@ -13,13 +13,13 @@ add_absolute_targets(x, targets)
 \S4method{add_absolute_targets}{ProjectProblem,character}(x, targets)
 }
 \arguments{
-\item{x}{\code{\link{ProjectProblem-class}} object.}
+\item{x}{\linkS4class{ProjectProblem} object.}
 
 \item{targets}{Object that specifies the targets for each feature. See the
 Details section for more information.}
 }
 \description{
-Set targets for a project prioritization \code{\link{problem}} by
+Set targets for a project prioritization \code{\link[=problem]{problem()}} by
 specifying exactly what probability of persistence is required
 for each feature. For instance, setting an absolute target of 10\%
 (i.e. \code{0.1}) corresponds to a threshold 10\% probability of persisting.
@@ -27,10 +27,10 @@ for each feature. For instance, setting an absolute target of 10\%
 \details{
 Targets are used to specify the minimum probability of persistence
 for each feature in solutions. For minimum set objectives
-(i.e. \code{\link{add_min_set_objective}}, these targets
+(i.e. \code{\link[=add_min_set_objective]{add_min_set_objective()}}, these targets
 specify the minimum probability of persistence required for each species
 in the solution. And for budget constrained objectives that use targets
-(i.e.\code{\link{add_max_targets_met_objective}}), these targets
+(i.e.\code{\link[=add_max_targets_met_objective]{add_max_targets_met_objective()}}), these targets
 specify the minimum threshold probability of persistence that needs to be
 achieved to count the benefits for conserving these species.
 Please note that attempting to solve problems with objectives that require
@@ -48,7 +48,7 @@ value to assign the same target to each feature.}
 
 \item{\code{character}}{specifying the name of column in the
 feature data (i.e. the argument to \code{features} in the
-\code{\link{problem}} function) that contains the persistence targets.}
+\code{\link[=problem]{problem()}} function) that contains the persistence targets.}
 
 }
 }
@@ -110,5 +110,5 @@ plot(p3, s3)
 }
 }
 \seealso{
-\code{\link{targets}}.
+\link{targets}.
 }

@@ -41,7 +41,7 @@
 
 <meta property="og:title" content="Solution statistics — solution_statistics" />
 <meta property="og:description" content="Calculate statistics describing a solution to a project prioritization
-problem." />
+problem()." />
 
 
 
@@ -73,7 +73,7 @@ problem." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2.1</span>
       </span>
     </div>
 
@@ -122,7 +122,7 @@ problem." />
 
     <div class="ref-description">
     <p>Calculate statistics describing a solution to a project prioritization
-<code><a href='problem.html'>problem</a></code>.</p>
+<code><a href='problem.html'>problem()</a></code>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>solution_statistics</span>(<span class='no'>x</span>, <span class='no'>solution</span>)</pre>
@@ -132,12 +132,12 @@ problem." />
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>project prioritization <code><a href='problem.html'>problem</a></code>.</p></td>
+      <td><p>project prioritization <code><a href='problem.html'>problem()</a></code>.</p></td>
     </tr>
     <tr>
       <th>solution</th>
-      <td><p><code><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></code> or
-<code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></code> table containing the solutions. Here,
+      <td><p><code><a href='https://rdrr.io/r/base/data.frame.html'>base::data.frame()</a></code> or
+<code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble::tibble()</a></code> table containing the solutions. Here,
 rows correspond to different solutions and columns correspond to
 different actions. Each column in the argument to <code>solution</code> should
 be named according to a different action in <code>x</code>.
@@ -149,31 +149,31 @@ contain additional columns, and they will be ignored.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></code> table containing the following
-  columns:</p>
-<p></p><dl'>
+    <p>A <code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble::tibble()</a></code> table containing the following
+columns:</p>
+<dl'>
 
-  <dt><code>"cost"</code></dt><dd><p><code>numeric</code> cost of each solution.</p></dd>
+<dt><code>"cost"</code></dt><dd><p><code>numeric</code> cost of each solution.</p></dd>
 
-  <dt><code>"obj"</code></dt><dd><p><code>numeric</code> objective value for each solution.
-    This is calculated using the objective function defined for the
-    argument to <code>x</code>.</p></dd>
+<dt><code>"obj"</code></dt><dd><p><code>numeric</code> objective value for each solution.
+This is calculated using the objective function defined for the
+argument to <code>x</code>.</p></dd>
 
-  <dt><code>x$project_names()</code></dt><dd><p><code>numeric</code> column for each
-    project indicating if it was completely funded (with a value of 1)
-    or not (with a value of 0).</p></dd>
+<dt><code>x$project_names()</code></dt><dd><p><code>numeric</code> column for each
+project indicating if it was completely funded (with a value of 1)
+or not (with a value of 0).</p></dd>
 
-  <dt><code>x$feature_names()</code></dt><dd><p><code>numeric</code> column for each
-    feature indicating the probability that it will persist into
-    the future given each solution.</p></dd>
+<dt><code>x$feature_names()</code></dt><dd><p><code>numeric</code> column for each
+feature indicating the probability that it will persist into
+the future given each solution.</p></dd>
 
-  
+
 </dl>
 
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='objectives.html'>objectives</a></code>, <code><a href='replacement_costs.html'>replacement_costs</a></code>,
-  <code><a href='project_cost_effectiveness.html'>project_cost_effectiveness</a></code>.</p></div>
+    <div class='dont-index'><p><a href='objectives.html'>objectives</a>, <code><a href='replacement_costs.html'>replacement_costs()</a></code>,
+<code><a href='project_cost_effectiveness.html'>project_cost_effectiveness()</a></code>.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># load data</span>

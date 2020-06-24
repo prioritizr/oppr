@@ -17,8 +17,8 @@ problem(
 )
 }
 \arguments{
-\item{projects}{\code{\link[base]{data.frame}} or
-\code{\link[tibble]{tibble}} table containing project data. Here, each row
+\item{projects}{\code{\link[base:data.frame]{base::data.frame()}} or
+\code{\link[tibble:tibble]{tibble::tibble()}} table containing project data. Here, each row
 should correspond to a different project and columns should contain data
 that correspond to each project. This object should contain data that
 denote (i)
@@ -45,7 +45,7 @@ This can be accounted for by creating a third project, representing the
 funding of both projects, which costs \$150 and provides a 90\% chance
 of persistence.}
 
-\item{actions}{\code{\link[base]{data.frame}} or \code{\link[tibble]{tibble}}
+\item{actions}{\code{\link[base:data.frame]{base::data.frame()}} or \code{\link[tibble:tibble]{tibble::tibble()}}
 table containing the action data. Here, each row should correspond to a
 different action and columns should contain data that correspond to
 each action. At a minimum, this object should contain data that denote (i)
@@ -53,12 +53,12 @@ the name of each action (specified in the argument to
 \code{action_name_column}), (ii) the cost of each action (specified in the
 argument to \code{action_cost_column}). Optionally, it may also contain
 data that indicate actions should be (iii) locked in or (iv) locked
-out (see \code{\link{add_locked_in_constraints}} and
-\code{\link{add_locked_out_constraints}}). It should also contain a
+out (see \code{\link[=add_locked_in_constraints]{add_locked_in_constraints()}} and
+\code{\link[=add_locked_out_constraints]{add_locked_out_constraints()}}). It should also contain a
 zero-cost baseline action that is associated with the baseline project.}
 
-\item{features}{\code{\link[base]{data.frame}} or
-\code{\link[tibble]{tibble}}
+\item{features}{\code{\link[base:data.frame]{base::data.frame()}} or
+\code{\link[tibble:tibble]{tibble::tibble()}}
 table containing the feature data. Here, each row should correspond
 to a different feature and columns should contain data that correspond
 to each feature. At a minimum, this object should contain data that denote
@@ -102,7 +102,7 @@ means that the baseline "do nothing" scenario does not apply if a funded
 project fails. Defaults to \code{TRUE}.}
 }
 \value{
-A fresh \code{\link{ProjectProblem-class}} object.
+A new \linkS4class{ProjectProblem} object.
 }
 \description{
 Create a project prioritization problem. This function is used to
@@ -110,10 +110,10 @@ specify the underlying data used in a prioritization problem: the projects,
 the management actions, and the features that need
 to be conserved (e.g. species, ecosystems). After constructing this
 \code{ProjectProblem-class} object,
-it can be customized using \code{\link{objectives}}, \code{\link{targets}},
-\code{\link{weights}}, \code{\link{constraints}} and
-\code{\link{solvers}}. After building the problem, the
-\code{\link{solve}} function can be used to identify solutions.
+it can be customized using \link{objectives}, \link{targets},
+\link{weights}, \link{constraints}, \link{decisions} and
+\link{solvers}. After building the problem, the
+\code{\link[=solve]{solve()}} function can be used to identify solutions.
 }
 \details{
 A project prioritization problem has actions, projects,
@@ -149,7 +149,7 @@ ensure correct calculations,  and the
 constraints impose limits such as the total budget available for funding
 management actions. For more information on the mathematical
 formulations used in this package, please refer to the manual entries for
-the available objectives (listed in \code{\link{objectives}}).
+the available objectives (listed in \link{objectives}).
 }
 \examples{
 # load data
@@ -193,8 +193,8 @@ plot(p, s)
 }
 }
 \seealso{
-\code{\link{constraints}}, \code{\link{decisions}},
-\code{\link{objectives}}, \code{\link{solvers}}, \code{\link{targets}},
-\code{\link{weights}}, \code{\link{solution_statistics}},
-\code{\link{plot.ProjectProblem}}.
+\link{constraints}, \link{decisions},
+\link{objectives}, \link{solvers}, \link{targets},
+\link{weights}, \code{\link[=solution_statistics]{solution_statistics()}},
+\code{\link[=plot.ProjectProblem]{plot.ProjectProblem()}}.
 }

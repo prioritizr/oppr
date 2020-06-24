@@ -7,14 +7,14 @@
 add_min_set_objective(x)
 }
 \arguments{
-\item{x}{\code{\link{ProjectProblem-class}} object.}
+\item{x}{\linkS4class{ProjectProblem} object.}
 }
 \value{
-\code{\link{ProjectProblem-class}} object with the objective
+\linkS4class{ProjectProblem} object with the objective
 added to it.
 }
 \description{
-Set the objective of a project prioritization \code{\link{problem}} to
+Set the objective of a project prioritization \code{\link[=problem]{problem()}} to
 minimize the cost of the solution whilst ensuring that all targets are met.
 This objective is conceptually similar to that used in \emph{Marxan}
 (Ball, Possingham & Watts 2009).
@@ -151,5 +151,5 @@ spatial conservation prioritisation.
 computational tools}, 185-195.
 }
 \seealso{
-\code{\link{objectives}}, \code{\link{targets}}.
+\link{objectives}, \link{targets}.
 }

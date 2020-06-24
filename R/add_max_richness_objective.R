@@ -3,15 +3,15 @@ NULL
 
 #' Add maximum richness objective
 #'
-#' Set the objective of a project prioritization \code{\link{problem}} to
+#' Set the objective of a project prioritization [problem()] to
 #' maximize the total number of features that are expected to persist, whilst
 #' ensuring that the cost of the solution is within a pre-specified budget
 #' (Joseph, Maloney & Possingham 2009). This objective is conceptually similar
 #' to maximizing species richness in a study area. Furthermore, weights can
 #' also be used to specify the relative importance of conserving specific
-#' features (see \code{\link{add_feature_weights}}).
+#' features (see [add_feature_weights()]).
 #'
-#' @param x \code{\link{ProjectProblem-class}} object.
+#' @param x [ProjectProblem-class] object.
 #'
 #' @param budget `numeric` budget for funding actions.
 #'
@@ -118,10 +118,10 @@ NULL
 #' resources among threatened species: A project prioritization protocol.
 #' *Conservation Biology*, **23**, 328--338.
 #'
-#' @return \code{\link{ProjectProblem-class}} object with the objective
+#' @return [ProjectProblem-class] object with the objective
 #'   added to it.
 #'
-#' @seealso \code{\link{objectives}}.
+#' @seealso [objectives].
 #'
 #' @examples
 #' # load data

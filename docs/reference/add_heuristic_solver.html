@@ -44,7 +44,7 @@
 heuristic algorithm (inspired by Cabeza et al. 2004,
 Korte &amp;amp; Vygen 2000, Probert et al. 2016). Ideally,
 solutions should be generated using exact algorithm solvers (e.g.
-add_rsymphony_solver or add_gurobi_solver)
+add_rsymphony_solver() or add_gurobi_solver())
 because they are guaranteed to identify optimal solutions (Rodrigues &amp;amp; Gaston
 2002)." />
 
@@ -78,7 +78,7 @@ because they are guaranteed to identify optimal solutions (Rodrigues &amp;amp; G
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2.1</span>
       </span>
     </div>
 
@@ -130,7 +130,7 @@ because they are guaranteed to identify optimal solutions (Rodrigues &amp;amp; G
 heuristic algorithm (inspired by Cabeza <em>et al.</em> 2004,
 Korte &amp; Vygen 2000, Probert <em>et al.</em> 2016). Ideally,
 solutions should be generated using exact algorithm solvers (e.g.
-<code><a href='add_rsymphony_solver.html'>add_rsymphony_solver</a></code> or <code><a href='add_gurobi_solver.html'>add_gurobi_solver</a></code>)
+<code><a href='add_rsymphony_solver.html'>add_rsymphony_solver()</a></code> or <code><a href='add_gurobi_solver.html'>add_gurobi_solver()</a></code>)
 because they are guaranteed to identify optimal solutions (Rodrigues &amp; Gaston
 2002).</p>
     </div>
@@ -147,7 +147,7 @@ because they are guaranteed to identify optimal solutions (Rodrigues &amp; Gasto
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p><code><a href='ProjectProblem-class.html'>ProjectProblem-class</a></code> object.</p></td>
+      <td><p><a href='ProjectProblem-class.html'>ProjectProblem</a> object.</p></td>
     </tr>
     <tr>
       <th>number_solutions</th>
@@ -178,89 +178,89 @@ optimization problems?</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code><a href='ProjectProblem-class.html'>ProjectProblem-class</a></code> object with the solver added
-  to it.</p>
+    <p><a href='ProjectProblem-class.html'>ProjectProblem</a> object with the solver added
+to it.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The heuristic algorithm used to generate solutions is described
- below. It is heavily inspired by the cost-sharing backwards heuristic
- algorithm conventionally used to guide the prioritization of species
- recovery projects (Probert <em>et al.</em> 2016).</p>
-<p></p><ol>
+below. It is heavily inspired by the cost-sharing backwards heuristic
+algorithm conventionally used to guide the prioritization of species
+recovery projects (Probert <em>et al.</em> 2016).</p>
+<ol>
 <li><p>All actions and projects are initially selected for funding.</p></li>
 <li><p>A set of rules are then used to deselect actions and projects
-   based on locked constraints (if any). Specifically, (i) actions which are
-   which are locked out are deselected, and (ii) projects which are
-   associated with actions that are locked out are also deselected.</p></li>
+based on locked constraints (if any). Specifically, (i) actions which are
+which are locked out are deselected, and (ii) projects which are
+associated with actions that are locked out are also deselected.</p></li>
 <li><p>If the argument to <code>initial_sweep</code> is <code>TRUE</code>, then a set of
-   rules are then used to deselect actions and projects
-   based on budgetary constraints (if present). Specifically, (i) actions
-   which exceed the budget are deselected, (ii) projects which are
-   associated with a set of actions that exceed the budget are deselected,
-   and (iii) actions which are not associated with any project (excepting
-   locked in actions) are also deselected.</p></li>
+rules are then used to deselect actions and projects
+based on budgetary constraints (if present). Specifically, (i) actions
+which exceed the budget are deselected, (ii) projects which are
+associated with a set of actions that exceed the budget are deselected,
+and (iii) actions which are not associated with any project (excepting
+locked in actions) are also deselected.</p></li>
 <li><p>If the objective function is to maximize biodiversity subject
-   to budgetary constraints (e.g. <code><a href='add_max_richness_objective.html'>add_max_richness_objective</a></code>)
-   then go to step 5. Otherwise, if the objective is to minimize cost
-   subject to biodiversity constraints (i.e.
-   <code><a href='add_min_set_objective.html'>add_min_set_objective</a></code>) then go to step 7.</p></li>
+to budgetary constraints (e.g. <code><a href='add_max_richness_objective.html'>add_max_richness_objective()</a></code>)
+then go to step 5. Otherwise, if the objective is to minimize cost
+subject to biodiversity constraints (i.e.
+<code><a href='add_min_set_objective.html'>add_min_set_objective()</a></code>) then go to step 7.</p></li>
 <li><p>The next step is repeated until (i) the number of desired
-   solutions is obtained, and (ii) the total cost of the remaining
-   actions that are selected for funding is within the budget. After both of
-   these conditions are met, the algorithm is terminated.</p></li>
+solutions is obtained, and (ii) the total cost of the remaining
+actions that are selected for funding is within the budget. After both of
+these conditions are met, the algorithm is terminated.</p></li>
 <li><p>Each of the remaining projects that are currently selected for
-   funding are evaluated according to how much the performance of the
-   solution decreases when the project is deselected for funding, relative to
-   the cost of the project not shared by other remaining projects. This can
-   be expressed mathematically as:</p>
+funding are evaluated according to how much the performance of the
+solution decreases when the project is deselected for funding, relative to
+the cost of the project not shared by other remaining projects. This can
+be expressed mathematically as:</p>
 <p>$$B_j = \frac{V(J) - V(J - j)}{C_j}$$</p>
 <p>Where \(J\) is the set of remaining projects currently
-   selected for funding (indexed by \(j\)), \(B_j\) is the benefit
-   associated with funding project \(j\), \(V(J)\) is the objective
-   value associated with the solution where all remaining projects are
-   funded, \(V(J - j)\) is the objective value associated with the
-   solution where all remaining projects except for project \(j\) are
-   funded, and \(C_j\) is the sum cost of all of the actions
-   associated with project \(j\)---excluding locked in actions---with the
-   cost of each action divided by the total number of remaining
-   projects that share the action (e.g. if two projects both share a $100
-   action, then this action contributes $50 to the overall cost of each
-   project).</p>
+selected for funding (indexed by \(j\)), \(B_j\) is the benefit
+associated with funding project \(j\), \(V(J)\) is the objective
+value associated with the solution where all remaining projects are
+funded, \(V(J - j)\) is the objective value associated with the
+solution where all remaining projects except for project \(j\) are
+funded, and \(C_j\) is the sum cost of all of the actions
+associated with project \(j\)---excluding locked in actions---with the
+cost of each action divided by the total number of remaining
+projects that share the action (e.g. if two projects both share a $100
+action, then this action contributes $50 to the overall cost of each
+project).</p>
 <p>The project with the smallest benefit (i.e. \(B_j\) value) is then
-   deselected for funding. In cases where multiple projects have
-   the same benefit (\(B_j\)) value, the project with the greatest overall
-   cost (including actions which are shared among multiple remaining
-   projects) is deselected.</p></li>
+deselected for funding. In cases where multiple projects have
+the same benefit (\(B_j\)) value, the project with the greatest overall
+cost (including actions which are shared among multiple remaining
+projects) is deselected.</p></li>
 <li><p>The next step is repeated until (i) the number of desired
-   solutions is obtained or (ii) no action can be deselected for funding
-   without the probability of any feature expecting to persist falling below
-   its target probability of persistence. After one or both of
-   these conditions are met, the algorithm is terminated.</p></li>
+solutions is obtained or (ii) no action can be deselected for funding
+without the probability of any feature expecting to persist falling below
+its target probability of persistence. After one or both of
+these conditions are met, the algorithm is terminated.</p></li>
 <li><p>Each of the remaining projects that are currently selected for
-   funding are evaluated according to how much the performance of the
-   solution decreases when the project is deselected for funding, relative to
-   the cost of the project not shared by other remaining projects. This can
-   be expressed mathematically as:</p>
+funding are evaluated according to how much the performance of the
+solution decreases when the project is deselected for funding, relative to
+the cost of the project not shared by other remaining projects. This can
+be expressed mathematically as:</p>
 <p>$$B_j = \frac{\big(\sum_{f}^{F} P_f(J) - T_f \big) -
    \big( \sum_{f}^{F} P_f(J - j) - T_f \big)}{C_j}$$</p>
 <p>Where \(F\) is the set of features (indexed by \(f\)),
-   \(T_f\) is the target for feature \(f\), \(P\) is the set of
-   remaining projects that are selected for funding (indexed by \(j\)),
-   \(C_j\) is the cost of all of the actions
-   associated with project \(j\)---excluding locked in actions---and
-   accounting for shared costs among remaining projects (e.g. if two
-   projects both share a $100 action, then this action contributes $50 to
-   the overall cost of each project), \(B_p\) is the benefit
-   associated with funding project \(p\), \(P(J)\) is probability
-   that each feature is expected to persist when the remaining projects
-   (\(J\)) are funded, and \(P(J - j)\) is the probability that
-   each feature is expected to persist when all the remaining projects except
-   for action \(j\) are funded.</p>
+\(T_f\) is the target for feature \(f\), \(P\) is the set of
+remaining projects that are selected for funding (indexed by \(j\)),
+\(C_j\) is the cost of all of the actions
+associated with project \(j\)---excluding locked in actions---and
+accounting for shared costs among remaining projects (e.g. if two
+projects both share a $100 action, then this action contributes $50 to
+the overall cost of each project), \(B_p\) is the benefit
+associated with funding project \(p\), \(P(J)\) is probability
+that each feature is expected to persist when the remaining projects
+(\(J\)) are funded, and \(P(J - j)\) is the probability that
+each feature is expected to persist when all the remaining projects except
+for action \(j\) are funded.</p>
 <p>The project with the smallest benefit (i.e. \(B_j\) value) is then
-   deselected for funding. In cases where multiple projects have
-   the same \(B_j\) value, the project with the greatest overall cost
-   (including actions which are shared among multiple remaining projects)
-   is deselected.</p></li>
+deselected for funding. In cases where multiple projects have
+the same \(B_j\) value, the project with the greatest overall cost
+(including actions which are shared among multiple remaining projects)
+is deselected.</p></li>
 </ol>
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
@@ -279,7 +279,7 @@ Project Prioritisation Protocol (PPP). Available at
 <a href='https://github.com/p-robot/ppp'>https://github.com/p-robot/ppp</a>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='solvers.html'>solvers</a></code>.</p></div>
+    <div class='dont-index'><p><a href='solvers.html'>solvers</a>.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># load ggplot2 package for making plots</span>

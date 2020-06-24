@@ -3,24 +3,24 @@ NULL
 
 #' Solve
 #'
-#' Solve a conservation planning \code{\link{problem}}.
+#' Solve a conservation planning [problem()].
 #'
-#' @param a \code{\link{ProjectProblem-class}} or an
-#'   \code{\link{OptimizationProblem-class}} object.
+#' @param a [ProjectProblem-class] or an
+#'   [OptimizationProblem-class] object.
 #'
-#' @param b \code{\link{Solver-class}} object. Not used if `a` is an
-#'   \code{\link{ProjectProblem-class}} object.
+#' @param b [Solver-class] object. Not used if `a` is an
+#'   [ProjectProblem-class] object.
 #'
-#' @param ... arguments passed to \code{\link{compile}}.
+#' @param ... arguments passed to [compile()].
 #'
 #' @return The type of object returned from this function depends on the
 #'   argument to `a`. If the argument to `a` is an
-#'   \code{\link{OptimizationProblem-class}} object, then the
+#'   [OptimizationProblem-class] object, then the
 #'   solution is returned as a `list` containing the prioritization and
 #'   additional information (e.g. run time, solver status). On the other hand,
 #'   if the argument
-#'   to `a` is an \code{\link{ProjectProblem-class}} object,
-#'   then a \code{\link[tibble]{tibble}} table object will be returned. In this
+#'   to `a` is an [ProjectProblem-class] object,
+#'   then a [tibble::tibble()] table object will be returned. In this
 #'   table, each row row corresponds to a different solution and each column
 #'   describes a different property or result associated with each solution:
 #'
@@ -52,8 +52,8 @@ NULL
 #'
 #'   }
 #'
-#' @seealso \code{\link{problem}}, \code{\link{solution_statistics}},
-#'   \code{\link{solvers}}.
+#' @seealso [problem()], [solution_statistics()],
+#'   [solvers].
 #'
 #' @name solve
 #'

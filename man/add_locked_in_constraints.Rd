@@ -16,17 +16,17 @@ add_locked_in_constraints(x, locked_in)
 \S4method{add_locked_in_constraints}{ProjectProblem,character}(x, locked_in)
 }
 \arguments{
-\item{x}{\code{\link{ProjectProblem-class}} object.}
+\item{x}{\linkS4class{ProjectProblem} object.}
 
 \item{locked_in}{Object that determines which planning units that should be
 locked in. See the Details section for more information.}
 }
 \value{
-\code{\link{ProjectProblem-class}} object with the constraints
+\linkS4class{ProjectProblem} object with the constraints
 added to it.
 }
 \description{
-Add constraints to a project prioritization \code{\link{problem}} to ensure
+Add constraints to a project prioritization \code{\link[=problem]{problem()}} to ensure
 that specific actions are prioritized for funding in the solution. For
 example, it may be desirable to lock in actions for conserving culturally or
 taxonomically important species.
@@ -39,18 +39,18 @@ ways:
 
 \item{\code{integer}}{\code{vector} of indices pertaining to which
 actions should be locked in the solution (i.e. row numbers of the
-actions in the argument to \code{actions} in \code{\link{problem}}).}
+actions in the argument to \code{actions} in \code{\link[=problem]{problem()}}).}
 
 \item{\code{logical}}{\code{vector} containing \code{logical}
 (i.e. \code{TRUE} and/or \code{FALSE} values) that indicate which
 actions should be locked in the solution. These \code{logical}
 values should correspond to each row in the argument to \code{actions}
-in \code{\link{problem}}).}
+in \code{\link[=problem]{problem()}}).}
 
 \item{\code{character}}{column name that indicates if actions
 units should be locked in the solution. This argument
 should  denote a column in the argument to \code{actions}
-in \code{\link{problem}} which contains \code{logical}
+in \code{\link[=problem]{problem()}} which contains \code{logical}
 (i.e. \code{TRUE} and/or \code{FALSE} values) to indicate
 which actions should be locked.}
 }
@@ -110,5 +110,5 @@ print(s4[, sim_actions$name])
 }
 }
 \seealso{
-\code{\link{constraints}}.
+\link{constraints}.
 }
