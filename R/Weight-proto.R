@@ -9,11 +9,11 @@ NULL
 #'
 #' This prototype is used to represent the weights used when making a
 #' prioritization. This prototype inherits from the
-#' \code{\link{ProjectModifier-class}}. \strong{This class represents a
+#' [ProjectModifier-class]. **This class represents a
 #' recipe, to actually add targets to a planning problem, see the help page on
-#' \code{\link{weights}}. Only experts should use this class directly.}
+#' [weights]. Only experts should use this class directly.**
 #'
-#' @seealso \code{\link{ProjectModifier-class}}.
+#' @seealso [ProjectModifier-class].
 #'
 #' @name Weight-class
 #'

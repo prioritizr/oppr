@@ -7,23 +7,23 @@
 add_binary_decisions(x)
 }
 \arguments{
-\item{x}{\code{\link{ProjectProblem-class}} object.}
+\item{x}{\linkS4class{ProjectProblem} object.}
 }
 \value{
-\code{\link{ProjectProblem-class}} object with the decisions
-  added to it.
+\linkS4class{ProjectProblem} object with the decisions
+added to it.
 }
 \description{
-Add a binary decision to a project prioritization \code{\link{problem}}.
+Add a binary decision to a project prioritization \code{\link[=problem]{problem()}}.
 This is the conventional decision of either prioritizing funding
 for a management action or not.
 }
 \details{
 Project prioritization problems involve making decisions about
-  how funding will be allocated to management actions.
-  Only a single decision should be added to a \code{ProjectProblem} object.
-  If no decision is added to a problem then this decision type will
-  be used by default. Currently, this is the only supported decision type.
+how funding will be allocated to management actions.
+Only a single decision should be added to a \code{ProjectProblem} object.
+If no decision is added to a problem then this decision type will
+be used by default. Currently, this is the only supported decision type.
 }
 \examples{
 # load data
@@ -51,5 +51,5 @@ plot(p, s)
 }
 }
 \seealso{
-\code{\link{decisions}}.
+\link{decisions}.
 }

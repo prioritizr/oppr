@@ -8,41 +8,41 @@ NULL
 #' Collection prototype
 #'
 #' This prototype represents a collection of
-#' \code{\link{ProjectModifier-class}} objects.
+#' [ProjectModifier-class] objects.
 #'
 #' @section Fields:
 #' \describe{
-#'   \item{$...}{\code{\link{ProjectModifier-class}} objects stored
+#'   \item{$...}{[ProjectModifier-class] objects stored
 #'      in the collection.}
 #' }
 #'
 #' @section Usage:
-#' \code{x$print()}
+#' `x$print()`
 #'
-#' \code{x$show()}
+#' `x$show()`
 #'
-#' \code{x$repr()}
+#' `x$repr()`
 #'
-#' \code{x$ids()}
+#' `x$ids()`
 #'
-#' \code{x$length()}
+#' `x$length()`
 #'
-#' \code{x$add}
+#' `x$add`
 #'
-#' \code{x$remove(id)}
+#' `x$remove(id)`
 #'
-#' \code{x$get_parameter(id)}
+#' `x$get_parameter(id)`
 #'
-#' \code{x$set_parameter(id, value)}
+#' `x$set_parameter(id, value)`
 #'
-#' \code{x$render_parameter(id)}
+#' `x$render_parameter(id)`
 #'
-#' \code{x$render_all_parameters()}
+#' `x$render_all_parameters()`
 #'
 #' @section Arguments:
 #' \describe{
 #'
-#' \item{id}{\code{id} object.}
+#' \item{id}{`id` object.}
 #'
 #' \item{value}{any object.}
 #'
@@ -56,31 +56,31 @@ NULL
 #'
 #' \item{show}{show the object.}
 #'
-#' \item{repr}{\code{character} representation of object.}
+#' \item{repr}{`character` representation of object.}
 #'
-#' \item{ids}{\code{character} ids for objects inside collection.}
+#' \item{ids}{`character` ids for objects inside collection.}
 #'
-#' \item{length}{\code{integer} number of objects inside collection.}
+#' \item{length}{`integer` number of objects inside collection.}
 #'
-#' \item{add}{add \code{\link{ProjectModifier-class}} object.}
+#' \item{add}{add [ProjectModifier-class] object.}
 #'
 #' \item{remove}{remove an item from the collection.}
 #'
 #' \item{get_parameter}{retrieve the value of a parameter in the object
-#'   using an \code{id} object.}
+#'   using an `id` object.}
 #'
 #' \item{set_parameter}{change the value of a parameter in the object
 #'   to a new object.}
 #'
-#' \item{render_parameter}{generate a \emph{shiny} widget to modify the
-#'   the value of a parameter (specified by argument \code{id}).}
+#' \item{render_parameter}{generate a *shiny* widget to modify the
+#'   the value of a parameter (specified by argument `id`).}
 #'
-#' \item{render_all_parameters}{generate a \code{\link[shiny]{div}}
+#' \item{render_all_parameters}{generate a [shiny::div()]
 #'   containing all the parameters" widgets.}
 #'
 #' }
 #'
-#' @seealso \code{\link{Constraint-class}}.
+#' @seealso [Constraint-class].
 #'
 #' @name Collection-class
 #'

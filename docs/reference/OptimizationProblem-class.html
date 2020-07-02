@@ -74,7 +74,7 @@ Only experts should interact with this class directly." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2.1</span>
       </span>
     </div>
 
@@ -200,12 +200,12 @@ problem. Data are stored in memory and accessed using an external pointer.
 <dt>vtype</dt><dd><p><code>character</code> vector of variable types.</p></dd>
 
 <dt>obj</dt><dd><p><code>numeric</code> vector containing the linear components of the
-  objective function.</p></dd>
+objective function.</p></dd>
 
 <dt>pwlobj</dt><dd><p><code>list</code> object containing the piece-wise linear components
-  of the objective function.</p></dd>
+of the objective function.</p></dd>
 
-<dt>A</dt><dd><p><code><a href='https://rdrr.io/pkg/Matrix/man/dgCMatrix-class.html'>dgCMatrix-class</a></code> model matrix</p></dd>
+<dt>A</dt><dd><p><a href='https://rdrr.io/pkg/Matrix/man/dgCMatrix-class.html'>Matrix::dgCMatrix</a> model matrix</p></dd>
 
 <dt>rhs</dt><dd><p><code>numeric</code> vector of right-hand-side constraints.</p></dd>
 
@@ -222,13 +222,13 @@ problem. Data are stored in memory and accessed using an external pointer.
 <dt>number_of_features</dt><dd><p><code>integer</code> number of features in the problem.</p></dd>
 
 <dt>number_of_branches</dt><dd><p><code>integer</code> number of phylogenetic branches in
-  the problem.</p></dd>
+the problem.</p></dd>
 
 <dt>col_ids</dt><dd><p><code>character</code> names describing each decision variable
-  (column) in the model matrix.</p></dd>
+(column) in the model matrix.</p></dd>
 
 <dt>row_ids</dt><dd><p><code>character</code> names describing each constraint (row) in
-  in the model matrix.</p></dd>
+in the model matrix.</p></dd>
 
 <dt>get_data</dt><dd><p><code>list</code> containing additional data.</p></dd>
 

@@ -4,42 +4,42 @@ NULL
 #' Solution statistics
 #'
 #' Calculate statistics describing a solution to a project prioritization
-#' \code{\link{problem}}.
+#' [problem()].
 #'
-#' @param x project prioritization \code{\link{problem}}.
+#' @param x project prioritization [problem()].
 #'
-#' @param solution \code{\link[base]{data.frame}} or
-#'   \code{\link[tibble]{tibble}} table containing the solutions. Here,
+#' @param solution [base::data.frame()] or
+#'   [tibble::tibble()] table containing the solutions. Here,
 #'   rows correspond to different solutions and columns correspond to
-#'   different actions. Each column in the argument to \code{solution} should
-#'   be named according to a different action in \code{x}.
+#'   different actions. Each column in the argument to `solution` should
+#'   be named according to a different action in `x`.
 #'   Cell values indicate if an action is funded in a given solution or not,
-#'   and should be either zero or one. Arguments to \code{solution} can
+#'   and should be either zero or one. Arguments to `solution` can
 #'   contain additional columns, and they will be ignored.
 #'
-#' @return A \code{\link[tibble]{tibble}} table containing the following
+#' @return A [tibble::tibble()] table containing the following
 #'   columns:
 #'
 #'   \describe{
 #'
-#'   \item{\code{"cost"}}{\code{numeric} cost of each solution.}
+#'   \item{`"cost"`}{`numeric` cost of each solution.}
 #'
-#'   \item{\code{"obj"}}{\code{numeric} objective value for each solution.
+#'   \item{`"obj"`}{`numeric` objective value for each solution.
 #'     This is calculated using the objective function defined for the
-#'     argument to \code{x}.}
+#'     argument to `x`.}
 #'
-#'   \item{\code{x$project_names()}}{\code{numeric} column for each
+#'   \item{`x$project_names()`}{`numeric` column for each
 #'     project indicating if it was completely funded (with a value of 1)
 #'     or not (with a value of 0).}
 #'
-#'   \item{\code{x$feature_names()}}{\code{numeric} column for each
+#'   \item{`x$feature_names()`}{`numeric` column for each
 #'     feature indicating the probability that it will persist into
 #'     the future given each solution.}
 #'
 #'   }
 #'
-#' @seealso \code{\link{objectives}}, \code{\link{replacement_costs}},
-#'   \code{\link{project_cost_effectiveness}}.
+#' @seealso [objectives], [replacement_costs()],
+#'   [project_cost_effectiveness()].
 #'
 #' @examples
 #' # load data

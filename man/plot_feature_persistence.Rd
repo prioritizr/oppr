@@ -13,10 +13,10 @@ plot_feature_persistence(
 )
 }
 \arguments{
-\item{x}{project prioritization \code{\link{problem}}.}
+\item{x}{project prioritization \code{\link[=problem]{problem()}}.}
 
-\item{solution}{\code{\link[base]{data.frame}} or
-\code{\link[tibble]{tibble}} table containing the solutions. Here,
+\item{solution}{\code{\link[base:data.frame]{base::data.frame()}} or
+\code{\link[tibble:tibble]{tibble::tibble()}} table containing the solutions. Here,
 rows correspond to different solutions and columns correspond to
 different actions. Each column in the argument to \code{solution} should
 be named according to a different action in \code{x}.
@@ -39,25 +39,25 @@ to produce visually appealing publication quality plots.}
 the plot be returned instead of the plot? Defaults to \code{FALSE}.}
 }
 \value{
-A \code{\link{ggplot}} object, or a
-  \code{\link[tibble]{tbl_df}} object if \code{return_data} is
-  \code{TRUE}.
+A \code{\link[=ggplot]{ggplot()}} object, or a
+\code{\link[tibble:tbl_df-class]{tibble::tbl_df()}} object if \code{return_data} is
+\code{TRUE}.
 }
 \description{
 Create a bar plot to visualize how likely features are to persist into
-the future under a solution to a project prioritization problem.
+the future under a solution to a project prioritization \code{\link[=problem]{problem()}}.
 }
 \details{
 In this plot, each bar corresponds to a different feature.
-  The length of each bar indicates the probability that a given feature
-  will persist into the future, and the color of each bar indicates
-  the weight for a given feature.
-  Features that directly benefit from at least a single completely funded
-  project with a non-zero cost are depicted with an asterisk symbol.
-  Additionally, features that indirectly benefit from funded
-  projects---because they are associated with partially funded
-  projects that have non-zero costs and share actions with at least one
-  completely funded project---are depicted with an open circle symbol.
+The length of each bar indicates the probability that a given feature
+will persist into the future, and the color of each bar indicates
+the weight for a given feature.
+Features that directly benefit from at least a single completely funded
+project with a non-zero cost are depicted with an asterisk symbol.
+Additionally, features that indirectly benefit from funded
+projects---because they are associated with partially funded
+projects that have non-zero costs and share actions with at least one
+completely funded project---are depicted with an open circle symbol.
 }
 \examples{
 # set seed for reproducibility

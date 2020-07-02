@@ -3,19 +3,19 @@ NULL
 
 #' Add maximum phylogenetic diversity objective
 #'
-#' Set the objective of a project prioritization \code{\link{problem}} to
+#' Set the objective of a project prioritization [problem()] to
 #' maximize the phylogenetic diversity that is expected to persist into the
 #' future, whilst ensuring that the cost of the solution is within a
-#' pre-specified budget (Bennett \emph{et al.} 2014, Faith 2008).
+#' pre-specified budget (Bennett *et al.* 2014, Faith 2008).
 #'
-#' @param x \code{\link{ProjectProblem-class}} object.
+#' @param x [ProjectProblem-class] object.
 #'
-#' @param budget \code{numeric} budget for funding actions.
+#' @param budget `numeric` budget for funding actions.
 #'
-#' @param tree \code{\link[ape]{phylo}} phylogenetic tree describing the
+#' @param tree [ape::phylo()] phylogenetic tree describing the
 #'   evolutionary relationships between the features. Note that the
-#'   argument to \code{tree} must contain every feature, and only the
-#'   features, present in the argument to \code{x}.
+#'   argument to `tree` must contain every feature, and only the
+#'   features, present in the argument to `x`.
 #'
 #' @details A problem objective is used to specify the overall goal of the
 #'   project prioritization problem.
@@ -58,17 +58,17 @@ NULL
 #'   let \eqn{Q_{fj}} denote the actual probability that each
 #'   \eqn{f \in F}{f in F} associated with the project \eqn{j \in J}{j in J}
 #'   is expected to persist if the project is funded. If the argument
-#'   to \code{adjust_for_baseline} in the \code{problem} function was set to
-#'   \code{TRUE}, and this is the default behavior, then
+#'   to `adjust_for_baseline` in the `problem` function was set to
+#'   `TRUE`, and this is the default behavior, then
 #'   \eqn{Q_{fj} = (P_{j} \times B_{fj}) + \bigg(\big(1 - (P_{j} B_{fj})\big)
 #'   \times (P_{n} \times B_{fn})\bigg)}{Q_{fj} = (P_j B_{fj}) + ((1 - (P_j
-#'   B_{fj})) * (P_n \times B_{fn}))}, where \code{n} corresponds to the
+#'   B_{fj})) * (P_n \times B_{fn}))}, where `n` corresponds to the
 #'   baseline "do nothing" project. This means that the probability
 #'   of a feature persisting if a project is allocated to a feature
 #'   depends on (i) the probability of the project succeeding, (ii) the
 #'   probability of the feature persisting if the project does not fail,
 #'   and (iii) the probability of the feature persisting even if the project
-#'   fails. Otherwise, if the argument is set to \code{FALSE}, then
+#'   fails. Otherwise, if the argument is set to `FALSE`, then
 #'   \eqn{Q_{fj} = P_{j} \times B_{fj}}{Q_{fj} = P_{j} * B_{fj}}.
 #'
 #'   The binary control variables \eqn{X_i} in this problem indicate whether
@@ -155,16 +155,16 @@ NULL
 #' Probert WJ, Di Fonzo MMI, Monks JM, Possingham HP & Maloney R (2014)
 #' Balancing phylogenetic diversity
 #' and species numbers in conservation prioritization, using a case study of
-#' threatened species in New Zealand. \emph{Biological Conservation},
-#' \strong{174}: 47--54.
+#' threatened species in New Zealand. *Biological Conservation*,
+#' **174**: 47--54.
 #'
 #' Faith DP (2008) Threatened species and the potential loss of
 #' phylogenetic diversity: conservation scenarios based on estimated extinction
-#' probabilities and phylogenetic risk analysis. \emph{Conservation Biology},
-#' \strong{22}: 1461--1470.
+#' probabilities and phylogenetic risk analysis. *Conservation Biology*,
+#' **22**: 1461--1470.
 #'
-#' Hillier FS & Price CC (2005) \emph{International series in operations
-#' research & management science}. Springer.
+#' Hillier FS & Price CC (2005) *International series in operations
+#' research & management science*. Springer.
 #'
 #' @examples
 #' # load data
@@ -173,10 +173,10 @@ NULL
 #' # plot tree
 #' plot(sim_tree)
 #'
-#' # build problem with maximum phylogenetic diversity objective and $300 budget
+#' # build problem with maximum phylogenetic diversity objective and $200 budget
 #' p1 <- problem(sim_projects, sim_actions, sim_features,
 #'              "name", "success", "name", "cost", "name") %>%
-#'       add_max_phylo_div_objective(budget = 300, tree = sim_tree) %>%
+#'       add_max_phylo_div_objective(budget = 200, tree = sim_tree) %>%
 #'       add_binary_decisions()
 #'
 #' \donttest{

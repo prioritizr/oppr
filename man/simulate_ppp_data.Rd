@@ -58,78 +58,59 @@ into the solution. Defaults to \code{0}.}
 \value{
 A \code{list} object containing the elements:
 
-  \describe{
-
-    \item{\code{"projects"}}{A \code{\link[tibble]{tibble}} containing
-      the data for the conservation projects. It contains the following
-      columns:
-
-      \describe{
-
-        \item{\code{"name"}}{\code{character} name for each project.}
-
-        \item{\code{"success"}}{\code{numeric} probability of each project
-          succeeding if it is funded.}
-
-        \item{\code{"F1"} ... \code{"FN"}}{\code{numeric} columns for each
-          feature, ranging from \code{"F1"} to \code{"FN"} where \code{N}
-          is the number of features, indicating the enhanced probability that
-          each feature will persist if it funded. Missing values (\code{NA})
-          indicate that a feature does not benefit from a project being
-          funded.}
-
-        \item{\code{"F1_action"} ... \code{"FN_action"}}{\code{logical}
-          columns for each action, ranging from \code{"F1_action"} to
-          \code{"FN_action"} where \code{N} is
-          the number of actions (equal to the number of features in this
-          simulated data), indicating if an action is associated with a
-          project (\code{TRUE}) or not (\code{FALSE}).}
-
-       \item{\code{"baseline_action"}}{\code{logical}
-         column indicating if a project is associated with the baseline
-         action (\code{TRUE}) or not (\code{FALSE}). This action is only
-         associated with the baseline project.}
-
-    }}
-
-    \item{\code{"actions"}}{A \code{\link[tibble]{tibble}} containing
-      the data for the conservation actions. It contains the following
-      columns:
-
-      \describe{
-
-        \item{\code{"name"}}{\code{character} name for each action.}
-
-        \item{\code{"cost"}}{\code{numeric} cost for each action.}
-
-        \item{\code{"locked_in"}}{\code{logical} indicating if certain
-          actions should be locked into the solution.}
-
-        \item{\code{"locked_out"}}{\code{logical} indicating if certain
-          actions should be locked out of the solution.}
-
-    }}
-
-    \item{\code{"features"}}{A \code{\link[tibble]{tibble}} containing
-      the data for the conservation features (e.g. species). It contains the
-      following columns:
-
-      \describe{
-
-       \item{\code{"name"}}{\code{character} name for each feature.}
-
-        \item{\code{"weight"}}{\code{numeric} weight for each feature.
-          For each feature, this is calculated as the amount of time that
-          elapsed between the present and the features' last common ancestor.
-          In other words, the weights are calculated as the unique amount
-          of evolutionary history that each feature has experienced.}
-
-    }}
-
-   \item{"tree"}{\code{\link[ape]{phylo}} phylogenetic tree for the
-     features.}
-
- }
+\describe{
+\item{\code{"projects"}}{A \code{\link[tibble:tibble]{tibble::tibble()}} containing
+the data for the conservation projects. It contains the following
+columns:
+\describe{
+\item{\code{"name"}}{\code{character} name for each project.}
+\item{\code{"success"}}{\code{numeric} probability of each project
+succeeding if it is funded.}
+\item{\code{"F1"} ... \code{"FN"}}{\code{numeric} columns for each
+feature, ranging from \code{"F1"} to \code{"FN"} where \code{N}
+is the number of features, indicating the enhanced probability that
+each feature will persist if it funded. Missing values (\code{NA})
+indicate that a feature does not benefit from a project being
+funded.}
+\item{\code{"F1_action"} ... \code{"FN_action"}}{\code{logical}
+columns for each action, ranging from \code{"F1_action"} to
+\code{"FN_action"} where \code{N} is
+the number of actions (equal to the number of features in this
+simulated data), indicating if an action is associated with a
+project (\code{TRUE}) or not (\code{FALSE}).}
+\item{\code{"baseline_action"}}{\code{logical}
+column indicating if a project is associated with the baseline
+action (\code{TRUE}) or not (\code{FALSE}). This action is only
+associated with the baseline project.}
+}
+}
+\item{\code{"actions"}}{A \code{\link[tibble:tibble]{tibble::tibble()}} containing
+the data for the conservation actions. It contains the following
+columns:
+\describe{
+\item{\code{"name"}}{\code{character} name for each action.}
+\item{\code{"cost"}}{\code{numeric} cost for each action.}
+\item{\code{"locked_in"}}{\code{logical} indicating if certain
+actions should be locked into the solution.}
+\item{\code{"locked_out"}}{\code{logical} indicating if certain
+actions should be locked out of the solution.}
+}
+}
+\item{\code{"features"}}{A \code{\link[tibble:tibble]{tibble::tibble()}} containing
+the data for the conservation features (e.g. species). It contains the
+following columns:
+\describe{
+\item{\code{"name"}}{\code{character} name for each feature.}
+\item{\code{"weight"}}{\code{numeric} weight for each feature.
+For each feature, this is calculated as the amount of time that
+elapsed between the present and the features' last common ancestor.
+In other words, the weights are calculated as the unique amount
+of evolutionary history that each feature has experienced.}
+}
+}
+\item{"tree"}{\code{\link[ape:read.tree]{ape::phylo()}} phylogenetic tree for the
+features.}
+}
 }
 \description{
 Simulate data for developing project prioritizations. Here, data are
@@ -138,50 +119,41 @@ similar to species-based prioritizations (e.g. Bennett \emph{et al.} 2014).
 }
 \details{
 The simulated data set will contain one conservation project for
-  each features, and also a "baseline" (do nothing) project to reflect
-  features' persistence when their conservation project is not
-  funded. Each conservation project is associated with a single action, and
-  no conservation projects share any actions. Specifically, the data are
-  simulated as follows:
+each features, and also a "baseline" (do nothing) project to reflect
+features' persistence when their conservation project is not
+funded. Each conservation project is associated with a single action, and
+no conservation projects share any actions. Specifically, the data are
+simulated as follows:
 
-  \enumerate{
-
-    \item A conservation project is created for each feature, and each
-      project is associated with its own single action.
-
-    \item Cost data for each action are simulated using a normal
-      distribution and the \code{cost_mean} and \code{cost_sd} arguments.
-
-    \item A set proportion of the actions are randomly set to be locked
-      in and out of the solutions using the \code{locked_in_proportion} and
-      \code{locked_out_proportion} arguments.
-
-    \item The probability of each project succeeding if its action is funded
-      is simulated by drawing probabilities from a uniform distribution with
-      the upper and lower bounds set as the \code{success_min_probability}
-      and \code{success_max_probability} arguments.
-
-    \item The probability of each feature persisting if its project is funded
-      and is successful is simulated by drawing probabilities from a uniform
-      distribution with the upper and lower bounds set as the
-      \code{funded_min_persistence_probability} and
-      \code{funded_max_persistence_probability} arguments.
-
-    \item An additional project is created which represents the "baseline"
-      (do nothing) scenario. The probability of each feature persisting
-      when managed under this project is simulated by drawing probabilities
-      from a uniform distribution with the upper and lower bounds
-      set as the \code{baseline_min_persistence_probability}
-      and \code{baseline_max_persistence_probability} arguments.
-
-    \item A phylogenetic tree is simulated for the features using
-      \code{\link[ape]{rcoal}}.
-
-    \item Feature data are created from the phylogenetic tree. The
-      weights are calculated as the amount of evolutionary history
-      that has elapsed between each feature and its last common ancestor.
-
- }
+\enumerate{
+\item A conservation project is created for each feature, and each
+project is associated with its own single action.
+\item Cost data for each action are simulated using a normal
+distribution and the \code{cost_mean} and \code{cost_sd} arguments.
+\item A set proportion of the actions are randomly set to be locked
+in and out of the solutions using the \code{locked_in_proportion} and
+\code{locked_out_proportion} arguments.
+\item The probability of each project succeeding if its action is funded
+is simulated by drawing probabilities from a uniform distribution with
+the upper and lower bounds set as the \code{success_min_probability}
+and \code{success_max_probability} arguments.
+\item The probability of each feature persisting if its project is funded
+and is successful is simulated by drawing probabilities from a uniform
+distribution with the upper and lower bounds set as the
+\code{funded_min_persistence_probability} and
+\code{funded_max_persistence_probability} arguments.
+\item An additional project is created which represents the "baseline"
+(do nothing) scenario. The probability of each feature persisting
+when managed under this project is simulated by drawing probabilities
+from a uniform distribution with the upper and lower bounds
+set as the \code{baseline_min_persistence_probability}
+and \code{baseline_max_persistence_probability} arguments.
+\item A phylogenetic tree is simulated for the features using
+\code{\link[ape:rtree]{ape::rcoal()}}.
+\item Feature data are created from the phylogenetic tree. The
+weights are calculated as the amount of evolutionary history
+that has elapsed between each feature and its last common ancestor.
+}
 }
 \examples{
 # create a simulated data set
@@ -209,5 +181,5 @@ threatened species in New Zealand. \emph{Biological Conservation},
 \strong{174}: 47--54.
 }
 \seealso{
-\code{\link{simulate_ptm_data}}.
+\code{\link[=simulate_ptm_data]{simulate_ptm_data()}}.
 }

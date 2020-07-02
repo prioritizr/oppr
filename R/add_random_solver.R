@@ -12,10 +12,10 @@ NULL
 #'
 #' @details The algorithm used to randomly generate solutions depends on the
 #'  the objective specified for the project prioritization
-#'  \code{\link{problem}}.
+#'  [problem()].
 #'
 #'  For objectives which maximize benefit subject to budgetary constraints
-#'  (e.g. \code{\link{add_max_richness_objective}}):
+#'  (e.g. [add_max_richness_objective()]):
 #'
 #'  \enumerate{
 #'
@@ -34,7 +34,7 @@ NULL
 #'  }
 #'
 #' For objectives which minimize cost subject to biodiversity constraints
-#' (i.e. \code{\link{add_min_set_objective}}:
+#' (i.e. [add_min_set_objective()]:
 #'
 #'  \enumerate{
 #'

@@ -12,16 +12,16 @@ NULL
 #' other words, it creates a matrix that shows which periods of evolutionary
 #' history each species has experienced.
 #'
-#' @param x \code{\link[ape]{phylo}} tree object.
+#' @param x [ape::phylo()] tree object.
 #'
-#' @param assert_validity \code{logical} value (i.e. \code{TRUE} or \code{FALSE}
-#'   indicating if the argument to \code{x} should be checked for validity.
-#'   Defaults to \code{TRUE}.
+#' @param assert_validity `logical` value (i.e. `TRUE` or `FALSE`
+#'   indicating if the argument to `x` should be checked for validity.
+#'   Defaults to `TRUE`.
 #'
 #' @param ... not used.
 #'
 #'
-#' @return \code{\link[Matrix]{dgCMatrix-class}} sparse matrix object. Each row
+#' @return [Matrix::dgCMatrix-class] sparse matrix object. Each row
 #'   corresponds to a different species. Each column corresponds to a different
 #'   branch. Species that inherit from a given branch are indicated with a one.
 #'

@@ -40,10 +40,10 @@
 
 
 <meta property="og:title" content="Add manually specified locked constraints — add_manual_locked_constraints" />
-<meta property="og:description" content="Add constraints to a project prioritization problem to ensure
+<meta property="og:description" content="Add constraints to a project prioritization problem() to ensure
 that solutions fund (or do not fund) specific actions. This function offers
-more fine-grained control than the add_locked_in_constraints
-and add_locked_out_constraints functions." />
+more fine-grained control than the add_locked_in_constraints()
+and add_locked_out_constraints() functions." />
 
 
 
@@ -75,7 +75,7 @@ and add_locked_out_constraints functions." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2.1</span>
       </span>
     </div>
 
@@ -123,10 +123,10 @@ and add_locked_out_constraints functions." />
     </div>
 
     <div class="ref-description">
-    <p>Add constraints to a project prioritization <code><a href='problem.html'>problem</a></code> to ensure
+    <p>Add constraints to a project prioritization <code><a href='problem.html'>problem()</a></code> to ensure
 that solutions fund (or do not fund) specific actions. This function offers
-more fine-grained control than the <code><a href='add_locked_in_constraints.html'>add_locked_in_constraints</a></code>
-and <code><a href='add_locked_out_constraints.html'>add_locked_out_constraints</a></code> functions.</p>
+more fine-grained control than the <code><a href='add_locked_in_constraints.html'>add_locked_in_constraints()</a></code>
+and <code><a href='add_locked_out_constraints.html'>add_locked_out_constraints()</a></code> functions.</p>
     </div>
 
     <pre class="usage"><span class='fu'>add_manual_locked_constraints</span>(<span class='no'>x</span>, <span class='no'>locked</span>)
@@ -142,36 +142,36 @@ and <code><a href='add_locked_out_constraints.html'>add_locked_out_constraints</
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p><code><a href='ProjectProblem-class.html'>ProjectProblem-class</a></code> object.</p></td>
+      <td><p><a href='ProjectProblem-class.html'>ProjectProblem</a> object.</p></td>
     </tr>
     <tr>
       <th>locked</th>
-      <td><p><code>data.frame</code> or <code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></code> object. See
+      <td><p><code>data.frame</code> or <code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble::tibble()</a></code> object. See
 the Details section for more information.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code><a href='ProjectProblem-class.html'>ProjectProblem-class</a></code> object with the constraints
-  added to it.</p>
+    <p><a href='ProjectProblem-class.html'>ProjectProblem</a> object with the constraints
+added to it.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The argument to <code>locked</code> must contain the following fields
-  (columns):</p>
-<p></p><dl'>
+(columns):</p>
+<dl'>
 
-  <dt><code>"action"</code></dt><dd><p><code>character</code> action name.</p></dd>
+<dt><code>"action"</code></dt><dd><p><code>character</code> action name.</p></dd>
 
-  <dt><code>"status"</code></dt><dd><p><code>numeric</code> values indicating if actions should
-     be funded (with a value of 1) or not (with a value of zero).</p></dd>
+<dt><code>"status"</code></dt><dd><p><code>numeric</code> values indicating if actions should
+be funded (with a value of 1) or not (with a value of zero).</p></dd>
 
-  
+
 </dl>
 
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='constraints.html'>constraints</a></code>.</p></div>
+    <div class='dont-index'><p><a href='constraints.html'>constraints</a>.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># load data</span>
@@ -245,8 +245,8 @@ the Details section for more information.</p></td>
 <span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 1 x 21</span><span>
 #&gt;   solution status   obj  cost F1_action F2_action F3_action F4_action F5_action
 #&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span>        1 OPTIM~  2.91  403.         0         1         1         1         1
-#&gt; </span><span style='color: #555555;'># ... with 12 more variables: baseline_action </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F1_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>        1 OPTIM…  2.91  403.         0         1         1         1         1
+#&gt; </span><span style='color: #555555;'># … with 12 more variables: baseline_action </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F1_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   F2_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F3_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F4_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F5_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   baseline_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F1 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F2 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F3 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F4 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F5 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'># }
 

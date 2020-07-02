@@ -3,26 +3,26 @@ NULL
 
 #' Add maximum targets met objective
 #'
-#' Set the objective of a project prioritization \code{\link{problem}} to
+#' Set the objective of a project prioritization [problem()] to
 #' maximize the total number of persistence targets met for the features, whilst
 #' ensuring that the cost of the solution is within a pre-specified budget
-#' (Chades \emph{et al.} 2015). In some project prioritization exercises,
+#' (Chades *et al.* 2015). In some project prioritization exercises,
 #' decision makers may have a target level of persistence for each feature
-#' (e.g. a 90\% persistence target corresponding to a 90\% chance for the
+#' (e.g. a 90% persistence target corresponding to a 90% chance for the
 #' features persisting into the future). In such exercises, the decision makers
 #' do not perceive any benefit when a target is not met (e.g. if a feature
-#' has a persistence target of 90\% and a solution only secures a 70\% chance
+#' has a persistence target of 90% and a solution only secures a 70% chance
 #' of persistence then no benefit is accrued for that feature) or when a target
-#' is surpassed (e.g. if a feature has a persistence target of 50\%, then a
+#' is surpassed (e.g. if a feature has a persistence target of 50%, then a
 #' solution which
-#' secures a 95\% chance of persistence will accrue the same benefit as a
-#' solution which secures a 50\% chance of persistence). Furthermore, weights
+#' secures a 95% chance of persistence will accrue the same benefit as a
+#' solution which secures a 50% chance of persistence). Furthermore, weights
 #' can also be used to specify the relative importance of meeting targets
-#' for specific features (see \code{\link{add_feature_weights}}).
+#' for specific features (see [add_feature_weights()]).
 #'
-#' @param x \code{\link{ProjectProblem-class}} object.
+#' @param x [ProjectProblem-class] object.
 #'
-#' @param budget \code{numeric} budget for funding actions.
+#' @param budget `numeric` budget for funding actions.
 #'
 #' @details A problem objective is used to specify the overall goal of the
 #'   project prioritization problem.
@@ -53,17 +53,17 @@ NULL
 #'   let \eqn{Q_{fj}} denote the actual probability that each
 #'   \eqn{f \in F}{f in F} associated with the project \eqn{j \in J}{j in J}
 #'   is expected to persist if the project is funded. If the argument
-#'   to \code{adjust_for_baseline} in the \code{problem} function was set to
-#'   \code{TRUE}, and this is the default behavior, then
+#'   to `adjust_for_baseline` in the `problem` function was set to
+#'   `TRUE`, and this is the default behavior, then
 #'   \eqn{Q_{fj} = (P_{j} \times B_{fj}) + \bigg(\big(1 - (P_{j} B_{fj})\big)
 #'   \times (P_{n} \times B_{fn})\bigg)}{Q_{fj} = (P_j B_{fj}) + ((1 - (P_j
-#'   B_{fj})) * (P_n \times B_{fn}))}, where \code{n} corresponds to the
+#'   B_{fj})) * (P_n \times B_{fn}))}, where `n` corresponds to the
 #'   baseline "do nothing" project. This means that the probability
 #'   of a feature persisting if a project is allocated to a feature
 #'   depends on (i) the probability of the project succeeding, (ii) the
 #'   probability of the feature persisting if the project does not fail,
 #'   and (iii) the probability of the feature persisting even if the project
-#'   fails. Otherwise, if the argument is set to \code{FALSE}, then
+#'   fails. Otherwise, if the argument is set to `FALSE`, then
 #'   \eqn{Q_{fj} = P_{j} \times B_{fj}}{Q_{fj} = P_{j} * B_{fj}}.
 #'
 #'   The binary control variables \eqn{X_i} in this problem indicate whether
@@ -134,7 +134,7 @@ NULL
 #' @references
 #' Chades I, Nicol S, van Leeuwen S, Walters B, Firn J, Reeson A, Martin TG &
 #' Carwardine J (2015) Benefits of integrating complementarity into priority
-#' threat management. \emph{Conservation Biology}, \strong{29}, 525--536.
+#' threat management. *Conservation Biology*, **29**, 525--536.
 #'
 #' @inherit add_max_richness_objective seealso return
 #'
@@ -145,8 +145,11 @@ NULL
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
+#' # manually adjust feature weights
+#' sim_features$weight <- c(8, 2, 6, 3, 1)
+#'
 #' # build problem with maximum targets met objective, a $200 budget,
-#' # targets that require each feature to have a 20\% chance of persisting into
+#' # targets that require each feature to have a 20% chance of persisting into
 #' # the future, and zero cost actions locked in
 #' p1 <- problem(sim_projects, sim_actions, sim_features,
 #'              "name", "success", "name", "cost", "name") %>%
@@ -164,7 +167,7 @@ NULL
 #'
 #' # plot solution, and add a dashed line to indicate the feature targets
 #' # we can see the three features meet the targets under the baseline
-#' # scenario, and the project for F3 was prioritized for funding
+#' # scenario, and the project for F5 was prioritized for funding
 #' # so that its probability of persistence meets the target
 #' plot(p1, s1) +
 #' geom_hline(yintercept = 0.2, linetype = "dashed")
@@ -183,8 +186,8 @@ NULL
 #'
 #' # plot solution, and add a dashed line to indicate the feature targets
 #' # we can see that adding weights to the problem has changed the solution
-#' # specifically, the projects for feature F1 and F5 have been funded
-#' # to enhance their probability of persistence
+#' # specifically, the projects for the feature F3 is now funded
+#' # to enhance its probability of persistence
 #' plot(p2, s2) +
 #' geom_hline(yintercept = 0.2, linetype = "dashed")
 #' }

@@ -8,7 +8,7 @@
 \item{lhs, rhs}{An object and a function.}
 }
 \description{
-This package uses the pipe operator (\code{\%>\%}) to express nested code
+This package uses the pipe operator (\verb{\%>\%}) to express nested code
 as a series of imperative procedures.
 }
 \examples{
@@ -27,5 +27,5 @@ runif(100) \%>\% mean()
 
 }
 \seealso{
-\code{\link[magrittr]{\%>\%}}, \code{\link{tee}}.
+\code{\link[magrittr:pipe]{magrittr::\%>\%()}}, \code{\link[=tee]{tee()}}.
 }

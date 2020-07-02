@@ -3,52 +3,52 @@ NULL
 
 #' Add manual targets
 #'
-#' Set targets for a project prioritization \code{\link{problem}} by manually
+#' Set targets for a project prioritization [problem()] by manually
 #' specifying all the required information for each target. This function
 #' is useful because it can be used to customize all aspects of a target. For
 #' most cases, targets can be specified using the
-#' \code{\link{add_absolute_targets}} and \code{\link{add_relative_targets}}
+#' [add_absolute_targets()] and [add_relative_targets()]
 #' functions. However, this function can be used to mix absolute and
 #' relative targets for different features.
 #'
-#' @param x \code{\link{ProjectProblem-class}} object.
+#' @param x [ProjectProblem-class] object.
 #'
-#' @param targets \code{data.frame} or \code{\link[tibble]{tibble}} object. See
+#' @param targets `data.frame` or [tibble::tibble()] object. See
 #'   the Details section for more information.
 #'
 #' @details Targets are used to specify the minimum probability of persistence
 #'   for each feature in solutions. For minimum set objectives
-#'   (i.e. \code{\link{add_min_set_objective}}, these targets
+#'   (i.e. [add_min_set_objective()], these targets
 #'   specify the minimum probability of persistence required for each species
 #'   in the solution. And for budget constrained objectives that use targets
-#'   (i.e. \code{\link{add_max_targets_met_objective}}), these targets
+#'   (i.e. [add_max_targets_met_objective()]), these targets
 #'   specify the minimum threshold probability of persistence that needs to be
 #'   achieved to count the benefits for conserving these species.
 #'   Please note that attempting to solve problems with objectives that require
 #'   targets without specifying targets will throw an error.
 #'
-#'   The \code{targets} argument should contain the following columns:
+#'   The `targets` argument should contain the following columns:
 #'
 #'   \describe{
 #'
-#'   \item{\code{"feature"}}{\code{character} name of features in argument
-#'     to \code{x}.}
+#'   \item{`"feature"`}{`character` name of features in argument
+#'     to `x`.}
 #'
-#'   \item{\code{"type"}}{\code{character} describing the type of target.
-#'     Acceptable values include \code{"absolute"} and \code{"relative"}.
-#'     These values correspond to \code{\link{add_absolute_targets}},
-#'     and \code{\link{add_relative_targets}} respectively.}
+#'   \item{`"type"`}{`character` describing the type of target.
+#'     Acceptable values include `"absolute"` and `"relative"`.
+#'     These values correspond to [add_absolute_targets()],
+#'     and [add_relative_targets()] respectively.}
 #'
-#'   \item{\code{"sense"}}{\code{character} sense of the target. The
-#'     only acceptable value currently supported is: \code{">="}. This field
+#'   \item{`"sense"`}{`character` sense of the target. The
+#'     only acceptable value currently supported is: `">="`. This field
 #'     (column) is optional and if it is missing then target senses will
-#'     default to \code{">="} values.}
+#'     default to `">="` values.}
 #'
-#'   \item{\code{"target"}}{\code{numeric} target threshold.}
+#'   \item{`"target"`}{`numeric` target threshold.}
 #'
 #'   }
 #'
-#' @return \code{\link{ProjectProblem-class}} object with the targets added
+#' @return [ProjectProblem-class] object with the targets added
 #'   to it.
 #'
 #' @inherit add_absolute_targets seealso return

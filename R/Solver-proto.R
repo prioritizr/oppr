@@ -8,40 +8,40 @@ NULL
 #' Solver prototype
 #'
 #' This prototype is used to generate objects that represent methods for solving
-#' optimization problems. \strong{This class represents a recipe to
+#' optimization problems. **This class represents a recipe to
 #' create solver and and is only recommended for use by expert users. To
 #' customize the method used to solve optimization problems, please see the
-#' help page on \code{\link{solvers}}}.
+#' help page on [solvers]**.
 #'
 #' @section Fields:
 #'
 #' \describe{
 #'
-#' \item{$name}{\code{character} name of solver.}
+#' \item{$name}{`character` name of solver.}
 #'
-#' \item{$parameters}{\code{Parameters} object with parameters used to customize
+#' \item{$parameters}{`Parameters` object with parameters used to customize
 #'   the the solver.}
 #'
-#' \item{$solve}{\code{function} used to solve a
-#'   \code{\link{OptimizationProblem-class}} object.}
+#' \item{$solve}{`function` used to solve a
+#'   [OptimizationProblem-class] object.}
 #' }
 #'
 #' @section Usage:
 #'
-#' \code{x$print()}
+#' `x$print()`
 #'
-#' \code{x$show()}
+#' `x$show()`
 #'
-#' \code{x$repr()}
+#' `x$repr()`
 #'
-#' \code{x$solve(op)}
+#' `x$solve(op)`
 #'
 #' @section Arguments:
 #' \describe{
 #'
-#' \item{x}{\code{\link{Solver-class}} object.}
+#' \item{x}{[Solver-class] object.}
 #'
-#' \item{op}{\code{\link{OptimizationProblem-class}} object.}
+#' \item{op}{[OptimizationProblem-class] object.}
 #'
 #' }
 #'
@@ -52,9 +52,9 @@ NULL
 #'
 #' \item{show}{show the object.}
 #'
-#' \item{repr}{\code{character} representation of object.}
+#' \item{repr}{`character` representation of object.}
 #'
-#' \item{solve}{solve an \code{\link{OptimizationProblem-class}} using this
+#' \item{solve}{solve an [OptimizationProblem-class] using this
 #'   object.}
 #'
 #' }

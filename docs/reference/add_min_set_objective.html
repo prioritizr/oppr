@@ -40,7 +40,7 @@
 
 
 <meta property="og:title" content="Add minimum set objective — add_min_set_objective" />
-<meta property="og:description" content="Set the objective of a project prioritization problem to
+<meta property="og:description" content="Set the objective of a project prioritization problem() to
 minimize the cost of the solution whilst ensuring that all targets are met.
 This objective is conceptually similar to that used in Marxan
 (Ball, Possingham &amp;amp; Watts 2009)." />
@@ -75,7 +75,7 @@ This objective is conceptually similar to that used in Marxan
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2.1</span>
       </span>
     </div>
 
@@ -123,7 +123,7 @@ This objective is conceptually similar to that used in Marxan
     </div>
 
     <div class="ref-description">
-    <p>Set the objective of a project prioritization <code><a href='problem.html'>problem</a></code> to
+    <p>Set the objective of a project prioritization <code><a href='problem.html'>problem()</a></code> to
 minimize the cost of the solution whilst ensuring that all targets are met.
 This objective is conceptually similar to that used in <em>Marxan</em>
 (Ball, Possingham &amp; Watts 2009).</p>
@@ -136,65 +136,65 @@ This objective is conceptually similar to that used in <em>Marxan</em>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p><code><a href='ProjectProblem-class.html'>ProjectProblem-class</a></code> object.</p></td>
+      <td><p><a href='ProjectProblem-class.html'>ProjectProblem</a> object.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code><a href='ProjectProblem-class.html'>ProjectProblem-class</a></code> object with the objective
-  added to it.</p>
+    <p><a href='ProjectProblem-class.html'>ProjectProblem</a> object with the objective
+added to it.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>A problem objective is used to specify the overall goal of the
-  project prioritization problem.
-  Here, the minimum set objective seeks to find the set of actions that
-  minimizes the overall cost of the prioritization, while ensuring that the
-  funded projects meet a set of persistence targets for the conservation
-  features (e.g. populations, species, ecosystems). Let \(I\) represent
-  the set of conservation actions (indexed by \(i\)). Let \(C_i\) denote
-  the cost for funding action \(i\). Also, let \(F\) represent each
-  feature (indexed by \(f\)), \(T_f\) represent the persistence target
-  for feature \(f\), and \(E_f\) denote the probability that each
-  feature will go extinct given the funded conservation projects.</p>
+project prioritization problem.
+Here, the minimum set objective seeks to find the set of actions that
+minimizes the overall cost of the prioritization, while ensuring that the
+funded projects meet a set of persistence targets for the conservation
+features (e.g. populations, species, ecosystems). Let \(I\) represent
+the set of conservation actions (indexed by \(i\)). Let \(C_i\) denote
+the cost for funding action \(i\). Also, let \(F\) represent each
+feature (indexed by \(f\)), \(T_f\) represent the persistence target
+for feature \(f\), and \(E_f\) denote the probability that each
+feature will go extinct given the funded conservation projects.</p>
 <p>To guide the prioritization, the conservation actions are organized into
-  conservation projects. Let \(J\) denote the set of conservation projects
-  (indexed by \(j\)), and let \(A_{ij}\) denote which actions
-  \(i \in I\) comprise each conservation project
-  \(j \in J\) using zeros and ones. Next, let \(P_j\) represent
-  the probability of project \(j\) being successful if it is funded. Also,
-  let \(B_{fj}\) denote the enhanced probability that each feature
-  \(f \in F\) associated with the project \(j \in J\)
-  will persist if all of the actions that comprise project \(j\) are funded
-  and that project is allocated to feature \(f\).
-  For convenience,
-  let \(Q_{fj}\) denote the actual probability that each
-  \(f \in F\) associated with the project \(j \in J\)
-  is expected to persist if the project is funded. If the argument
-  to <code>adjust_for_baseline</code> in the <code>problem</code> function was set to
-  <code>TRUE</code>, and this is the default behavior, then
-  \(Q_{fj} = (P_{j} \times B_{fj}) + \bigg(\big(1 - (P_{j} B_{fj})\big)
+conservation projects. Let \(J\) denote the set of conservation projects
+(indexed by \(j\)), and let \(A_{ij}\) denote which actions
+\(i \in I\) comprise each conservation project
+\(j \in J\) using zeros and ones. Next, let \(P_j\) represent
+the probability of project \(j\) being successful if it is funded. Also,
+let \(B_{fj}\) denote the enhanced probability that each feature
+\(f \in F\) associated with the project \(j \in J\)
+will persist if all of the actions that comprise project \(j\) are funded
+and that project is allocated to feature \(f\).
+For convenience,
+let \(Q_{fj}\) denote the actual probability that each
+\(f \in F\) associated with the project \(j \in J\)
+is expected to persist if the project is funded. If the argument
+to <code>adjust_for_baseline</code> in the <code>problem</code> function was set to
+<code>TRUE</code>, and this is the default behavior, then
+\(Q_{fj} = (P_{j} \times B_{fj}) + \bigg(\big(1 - (P_{j} B_{fj})\big)
   \times (P_{n} \times B_{fn})\bigg)\), where <code>n</code> corresponds to the
-  baseline "do nothing" project. This means that the probability
-  of a feature persisting if a project is allocated to a feature
-  depends on (i) the probability of the project succeeding, (ii) the
-  probability of the feature persisting if the project does not fail,
-  and (iii) the probability of the feature persisting even if the project
-  fails. Otherwise, if the argument is set to <code>FALSE</code>, then
-  \(Q_{fj} = P_{j} \times B_{fj}\).</p>
+baseline "do nothing" project. This means that the probability
+of a feature persisting if a project is allocated to a feature
+depends on (i) the probability of the project succeeding, (ii) the
+probability of the feature persisting if the project does not fail,
+and (iii) the probability of the feature persisting even if the project
+fails. Otherwise, if the argument is set to <code>FALSE</code>, then
+\(Q_{fj} = P_{j} \times B_{fj}\).</p>
 <p>The binary control variables \(X_i\) in this problem indicate whether
-  each project \(i \in I\) is funded or not. The decision
-  variables in this problem are the \(Y_{j}\), \(Z_{fj}\), and \(E_f\)
-  variables.
-  Specifically, the binary \(Y_{j}\) variables indicate if project \(j\)
-  is funded or not based on which actions are funded; the binary
-  \(Z_{fj}\) variables indicate if project \(j\) is used to manage
-  feature \(f\) or not; and the semi-continuous \(E_f\) variables
-  denote the probability that feature \(f\) will go extinct.</p>
+each project \(i \in I\) is funded or not. The decision
+variables in this problem are the \(Y_{j}\), \(Z_{fj}\), and \(E_f\)
+variables.
+Specifically, the binary \(Y_{j}\) variables indicate if project \(j\)
+is funded or not based on which actions are funded; the binary
+\(Z_{fj}\) variables indicate if project \(j\) is used to manage
+feature \(f\) or not; and the semi-continuous \(E_f\) variables
+denote the probability that feature \(f\) will go extinct.</p>
 <p>Now that we have defined all the data and variables, we can formulate
-  the problem. For convenience, let the symbol used to denote each set also
-  represent its cardinality (e.g. if there are ten features, let \(F\)
-  represent the set of ten features and also the number ten).</p>
+the problem. For convenience, let the symbol used to denote each set also
+represent its cardinality (e.g. if there are ten features, let \(F\)
+represent the set of ten features and also the number ten).</p>
 <p>$$
   \mathrm{Minimize} \space \sum_{i = 0}^{I} C_i X_i \space
   \mathrm{(eqn \space 1a)} \\
@@ -215,17 +215,17 @@ This objective is conceptually similar to that used in <em>Marxan</em>
   \in F \space \mathrm{(eqn \space 1h)}
   $$</p>
 <p>The objective (eqn 1a) is to minimize the cost of the funded actions.
-  Constraints (eqn 1b) ensure that the persistence targets are met.
-  Constraints (eqn 1c) calculate the probability that each feature
-  will go extinct according to their allocated project.
-  Constraints (eqn 1d) ensure that feature can only be allocated to projects
-  that have all of their actions funded. Constraints (eqn 1e) state that each
-  feature can only be allocated to a single project. Constraints (eqn 1f)
-  ensure that a project cannot be funded unless all of its actions are
-  funded. Constraints (eqns 1g) ensure that the probability variables
-  (\(E_f\)) are bounded between zero and one. Constraints (eqns 1h) ensure
-  that the action funding (\(X_i\)), project funding (\(Y_j\)), and
-  project allocation (\(Z_{fj}\)) variables are binary.</p>
+Constraints (eqn 1b) ensure that the persistence targets are met.
+Constraints (eqn 1c) calculate the probability that each feature
+will go extinct according to their allocated project.
+Constraints (eqn 1d) ensure that feature can only be allocated to projects
+that have all of their actions funded. Constraints (eqn 1e) state that each
+feature can only be allocated to a single project. Constraints (eqn 1f)
+ensure that a project cannot be funded unless all of its actions are
+funded. Constraints (eqns 1g) ensure that the probability variables
+(\(E_f\)) are bounded between zero and one. Constraints (eqns 1h) ensure
+that the action funding (\(X_i\)), project funding (\(Y_j\)), and
+project allocation (\(Z_{fj}\)) variables are binary.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Ball IR, Possingham HP &amp; Watts M (2009) Marxan and relatives: software for
@@ -234,7 +234,7 @@ spatial conservation prioritisation.
 computational tools</em>, 185-195.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='objectives.html'>objectives</a></code>, <code><a href='targets.html'>targets</a></code>.</p></div>
+    <div class='dont-index'><p><a href='objectives.html'>objectives</a>, <a href='targets.html'>targets</a>.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># load the ggplot2 R package to customize plot</span>
@@ -244,7 +244,7 @@ computational tools</em>, 185-195.</p>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_features</span>, <span class='no'>sim_actions</span>)
 
 <span class='co'># build problem with minimum set objective and targets that require each</span>
-<span class='co'># feature to have a 30\% chance of persisting into the future</span>
+<span class='co'># feature to have a 30% chance of persisting into the future</span>
 <span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_actions</span>, <span class='no'>sim_features</span>,
              <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span>) <span class='kw'>%&gt;%</span>
       <span class='fu'>add_min_set_objective</span>() <span class='kw'>%&gt;%</span>

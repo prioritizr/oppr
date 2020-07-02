@@ -10,22 +10,22 @@ compile(x, ...)
 \method{compile}{ProjectProblem}(x, ...)
 }
 \arguments{
-\item{x}{\code{\link{ProjectProblem-class}} object.}
+\item{x}{\linkS4class{ProjectProblem} object.}
 
 \item{...}{not used.}
 }
 \value{
-\code{\link{OptimizationProblem-class}} object.
+\linkS4class{OptimizationProblem} object.
 }
 \description{
-Compile a project prioritization \code{\link{problem}} into a general
+Compile a project prioritization \code{\link[=problem]{problem()}} into a general
 purpose format for optimization.
 }
 \details{
 This function might be useful for those interested in understanding
-  how their project prioritization \code{\link{problem}} is expressed
-  as a mathematical problem. However, if the problem just needs to
-  be solved, then the \code{\link{solve}} function should be used instead.
+how their project prioritization \code{\link[=problem]{problem()}} is expressed
+as a mathematical problem. However, if the problem just needs to
+be solved, then the \code{\link[=solve]{solve()}} function should be used instead.
 }
 \examples{
 # load data

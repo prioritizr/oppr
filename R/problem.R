@@ -7,21 +7,21 @@ NULL
 #' specify the underlying data used in a prioritization problem: the projects,
 #' the management actions, and the features that need
 #' to be conserved (e.g. species, ecosystems). After constructing this
-#' \code{ProjectProblem-class} object,
-#' it can be customized using \code{\link{objectives}}, \code{\link{targets}},
-#' \code{\link{weights}}, \code{\link{constraints}} and
-#' \code{\link{solvers}}. After building the problem, the
-#' \code{\link{solve}} function can be used to identify solutions.
+#' `ProjectProblem-class` object,
+#' it can be customized using [objectives], [targets],
+#' [weights], [constraints], [decisions] and
+#' [solvers]. After building the problem, the
+#' [solve()] function can be used to identify solutions.
 #'
-#' @param projects \code{\link[base]{data.frame}} or
-#'   \code{\link[tibble]{tibble}} table containing project data. Here, each row
+#' @param projects [base::data.frame()] or
+#'   [tibble::tibble()] table containing project data. Here, each row
 #'   should correspond to a different project and columns should contain data
 #'   that correspond to each project. This object should contain data that
 #'   denote (i)
 #'   the name of each project (specified in the argument to
-#'   \code{project_name_column}), (ii) the
+#'   `project_name_column`), (ii) the
 #'   probability that each project will succeed if all of its actions are funded
-#'   (specified in the argument to \code{project_success_column}), (iii)
+#'   (specified in the argument to `project_success_column`), (iii)
 #'   the enhanced probability that each feature will persist if it
 #'   is funded (using a column for each feature),
 #'   and (iv) and which actions are associated with which projects
@@ -33,70 +33,70 @@ NULL
 #'   given the funded projects in a solution, the combined benefits of multiple
 #'   projects can be encoded by creating additional projects that represent
 #'   "combined projects". For instance, a habitat restoration project might
-#'   cost \$100 and mean that a feature has a 40\% chance of persisting, and
+#'   cost \$100 and mean that a feature has a 40% chance of persisting, and
 #'   a pest eradication project might cost \$50 and mean that a feature has a
-#'   60\% chance of persisting. Due to non-linear effects, funding both of these
-#'   projects might mean that a species has a 90\% chance of persistence.
+#'   60% chance of persisting. Due to non-linear effects, funding both of these
+#'   projects might mean that a species has a 90% chance of persistence.
 #'   This can be accounted for by creating a third project, representing the
-#'   funding of both projects, which costs \$150 and provides a 90\% chance
+#'   funding of both projects, which costs \$150 and provides a 90% chance
 #'   of persistence.
 #'
-#' @param actions \code{\link[base]{data.frame}} or \code{\link[tibble]{tibble}}
+#' @param actions [base::data.frame()] or [tibble::tibble()]
 #'   table containing the action data. Here, each row should correspond to a
 #'   different action and columns should contain data that correspond to
 #'   each action. At a minimum, this object should contain data that denote (i)
 #'   the name of each action (specified in the argument to
-#'   \code{action_name_column}), (ii) the cost of each action (specified in the
-#'   argument to \code{action_cost_column}). Optionally, it may also contain
+#'   `action_name_column`), (ii) the cost of each action (specified in the
+#'   argument to `action_cost_column`). Optionally, it may also contain
 #'   data that indicate actions should be (iii) locked in or (iv) locked
-#'   out (see \code{\link{add_locked_in_constraints}} and
-#'   \code{\link{add_locked_out_constraints}}). It should also contain a
+#'   out (see [add_locked_in_constraints()] and
+#'   [add_locked_out_constraints()]). It should also contain a
 #'   zero-cost baseline action that is associated with the baseline project.
 #
 #'
-#' @param features \code{\link[base]{data.frame}} or
-#'   \code{\link[tibble]{tibble}}
+#' @param features [base::data.frame()] or
+#'   [tibble::tibble()]
 #'   table containing the feature data. Here, each row should correspond
 #'   to a different feature and columns should contain data that correspond
 #'   to each feature. At a minimum, this object should contain data that denote
 #'   (i) the name of each feature (specified in the argument to
-#'   \code{feature_name_column}). Optionally, it may also contain (ii) the
+#'   `feature_name_column`). Optionally, it may also contain (ii) the
 #'   weight for each feature or (iii) persistence targets for each feature.
 #'
-#' @param project_name_column \code{character} name of column that contains
+#' @param project_name_column `character` name of column that contains
 #'   the name for each conservation project. This argument corresponds to the
-#'   \code{projects} table. Note that the project names must not contain any
+#'   `projects` table. Note that the project names must not contain any
 #'   duplicates or missing values.
 #'
-#' @param project_success_column \code{character} name of column that
+#' @param project_success_column `character` name of column that
 #'   indicates the probability that each project will succeed. This argument
-#'   corresponds to the argument to \code{projects} table. This column must have
-#'   \code{numeric} values which range between zero and one. No missing values
+#'   corresponds to the argument to `projects` table. This column must have
+#'   `numeric` values which range between zero and one. No missing values
 #'   are permitted.
 #'
-#' @param action_name_column \code{character} name of column that contains
+#' @param action_name_column `character` name of column that contains
 #'   the name for each management action. This argument corresponds to the
-#'   \code{actions} table. Note that the project names must not contain any
+#'   `actions` table. Note that the project names must not contain any
 #'   duplicates or missing values.
 #'
-#' @param action_cost_column \code{character} name of column that
+#' @param action_cost_column `character` name of column that
 #'   indicates the cost for funding each action. This argument corresponds
-#'   to the argument to \code{actions} table. This column must have
-#'   \code{numeric} values which are equal to or greater than zero. No missing
+#'   to the argument to `actions` table. This column must have
+#'   `numeric` values which are equal to or greater than zero. No missing
 #'   values are permitted.
 #'
-#' @param feature_name_column \code{character} name of the column that contains
+#' @param feature_name_column `character` name of the column that contains
 #'   the name for each feature. This argument corresponds to the
-#'   \code{feature} table. Note that the feature names must not contain any
+#'   `feature` table. Note that the feature names must not contain any
 #'   duplicates or missing values.
 #'
-#' @param adjust_for_baseline \code{logical} should the probability of
+#' @param adjust_for_baseline `logical` should the probability of
 #'   features persisting when projects are funded be adjusted to account for the
 #'   probability of features persisting under the baseline "do nothing"
 #'   scenario in the event that the funded projects fail to succeed?
-#'   This should always be \code{TRUE}, except when funding a project
+#'   This should always be `TRUE`, except when funding a project
 #'   means that the baseline "do nothing" scenario does not apply if a funded
-#'   project fails. Defaults to \code{TRUE}.
+#'   project fails. Defaults to `TRUE`.
 #'
 #' @details
 #'   A project prioritization problem has actions, projects,
@@ -114,7 +114,7 @@ NULL
 #'   features that they benefit. These values should indicate the
 #'   probability that each feature will persist if only that project funded
 #'   and not the additional benefit relative to the baseline project. Missing
-#'   (\code{NA}) values should be used to indicate which projects do not
+#'   (`NA`) values should be used to indicate which projects do not
 #'   enhance the probability of certain features.
 #'
 #'   The goal of a project prioritization exercise is then to identify which
@@ -132,14 +132,14 @@ NULL
 #'   constraints impose limits such as the total budget available for funding
 #'   management actions. For more information on the mathematical
 #'   formulations used in this package, please refer to the manual entries for
-#'   the available objectives (listed in \code{\link{objectives}}).
+#'   the available objectives (listed in [objectives]).
 #'
-#' @return A fresh \code{\link{ProjectProblem-class}} object.
+#' @return A new [ProjectProblem-class] object.
 #'
-#' @seealso \code{\link{constraints}}, \code{\link{decisions}},
-#'  \code{\link{objectives}}, \code{\link{solvers}}, \code{\link{targets}},
-#'  \code{\link{weights}}, \code{\link{solution_statistics}},
-#'  \code{\link{plot.ProjectProblem}}.
+#' @seealso [constraints], [decisions],
+#'  [objectives], [solvers], [targets],
+#'  [weights], [solution_statistics()],
+#'  [plot.ProjectProblem()].
 #'
 #' @name problem
 #'

@@ -41,7 +41,7 @@
 
 <meta property="og:title" content="Add a SYMPHONY solver with <span class="pkg">Rsymphony</span> — add_rsymphony_solver" />
 <meta property="og:description" content="Specify that the SYMPHONY software should be used to solve a
-project prioritization problem using the Rsymphony
+project prioritization problem() using the Rsymphony
 package. This function can also be used to customize the behavior of the
 solver. It requires the Rsymphony package." />
 
@@ -75,7 +75,7 @@ solver. It requires the Rsymphony package." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2.1</span>
       </span>
     </div>
 
@@ -124,7 +124,7 @@ solver. It requires the Rsymphony package." />
 
     <div class="ref-description">
     <p>Specify that the <em>SYMPHONY</em> software should be used to solve a
-project prioritization <code><a href='problem.html'>problem</a></code> using the <span class="pkg">Rsymphony</span>
+project prioritization <code><a href='problem.html'>problem()</a></code> using the <span class="pkg">Rsymphony</span>
 package. This function can also be used to customize the behavior of the
 solver. It requires the <span class="pkg">Rsymphony</span> package.</p>
     </div>
@@ -142,7 +142,7 @@ solver. It requires the <span class="pkg">Rsymphony</span> package.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p><code><a href='ProjectProblem-class.html'>ProjectProblem-class</a></code> object.</p></td>
+      <td><p><a href='ProjectProblem-class.html'>ProjectProblem</a> object.</p></td>
     </tr>
     <tr>
       <th>gap</th>
@@ -182,20 +182,20 @@ optimization problems?</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code><a href='ProjectProblem-class.html'>ProjectProblem-class</a></code> object with the solver added
-  to it.</p>
+    <p><a href='ProjectProblem-class.html'>ProjectProblem</a> object with the solver added
+to it.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p><a href='https://projects.coin-or.org/SYMPHONY'><em>SYMPHONY</em></a> is an
-  open-source integer programming solver that is part of the Computational
-  Infrastructure for Operations Research (COIN-OR) project, an initiative
-  to promote development of open-source tools for operations research (a
-  field that includes linear programming). The <span class="pkg">Rsymphony</span> package
-  provides an interface to COIN-OR and is available on <em>CRAN</em>.
-  This solver uses the <span class="pkg">Rsymphony</span> package to solve problems.</p>
+open-source integer programming solver that is part of the Computational
+Infrastructure for Operations Research (COIN-OR) project, an initiative
+to promote development of open-source tools for operations research (a
+field that includes linear programming). The <span class="pkg">Rsymphony</span> package
+provides an interface to COIN-OR and is available on <em>CRAN</em>.
+This solver uses the <span class="pkg">Rsymphony</span> package to solve problems.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='solvers.html'>solvers</a></code>.</p></div>
+    <div class='dont-index'><p><a href='solvers.html'>solvers</a>.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>

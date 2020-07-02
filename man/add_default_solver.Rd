@@ -7,24 +7,24 @@
 add_default_solver(x, ...)
 }
 \arguments{
-\item{x}{\code{\link{ProjectProblem-class}} object.}
+\item{x}{\linkS4class{ProjectProblem} object.}
 
 \item{...}{arguments passed to the solver.}
 }
 \description{
 Identify the best solver currently installed on the system and specify that
-it should be used to solve a project prioritization \code{\link{problem}}.
+it should be used to solve a project prioritization \code{\link[=problem]{problem()}}.
 }
 \details{
 Ranked from best to worst, the solvers that can be used are:
-  \pkg{gurobi}, (\code{\link{add_gurobi_solver}}),
-  \pkg{Rsymphony} (\code{\link{add_rsymphony_solver}}), \pkg{lpsymphony}
-  (\code{\link{add_lpsymphony_solver}}), and \pkg{lpSolveAPI}
-  (\code{\link{add_lpsolveapi_solver}}). This function does not consider
-  solvers that generate solutions using heuristic algorithms (i.e.
-  \code{\link{add_heuristic_solver}}) or random processes
-  (i.e. \code{\link{add_random_solver}}) because they cannot provide
-  any guarantees on solution quality.
+\pkg{gurobi}, (\code{\link[=add_gurobi_solver]{add_gurobi_solver()}}),
+\pkg{Rsymphony} (\code{\link[=add_rsymphony_solver]{add_rsymphony_solver()}}), \pkg{lpsymphony}
+(\code{\link[=add_lpsymphony_solver]{add_lpsymphony_solver()}}), and \pkg{lpSolveAPI}
+(\code{\link[=add_lpsolveapi_solver]{add_lpsolveapi_solver()}}). This function does not consider
+solvers that generate solutions using heuristic algorithms (i.e.
+\code{\link[=add_heuristic_solver]{add_heuristic_solver()}}) or random processes
+(i.e. \code{\link[=add_random_solver]{add_random_solver()}}) because they cannot provide
+any guarantees on solution quality.
 }
 \examples{
 # load data
@@ -52,5 +52,5 @@ plot(p, s)
 }
 }
 \seealso{
-\code{\link{solvers}}.
+\link{solvers}.
 }

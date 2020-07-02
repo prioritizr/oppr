@@ -5,21 +5,21 @@ NULL
 #'
 #' Make a rake phylogeny using species names.
 #'
-#' @param x \code{character} \code{vector} of species names.
+#' @param x `character` `vector` of species names.
 #'
-#' @param species_weights \code{numeric} \code{vector} of weights. This must
+#' @param species_weights `numeric` `vector` of weights. This must
 #'   contain a value for each species. Defaults to assigning a weight of one for
 #'   each species.
 #'
-#' @param branch_weight \code{numeric} weight for the single non-tip branch.
+#' @param branch_weight `numeric` weight for the single non-tip branch.
 #'   Defaults to one.
 #'
 #' @details A rake phylogeny is essentially a star phylogeny, with an additional
 #'   branch that connects to all the species.
 #'
-#' @return \code{\link[ape]{phylo}} tree object.
+#' @return [ape::phylo()] tree object.
 #'
-#' @seealso \code{\link[ape]{stree}}.
+#' @seealso [ape::stree()].
 #'
 #' @examples
 #' # load ape package

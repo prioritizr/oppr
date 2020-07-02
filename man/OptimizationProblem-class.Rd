@@ -95,12 +95,12 @@ problem. Data are stored in memory and accessed using an external pointer.
 \item{vtype}{\code{character} vector of variable types.}
 
 \item{obj}{\code{numeric} vector containing the linear components of the
-  objective function.}
+objective function.}
 
 \item{pwlobj}{\code{list} object containing the piece-wise linear components
-  of the objective function.}
+of the objective function.}
 
-\item{A}{\code{\link[Matrix]{dgCMatrix-class}} model matrix }
+\item{A}{\link[Matrix:dgCMatrix-class]{Matrix::dgCMatrix} model matrix }
 
 \item{rhs}{\code{numeric} vector of right-hand-side constraints.}
 
@@ -117,13 +117,13 @@ problem. Data are stored in memory and accessed using an external pointer.
 \item{number_of_features}{\code{integer} number of features in the problem.}
 
 \item{number_of_branches}{\code{integer} number of phylogenetic branches in
-  the problem.}
+the problem.}
 
 \item{col_ids}{\code{character} names describing each decision variable
-  (column) in the model matrix.}
+(column) in the model matrix.}
 
 \item{row_ids}{\code{character} names describing each constraint (row) in
-  in the model matrix.}
+in the model matrix.}
 
 \item{get_data}{\code{list} containing additional data.}
 

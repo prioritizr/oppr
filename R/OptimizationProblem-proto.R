@@ -7,67 +7,67 @@ NULL
 
 #' Optimization problem class
 #'
-#' The \code{OptimizationProblem} class is used to represent an optimization
+#' The `OptimizationProblem` class is used to represent an optimization
 #' problem. Data are stored in memory and accessed using an external pointer.
-#' \strong{Only experts should interact with this class directly.}
+#' **Only experts should interact with this class directly.**
 #'
 #' @section Fields:
 #' \describe{
 #'
-#' \item{$ptr}{\code{externalptr} object.}
+#' \item{$ptr}{`externalptr` object.}
 #'
-#' \item{$data}{\code{list} object.}
+#' \item{$data}{`list` object.}
 #'
 #' }
 #'
 #' @section Usage:
-#' \code{x$print()}
+#' `x$print()`
 #'
-#' \code{x$show()}
+#' `x$show()`
 #'
-#' \code{x$repr()}
+#' `x$repr()`
 #'
-#' \code{x$ncol()}
+#' `x$ncol()`
 #'
-#' \code{x$nrow()}
+#' `x$nrow()`
 #'
-#' \code{x$ncell()}
+#' `x$ncell()`
 #'
-#' \code{x$modelsense()}
+#' `x$modelsense()`
 #'
-#' \code{x$vtype()}
+#' `x$vtype()`
 #'
-#' \code{x$obj()}
+#' `x$obj()`
 #'
-#' \code{x$pwlobj()}
+#' `x$pwlobj()`
 #'
-#' \code{x$A()}
+#' `x$A()`
 #'
-#' \code{x$rhs()}
+#' `x$rhs()`
 #'
-#' \code{x$sense()}
+#' `x$sense()`
 #'
-#' \code{x$lb()}
+#' `x$lb()`
 #'
-#' \code{x$ub()}
+#' `x$ub()`
 #'
-#' \code{x$number_of_projects()}
+#' `x$number_of_projects()`
 #'
-#' \code{x$number_of_actions()}
+#' `x$number_of_actions()`
 #'
-#' \code{x$number_of_features()}
+#' `x$number_of_features()`
 #'
-#' \code{x$number_of_branches()}
+#' `x$number_of_branches()`
 #'
-#' \code{x$row_ids()}
+#' `x$row_ids()`
 #'
-#' \code{x$col_ids()}
+#' `x$col_ids()`
 #'
-#' \code{x$get_data()}
+#' `x$get_data()`
 #'
 #' @section Arguments:
 #' \describe{
-#' \item{ptr}{\code{externalptr} object.}
+#' \item{ptr}{`externalptr` object.}
 #' }
 #'
 #' @section Details:
@@ -77,50 +77,50 @@ NULL
 #'
 #' \item{show}{show the object.}
 #'
-#' \item{repr}{\code{character} representation of object.}
+#' \item{repr}{`character` representation of object.}
 #'
-#' \item{ncol}{\code{integer} number of columns (variables) in model matrix.}
+#' \item{ncol}{`integer` number of columns (variables) in model matrix.}
 #'
-#' \item{nrow}{\code{integer} number of rows (constraints) in model matrix.}
+#' \item{nrow}{`integer` number of rows (constraints) in model matrix.}
 #'
-#' \item{ncell}{\code{integer} number of cells in model matrix.}
+#' \item{ncell}{`integer` number of cells in model matrix.}
 #'
-#' \item{modelsense}{\code{character} model sense.}
+#' \item{modelsense}{`character` model sense.}
 #'
-#' \item{vtype}{\code{character} vector of variable types.}
+#' \item{vtype}{`character` vector of variable types.}
 #'
-#' \item{obj}{\code{numeric} vector containing the linear components of the
+#' \item{obj}{`numeric` vector containing the linear components of the
 #'   objective function.}
 #'
-#' \item{pwlobj}{\code{list} object containing the piece-wise linear components
+#' \item{pwlobj}{`list` object containing the piece-wise linear components
 #'   of the objective function.}
 #'
-#' \item{A}{\code{\link[Matrix]{dgCMatrix-class}} model matrix }
+#' \item{A}{[Matrix::dgCMatrix-class] model matrix }
 #'
-#' \item{rhs}{\code{numeric} vector of right-hand-side constraints.}
+#' \item{rhs}{`numeric` vector of right-hand-side constraints.}
 #'
-#' \item{sense}{\code{character} vector of constraint senses.}
+#' \item{sense}{`character` vector of constraint senses.}
 #'
-#' \item{lb}{\code{numeric} vector of lower bounds for each decision variable.}
+#' \item{lb}{`numeric` vector of lower bounds for each decision variable.}
 #'
-#' \item{ub}{\code{numeric} vector of upper bounds for each decision variable.}
+#' \item{ub}{`numeric` vector of upper bounds for each decision variable.}
 #'
-#' \item{number_of_projects}{\code{integer} number of projects in the problem.}
+#' \item{number_of_projects}{`integer` number of projects in the problem.}
 #'
-#' \item{number_of_actions}{\code{integer} number of actions in the problem.}
+#' \item{number_of_actions}{`integer` number of actions in the problem.}
 #'
-#' \item{number_of_features}{\code{integer} number of features in the problem.}
+#' \item{number_of_features}{`integer` number of features in the problem.}
 #'
-#' \item{number_of_branches}{\code{integer} number of phylogenetic branches in
+#' \item{number_of_branches}{`integer` number of phylogenetic branches in
 #'   the problem.}
 #'
-#' \item{col_ids}{\code{character} names describing each decision variable
+#' \item{col_ids}{`character` names describing each decision variable
 #'   (column) in the model matrix.}
 #'
-#' \item{row_ids}{\code{character} names describing each constraint (row) in
+#' \item{row_ids}{`character` names describing each constraint (row) in
 #'   in the model matrix.}
 #'
-#' \item{get_data}{\code{list} containing additional data.}
+#' \item{get_data}{`list` containing additional data.}
 #'
 #' }
 #'

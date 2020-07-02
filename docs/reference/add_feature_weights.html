@@ -41,7 +41,7 @@
 
 <meta property="og:title" content="Add feature weights — add_feature_weights" />
 <meta property="og:description" content="Set weights for conserving features in a project prioritization
-problem." />
+problem()." />
 
 
 
@@ -73,7 +73,7 @@ problem." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2.1</span>
       </span>
     </div>
 
@@ -122,7 +122,7 @@ problem." />
 
     <div class="ref-description">
     <p>Set weights for conserving features in a project prioritization
-<code><a href='problem.html'>problem</a></code>.</p>
+<code><a href='problem.html'>problem()</a></code>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>add_feature_weights</span>(<span class='no'>x</span>, <span class='no'>weights</span>)
@@ -138,7 +138,7 @@ problem." />
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p><code><a href='ProjectProblem-class.html'>ProjectProblem-class</a></code> object.</p></td>
+      <td><p><a href='ProjectProblem-class.html'>ProjectProblem</a> object.</p></td>
     </tr>
     <tr>
       <th>weights</th>
@@ -150,38 +150,38 @@ Details section for more information.</p></td>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Weights are used to specify the relative importance for
-  maintaining the persistence of specific features. For budget constrained
-  problems (e.g. <code><a href='add_max_richness_objective.html'>add_max_richness_objective</a></code>), these
-  weights
-  could be used to specify which features are more important than other
-  features according to evolutionary or cultural metrics. Specifically,
-  features with a higher weight value are considered more important. It is
-  generally best to ensure that the feature weights range between 0.0001 and
-  10,000 to reduce the time required to solve problems using exact
-  algorithm solvers. As a consequence, you might have to rescale the feature
-  weights if the largest or smallest values occur outside this range
-  (excluding zeros). If you want to ensure that certain features conserved
-  in the solutions, it is strongly recommended to lock in the actions for
-  these features instead of setting really high weights for these features.
-  Please note that a warning will be thrown if you attempt to solve
-  problems with weights when an objective has been specified that does
-  not use weights. Currently, all objectives---except for the minimum
-  set objective (i.e. <code><a href='add_min_set_objective.html'>add_min_set_objective</a></code>)---can use weights.</p>
+maintaining the persistence of specific features. For budget constrained
+problems (e.g. <code><a href='add_max_richness_objective.html'>add_max_richness_objective()</a></code>), these
+weights
+could be used to specify which features are more important than other
+features according to evolutionary or cultural metrics. Specifically,
+features with a higher weight value are considered more important. It is
+generally best to ensure that the feature weights range between 0.0001 and
+10,000 to reduce the time required to solve problems using exact
+algorithm solvers. As a consequence, you might have to rescale the feature
+weights if the largest or smallest values occur outside this range
+(excluding zeros). If you want to ensure that certain features conserved
+in the solutions, it is strongly recommended to lock in the actions for
+these features instead of setting really high weights for these features.
+Please note that a warning will be thrown if you attempt to solve
+problems with weights when an objective has been specified that does
+not use weights. Currently, all objectives---except for the minimum
+set objective (i.e. <code><a href='add_min_set_objective.html'>add_min_set_objective()</a></code>)---can use weights.</p>
 <p>The weights for a problem can be specified in several different ways:</p>
-<p></p><dl'>
+<dl'>
 
-  <dt><code>numeric</code></dt><dd><p><code>vector</code> of weight values for each feature.</p></dd>
+<dt><code>numeric</code></dt><dd><p><code>vector</code> of weight values for each feature.</p></dd>
 
-  <dt><code>character</code></dt><dd><p>specifying the name of column in the
-    feature data (i.e. the argument to <code>features</code> in the
-    <code><a href='problem.html'>problem</a></code> function) that contains the weights.</p></dd>
+<dt><code>character</code></dt><dd><p>specifying the name of column in the
+feature data (i.e. the argument to <code>features</code> in the
+<code><a href='problem.html'>problem()</a></code> function) that contains the weights.</p></dd>
 
-  
+
 </dl>
 
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='weights.html'>weights</a></code>.</p></div>
+    <div class='dont-index'><p><a href='weights.html'>weights</a>.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># load data</span>

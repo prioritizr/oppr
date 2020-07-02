@@ -7,7 +7,7 @@
 add_random_solver(x, number_solutions = 1, verbose = TRUE)
 }
 \arguments{
-\item{x}{\code{\link{ProjectProblem-class}} object.}
+\item{x}{\linkS4class{ProjectProblem} object.}
 
 \item{number_solutions}{\code{integer} number of solutions desired.
 Defaults to 1. Note that the number of returned solutions can sometimes
@@ -20,8 +20,8 @@ solutions will be returned.}
 optimization problems?}
 }
 \value{
-\code{\link{ProjectProblem-class}} object with the solver added
-  to it.
+\linkS4class{ProjectProblem} object with the solver added
+to it.
 }
 \description{
 Specify that solutions should be generated using random processes. Although
@@ -31,45 +31,45 @@ the effectiveness of solutions.
 }
 \details{
 The algorithm used to randomly generate solutions depends on the
- the objective specified for the project prioritization
- \code{\link{problem}}.
+the objective specified for the project prioritization
+\code{\link[=problem]{problem()}}.
 
- For objectives which maximize benefit subject to budgetary constraints
- (e.g. \code{\link{add_max_richness_objective}}):
+For objectives which maximize benefit subject to budgetary constraints
+(e.g. \code{\link[=add_max_richness_objective]{add_max_richness_objective()}}):
 
- \enumerate{
+\enumerate{
 
- \item All locked in and zero-cost actions are initially
-  selected for funding (excepting actions which are locked out).
+\item All locked in and zero-cost actions are initially
+selected for funding (excepting actions which are locked out).
 
- \item A project---and all of its associated actions---is randomly selected
-   for funding (excepting projects associated with locked out actions,
-   and projects which would cause the budget to be exceeded when added
-   to the existing set of selected actions).
+\item A project---and all of its associated actions---is randomly selected
+for funding (excepting projects associated with locked out actions,
+and projects which would cause the budget to be exceeded when added
+to the existing set of selected actions).
 
 \item The previous step is repeated until no more projects can be
-  selected for funding without the total cost of the prioritized actions
-  exceeding the budget.
+selected for funding without the total cost of the prioritized actions
+exceeding the budget.
 
- }
+}
 
 For objectives which minimize cost subject to biodiversity constraints
-(i.e. \code{\link{add_min_set_objective}}:
+(i.e. \code{\link[=add_min_set_objective]{add_min_set_objective()}}:
 
- \enumerate{
+\enumerate{
 
- \item All locked in and zero-cost actions are initially
-  selected for funding (excepting actions which are locked out).
+\item All locked in and zero-cost actions are initially
+selected for funding (excepting actions which are locked out).
 
- \item A project---and all of its associated actions---is randomly selected
-   for funding (excepting projects associated with locked out actions,
-   and projects which would cause the budget to be exceeded when added
-   to the existing set of selected actions).
+\item A project---and all of its associated actions---is randomly selected
+for funding (excepting projects associated with locked out actions,
+and projects which would cause the budget to be exceeded when added
+to the existing set of selected actions).
 
 \item The previous step is repeated until all of the persistence targets
-  are met.
+are met.
 
- }
+}
 }
 \examples{
 # load data
@@ -118,5 +118,5 @@ hist(s1$optimality_diff, xlab = "Difference from optimality (\%)",
 }
 }
 \seealso{
-\code{\link{solvers}}.
+\link{solvers}.
 }

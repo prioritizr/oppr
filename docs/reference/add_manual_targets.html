@@ -40,11 +40,11 @@
 
 
 <meta property="og:title" content="Add manual targets — add_manual_targets" />
-<meta property="og:description" content="Set targets for a project prioritization problem by manually
+<meta property="og:description" content="Set targets for a project prioritization problem() by manually
 specifying all the required information for each target. This function
 is useful because it can be used to customize all aspects of a target. For
 most cases, targets can be specified using the
-add_absolute_targets and add_relative_targets
+add_absolute_targets() and add_relative_targets()
 functions. However, this function can be used to mix absolute and
 relative targets for different features." />
 
@@ -78,7 +78,7 @@ relative targets for different features." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2.1</span>
       </span>
     </div>
 
@@ -126,11 +126,11 @@ relative targets for different features." />
     </div>
 
     <div class="ref-description">
-    <p>Set targets for a project prioritization <code><a href='problem.html'>problem</a></code> by manually
+    <p>Set targets for a project prioritization <code><a href='problem.html'>problem()</a></code> by manually
 specifying all the required information for each target. This function
 is useful because it can be used to customize all aspects of a target. For
 most cases, targets can be specified using the
-<code><a href='add_absolute_targets.html'>add_absolute_targets</a></code> and <code><a href='add_relative_targets.html'>add_relative_targets</a></code>
+<code><a href='add_absolute_targets.html'>add_absolute_targets()</a></code> and <code><a href='add_relative_targets.html'>add_relative_targets()</a></code>
 functions. However, this function can be used to mix absolute and
 relative targets for different features.</p>
     </div>
@@ -148,55 +148,55 @@ relative targets for different features.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p><code><a href='ProjectProblem-class.html'>ProjectProblem-class</a></code> object.</p></td>
+      <td><p><a href='ProjectProblem-class.html'>ProjectProblem</a> object.</p></td>
     </tr>
     <tr>
       <th>targets</th>
-      <td><p><code>data.frame</code> or <code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></code> object. See
+      <td><p><code>data.frame</code> or <code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble::tibble()</a></code> object. See
 the Details section for more information.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code><a href='ProjectProblem-class.html'>ProjectProblem-class</a></code> object with the targets added
-  to it.</p>
+    <p><a href='ProjectProblem-class.html'>ProjectProblem</a> object with the targets added
+to it.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Targets are used to specify the minimum probability of persistence
-  for each feature in solutions. For minimum set objectives
-  (i.e. <code><a href='add_min_set_objective.html'>add_min_set_objective</a></code>, these targets
-  specify the minimum probability of persistence required for each species
-  in the solution. And for budget constrained objectives that use targets
-  (i.e. <code><a href='add_max_targets_met_objective.html'>add_max_targets_met_objective</a></code>), these targets
-  specify the minimum threshold probability of persistence that needs to be
-  achieved to count the benefits for conserving these species.
-  Please note that attempting to solve problems with objectives that require
-  targets without specifying targets will throw an error.</p>
+for each feature in solutions. For minimum set objectives
+(i.e. <code><a href='add_min_set_objective.html'>add_min_set_objective()</a></code>, these targets
+specify the minimum probability of persistence required for each species
+in the solution. And for budget constrained objectives that use targets
+(i.e. <code><a href='add_max_targets_met_objective.html'>add_max_targets_met_objective()</a></code>), these targets
+specify the minimum threshold probability of persistence that needs to be
+achieved to count the benefits for conserving these species.
+Please note that attempting to solve problems with objectives that require
+targets without specifying targets will throw an error.</p>
 <p>The <code>targets</code> argument should contain the following columns:</p>
-<p></p><dl'>
+<dl'>
 
-  <dt><code>"feature"</code></dt><dd><p><code>character</code> name of features in argument
-    to <code>x</code>.</p></dd>
+<dt><code>"feature"</code></dt><dd><p><code>character</code> name of features in argument
+to <code>x</code>.</p></dd>
 
-  <dt><code>"type"</code></dt><dd><p><code>character</code> describing the type of target.
-    Acceptable values include <code>"absolute"</code> and <code>"relative"</code>.
-    These values correspond to <code><a href='add_absolute_targets.html'>add_absolute_targets</a></code>,
-    and <code><a href='add_relative_targets.html'>add_relative_targets</a></code> respectively.</p></dd>
+<dt><code>"type"</code></dt><dd><p><code>character</code> describing the type of target.
+Acceptable values include <code>"absolute"</code> and <code>"relative"</code>.
+These values correspond to <code><a href='add_absolute_targets.html'>add_absolute_targets()</a></code>,
+and <code><a href='add_relative_targets.html'>add_relative_targets()</a></code> respectively.</p></dd>
 
-  <dt><code>"sense"</code></dt><dd><p><code>character</code> sense of the target. The
-    only acceptable value currently supported is: <code>"&gt;="</code>. This field
-    (column) is optional and if it is missing then target senses will
-    default to <code>"&gt;="</code> values.</p></dd>
+<dt><code>"sense"</code></dt><dd><p><code>character</code> sense of the target. The
+only acceptable value currently supported is: <code>"&gt;="</code>. This field
+(column) is optional and if it is missing then target senses will
+default to <code>"&gt;="</code> values.</p></dd>
 
-  <dt><code>"target"</code></dt><dd><p><code>numeric</code> target threshold.</p></dd>
+<dt><code>"target"</code></dt><dd><p><code>numeric</code> target threshold.</p></dd>
 
-  
+
 </dl>
 
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='targets.html'>targets</a></code>.</p></div>
+    <div class='dont-index'><p><a href='targets.html'>targets</a>.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># load data</span>
@@ -273,8 +273,8 @@ the Details section for more information.</p></td>
 <span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 1 x 21</span><span>
 #&gt;   solution status   obj  cost F1_action F2_action F3_action F4_action F5_action
 #&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span>        1 OPTIM~  103.  103.         0         0         1         0         0
-#&gt; </span><span style='color: #555555;'># ... with 12 more variables: baseline_action </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F1_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>        1 OPTIM…  103.  103.         0         0         1         0         0
+#&gt; </span><span style='color: #555555;'># … with 12 more variables: baseline_action </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F1_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   F2_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F3_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F4_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F5_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   baseline_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F1 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F2 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F3 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F4 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F5 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'># }
 </div></span></pre>

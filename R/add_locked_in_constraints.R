@@ -3,14 +3,14 @@ NULL
 
 #' Add locked in constraints
 #'
-#' Add constraints to a project prioritization \code{\link{problem}} to ensure
+#' Add constraints to a project prioritization [problem()] to ensure
 #' that specific actions are prioritized for funding in the solution. For
 #' example, it may be desirable to lock in actions for conserving culturally or
 #' taxonomically important species.
 #'
 #' @usage add_locked_in_constraints(x, locked_in)
 #'
-#' @param x \code{\link{ProjectProblem-class}} object.
+#' @param x [ProjectProblem-class] object.
 #'
 #' @param locked_in Object that determines which planning units that should be
 #'   locked in. See the Details section for more information.
@@ -20,28 +20,28 @@ NULL
 #'
 #'   \describe{
 #'
-#'   \item{\code{integer}}{\code{vector} of indices pertaining to which
+#'   \item{`integer`}{`vector` of indices pertaining to which
 #'     actions should be locked in the solution (i.e. row numbers of the
-#'     actions in the argument to \code{actions} in \code{\link{problem}}).}
+#'     actions in the argument to `actions` in [problem()]).}
 #'
-#'   \item{\code{logical}}{\code{vector} containing \code{logical}
-#'     (i.e. \code{TRUE} and/or \code{FALSE} values) that indicate which
-#'     actions should be locked in the solution. These \code{logical}
-#'     values should correspond to each row in the argument to \code{actions}
-#'     in \code{\link{problem}}).}
+#'   \item{`logical`}{`vector` containing `logical`
+#'     (i.e. `TRUE` and/or `FALSE` values) that indicate which
+#'     actions should be locked in the solution. These `logical`
+#'     values should correspond to each row in the argument to `actions`
+#'     in [problem()]).}
 #'
-#'   \item{\code{character}}{column name that indicates if actions
+#'   \item{`character`}{column name that indicates if actions
 #'     units should be locked in the solution. This argument
-#'     should  denote a column in the argument to \code{actions}
-#'     in \code{\link{problem}} which contains \code{logical}
-#'     (i.e. \code{TRUE} and/or \code{FALSE} values) to indicate
+#'     should  denote a column in the argument to `actions`
+#'     in [problem()] which contains `logical`
+#'     (i.e. `TRUE` and/or `FALSE` values) to indicate
 #'     which actions should be locked.}
 #'  }
 #'
-#' @return \code{\link{ProjectProblem-class}} object with the constraints
+#' @return [ProjectProblem-class] object with the constraints
 #'   added to it.
 #'
-#' @seealso \code{\link{constraints}}.
+#' @seealso [constraints].
 #'
 #' @examples
 #' # load data

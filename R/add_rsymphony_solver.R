@@ -3,19 +3,19 @@ NULL
 
 #' Add a SYMPHONY solver with \pkg{Rsymphony}
 #'
-#' Specify that the \emph{SYMPHONY} software should be used to solve a
-#' project prioritization \code{\link{problem}} using the \pkg{Rsymphony}
+#' Specify that the *SYMPHONY* software should be used to solve a
+#' project prioritization [problem()] using the \pkg{Rsymphony}
 #' package. This function can also be used to customize the behavior of the
 #' solver. It requires the \pkg{Rsymphony} package.
 #'
 #' @inheritParams add_gurobi_solver
 #'
-#' @details \href{https://projects.coin-or.org/SYMPHONY}{\emph{SYMPHONY}} is an
+#' @details [*SYMPHONY*](https://projects.coin-or.org/SYMPHONY) is an
 #'   open-source integer programming solver that is part of the Computational
 #'   Infrastructure for Operations Research (COIN-OR) project, an initiative
 #'   to promote development of open-source tools for operations research (a
 #'   field that includes linear programming). The \pkg{Rsymphony} package
-#'   provides an interface to COIN-OR and is available on \emph{CRAN}.
+#'   provides an interface to COIN-OR and is available on *CRAN*.
 #'   This solver uses the \pkg{Rsymphony} package to solve problems.
 #'
 #' @inherit add_gurobi_solver seealso return

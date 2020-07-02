@@ -4,38 +4,38 @@ NULL
 #' Project cost effectiveness
 #'
 #' Calculate the individual cost-effectiveness of each conservation project
-#' in a project prioritization \code{\link{problem}}
+#' in a project prioritization [problem()]
 #' (Joseph, Maloney & Possingham 2009).
 #'
-#' @param x project prioritization \code{\link{problem}}.
+#' @param x project prioritization [problem()].
 #'
 #' @details Note that project cost-effectiveness cannot be calculated for
 #'   problems with minimum set objectives because the objective function
 #'   for these problems is to minimize cost and not maximize some measure
 #'   of biodiversity persistence.
 #'
-#' @return A \code{\link[tibble]{tibble}} table containing the following
+#' @return A [tibble::tibble()] table containing the following
 #'   columns:
 #'
 #'   \describe{
 #'
-#'   \item{\code{"project"}}{\code{character} name of each project}
+#'   \item{`"project"`}{`character` name of each project}
 #'
-#'   \item{\code{"cost"}}{\code{numeric} cost of each project.}
+#'   \item{`"cost"`}{`numeric` cost of each project.}
 #'
-#'   \item{\code{"benefit"}}{\code{numeric} benefit for each project. For a
+#'   \item{`"benefit"`}{`numeric` benefit for each project. For a
 #'     given project, this is calculated as the difference between (i) the
 #'     objective value for a solution containing all of the management actions
 #'     associated with the project and all zero cost actions, and (ii) the
 #'     objective value for a solution containing the baseline project.}
 #'
-#'   \item{\code{"ce"}}{\code{numeric} cost-effectiveness of each project.
+#'   \item{`"ce"`}{`numeric` cost-effectiveness of each project.
 #'     For a given project, this is calculated as the difference between the
 #'     the benefit for the project and the benefit for the baseline project,
 #'     divided by the cost of the project. Note that the baseline
-#'     project will have a \code{NaN} value because it has a zero cost.}
+#'     project will have a `NaN` value because it has a zero cost.}
 #'
-#'  \item{\code{"rank"}}{\code{numeric} rank for each project according to
+#'  \item{`"rank"`}{`numeric` rank for each project according to
 #'    is cost-effectiveness value. The project with a rank of one is the
 #'    most cost-effective project. Ties are accommodated using averages.}
 #'
@@ -44,9 +44,9 @@ NULL
 #' @references
 #' Joseph LN, Maloney RF & Possingham HP (2009) Optimal allocation of
 #' resources among threatened species: A project prioritization protocol.
-#' \emph{Conservation Biology}, \strong{23}, 328--338.
+#' *Conservation Biology*, **23**, 328--338.
 #'
-#' @seealso \code{\link{solution_statistics}}, \code{\link{replacement_costs}}.
+#' @seealso [solution_statistics()], [replacement_costs()].
 #'
 #' @examples
 #' # load data

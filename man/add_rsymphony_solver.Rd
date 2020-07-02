@@ -13,7 +13,7 @@ add_rsymphony_solver(
 )
 }
 \arguments{
-\item{x}{\code{\link{ProjectProblem-class}} object.}
+\item{x}{\linkS4class{ProjectProblem} object.}
 
 \item{gap}{\code{numeric} gap to optimality. This gap is relative when
 solving problems using \pkg{gurobi}, and will cause the optimizer to
@@ -42,23 +42,23 @@ Defaults to \code{FALSE}.}
 optimization problems?}
 }
 \value{
-\code{\link{ProjectProblem-class}} object with the solver added
-  to it.
+\linkS4class{ProjectProblem} object with the solver added
+to it.
 }
 \description{
 Specify that the \emph{SYMPHONY} software should be used to solve a
-project prioritization \code{\link{problem}} using the \pkg{Rsymphony}
+project prioritization \code{\link[=problem]{problem()}} using the \pkg{Rsymphony}
 package. This function can also be used to customize the behavior of the
 solver. It requires the \pkg{Rsymphony} package.
 }
 \details{
 \href{https://projects.coin-or.org/SYMPHONY}{\emph{SYMPHONY}} is an
-  open-source integer programming solver that is part of the Computational
-  Infrastructure for Operations Research (COIN-OR) project, an initiative
-  to promote development of open-source tools for operations research (a
-  field that includes linear programming). The \pkg{Rsymphony} package
-  provides an interface to COIN-OR and is available on \emph{CRAN}.
-  This solver uses the \pkg{Rsymphony} package to solve problems.
+open-source integer programming solver that is part of the Computational
+Infrastructure for Operations Research (COIN-OR) project, an initiative
+to promote development of open-source tools for operations research (a
+field that includes linear programming). The \pkg{Rsymphony} package
+provides an interface to COIN-OR and is available on \emph{CRAN}.
+This solver uses the \pkg{Rsymphony} package to solve problems.
 }
 \examples{
 \donttest{
@@ -86,5 +86,5 @@ plot(p, s)
 }
 }
 \seealso{
-\code{\link{solvers}}.
+\link{solvers}.
 }

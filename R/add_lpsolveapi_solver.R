@@ -3,18 +3,18 @@ NULL
 
 #' Add a lp_solve solver with \pkg{lpSolveAPI}
 #'
-#' Specify that the \emph{lp_solve} software should be used to solve a
-#' project prioritization \code{\link{problem}} using the \pkg{lpSolveAPI}
+#' Specify that the *lp_solve* software should be used to solve a
+#' project prioritization [problem()] using the \pkg{lpSolveAPI}
 #' package. This function can also be used to customize the behavior of the
 #' solver. It requires the \pkg{lpSolveAPI} package.
 #'
-#' @param presolve \code{logical} indicating if attempts to should be made
-#'   to simplify the optimization problem (\code{TRUE}) or not (\code{FALSE}).
-#'   Defaults to \code{TRUE}.
+#' @param presolve `logical` indicating if attempts to should be made
+#'   to simplify the optimization problem (`TRUE`) or not (`FALSE`).
+#'   Defaults to `TRUE`.
 #'
 #' @inheritParams add_gurobi_solver
 #'
-#' @details \href{http://lpsolve.sourceforge.net/5.5/}{\emph{lp_solve}} is an
+#' @details [*lp_solve*](http://lpsolve.sourceforge.net/5.5/) is an
 #'   open-source integer programming solver.
 #'   Although this solver is the slowest currently supported solver,
 #'   it is also the only exact algorithm solver that can be installed on all
@@ -23,11 +23,11 @@ NULL
 #'   users can try solving small project prioritization problems, without
 #'   needing to install additional software. When solve moderate or large
 #'   project prioritization problems, consider using
-#'   \code{\link{add_gurobi_solver}}.
+#'   [add_gurobi_solver()].
 #'
 #' @inherit add_gurobi_solver seealso return
 #'
-#' @seealso \code{\link{solvers}}.
+#' @seealso [solvers].
 #'
 #' @examples
 #' # load data

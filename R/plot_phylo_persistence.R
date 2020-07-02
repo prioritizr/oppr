@@ -5,18 +5,18 @@ NULL
 #'
 #' Create a plot showing a phylogenetic tree (i.e. a "phylogram") to visualize
 #' the probability that phylogenetic branches are expected to persist
-#' into the future under a solution to a project prioritization problem.
+#' into the future under a solution to a project prioritization [problem()].
 #'
 #' @inheritParams plot.ProjectProblem
 #'
-#' @details This function requires the \pkg{ggtree} (Yu \emph{et al.} 2017).
+#' @details This function requires the \pkg{ggtree} (Yu *et al.* 2017).
 #'   Since this package is distributed exclusively
-#'   through \href{https://bioconductor.org}{Bioconductor}, and is not
+#'   through [Bioconductor](https://bioconductor.org), and is not
 #'   available on the
-#'   \href{https://cran.r-project.org/}{Comprehensive R Archive Network},
+#'   [Comprehensive R Archive Network](https://cran.r-project.org/),
 #'   please execute the following command to install it:
-#'   \code{source("https://bioconductor.org/biocLite.R");biocLite("ggtree")}.
-#'   If the installation process fails, please consult the package's \href{https://bioconductor.org/packages/release/bioc/html/ggtree.html}{online documentation}.
+#'   `source("https://bioconductor.org/biocLite.R");biocLite("ggtree")`.
+#'   If the installation process fails, please consult the package's [online documentation](https://bioconductor.org/packages/release/bioc/html/ggtree.html).
 #'
 #'   In this plot, each phylogenetic branch is colored according to probability
 #'   that it is expected to persist into the future (see Faith 2008).
@@ -30,17 +30,17 @@ NULL
 #' @references
 #' Faith DP (2008) Threatened species and the potential loss of
 #' phylogenetic diversity: conservation scenarios based on estimated extinction
-#' probabilities and phylogenetic risk analysis. \emph{Conservation Biology},
-#' \strong{22}: 1461--1470.
+#' probabilities and phylogenetic risk analysis. *Conservation Biology*,
+#' **22**: 1461--1470.
 #'
 #' Yu G, Smith DK, Zhu H, Guan Y, & Lam TTY (2017) ggtree: an
 #' R package for visualization and annotation of phylogenetic trees with their
-#' covariates and other associated data. \emph{Methods in Ecology and
-#' Evolution}, \strong{8}: 28--36.
+#' covariates and other associated data. *Methods in Ecology and
+#' Evolution*, **8**: 28--36.
 #'
-#' @return A \code{\link[ggtree]{ggtree}} object, or a
-#'   \code{\link[tidytree]{treedata}} object if \code{return_data} is
-#'   \code{TRUE}.
+#' @return A [ggtree::ggtree()] object, or a
+#'   [tidytree::treedata()] object if `return_data` is
+#'   `TRUE`.
 #'
 #' @examples
 #' # set seed for reproducibility

@@ -42,7 +42,7 @@
 <meta property="og:title" content="Plot a phylogram to visualize a project prioritization — plot_phylo_persistence" />
 <meta property="og:description" content="Create a plot showing a phylogenetic tree (i.e. a &quot;phylogram&quot;) to visualize
 the probability that phylogenetic branches are expected to persist
-into the future under a solution to a project prioritization problem." />
+into the future under a solution to a project prioritization problem()." />
 
 
 
@@ -74,7 +74,7 @@ into the future under a solution to a project prioritization problem." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2.1</span>
       </span>
     </div>
 
@@ -124,7 +124,7 @@ into the future under a solution to a project prioritization problem." />
     <div class="ref-description">
     <p>Create a plot showing a phylogenetic tree (i.e. a "phylogram") to visualize
 the probability that phylogenetic branches are expected to persist
-into the future under a solution to a project prioritization problem.</p>
+into the future under a solution to a project prioritization <code><a href='problem.html'>problem()</a></code>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>plot_phylo_persistence</span>(
@@ -140,12 +140,12 @@ into the future under a solution to a project prioritization problem.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>project prioritization <code><a href='problem.html'>problem</a></code>.</p></td>
+      <td><p>project prioritization <code><a href='problem.html'>problem()</a></code>.</p></td>
     </tr>
     <tr>
       <th>solution</th>
-      <td><p><code><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></code> or
-<code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></code> table containing the solutions. Here,
+      <td><p><code><a href='https://rdrr.io/r/base/data.frame.html'>base::data.frame()</a></code> or
+<code><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble::tibble()</a></code> table containing the solutions. Here,
 rows correspond to different solutions and columns correspond to
 different actions. Each column in the argument to <code>solution</code> should
 be named according to a different action in <code>x</code>.
@@ -177,27 +177,27 @@ the plot be returned instead of the plot? Defaults to <code>FALSE</code>.</p></t
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code><a href='https://rdrr.io/pkg/ggtree/man/ggtree.html'>ggtree</a></code> object, or a
-  <code><a href='https://rdrr.io/pkg/tidytree/man/treedata.html'>treedata</a></code> object if <code>return_data</code> is
-  <code>TRUE</code>.</p>
+    <p>A <code><a href='https://rdrr.io/pkg/ggtree/man/ggtree.html'>ggtree::ggtree()</a></code> object, or a
+<code><a href='https://rdrr.io/pkg/tidytree/man/treedata.html'>tidytree::treedata()</a></code> object if <code>return_data</code> is
+<code>TRUE</code>.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>This function requires the <span class="pkg">ggtree</span> (Yu <em>et al.</em> 2017).
-  Since this package is distributed exclusively
-  through <a href='https://bioconductor.org'>Bioconductor</a>, and is not
-  available on the
-  <a href='https://cran.r-project.org/'>Comprehensive R Archive Network</a>,
-  please execute the following command to install it:
-  <code><a href='https://rdrr.io/r/base/source.html'>source("https://bioconductor.org/biocLite.R");biocLite("ggtree")</a></code>.
-  If the installation process fails, please consult the package's <a href='https://bioconductor.org/packages/release/bioc/html/ggtree.html'>online documentation</a>.</p>
+Since this package is distributed exclusively
+through <a href='https://bioconductor.org'>Bioconductor</a>, and is not
+available on the
+<a href='https://cran.r-project.org/'>Comprehensive R Archive Network</a>,
+please execute the following command to install it:
+<code>source("https://bioconductor.org/biocLite.R");biocLite("ggtree")</code>.
+If the installation process fails, please consult the package's <a href='https://bioconductor.org/packages/release/bioc/html/ggtree.html'>online documentation</a>.</p>
 <p>In this plot, each phylogenetic branch is colored according to probability
-  that it is expected to persist into the future (see Faith 2008).
-  Features that directly benefit from at least a single
-  completely funded project with a non-zero cost are depicted with an
-  asterisk symbol. Additionally, features that indirectly benefit from funded
-  projects---because they are associated with partially funded projects that
-  have non-zero costs and share actions with at least one completely funded
-  project---are depicted with an open circle symbol.</p>
+that it is expected to persist into the future (see Faith 2008).
+Features that directly benefit from at least a single
+completely funded project with a non-zero cost are depicted with an
+asterisk symbol. Additionally, features that indirectly benefit from funded
+projects---because they are associated with partially funded projects that
+have non-zero costs and share actions with at least one completely funded
+project---are depicted with an open circle symbol.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Faith DP (2008) Threatened species and the potential loss of

@@ -8,9 +8,9 @@
 This prototype is used to represent the constraints used when making a
 prioritization. \strong{This prototype represents a recipe, to actually
 add constraints to a planning problem, see the help page on
-\code{\link{constraints}}. Only experts should use this class directly.} This
-prototype inherits from the \code{\link{ProjectModifier-class}}.
+\link{constraints}. Only experts should use this class directly.} This
+prototype inherits from the \linkS4class{ProjectModifier}.
 }
 \seealso{
-\code{\link{ProjectModifier-class}}.
+\linkS4class{ProjectModifier}.
 }

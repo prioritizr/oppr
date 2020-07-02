@@ -1,3 +1,8 @@
+# oppr 1.0.2.1
+
+- Fix "Non-file package-anchored link(s) in documentation object" warnings in
+  R-devel checks.
+
 # oppr 1.0.2 (released)
 
 - CRAN release.

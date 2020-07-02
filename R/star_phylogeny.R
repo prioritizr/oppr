@@ -5,15 +5,15 @@ NULL
 #'
 #' Make a star phylogeny using species names and, optionally, species weights.
 #'
-#' @param x \code{character} \code{vector} of species names.
+#' @param x `character` `vector` of species names.
 #'
-#' @param weights \code{numeric} \code{vector} of weights. This must contain
+#' @param weights `numeric` `vector` of weights. This must contain
 #'   a value for each species. Defaults to assigning an equal weight for
 #'   each species.
 #'
-#' @return \code{\link[ape]{phylo}} tree object.
+#' @return [ape::phylo()] tree object.
 #'
-#' @seealso \code{\link[ape]{stree}}.
+#' @seealso [ape::stree()].
 #'
 #' @examples
 #' # load ape package

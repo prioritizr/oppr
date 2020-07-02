@@ -3,26 +3,26 @@ NULL
 
 #' Add manually specified locked constraints
 #'
-#' Add constraints to a project prioritization \code{\link{problem}} to ensure
+#' Add constraints to a project prioritization [problem()] to ensure
 #' that solutions fund (or do not fund) specific actions. This function offers
-#' more fine-grained control than the \code{\link{add_locked_in_constraints}}
-#' and \code{\link{add_locked_out_constraints}} functions.
+#' more fine-grained control than the [add_locked_in_constraints()]
+#' and [add_locked_out_constraints()] functions.
 #'
 #' @usage add_manual_locked_constraints(x, locked)
 #'
-#' @param x \code{\link{ProjectProblem-class}} object.
+#' @param x [ProjectProblem-class] object.
 #'
-#' @param locked \code{data.frame} or \code{\link[tibble]{tibble}} object. See
+#' @param locked `data.frame` or [tibble::tibble()] object. See
 #'   the Details section for more information.
 #'
-#' @details The argument to \code{locked} must contain the following fields
+#' @details The argument to `locked` must contain the following fields
 #'   (columns):
 #'
 #'   \describe{
 #'
-#'   \item{\code{"action"}}{\code{character} action name.}
+#'   \item{`"action"`}{`character` action name.}
 #'
-#'   \item{\code{"status"}}{\code{numeric} values indicating if actions should
+#'   \item{`"status"`}{`numeric` values indicating if actions should
 #'      be funded (with a value of 1) or not (with a value of zero).}
 #'
 #'   }
@@ -60,7 +60,7 @@ NULL
 #' print(s)
 #' }
 #'
-#' @seealso \code{\link{constraints}}.
+#' @seealso [constraints].
 #'
 #' @name add_manual_locked_constraints
 #'

@@ -4,60 +4,60 @@ NULL
 #' Optimization problem methods
 #'
 #' These functions are used to access data from an
-#' \code{\link{OptimizationProblem-class}} object.
+#' [OptimizationProblem-class] object.
 #'
-#' @param x \code{\link{OptimizationProblem-class}} object.
+#' @param x [OptimizationProblem-class] object.
 #'
 #' @details The functions return the following data:
 #'
 #' \describe{
 #'
-#' \item{nrow}{\code{integer} number of rows (constraints).}
+#' \item{nrow}{`integer` number of rows (constraints).}
 #'
-#' \item{ncol}{\code{integer} number of columns (decision variables).}
+#' \item{ncol}{`integer` number of columns (decision variables).}
 #'
-#' \item{ncell}{\code{integer} number of cells.}
+#' \item{ncell}{`integer` number of cells.}
 #'
-#' \item{modelsense}{\code{character} describing if the problem is to be
-#'   maximized (\code{"max"}) or minimized (\code{"min"}).}
+#' \item{modelsense}{`character` describing if the problem is to be
+#'   maximized (`"max"`) or minimized (`"min"`).}
 #'
-#' \item{vtype}{\code{character} describing the type of each decision variable:
-#'   binary (\code{"B"}), semi-continuous (\code{"S"}), or continuous
-#'   (\code{"C"})}
+#' \item{vtype}{`character` describing the type of each decision variable:
+#'   binary (`"B"`), semi-continuous (`"S"`), or continuous
+#'   (`"C"`)}
 #'
-#' \item{obj}{\code{numeric} vector defining the linear components of the
+#' \item{obj}{`numeric` vector defining the linear components of the
 #'   objective function.}
 #'
-#' \item{pwlobj}{\code{list} object defining the piece-wise linear components
+#' \item{pwlobj}{`list` object defining the piece-wise linear components
 #'   of the objective function.}
 #'
-#' \item{A}{\code{\link[Matrix]{dgCMatrix-class}} matrix object defining the
+#' \item{A}{[Matrix::dgCMatrix-class] matrix object defining the
 #'   problem matrix.}
 #'
-#' \item{rhs}{\code{numeric} vector with right-hand-side linear constraints}
+#' \item{rhs}{`numeric` vector with right-hand-side linear constraints}
 #'
-#' \item{sense}{\code{character} vector with the senses of the linear
-#'   constraints (\code{"<="}, \code{">="}, \code{"="}).}
+#' \item{sense}{`character` vector with the senses of the linear
+#'   constraints (`"<="`, `">="`, `"="`).}
 #'
-#' \item{lb}{\code{numeric} lower bound for each decision variable. Missing data
-#'   values (\code{NA}) indicate no lower bound for a given variable.}
+#' \item{lb}{`numeric` lower bound for each decision variable. Missing data
+#'   values (`NA`) indicate no lower bound for a given variable.}
 #'
-#' \item{ub}{\code{numeric} upper bounds for each decision variable. Missing
-#'   data values (\code{NA}) indicate no upper bound for a given variable.}
+#' \item{ub}{`numeric` upper bounds for each decision variable. Missing
+#'   data values (`NA`) indicate no upper bound for a given variable.}
 #'
-#' \item{number_of_projects}{\code{integer} number of projects in the problem.}
+#' \item{number_of_projects}{`integer` number of projects in the problem.}
 #'
-#' \item{number_of_actions}{\code{integer} number of actions in the problem.}
+#' \item{number_of_actions}{`integer` number of actions in the problem.}
 #'
-#' \item{number_of_features}{\code{integer} number of features in the problem.}
+#' \item{number_of_features}{`integer` number of features in the problem.}
 #'
-#' \item{number_of_branches}{\code{integer} number of phylogenetic branches in
+#' \item{number_of_branches}{`integer` number of phylogenetic branches in
 #'   the problem.}
 #'
 #' }
 #'
-#' @return \code{list}, \code{\link[Matrix]{dgCMatrix-class}}, \code{numeric}
-#'   vector, \code{numeric} vector, or scalar \code{integer} depending on the
+#' @return `list`, [Matrix::dgCMatrix-class], `numeric`
+#'   vector, `numeric` vector, or scalar `integer` depending on the
 #'   method used.
 #'
 #' @name OptimizationProblem-methods
@@ -324,13 +324,13 @@ methods::setGeneric("get_data", function(x) standardGeneric("get_data"))
 #' @usage \S4method{get_data}{OptimizationProblem}(x)
 methods::setMethod("get_data", "OptimizationProblem", function(x) x$get_data())
 
-#' Convert \code{OptimizationProblem} to list
+#' Convert `OptimizationProblem` to list
 #'
-#' @param x \code{\link{OptimizationProblem-class}} object.
+#' @param x [OptimizationProblem-class] object.
 #'
 #' @param ... not used.
 #'
-#' @return \code{\link{list}} object.
+#' @return [list()] object.
 #'
 #' @method as.list OptimizationProblem
 #'

@@ -5,9 +5,9 @@ NULL
 #'
 #' Extract the names of the features in an object.
 #'
-#' @param x \code{\link{ProjectProblem-class}}.
+#' @param x [ProjectProblem-class].
 #'
-#' @return \code{character} feature names.
+#' @return `character` feature names.
 #'
 #' @name feature_names
 #'

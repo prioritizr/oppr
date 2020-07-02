@@ -101,16 +101,16 @@ get_data(x)
 \S4method{get_data}{OptimizationProblem}(x)
 }
 \arguments{
-\item{x}{\code{\link{OptimizationProblem-class}} object.}
+\item{x}{\linkS4class{OptimizationProblem} object.}
 }
 \value{
-\code{list}, \code{\link[Matrix]{dgCMatrix-class}}, \code{numeric}
-  vector, \code{numeric} vector, or scalar \code{integer} depending on the
-  method used.
+\code{list}, \link[Matrix:dgCMatrix-class]{Matrix::dgCMatrix}, \code{numeric}
+vector, \code{numeric} vector, or scalar \code{integer} depending on the
+method used.
 }
 \description{
 These functions are used to access data from an
-\code{\link{OptimizationProblem-class}} object.
+\linkS4class{OptimizationProblem} object.
 }
 \details{
 The functions return the following data:
@@ -124,31 +124,31 @@ The functions return the following data:
 \item{ncell}{\code{integer} number of cells.}
 
 \item{modelsense}{\code{character} describing if the problem is to be
-  maximized (\code{"max"}) or minimized (\code{"min"}).}
+maximized (\code{"max"}) or minimized (\code{"min"}).}
 
 \item{vtype}{\code{character} describing the type of each decision variable:
-  binary (\code{"B"}), semi-continuous (\code{"S"}), or continuous
-  (\code{"C"})}
+binary (\code{"B"}), semi-continuous (\code{"S"}), or continuous
+(\code{"C"})}
 
 \item{obj}{\code{numeric} vector defining the linear components of the
-  objective function.}
+objective function.}
 
 \item{pwlobj}{\code{list} object defining the piece-wise linear components
-  of the objective function.}
+of the objective function.}
 
-\item{A}{\code{\link[Matrix]{dgCMatrix-class}} matrix object defining the
-  problem matrix.}
+\item{A}{\link[Matrix:dgCMatrix-class]{Matrix::dgCMatrix} matrix object defining the
+problem matrix.}
 
 \item{rhs}{\code{numeric} vector with right-hand-side linear constraints}
 
 \item{sense}{\code{character} vector with the senses of the linear
-  constraints (\code{"<="}, \code{">="}, \code{"="}).}
+constraints (\code{"<="}, \code{">="}, \code{"="}).}
 
 \item{lb}{\code{numeric} lower bound for each decision variable. Missing data
-  values (\code{NA}) indicate no lower bound for a given variable.}
+values (\code{NA}) indicate no lower bound for a given variable.}
 
 \item{ub}{\code{numeric} upper bounds for each decision variable. Missing
-  data values (\code{NA}) indicate no upper bound for a given variable.}
+data values (\code{NA}) indicate no upper bound for a given variable.}
 
 \item{number_of_projects}{\code{integer} number of projects in the problem.}
 
@@ -157,7 +157,7 @@ The functions return the following data:
 \item{number_of_features}{\code{integer} number of features in the problem.}
 
 \item{number_of_branches}{\code{integer} number of phylogenetic branches in
-  the problem.}
+the problem.}
 
 }
 }

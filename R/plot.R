@@ -4,23 +4,23 @@ NULL
 #' Plot a solution to a project prioritization problem
 #'
 #' Create a plot to visualize how well a solution to a project prioritization
-#' problem will maintain biodiversity.
+#' [problem()] will maintain biodiversity.
 #'
 #' @inheritParams solution_statistics
 #'
-#' @param n \code{integer} solution number to visualize.
-#'   Since each row in the argument to \code{solutions} corresponds to a
+#' @param n `integer` solution number to visualize.
+#'   Since each row in the argument to `solutions` corresponds to a
 #'   different solution, this argument should correspond to a row in
-#'   the argument to \code{solutions}. Defaults to 1.
+#'   the argument to `solutions`. Defaults to 1.
 #'
-#' @param symbol_hjust \code{numeric} horizontal adjustment parameter to
+#' @param symbol_hjust `numeric` horizontal adjustment parameter to
 #'   manually align the asterisks and dashes in the plot. Defaults to
-#'   \code{0.007}. Increasing this parameter will shift the symbols further
+#'   `0.007`. Increasing this parameter will shift the symbols further
 #'   right. Please note that this parameter may require some tweaking
 #'   to produce visually appealing publication quality plots.
 #'
-#' @param return_data \code{logical} should the underlying data used to create
-#'   the plot be returned instead of the plot? Defaults to \code{FALSE}.
+#' @param return_data `logical` should the underlying data used to create
+#'   the plot be returned instead of the plot? Defaults to `FALSE`.
 #'
 #' @param ... not used.
 #'
@@ -40,11 +40,11 @@ NULL
 #'   have non-zero costs and share actions with at least one funded
 #'   project---are depicted with an open circle symbol.
 #'
-#' @return A \code{\link{ggplot}} object.
+#' @return A [ggplot()] object.
 #'
 #' @seealso This function is essentially a wrapper for
-#'   \code{\link{plot_feature_persistence}} and
-#'   \code{\link{plot_phylo_persistence}}, so refer to the documentation
+#'   [plot_feature_persistence()] and
+#'   [plot_phylo_persistence()], so refer to the documentation
 #'   for these functions for more information.
 #'
 #' @examples

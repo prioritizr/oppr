@@ -3,55 +3,55 @@ NULL
 
 #' Predefined optimization problem
 #'
-#' Create a new \code{\link{OptimizationProblem-class}} object.
+#' Create a new [OptimizationProblem-class] object.
 #'
-#' @param x \code{list} object containing data to construct the problem.
+#' @param x `list` object containing data to construct the problem.
 #'
-#' @param data \code{list} object containing additional data (optional).
+#' @param data `list` object containing additional data (optional).
 #'
-#' @details The argument to \code{x} must be a list that contains the following
+#' @details The argument to `x` must be a list that contains the following
 #'   elements:
 #'
 #'   \describe{
 #'
-#'   \item{modelsense}{\code{character} model sense.}
+#'   \item{modelsense}{`character` model sense.}
 #'
-#'   \item{number_of_projects}{\code{integer} number of projects in problem.}
+#'   \item{number_of_projects}{`integer` number of projects in problem.}
 #'
-#'   \item{number_of_actions}{\code{integer} number of actions in problem.}
+#'   \item{number_of_actions}{`integer` number of actions in problem.}
 #'
-#'   \item{number_of_features}{\code{integer} number of features in problem.}
+#'   \item{number_of_features}{`integer` number of features in problem.}
 #'
-#'   \item{number_of_branches}{\code{integer} number of branches in problem.}
+#'   \item{number_of_branches}{`integer` number of branches in problem.}
 #'
-#'   \item{A_i}{\code{integer} row indices for problem matrix.}
+#'   \item{A_i}{`integer` row indices for problem matrix.}
 #'
-#'   \item{A_j}{\code{integer} column indices for problem matrix.}
+#'   \item{A_j}{`integer` column indices for problem matrix.}
 #'
-#'   \item{A_x}{\code{numeric} values for problem matrix.}
+#'   \item{A_x}{`numeric` values for problem matrix.}
 #'
-#'   \item{obj}{\code{numeric} vector defining the linear components of the
+#'   \item{obj}{`numeric` vector defining the linear components of the
 #'     objective function.}
 #'
-#'   \item{pwlobj}{\code{list} object defining the piece-wise linear components
+#'   \item{pwlobj}{`list` object defining the piece-wise linear components
 #'      of the objective function.}
 #'
-#'   \item{lb}{\code{numeric} lower bound for decision values.}
+#'   \item{lb}{`numeric` lower bound for decision values.}
 #'
-#'   \item{ub}{\code{numeric} upper bound for decision values.}
+#'   \item{ub}{`numeric` upper bound for decision values.}
 #'
-#'   \item{rhs}{\code{numeric} right-hand side values.}
+#'   \item{rhs}{`numeric` right-hand side values.}
 #'
-#'   \item{sense}{\code{numeric} constraint senses.}
+#'   \item{sense}{`numeric` constraint senses.}
 #'
-#'   \item{vtype}{\code{character} variable types. These are used to specify
-#'     that the decision variables are binary (\code{"B"}) or continuous
-#'     (\code{"C"}).}
+#'   \item{vtype}{`character` variable types. These are used to specify
+#'     that the decision variables are binary (`"B"`) or continuous
+#'     (`"C"`).}
 #'
-#'   \item{row_ids}{\code{character} identifiers for the rows in the problem
+#'   \item{row_ids}{`character` identifiers for the rows in the problem
 #'     matrix.}
 #'
-#'   \item{col_ids}{\code{character} identifiers for the columns in the problem
+#'   \item{col_ids}{`character` identifiers for the columns in the problem
 #'     matrix.}
 #'
 #'   }
