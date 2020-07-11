@@ -34,14 +34,14 @@ before_install:
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get --yes --force-yes update -qq; fi;
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get install -y curl qpdf coinor-libcgl-dev coinor-libclp-dev coinor-libcoinutils-dev coinor-libosi-dev coinor-libsymphony3 coinor-libsymphony-doc coinor-libsymphony-dev; fi;
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get install -y; fi;
-  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install Caskroom/cask/xquartz; fi;
-  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install ghostscript; fi;
-  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew tap coin-or-tools/coinor; fi;
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install Caskroom/cask/xquartz || echo "fail 1"; fi;
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install ghostscript || echo "fail 2"; fi;
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew tap coin-or-tools/coinor || echo "fail 3"; fi;
   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install symphony || true; fi;
-  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew link --overwrite gcc; fi;
-  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then pkg-config --exists SYMPHONY; fi;
-  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then pkg-config --cflags SYMPHONY; fi;
-  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then pkg-config --libs SYMPHONY; fi;
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew link --overwrite gcc || echo "fail 4"; fi;
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then pkg-config --exists SYMPHONY || echo "fail 5"; fi;
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then pkg-config --cflags SYMPHONY || echo "fail 6"; fi;
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then pkg-config --libs SYMPHONY || echo "fail 7"; fi;
   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then sudo tlmgr update --self; fi;
 
 before_script:
