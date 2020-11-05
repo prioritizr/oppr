@@ -17,8 +17,6 @@ test_that("add_binary_decisions (compile)", {
 
 test_that("add_binary_decisions (solve)", {
   skip_on_cran()
-  skip_on_travis()
-  skip_on_appveyor()
   skip_if_not(any_solvers_installed())
   # generate solution
   p <- problem(sim_projects, sim_actions, sim_features,
