@@ -158,7 +158,7 @@ NULL
 #'       add_locked_in_constraints(which(sim_actions$cost < 1e-5)) %>%
 #'       add_binary_decisions()
 #'
-#' \donttest{
+#' \dontrun{
 #' # solve problem
 #' s1 <- solve(p1)
 #'
@@ -177,7 +177,7 @@ NULL
 #' p2 <- p1 %>%
 #'       add_feature_weights("weight")
 #'
-#' \donttest{
+#' \dontrun{
 #' # solve problem
 #' s2 <- solve(p2)
 #'

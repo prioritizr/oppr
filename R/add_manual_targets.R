@@ -77,7 +77,7 @@ NULL
 #' # print problem
 #' print(p)
 #'
-#' \donttest{
+#' \dontrun{
 #' # solve problem
 #' s <- solve(p)
 #'

@@ -132,7 +132,7 @@ p <- problem(sim_projects, sim_actions, sim_features,
       add_absolute_targets(0.3) \%>\%
       add_binary_decisions()
 
-\donttest{
+\dontrun{
 # solve problem
 s <- solve(p)
 

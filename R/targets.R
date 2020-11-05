@@ -64,7 +64,7 @@ NULL
 #' # print problem
 #' print(p2)
 #'
-#' \donttest{
+#' \dontrun{
 #' # solve problems
 #' s1 <- solve(p1)
 #' s2 <- solve(p2)

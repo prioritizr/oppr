@@ -68,7 +68,7 @@ SystemRequirements: C++11
 URL: https://prioritizr.github.io/oppr, https://github.com/prioritizr/oppr
 BugReports: https://github.com/prioritizr/oppr/issues
 VignetteBuilder: knitr
-RoxygenNote: 7.1.0.9000
+RoxygenNote: 7.1.1
 Encoding: UTF-8
 Collate:
     'internal.R'

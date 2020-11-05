@@ -83,7 +83,7 @@ NULL
 #'      add_max_richness_objective(budget = 200) %>%
 #'      add_binary_decisions()
 #'
-#' \donttest{
+#' \dontrun{
 #' # solve problem
 #' s1 <- solve(p1)
 #'
@@ -100,7 +100,7 @@ NULL
 #'      add_max_phylo_div_objective(budget = 200, tree = sim_tree) %>%
 #'      add_binary_decisions()
 #'
-#' \donttest{
+#' \dontrun{
 #' # solve problem
 #' s2 <- solve(p2)
 #'
@@ -118,7 +118,7 @@ NULL
 #'      add_absolute_targets(0.4) %>%
 #'      add_binary_decisions()
 #'
-#' \donttest{
+#' \dontrun{
 #' # solve problem
 #' s3 <- solve(p3)
 #'
@@ -137,7 +137,7 @@ NULL
 #'      add_absolute_targets(0.4) %>%
 #'      add_binary_decisions()
 #'
-#' \donttest{
+#' \dontrun{
 #' # solve problem
 #' s4 <- solve(p4)
 #'

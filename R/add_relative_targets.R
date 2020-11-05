@@ -55,7 +55,7 @@ NULL
 #'       add_relative_targets("target") %>%
 #'       add_binary_decisions()
 #'
-#' \donttest{
+#' \dontrun{
 #' # print problem
 #' print(p3)
 #'

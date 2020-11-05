@@ -205,19 +205,19 @@ to an optimal solution identified using exact algorithms (e.g.
       <span class='fu'><a href='add_default_solver.html'>add_default_solver</a></span>()
 
 <span class='co'># build another problem, with the gurobi solver</span>
-<span class='co'># \donttest{</span>
+<span class='co'># \dontrun{</span>
 <span class='no'>p3</span> <span class='kw'>&lt;-</span> <span class='no'>p1</span> <span class='kw'>%&gt;%</span>
       <span class='fu'><a href='add_gurobi_solver.html'>add_gurobi_solver</a></span>()
 <span class='co'># }</span>
 
 <span class='co'># build another problem, with the Rsympony solver</span>
-<span class='co'># \donttest{</span>
+<span class='co'># \dontrun{</span>
 <span class='no'>p4</span> <span class='kw'>&lt;-</span> <span class='no'>p1</span> <span class='kw'>%&gt;%</span>
       <span class='fu'><a href='add_rsymphony_solver.html'>add_rsymphony_solver</a></span>()
 <span class='co'># }</span>
 
 <span class='co'># build another problem, with the lpsymphony solver</span>
-<span class='co'># \donttest{</span>
+<span class='co'># \dontrun{</span>
 <span class='no'>p5</span> <span class='kw'>&lt;-</span> <span class='no'>p1</span> <span class='kw'>%&gt;%</span>
       <span class='fu'><a href='add_lsymphony_solver.html'>add_lpsymphony_solver</a></span>()
 <span class='co'># }</span>
@@ -234,10 +234,10 @@ to an optimal solution identified using exact algorithms (e.g.
 <span class='no'>p8</span> <span class='kw'>&lt;-</span> <span class='no'>p1</span> <span class='kw'>%&gt;%</span>
       <span class='fu'><a href='add_random_solver.html'>add_random_solver</a></span>()
 
-<span class='co'># \donttest{</span>
+<span class='co'># \dontrun{</span>
 <span class='co'># generate solutions using each of the solvers</span>
 <span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span>(<span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p2</span>), <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p3</span>), <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p4</span>), <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p5</span>), <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p6</span>), <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p7</span>),
-           <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p8</span>))</div><div class='output co'>#&gt; Gurobi Optimizer version 9.0.1 build v9.0.1rc0 (linux64)
+           <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p8</span>))</div><div class='output co'>#&gt; Gurobi Optimizer version 9.0.2 build v9.0.2rc0 (linux64)
 #&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
 #&gt; Model fingerprint: 0x35c8d3f0
 #&gt; Variable types: 0 continuous, 42 integer (42 binary)
@@ -269,7 +269,7 @@ to an optimal solution identified using exact algorithms (e.g.
 #&gt; 
 #&gt; Optimal solution found (tolerance 0.00e+00)
 #&gt; Best objective 2.190380737245e+00, best bound 2.190380737245e+00, gap 0.0000%
-#&gt; Gurobi Optimizer version 9.0.1 build v9.0.1rc0 (linux64)
+#&gt; Gurobi Optimizer version 9.0.2 build v9.0.2rc0 (linux64)
 #&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
 #&gt; Model fingerprint: 0x35c8d3f0
 #&gt; Variable types: 0 continuous, 42 integer (42 binary)
@@ -342,7 +342,7 @@ to an optimal solution identified using exact algorithms (e.g.
 #&gt; 4        1 TM_OPTIMAL_SOLUTION_FOUND 2.190381 195.3907         1         1
 #&gt; 5        1    optimal solution found 2.190381 195.3907         1         1
 #&gt; 6        1                      &lt;NA&gt; 2.190381 195.3907         1         1
-#&gt; 7        1                      &lt;NA&gt; 2.190381 195.3907         1         1
+#&gt; 7        1                      &lt;NA&gt; 1.914902 199.1507         0         0
 #&gt;   F3_action F4_action F5_action baseline_action F1_project F2_project
 #&gt; 1         0         0         0               1          1          1
 #&gt; 2         0         0         0               1          1          1
@@ -350,7 +350,7 @@ to an optimal solution identified using exact algorithms (e.g.
 #&gt; 4         0         0         0               1          1          1
 #&gt; 5         0         0         0               1          1          1
 #&gt; 6         0         0         0               1          1          1
-#&gt; 7         0         0         0               1          1          1
+#&gt; 7         0         1         1               1          0          0
 #&gt;   F3_project F4_project F5_project baseline_project        F1        F2
 #&gt; 1          0          0          0                1 0.8080322 0.8649623
 #&gt; 2          0          0          0                1 0.8080322 0.8649623
@@ -358,7 +358,7 @@ to an optimal solution identified using exact algorithms (e.g.
 #&gt; 4          0          0          0                1 0.8080322 0.8649623
 #&gt; 5          0          0          0                1 0.8080322 0.8649623
 #&gt; 6          0          0          0                1 0.8080322 0.8649623
-#&gt; 7          0          0          0                1 0.8080322 0.8649623
+#&gt; 7          0          1          1                1 0.2977965 0.2500224
 #&gt;          F3        F4        F5     solver
 #&gt; 1 0.0864612 0.2489246 0.1820005    default
 #&gt; 2 0.0864612 0.2489246 0.1820005     gurobi
@@ -366,7 +366,7 @@ to an optimal solution identified using exact algorithms (e.g.
 #&gt; 4 0.0864612 0.2489246 0.1820005 lpsymphony
 #&gt; 5 0.0864612 0.2489246 0.1820005 lpSolveAPI
 #&gt; 6 0.0864612 0.2489246 0.1820005  heuristic
-#&gt; 7 0.0864612 0.2489246 0.1820005     random</div><div class='input'># }
+#&gt; 7 0.0864612 0.6881335 0.5924880     random</div><div class='input'># }
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

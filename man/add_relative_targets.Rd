@@ -92,7 +92,7 @@ p3 <- problem(sim_projects, sim_actions, sim_features,
       add_relative_targets("target") \%>\%
       add_binary_decisions()
 
-\donttest{
+\dontrun{
 # print problem
 print(p3)
 

@@ -33,7 +33,7 @@ NULL
 #'      add_feature_weights("weight") %>%
 #'      add_binary_decisions()
 #'
-#' \donttest{
+#' \dontrun{
 #' # solve problem
 #' s <- solve(p)
 #'

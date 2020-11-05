@@ -92,7 +92,7 @@ p3 <- problem(sim_projects, sim_actions, sim_features,
 # print problem
 print(p3)
 
-\donttest{
+\dontrun{
 # solve problems
 s1 <- solve(p1)
 s2 <- solve(p2)

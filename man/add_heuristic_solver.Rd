@@ -162,7 +162,7 @@ p1 <- problem(sim_projects, sim_actions, sim_features,
 # print problem
 print(p1)
 
-\donttest{
+\dontrun{
 # solve problem
 s1 <- solve(p1)
 

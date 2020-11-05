@@ -132,7 +132,7 @@ NULL
 #'       add_absolute_targets(0.3) %>%
 #'       add_binary_decisions()
 #'
-#' \donttest{
+#' \dontrun{
 #' # solve problem
 #' s <- solve(p)
 #'

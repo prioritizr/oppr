@@ -26,7 +26,7 @@ NULL
 #' @seealso [solvers].
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'

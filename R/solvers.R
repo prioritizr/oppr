@@ -84,19 +84,19 @@ NULL
 #'       add_default_solver()
 #'
 #' # build another problem, with the gurobi solver
-#' \donttest{
+#' \dontrun{
 #' p3 <- p1 %>%
 #'       add_gurobi_solver()
 #' }
 #'
 #' # build another problem, with the Rsympony solver
-#' \donttest{
+#' \dontrun{
 #' p4 <- p1 %>%
 #'       add_rsymphony_solver()
 #' }
 #'
 #' # build another problem, with the lpsymphony solver
-#' \donttest{
+#' \dontrun{
 #' p5 <- p1 %>%
 #'       add_lpsymphony_solver()
 #' }
@@ -113,7 +113,7 @@ NULL
 #' p8 <- p1 %>%
 #'       add_random_solver()
 #'
-#' \donttest{
+#' \dontrun{
 #' # generate solutions using each of the solvers
 #' s <- rbind(solve(p2), solve(p3), solve(p4), solve(p5), solve(p6), solve(p7),
 #'            solve(p8))

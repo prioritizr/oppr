@@ -61,7 +61,7 @@ provides an interface to COIN-OR and is available on \emph{CRAN}.
 This solver uses the \pkg{Rsymphony} package to solve problems.
 }
 \examples{
-\donttest{
+\dontrun{
 # load data
 data(sim_projects, sim_features, sim_actions)
 

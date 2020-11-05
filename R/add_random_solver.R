@@ -84,7 +84,7 @@ NULL
 #' # solutions, we can find the optimal solution and calculate how different
 #' # each of the random solutions is from optimality
 #'
-#' \donttest{
+#' \dontrun{
 #' # find the optimal objective value using an exact algorithms solver
 #' s2 <- p1 %>%
 #'       add_default_solver() %>%

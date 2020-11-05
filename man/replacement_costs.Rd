@@ -73,7 +73,7 @@ for large problems since it involves re-solving the problem for every
 action selected for funding.
 }
 \examples{
-\donttest{
+\dontrun{
 # load data
 data(sim_projects, sim_features, sim_actions)
 

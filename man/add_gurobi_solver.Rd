@@ -106,7 +106,7 @@ package can then be installed (see instructions for \href{http://www.gurobi.com/
 \href{http://www.gurobi.com/documentation/8.1/quickstart_windows/r_installing_the_r_package.html}{Windows} operating systems).
 }
 \examples{
-\donttest{
+\dontrun{
 # load data
 data(sim_projects, sim_features, sim_actions)
 

@@ -69,7 +69,7 @@ p1 <- problem(sim_projects, sim_actions, sim_features,
       add_feature_weights("weight") \%>\%
       add_binary_decisions()
 
-\donttest{
+\dontrun{
 # solve problem without phylogenetic data
 s1 <- solve(p1)
 
@@ -83,7 +83,7 @@ p2 <- problem(sim_projects, sim_actions, sim_features,
       add_max_phylo_div_objective(budget = 400, sim_tree) \%>\%
       add_binary_decisions()
 
-\donttest{
+\dontrun{
 # solve problem with phylogenetic data
 s2 <- solve(p2)
 

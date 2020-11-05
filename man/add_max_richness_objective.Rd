@@ -133,7 +133,7 @@ p1 <- problem(sim_projects, sim_actions, sim_features,
      add_max_richness_objective(budget = 200) \%>\%
      add_binary_decisions()
 
-\donttest{
+\dontrun{
 # solve problem
 s1 <- solve(p1)
 
@@ -148,7 +148,7 @@ plot(p1, s1)
 p2 <- p1 \%>\%
      add_feature_weights("weight")
 
-\donttest{
+\dontrun{
 # solve problem with feature weights
 s2 <- solve(p2)
 

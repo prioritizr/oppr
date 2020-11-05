@@ -95,7 +95,7 @@ p4 <- p1 \%>\%
 # print problem
 print(p4)
 
-\donttest{
+\dontrun{
 # solve problems
 s1 <- solve(p1)
 s2 <- solve(p2)

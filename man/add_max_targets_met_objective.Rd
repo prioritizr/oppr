@@ -161,7 +161,7 @@ p1 <- problem(sim_projects, sim_actions, sim_features,
       add_locked_in_constraints(which(sim_actions$cost < 1e-5)) \%>\%
       add_binary_decisions()
 
-\donttest{
+\dontrun{
 # solve problem
 s1 <- solve(p1)
 
@@ -180,7 +180,7 @@ geom_hline(yintercept = 0.2, linetype = "dashed")
 p2 <- p1 \%>\%
       add_feature_weights("weight")
 
-\donttest{
+\dontrun{
 # solve problem
 s2 <- solve(p2)
 

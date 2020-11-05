@@ -58,7 +58,7 @@ NULL
 #'      add_binary_decisions() %>%
 #'      add_heuristic_solver(number_solutions = 10)
 #'
-#' \donttest{
+#' \dontrun{
 #' # solve problem
 #' s <- solve(p)
 #'

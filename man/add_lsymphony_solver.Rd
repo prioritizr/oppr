@@ -65,7 +65,7 @@ be easier to install to install on Windows and Mac OSX systems than the
 \pkg{Rsymphony} package.
 }
 \examples{
-\donttest{
+\dontrun{
 # load data
 data(sim_projects, sim_features, sim_actions)
 

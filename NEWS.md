@@ -1,3 +1,9 @@
+# oppr 1.0.2.2
+
+- Implement GitHub Actions continuous integration (i.e. update tests
+  and README).
+- Update examples to use `\dontrun` instead of `\donttest` per CRAN policies.
+
 # oppr 1.0.2.1
 
 - Fix "Non-file package-anchored link(s) in documentation object" warnings in
