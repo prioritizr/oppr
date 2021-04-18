@@ -7,24 +7,21 @@
 add_rsymphony_solver(
   x,
   gap = 0,
-  time_limit = -1,
-  first_feasible = 0,
+  time_limit = .Machine$integer.max,
+  first_feasible = FALSE,
   verbose = TRUE
 )
 }
 \arguments{
 \item{x}{\linkS4class{ProjectProblem} object.}
 
-\item{gap}{\code{numeric} gap to optimality. This gap is relative when
-solving problems using \pkg{gurobi}, and will cause the optimizer to
-terminate when the difference between the upper and lower objective
-function bounds is less than the gap times the upper bound. For example, a
-value of 0.01 will result in the optimizer stopping when the difference
-between the bounds is 1 percent of the upper bound. For
-other solvers, this is the absolute gap, so if the optimal value for
-a maximization problem is 10, a gap of 0.01 means that a solution between
-10 and 10.01 is required. Defaults to 0, so that optimal solutions will be
-returned.}
+\item{gap}{\code{numeric} gap to optimality. This gap is relative
+and expresses the acceptable deviance from the optimal objective.
+For example, a value of 0.01 will result in the solver stopping when
+it has found a solution within 1\% of optimality.
+Additionally, a value of 0 will result in the solver stopping
+when it has found an optimal solution.
+The default value is 0.1 (i.e. 10\% from optimality).}
 
 \item{time_limit}{\code{numeric} time limit in seconds to run the optimizer.
 The solver will return the current best solution when this time limit is

@@ -149,7 +149,7 @@ add_random_solver <- function(x, number_solutions = 1, verbose = TRUE) {
           self$parameters$get("number_solutions"),
           as.logical(self$parameters$get("verbose")),
           class(x$data$objective)[1])
-      })
+      })[[3]]
       # coerce logical to numeric matrix
       s <- round(s)
       # format solution data

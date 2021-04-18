@@ -187,8 +187,9 @@ Korte B & Vygen J (2000)
 Berlin, Germany.
 
 Probert W, Maloney RF, Mellish B, and Joseph L (2016)
-Project Prioritisation Protocol (PPP). Available at
-\url{https://github.com/p-robot/ppp}.
+Project Prioritisation Protocol (PPP).
+Formerly available at \url{https://github.com/p-robot}
+(copy available at \url{https://github.com/jeffreyhanson/ppp}).
 }
 \seealso{
 \link{solvers}.

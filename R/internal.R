@@ -1,7 +1,6 @@
 #' Check
 #'
-#' Check that the output from [assert_that::see_if()]
-#' is valid.
+#' Check that the output from [assertthat::see_if()] is valid.
 #'
 #' @param x `character` or `object`
 #'

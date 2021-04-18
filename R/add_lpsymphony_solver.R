@@ -58,8 +58,8 @@ methods::setClass("LpsymphonySolver", contains = "Solver")
 
 #' @rdname add_lsymphony_solver
 #' @export
-add_lpsymphony_solver <- function(x, gap = 0, time_limit = -1,
-                                  first_feasible = 0, verbose = TRUE) {
+add_lpsymphony_solver <- function(x, gap = 0, time_limit = .Machine$integer.max,
+                                  first_feasible = FALSE, verbose = TRUE) {
   # assert that arguments are valid
   assertthat::assert_that(inherits(x, "ProjectProblem"),
                           isTRUE(all(is.finite(gap))),
@@ -69,9 +69,7 @@ add_lpsymphony_solver <- function(x, gap = 0, time_limit = -1,
                           assertthat::is.count(time_limit) || isTRUE(time_limit
                             == -1),
                           assertthat::is.flag(verbose),
-                          assertthat::is.number(first_feasible),
-                          isTRUE(first_feasible == 1 || isTRUE(first_feasible
-                            == 0)),
+                          assertthat::is.flag(first_feasible),
                           requireNamespace("lpsymphony", quietly = TRUE))
   # throw warning about bug in lpsymphony
   if (utils::packageVersion("lpsymphony") <= as.package_version("1.4.1"))
@@ -87,7 +85,7 @@ add_lpsymphony_solver <- function(x, gap = 0, time_limit = -1,
       numeric_parameter("gap", gap, lower_limit = 0),
       integer_parameter("time_limit", time_limit, lower_limit = -1,
                         upper_limit = .Machine$integer.max),
-      binary_parameter("first_feasible", first_feasible),
+      binary_parameter("first_feasible", as.numeric(first_feasible)),
       binary_parameter("verbose", verbose)),
     solve = function(self, x) {
       assertthat::assert_that(identical(x$pwlobj(), list()),
@@ -110,9 +108,9 @@ add_lpsymphony_solver <- function(x, gap = 0, time_limit = -1,
       model$dir <- replace(model$dir, model$dir == "=", "==")
       model$types <- replace(model$types, model$types == "S", "C")
       p$first_feasible <- as.logical(p$first_feasible)
-      start_time <- Sys.time()
-      x <- do.call(lpsymphony::lpsymphony_solve_LP, append(model, p))
-      end_time <- Sys.time()
+      rt <- system.time({
+        x <- do.call(lpsymphony::lpsymphony_solve_LP, append(model, p))
+      })[[3]]
       # convert status from integer code to character description
       x$status <- symphony_status(x$status)
       # manually throw infeasible solution if it contains only zeros,
@@ -126,7 +124,6 @@ add_lpsymphony_solver <- function(x, gap = 0, time_limit = -1,
         return(NULL)
       list(list(x = x$solution, objective = x$objval,
                 status = as.character(x$status),
-                runtime = as.double(end_time - start_time,
-                                    format = "seconds")))
+                runtime = rt))
     }))
 }

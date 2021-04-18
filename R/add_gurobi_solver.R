@@ -11,16 +11,13 @@ NULL
 #'
 #' @param x [ProjectProblem-class] object.
 #'
-#' @param gap `numeric` gap to optimality. This gap is relative when
-#'   solving problems using \pkg{gurobi}, and will cause the optimizer to
-#'   terminate when the difference between the upper and lower objective
-#'   function bounds is less than the gap times the upper bound. For example, a
-#'   value of 0.01 will result in the optimizer stopping when the difference
-#'   between the bounds is 1 percent of the upper bound. For
-#'   other solvers, this is the absolute gap, so if the optimal value for
-#'   a maximization problem is 10, a gap of 0.01 means that a solution between
-#'   10 and 10.01 is required. Defaults to 0, so that optimal solutions will be
-#'   returned.
+#' @param gap `numeric` gap to optimality. This gap is relative
+#'   and expresses the acceptable deviance from the optimal objective.
+#'   For example, a value of 0.01 will result in the solver stopping when
+#'   it has found a solution within 1% of optimality.
+#'   Additionally, a value of 0 will result in the solver stopping
+#'   when it has found an optimal solution.
+#'   The default value is 0.1 (i.e. 10% from optimality).
 #'
 #' @param number_solutions `integer` number of solutions desired.
 #'   Defaults to 1. Note that the number of returned solutions can sometimes
@@ -144,7 +141,7 @@ methods::setClass("GurobiSolver", contains = "Solver")
 add_gurobi_solver <- function(x, gap = 0, number_solutions = 1,
                               solution_pool_method = 2,
                               time_limit = .Machine$integer.max,
-                              presolve = 2, threads = 1, first_feasible = 0,
+                              presolve = 2, threads = 1, first_feasible = FALSE,
                               verbose = TRUE) {
   # assert that arguments are valid
   assertthat::assert_that(inherits(x, "ProjectProblem"),
@@ -163,8 +160,7 @@ add_gurobi_solver <- function(x, gap = 0, number_solutions = 1,
                           isTRUE(all(is.finite(threads))),
                           assertthat::is.count(threads),
                           isTRUE(threads <= parallel::detectCores(TRUE)),
-                          assertthat::is.number(first_feasible),
-                          isTRUE(first_feasible == 1 | first_feasible == 0),
+                          assertthat::is.flag(first_feasible),
                           assertthat::is.flag(verbose),
                           requireNamespace("gurobi", quietly = TRUE))
   # add solver
@@ -186,7 +182,7 @@ add_gurobi_solver <- function(x, gap = 0, number_solutions = 1,
                         upper_limit = 2L),
       integer_parameter("threads", threads, lower_limit = 1L,
                         upper_limit = parallel::detectCores(TRUE)),
-      binary_parameter("first_feasible", first_feasible),
+      binary_parameter("first_feasible", as.numeric(first_feasible)),
       binary_parameter("verbose", verbose)),
     solve = function(self, x, ...) {
       # create problem
@@ -216,14 +212,18 @@ add_gurobi_solver <- function(x, gap = 0, number_solutions = 1,
       if (p$SolutionLimit == 0)
         p$SolutionLimit <- NULL
       # solve problem
-      x <- gurobi::gurobi(model = model, params = p)
+      rt <- system.time({
+          x <- withr::with_locale(
+            c(LC_CTYPE = "C"),
+            gurobi::gurobi(model = model, params = p))
+      })[[3]]
       # round binary variables because default precision is 1e-5
       b <- model$vtype == "B"
       if (is.numeric(x$x))
         x$x[b] <- round(x$x[b])
       # extract solution
       out <- list(list(x = x$x, objective = x$objval, status = x$status,
-                       runtime = x$runtime))
+                       runtime = rt))
       # add solutions from solution pool if required
       if (is.numeric(x$x) && isTRUE(length(x$pool) > 1) &&
           isTRUE(self$parameters$get("number_solutions") > 1)) {

@@ -53,20 +53,18 @@ methods::setClass("RsymphonySolver", contains = "Solver")
 
 #' @rdname add_rsymphony_solver
 #' @export
-add_rsymphony_solver <- function(x, gap = 0, time_limit = -1,
-                                 first_feasible = 0, verbose = TRUE) {
+add_rsymphony_solver <- function(x, gap = 0, time_limit = .Machine$integer.max,
+                                 first_feasible = FALSE, verbose = TRUE) {
   # assert that arguments are valid
   assertthat::assert_that(inherits(x, "ProjectProblem"),
                           isTRUE(all(is.finite(gap))),
                           assertthat::is.number(gap),
                           isTRUE(gap >= 0), isTRUE(all(is.finite(time_limit))),
                           assertthat::is.number(time_limit),
-                          assertthat::is.count(time_limit) || isTRUE(time_limit
-                            == -1),
+                          assertthat::is.count(time_limit) ||
+                            isTRUE(time_limit == -1),
                           assertthat::is.flag(verbose),
-                          assertthat::is.number(first_feasible),
-                          isTRUE(first_feasible == 1 || isTRUE(first_feasible
-                            == 0)),
+                          assertthat::is.flag(first_feasible),
                           requireNamespace("Rsymphony", quietly = TRUE))
   # add solver
   x$add_solver(pproto(
@@ -77,7 +75,7 @@ add_rsymphony_solver <- function(x, gap = 0, time_limit = -1,
       numeric_parameter("gap", gap, lower_limit = 0),
       integer_parameter("time_limit", time_limit, lower_limit = -1,
                         upper_limit = .Machine$integer.max),
-      binary_parameter("first_feasible", first_feasible),
+      binary_parameter("first_feasible", as.numeric(first_feasible)),
       binary_parameter("verbose", verbose)),
     solve = function(self, x) {
       assertthat::assert_that(identical(x$pwlobj(), list()),
@@ -100,9 +98,9 @@ add_rsymphony_solver <- function(x, gap = 0, time_limit = -1,
       model$types <- replace(model$types, model$types == "S", "C")
       names(p)[which(names(p) == "gap")] <- "gap_limit"
       p$first_feasible <- as.logical(p$first_feasible)
-      start_time <- Sys.time()
-      x <- do.call(Rsymphony::Rsymphony_solve_LP, append(model, p))
-      end_time <- Sys.time()
+      rt <- system.time({
+        x <- do.call(Rsymphony::Rsymphony_solve_LP, append(model, p))
+      })[[3]]
       # convert status from integer code to character description
       x$status <- symphony_status(x$status)
       # manually throw infeasible solution if it contains only zeros,
@@ -116,7 +114,6 @@ add_rsymphony_solver <- function(x, gap = 0, time_limit = -1,
         return(NULL)
       list(list(x = x$solution, objective = x$objval,
                 status = as.character(x$status),
-                runtime = as.double(end_time - start_time,
-                                    format = "seconds")))
+                runtime = rt))
     }))
 }

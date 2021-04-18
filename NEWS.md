@@ -1,3 +1,29 @@
+# oppr 1.0.2.4
+
+- Fix missing dependency in DESCRIPTION.
+
+# oppr 1.0.2.3
+
+- Bug fix: previous versions of the package reported that the `gap` parameter
+  for the `add_rsymphony_solver` and `add_lpsymphony_solver` corresponded to the
+  maximum absolute difference from the optimal objective value.
+  This was an error due to misunderstanding the *SYMPHONY* documentation.
+  Under previous versions of the package, the `gap` parameter actually
+  corresponded to a relative optimality gap expressed
+  as a percentage (such that`gap = 10` indicates that solutions must be at
+  least 10% from optimality). We have now fixed this error and the documentation
+  described for the `gap` parameter is correct. We apologize for any
+  inconvenience this may have caused.
+- Update `add_rsymphony_solver` and `add_lpsymphony_solver` functions to have
+  a default `time_limit` argument set as the maximum machine integer for
+  consistency.
+- Update `add_rsymphony_solver`, `add_lpsymphony_solver`, and
+  `add_gurobi_solver` functions to require `logical` (`TRUE`/`FALSE`) arguments
+  for the `first_feasible` parameter.
+- Standardize run time calculations across all solvers.
+- Fix compatibility issues between the _testthat_ R package and the _gurobi_ R
+  package in package tests.
+
 # oppr 1.0.2.2
 
 - Implement GitHub Actions continuous integration (i.e. update tests

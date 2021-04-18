@@ -60,7 +60,8 @@ methods::setClass("LpsolveapiSolver", contains = "Solver")
 
 #' @rdname add_lpsolveapi_solver
 #' @export
-add_lpsolveapi_solver <- function(x, gap = 0, presolve = FALSE, verbose = TRUE) {
+add_lpsolveapi_solver <- function(x, gap = 0, presolve = FALSE,
+                                  verbose = TRUE) {
   # assert that arguments are valid
   assertthat::assert_that(inherits(x, "ProjectProblem"),
                           isTRUE(all(is.finite(gap))),
@@ -132,9 +133,9 @@ add_lpsolveapi_solver <- function(x, gap = 0, presolve = FALSE, verbose = TRUE) 
       lpSolveAPI::lp.control(l, mip.gap = p$gap, presolve = presolve,
                              sense = x$modelsense())
       # solve problem
-      start_time <- Sys.time()
-      o <- lpSolveAPI::solve.lpExtPtr(l)
-      end_time <- Sys.time()
+      rt <- system.time({
+        o <- lpSolveAPI::solve.lpExtPtr(l)
+      })[[3]]
       # status code
       status <- lp_solve_status(o)
       # check if no solution found
@@ -144,7 +145,6 @@ add_lpsolveapi_solver <- function(x, gap = 0, presolve = FALSE, verbose = TRUE) 
       list(list(x = lpSolveAPI::get.variables(l),
                 objective = lpSolveAPI::get.objective(l),
                 status = status,
-                runtime = as.double(end_time - start_time,
-                                    format = "seconds")))
+                runtime = rt))
     }))
 }

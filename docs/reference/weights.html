@@ -75,7 +75,7 @@ require weights will throw a warning and the weights will be ignored." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2.4</span>
       </span>
     </div>
 
@@ -134,7 +134,7 @@ require weights will throw a warning and the weights will be ignored.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Currently, only one function can be used to specify weights:</p>
-<dl'>
+<dl>
 
 <dt><code><a href='add_feature_weights.html'>add_feature_weights()</a></code></dt><dd><p>Set feature weights for a project prioritization <code><a href='problem.html'>problem()</a></code>.</p></dd>
 
@@ -149,19 +149,21 @@ require weights will throw a warning and the weights will be ignored.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># load data</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_features</span>, <span class='no'>sim_actions</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>sim_projects</span>, <span class='va'>sim_features</span>, <span class='va'>sim_actions</span><span class='op'>)</span>
 
 <span class='co'># build problem with maximum richness objective, $300 budget, and</span>
 <span class='co'># feature weights</span>
-<span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_actions</span>, <span class='no'>sim_features</span>,
-             <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span>) <span class='kw'>%&gt;%</span>
-     <span class='fu'><a href='add_max_richness_objective.html'>add_max_richness_objective</a></span>(<span class='kw'>budget</span> <span class='kw'>=</span> <span class='fl'>200</span>) <span class='kw'>%&gt;%</span>
-     <span class='fu'><a href='add_feature_weights.html'>add_feature_weights</a></span>(<span class='st'>"weight"</span>) <span class='kw'>%&gt;%</span>
-     <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span>()
+<span class='va'>p</span> <span class='op'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span><span class='op'>(</span><span class='va'>sim_projects</span>, <span class='va'>sim_actions</span>, <span class='va'>sim_features</span>,
+             <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+     <span class='fu'><a href='add_max_richness_objective.html'>add_max_richness_objective</a></span><span class='op'>(</span>budget <span class='op'>=</span> <span class='fl'>200</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+     <span class='fu'><a href='add_feature_weights.html'>add_feature_weights</a></span><span class='op'>(</span><span class='st'>"weight"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+     <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span><span class='op'>(</span><span class='op'>)</span>
 
 <span class='co'># \dontrun{</span>
 <span class='co'># solve problem</span>
-<span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p</span>)</div><div class='output co'>#&gt; Gurobi Optimizer version 9.0.2 build v9.0.2rc0 (linux64)
+<span class='va'>s</span> <span class='op'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span><span class='op'>(</span><span class='va'>p</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Gurobi Optimizer version 9.1.1 build v9.1.1rc0 (linux64)
+#&gt; Thread count: 2 physical cores, 4 logical processors, using up to 1 threads
 #&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
 #&gt; Model fingerprint: 0xecf9d5ff
 #&gt; Variable types: 0 continuous, 42 integer (42 binary)
@@ -194,15 +196,17 @@ require weights will throw a warning and the weights will be ignored.</p>
 #&gt; Optimal solution found (tolerance 0.00e+00)
 #&gt; Best objective 1.511229665304e+00, best bound 1.511229665304e+00, gap 0.0000%</div><div class='input'>
 <span class='co'># print solution</span>
-<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 1 x 21</span><span>
-#&gt;   solution status   obj  cost F1_action F2_action F3_action F4_action F5_action
-#&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span>        1 OPTIM~  1.51  199.         0         0         0         1         1
-#&gt; </span><span style='color: #555555;'># ... with 12 more variables: baseline_action </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F1_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   F2_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F3_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F4_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F5_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   baseline_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F1 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F2 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F3 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F4 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F5 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
+<span class='fu'><a href='print.html'>print</a></span><span class='op'>(</span><span class='va'>s</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 21</span><span>
+#&gt;   solution status    obj  cost F1_action F2_action F3_action F4_action F5_action
+#&gt;      </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 OPTIMAL  1.51  199.         0         0         0         1         1
+#&gt; </span><span style='color: #949494;'># … with 12 more variables: baseline_action &lt;dbl&gt;, F1_project &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   F2_project &lt;dbl&gt;, F3_project &lt;dbl&gt;, F4_project &lt;dbl&gt;, F5_project &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   baseline_project &lt;dbl&gt;, F1 &lt;dbl&gt;, F2 &lt;dbl&gt;, F3 &lt;dbl&gt;, F4 &lt;dbl&gt;, F5 &lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># plot solution</span>
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>p</span>, <span class='no'>s</span>)</div><div class='img'><img src='weights-1.png' alt='' width='700' height='433' /></div><div class='input'># }
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>p</span>, <span class='va'>s</span><span class='op'>)</span>
+</div><div class='img'><img src='weights-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -219,7 +223,7 @@ require weights will throw a warning and the weights will be ignored.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2.4</span>
       </span>
     </div>
 
@@ -117,6 +117,26 @@
       <small>Source: <a href='https://github.com/prioritizr/oppr/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="oppr-1-0-2-4" class="section level1">
+<h1 class="page-header" data-toc-text="1.0.2.4">
+<a href="#oppr-1-0-2-4" class="anchor"></a>oppr 1.0.2.4<small> Unreleased </small>
+</h1>
+<ul>
+<li>Fix missing dependency in DESCRIPTION.</li>
+</ul>
+</div>
+    <div id="oppr-1-0-2-3" class="section level1">
+<h1 class="page-header" data-toc-text="1.0.2.3">
+<a href="#oppr-1-0-2-3" class="anchor"></a>oppr 1.0.2.3<small> Unreleased </small>
+</h1>
+<ul>
+<li>Bug fix: previous versions of the package reported that the <code>gap</code> parameter for the <code>add_rsymphony_solver</code> and <code>add_lpsymphony_solver</code> corresponded to the maximum absolute difference from the optimal objective value. This was an error due to misunderstanding the <em>SYMPHONY</em> documentation. Under previous versions of the package, the <code>gap</code> parameter actually corresponded to a relative optimality gap expressed as a percentage (such that<code>gap = 10</code> indicates that solutions must be at least 10% from optimality). We have now fixed this error and the documentation described for the <code>gap</code> parameter is correct. We apologize for any inconvenience this may have caused.</li>
+<li>Update <code>add_rsymphony_solver</code> and <code>add_lpsymphony_solver</code> functions to have a default <code>time_limit</code> argument set as the maximum machine integer for consistency.</li>
+<li>Update <code>add_rsymphony_solver</code>, <code>add_lpsymphony_solver</code>, and <code>add_gurobi_solver</code> functions to require <code>logical</code> (<code>TRUE</code>/<code>FALSE</code>) arguments for the <code>first_feasible</code> parameter.</li>
+<li>Standardize run time calculations across all solvers.</li>
+<li>Fix compatibility issues between the <em>testthat</em> R package and the <em>gurobi</em> R package in package tests.</li>
+</ul>
+</div>
     <div id="oppr-1-0-2-2" class="section level1">
 <h1 class="page-header" data-toc-text="1.0.2.2">
 <a href="#oppr-1-0-2-2" class="anchor"></a>oppr 1.0.2.2<small> Unreleased </small>
@@ -423,7 +443,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

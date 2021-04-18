@@ -136,8 +136,9 @@ NULL
 #' Berlin, Germany.
 #'
 #' Probert W, Maloney RF, Mellish B, and Joseph L (2016)
-#' Project Prioritisation Protocol (PPP). Available at
-#' <https://github.com/p-robot/ppp>.
+#' Project Prioritisation Protocol (PPP).
+#' Formerly available at <https://github.com/p-robot>
+#' (copy available at <https://github.com/jeffreyhanson/ppp>).
 #'
 #' @examples
 #' # load ggplot2 package for making plots
@@ -227,7 +228,7 @@ add_heuristic_solver <- function(x, number_solutions = 1,
           as.logical(self$parameters$get("initial_sweep")),
           as.logical(self$parameters$get("verbose")),
           class(x$data$objective)[1])
-      })
+      })[[3]]
       # subset s if more solutions returned then desired
       if (nrow(s) > self$parameters$get("number_solutions"))
         s <- s[seq_len(self$parameters$get("number_solutions")), , drop = FALSE]

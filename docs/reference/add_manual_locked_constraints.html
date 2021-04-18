@@ -75,7 +75,7 @@ and add_locked_out_constraints() functions." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2.4</span>
       </span>
     </div>
 
@@ -129,13 +129,13 @@ more fine-grained control than the <code><a href='add_locked_in_constraints.html
 and <code><a href='add_locked_out_constraints.html'>add_locked_out_constraints()</a></code> functions.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>add_manual_locked_constraints</span>(<span class='no'>x</span>, <span class='no'>locked</span>)
+    <pre class="usage"><span class='fu'>add_manual_locked_constraints</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>locked</span><span class='op'>)</span>
 
 <span class='co'># S4 method for ProjectProblem,data.frame</span>
-<span class='fu'>add_manual_locked_constraints</span>(<span class='no'>x</span>, <span class='no'>locked</span>)
+<span class='fu'>add_manual_locked_constraints</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>locked</span><span class='op'>)</span>
 
 <span class='co'># S4 method for ProjectProblem,tbl_df</span>
-<span class='fu'>add_manual_locked_constraints</span>(<span class='no'>x</span>, <span class='no'>locked</span>)</pre>
+<span class='fu'>add_manual_locked_constraints</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>locked</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -159,7 +159,7 @@ added to it.</p>
 
     <p>The argument to <code>locked</code> must contain the following fields
 (columns):</p>
-<dl'>
+<dl>
 
 <dt><code>"action"</code></dt><dd><p><code>character</code> action name.</p></dd>
 
@@ -175,27 +175,29 @@ be funded (with a value of 1) or not (with a value of zero).</p></dd>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># load data</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_features</span>, <span class='no'>sim_actions</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>sim_projects</span>, <span class='va'>sim_features</span>, <span class='va'>sim_actions</span><span class='op'>)</span>
 
 
 <span class='co'># create data frame with locked statuses</span>
-<span class='no'>status</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>action</span> <span class='kw'>=</span> <span class='no'>sim_actions</span>$<span class='no'>name</span>[<span class='fl'>1</span>:<span class='fl'>2</span>],
-                     <span class='kw'>status</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>))
+<span class='va'>status</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>action <span class='op'>=</span> <span class='va'>sim_actions</span><span class='op'>$</span><span class='va'>name</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span>,
+                     status <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='co'># print locked statuses</span>
-<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>status</span>)</div><div class='output co'>#&gt;      action status
+<span class='fu'><a href='print.html'>print</a></span><span class='op'>(</span><span class='va'>status</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;      action status
 #&gt; 1 F1_action      0
 #&gt; 2 F2_action      1</div><div class='input'>
 <span class='co'># build problem with minimum set objective and targets that require each</span>
 <span class='co'># feature to have a 30% chance of persisting into the future</span>
-<span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_actions</span>, <span class='no'>sim_features</span>,
-             <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span>) <span class='kw'>%&gt;%</span>
-      <span class='fu'><a href='add_max_richness_objective.html'>add_max_richness_objective</a></span>(<span class='kw'>budget</span> <span class='kw'>=</span> <span class='fl'>500</span>) <span class='kw'>%&gt;%</span>
-      <span class='fu'>add_manual_locked_constraints</span>(<span class='no'>status</span>) <span class='kw'>%&gt;%</span>
-      <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span>()
+<span class='va'>p</span> <span class='op'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span><span class='op'>(</span><span class='va'>sim_projects</span>, <span class='va'>sim_actions</span>, <span class='va'>sim_features</span>,
+             <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+      <span class='fu'><a href='add_max_richness_objective.html'>add_max_richness_objective</a></span><span class='op'>(</span>budget <span class='op'>=</span> <span class='fl'>500</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+      <span class='fu'>add_manual_locked_constraints</span><span class='op'>(</span><span class='va'>status</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+      <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span><span class='op'>(</span><span class='op'>)</span>
 
 <span class='co'># print problem</span>
-<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>p</span>)</div><div class='output co'>#&gt; <span class='message'>Project Prioritization Problem</span>
+<span class='fu'><a href='print.html'>print</a></span><span class='op'>(</span><span class='va'>p</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Project Prioritization Problem</span>
 #&gt; <span class='message'>  actions          F1_action, F2_action, F3_action, ... (6 actions)</span>
 #&gt; <span class='message'>  projects         F1_project, F2_project, F3_project, ... (6 projects)</span>
 #&gt; <span class='message'>  features         F1, F2, F3, ... (5 features)</span>
@@ -209,7 +211,9 @@ be funded (with a value of 1) or not (with a value of zero).</p></dd>
 #&gt; <span class='message'>  solver:          default</span></div><div class='input'>
 <span class='co'># \dontrun{</span>
 <span class='co'># solve problem</span>
-<span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p</span>)</div><div class='output co'>#&gt; Gurobi Optimizer version 9.0.2 build v9.0.2rc0 (linux64)
+<span class='va'>s</span> <span class='op'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span><span class='op'>(</span><span class='va'>p</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Gurobi Optimizer version 9.1.1 build v9.1.1rc0 (linux64)
+#&gt; Thread count: 2 physical cores, 4 logical processors, using up to 1 threads
 #&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
 #&gt; Model fingerprint: 0xb7394257
 #&gt; Variable types: 0 continuous, 42 integer (42 binary)
@@ -242,13 +246,14 @@ be funded (with a value of 1) or not (with a value of zero).</p></dd>
 #&gt; Optimal solution found (tolerance 0.00e+00)
 #&gt; Best objective 2.910245655750e+00, best bound 2.910245655750e+00, gap 0.0000%</div><div class='input'>
 <span class='co'># print solution</span>
-<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 1 x 21</span><span>
-#&gt;   solution status   obj  cost F1_action F2_action F3_action F4_action F5_action
-#&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span>        1 OPTIM~  2.91  403.         0         1         1         1         1
-#&gt; </span><span style='color: #555555;'># ... with 12 more variables: baseline_action </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F1_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   F2_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F3_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F4_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F5_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   baseline_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F1 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F2 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F3 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F4 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F5 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'># }
+<span class='fu'><a href='print.html'>print</a></span><span class='op'>(</span><span class='va'>s</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 21</span><span>
+#&gt;   solution status    obj  cost F1_action F2_action F3_action F4_action F5_action
+#&gt;      </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 OPTIMAL  2.91  403.         0         1         1         1         1
+#&gt; </span><span style='color: #949494;'># … with 12 more variables: baseline_action &lt;dbl&gt;, F1_project &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   F2_project &lt;dbl&gt;, F3_project &lt;dbl&gt;, F4_project &lt;dbl&gt;, F5_project &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   baseline_project &lt;dbl&gt;, F1 &lt;dbl&gt;, F2 &lt;dbl&gt;, F3 &lt;dbl&gt;, F4 &lt;dbl&gt;, F5 &lt;dbl&gt;</span><span></div><div class='input'><span class='co'># }</span>
 
 </div></span></pre>
   </div>
@@ -266,7 +271,7 @@ be funded (with a value of 1) or not (with a value of zero).</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

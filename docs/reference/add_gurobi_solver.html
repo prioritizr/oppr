@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Add a <span class="pkg">Gurobi</span> solver — add_gurobi_solver • oppr</title>
+<title>Add a Gurobi solver — add_gurobi_solver • oppr</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,7 @@
 
 
 
-<meta property="og:title" content="Add a <span class="pkg">Gurobi</span> solver — add_gurobi_solver" />
+<meta property="og:title" content="Add a Gurobi solver — add_gurobi_solver" />
 <meta property="og:description" content="Specify that the Gurobi software should be used to solve a
 project prioritization problem(). This function can also be
 used to customize the behavior of the solver. In addition to the
@@ -76,7 +76,7 @@ be installed." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2.4</span>
       </span>
     </div>
 
@@ -131,17 +131,17 @@ used to customize the behavior of the solver. In addition to the
 be installed.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>add_gurobi_solver</span>(
-  <span class='no'>x</span>,
-  <span class='kw'>gap</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>number_solutions</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>solution_pool_method</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>time_limit</span> <span class='kw'>=</span> <span class='no'>.Machine</span>$<span class='no'>integer.max</span>,
-  <span class='kw'>presolve</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>threads</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>first_feasible</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>add_gurobi_solver</span><span class='op'>(</span>
+  <span class='va'>x</span>,
+  gap <span class='op'>=</span> <span class='fl'>0</span>,
+  number_solutions <span class='op'>=</span> <span class='fl'>1</span>,
+  solution_pool_method <span class='op'>=</span> <span class='fl'>2</span>,
+  time_limit <span class='op'>=</span> <span class='va'>.Machine</span><span class='op'>$</span><span class='va'>integer.max</span>,
+  presolve <span class='op'>=</span> <span class='fl'>2</span>,
+  threads <span class='op'>=</span> <span class='fl'>1</span>,
+  first_feasible <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  verbose <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -152,16 +152,13 @@ be installed.</p>
     </tr>
     <tr>
       <th>gap</th>
-      <td><p><code>numeric</code> gap to optimality. This gap is relative when
-solving problems using <span class="pkg">gurobi</span>, and will cause the optimizer to
-terminate when the difference between the upper and lower objective
-function bounds is less than the gap times the upper bound. For example, a
-value of 0.01 will result in the optimizer stopping when the difference
-between the bounds is 1 percent of the upper bound. For
-other solvers, this is the absolute gap, so if the optimal value for
-a maximization problem is 10, a gap of 0.01 means that a solution between
-10 and 10.01 is required. Defaults to 0, so that optimal solutions will be
-returned.</p></td>
+      <td><p><code>numeric</code> gap to optimality. This gap is relative
+and expresses the acceptable deviance from the optimal objective.
+For example, a value of 0.01 will result in the solver stopping when
+it has found a solution within 1% of optimality.
+Additionally, a value of 0 will result in the solver stopping
+when it has found an optimal solution.
+The default value is 0.1 (i.e. 10% from optimality).</p></td>
     </tr>
     <tr>
       <th>number_solutions</th>
@@ -253,20 +250,21 @@ package can then be installed (see instructions for <a href='http://www.gurobi.c
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \dontrun{</span>
 <span class='co'># load data</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_features</span>, <span class='no'>sim_actions</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>sim_projects</span>, <span class='va'>sim_features</span>, <span class='va'>sim_actions</span><span class='op'>)</span>
 
 <span class='co'># build problem</span>
-<span class='no'>p1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_actions</span>, <span class='no'>sim_features</span>,
-             <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span>) <span class='kw'>%&gt;%</span>
-     <span class='fu'><a href='add_max_richness_objective.html'>add_max_richness_objective</a></span>(<span class='kw'>budget</span> <span class='kw'>=</span> <span class='fl'>200</span>) <span class='kw'>%&gt;%</span>
-     <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span>()
+<span class='va'>p1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span><span class='op'>(</span><span class='va'>sim_projects</span>, <span class='va'>sim_actions</span>, <span class='va'>sim_features</span>,
+             <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+     <span class='fu'><a href='add_max_richness_objective.html'>add_max_richness_objective</a></span><span class='op'>(</span>budget <span class='op'>=</span> <span class='fl'>200</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+     <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span><span class='op'>(</span><span class='op'>)</span>
 
 <span class='co'># build another problem, and specify the Gurobi solver</span>
-<span class='no'>p2</span> <span class='kw'>&lt;-</span> <span class='no'>p1</span> <span class='kw'>%&gt;%</span>
-      <span class='fu'>add_gurobi_solver</span>()
+<span class='va'>p2</span> <span class='op'>&lt;-</span> <span class='va'>p1</span> <span class='op'>%&gt;%</span>
+      <span class='fu'>add_gurobi_solver</span><span class='op'>(</span><span class='op'>)</span>
 
 <span class='co'># print problem</span>
-<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>p2</span>)</div><div class='output co'>#&gt; <span class='message'>Project Prioritization Problem</span>
+<span class='fu'><a href='print.html'>print</a></span><span class='op'>(</span><span class='va'>p2</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Project Prioritization Problem</span>
 #&gt; <span class='message'>  actions          F1_action, F2_action, F3_action, ... (6 actions)</span>
 #&gt; <span class='message'>  projects         F1_project, F2_project, F3_project, ... (6 projects)</span>
 #&gt; <span class='message'>  features         F1, F2, F3, ... (5 features)</span>
@@ -279,7 +277,9 @@ package can then be installed (see instructions for <a href='http://www.gurobi.c
 #&gt; <span class='message'>  constraints:     &lt;none&gt;</span>
 #&gt; <span class='message'>  solver:          Gurobi [first_feasible (0), gap (0), number_solutions (1), presolve (2), solution_pool_method (2), threads (1), time_limit (2147483647), time_limit (2147483647), verbose (1)]</span></div><div class='input'>
 <span class='co'># solve problem</span>
-<span class='no'>s2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p2</span>)</div><div class='output co'>#&gt; Gurobi Optimizer version 9.0.2 build v9.0.2rc0 (linux64)
+<span class='va'>s2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span><span class='op'>(</span><span class='va'>p2</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Gurobi Optimizer version 9.1.1 build v9.1.1rc0 (linux64)
+#&gt; Thread count: 2 physical cores, 4 logical processors, using up to 1 threads
 #&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
 #&gt; Model fingerprint: 0x35c8d3f0
 #&gt; Variable types: 0 continuous, 42 integer (42 binary)
@@ -312,23 +312,26 @@ package can then be installed (see instructions for <a href='http://www.gurobi.c
 #&gt; Optimal solution found (tolerance 0.00e+00)
 #&gt; Best objective 2.190380737245e+00, best bound 2.190380737245e+00, gap 0.0000%</div><div class='input'>
 <span class='co'># print solution</span>
-<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s2</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 1 x 21</span><span>
-#&gt;   solution status   obj  cost F1_action F2_action F3_action F4_action F5_action
-#&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span>        1 OPTIM…  2.19  195.         1         1         0         0         0
-#&gt; </span><span style='color: #555555;'># … with 12 more variables: baseline_action </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F1_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   F2_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F3_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F4_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F5_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   baseline_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F1 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F2 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F3 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F4 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F5 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
+<span class='fu'><a href='print.html'>print</a></span><span class='op'>(</span><span class='va'>s2</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 21</span><span>
+#&gt;   solution status    obj  cost F1_action F2_action F3_action F4_action F5_action
+#&gt;      </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 OPTIMAL  2.19  195.         1         1         0         0         0
+#&gt; </span><span style='color: #949494;'># … with 12 more variables: baseline_action &lt;dbl&gt;, F1_project &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   F2_project &lt;dbl&gt;, F3_project &lt;dbl&gt;, F4_project &lt;dbl&gt;, F5_project &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   baseline_project &lt;dbl&gt;, F1 &lt;dbl&gt;, F2 &lt;dbl&gt;, F3 &lt;dbl&gt;, F4 &lt;dbl&gt;, F5 &lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># plot solution</span>
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>p2</span>, <span class='no'>s2</span>)</div><div class='img'><img src='add_gurobi_solver-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>p2</span>, <span class='va'>s2</span><span class='op'>)</span>
+</div><div class='img'><img src='add_gurobi_solver-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># build another problem and obtain multiple solutions</span>
 <span class='co'># note that this problem doesn't have 100 unique solutions so</span>
 <span class='co'># the solver won't return 100 solutions</span>
-<span class='no'>p3</span> <span class='kw'>&lt;-</span> <span class='no'>p1</span> <span class='kw'>%&gt;%</span>
-      <span class='fu'>add_gurobi_solver</span>(<span class='kw'>number_solutions</span> <span class='kw'>=</span> <span class='fl'>100</span>)
+<span class='va'>p3</span> <span class='op'>&lt;-</span> <span class='va'>p1</span> <span class='op'>%&gt;%</span>
+      <span class='fu'>add_gurobi_solver</span><span class='op'>(</span>number_solutions <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span>
 
 <span class='co'># print problem</span>
-<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>p3</span>)</div><div class='output co'>#&gt; <span class='message'>Project Prioritization Problem</span>
+<span class='fu'><a href='print.html'>print</a></span><span class='op'>(</span><span class='va'>p3</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Project Prioritization Problem</span>
 #&gt; <span class='message'>  actions          F1_action, F2_action, F3_action, ... (6 actions)</span>
 #&gt; <span class='message'>  projects         F1_project, F2_project, F3_project, ... (6 projects)</span>
 #&gt; <span class='message'>  features         F1, F2, F3, ... (5 features)</span>
@@ -341,7 +344,9 @@ package can then be installed (see instructions for <a href='http://www.gurobi.c
 #&gt; <span class='message'>  constraints:     &lt;none&gt;</span>
 #&gt; <span class='message'>  solver:          Gurobi [first_feasible (0), gap (0), number_solutions (100), presolve (2), solution_pool_method (2), threads (1), time_limit (2147483647), time_limit (2147483647), verbose (1)]</span></div><div class='input'>
 <span class='co'># solve problem</span>
-<span class='no'>s3</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p3</span>)</div><div class='output co'>#&gt; Gurobi Optimizer version 9.0.2 build v9.0.2rc0 (linux64)
+<span class='va'>s3</span> <span class='op'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span><span class='op'>(</span><span class='va'>p3</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Gurobi Optimizer version 9.1.1 build v9.1.1rc0 (linux64)
+#&gt; Thread count: 2 physical cores, 4 logical processors, using up to 1 threads
 #&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
 #&gt; Model fingerprint: 0x35c8d3f0
 #&gt; Variable types: 0 continuous, 42 integer (42 binary)
@@ -384,13 +389,14 @@ package can then be installed (see instructions for <a href='http://www.gurobi.c
 #&gt; Optimal solution found (tolerance 0.00e+00)
 #&gt; Best objective 2.190380737245e+00, best bound 2.190380737245e+00, gap 0.0000%</div><div class='input'>
 <span class='co'># print solutions</span>
-<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s3</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 21</span><span>
-#&gt;   solution status   obj  cost F1_action F2_action F3_action F4_action F5_action
-#&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span>        1 OPTIM…  2.19  195.         1         1         0         0         0
-#&gt; </span><span style='color: #555555;'># … with 12 more variables: baseline_action </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F1_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   F2_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F3_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F4_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F5_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   baseline_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F1 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F2 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F3 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F4 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F5 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'># }
+<span class='fu'><a href='print.html'>print</a></span><span class='op'>(</span><span class='va'>s3</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 21</span><span>
+#&gt;   solution status    obj  cost F1_action F2_action F3_action F4_action F5_action
+#&gt;      </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 OPTIMAL  2.19  195.         1         1         0         0         0
+#&gt; </span><span style='color: #949494;'># … with 12 more variables: baseline_action &lt;dbl&gt;, F1_project &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   F2_project &lt;dbl&gt;, F3_project &lt;dbl&gt;, F4_project &lt;dbl&gt;, F5_project &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   baseline_project &lt;dbl&gt;, F1 &lt;dbl&gt;, F2 &lt;dbl&gt;, F3 &lt;dbl&gt;, F4 &lt;dbl&gt;, F5 &lt;dbl&gt;</span><span></div><div class='input'><span class='co'># }</span>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -407,7 +413,7 @@ package can then be installed (see instructions for <a href='http://www.gurobi.c
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

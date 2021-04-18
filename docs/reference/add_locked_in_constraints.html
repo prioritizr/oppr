@@ -75,7 +75,7 @@ taxonomically important species." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2.4</span>
       </span>
     </div>
 
@@ -129,16 +129,16 @@ example, it may be desirable to lock in actions for conserving culturally or
 taxonomically important species.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>add_locked_in_constraints</span>(<span class='no'>x</span>, <span class='no'>locked_in</span>)
+    <pre class="usage"><span class='fu'>add_locked_in_constraints</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>locked_in</span><span class='op'>)</span>
 
 <span class='co'># S4 method for ProjectProblem,numeric</span>
-<span class='fu'>add_locked_in_constraints</span>(<span class='no'>x</span>, <span class='no'>locked_in</span>)
+<span class='fu'>add_locked_in_constraints</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>locked_in</span><span class='op'>)</span>
 
 <span class='co'># S4 method for ProjectProblem,logical</span>
-<span class='fu'>add_locked_in_constraints</span>(<span class='no'>x</span>, <span class='no'>locked_in</span>)
+<span class='fu'>add_locked_in_constraints</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>locked_in</span><span class='op'>)</span>
 
 <span class='co'># S4 method for ProjectProblem,character</span>
-<span class='fu'>add_locked_in_constraints</span>(<span class='no'>x</span>, <span class='no'>locked_in</span>)</pre>
+<span class='fu'>add_locked_in_constraints</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>locked_in</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -162,7 +162,7 @@ added to it.</p>
 
     <p>The locked actions can be specified in several different
 ways:</p>
-<dl'>
+<dl>
 
 <dt><code>integer</code></dt><dd><p><code>vector</code> of indices pertaining to which
 actions should be locked in the solution (i.e. row numbers of the
@@ -189,26 +189,28 @@ which actions should be locked.</p></dd>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># load data</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_features</span>, <span class='no'>sim_actions</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>sim_projects</span>, <span class='va'>sim_features</span>, <span class='va'>sim_actions</span><span class='op'>)</span>
 
 <span class='co'># print action data</span>
-<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>sim_actions</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 6 x 4</span><span>
+<span class='fu'><a href='print.html'>print</a></span><span class='op'>(</span><span class='va'>sim_actions</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 4</span><span>
 #&gt;   name             cost locked_in locked_out
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>     
-#&gt; </span><span style='color: #555555;'>1</span><span> F1_action        94.4 FALSE     FALSE     
-#&gt; </span><span style='color: #555555;'>2</span><span> F2_action       101.  FALSE     FALSE     
-#&gt; </span><span style='color: #555555;'>3</span><span> F3_action       103.  TRUE      FALSE     
-#&gt; </span><span style='color: #555555;'>4</span><span> F4_action        99.2 FALSE     FALSE     
-#&gt; </span><span style='color: #555555;'>5</span><span> F5_action        99.9 FALSE     TRUE      
-#&gt; </span><span style='color: #555555;'>6</span><span> baseline_action   0   FALSE     FALSE     </div><div class='input'>
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>     
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> F1_action        94.4 FALSE     FALSE     
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> F2_action       101.  FALSE     FALSE     
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> F3_action       103.  TRUE      FALSE     
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> F4_action        99.2 FALSE     FALSE     
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> F5_action        99.9 FALSE     TRUE      
+#&gt; </span><span style='color: #BCBCBC;'>6</span><span> baseline_action   0   FALSE     FALSE     </div><div class='input'>
 <span class='co'># build problem with maximum richness objective and $150 budget</span>
-<span class='no'>p1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_actions</span>, <span class='no'>sim_features</span>,
-             <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span>) <span class='kw'>%&gt;%</span>
-     <span class='fu'><a href='add_max_richness_objective.html'>add_max_richness_objective</a></span>(<span class='kw'>budget</span> <span class='kw'>=</span> <span class='fl'>150</span>) <span class='kw'>%&gt;%</span>
-     <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span>()
+<span class='va'>p1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span><span class='op'>(</span><span class='va'>sim_projects</span>, <span class='va'>sim_actions</span>, <span class='va'>sim_features</span>,
+             <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+     <span class='fu'><a href='add_max_richness_objective.html'>add_max_richness_objective</a></span><span class='op'>(</span>budget <span class='op'>=</span> <span class='fl'>150</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+     <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span><span class='op'>(</span><span class='op'>)</span>
 
 <span class='co'># print problem</span>
-<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>p1</span>)</div><div class='output co'>#&gt; <span class='message'>Project Prioritization Problem</span>
+<span class='fu'><a href='print.html'>print</a></span><span class='op'>(</span><span class='va'>p1</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Project Prioritization Problem</span>
 #&gt; <span class='message'>  actions          F1_action, F2_action, F3_action, ... (6 actions)</span>
 #&gt; <span class='message'>  projects         F1_project, F2_project, F3_project, ... (6 projects)</span>
 #&gt; <span class='message'>  features         F1, F2, F3, ... (5 features)</span>
@@ -221,11 +223,12 @@ which actions should be locked.</p></dd>
 #&gt; <span class='message'>  constraints:     &lt;none&gt;</span>
 #&gt; <span class='message'>  solver:          default</span></div><div class='input'>
 <span class='co'># build another problem, and lock in the 3rd action using numeric inputs</span>
-<span class='no'>p2</span> <span class='kw'>&lt;-</span> <span class='no'>p1</span> <span class='kw'>%&gt;%</span>
-      <span class='fu'>add_locked_in_constraints</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3</span>))
+<span class='va'>p2</span> <span class='op'>&lt;-</span> <span class='va'>p1</span> <span class='op'>%&gt;%</span>
+      <span class='fu'>add_locked_in_constraints</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='co'># print problem</span>
-<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>p2</span>)</div><div class='output co'>#&gt; <span class='message'>Project Prioritization Problem</span>
+<span class='fu'><a href='print.html'>print</a></span><span class='op'>(</span><span class='va'>p2</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Project Prioritization Problem</span>
 #&gt; <span class='message'>  actions          F1_action, F2_action, F3_action, ... (6 actions)</span>
 #&gt; <span class='message'>  projects         F1_project, F2_project, F3_project, ... (6 projects)</span>
 #&gt; <span class='message'>  features         F1, F2, F3, ... (5 features)</span>
@@ -239,11 +242,12 @@ which actions should be locked.</p></dd>
 #&gt; <span class='message'>  solver:          default</span></div><div class='input'>
 <span class='co'># build another problem, and lock in the actions using logical inputs from</span>
 <span class='co'># the sim_actions table</span>
-<span class='no'>p3</span> <span class='kw'>&lt;-</span> <span class='no'>p1</span> <span class='kw'>%&gt;%</span>
-      <span class='fu'>add_locked_in_constraints</span>(<span class='no'>sim_actions</span>$<span class='no'>locked_in</span>)
+<span class='va'>p3</span> <span class='op'>&lt;-</span> <span class='va'>p1</span> <span class='op'>%&gt;%</span>
+      <span class='fu'>add_locked_in_constraints</span><span class='op'>(</span><span class='va'>sim_actions</span><span class='op'>$</span><span class='va'>locked_in</span><span class='op'>)</span>
 
 <span class='co'># print problem</span>
-<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>p3</span>)</div><div class='output co'>#&gt; <span class='message'>Project Prioritization Problem</span>
+<span class='fu'><a href='print.html'>print</a></span><span class='op'>(</span><span class='va'>p3</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Project Prioritization Problem</span>
 #&gt; <span class='message'>  actions          F1_action, F2_action, F3_action, ... (6 actions)</span>
 #&gt; <span class='message'>  projects         F1_project, F2_project, F3_project, ... (6 projects)</span>
 #&gt; <span class='message'>  features         F1, F2, F3, ... (5 features)</span>
@@ -258,11 +262,12 @@ which actions should be locked.</p></dd>
 <span class='co'># build another problem, and lock in the actions using the column name</span>
 <span class='co'># "locked_in" in the sim_actions table</span>
 <span class='co'># the sim_actions table</span>
-<span class='no'>p4</span> <span class='kw'>&lt;-</span> <span class='no'>p1</span> <span class='kw'>%&gt;%</span>
-      <span class='fu'>add_locked_in_constraints</span>(<span class='st'>"locked_in"</span>)
+<span class='va'>p4</span> <span class='op'>&lt;-</span> <span class='va'>p1</span> <span class='op'>%&gt;%</span>
+      <span class='fu'>add_locked_in_constraints</span><span class='op'>(</span><span class='st'>"locked_in"</span><span class='op'>)</span>
 
 <span class='co'># print problem</span>
-<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>p4</span>)</div><div class='output co'>#&gt; <span class='message'>Project Prioritization Problem</span>
+<span class='fu'><a href='print.html'>print</a></span><span class='op'>(</span><span class='va'>p4</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Project Prioritization Problem</span>
 #&gt; <span class='message'>  actions          F1_action, F2_action, F3_action, ... (6 actions)</span>
 #&gt; <span class='message'>  projects         F1_project, F2_project, F3_project, ... (6 projects)</span>
 #&gt; <span class='message'>  features         F1, F2, F3, ... (5 features)</span>
@@ -276,7 +281,9 @@ which actions should be locked.</p></dd>
 #&gt; <span class='message'>  solver:          default</span></div><div class='input'>
 <span class='co'># \dontrun{</span>
 <span class='co'># solve problems</span>
-<span class='no'>s1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p1</span>)</div><div class='output co'>#&gt; Gurobi Optimizer version 9.0.2 build v9.0.2rc0 (linux64)
+<span class='va'>s1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span><span class='op'>(</span><span class='va'>p1</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Gurobi Optimizer version 9.1.1 build v9.1.1rc0 (linux64)
+#&gt; Thread count: 2 physical cores, 4 logical processors, using up to 1 threads
 #&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
 #&gt; Model fingerprint: 0xd108d30d
 #&gt; Variable types: 0 continuous, 42 integer (42 binary)
@@ -307,7 +314,9 @@ which actions should be locked.</p></dd>
 #&gt; Solution count 1: 1.68015 
 #&gt; 
 #&gt; Optimal solution found (tolerance 0.00e+00)
-#&gt; Best objective 1.680145013696e+00, best bound 1.680145013696e+00, gap 0.0000%</div><div class='input'><span class='no'>s2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p2</span>)</div><div class='output co'>#&gt; Gurobi Optimizer version 9.0.2 build v9.0.2rc0 (linux64)
+#&gt; Best objective 1.680145013696e+00, best bound 1.680145013696e+00, gap 0.0000%</div><div class='input'><span class='va'>s2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span><span class='op'>(</span><span class='va'>p2</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Gurobi Optimizer version 9.1.1 build v9.1.1rc0 (linux64)
+#&gt; Thread count: 2 physical cores, 4 logical processors, using up to 1 threads
 #&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
 #&gt; Model fingerprint: 0x48d94c11
 #&gt; Variable types: 0 continuous, 42 integer (42 binary)
@@ -329,7 +338,9 @@ which actions should be locked.</p></dd>
 #&gt; Solution count 1: 1.44561 
 #&gt; 
 #&gt; Optimal solution found (tolerance 0.00e+00)
-#&gt; Best objective 1.445609277954e+00, best bound 1.445609277954e+00, gap 0.0000%</div><div class='input'><span class='no'>s3</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p3</span>)</div><div class='output co'>#&gt; Gurobi Optimizer version 9.0.2 build v9.0.2rc0 (linux64)
+#&gt; Best objective 1.445609277954e+00, best bound 1.445609277954e+00, gap 0.0000%</div><div class='input'><span class='va'>s3</span> <span class='op'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span><span class='op'>(</span><span class='va'>p3</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Gurobi Optimizer version 9.1.1 build v9.1.1rc0 (linux64)
+#&gt; Thread count: 2 physical cores, 4 logical processors, using up to 1 threads
 #&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
 #&gt; Model fingerprint: 0x48d94c11
 #&gt; Variable types: 0 continuous, 42 integer (42 binary)
@@ -351,7 +362,9 @@ which actions should be locked.</p></dd>
 #&gt; Solution count 1: 1.44561 
 #&gt; 
 #&gt; Optimal solution found (tolerance 0.00e+00)
-#&gt; Best objective 1.445609277954e+00, best bound 1.445609277954e+00, gap 0.0000%</div><div class='input'><span class='no'>s4</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p4</span>)</div><div class='output co'>#&gt; Gurobi Optimizer version 9.0.2 build v9.0.2rc0 (linux64)
+#&gt; Best objective 1.445609277954e+00, best bound 1.445609277954e+00, gap 0.0000%</div><div class='input'><span class='va'>s4</span> <span class='op'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span><span class='op'>(</span><span class='va'>p4</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Gurobi Optimizer version 9.1.1 build v9.1.1rc0 (linux64)
+#&gt; Thread count: 2 physical cores, 4 logical processors, using up to 1 threads
 #&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
 #&gt; Model fingerprint: 0x48d94c11
 #&gt; Variable types: 0 continuous, 42 integer (42 binary)
@@ -375,19 +388,23 @@ which actions should be locked.</p></dd>
 #&gt; Optimal solution found (tolerance 0.00e+00)
 #&gt; Best objective 1.445609277954e+00, best bound 1.445609277954e+00, gap 0.0000%</div><div class='input'>
 <span class='co'># print the actions selected for funding in each of the solutions</span>
-<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s1</span>[, <span class='no'>sim_actions</span>$<span class='no'>name</span>])</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 6</span><span>
+<span class='fu'><a href='print.html'>print</a></span><span class='op'>(</span><span class='va'>s1</span><span class='op'>[</span>, <span class='va'>sim_actions</span><span class='op'>$</span><span class='va'>name</span><span class='op'>]</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 6</span><span>
 #&gt;   F1_action F2_action F3_action F4_action F5_action baseline_action
-#&gt;       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>           </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span>         0         1         0         0         0               1</div><div class='input'><span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s2</span>[, <span class='no'>sim_actions</span>$<span class='no'>name</span>])</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 6</span><span>
+#&gt;       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>         0         1         0         0         0               1</div><div class='input'><span class='fu'><a href='print.html'>print</a></span><span class='op'>(</span><span class='va'>s2</span><span class='op'>[</span>, <span class='va'>sim_actions</span><span class='op'>$</span><span class='va'>name</span><span class='op'>]</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 6</span><span>
 #&gt;   F1_action F2_action F3_action F4_action F5_action baseline_action
-#&gt;       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>           </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span>         0         0         1         0         0               1</div><div class='input'><span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s3</span>[, <span class='no'>sim_actions</span>$<span class='no'>name</span>])</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 6</span><span>
+#&gt;       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>         0         0         1         0         0               1</div><div class='input'><span class='fu'><a href='print.html'>print</a></span><span class='op'>(</span><span class='va'>s3</span><span class='op'>[</span>, <span class='va'>sim_actions</span><span class='op'>$</span><span class='va'>name</span><span class='op'>]</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 6</span><span>
 #&gt;   F1_action F2_action F3_action F4_action F5_action baseline_action
-#&gt;       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>           </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span>         0         0         1         0         0               1</div><div class='input'><span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s4</span>[, <span class='no'>sim_actions</span>$<span class='no'>name</span>])</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 6</span><span>
+#&gt;       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>         0         0         1         0         0               1</div><div class='input'><span class='fu'><a href='print.html'>print</a></span><span class='op'>(</span><span class='va'>s4</span><span class='op'>[</span>, <span class='va'>sim_actions</span><span class='op'>$</span><span class='va'>name</span><span class='op'>]</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 6</span><span>
 #&gt;   F1_action F2_action F3_action F4_action F5_action baseline_action
-#&gt;       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>           </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span>         0         0         1         0         0               1</div><div class='input'># }
+#&gt;       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>         0         0         1         0         0               1</div><div class='input'><span class='co'># }</span>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -404,7 +421,7 @@ which actions should be locked.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

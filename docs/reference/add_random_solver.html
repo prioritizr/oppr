@@ -75,7 +75,7 @@ the effectiveness of solutions." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2.4</span>
       </span>
     </div>
 
@@ -129,7 +129,7 @@ a portfolio of randomly generated solutions can be useful for evaluating
 the effectiveness of solutions.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>add_random_solver</span>(<span class='no'>x</span>, <span class='kw'>number_solutions</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>add_random_solver</span><span class='op'>(</span><span class='va'>x</span>, number_solutions <span class='op'>=</span> <span class='fl'>1</span>, verbose <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -196,17 +196,18 @@ are met.</p></li>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># load data</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_features</span>, <span class='no'>sim_actions</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>sim_projects</span>, <span class='va'>sim_features</span>, <span class='va'>sim_actions</span><span class='op'>)</span>
 
 <span class='co'># build problem with random solver, and generate 100 random solutions</span>
-<span class='no'>p1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span>(<span class='no'>sim_projects</span>, <span class='no'>sim_actions</span>, <span class='no'>sim_features</span>,
-             <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span>) <span class='kw'>%&gt;%</span>
-     <span class='fu'><a href='add_max_richness_objective.html'>add_max_richness_objective</a></span>(<span class='kw'>budget</span> <span class='kw'>=</span> <span class='fl'>200</span>) <span class='kw'>%&gt;%</span>
-     <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span>() <span class='kw'>%&gt;%</span>
-     <span class='fu'>add_random_solver</span>(<span class='kw'>number_solutions</span> <span class='kw'>=</span> <span class='fl'>100</span>)
+<span class='va'>p1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span><span class='op'>(</span><span class='va'>sim_projects</span>, <span class='va'>sim_actions</span>, <span class='va'>sim_features</span>,
+             <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+     <span class='fu'><a href='add_max_richness_objective.html'>add_max_richness_objective</a></span><span class='op'>(</span>budget <span class='op'>=</span> <span class='fl'>200</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+     <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+     <span class='fu'>add_random_solver</span><span class='op'>(</span>number_solutions <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span>
 
 <span class='co'># print problem</span>
-<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>p1</span>)</div><div class='output co'>#&gt; <span class='message'>Project Prioritization Problem</span>
+<span class='fu'><a href='print.html'>print</a></span><span class='op'>(</span><span class='va'>p1</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Project Prioritization Problem</span>
 #&gt; <span class='message'>  actions          F1_action, F2_action, F3_action, ... (6 actions)</span>
 #&gt; <span class='message'>  projects         F1_project, F2_project, F3_project, ... (6 projects)</span>
 #&gt; <span class='message'>  features         F1, F2, F3, ... (5 features)</span>
@@ -219,40 +220,45 @@ are met.</p></li>
 #&gt; <span class='message'>  constraints:     &lt;none&gt;</span>
 #&gt; <span class='message'>  solver:          Random [number_solutions (100), verbose (1)]</span></div><div class='input'>
 <span class='co'># solve problem</span>
-<span class='no'>s1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p1</span>)
+<span class='va'>s1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span><span class='op'>(</span><span class='va'>p1</span><span class='op'>)</span>
 
 <span class='co'># print solutions</span>
-<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s1</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 100 x 21</span><span>
+<span class='fu'><a href='print.html'>print</a></span><span class='op'>(</span><span class='va'>s1</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 100 x 21</span><span>
 #&gt;    solution status   obj  cost F1_action F2_action F3_action F4_action F5_action
-#&gt;       </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span>        1 </span><span style='color: #BB0000;'>NA</span><span>      1.99  194.         1         0         0         0         1
-#&gt; </span><span style='color: #555555;'> 2</span><span>        2 </span><span style='color: #BB0000;'>NA</span><span>      2.01  194.         1         0         0         1         0
-#&gt; </span><span style='color: #555555;'> 3</span><span>        3 </span><span style='color: #BB0000;'>NA</span><span>      1.96  198.         1         0         1         0         0
-#&gt; </span><span style='color: #555555;'> 4</span><span>        4 </span><span style='color: #BB0000;'>NA</span><span>      1.96  198.         1         0         1         0         0
-#&gt; </span><span style='color: #555555;'> 5</span><span>        5 </span><span style='color: #BB0000;'>NA</span><span>      1.91  199.         0         0         0         1         1
-#&gt; </span><span style='color: #555555;'> 6</span><span>        6 </span><span style='color: #BB0000;'>NA</span><span>      1.99  194.         1         0         0         0         1
-#&gt; </span><span style='color: #555555;'> 7</span><span>        7 </span><span style='color: #BB0000;'>NA</span><span>      1.96  198.         1         0         1         0         0
-#&gt; </span><span style='color: #555555;'> 8</span><span>        8 </span><span style='color: #BB0000;'>NA</span><span>      1.96  198.         1         0         1         0         0
-#&gt; </span><span style='color: #555555;'> 9</span><span>        9 </span><span style='color: #BB0000;'>NA</span><span>      1.96  198.         1         0         1         0         0
-#&gt; </span><span style='color: #555555;'>10</span><span>       10 </span><span style='color: #BB0000;'>NA</span><span>      2.19  195.         1         1         0         0         0
-#&gt; </span><span style='color: #555555;'># ... with 90 more rows, and 12 more variables: baseline_action </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   F1_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F2_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F3_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F4_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   F5_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, baseline_project </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F1 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F2 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F3 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   F4 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, F5 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
+#&gt;       </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span>        1 </span><span style='color: #BB0000;'>NA</span><span>      1.99  194.         1         0         0         0         1
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span>        2 </span><span style='color: #BB0000;'>NA</span><span>      2.01  194.         1         0         0         1         0
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span>        3 </span><span style='color: #BB0000;'>NA</span><span>      1.96  198.         1         0         1         0         0
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span>        4 </span><span style='color: #BB0000;'>NA</span><span>      1.96  198.         1         0         1         0         0
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span>        5 </span><span style='color: #BB0000;'>NA</span><span>      1.91  199.         0         0         0         1         1
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span>        6 </span><span style='color: #BB0000;'>NA</span><span>      1.99  194.         1         0         0         0         1
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span>        7 </span><span style='color: #BB0000;'>NA</span><span>      1.96  198.         1         0         1         0         0
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span>        8 </span><span style='color: #BB0000;'>NA</span><span>      1.96  198.         1         0         1         0         0
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span>        9 </span><span style='color: #BB0000;'>NA</span><span>      1.96  198.         1         0         1         0         0
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span>       10 </span><span style='color: #BB0000;'>NA</span><span>      2.19  195.         1         1         0         0         0
+#&gt; </span><span style='color: #949494;'># … with 90 more rows, and 12 more variables: baseline_action &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   F1_project &lt;dbl&gt;, F2_project &lt;dbl&gt;, F3_project &lt;dbl&gt;, F4_project &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   F5_project &lt;dbl&gt;, baseline_project &lt;dbl&gt;, F1 &lt;dbl&gt;, F2 &lt;dbl&gt;, F3 &lt;dbl&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   F4 &lt;dbl&gt;, F5 &lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># plot first random solution</span>
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>p1</span>, <span class='no'>s1</span>)</div><div class='img'><img src='add_random_solver-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>p1</span>, <span class='va'>s1</span><span class='op'>)</span>
+</div><div class='img'><img src='add_random_solver-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># plot histogram of the objective values for the random solutions</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/hist.html'>hist</a></span>(<span class='no'>s1</span>$<span class='no'>obj</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"Expected richness"</span>, <span class='kw'>xlim</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>2.5</span>),
-     <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"Histogram of random solutions"</span>)</div><div class='img'><img src='add_random_solver-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/hist.html'>hist</a></span><span class='op'>(</span><span class='va'>s1</span><span class='op'>$</span><span class='va'>obj</span>, xlab <span class='op'>=</span> <span class='st'>"Expected richness"</span>, xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>2.5</span><span class='op'>)</span>,
+     main <span class='op'>=</span> <span class='st'>"Histogram of random solutions"</span><span class='op'>)</span>
+</div><div class='img'><img src='add_random_solver-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># since the objective values don't tell us much about the quality of the</span>
 <span class='co'># solutions, we can find the optimal solution and calculate how different</span>
 <span class='co'># each of the random solutions is from optimality</span>
 
 <span class='co'># \dontrun{</span>
 <span class='co'># find the optimal objective value using an exact algorithms solver</span>
-<span class='no'>s2</span> <span class='kw'>&lt;-</span> <span class='no'>p1</span> <span class='kw'>%&gt;%</span>
-      <span class='fu'><a href='add_default_solver.html'>add_default_solver</a></span>() <span class='kw'>%&gt;%</span>
-      <span class='fu'><a href='solve.html'>solve</a></span>()</div><div class='output co'>#&gt; <span class='warning'>Warning: overwriting previously defined solver</span></div><div class='output co'>#&gt; Gurobi Optimizer version 9.0.2 build v9.0.2rc0 (linux64)
+<span class='va'>s2</span> <span class='op'>&lt;-</span> <span class='va'>p1</span> <span class='op'>%&gt;%</span>
+      <span class='fu'><a href='add_default_solver.html'>add_default_solver</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+      <span class='fu'><a href='solve.html'>solve</a></span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: overwriting previously defined solver</span></div><div class='output co'>#&gt; Gurobi Optimizer version 9.1.1 build v9.1.1rc0 (linux64)
+#&gt; Thread count: 2 physical cores, 4 logical processors, using up to 1 threads
 #&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
 #&gt; Model fingerprint: 0x35c8d3f0
 #&gt; Variable types: 0 continuous, 42 integer (42 binary)
@@ -285,12 +291,13 @@ are met.</p></li>
 #&gt; Optimal solution found (tolerance 0.00e+00)
 #&gt; Best objective 2.190380737245e+00, best bound 2.190380737245e+00, gap 0.0000%</div><div class='input'>
 <span class='co'># create new column in s1 with percent difference from optimality</span>
-<span class='no'>s1</span>$<span class='no'>optimality_diff</span> <span class='kw'>&lt;-</span> ((<span class='no'>s2</span>$<span class='no'>obj</span> - <span class='no'>s1</span>$<span class='no'>obj</span>) / <span class='no'>s1</span>$<span class='no'>obj</span>) * <span class='fl'>100</span>
+<span class='va'>s1</span><span class='op'>$</span><span class='va'>optimality_diff</span> <span class='op'>&lt;-</span> <span class='op'>(</span><span class='op'>(</span><span class='va'>s2</span><span class='op'>$</span><span class='va'>obj</span> <span class='op'>-</span> <span class='va'>s1</span><span class='op'>$</span><span class='va'>obj</span><span class='op'>)</span> <span class='op'>/</span> <span class='va'>s1</span><span class='op'>$</span><span class='va'>obj</span><span class='op'>)</span> <span class='op'>*</span> <span class='fl'>100</span>
 
 <span class='co'># plot histogram showing the quality of the random solutions</span>
 <span class='co'># higher numbers indicate worse solutions</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/hist.html'>hist</a></span>(<span class='no'>s1</span>$<span class='no'>optimality_diff</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"Difference from optimality (%)"</span>,
-     <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"Histogram of random solutions"</span>, <span class='kw'>xlim</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>50</span>))</div><div class='img'><img src='add_random_solver-3.png' alt='' width='700' height='433' /></div><div class='input'># }
+<span class='fu'><a href='https://rdrr.io/r/graphics/hist.html'>hist</a></span><span class='op'>(</span><span class='va'>s1</span><span class='op'>$</span><span class='va'>optimality_diff</span>, xlab <span class='op'>=</span> <span class='st'>"Difference from optimality (%)"</span>,
+     main <span class='op'>=</span> <span class='st'>"Histogram of random solutions"</span>, xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>50</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='img'><img src='add_random_solver-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -307,7 +314,7 @@ are met.</p></li>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
