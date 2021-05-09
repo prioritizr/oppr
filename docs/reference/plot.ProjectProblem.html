@@ -46,6 +46,8 @@ problem() will maintain biodiversity." />
 
 
 
+
+
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -57,9 +59,18 @@ problem() will maintain biodiversity." />
 
 
 
+<!-- dependencies from examples -->
+
+
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -73,19 +84,13 @@ problem() will maintain biodiversity." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2.5</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../articles/oppr.html">Get started</a>
 </li>
 <li>
@@ -98,7 +103,7 @@ problem() will maintain biodiversity." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/prioritizr/oppr/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -204,18 +209,18 @@ for these functions for more information.</p></div>
 
 <span class='co'># build problem without phylogenetic data</span>
 <span class='va'>p1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span><span class='op'>(</span><span class='va'>sim_projects</span>, <span class='va'>sim_actions</span>, <span class='va'>sim_features</span>,
-             <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-      <span class='fu'><a href='add_max_richness_objective.html'>add_max_richness_objective</a></span><span class='op'>(</span>budget <span class='op'>=</span> <span class='fl'>400</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-      <span class='fu'><a href='add_feature_weights.html'>add_feature_weights</a></span><span class='op'>(</span><span class='st'>"weight"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+             <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span><span class='op'>)</span> <span class='op'><a href='pipe.html'>%&gt;%</a></span>
+      <span class='fu'><a href='add_max_richness_objective.html'>add_max_richness_objective</a></span><span class='op'>(</span>budget <span class='op'>=</span> <span class='fl'>400</span><span class='op'>)</span> <span class='op'><a href='pipe.html'>%&gt;%</a></span>
+      <span class='fu'><a href='add_feature_weights.html'>add_feature_weights</a></span><span class='op'>(</span><span class='st'>"weight"</span><span class='op'>)</span> <span class='op'><a href='pipe.html'>%&gt;%</a></span>
       <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span><span class='op'>(</span><span class='op'>)</span>
 
 <span class='co'># \dontrun{</span>
 <span class='co'># solve problem without phylogenetic data</span>
 <span class='va'>s1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span><span class='op'>(</span><span class='va'>p1</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Gurobi Optimizer version 9.1.1 build v9.1.1rc0 (linux64)
-#&gt; Thread count: 2 physical cores, 4 logical processors, using up to 1 threads
+</div><div class='co'>#&gt; Gurobi Optimizer version 9.1.2 build v9.1.2rc0 (linux64)
+#&gt; Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
 #&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
-#&gt; Model fingerprint: 0x5daec544
+#&gt; Model fingerprint: 0xa2bba4dd
 #&gt; Variable types: 0 continuous, 42 integer (42 binary)
 #&gt; Semi-Variable types: 5 continuous, 0 integer
 #&gt; Coefficient statistics:
@@ -239,7 +244,7 @@ for these functions for more information.</p></div>
 #&gt; *    0     0               0       1.7490448    1.74904  0.00%     -    0s
 #&gt; 
 #&gt; Explored 0 nodes (11 simplex iterations) in 0.00 seconds
-#&gt; Thread count was 1 (of 4 available processors)
+#&gt; Thread count was 1 (of 8 available processors)
 #&gt; 
 #&gt; Solution count 1: 1.74904 
 #&gt; 
@@ -251,15 +256,15 @@ for these functions for more information.</p></div>
 
 <span class='co'># build problem with phylogenetic data</span>
 <span class='va'>p2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span><span class='op'>(</span><span class='va'>sim_projects</span>, <span class='va'>sim_actions</span>, <span class='va'>sim_features</span>,
-             <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-      <span class='fu'><a href='add_max_phylo_div_objective.html'>add_max_phylo_div_objective</a></span><span class='op'>(</span>budget <span class='op'>=</span> <span class='fl'>400</span>, <span class='va'>sim_tree</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+             <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span><span class='op'>)</span> <span class='op'><a href='pipe.html'>%&gt;%</a></span>
+      <span class='fu'><a href='add_max_phylo_div_objective.html'>add_max_phylo_div_objective</a></span><span class='op'>(</span>budget <span class='op'>=</span> <span class='fl'>400</span>, <span class='va'>sim_tree</span><span class='op'>)</span> <span class='op'><a href='pipe.html'>%&gt;%</a></span>
       <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span><span class='op'>(</span><span class='op'>)</span>
 
 <span class='co'># \dontrun{</span>
 <span class='co'># solve problem with phylogenetic data</span>
 <span class='va'>s2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span><span class='op'>(</span><span class='va'>p2</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Gurobi Optimizer version 9.1.1 build v9.1.1rc0 (linux64)
-#&gt; Thread count: 2 physical cores, 4 logical processors, using up to 1 threads
+</div><div class='co'>#&gt; Gurobi Optimizer version 9.1.2 build v9.1.2rc0 (linux64)
+#&gt; Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
 #&gt; Optimize a model with 50 rows, 50 columns and 123 nonzeros
 #&gt; Model fingerprint: 0x02cbd8bd
 #&gt; Model has 3 piecewise-linear objective terms
@@ -279,15 +284,15 @@ for these functions for more information.</p></div>
 #&gt; Presolved: 34 rows, 3032 columns, 3070 nonzeros
 #&gt; 
 #&gt; 
-#&gt; Root relaxation: objective 3.112324e+00, 17 iterations, 0.01 seconds
+#&gt; Root relaxation: objective 3.112324e+00, 17 iterations, 0.00 seconds
 #&gt; 
 #&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
 #&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #&gt; 
 #&gt; *    0     0               0       3.1123243    3.11232  0.00%     -    0s
 #&gt; 
-#&gt; Explored 0 nodes (17 simplex iterations) in 0.02 seconds
-#&gt; Thread count was 1 (of 4 available processors)
+#&gt; Explored 0 nodes (17 simplex iterations) in 0.01 seconds
+#&gt; Thread count was 1 (of 8 available processors)
 #&gt; 
 #&gt; Solution count 1: 3.11232 
 #&gt; 
@@ -308,11 +313,11 @@ for these functions for more information.</p></div>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://jeffrey-hanson.com'>Jeffrey O Hanson</a>, <a href='http://www.richard-schuster.com'>Richard Schuster</a>, <a href='http://strimas.com'>Matthew Strimas-Mackey</a>, <a href='https://josephrbennett.wordpress.com'>Joseph R Bennett</a>.</p>
+  <p><p>Developed by <a href="https://jeffrey-hanson.com" class="external-link">Jeffrey O Hanson</a>, <a href="http://www.richard-schuster.com" class="external-link">Richard Schuster</a>, <a href="http://strimas.com" class="external-link">Matthew Strimas-Mackey</a>, <a href="https://josephrbennett.wordpress.com" class="external-link">Joseph R Bennett</a>.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>
@@ -320,6 +325,8 @@ for these functions for more information.</p></div>
 
   
 
+
+  
 
   </body>
 </html>

@@ -48,6 +48,8 @@ and add_locked_out_constraints() functions." />
 
 
 
+
+
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -59,9 +61,18 @@ and add_locked_out_constraints() functions." />
 
 
 
+<!-- dependencies from examples -->
+
+
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -75,19 +86,13 @@ and add_locked_out_constraints() functions." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2.5</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../articles/oppr.html">Get started</a>
 </li>
 <li>
@@ -100,7 +105,7 @@ and add_locked_out_constraints() functions." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/prioritizr/oppr/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -184,38 +189,38 @@ be funded (with a value of 1) or not (with a value of zero).</p></dd>
 
 <span class='co'># print locked statuses</span>
 <span class='fu'><a href='print.html'>print</a></span><span class='op'>(</span><span class='va'>status</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;      action status
+</div><div class='co'>#&gt;      action status
 #&gt; 1 F1_action      0
 #&gt; 2 F2_action      1</div><div class='input'>
 <span class='co'># build problem with minimum set objective and targets that require each</span>
 <span class='co'># feature to have a 30% chance of persisting into the future</span>
 <span class='va'>p</span> <span class='op'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span><span class='op'>(</span><span class='va'>sim_projects</span>, <span class='va'>sim_actions</span>, <span class='va'>sim_features</span>,
-             <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-      <span class='fu'><a href='add_max_richness_objective.html'>add_max_richness_objective</a></span><span class='op'>(</span>budget <span class='op'>=</span> <span class='fl'>500</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-      <span class='fu'>add_manual_locked_constraints</span><span class='op'>(</span><span class='va'>status</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+             <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span><span class='op'>)</span> <span class='op'><a href='pipe.html'>%&gt;%</a></span>
+      <span class='fu'><a href='add_max_richness_objective.html'>add_max_richness_objective</a></span><span class='op'>(</span>budget <span class='op'>=</span> <span class='fl'>500</span><span class='op'>)</span> <span class='op'><a href='pipe.html'>%&gt;%</a></span>
+      <span class='fu'>add_manual_locked_constraints</span><span class='op'>(</span><span class='va'>status</span><span class='op'>)</span> <span class='op'><a href='pipe.html'>%&gt;%</a></span>
       <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span><span class='op'>(</span><span class='op'>)</span>
 
 <span class='co'># print problem</span>
 <span class='fu'><a href='print.html'>print</a></span><span class='op'>(</span><span class='va'>p</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Project Prioritization Problem</span>
-#&gt; <span class='message'>  actions          F1_action, F2_action, F3_action, ... (6 actions)</span>
-#&gt; <span class='message'>  projects         F1_project, F2_project, F3_project, ... (6 projects)</span>
-#&gt; <span class='message'>  features         F1, F2, F3, ... (5 features)</span>
-#&gt; <span class='message'>  action costs:    min: 0, max: 103.22583</span>
-#&gt; <span class='message'>  project success: min: 0.81379, max: 1</span>
-#&gt; <span class='message'>  objective:       Maximum richness objective [budget (500)]</span>
-#&gt; <span class='message'>  targets:         none</span>
-#&gt; <span class='message'>  weights:         default</span>
-#&gt; <span class='message'>  decisions        Binary decision </span>
-#&gt; <span class='message'>  constraints:     &lt;Manually locked actions [2 locked units]&gt;</span>
-#&gt; <span class='message'>  solver:          default</span></div><div class='input'>
+</div><div class='co'>#&gt; Project Prioritization Problem
+#&gt;   actions          F1_action, F2_action, F3_action, ... (6 actions)
+#&gt;   projects         F1_project, F2_project, F3_project, ... (6 projects)
+#&gt;   features         F1, F2, F3, ... (5 features)
+#&gt;   action costs:    min: 0, max: 103.22583
+#&gt;   project success: min: 0.81379, max: 1
+#&gt;   objective:       Maximum richness objective [budget (500)]
+#&gt;   targets:         none
+#&gt;   weights:         default
+#&gt;   decisions        Binary decision 
+#&gt;   constraints:     &lt;Manually locked actions [2 locked units]&gt;
+#&gt;   solver:          default</div><div class='input'>
 <span class='co'># \dontrun{</span>
 <span class='co'># solve problem</span>
 <span class='va'>s</span> <span class='op'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span><span class='op'>(</span><span class='va'>p</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Gurobi Optimizer version 9.1.1 build v9.1.1rc0 (linux64)
-#&gt; Thread count: 2 physical cores, 4 logical processors, using up to 1 threads
+</div><div class='co'>#&gt; Gurobi Optimizer version 9.1.2 build v9.1.2rc0 (linux64)
+#&gt; Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
 #&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
-#&gt; Model fingerprint: 0xb7394257
+#&gt; Model fingerprint: 0x0d97b4b1
 #&gt; Variable types: 0 continuous, 42 integer (42 binary)
 #&gt; Semi-Variable types: 5 continuous, 0 integer
 #&gt; Coefficient statistics:
@@ -239,7 +244,7 @@ be funded (with a value of 1) or not (with a value of zero).</p></dd>
 #&gt; *    0     0               0       2.9102457    2.91025  0.00%     -    0s
 #&gt; 
 #&gt; Explored 0 nodes (7 simplex iterations) in 0.00 seconds
-#&gt; Thread count was 1 (of 4 available processors)
+#&gt; Thread count was 1 (of 8 available processors)
 #&gt; 
 #&gt; Solution count 1: 2.91025 
 #&gt; 
@@ -247,15 +252,15 @@ be funded (with a value of 1) or not (with a value of zero).</p></dd>
 #&gt; Best objective 2.910245655750e+00, best bound 2.910245655750e+00, gap 0.0000%</div><div class='input'>
 <span class='co'># print solution</span>
 <span class='fu'><a href='print.html'>print</a></span><span class='op'>(</span><span class='va'>s</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 21</span><span>
+</div><div class='co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 21</span>
 #&gt;   solution status    obj  cost F1_action F2_action F3_action F4_action F5_action
-#&gt;      </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 OPTIMAL  2.91  403.         0         1         1         1         1
-#&gt; </span><span style='color: #949494;'># … with 12 more variables: baseline_action &lt;dbl&gt;, F1_project &lt;dbl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   F2_project &lt;dbl&gt;, F3_project &lt;dbl&gt;, F4_project &lt;dbl&gt;, F5_project &lt;dbl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   baseline_project &lt;dbl&gt;, F1 &lt;dbl&gt;, F2 &lt;dbl&gt;, F3 &lt;dbl&gt;, F4 &lt;dbl&gt;, F5 &lt;dbl&gt;</span><span></div><div class='input'><span class='co'># }</span>
+#&gt;      <span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span><span>        1 OPTIMAL  2.91  403.         0         1         1         1         1</span>
+#&gt; <span style='color: #949494;'># … with 12 more variables: baseline_action &lt;dbl&gt;, F1_project &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   F2_project &lt;dbl&gt;, F3_project &lt;dbl&gt;, F4_project &lt;dbl&gt;, F5_project &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   baseline_project &lt;dbl&gt;, F1 &lt;dbl&gt;, F2 &lt;dbl&gt;, F3 &lt;dbl&gt;, F4 &lt;dbl&gt;, F5 &lt;dbl&gt;</span></div><div class='input'><span class='co'># }</span>
 
-</div></span></pre>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -267,11 +272,11 @@ be funded (with a value of 1) or not (with a value of zero).</p></dd>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://jeffrey-hanson.com'>Jeffrey O Hanson</a>, <a href='http://www.richard-schuster.com'>Richard Schuster</a>, <a href='http://strimas.com'>Matthew Strimas-Mackey</a>, <a href='https://josephrbennett.wordpress.com'>Joseph R Bennett</a>.</p>
+  <p><p>Developed by <a href="https://jeffrey-hanson.com" class="external-link">Jeffrey O Hanson</a>, <a href="http://www.richard-schuster.com" class="external-link">Richard Schuster</a>, <a href="http://strimas.com" class="external-link">Matthew Strimas-Mackey</a>, <a href="https://josephrbennett.wordpress.com" class="external-link">Joseph R Bennett</a>.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>
@@ -279,6 +284,8 @@ be funded (with a value of 1) or not (with a value of zero).</p></dd>
 
   
 
+
+  
 
   </body>
 </html>

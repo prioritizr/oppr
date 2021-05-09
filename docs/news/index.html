@@ -44,6 +44,8 @@
 
 
 
+
+
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -55,9 +57,16 @@
 
 
 
+
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -71,19 +80,13 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2.5</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../articles/oppr.html">Get started</a>
 </li>
 <li>
@@ -96,7 +99,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/prioritizr/oppr/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -117,17 +120,25 @@
       <small>Source: <a href='https://github.com/prioritizr/oppr/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="oppr-1-0-2-4" class="section level1">
+    <div id="oppr-1025" class="section level1">
+<h1 class="page-header" data-toc-text="1.0.2.5">
+<a href="#oppr-1025" class="anchor" aria-hidden="true"></a>oppr 1.0.2.5<small> Unreleased </small>
+</h1>
+<ul>
+<li>Update minimum versions for tidytree and ggtree package dependencies. This is because some older versions of tidytree are not compatible with some older versions of ggtree.</li>
+</ul>
+</div>
+    <div id="oppr-1024" class="section level1">
 <h1 class="page-header" data-toc-text="1.0.2.4">
-<a href="#oppr-1-0-2-4" class="anchor"></a>oppr 1.0.2.4<small> Unreleased </small>
+<a href="#oppr-1024" class="anchor" aria-hidden="true"></a>oppr 1.0.2.4<small> Unreleased </small>
 </h1>
 <ul>
 <li>Fix missing dependency in DESCRIPTION.</li>
 </ul>
 </div>
-    <div id="oppr-1-0-2-3" class="section level1">
+    <div id="oppr-1023" class="section level1">
 <h1 class="page-header" data-toc-text="1.0.2.3">
-<a href="#oppr-1-0-2-3" class="anchor"></a>oppr 1.0.2.3<small> Unreleased </small>
+<a href="#oppr-1023" class="anchor" aria-hidden="true"></a>oppr 1.0.2.3<small> Unreleased </small>
 </h1>
 <ul>
 <li>Bug fix: previous versions of the package reported that the <code>gap</code> parameter for the <code>add_rsymphony_solver</code> and <code>add_lpsymphony_solver</code> corresponded to the maximum absolute difference from the optimal objective value. This was an error due to misunderstanding the <em>SYMPHONY</em> documentation. Under previous versions of the package, the <code>gap</code> parameter actually corresponded to a relative optimality gap expressed as a percentage (such that<code>gap = 10</code> indicates that solutions must be at least 10% from optimality). We have now fixed this error and the documentation described for the <code>gap</code> parameter is correct. We apologize for any inconvenience this may have caused.</li>
@@ -137,223 +148,223 @@
 <li>Fix compatibility issues between the <em>testthat</em> R package and the <em>gurobi</em> R package in package tests.</li>
 </ul>
 </div>
-    <div id="oppr-1-0-2-2" class="section level1">
+    <div id="oppr-1022" class="section level1">
 <h1 class="page-header" data-toc-text="1.0.2.2">
-<a href="#oppr-1-0-2-2" class="anchor"></a>oppr 1.0.2.2<small> Unreleased </small>
+<a href="#oppr-1022" class="anchor" aria-hidden="true"></a>oppr 1.0.2.2<small> Unreleased </small>
 </h1>
 <ul>
 <li>Implement GitHub Actions continuous integration (i.e. update tests and README).</li>
 <li>Update examples to use <code>\dontrun</code> instead of <code>\donttest</code> per CRAN policies.</li>
 </ul>
 </div>
-    <div id="oppr-1-0-2-1" class="section level1">
+    <div id="oppr-1021" class="section level1">
 <h1 class="page-header" data-toc-text="1.0.2.1">
-<a href="#oppr-1-0-2-1" class="anchor"></a>oppr 1.0.2.1<small> Unreleased </small>
+<a href="#oppr-1021" class="anchor" aria-hidden="true"></a>oppr 1.0.2.1<small> Unreleased </small>
 </h1>
 <ul>
 <li>Fix “Non-file package-anchored link(s) in documentation object” warnings in R-devel checks.</li>
 </ul>
 </div>
-    <div id="oppr-1-0-2-released" class="section level1">
+    <div id="oppr-102-released" class="section level1">
 <h1 class="page-header" data-toc-text="1.0.2">
-<a href="#oppr-1-0-2-released" class="anchor"></a>oppr 1.0.2 (released)<small> 2020-05-20 </small>
+<a href="#oppr-102-released" class="anchor" aria-hidden="true"></a>oppr 1.0.2 (released)<small> 2020-05-20 </small>
 </h1>
 <ul>
 <li>CRAN release.</li>
 </ul>
 </div>
-    <div id="oppr-1-0-1-1" class="section level1">
+    <div id="oppr-1011" class="section level1">
 <h1 class="page-header" data-toc-text="1.0.1.1">
-<a href="#oppr-1-0-1-1" class="anchor"></a>oppr 1.0.1.1<small> Unreleased </small>
+<a href="#oppr-1011" class="anchor" aria-hidden="true"></a>oppr 1.0.1.1<small> Unreleased </small>
 </h1>
 <ul>
-<li>Replace <code><a href="https://tibble.tidyverse.org/reference/deprecated.html">tibble::as.tibble</a></code> with <code><a href="https://tibble.tidyverse.org/reference/as_tibble.html">tibble::as_tibble</a></code> to avoid warnings.</li>
+<li>Replace <code><a href="https://tibble.tidyverse.org/reference/deprecated.html" class="external-link">tibble::as.tibble</a></code> with <code><a href="https://tibble.tidyverse.org/reference/as_tibble.html" class="external-link">tibble::as_tibble</a></code> to avoid warnings.</li>
 </ul>
 </div>
-    <div id="oppr-1-0-1-released" class="section level1">
+    <div id="oppr-101-released" class="section level1">
 <h1 class="page-header" data-toc-text="1.0.1">
-<a href="#oppr-1-0-1-released" class="anchor"></a>oppr 1.0.1 (released)<small> 2020-03-11 </small>
+<a href="#oppr-101-released" class="anchor" aria-hidden="true"></a>oppr 1.0.1 (released)<small> 2020-03-11 </small>
 </h1>
 <ul>
 <li>CRAN release.</li>
 </ul>
 </div>
-    <div id="oppr-1-0-0-1" class="section level1">
+    <div id="oppr-1001" class="section level1">
 <h1 class="page-header" data-toc-text="1.0.0.1">
-<a href="#oppr-1-0-0-1" class="anchor"></a>oppr 1.0.0.1<small> Unreleased </small>
+<a href="#oppr-1001" class="anchor" aria-hidden="true"></a>oppr 1.0.0.1<small> Unreleased </small>
 </h1>
 <ul>
 <li>Fix compatibility issues with upcoming <em>tibble</em> (3.0.0) R package.</li>
 </ul>
 </div>
-    <div id="oppr-1-0-0-released" class="section level1">
+    <div id="oppr-100-released" class="section level1">
 <h1 class="page-header" data-toc-text="1.0.0">
-<a href="#oppr-1-0-0-released" class="anchor"></a>oppr 1.0.0 (released)<small> 2020-02-07 </small>
+<a href="#oppr-100-released" class="anchor" aria-hidden="true"></a>oppr 1.0.0 (released)<small> 2020-02-07 </small>
 </h1>
 <ul>
 <li>CRAN release.</li>
 </ul>
 </div>
-    <div id="oppr-0-0-4-1" class="section level1">
+    <div id="oppr-0041" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.4.1">
-<a href="#oppr-0-0-4-1" class="anchor"></a>oppr 0.0.4.1<small> Unreleased </small>
+<a href="#oppr-0041" class="anchor" aria-hidden="true"></a>oppr 0.0.4.1<small> Unreleased </small>
 </h1>
 <ul>
 <li>Fix warnings in R-devel CRAN checks related to documentation.</li>
 <li>Add citation for the research article that accompanies this package.</li>
 </ul>
 </div>
-    <div id="oppr-0-0-4-released" class="section level1">
+    <div id="oppr-004-released" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.4">
-<a href="#oppr-0-0-4-released" class="anchor"></a>oppr 0.0.4 (released)<small> 2019-08-10 </small>
+<a href="#oppr-004-released" class="anchor" aria-hidden="true"></a>oppr 0.0.4 (released)<small> 2019-08-10 </small>
 </h1>
 <ul>
 <li>CRAN release.</li>
 </ul>
 </div>
-    <div id="oppr-0-0-3-1" class="section level1">
+    <div id="oppr-0031" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.3.1">
-<a href="#oppr-0-0-3-1" class="anchor"></a>oppr 0.0.3.1<small> Unreleased </small>
+<a href="#oppr-0031" class="anchor" aria-hidden="true"></a>oppr 0.0.3.1<small> Unreleased </small>
 </h1>
 <ul>
 <li>Fix typo.</li>
 <li>Fix broken links to Gurobi academic licenses.</li>
 </ul>
 </div>
-    <div id="oppr-0-0-3-released" class="section level1">
+    <div id="oppr-003-released" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.3">
-<a href="#oppr-0-0-3-released" class="anchor"></a>oppr 0.0.3 (released)<small> 2019-04-10 </small>
+<a href="#oppr-003-released" class="anchor" aria-hidden="true"></a>oppr 0.0.3 (released)<small> 2019-04-10 </small>
 </h1>
 <ul>
 <li>CRAN release.</li>
 </ul>
 </div>
-    <div id="oppr-0-0-2-1" class="section level1">
+    <div id="oppr-0021" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.2.1">
-<a href="#oppr-0-0-2-1" class="anchor"></a>oppr 0.0.2.1<small> Unreleased </small>
+<a href="#oppr-0021" class="anchor" aria-hidden="true"></a>oppr 0.0.2.1<small> Unreleased </small>
 </h1>
 <ul>
 <li>Retain debugging symbols to conform with CRAN policies.</li>
 </ul>
 </div>
-    <div id="oppr-0-0-2-released" class="section level1">
+    <div id="oppr-002-released" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.2">
-<a href="#oppr-0-0-2-released" class="anchor"></a>oppr 0.0.2 (released)<small> 2019-03-20 </small>
+<a href="#oppr-002-released" class="anchor" aria-hidden="true"></a>oppr 0.0.2 (released)<small> 2019-03-20 </small>
 </h1>
 <ul>
 <li>CRAN release.</li>
 </ul>
 </div>
-    <div id="oppr-0-0-1-1" class="section level1">
+    <div id="oppr-0011" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.1.1">
-<a href="#oppr-0-0-1-1" class="anchor"></a>oppr 0.0.1.1<small> Unreleased </small>
+<a href="#oppr-0011" class="anchor" aria-hidden="true"></a>oppr 0.0.1.1<small> Unreleased </small>
 </h1>
 <ul>
 <li>Fix address sanitizer issues causing CRAN checks to fail.</li>
 <li>Tests successfully complete when the <em>shiny</em> R package is not installed.</li>
 </ul>
 </div>
-    <div id="oppr-0-0-1-released" class="section level1">
+    <div id="oppr-001-released" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.1">
-<a href="#oppr-0-0-1-released" class="anchor"></a>oppr 0.0.1 (released)<small> 2019-03-18 </small>
+<a href="#oppr-001-released" class="anchor" aria-hidden="true"></a>oppr 0.0.1 (released)<small> 2019-03-18 </small>
 </h1>
 <ul>
 <li>CRAN release.</li>
 </ul>
 </div>
-    <div id="oppr-0-0-0-19" class="section level1">
+    <div id="oppr-00019" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.0.19">
-<a href="#oppr-0-0-0-19" class="anchor"></a>oppr 0.0.0.19<small> Unreleased </small>
+<a href="#oppr-00019" class="anchor" aria-hidden="true"></a>oppr 0.0.0.19<small> Unreleased </small>
 </h1>
 <ul>
 <li>Add argument to <code>add_heuristic_solver</code> to skip initial step for removing projects and actions that exceed the budget. While this initial step improves solution quality, it is not conventionally used in project prioritization algorithms and so should be omitted to provide accurate benchmarks.</li>
 </ul>
 </div>
-    <div id="oppr-0-0-0-18" class="section level1">
+    <div id="oppr-00018" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.0.18">
-<a href="#oppr-0-0-0-18" class="anchor"></a>oppr 0.0.0.18<small> Unreleased </small>
+<a href="#oppr-00018" class="anchor" aria-hidden="true"></a>oppr 0.0.0.18<small> Unreleased </small>
 </h1>
 <ul>
 <li>Reduce precision of extinction probability calculations when formulating a problem with a maximum expected phylogenetic diversity objective (i.e. <code>add_max_phylo_div_objective</code>). Specifically, 1’000 points instead of 10’000 points are now used for piece-wise linear components. It appears that reducing the precision in this manner does not affect the correctness of results, but substantially reduces the time needed to solve problems to optimality in certain situations.</li>
 </ul>
 </div>
-    <div id="oppr-0-0-0-17" class="section level1">
+    <div id="oppr-00017" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.0.17">
-<a href="#oppr-0-0-0-17" class="anchor"></a>oppr 0.0.0.17<small> Unreleased </small>
+<a href="#oppr-00017" class="anchor" aria-hidden="true"></a>oppr 0.0.0.17<small> Unreleased </small>
 </h1>
 <ul>
-<li>Update <code>add_heuristic_solver</code> algorithm so that cost-effectiveness values are calculated with projects sharing costs (e.g. if two projects share an action that costs $100, then this action contributes $50 to the cost of each project). This update makes the algorithm similar to backwards heuristics conventionally used in prioritizing species recovery projects (i.e. <a href="https://github.com/p-robot/ppp" class="uri">https://github.com/p-robot/ppp</a>; <a href='https://github.com/prioritizr/oppr/issues/14'>#14</a>).</li>
+<li>Update <code>add_heuristic_solver</code> algorithm so that cost-effectiveness values are calculated with projects sharing costs (e.g. if two projects share an action that costs $100, then this action contributes $50 to the cost of each project). This update makes the algorithm similar to backwards heuristics conventionally used in prioritizing species recovery projects (i.e. https://github.com/p-robot/ppp; <a href='https://github.com/prioritizr/oppr/issues/14'>#14</a>).</li>
 </ul>
 </div>
-    <div id="oppr-0-0-0-16" class="section level1">
+    <div id="oppr-00016" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.0.16">
-<a href="#oppr-0-0-0-16" class="anchor"></a>oppr 0.0.0.16<small> Unreleased </small>
+<a href="#oppr-00016" class="anchor" aria-hidden="true"></a>oppr 0.0.0.16<small> Unreleased </small>
 </h1>
 <ul>
 <li>Fix bug in <code>add_heuristic_solver</code> function introduced in version 0.0.0.15.</li>
 </ul>
 </div>
-    <div id="oppr-0-0-0-15" class="section level1">
+    <div id="oppr-00015" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.0.15">
-<a href="#oppr-0-0-0-15" class="anchor"></a>oppr 0.0.0.15<small> Unreleased </small>
+<a href="#oppr-00015" class="anchor" aria-hidden="true"></a>oppr 0.0.0.15<small> Unreleased </small>
 </h1>
 <ul>
-<li>Update <code>add_heuristic_solver</code> algorithm so that it removes projects, and not actions, in an iterative fashion. This update (i) makes the algorithm comparable to the backwards heuristics conventionally used in prioritizing species recovery projects (i.e. <a href="https://github.com/p-robot/ppp" class="uri">https://github.com/p-robot/ppp</a>) and (ii) substantially reduces run time (<a href='https://github.com/prioritizr/oppr/issues/14'>#14</a>).</li>
+<li>Update <code>add_heuristic_solver</code> algorithm so that it removes projects, and not actions, in an iterative fashion. This update (i) makes the algorithm comparable to the backwards heuristics conventionally used in prioritizing species recovery projects (i.e. https://github.com/p-robot/ppp) and (ii) substantially reduces run time (<a href='https://github.com/prioritizr/oppr/issues/14'>#14</a>).</li>
 </ul>
 </div>
-    <div id="oppr-0-0-0-14" class="section level1">
+    <div id="oppr-00014" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.0.14">
-<a href="#oppr-0-0-0-14" class="anchor"></a>oppr 0.0.0.14<small> Unreleased </small>
+<a href="#oppr-00014" class="anchor" aria-hidden="true"></a>oppr 0.0.0.14<small> Unreleased </small>
 </h1>
 <ul>
 <li>Fix bugs in <code>add_heuristic_solver</code> and <code>add_random_solver</code> arising from floating point comparison issue. These were causing infeasible solutions to be returned in R version 3.4.4.</li>
 </ul>
 </div>
-    <div id="oppr-0-0-0-13" class="section level1">
+    <div id="oppr-00013" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.0.13">
-<a href="#oppr-0-0-0-13" class="anchor"></a>oppr 0.0.0.13<small> Unreleased </small>
+<a href="#oppr-00013" class="anchor" aria-hidden="true"></a>oppr 0.0.0.13<small> Unreleased </small>
 </h1>
 <ul>
 <li>Fix bug in <code>project_cost_effectiveness</code> reporting incorrect costs, and cost-effectiveness values.</li>
 </ul>
 </div>
-    <div id="oppr-0-0-0-12" class="section level1">
+    <div id="oppr-00012" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.0.12">
-<a href="#oppr-0-0-0-12" class="anchor"></a>oppr 0.0.0.12<small> Unreleased </small>
+<a href="#oppr-00012" class="anchor" aria-hidden="true"></a>oppr 0.0.0.12<small> Unreleased </small>
 </h1>
 <ul>
 <li>Assorted documentation tweaks.</li>
 </ul>
 </div>
-    <div id="oppr-0-0-0-11" class="section level1">
+    <div id="oppr-00011" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.0.11">
-<a href="#oppr-0-0-0-11" class="anchor"></a>oppr 0.0.0.11<small> Unreleased </small>
+<a href="#oppr-00011" class="anchor" aria-hidden="true"></a>oppr 0.0.0.11<small> Unreleased </small>
 </h1>
 <ul>
 <li>Update <code>add_heuristic_solver</code> algorithm so that all actions and projects which exceed the budget are automatically removed prior to the iterative action removal.</li>
 <li>Update <code>add_random_solver</code> algorithms so that projects are selected instead of individual actions. This means that solutions from this solver are (i) similar to those in previous project prioritization studies and (ii) more likely to deliver better solutions (<a href='https://github.com/prioritizr/oppr/issues/13'>#13</a>).</li>
 </ul>
 </div>
-    <div id="oppr-0-0-0-10" class="section level1">
+    <div id="oppr-00010" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.0.10">
-<a href="#oppr-0-0-0-10" class="anchor"></a>oppr 0.0.0.10<small> Unreleased </small>
+<a href="#oppr-00010" class="anchor" aria-hidden="true"></a>oppr 0.0.0.10<small> Unreleased </small>
 </h1>
 <ul>
 <li>Rename package to <em>oppr</em> since <em>ppr</em> is already on CRAN.</li>
 <li>Fix issue with <code>replacement_costs</code> yielding incorrect results for baseline projects when used with SYMPHONY solvers.</li>
 </ul>
 </div>
-    <div id="oppr-0-0-0-9" class="section level1">
+    <div id="oppr-0009" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.0.9">
-<a href="#oppr-0-0-0-9" class="anchor"></a>oppr 0.0.0.9<small> Unreleased </small>
+<a href="#oppr-0009" class="anchor" aria-hidden="true"></a>oppr 0.0.0.9<small> Unreleased </small>
 </h1>
 <ul>
 <li>Add new <code>project_cost_effectiveness</code> function to calculate the cost-effectiveness for each conservation project in a problem.</li>
 </ul>
 </div>
-    <div id="oppr-0-0-0-8" class="section level1">
+    <div id="oppr-0008" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.0.8">
-<a href="#oppr-0-0-0-8" class="anchor"></a>oppr 0.0.0.8<small> Unreleased </small>
+<a href="#oppr-0008" class="anchor" aria-hidden="true"></a>oppr 0.0.0.8<small> Unreleased </small>
 </h1>
 <ul>
 <li>Fix typos in documentation (<a href='https://github.com/prioritizr/oppr/issues/8'>#8</a>).</li>
@@ -362,17 +373,17 @@
 <li>Add examples to vignette for working with the solution output (<a href='https://github.com/prioritizr/oppr/issues/11'>#11</a>).</li>
 </ul>
 </div>
-    <div id="oppr-0-0-0-7" class="section level1">
+    <div id="oppr-0007" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.0.7">
-<a href="#oppr-0-0-0-7" class="anchor"></a>oppr 0.0.0.7<small> Unreleased </small>
+<a href="#oppr-0007" class="anchor" aria-hidden="true"></a>oppr 0.0.0.7<small> Unreleased </small>
 </h1>
 <ul>
 <li>Fix annoying “<code>Found more than one class "tbl_df" in cache; using the first, from namespace 'tibble'</code>” text.</li>
 </ul>
 </div>
-    <div id="oppr-0-0-0-6" class="section level1">
+    <div id="oppr-0006" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.0.6">
-<a href="#oppr-0-0-0-6" class="anchor"></a>oppr 0.0.0.6<small> Unreleased </small>
+<a href="#oppr-0006" class="anchor" aria-hidden="true"></a>oppr 0.0.0.6<small> Unreleased </small>
 </h1>
 <ul>
 <li>Actually fix bug when solving problems with a phylogenetic objective and branches that have a constant probability of persistence (<a href='https://github.com/prioritizr/oppr/issues/6'>#6</a>).</li>
@@ -381,35 +392,35 @@
 <li>Fix bug when handling phylogenetic data when a species is associated with two tip branches. Although such data probably indicate errors in the phylogenetic data, this functionality could be useful when combining multiple datasets.</li>
 </ul>
 </div>
-    <div id="oppr-0-0-0-5" class="section level1">
+    <div id="oppr-0005" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.0.5">
-<a href="#oppr-0-0-0-5" class="anchor"></a>oppr 0.0.0.5<small> Unreleased </small>
+<a href="#oppr-0005" class="anchor" aria-hidden="true"></a>oppr 0.0.0.5<small> Unreleased </small>
 </h1>
 <ul>
 <li>Add <code>return_data</code> argument to <code>plot_feature_persistence</code> and <code>plot_phylo_persistence</code> so that plotting data can be obtained for creating custom plots.</li>
 </ul>
 </div>
-    <div id="oppr-0-0-0-4" class="section level1">
+    <div id="oppr-0004" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.0.4">
-<a href="#oppr-0-0-0-4" class="anchor"></a>oppr 0.0.0.4<small> Unreleased </small>
+<a href="#oppr-0004" class="anchor" aria-hidden="true"></a>oppr 0.0.0.4<small> Unreleased </small>
 </h1>
 <ul>
 <li>Fix bug in <code>add_relative_targets</code> and <code>add_manual_targets</code> (when relative targets supplied) calculations. This result in incorrect calculations.</li>
 <li>Fix issue with expected persistence probabilities not accounting for the “do nothing” scenario (<a href='https://github.com/prioritizr/oppr/issues/7'>#7</a>).</li>
 </ul>
 </div>
-    <div id="oppr-0-0-0-3" class="section level1">
+    <div id="oppr-0003" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.0.3">
-<a href="#oppr-0-0-0-3" class="anchor"></a>oppr 0.0.0.3<small> Unreleased </small>
+<a href="#oppr-0003" class="anchor" aria-hidden="true"></a>oppr 0.0.0.3<small> Unreleased </small>
 </h1>
 <ul>
-<li>The gurobi solver (i.e. <code>add_gurobi_solver</code> function) now uses <code>NumericFocus=3</code> to help avoid numerical issues.</li>
+<li>The gurobi solver (i.e. <code>add_gurobi_solver</code> function) now uses <code>NumericFocus=3</code> to help avoid numerical issues.</li>
 <li>The <code>compile</code> function now throws a warning if problems are likely to have numerical issues.</li>
 </ul>
 </div>
-    <div id="oppr-0-0-0-2" class="section level1">
+    <div id="oppr-0002" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.0.2">
-<a href="#oppr-0-0-0-2" class="anchor"></a>oppr 0.0.0.2<small> Unreleased </small>
+<a href="#oppr-0002" class="anchor" aria-hidden="true"></a>oppr 0.0.0.2<small> Unreleased </small>
 </h1>
 <ul>
 <li>Fix bug when solving problems with a phylogenetic objective and branches that have a constant probability of persistence (<a href='https://github.com/prioritizr/oppr/issues/6'>#6</a>). Hindsight shows this attempt did not cover all edge cases.</li>
@@ -418,9 +429,9 @@
 <li>Feature columns in simulated data produced using <code>simulate_ppp_data</code> and <code>simulate_ptm_data</code> are now sorted.</li>
 </ul>
 </div>
-    <div id="oppr-0-0-0-1" class="section level1">
+    <div id="oppr-0001" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.0.1">
-<a href="#oppr-0-0-0-1" class="anchor"></a>oppr 0.0.0.1<small> Unreleased </small>
+<a href="#oppr-0001" class="anchor" aria-hidden="true"></a>oppr 0.0.0.1<small> Unreleased </small>
 </h1>
 <ul>
 <li>Initial commit.</li>
@@ -439,11 +450,11 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://jeffrey-hanson.com'>Jeffrey O Hanson</a>, <a href='http://www.richard-schuster.com'>Richard Schuster</a>, <a href='http://strimas.com'>Matthew Strimas-Mackey</a>, <a href='https://josephrbennett.wordpress.com'>Joseph R Bennett</a>.</p>
+  <p><p>Developed by <a href="https://jeffrey-hanson.com" class="external-link">Jeffrey O Hanson</a>, <a href="http://www.richard-schuster.com" class="external-link">Richard Schuster</a>, <a href="http://strimas.com" class="external-link">Matthew Strimas-Mackey</a>, <a href="https://josephrbennett.wordpress.com" class="external-link">Joseph R Bennett</a>.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>
@@ -451,6 +462,8 @@
 
   
 
+
+  
 
   </body>
 </html>

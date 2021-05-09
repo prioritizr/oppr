@@ -49,6 +49,8 @@ share actions." />
 
 
 
+
+
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -60,9 +62,18 @@ share actions." />
 
 
 
+<!-- dependencies from examples -->
+
+
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -76,19 +87,13 @@ share actions." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2.5</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../articles/oppr.html">Get started</a>
 </li>
 <li>
@@ -101,7 +106,7 @@ share actions." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/prioritizr/oppr/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -339,43 +344,43 @@ Management for biodiversity conservation: A handbook.
 
 <span class='co'># print data set</span>
 <span class='fu'><a href='print.html'>print</a></span><span class='op'>(</span><span class='va'>s</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; $projects
-#&gt; <span style='color: #949494;'># A tibble: 7 x 16</span><span>
+</div><div class='co'>#&gt; $projects
+#&gt; <span style='color: #949494;'># A tibble: 7 x 16</span>
 #&gt;   name    success      F1      F2     F3     F4    F5 action_1 action_2 action_3
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> projec…   0.931 </span><span style='color: #BB0000;'>NA</span><span>       0.533   0.606 </span><span style='color: #BB0000;'>NA</span><span>     0.878 TRUE     TRUE     TRUE    
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> projec…   0.899  0.691  </span><span style='color: #BB0000;'>NA</span><span>       0.668  0.509 0.889 TRUE     TRUE     TRUE    
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> projec…   0.867  0.644   0.544   0.845 </span><span style='color: #BB0000;'>NA</span><span>     0.547 TRUE     TRUE     TRUE    
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> projec…   0.892 </span><span style='color: #BB0000;'>NA</span><span>       0.791  </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     0.666 TRUE     FALSE    TRUE    
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> projec…   0.876  0.556  </span><span style='color: #BB0000;'>NA</span><span>       0.755  0.837 0.800 TRUE     FALSE    FALSE   
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> projec…   0.932  0.517   0.894  </span><span style='color: #BB0000;'>NA</span><span>      0.520 0.663 TRUE     FALSE    TRUE    
-#&gt; </span><span style='color: #BCBCBC;'>7</span><span> baseli…   1      0.086</span><span style='text-decoration: underline;'>8</span><span>  0.069</span><span style='text-decoration: underline;'>2</span><span>  0.321  0.376 0.303 FALSE    FALSE    FALSE   
-#&gt; </span><span style='color: #949494;'># … with 6 more variables: action_4 &lt;lgl&gt;, action_5 &lt;lgl&gt;, action_6 &lt;lgl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   action_7 &lt;lgl&gt;, action_8 &lt;lgl&gt;, baseline_action &lt;lgl&gt;</span><span>
+#&gt;   <span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>   </span>
+#&gt; <span style='color: #BCBCBC;'>1</span><span> projec…   0.931 </span><span style='color: #BB0000;'>NA</span><span>       0.533   0.606 </span><span style='color: #BB0000;'>NA</span><span>     0.878 TRUE     TRUE     TRUE    </span>
+#&gt; <span style='color: #BCBCBC;'>2</span><span> projec…   0.899  0.691  </span><span style='color: #BB0000;'>NA</span><span>       0.668  0.509 0.889 TRUE     TRUE     TRUE    </span>
+#&gt; <span style='color: #BCBCBC;'>3</span><span> projec…   0.867  0.644   0.544   0.845 </span><span style='color: #BB0000;'>NA</span><span>     0.547 TRUE     TRUE     TRUE    </span>
+#&gt; <span style='color: #BCBCBC;'>4</span><span> projec…   0.892 </span><span style='color: #BB0000;'>NA</span><span>       0.791  </span><span style='color: #BB0000;'>NA</span><span>     </span><span style='color: #BB0000;'>NA</span><span>     0.666 TRUE     FALSE    TRUE    </span>
+#&gt; <span style='color: #BCBCBC;'>5</span><span> projec…   0.876  0.556  </span><span style='color: #BB0000;'>NA</span><span>       0.755  0.837 0.800 TRUE     FALSE    FALSE   </span>
+#&gt; <span style='color: #BCBCBC;'>6</span><span> projec…   0.932  0.517   0.894  </span><span style='color: #BB0000;'>NA</span><span>      0.520 0.663 TRUE     FALSE    TRUE    </span>
+#&gt; <span style='color: #BCBCBC;'>7</span><span> baseli…   1      0.086</span><span style='text-decoration: underline;'>8</span><span>  0.069</span><span style='text-decoration: underline;'>2</span><span>  0.321  0.376 0.303 FALSE    FALSE    FALSE   </span>
+#&gt; <span style='color: #949494;'># … with 6 more variables: action_4 &lt;lgl&gt;, action_5 &lt;lgl&gt;, action_6 &lt;lgl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   action_7 &lt;lgl&gt;, action_8 &lt;lgl&gt;, baseline_action &lt;lgl&gt;</span>
 #&gt; 
 #&gt; $actions
-#&gt; </span><span style='color: #949494;'># A tibble: 9 x 4</span><span>
+#&gt; <span style='color: #949494;'># A tibble: 9 x 4</span>
 #&gt;   name             cost locked_in locked_out
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>     
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> action_1        101.  FALSE     FALSE     
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> action_2         96.4 FALSE     FALSE     
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> action_3         96.3 FALSE     FALSE     
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> action_4         99.6 FALSE     FALSE     
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> action_5         95.7 TRUE      FALSE     
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> action_6         93.0 FALSE     FALSE     
-#&gt; </span><span style='color: #BCBCBC;'>7</span><span> action_7        109.  FALSE     FALSE     
-#&gt; </span><span style='color: #BCBCBC;'>8</span><span> action_8         90.4 FALSE     TRUE      
-#&gt; </span><span style='color: #BCBCBC;'>9</span><span> baseline_action   0   FALSE     FALSE     
+#&gt;   <span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>     </span>
+#&gt; <span style='color: #BCBCBC;'>1</span><span> action_1        101.  FALSE     FALSE     </span>
+#&gt; <span style='color: #BCBCBC;'>2</span><span> action_2         96.4 FALSE     FALSE     </span>
+#&gt; <span style='color: #BCBCBC;'>3</span><span> action_3         96.3 FALSE     FALSE     </span>
+#&gt; <span style='color: #BCBCBC;'>4</span><span> action_4         99.6 FALSE     FALSE     </span>
+#&gt; <span style='color: #BCBCBC;'>5</span><span> action_5         95.7 TRUE      FALSE     </span>
+#&gt; <span style='color: #BCBCBC;'>6</span><span> action_6         93.0 FALSE     FALSE     </span>
+#&gt; <span style='color: #BCBCBC;'>7</span><span> action_7        109.  FALSE     FALSE     </span>
+#&gt; <span style='color: #BCBCBC;'>8</span><span> action_8         90.4 FALSE     TRUE      </span>
+#&gt; <span style='color: #BCBCBC;'>9</span><span> baseline_action   0   FALSE     FALSE     </span>
 #&gt; 
 #&gt; $features
-#&gt; </span><span style='color: #949494;'># A tibble: 5 x 2</span><span>
+#&gt; <span style='color: #949494;'># A tibble: 5 x 2</span>
 #&gt;   name  weight
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> F1     0.125
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> F2     0.125
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> F3     0.376
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> F4     0.724
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> F5     3.13 
+#&gt;   <span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span><span> F1     0.125</span>
+#&gt; <span style='color: #BCBCBC;'>2</span><span> F2     0.125</span>
+#&gt; <span style='color: #BCBCBC;'>3</span><span> F3     0.376</span>
+#&gt; <span style='color: #BCBCBC;'>4</span><span> F4     0.724</span>
+#&gt; <span style='color: #BCBCBC;'>5</span><span> F5     3.13 </span>
 #&gt; 
 #&gt; $tree
 #&gt; 
@@ -386,7 +391,7 @@ Management for biodiversity conservation: A handbook.
 #&gt; 
 #&gt; Rooted; includes branch lengths.
 #&gt; </div><div class='input'>
-</div></span></pre>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -398,11 +403,11 @@ Management for biodiversity conservation: A handbook.
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://jeffrey-hanson.com'>Jeffrey O Hanson</a>, <a href='http://www.richard-schuster.com'>Richard Schuster</a>, <a href='http://strimas.com'>Matthew Strimas-Mackey</a>, <a href='https://josephrbennett.wordpress.com'>Joseph R Bennett</a>.</p>
+  <p><p>Developed by <a href="https://jeffrey-hanson.com" class="external-link">Jeffrey O Hanson</a>, <a href="http://www.richard-schuster.com" class="external-link">Richard Schuster</a>, <a href="http://strimas.com" class="external-link">Matthew Strimas-Mackey</a>, <a href="https://josephrbennett.wordpress.com" class="external-link">Joseph R Bennett</a>.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>
@@ -410,6 +415,8 @@ Management for biodiversity conservation: A handbook.
 
   
 
+
+  
 
   </body>
 </html>

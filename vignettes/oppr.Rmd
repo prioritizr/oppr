@@ -10,7 +10,7 @@ bibliography: references.bib
 csl: reference-style.csl
 documentclass: article
 vignette: >
-  %\VignetteIndexEntry{oppr}
+  %\VignetteIndexEntry{Optimal Project Prioritization}
   %\VignetteEngine{knitr::rmarkdown_notangle}
   \usepackage[utf8]{inputenc}
 ---
@@ -89,7 +89,7 @@ Briefly, biodiversity features are the biological entities that we wish would pe
 
 To start off, we will initialize the random number generator to ensure reproducibility. Next, we will load the _oppr R_ package. And then we will load the _ggplot2_, _tibble_, and _tidyr R_ packages to help with data for visualizations and wrangling.
 
-```{r}
+```{r, results = "hide"}
 # set random number generated seed
 set.seed(1000)
 # load oppr package for project prioritization
@@ -127,7 +127,7 @@ print(features) # data for biodiversity features
 
 ## Prioritizations with exact algorithms
 
-Let's assume that we want to maximize the overall persistence of the conservation features, and that we can only spend $1'000 funding management actions. We will also assume that our decisions involve either funding management actions or not (in other words, our decisions are binary). For the moment, let's assume that we value the persistence of each feature equally. Given this information, we can generate a project prioritization problem object that matches our specifications.
+Let's assume that we want to maximize the overall persistence of the conservation features, and that we can only spend $1,000 funding management actions. We will also assume that our decisions involve either funding management actions or not (in other words, our decisions are binary). For the moment, let's assume that we value the persistence of each feature equally. Given this information, we can generate a project prioritization problem object that matches our specifications.
 
 ```{r}
 # build problem
@@ -224,7 +224,7 @@ xlab("Feature weight") +
 ylab("Frequency")
 ```
 
-We can see that most features have a low weighting (less than 1'000), but a few features have very high weightings (greater than 500'000). Let's make a new problem based on the original problem, add the feature weights to the new problem, and then solve this new problem.
+We can see that most features have a low weighting (less than 1,000), but a few features have very high weightings (greater than 500,000). Let's make a new problem based on the original problem, add the feature weights to the new problem, and then solve this new problem.
 
 ```{r}
 # build on existing problem and add feature weights
@@ -276,12 +276,12 @@ a2 <- actions$name[which(as.logical(as.matrix(s2[, action_names(p2)])))]
 assertthat::assert_that(!setequal(a1, a2))
 ```
 
-Earlier, we talked about the _oppr R_ package using the default exact algorithm solver. Although you should have the _lpSolveAPI_ solver automatically installed, we strongly recommend installing the [_gurobi R_ package](http://www.gurobi.com/documentation/8.1/quickstart_mac/r_installing_the_r_package.html) and the [Gurobi optimization suite](http://www.gurobi.com/). This is because Gurobi can solve optimization problems much faster than any other software currently supported and it can also easily generate multiple solutions. Unfortunately, you will have to install Gurobi manually, but please see the documentation for the solver for instructions (i.e. enter the command  `?add_gurobi_solver` into the console). If you have Gurobi installed, let's try using the Gurobi solver to generate multiple solutions. Here, we will manually specify the Gurobi solver and request 1'000 solutions (though we will probably obtain less than 1'000 solutions, so if we actually wanted 1'000 solutions then we would need to specify a much larger number).
+Earlier, we talked about the _oppr R_ package using the default exact algorithm solver. Although you should have the _lpSolveAPI_ solver automatically installed, we strongly recommend installing the [_gurobi R_ package](http://www.gurobi.com/documentation/8.1/quickstart_mac/r_installing_the_r_package.html) and the [Gurobi optimization suite](http://www.gurobi.com/). This is because Gurobi can solve optimization problems much faster than any other software currently supported and it can also easily generate multiple solutions. Unfortunately, you will have to install Gurobi manually, but please see the documentation for the solver for instructions (i.e. enter the command  `?add_gurobi_solver` into the console). If you have Gurobi installed, let's try using the Gurobi solver to generate multiple solutions. Here, we will manually specify the Gurobi solver and request 1,000 solutions (though we will probably obtain less than 1,000 solutions, so if we actually wanted 1,000 solutions then we would need to specify a much larger number).
 
 ```{r}
 # create new problem, with gurobi solver added and request multiple solutions
 # note that we set the gap to 0.5 because we are not necessarily interested
-# in the top 1'000 solutions (for more information on why read the Gurobi
+# in the top 1,000 solutions (for more information on why read the Gurobi
 # documentation on solution pools)
 p3 <- p2 %>%
       add_gurobi_solver(gap = 0.5, number_solution = 1000)
@@ -381,7 +381,7 @@ ylab("Frequency")
 
 ## Complementarity in project prioritizations
 
-Broadly speaking, the principle of complementarity is that individual conservation actions should complement each other---in other words, they should not double up on the same biodiversity features---and when implemented together, conservation actions should conserve a comprehensive sample of biodiversity [@r23; @r27]. This principle was born from the profound realization that individual reserves need to provide habitat for different species in order to build a reserve network that provides habitat for many different species---even if this means selecting some individual reserves that do not provide habitat for as many species as other potential reserves [@r25]. In the context of project prioritization, this principle means that resources should be allocated in such a way that avoids doubling up on the same conservation features so that resources can be effectively allocated to as many conservation features as possible [@r5]. For instance, if decision makers consider it acceptable for features to  have a 70% chance of persisting into the future, then we should avoid solutions which overly surpass this threshold (e.g. 99%) because we can allocate the limited resources to help other features reach this threshold. Such target thresholds can provide a transparent and effective method for establishing conservation priorities [@r24]. So, let's try developing a prioritization with conservation targets. Specifically, we will develop a prioritization that maximizes the number of features that have a 60% chance of persisting, subject to the same $1'000 budget as before.
+Broadly speaking, the principle of complementarity is that individual conservation actions should complement each other---in other words, they should not double up on the same biodiversity features---and when implemented together, conservation actions should conserve a comprehensive sample of biodiversity [@r23; @r27]. This principle was born from the profound realization that individual reserves need to provide habitat for different species in order to build a reserve network that provides habitat for many different species---even if this means selecting some individual reserves that do not provide habitat for as many species as other potential reserves [@r25]. In the context of project prioritization, this principle means that resources should be allocated in such a way that avoids doubling up on the same conservation features so that resources can be effectively allocated to as many conservation features as possible [@r5]. For instance, if decision makers consider it acceptable for features to  have a 70% chance of persisting into the future, then we should avoid solutions which overly surpass this threshold (e.g. 99%) because we can allocate the limited resources to help other features reach this threshold. Such target thresholds can provide a transparent and effective method for establishing conservation priorities [@r24]. So, let's try developing a prioritization with conservation targets. Specifically, we will develop a prioritization that maximizes the number of features that have a 60% chance of persisting, subject to the same $1,000 budget as before.
 
 ```{r}
 # build problem

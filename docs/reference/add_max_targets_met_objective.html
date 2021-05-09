@@ -60,6 +60,8 @@ for specific features (see add_feature_weights())." />
 
 
 
+
+
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -71,9 +73,18 @@ for specific features (see add_feature_weights())." />
 
 
 
+<!-- dependencies from examples -->
+
+
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -87,19 +98,13 @@ for specific features (see add_feature_weights())." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2.5</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../articles/oppr.html">Get started</a>
 </li>
 <li>
@@ -112,7 +117,7 @@ for specific features (see add_feature_weights())." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/prioritizr/oppr/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -286,19 +291,19 @@ threat management. <em>Conservation Biology</em>, <strong>29</strong>, 525--536.
 <span class='co'># targets that require each feature to have a 20% chance of persisting into</span>
 <span class='co'># the future, and zero cost actions locked in</span>
 <span class='va'>p1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span><span class='op'>(</span><span class='va'>sim_projects</span>, <span class='va'>sim_actions</span>, <span class='va'>sim_features</span>,
-             <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-      <span class='fu'>add_max_targets_met_objective</span><span class='op'>(</span>budget <span class='op'>=</span> <span class='fl'>200</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-      <span class='fu'><a href='add_absolute_targets.html'>add_absolute_targets</a></span><span class='op'>(</span><span class='fl'>0.2</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-      <span class='fu'><a href='add_locked_in_constraints.html'>add_locked_in_constraints</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='va'>sim_actions</span><span class='op'>$</span><span class='va'>cost</span> <span class='op'>&lt;</span> <span class='fl'>1e-5</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+             <span class='st'>"name"</span>, <span class='st'>"success"</span>, <span class='st'>"name"</span>, <span class='st'>"cost"</span>, <span class='st'>"name"</span><span class='op'>)</span> <span class='op'><a href='pipe.html'>%&gt;%</a></span>
+      <span class='fu'>add_max_targets_met_objective</span><span class='op'>(</span>budget <span class='op'>=</span> <span class='fl'>200</span><span class='op'>)</span> <span class='op'><a href='pipe.html'>%&gt;%</a></span>
+      <span class='fu'><a href='add_absolute_targets.html'>add_absolute_targets</a></span><span class='op'>(</span><span class='fl'>0.2</span><span class='op'>)</span> <span class='op'><a href='pipe.html'>%&gt;%</a></span>
+      <span class='fu'><a href='add_locked_in_constraints.html'>add_locked_in_constraints</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='va'>sim_actions</span><span class='op'>$</span><span class='va'>cost</span> <span class='op'>&lt;</span> <span class='fl'>1e-5</span><span class='op'>)</span><span class='op'>)</span> <span class='op'><a href='pipe.html'>%&gt;%</a></span>
       <span class='fu'><a href='add_binary_decisions.html'>add_binary_decisions</a></span><span class='op'>(</span><span class='op'>)</span>
 
 <span class='co'># \dontrun{</span>
 <span class='co'># solve problem</span>
 <span class='va'>s1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span><span class='op'>(</span><span class='va'>p1</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Gurobi Optimizer version 9.1.1 build v9.1.1rc0 (linux64)
-#&gt; Thread count: 2 physical cores, 4 logical processors, using up to 1 threads
+</div><div class='co'>#&gt; Gurobi Optimizer version 9.1.2 build v9.1.2rc0 (linux64)
+#&gt; Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
 #&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
-#&gt; Model fingerprint: 0x9c00c84d
+#&gt; Model fingerprint: 0x79c9aabe
 #&gt; Variable types: 0 continuous, 47 integer (47 binary)
 #&gt; Coefficient statistics:
 #&gt;   Matrix range     [9e-02, 1e+02]
@@ -323,7 +328,7 @@ threat management. <em>Conservation Biology</em>, <strong>29</strong>, 525--536.
 #&gt;      0     0    4.96141    0    4    4.00000    4.96141  24.0%     -    0s
 #&gt; 
 #&gt; Explored 0 nodes (7 simplex iterations) in 0.00 seconds
-#&gt; Thread count was 1 (of 4 available processors)
+#&gt; Thread count was 1 (of 8 available processors)
 #&gt; 
 #&gt; Solution count 1: 4 
 #&gt; 
@@ -331,13 +336,13 @@ threat management. <em>Conservation Biology</em>, <strong>29</strong>, 525--536.
 #&gt; Best objective 4.000000000000e+00, best bound 4.000000000000e+00, gap 0.0000%</div><div class='input'>
 <span class='co'># print solution</span>
 <span class='fu'><a href='print.html'>print</a></span><span class='op'>(</span><span class='va'>s1</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 21</span><span>
+</div><div class='co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 21</span>
 #&gt;   solution status    obj  cost F1_action F2_action F3_action F4_action F5_action
-#&gt;      </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 OPTIMAL     4  99.9         0         0         0         0         1
-#&gt; </span><span style='color: #949494;'># … with 12 more variables: baseline_action &lt;dbl&gt;, F1_project &lt;dbl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   F2_project &lt;dbl&gt;, F3_project &lt;dbl&gt;, F4_project &lt;dbl&gt;, F5_project &lt;dbl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   baseline_project &lt;dbl&gt;, F1 &lt;dbl&gt;, F2 &lt;dbl&gt;, F3 &lt;dbl&gt;, F4 &lt;dbl&gt;, F5 &lt;dbl&gt;</span><span></div><div class='input'>
+#&gt;      <span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span><span>        1 OPTIMAL     4  99.9         0         0         0         0         1</span>
+#&gt; <span style='color: #949494;'># … with 12 more variables: baseline_action &lt;dbl&gt;, F1_project &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   F2_project &lt;dbl&gt;, F3_project &lt;dbl&gt;, F4_project &lt;dbl&gt;, F5_project &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   baseline_project &lt;dbl&gt;, F1 &lt;dbl&gt;, F2 &lt;dbl&gt;, F3 &lt;dbl&gt;, F4 &lt;dbl&gt;, F5 &lt;dbl&gt;</span></div><div class='input'>
 <span class='co'># plot solution, and add a dashed line to indicate the feature targets</span>
 <span class='co'># we can see the three features meet the targets under the baseline</span>
 <span class='co'># scenario, and the project for F5 was prioritized for funding</span>
@@ -347,16 +352,16 @@ threat management. <em>Conservation Biology</em>, <strong>29</strong>, 525--536.
 </div><div class='img'><img src='add_max_targets_met_objective-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 
 <span class='co'># build another problem that includes feature weights</span>
-<span class='va'>p2</span> <span class='op'>&lt;-</span> <span class='va'>p1</span> <span class='op'>%&gt;%</span>
+<span class='va'>p2</span> <span class='op'>&lt;-</span> <span class='va'>p1</span> <span class='op'><a href='pipe.html'>%&gt;%</a></span>
       <span class='fu'><a href='add_feature_weights.html'>add_feature_weights</a></span><span class='op'>(</span><span class='st'>"weight"</span><span class='op'>)</span>
 
 <span class='co'># \dontrun{</span>
 <span class='co'># solve problem</span>
 <span class='va'>s2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span><span class='op'>(</span><span class='va'>p2</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Gurobi Optimizer version 9.1.1 build v9.1.1rc0 (linux64)
-#&gt; Thread count: 2 physical cores, 4 logical processors, using up to 1 threads
+</div><div class='co'>#&gt; Gurobi Optimizer version 9.1.2 build v9.1.2rc0 (linux64)
+#&gt; Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
 #&gt; Optimize a model with 47 rows, 47 columns and 102 nonzeros
-#&gt; Model fingerprint: 0x8be67228
+#&gt; Model fingerprint: 0x534550d5
 #&gt; Variable types: 0 continuous, 47 integer (47 binary)
 #&gt; Coefficient statistics:
 #&gt;   Matrix range     [9e-02, 1e+02]
@@ -381,7 +386,7 @@ threat management. <em>Conservation Biology</em>, <strong>29</strong>, 525--536.
 #&gt;      0     0   19.96013    0    4   19.00000   19.96013  5.05%     -    0s
 #&gt; 
 #&gt; Explored 0 nodes (7 simplex iterations) in 0.00 seconds
-#&gt; Thread count was 1 (of 4 available processors)
+#&gt; Thread count was 1 (of 8 available processors)
 #&gt; 
 #&gt; Solution count 1: 19 
 #&gt; 
@@ -389,13 +394,13 @@ threat management. <em>Conservation Biology</em>, <strong>29</strong>, 525--536.
 #&gt; Best objective 1.900000000000e+01, best bound 1.900000000000e+01, gap 0.0000%</div><div class='input'>
 <span class='co'># print solution</span>
 <span class='fu'><a href='print.html'>print</a></span><span class='op'>(</span><span class='va'>s2</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 21</span><span>
+</div><div class='co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 21</span>
 #&gt;   solution status    obj  cost F1_action F2_action F3_action F4_action F5_action
-#&gt;      </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>        1 OPTIMAL    19  103.         0         0         1         0         0
-#&gt; </span><span style='color: #949494;'># … with 12 more variables: baseline_action &lt;dbl&gt;, F1_project &lt;dbl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   F2_project &lt;dbl&gt;, F3_project &lt;dbl&gt;, F4_project &lt;dbl&gt;, F5_project &lt;dbl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   baseline_project &lt;dbl&gt;, F1 &lt;dbl&gt;, F2 &lt;dbl&gt;, F3 &lt;dbl&gt;, F4 &lt;dbl&gt;, F5 &lt;dbl&gt;</span><span></div><div class='input'>
+#&gt;      <span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'>1</span><span>        1 OPTIMAL    19  103.         0         0         1         0         0</span>
+#&gt; <span style='color: #949494;'># … with 12 more variables: baseline_action &lt;dbl&gt;, F1_project &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   F2_project &lt;dbl&gt;, F3_project &lt;dbl&gt;, F4_project &lt;dbl&gt;, F5_project &lt;dbl&gt;,</span>
+#&gt; <span style='color: #949494;'>#   baseline_project &lt;dbl&gt;, F1 &lt;dbl&gt;, F2 &lt;dbl&gt;, F3 &lt;dbl&gt;, F4 &lt;dbl&gt;, F5 &lt;dbl&gt;</span></div><div class='input'>
 <span class='co'># plot solution, and add a dashed line to indicate the feature targets</span>
 <span class='co'># we can see that adding weights to the problem has changed the solution</span>
 <span class='co'># specifically, the projects for the feature F3 is now funded</span>
@@ -403,7 +408,7 @@ threat management. <em>Conservation Biology</em>, <strong>29</strong>, 525--536.
 <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>p2</span>, <span class='va'>s2</span><span class='op'>)</span> <span class='op'>+</span>
 <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_abline.html'>geom_hline</a></span><span class='op'>(</span>yintercept <span class='op'>=</span> <span class='fl'>0.2</span>, linetype <span class='op'>=</span> <span class='st'>"dashed"</span><span class='op'>)</span>
 </div><div class='img'><img src='add_max_targets_met_objective-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
-</div></span></pre>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -415,11 +420,11 @@ threat management. <em>Conservation Biology</em>, <strong>29</strong>, 525--536.
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://jeffrey-hanson.com'>Jeffrey O Hanson</a>, <a href='http://www.richard-schuster.com'>Richard Schuster</a>, <a href='http://strimas.com'>Matthew Strimas-Mackey</a>, <a href='https://josephrbennett.wordpress.com'>Joseph R Bennett</a>.</p>
+  <p><p>Developed by <a href="https://jeffrey-hanson.com" class="external-link">Jeffrey O Hanson</a>, <a href="http://www.richard-schuster.com" class="external-link">Richard Schuster</a>, <a href="http://strimas.com" class="external-link">Matthew Strimas-Mackey</a>, <a href="https://josephrbennett.wordpress.com" class="external-link">Joseph R Bennett</a>.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>
@@ -427,6 +432,8 @@ threat management. <em>Conservation Biology</em>, <strong>29</strong>, 525--536.
 
   
 
+
+  
 
   </body>
 </html>

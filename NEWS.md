@@ -1,3 +1,9 @@
+# oppr 1.0.2.5
+
+- Update minimum versions for tidytree and ggtree package dependencies.
+  This is because some older versions of tidytree are not compatible with some
+  older versions of ggtree.
+
 # oppr 1.0.2.4
 
 - Fix missing dependency in DESCRIPTION.
