@@ -212,7 +212,7 @@ print(p)
 
 Next, we can solve this problem to obtain a solution. By default, we
 will obtain the optimal solution to our problem using an exact algorithm
-solver (e.g. using [Gurobi](http://www.gurobi.com/) or
+solver (e.g. using [Gurobi](https://www.gurobi.com/) or
 [lpSolveAPI](https://cran.r-project.org/package=lpSolveAPI)).
 
 ``` r

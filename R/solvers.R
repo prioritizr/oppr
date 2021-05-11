@@ -16,7 +16,7 @@ NULL
 #'     currently installed on the system.}
 #'
 #' \item{[add_gurobi_solver()]}{
-#'     [*Gurobi*](http://gurobi.com)
+#'     [*Gurobi*](https://www.gurobi.com)
 #'     is a state-of-the-art commercial optimization software with an R package
 #'     interface. It is by far the fastest solver that can be used by
 #'     this package, however, it is also the only solver that is not freely

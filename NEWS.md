@@ -1,6 +1,7 @@
 # oppr 1.0.3 (released)
 
 - CRAN release.
+- Fix URLs for CRAN.
 
 # oppr 1.0.2.5
 

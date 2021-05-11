@@ -43,7 +43,7 @@ one solution within the optimality gap and a number of additional
 solutions that are of any level of quality (such that the total number of
 solutions is equal to \code{number_solutions}), and \code{2} finding a
 specified number of solutions that are nearest to optimality. For more
-information, see the \emph{Gurobi} manual (i.e. \url{http://www.gurobi.com/documentation/8.0/refman/poolsearchmode.html#parameter:PoolSearchMode}). Defaults to 2.}
+information, see the \emph{Gurobi} manual (i.e. \url{https://www.gurobi.com/documentation/8.0/refman/poolsearchmode.html#parameter:PoolSearchMode}). Defaults to 2.}
 
 \item{time_limit}{\code{numeric} time limit in seconds to run the optimizer.
 The solver will return the current best solution when this time limit is
@@ -81,7 +81,7 @@ used to customize the behavior of the solver. In addition to the
 be installed.
 }
 \details{
-\href{http://gurobi.com}{\emph{Gurobi}} is a
+\href{https://www.gurobi.com}{\emph{Gurobi}} is a
 state-of-the-art commercial optimization software with an R package
 interface. It is by far the fastest of the solvers supported by this
 package, however, it is also the only solver that is not freely
@@ -91,16 +91,16 @@ This solver uses the \pkg{gurobi} package to solve problems.
 
 To install the \pkg{gurobi} package, the
 \href{https://www.gurobi.com}{Gurobi} optimization suite will first need to
-be installed (see instructions for \href{http://www.gurobi.com/documentation/8.1/quickstart_linux/software_installation_guid.html}{Linux},
-\href{http://www.gurobi.com/documentation/8.1/quickstart_mac/software_installation_guid.html}{Mac OSX}, and
-\href{http://www.gurobi.com/documentation/8.1/quickstart_windows/software_installation_guid.html}{Windows} operating systems). Although
+be installed (see instructions for \href{https://www.gurobi.com/documentation/8.1/quickstart_linux/software_installation_guid.html}{Linux},
+\href{https://www.gurobi.com/documentation/8.1/quickstart_mac/software_installation_guid.html}{Mac OSX}, and
+\href{https://www.gurobi.com/documentation/8.1/quickstart_windows/software_installation_guid.html}{Windows} operating systems). Although
 \href{https://www.gurobi.com}{Gurobi} is a commercial software, academics
 can obtain a
 \href{https://www.gurobi.com/downloads/end-user-license-agreement-academic/}{special license for no cost}. After installing the
 \href{https://www.gurobi.com}{Gurobi} optimization suite, the \pkg{gurobi}
-package can then be installed (see instructions for \href{http://www.gurobi.com/documentation/8.1/quickstart_linux/r_installing_the_r_package.html}{Linux},
-\href{http://www.gurobi.com/documentation/8.1/quickstart_mac/r_installing_the_r_package.html}{Mac OSX}, and
-\href{http://www.gurobi.com/documentation/8.1/quickstart_windows/r_installing_the_r_package.html}{Windows} operating systems).
+package can then be installed (see instructions for \href{https://www.gurobi.com/documentation/8.1/quickstart_linux/r_installing_the_r_package.html}{Linux},
+\href{https://www.gurobi.com/documentation/8.1/quickstart_mac/r_installing_the_r_package.html}{Mac OSX}, and
+\href{https://www.gurobi.com/documentation/8.1/quickstart_windows/r_installing_the_r_package.html}{Windows} operating systems).
 }
 \examples{
 \dontrun{

@@ -28,7 +28,7 @@ NULL
 #'
 #' @section Installation:
 #' To make the most of this package, the \href{https://bioconductor.org/packages/release/bioc/html/ggtree.html}{\pkg{ggtree}} and
-#' \href{http://www.gurobi.com/documentation/8.1/refman/r_api_overview.html}{\pkg{gurobi}} R packages will need to be installed.
+#' \href{https://www.gurobi.com/documentation/8.1/refman/r_api_overview.html}{\pkg{gurobi}} R packages will need to be installed.
 #' Since the \href{https://bioconductor.org/packages/release/bioc/html/ggtree.html}{\pkg{ggtree}} package is exclusively available
 #' at [Bioconductor](https://bioconductor.org)---and is not available on
 #' [The Comprehensive R Archive Network](https://cran.r-project.org/)---please
@@ -37,16 +37,16 @@ NULL
 #' If the installation process fails, please consult the
 #' [package's online documentation](https://bioconductor.org/packages/release/bioc/html/ggtree.html). To install the \pkg{gurobi} package, the
 #' [Gurobi](https://www.gurobi.com) optimization suite will first need to
-#' be installed (see instructions for [Linux](http://www.gurobi.com/documentation/8.1/quickstart_linux/software_installation_guid.html),
-#'   [Mac OSX](http://www.gurobi.com/documentation/8.1/quickstart_mac/software_installation_guid.html), and
-#'   [Windows](http://www.gurobi.com/documentation/8.1/quickstart_windows/software_installation_guid.html) operating systems). Although
+#' be installed (see instructions for [Linux](https://www.gurobi.com/documentation/8.1/quickstart_linux/software_installation_guid.html),
+#'   [Mac OSX](https://www.gurobi.com/documentation/8.1/quickstart_mac/software_installation_guid.html), and
+#'   [Windows](https://www.gurobi.com/documentation/8.1/quickstart_windows/software_installation_guid.html) operating systems). Although
 #' [Gurobi](https://www.gurobi.com) is a commercial software, academics
 #' can obtain a
 #' [special license for no cost](https://www.gurobi.com/downloads/end-user-license-agreement-academic/). After installing the
 #' [Gurobi](https://www.gurobi.com) optimization suite, the \pkg{gurobi}
-#'  package can then be installed (see instructions for [Linux](http://www.gurobi.com/documentation/8.1/quickstart_linux/r_installing_the_r_package.html),
-#'   [Mac OSX](http://www.gurobi.com/documentation/8.1/quickstart_mac/r_installing_the_r_package.html), and
-#'   [Windows](http://www.gurobi.com/documentation/8.1/quickstart_windows/r_installing_the_r_package.html) operating systems).
+#'  package can then be installed (see instructions for [Linux](https://www.gurobi.com/documentation/8.1/quickstart_linux/r_installing_the_r_package.html),
+#'   [Mac OSX](https://www.gurobi.com/documentation/8.1/quickstart_mac/r_installing_the_r_package.html), and
+#'   [Windows](https://www.gurobi.com/documentation/8.1/quickstart_windows/r_installing_the_r_package.html) operating systems).
 #'
 #' @seealso Please refer to the package vignette for more information and worked
 #'   examples. This can be accessed using the code

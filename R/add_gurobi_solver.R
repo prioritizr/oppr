@@ -35,7 +35,7 @@ NULL
 #'   solutions that are of any level of quality (such that the total number of
 #'   solutions is equal to `number_solutions`), and `2` finding a
 #'   specified number of solutions that are nearest to optimality. For more
-#'   information, see the *Gurobi* manual (i.e. <http://www.gurobi.com/documentation/8.0/refman/poolsearchmode.html#parameter:PoolSearchMode>). Defaults to 2.
+#'   information, see the *Gurobi* manual (i.e. <https://www.gurobi.com/documentation/8.0/refman/poolsearchmode.html#parameter:PoolSearchMode>). Defaults to 2.
 #'
 #' @param time_limit `numeric` time limit in seconds to run the optimizer.
 #'   The solver will return the current best solution when this time limit is
@@ -61,7 +61,7 @@ NULL
 #' @param verbose `logical` should information be printed while solving
 #'  optimization problems?
 #'
-#' @details [*Gurobi*](http://gurobi.com) is a
+#' @details [*Gurobi*](https://www.gurobi.com) is a
 #'   state-of-the-art commercial optimization software with an R package
 #'   interface. It is by far the fastest of the solvers supported by this
 #'   package, however, it is also the only solver that is not freely
@@ -71,16 +71,16 @@ NULL
 #'
 #'   To install the \pkg{gurobi} package, the
 #'   [Gurobi](https://www.gurobi.com) optimization suite will first need to
-#'   be installed (see instructions for [Linux](http://www.gurobi.com/documentation/8.1/quickstart_linux/software_installation_guid.html),
-#'   [Mac OSX](http://www.gurobi.com/documentation/8.1/quickstart_mac/software_installation_guid.html), and
-#'   [Windows](http://www.gurobi.com/documentation/8.1/quickstart_windows/software_installation_guid.html) operating systems). Although
+#'   be installed (see instructions for [Linux](https://www.gurobi.com/documentation/8.1/quickstart_linux/software_installation_guid.html),
+#'   [Mac OSX](https://www.gurobi.com/documentation/8.1/quickstart_mac/software_installation_guid.html), and
+#'   [Windows](https://www.gurobi.com/documentation/8.1/quickstart_windows/software_installation_guid.html) operating systems). Although
 #'   [Gurobi](https://www.gurobi.com) is a commercial software, academics
 #'   can obtain a
 #'   [special license for no cost](https://www.gurobi.com/downloads/end-user-license-agreement-academic/). After installing the
 #'   [Gurobi](https://www.gurobi.com) optimization suite, the \pkg{gurobi}
-#'   package can then be installed (see instructions for [Linux](http://www.gurobi.com/documentation/8.1/quickstart_linux/r_installing_the_r_package.html),
-#'   [Mac OSX](http://www.gurobi.com/documentation/8.1/quickstart_mac/r_installing_the_r_package.html), and
-#'   [Windows](http://www.gurobi.com/documentation/8.1/quickstart_windows/r_installing_the_r_package.html) operating systems).
+#'   package can then be installed (see instructions for [Linux](https://www.gurobi.com/documentation/8.1/quickstart_linux/r_installing_the_r_package.html),
+#'   [Mac OSX](https://www.gurobi.com/documentation/8.1/quickstart_mac/r_installing_the_r_package.html), and
+#'   [Windows](https://www.gurobi.com/documentation/8.1/quickstart_windows/r_installing_the_r_package.html) operating systems).
 #'
 #' @return [ProjectProblem-class] object with the solver added
 #'   to it.

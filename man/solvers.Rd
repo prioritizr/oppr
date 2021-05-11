@@ -18,7 +18,7 @@ project prioritization \code{\link[=problem]{problem()}}:
 currently installed on the system.}
 
 \item{\code{\link[=add_gurobi_solver]{add_gurobi_solver()}}}{
-\href{http://gurobi.com}{\emph{Gurobi}}
+\href{https://www.gurobi.com}{\emph{Gurobi}}
 is a state-of-the-art commercial optimization software with an R package
 interface. It is by far the fastest solver that can be used by
 this package, however, it is also the only solver that is not freely
