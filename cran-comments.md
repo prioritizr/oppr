@@ -9,7 +9,7 @@
 
 # R CMD check results
 
-0 errors | 0 warnings | 0 note
+0 errors | 0 warnings | 2 notes
 
 # Notes
 
@@ -19,6 +19,8 @@
     **The gurobi R package is distributed with the Gurobi optimization software (http://gurobi.com). It is listed under the Enhances and Suggests fields by several R packages that are already on CRAN, such as the designmatch, DoE.MIParray, OptimalDesign, prioritizr, and raptr R packages. To help users, we have provided instructions to install the gurobi R package in the documentation for the oppr package (e.g. README file and the manual entry for the add_gurobi_solver function).**
 
 * checking installed package size ... NOTE
-    installed size is 10.7Mb
+    installed size is 16.9Mb
     sub-directories of 1Mb or more:
-      libs   9.1Mb
+      libs  15.2Mb
+
+    **The package makes extensive use of compiled C++ code (via the Rcpp package) to reduce run times.**

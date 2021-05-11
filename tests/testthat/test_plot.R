@@ -39,6 +39,7 @@ test_that("no phylogenetic data", {
 })
 
 test_that("phylogenetic data", {
+  skip_on_cran()
   skip_if_not_installed("ggtree")
   projects <- tibble::tibble(name = letters[1:4],
                              success =  c(0.95, 0.96, 0.94, 1.00),

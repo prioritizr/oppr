@@ -150,8 +150,7 @@ NULL
 #' Carwardine J, Martin TG, Firn J, Ponce-Reyes P, Nicol S, Reeson A,
 #' Grantham HS, Stratford D, Kehoe L, Chades I (2019) Priority Threat
 #' Management for biodiversity conservation: A handbook.
-#' *Journal of Applied Ecology*,
-#' **In press**: <https://doi.org/10.1111/1365-2664.13268>.
+#' *Journal of Applied Ecology*, **56**: 481--490.
 #'
 #' @examples
 #' # create a simulated data set

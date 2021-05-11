@@ -1,3 +1,7 @@
+# oppr 1.0.3 (released)
+
+- CRAN release.
+
 # oppr 1.0.2.5
 
 - Update minimum versions for tidytree and ggtree package dependencies.

@@ -1,6 +1,7 @@
 context("plot_phylo_persistence")
 
 test_that("some projects funded", {
+  skip_on_cran()
   skip_if_not_installed("ggtree")
   projects <- tibble::tibble(name = letters[1:4],
                              success =  c(0.95, 0.96, 0.94, 1.00),
@@ -39,6 +40,7 @@ test_that("some projects funded", {
 })
 
 test_that("all projects funded", {
+  skip_on_cran()
   skip_if_not_installed("ggtree")
   projects <- tibble::tibble(name = letters[1:4],
                              success =  c(0.95, 0.96, 0.94, 1.00),
@@ -77,6 +79,7 @@ test_that("all projects funded", {
 })
 
 test_that("no projects funded", {
+  skip_on_cran()
   skip_if_not_installed("ggtree")
   projects <- tibble::tibble(name = letters[1:4],
                              success =  c(0.95, 0.96, 0.94, 1.00),
@@ -115,6 +118,7 @@ test_that("no projects funded", {
 })
 
 test_that("invalid arguments", {
+  skip_on_cran()
   skip_if_not_installed("ggtree")
   # initialize test data
   data(sim_projects, sim_actions, sim_features, sim_tree)

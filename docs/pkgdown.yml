@@ -3,7 +3,7 @@ pkgdown: 1.6.1.9001
 pkgdown_sha: c9e7dde4c5ca066f4a797ff201ead380f702473f
 articles:
   oppr: oppr.html
-last_built: 2021-05-09T22:22Z
+last_built: 2021-05-10T22:16Z
 urls:
   reference: https://prioritizr.github.io/oppr/reference
   article: https://prioritizr.github.io/oppr/articles
