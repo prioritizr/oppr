@@ -32,10 +32,15 @@ test_that("valid arguments", {
   expect_equal(rowSums(as.matrix(s$projects[, paste0("F", seq_len(5)),
                                             drop = FALSE]) > 0, na.rm = TRUE),
                                             c(rep(1, 5), 5))
-  expect_gte(min(as(as.matrix(s$projects[-6, paste0("F", seq_len(5)),
-                                         drop = FALSE]), "dgCMatrix")@x,
-                                         na.rm = TRUE),
-                                         0.5)
+  expect_gte(
+    min(
+      as_Matrix(
+        as.matrix(s$projects[-6, paste0("F", seq_len(5)),drop = FALSE]),
+        "dgCMatrix")@x,
+      na.rm = TRUE
+    ),
+    0.5
+  )
   expect_lte(max(as.matrix(s$projects[-6, paste0("F", seq_len(5)),
                                       drop = FALSE]), na.rm = TRUE), 0.9)
   expect_gte(min(as.matrix(s$projects[6, paste0("F", seq_len(5)),

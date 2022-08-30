@@ -16,6 +16,7 @@ check.log
 test.log
 gp.log
 spell.log
+examples.log
 README.Rmd
 inst/extdata/dictionary.txt
 ^_pkgdown\.yml$

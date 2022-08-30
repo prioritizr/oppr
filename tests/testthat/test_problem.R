@@ -29,23 +29,24 @@ test_that("valid arguments (include_baseline = FALSE)", {
   expect_equal(p$project_success_probabilities(),
                setNames(sim_projects$success, sim_projects$name))
   expect_true(all(p$pf_matrix() ==
-                  as(as.matrix(sim_projects[, sim_features$name]),
-                     "dgCMatrix"),
+                  as_Matrix(as.matrix(sim_projects[, sim_features$name]),
+                            "dgCMatrix"),
                   na.rm = TRUE))
   expect_equal(rownames(p$pf_matrix()), sim_projects$name)
   expect_equal(colnames(p$pf_matrix()), sim_features$name)
   expect_true(all(p$epf_matrix() ==
-                  as(
+                  as_Matrix(
                     as.matrix(sim_projects[, sim_features$name]) *
                     matrix(p$project_success_probabilities(),
                            ncol = p$number_of_features(),
                            nrow = p$number_of_projects()),
-                     "dgCMatrix"),
+                    "dgCMatrix"),
                   na.rm = TRUE))
   expect_equal(rownames(p$epf_matrix()), sim_projects$name)
   expect_equal(colnames(p$epf_matrix()), sim_features$name)
-  expect_true(all(p$pa_matrix() ==
-                  as(as.matrix(sim_projects[, sim_actions$name]), "dgCMatrix")))
+  expect_true(
+    all(p$pa_matrix() ==
+    as_Matrix(as.matrix(sim_projects[, sim_actions$name]), "dgCMatrix")))
   expect_equal(rownames(p$pa_matrix()), sim_projects$name)
   expect_equal(colnames(p$pa_matrix()), sim_actions$name)
   expect_error(p$feature_targets())
@@ -84,13 +85,13 @@ test_that("valid arguments (include_baseline = TRUE)", {
   expect_equal(p$project_success_probabilities(),
                setNames(sim_projects$success, sim_projects$name))
   expect_true(all(p$pf_matrix() ==
-                  as(as.matrix(sim_projects[, sim_features$name]),
-                     "dgCMatrix"),
+                  as_Matrix(as.matrix(sim_projects[, sim_features$name]),
+                            "dgCMatrix"),
                   na.rm = TRUE))
   expect_equal(rownames(p$pf_matrix()), sim_projects$name)
   expect_equal(colnames(p$pf_matrix()), sim_features$name)
   sim_epf_matrix <-
-    as(as.matrix(sim_projects[, sim_features$name]) *
+    as_Matrix(as.matrix(sim_projects[, sim_features$name]) *
       matrix(p$project_success_probabilities(),
              ncol = p$number_of_features(),
              nrow = p$number_of_projects()),
@@ -105,8 +106,9 @@ test_that("valid arguments (include_baseline = TRUE)", {
   expect_true(all(p$epf_matrix() == sim_epf_matrix, na.rm = TRUE))
   expect_equal(rownames(p$epf_matrix()), sim_projects$name)
   expect_equal(colnames(p$epf_matrix()), sim_features$name)
-  expect_true(all(p$pa_matrix() ==
-                  as(as.matrix(sim_projects[, sim_actions$name]), "dgCMatrix")))
+  expect_true(
+    all(p$pa_matrix() ==
+    as_Matrix(as.matrix(sim_projects[, sim_actions$name]), "dgCMatrix")))
   expect_equal(rownames(p$pa_matrix()), sim_projects$name)
   expect_equal(colnames(p$pa_matrix()), sim_actions$name)
   expect_error(p$feature_targets())

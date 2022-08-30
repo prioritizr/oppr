@@ -200,7 +200,7 @@ add_max_richness_objective <- function(x, budget) {
         y$epf_matrix()[, y$feature_phylogeny()$tip.label, drop = FALSE],
         bm[, bo, drop = FALSE], rep(0, ncol(bm)),
         rep(0, y$number_of_features()), w,
-        methods::as(as.matrix(solution), "dgCMatrix"))
+        as_Matrix(as.matrix(solution), "dgCMatrix"))
     },
     apply = function(self, x, y) {
       assertthat::assert_that(inherits(x, "OptimizationProblem"),

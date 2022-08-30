@@ -1,4 +1,14 @@
-# oppr 1.0.3 (released)
+# oppr 1.0.4
+
+- CRAN release.
+- Fix compiler warnings raised by CRAN checks.
+- Remove references to the *ggtree* package in documentation.
+- Fix memory issues encountered during installation on CRAN Windows server.
+- Fix compatibility issues with upcoming version of the *Matrix* package
+  (version 1.4-2).
+- Fix broken URLs in package documentation.
+
+# oppr 1.0.3
 
 - CRAN release.
 - Fix URLs for CRAN.
@@ -46,7 +56,7 @@
 - Fix "Non-file package-anchored link(s) in documentation object" warnings in
   R-devel checks.
 
-# oppr 1.0.2 (released)
+# oppr 1.0.2
 
 - CRAN release.
 
@@ -54,7 +64,7 @@
 
 - Replace `tibble::as.tibble` with `tibble::as_tibble` to avoid warnings.
 
-# oppr 1.0.1 (released)
+# oppr 1.0.1
 
 - CRAN release.
 
@@ -62,7 +72,7 @@
 
 - Fix compatibility issues with upcoming _tibble_ (3.0.0) R package.
 
-# oppr 1.0.0 (released)
+# oppr 1.0.0
 
 - CRAN release.
 
@@ -71,7 +81,7 @@
 - Fix warnings in R-devel CRAN checks related to documentation.
 - Add citation for the research article that accompanies this package.
 
-# oppr 0.0.4 (released)
+# oppr 0.0.4
 
 - CRAN release.
 
@@ -80,7 +90,7 @@
 - Fix typo.
 - Fix broken links to Gurobi academic licenses.
 
-# oppr 0.0.3 (released)
+# oppr 0.0.3
 
 - CRAN release.
 
@@ -88,7 +98,7 @@
 
 - Retain debugging symbols to conform with CRAN policies.
 
-# oppr 0.0.2 (released)
+# oppr 0.0.2
 
 - CRAN release.
 
@@ -97,7 +107,7 @@
 - Fix address sanitizer issues causing CRAN checks to fail.
 - Tests successfully complete when the _shiny_ R package is not installed.
 
-# oppr 0.0.1 (released)
+# oppr 0.0.1
 
 - CRAN release.
 

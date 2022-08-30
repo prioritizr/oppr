@@ -15,6 +15,7 @@ test.log
 check.log
 spell.log
 gp.log
+examples.log
 # system files
 .directory
 # do not ignore the following files

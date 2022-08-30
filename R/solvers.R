@@ -25,7 +25,7 @@ NULL
 #'     suite. This solver uses the \pkg{gurobi} package to solve problems.}
 #'
 #'   \item{[add_rsymphony_solver()]}{
-#'     [*SYMPHONY*](https://projects.coin-or.org/SYMPHONY) is an
+#'     [*SYMPHONY*](https://github.com/coin-or/SYMPHONY) is an
 #'     open-source integer programming solver that is part of the Computational
 #'     Infrastructure for Operations Research (COIN-OR) project, an initiative
 #'     to promote development of open-source tools for operations research (a

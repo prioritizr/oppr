@@ -1,6 +1,6 @@
 Package: oppr
 Type: Package
-Version: 1.0.3
+Version: 1.0.4
 Title: Optimal Project Prioritization
 Description: A decision support tool for prioritizing conservation projects.
     Prioritizations can be developed by maximizing expected feature richness,
@@ -69,7 +69,7 @@ SystemRequirements: C++11
 URL: https://prioritizr.github.io/oppr/
 BugReports: https://github.com/prioritizr/oppr/issues
 VignetteBuilder: knitr
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.1
 Encoding: UTF-8
 Collate:
     'internal.R'

@@ -27,7 +27,7 @@ available. That said, licenses are available to academics at no cost. The
 suite. This solver uses the \pkg{gurobi} package to solve problems.}
 
 \item{\code{\link[=add_rsymphony_solver]{add_rsymphony_solver()}}}{
-\href{https://projects.coin-or.org/SYMPHONY}{\emph{SYMPHONY}} is an
+\href{https://github.com/coin-or/SYMPHONY}{\emph{SYMPHONY}} is an
 open-source integer programming solver that is part of the Computational
 Infrastructure for Operations Research (COIN-OR) project, an initiative
 to promote development of open-source tools for operations research (a

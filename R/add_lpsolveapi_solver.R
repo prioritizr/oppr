@@ -85,7 +85,7 @@ add_lpsolveapi_solver <- function(x, gap = 0, presolve = FALSE,
       # extract parameters
       p <- as.list(self$parameters)
       # extract constraints
-      m <- methods::as(x$A(), "dgTMatrix")
+      m <- as_Matrix(x$A(), "dgTMatrix")
       mrhs <- x$rhs()
       msense <- x$sense()
       # manually add in locked constraints

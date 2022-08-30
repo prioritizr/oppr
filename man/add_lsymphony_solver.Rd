@@ -50,7 +50,7 @@ package. This function can also be used to customize the behavior of the
 solver. It requires the \pkg{lpsymphony} package.
 }
 \details{
-\href{https://projects.coin-or.org/SYMPHONY}{\emph{SYMPHONY}} is an
+\href{https://github.com/coin-or/SYMPHONY}{\emph{SYMPHONY}} is an
 open-source integer programming solver that is part of the Computational
 Infrastructure for Operations Research (COIN-OR) project, an initiative
 to promote development of open-source tools for operations research (a

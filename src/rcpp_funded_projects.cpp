@@ -15,7 +15,7 @@ Rcpp::NumericMatrix rcpp_funded_projects(arma::sp_mat pa_matrix,
       for (auto aitr = pa_matrix.begin_row(p);
            aitr != pa_matrix.end_row(p);
            ++aitr) {
-        if (((*aitr) > 0.5) & (solutions(sol, aitr.col()) < 0.5)) {
+        if (((*aitr) > 0.5) && (solutions(sol, aitr.col()) < 0.5)) {
           out(sol, p) = 0.0;
           break;
         }

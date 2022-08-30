@@ -94,8 +94,8 @@ project_cost_effectiveness <- function(x) {
   bp_obj <- x$objective$evaluate(x, tibble::as_tibble(bpm))
   # generate solutions for other projects
   bpm <- bpm[rep(1, x$number_of_projects()), , drop = FALSE]
-  pp <- methods::as(x$pa_matrix(), "lgCMatrix") |
-        methods::as(bpm, "lgCMatrix")
+  pp <- as_Matrix(x$pa_matrix(), "lgCMatrix") |
+        as_Matrix(bpm, "lgCMatrix")
   pp <- tibble::as_tibble(round(as.matrix(pp)))
   # evaluate solutions
   pp_obj <- x$objective$evaluate(x, pp)

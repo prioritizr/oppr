@@ -400,7 +400,7 @@ ProjectProblem <- pproto(
              self$project_names())
   },
   pf_matrix = function(self) {
-    m <- methods::as(as.matrix(
+    m <- as_Matrix(as.matrix(
       self$data$projects[, self$data$features[[self$data$feature_name_column]],
                          drop = FALSE]), "dgCMatrix")
     m@x[is.na(m@x)] <- 0
@@ -410,11 +410,13 @@ ProjectProblem <- pproto(
   },
   epf_matrix = function(self) {
     # extract persistence probabilities, but not accounting for baseline
-    m <- as(self$pf_matrix() * matrix(self$project_success_probabilities(),
-                                      ncol = self$number_of_features(),
-                                      nrow = self$number_of_projects()),
-                                      "dgCMatrix")
-    m <- as(m, "dgCMatrix")
+    m <- as_Matrix(
+    self$pf_matrix() *
+      matrix(self$project_success_probabilities(),
+             ncol = self$number_of_features(),
+             nrow = self$number_of_projects()),
+     "dgCMatrix")
+    m <- as_Matrix(m, "dgCMatrix")
     m <- Matrix::drop0(m)
     # if include baseline probabilities, then account for probabilities of
     # each project persisting and the baseline project not failing
@@ -430,7 +432,7 @@ ProjectProblem <- pproto(
       ## overwrite baseline data
       m[bp, ] <- bpp
       ## coerce data type
-      m <- as(m, "dgCMatrix")
+      m <- as_Matrix(m, "dgCMatrix")
       m <- Matrix::drop0(m)
     }
     rownames(m) <- self$project_names()
@@ -438,7 +440,7 @@ ProjectProblem <- pproto(
     m
   },
   pa_matrix = function(self) {
-    m <- methods::as(as.matrix(
+    m <- as_Matrix(as.matrix(
       self$data$projects[, self$data$actions[[self$data$action_name_column]],
                          drop = FALSE]), "dgCMatrix")
     rownames(m) <- self$data$projects[[self$data$project_name_column]]

@@ -66,7 +66,14 @@ quickbuild:
 	R --slave -e "devtools::build(vignettes = FALSE)"
 	cp -Rf doc inst/
 
+urlcheck:
+	R --slave -e "devtools::document();urlchecker::url_check()"
+
+examples:
+	R --slave -e "devtools::run_examples(run_donttest = TRUE, run_dontrun = TRUE);warnings()" > examples.log 2>&1
+	rm -f Rplots.pdf
+
 install:
-	R --slave -e "devtools::install_local('../oppr', force = TRUE, upgrade = 'never')"
+	R --slave -e "devtools::install_local('.', force = TRUE, upgrade = 'never')"
 
 .PHONY: initc data docs readme site test check checkwb build install man

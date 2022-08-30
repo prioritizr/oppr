@@ -33,12 +33,12 @@ NULL
 #'   given the funded projects in a solution, the combined benefits of multiple
 #'   projects can be encoded by creating additional projects that represent
 #'   "combined projects". For instance, a habitat restoration project might
-#'   cost \$100 and mean that a feature has a 40% chance of persisting, and
-#'   a pest eradication project might cost \$50 and mean that a feature has a
+#'   cost $100 and mean that a feature has a 40% chance of persisting, and
+#'   a pest eradication project might cost $50 and mean that a feature has a
 #'   60% chance of persisting. Due to non-linear effects, funding both of these
 #'   projects might mean that a species has a 90% chance of persistence.
 #'   This can be accounted for by creating a third project, representing the
-#'   funding of both projects, which costs \$150 and provides a 90% chance
+#'   funding of both projects, which costs $150 and provides a 90% chance
 #'   of persistence.
 #'
 #' @param actions [base::data.frame()] or [tibble::tibble()]

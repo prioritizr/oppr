@@ -100,7 +100,7 @@ arma::mat expected_persistences(
       for (auto aitr = pa_matrix.begin_row(p);
            aitr != pa_matrix.end_row(p);
            ++aitr) {
-        if (((*aitr) > 0.5) & (solutions(sol, aitr.col()) < 0.5)) {
+        if (((*aitr) > 0.5) && (solutions(sol, aitr.col()) < 0.5)) {
           curr_project_funded = false;
           break;
         }
