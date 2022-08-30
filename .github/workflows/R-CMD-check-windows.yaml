@@ -59,8 +59,17 @@ jobs:
             any::XML
             any::remotes
             gurobi=?ignore
+            lpsymphony=?ignore
+            ggtree=?ignore
           needs: |
             check
+
+      - name: Install additional packages
+        run: |
+          options(repos = "https://cloud.r-project.org/")
+          remotes::install_bioc("lpsymphony")
+          remotes::install_bioc("ggtree")
+        shell: Rscript {0}
 
       - name: Session information
         run: |
