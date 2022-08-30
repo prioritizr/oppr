@@ -5,8 +5,6 @@
 }
 
 .onAttach <- function(libname, pkgname) {
-  # debug Matrix
-  options(Matrix.warnDeprecatedCoerce = 1)
   # define message generator function
   msg <- function() {
     packageStartupMessage(cli::rule())
