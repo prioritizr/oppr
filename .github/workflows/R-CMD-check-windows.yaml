@@ -53,14 +53,33 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          cache-version: 4
+          cache-version: 1
           extra-packages: |
             any::rcmdcheck
             any::XML
             any::remotes
-            gurobi=?ignore
-            lpsymphony=?ignore
-            ggtree=?ignore
+            uuid?=ignore
+            proto?=ignore
+            cli?=ignore
+            assertthat?=ignore
+            tibble?=ignore
+            ape?=ignore
+            tidytree?=ignore
+            ggplot2?=ignore
+            viridisLite?=ignore
+            lpSolveAPI?=ignore
+            withr?=ignore
+            testthat?=ignore
+            knitr?=ignore
+            roxygen2?=ignore
+            rmarkdown?=ignore
+            gurobi?=ignore
+            ggtree?=ignore
+            Rsymphony?=ignore
+            lpsymphony?=ignore
+            shiny?=ignore
+            rhandsontable?=ignore
+            tidyr?=ignore
           needs: |
             check
 
