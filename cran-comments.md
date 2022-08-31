@@ -21,6 +21,16 @@ Jeff
 
 # Notes
 
+* checking CRAN incoming feasibility ... NOTE
+    Found the following (possibly) invalid DOIs:
+    DOI: 10.1111/2041-210X.13264
+      From: DESCRIPTION
+            inst/CITATION
+      Status: Service Unavailable
+      Message: 503
+
+    **I have confirmed that the DOI is valid. Specifically, the DOI pertains to a scientific article published in the peer reviewed journal Methods in Ecology and Evolution.**
+
 * checking package dependencies ... NOTE
     Package suggested but not available for checking: 'gurobi'
 
