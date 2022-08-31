@@ -55,14 +55,12 @@ jobs:
         with:
           cache-version: 1
           extra-packages: |
-            any::covr
             any::rcmdcheck
             any::XML
             any::remotes
             gurobi=?ignore
             lpsymphony=?ignore
             ggtree=?ignore
-            Rsymphony=?ignore
           needs: |
             check
 
