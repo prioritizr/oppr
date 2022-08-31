@@ -64,6 +64,9 @@ jobs:
             ape=?ignore
             tidytree=?ignore
             ggplot2=?ignore
+            gurobi=?ignore
+            lpsymphony=?ignore
+            ggtree=?ignore
 
       - name: Install additional packages
         run: |
