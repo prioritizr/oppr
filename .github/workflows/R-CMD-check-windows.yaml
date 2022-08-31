@@ -56,14 +56,6 @@ jobs:
           cache-version: 1
           extra-packages: |
             any::XML
-            uuid=?ignore
-            proto=?ignore
-            cli=?ignore
-            assertthat=?ignore
-            tibble=?ignore
-            ape=?ignore
-            tidytree=?ignore
-            ggplot2=?ignore
             gurobi=?ignore
             lpsymphony=?ignore
             ggtree=?ignore
