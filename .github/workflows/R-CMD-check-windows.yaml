@@ -62,6 +62,7 @@ jobs:
             gurobi=?ignore
             lpsymphony=?ignore
             ggtree=?ignore
+            Rsymphony=?ignore
           needs: |
             check
 
