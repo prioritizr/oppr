@@ -63,10 +63,8 @@ jobs:
             lpsymphony=?ignore
             ggtree=?ignore
             lpSolveAPI=?ignore
-            shiny=?ignore
           needs: |
             check
-            coverage
 
       - name: Install additional packages
         run: |
