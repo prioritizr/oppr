@@ -55,11 +55,7 @@ jobs:
         with:
           cache-version: 1
           extra-packages: |
-            any::rcmdcheck
-            any::XML
-            any::remotes
             proto=?ignore
-            assertthat=?ignore
             ape=?ignore
             tidytree=?ignore
             ggplot2=?ignore
@@ -71,8 +67,6 @@ jobs:
             lpsymphony=?ignore
             shiny=?ignore
             rhandsontable=?ignore
-          needs: |
-            check
 
       - name: Install additional packages
         run: |
