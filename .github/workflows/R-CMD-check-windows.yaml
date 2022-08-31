@@ -59,6 +59,7 @@ jobs:
             any::XML
             any::remotes
             gurobi=?ignore
+            Rsymphony=?ignore
             lpsymphony=?ignore
             ggtree=?ignore
           needs: |
