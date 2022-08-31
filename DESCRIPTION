@@ -52,6 +52,8 @@ Suggests:
     rmarkdown (>= 1.10),
     gurobi (>= 8.0.0),
     Rsymphony (>= 0.1.28),
+    ggtree (>= 2.4.2),
+    lpsymphony (>= 1.10.0),
     shiny (>= 1.2.0),
     rhandsontable (>= 0.3.7),
     tidyr (>= 0.8.2)
