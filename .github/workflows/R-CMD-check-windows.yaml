@@ -62,7 +62,6 @@ jobs:
             gurobi=?ignore
             lpsymphony=?ignore
             ggtree=?ignore
-            lpSolveAPI=?ignore
           needs: |
             check
 
