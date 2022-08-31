@@ -55,18 +55,29 @@ jobs:
         with:
           cache-version: 1
           extra-packages: |
-            proto=?ignore
-            ape=?ignore
-            tidytree=?ignore
-            ggplot2=?ignore
-            viridisLite=?ignore
-            lpSolveAPI=?ignore
-            gurobi=?ignore
-            ggtree=?ignore
-            Rsymphony=?ignore
-            lpsymphony=?ignore
-            shiny=?ignore
-            rhandsontable=?ignore
+            any::XML
+            uuid?=ignore
+            proto?=ignore
+            cli?=ignore
+            assertthat?=ignore
+            tibble?=ignore
+            ape?=ignore
+            tidytree?=ignore
+            ggplot2?=ignore
+            viridisLite?=ignore
+            lpSolveAPI?=ignore
+            withr?=ignore
+            testthat?=ignore
+            knitr?=ignore
+            roxygen2?=ignore
+            rmarkdown?=ignore
+            gurobi?=ignore
+            ggtree?=ignore
+            Rsymphony?=ignore
+            lpsymphony?=ignore
+            shiny?=ignore
+            rhandsontable?=ignore
+            tidyr?=ignore
 
       - name: Install additional packages
         run: |
