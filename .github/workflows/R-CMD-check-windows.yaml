@@ -64,7 +64,7 @@ jobs:
             ggtree=?ignore
             lpSolveAPI=?ignore
             tidytree=?ignore
-            ggplot2=ignore
+            ggplot2=?ignore
             viridisLite=?ignore
             rhandsontable=?ignore
             shiny=?ignore
