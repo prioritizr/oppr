@@ -64,23 +64,6 @@ jobs:
             ape=?ignore
             tidytree=?ignore
             ggplot2=?ignore
-            viridisLite=?ignore
-            lpSolveAPI=?ignore
-            withr=?ignore
-            testthat=?ignore
-            knitr=?ignore
-            roxygen2=?ignore
-            rmarkdown=?ignore
-            gurobi=?ignore
-            ggtree=?ignore
-            Rsymphony=?ignore
-            lpsymphony=?ignore
-            shiny=?ignore
-            rhandsontable=?ignore
-            tidyr=?ignore
-            Rcpp=?ignore
-            RcppArmadillo=?ignore
-            RcppProgress=?ignore
 
       - name: Install additional packages
         run: |
