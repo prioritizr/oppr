@@ -1,6 +1,6 @@
 Dear CRAN maintainers,
 
-Thank you very much for reviewing this submission. This submission aims to address the warnings and errors raised by CRAN's checks. It also contains updates to ensure compatibility with the current and upcomming version of the Matrix package.
+Thank you very much for reviewing this submission. This submission aims to address the warnings and errors raised by CRAN's checks. It also contains updates to ensure compatibility with the current and upcoming versions of the Matrix package.
 
 Cheers,
 
