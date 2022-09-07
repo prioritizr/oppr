@@ -3,7 +3,7 @@ NULL
 
 #' Simulated data
 #'
-#' Simulated data for prioritizing conservations projects.
+#' Simulated data for prioritizing conservation projects.
 #'
 #' @usage data(sim_actions)
 #' @usage data(sim_projects)

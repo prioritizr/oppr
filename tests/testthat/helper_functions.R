@@ -11,7 +11,7 @@ r_phylo_div_mip_formulation <- function(project_data, action_data, tree, budget,
 
   ## convert tree to branch matrix + vector of lengths
   T_bs <- branch_matrix(tree)
-  T_bs <- as(T_bs, "dgTMatrix")
+  T_bs <- as_Matrix(T_bs, "dgTMatrix")
   L_b <- tree$edge.length
   bo <- rcpp_branch_order(T_bs)
   T_bs <- T_bs[, bo, drop = FALSE]

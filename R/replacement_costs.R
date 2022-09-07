@@ -5,7 +5,7 @@ NULL
 #'
 #' Calculate the replacement cost for priority actions in a project
 #' prioritization [problem()] (Moilanen *et al.* 2009). Actions associated
-#' with larger replacement cost values are more irreplaceabe, and may
+#' with larger replacement cost values are more irreplaceable, and may
 #' need to be implemented sooner than actions with lower replacement cost
 #' values.
 #'

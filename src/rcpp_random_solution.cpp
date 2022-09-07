@@ -87,7 +87,7 @@ Rcpp::LogicalMatrix rcpp_random_solution(
     initial_remaining_projects(0, i) = 1.0;
     for (auto pitr = pa_matrix.begin_row(i); pitr != pa_matrix.end_row(i);
          ++pitr) {
-      if ((initial_remaining_actions[pitr.col()] < 0.5) |
+      if ((initial_remaining_actions[pitr.col()] < 0.5) ||
            locked_in_actions[pitr.col()]) {
         initial_remaining_projects.col(i).zeros();
         break;

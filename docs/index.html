@@ -45,7 +45,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.4</span>
       </span>
     </div>
 
@@ -63,7 +63,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/prioritizr/oppr/">
+  <a href="https://github.com/prioritizr/oppr/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -80,46 +80,44 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="oppr-optimal-project-prioritization" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#oppr-optimal-project-prioritization" class="anchor" aria-hidden="true"></a>oppr: Optimal Project Prioritization</h1></div>
+<div class="section level1">
+<div class="page-header"><h1 id="oppr-optimal-project-prioritization">oppr: Optimal Project Prioritization<a class="anchor" aria-label="anchor" href="#oppr-optimal-project-prioritization"></a>
+</h1></div>
 
 <p>The <em>oppr R</em> package is decision support tool for prioritizing conservation projects. Prioritizations can be developed by maximizing expected feature richness, expected phylogenetic diversity, the number of features that meet persistence targets, or identifying a set of projects that meet persistence targets for minimal cost. Constraints (e.g. lock in specific actions) and feature weights can also be specified to further customize prioritizations. After defining a project prioritization problem, solutions can be obtained using exact algorithms, heuristic algorithms, or random processes. In particular, it is recommended to install the <a href="https://www.gurobi.com" class="external-link">‘Gurobi’ optimizer</a> because it can identify optimal solutions very quickly. Finally, methods are provided for comparing different prioritizations and evaluating their benefits.</p>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor" aria-hidden="true"></a>Installation</h2>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
 <p>The latest official version of the <em>oppr R</em> package can be installed from the <a href="https://cran.r-project.org/" class="external-link">Comprehensive R Archive Network (CRAN)</a> using the following <em>R</em> code.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"oppr"</span>, repos <span class="op">=</span> <span class="st">"https://cran.rstudio.com/"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"oppr"</span>, repos <span class="op">=</span> <span class="st">"https://cran.rstudio.com/"</span><span class="op">)</span></span></code></pre></div>
 <p>Alternatively, the latest development version can be installed from <a href="https://github.com/prioritizr/oppr" class="external-link">GitHub</a> using the following code. Please note that while developmental versions may contain additional features not present in the official version, they may also contain coding errors.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://remotes.r-lib.org" class="external-link">remotes</a></span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"prioritizr/oppr"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://remotes.r-lib.org" class="external-link">remotes</a></span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"prioritizr/oppr"</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="citation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#citation" class="anchor" aria-hidden="true"></a>Citation</h2>
+<div class="section level2">
+<h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
+</h2>
 <p>To cite the <em>oppr R</em> package in publications, please use:</p>
-<blockquote>
-<p>Hanson JO, Schuster R, Strimas-Mackey M &amp; Bennett JR (2019) Optimality in prioritizing conservation projects. <em>Methods in Ecology &amp; Evolution</em>, <strong>10</strong>: 1655–1663.</p>
-</blockquote>
+<blockquote><p>Hanson JO, Schuster R, Strimas-Mackey M &amp; Bennett JR (2019) Optimality in prioritizing conservation projects. <em>Methods in Ecology &amp; Evolution</em>, <strong>10</strong>: 1655–1663.</p></blockquote>
 <p>You can also use the following <em>R</em> code to determine which version you have installed: <code>packageVersion("oppr")</code></p>
 </div>
-<div id="usage" class="section level2">
-<h2 class="hasAnchor">
-<a href="#usage" class="anchor" aria-hidden="true"></a>Usage</h2>
+<div class="section level2">
+<h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
+</h2>
 <p>Here we will provide a short example showing how the <em>oppr R</em> package can be used to prioritize funding for conservation projects. To start off, we will set the seed for the random number generator to ensure you get the same results as shown here, and load the <em>oppr R</em> package.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">500</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://prioritizr.github.io/oppr/">oppr</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">500</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://prioritizr.github.io/oppr/">oppr</a></span><span class="op">)</span></span></code></pre></div>
 <p>Now we will load some data sets that are distributed with the package. First, we will load the <code>sim_features</code> object. This table contains information on the conservation features (e.g. species). Specifically, each row corresponds to a different feature, and each column contains information associated with the features. In this table, the <code>"name"</code> column contains the name of each feature, and the <code>"weight"</code> column denotes the relative importance for each feature.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># load data</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">sim_features</span><span class="op">)</span>
-
-<span class="co"># print table</span>
-<span class="fu"><a href="reference/print.html">print</a></span><span class="op">(</span><span class="va">sim_features</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 5 x 2</span></span>
+<code class="sourceCode R"><span><span class="co"># load data</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">sim_features</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># print table</span></span>
+<span><span class="fu"><a href="reference/print.html">print</a></span><span class="op">(</span><span class="va">sim_features</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 5 × 2</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="do">##   name  weight</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="do">##   &lt;chr&gt;  &lt;dbl&gt;</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 F1     0.211</span></span>
@@ -129,12 +127,12 @@
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 5 F5     1.59</span></span></code></pre></div>
 <p>Next, we will load the <code>sim_actions</code> object. This table stores information about the various management actions (i.e. <code>tibble</code>). Each row corresponds to a different action, and each column describes different properties associated with the actions. These actions correspond to specific management actions that have known costs. For example, they may relate to pest eradication activities (e.g. trapping) in sites of conservation importance. In this table, the <code>"name"</code> column contains the name of each action, and the <code>"cost"</code> column denotes the cost of each action. It also contains additional columns for customizing the solutions, but we will ignore them for now. Note that the last action—the <code>"baseline_action"</code>—has a zero cost and is used with the a baseline project (see below).</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># load data</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">sim_actions</span><span class="op">)</span>
-
-<span class="co"># print table</span>
-<span class="fu"><a href="reference/print.html">print</a></span><span class="op">(</span><span class="va">sim_actions</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 6 x 4</span></span>
+<code class="sourceCode R"><span><span class="co"># load data</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">sim_actions</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># print table</span></span>
+<span><span class="fu"><a href="reference/print.html">print</a></span><span class="op">(</span><span class="va">sim_actions</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 6 × 4</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="do">##   name             cost locked_in locked_out</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="do">##   &lt;chr&gt;           &lt;dbl&gt; &lt;lgl&gt;     &lt;lgl&gt;     </span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 F1_action        94.4 FALSE     FALSE     </span></span>
@@ -145,12 +143,12 @@
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="do">## 6 baseline_action   0   FALSE     FALSE</span></span></code></pre></div>
 <p>Additionally, we will load the <code>sim_projects</code> object. This table stores information about various conservation projects. Each row corresponds to a different project, and each column describes various properties associated with the projects. These projects correspond to groups of conservation actions. For example, a conservation project may pertain to a set of conservation actions that relate to a single feature or single geographic locality. In this table, the <code>"name"</code> column contains the name of each project, the <code>"success"</code> column denotes the probability of each project succeeding if it is funded, the <code>"F1"</code>–<code>"F5"</code> columns show the probability of each feature is expected to persist if each project is funded (<code>NA</code> values mean that a feature does not benefit from a project), and the <code>"F1_action"</code>–<code>"F5_action"</code> columns indicate which actions are associated with which projects. Note that the last project—the <code>"baseline_project"</code>—is associated with the <code>"baseline_action"</code> action. This project has a zero cost and represents the baseline probability of each feature persisting if no other project is funded. This is important because we can’t find a cost-effective solution if we don’t know how much better each project improves a species’ chance at persistence. Finally, although most projects in this example directly relate to a single feature, you can input projects that directly affect the persistence of multiple features.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># load data</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">sim_projects</span><span class="op">)</span>
-
-<span class="co"># print table</span>
-<span class="fu"><a href="reference/print.html">print</a></span><span class="op">(</span><span class="va">sim_projects</span>, width <span class="op">=</span> <span class="cn">Inf</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 6 x 13</span></span>
+<code class="sourceCode R"><span><span class="co"># load data</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">sim_projects</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># print table</span></span>
+<span><span class="fu"><a href="reference/print.html">print</a></span><span class="op">(</span><span class="va">sim_projects</span>, width <span class="op">=</span> <span class="cn">Inf</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 6 × 13</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="do">##   name             success     F1     F2      F3     F4     F5 F1_action</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="do">##   &lt;chr&gt;              &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;lgl&gt;    </span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 F1_project         0.919  0.791 NA     NA      NA     NA     TRUE     </span></span>
@@ -169,18 +167,18 @@
 <span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="do">## 6 FALSE     FALSE     FALSE     FALSE     TRUE</span></span></code></pre></div>
 <p>After loading the data, we can begin formulating the project prioritization problem. Here our goal is to maximize the overall probability that each feature is expected to persist into the future (i.e. the feature richness), whilst also accounting for the relative importance of each feature and the fact that our resources are limited such that we can only spend at most $400 on funding management actions. Now, let’s build a project prioritization problem object that represents our goal.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># build problem</span>
-<span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/problem.html">problem</a></span><span class="op">(</span>projects <span class="op">=</span> <span class="va">sim_projects</span>, actions <span class="op">=</span> <span class="va">sim_actions</span>,
-             features <span class="op">=</span>  <span class="va">sim_features</span>, project_name_column <span class="op">=</span> <span class="st">"name"</span>,
-             project_success_column <span class="op">=</span> <span class="st">"success"</span>, action_name_column <span class="op">=</span> <span class="st">"name"</span>,
-             action_cost_column <span class="op">=</span> <span class="st">"cost"</span>, feature_name_column <span class="op">=</span> <span class="st">"name"</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
-     <span class="fu"><a href="reference/add_max_richness_objective.html">add_max_richness_objective</a></span><span class="op">(</span>budget <span class="op">=</span> <span class="fl">400</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
-     <span class="fu"><a href="reference/add_feature_weights.html">add_feature_weights</a></span><span class="op">(</span>weight <span class="op">=</span> <span class="st">"weight"</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
-     <span class="fu"><a href="reference/add_binary_decisions.html">add_binary_decisions</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
-     <span class="fu"><a href="reference/add_default_solver.html">add_default_solver</a></span><span class="op">(</span>verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="co"># print problem</span>
-<span class="fu"><a href="reference/print.html">print</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># build problem</span></span>
+<span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/problem.html">problem</a></span><span class="op">(</span>projects <span class="op">=</span> <span class="va">sim_projects</span>, actions <span class="op">=</span> <span class="va">sim_actions</span>,</span>
+<span>             features <span class="op">=</span>  <span class="va">sim_features</span>, project_name_column <span class="op">=</span> <span class="st">"name"</span>,</span>
+<span>             project_success_column <span class="op">=</span> <span class="st">"success"</span>, action_name_column <span class="op">=</span> <span class="st">"name"</span>,</span>
+<span>             action_cost_column <span class="op">=</span> <span class="st">"cost"</span>, feature_name_column <span class="op">=</span> <span class="st">"name"</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span></span>
+<span>     <span class="fu"><a href="reference/add_max_richness_objective.html">add_max_richness_objective</a></span><span class="op">(</span>budget <span class="op">=</span> <span class="fl">400</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span></span>
+<span>     <span class="fu"><a href="reference/add_feature_weights.html">add_feature_weights</a></span><span class="op">(</span>weight <span class="op">=</span> <span class="st">"weight"</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span></span>
+<span>     <span class="fu"><a href="reference/add_binary_decisions.html">add_binary_decisions</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span></span>
+<span>     <span class="fu"><a href="reference/add_default_solver.html">add_default_solver</a></span><span class="op">(</span>verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># print problem</span></span>
+<span><span class="fu"><a href="reference/print.html">print</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb11"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Project Prioritization Problem</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="do">##   actions          F1_action, F2_action, F3_action, ... (6 actions)</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="do">##   projects         F1_project, F2_project, F3_project, ... (6 projects)</span></span>
@@ -195,12 +193,12 @@
 <span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="do">##   solver:          Gurobi [first_feasible (0), gap (0), number_solutions (1), presolve (2), solution_pool_method (2), threads (1), time_limit (2147483647), time_limit (2147483647), verbose (0)]</span></span></code></pre></div>
 <p>Next, we can solve this problem to obtain a solution. By default, we will obtain the optimal solution to our problem using an exact algorithm solver (e.g. using <a href="https://www.gurobi.com/" class="external-link">Gurobi</a> or <a href="https://cran.r-project.org/package=lpSolveAPI" class="external-link">lpSolveAPI</a>).</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># solve problem</span>
-<span class="va">s</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/solve.html">solve</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># solve problem</span></span>
+<span><span class="va">s</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/solve.html">solve</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># print solution</span>
-<span class="fu"><a href="reference/print.html">print</a></span><span class="op">(</span><span class="va">s</span>, width <span class="op">=</span> <span class="cn">Inf</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb14"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 1 x 21</span></span>
+<code class="sourceCode R"><span><span class="co"># print solution</span></span>
+<span><span class="fu"><a href="reference/print.html">print</a></span><span class="op">(</span><span class="va">s</span>, width <span class="op">=</span> <span class="cn">Inf</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 1 × 21</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="do">##   solution status    obj  cost F1_action F2_action F3_action F4_action F5_action</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="do">##      &lt;int&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;</span></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="do">## 1        1 OPTIMAL  1.75  395.         1         1         0         1         1</span></span>
@@ -212,14 +210,14 @@
 <span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="do">## 1                1 0.808 0.865 0.0865 0.688 0.592</span></span></code></pre></div>
 <p>The <code>s</code> table contains the solution and also various statistics associated with the solution. Here, each row corresponds to a different solution. Specifically, the <code>"solution"</code> column contains an identifier for the solution (which may be useful for methods that output multiple solutions), the <code>"obj"</code> column contains the objective value (i.e. the expected feature richness for this problem), the <code>"cost"</code> column stores the cost of the solution, and the <code>"status"</code> column contains information from the solver about the solution. Additionally, it contains columns for each action (<code>"F1_action"</code>, <code>"F2_actions"</code>, <code>"F3_actions"</code>, …, <code>"baseline_action"</code>) which indicate if each action was prioritized for funding in the solution. Additionally, it contains columns for each project (<code>"F1_project"</code>, <code>"F2_project"</code>, <code>"F3_project"</code>, …, <code>"baseline_project"</code>) that indicate if the project was completely funded or not. Finally, it contains column for each feature (<code>"F1</code>, <code>"F2"</code>, <code>"F3</code>, …) which indicate the probability that each feature is expected to persist into the future under each solution (for information on how this is calculated see <code><a href="reference/add_max_richness_objective.html">?add_max_richness_objective</a></code>). Since tabular data can be difficult to understand, let’s visualize how well this solution would conserve the features. Note that features which benefit from fully funded projects, excepting the baseline project, are denoted with an asterisk.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># visualize solution</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">p</span>, <span class="va">s</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># visualize solution</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">p</span>, <span class="va">s</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-readme-plot-1.png" style="display: block; margin: auto;"></p>
 <p>This has just been a taster of the <em>oppr R</em> package. For more information, see the <a href="https://prioritizr.github.io/oppr/articles/oppr.html">package vignette</a>.</p>
 </div>
-<div id="getting-help" class="section level2">
-<h2 class="hasAnchor">
-<a href="#getting-help" class="anchor" aria-hidden="true"></a>Getting help</h2>
+<div class="section level2">
+<h2 id="getting-help">Getting help<a class="anchor" aria-label="anchor" href="#getting-help"></a>
+</h2>
 <p>If you have any questions about using the <em>oppr R</em> package or suggestions for improving it, please <a href="https://github.com/prioritizr/oppr/issues/new" class="external-link">file an issue at the package’s online code repository</a>.</p>
 </div>
 </div>
@@ -229,19 +227,16 @@
     <div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=oppr">https://​cloud.r-project.org/​package=oppr</a>
-</li>
-<li>Browse source code at <br><a href="https://github.com/prioritizr/oppr/">https://​github.com/​prioritizr/​oppr/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/prioritizr/oppr/issues">https://​github.com/​prioritizr/​oppr/​issues</a>
-</li>
+<li><a href="https://cloud.r-project.org/package=oppr" class="external-link">View on CRAN</a></li>
+<li><a href="https://github.com/prioritizr/oppr/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/prioritizr/oppr/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 
 <div class="license">
 <h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
-<li><a href="https://www.r-project.org/Licenses/GPL-3">GPL-3</a></li>
+<li><a href="https://www.r-project.org/Licenses/GPL-3" class="external-link">GPL-3</a></li>
 </ul>
 </div>
 
@@ -249,7 +244,7 @@
 <div class="citation">
 <h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li><a href="authors.html">Citing oppr</a></li>
+<li><a href="authors.html#citation">Citing oppr</a></li>
 </ul>
 </div>
 
@@ -257,13 +252,13 @@
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>
-<a href="https://jeffrey-hanson.com">Jeffrey O Hanson</a> <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-4716-6134" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<a href="https://jeffrey-hanson.com" class="external-link">Jeffrey O Hanson</a> <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-4716-6134" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 <li>
-<a href="http://www.richard-schuster.com">Richard Schuster</a> <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0003-3191-7869" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<a href="http://www.richard-schuster.com" class="external-link">Richard Schuster</a> <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0003-3191-7869" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 <li>
-<a href="http://strimas.com">Matthew Strimas-Mackey</a> <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0001-8929-7776" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<a href="http://strimas.com" class="external-link">Matthew Strimas-Mackey</a> <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0001-8929-7776" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 <li>
-<a href="https://josephrbennett.wordpress.com">Joseph R Bennett</a> <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-3901-9513" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<a href="https://josephrbennett.wordpress.com" class="external-link">Joseph R Bennett</a> <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-3901-9513" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 </ul>
 </div>
 
@@ -273,7 +268,7 @@
 <li><a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/Lifecycle-stable-brightgreen.svg" alt="lifecycle"></a></li>
 <li><a href="https://github.com/prioritizr/oppr/actions" class="external-link"><img src="https://img.shields.io/github/workflow/status/prioritizr/oppr/Ubuntu/master.svg?label=Ubuntu" alt="R-CMD-check-Ubuntu"></a></li>
 <li><a href="https://github.com/prioritizr/oppr/actions" class="external-link"><img src="https://img.shields.io/github/workflow/status/prioritizr/oppr/Windows/master.svg?label=Windows" alt="R-CMD-check-Windows"></a></li>
-<li><a href="https://github.com/prioritizr/oppr/actions" class="external-link"><img src="https://img.shields.io/github/workflow/status/prioritizr/oppr/Mac%20OSX/master.svg?label=Mac%20OSX" alt="R-CMD-check-Mac-OSX"></a></li>
+<li><a href="https://github.com/prioritizr/oppr/actions" class="external-link"><img src="https://img.shields.io/github/workflow/status/prioritizr/oppr/macOS/master.svg?label=macOS" alt="R-CMD-check-macOS"></a></li>
 <li><a href="https://codecov.io/github/prioritizr/oppr?branch=master" class="external-link"><img src="https://codecov.io/github/prioritizr/oppr/coverage.svg?branch=master" alt="Coverage Status"></a></li>
 <li><a href="https://CRAN.R-project.org/package=oppr" class="external-link"><img src="http://www.r-pkg.org/badges/version/oppr" alt="CRAN_Status_Badge"></a></li>
 </ul>
@@ -290,7 +285,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>

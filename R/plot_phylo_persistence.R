@@ -9,23 +9,28 @@ NULL
 #'
 #' @inheritParams plot.ProjectProblem
 #'
-#' @details This function requires the \pkg{ggtree} (Yu *et al.* 2017).
-#'   Since this package is distributed exclusively
-#'   through [Bioconductor](https://bioconductor.org), and is not
-#'   available on the
-#'   [Comprehensive R Archive Network](https://cran.r-project.org/),
-#'   please execute the following command to install it:
-#'   `source("https://bioconductor.org/biocLite.R");biocLite("ggtree")`.
-#'   If the installation process fails, please consult the package's [online documentation](https://bioconductor.org/packages/release/bioc/html/ggtree.html).
+#' @details
+#' This function requires the \pkg{ggtree} (Yu *et al.* 2017).
+#' Since this package is distributed exclusively
+#' through [Bioconductor](https://bioconductor.org), and is not
+#' available on the
+#' [Comprehensive R Archive Network](https://cran.r-project.org/),
+#' please execute the following commands to install it:
+#' ```
+#' if (!require(remotes)) install.packages("remotes")
+#' remotes::install_bioc("ggtree")
+#' ```
+#'  If the installation process fails, please consult the package's
+#'  [online documentation](https://bioconductor.org/packages/release/bioc/html/ggtree.html).
 #'
-#'   In this plot, each phylogenetic branch is colored according to probability
-#'   that it is expected to persist into the future (see Faith 2008).
-#'   Features that directly benefit from at least a single
-#'   completely funded project with a non-zero cost are depicted with an
-#'   asterisk symbol. Additionally, features that indirectly benefit from funded
-#'   projects---because they are associated with partially funded projects that
-#'   have non-zero costs and share actions with at least one completely funded
-#'   project---are depicted with an open circle symbol.
+#' In this plot, each phylogenetic branch is colored according to probability
+#' that it is expected to persist into the future (see Faith 2008).
+#' Features that directly benefit from at least a single
+#' completely funded project with a non-zero cost are depicted with an
+#' asterisk symbol. Additionally, features that indirectly benefit from funded
+#' projects---because they are associated with partially funded projects that
+#' have non-zero costs and share actions with at least one completely funded
+#' project---are depicted with an open circle symbol.
 #'
 #' @references
 #' Faith DP (2008) Threatened species and the potential loss of
@@ -38,7 +43,7 @@ NULL
 #' covariates and other associated data. *Methods in Ecology and
 #' Evolution*, **8**: 28--36.
 #'
-#' @return A [ggtree::ggtree()] object, or a
+#' @return A `ggtree::ggtree()` object, or a
 #'   [tidytree::treedata()] object if `return_data` is
 #'   `TRUE`.
 #'
@@ -176,7 +181,7 @@ plot_phylo_persistence <- function(x, solution, n = 1, symbol_hjust = 0.007,
   ## pre-compute probabilities that each branch will persist
   branch_probs <- rcpp_expected_persistences(
     x$pa_matrix(), x$epf_matrix()[, tree$tip.label, drop = FALSE],
-    branch_matrix(tree), methods::as(as.matrix(solution), "dgCMatrix"))
+    branch_matrix(tree), as_Matrix(as.matrix(solution), "dgCMatrix"))
 
   # Main processing
   ## format tree data for plotting

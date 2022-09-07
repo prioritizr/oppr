@@ -30,10 +30,14 @@ test_that("valid arguments", {
   ## species persistence columns
   expect_true(is.numeric(as.matrix(s$projects[, paste0("F", seq_len(5)),
                                               drop = FALSE])))
-  expect_gte(min(as(as.matrix(s$projects[-7, paste0("F", seq_len(5)),
-                                         drop = FALSE]), "dgCMatrix")@x,
-                                         na.rm = TRUE),
-                                         0.5)
+  expect_gte(
+    min(
+      as_Matrix(
+        as.matrix(s$projects[-7, paste0("F", seq_len(5)), drop = FALSE]),
+        "dgCMatrix")@x,
+      na.rm = TRUE),
+    0.5
+  )
   expect_lte(max(as.matrix(s$projects[-7, paste0("F", seq_len(5)),
                                       drop = FALSE]), na.rm = TRUE), 0.9)
   expect_gte(min(as.matrix(s$projects[7, paste0("F", seq_len(5)),

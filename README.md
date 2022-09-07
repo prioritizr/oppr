@@ -6,7 +6,7 @@
 [![lifecycle](https://img.shields.io/badge/Lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 [![R-CMD-check-Ubuntu](https://img.shields.io/github/workflow/status/prioritizr/oppr/Ubuntu/master.svg?label=Ubuntu)](https://github.com/prioritizr/oppr/actions)
 [![R-CMD-check-Windows](https://img.shields.io/github/workflow/status/prioritizr/oppr/Windows/master.svg?label=Windows)](https://github.com/prioritizr/oppr/actions)
-[![R-CMD-check-Mac-OSX](https://img.shields.io/github/workflow/status/prioritizr/oppr/Mac%20OSX/master.svg?label=Mac%20OSX)](https://github.com/prioritizr/oppr/actions)
+[![R-CMD-check-macOS](https://img.shields.io/github/workflow/status/prioritizr/oppr/macOS/master.svg?label=macOS)](https://github.com/prioritizr/oppr/actions)
 [![Coverage
 Status](https://codecov.io/github/prioritizr/oppr/coverage.svg?branch=master)](https://codecov.io/github/prioritizr/oppr?branch=master)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/oppr)](https://CRAN.R-project.org/package=oppr)
@@ -85,7 +85,7 @@ data(sim_features)
 print(sim_features)
 ```
 
-    ## # A tibble: 5 x 2
+    ## # A tibble: 5 × 2
     ##   name  weight
     ##   <chr>  <dbl>
     ## 1 F1     0.211
@@ -115,7 +115,7 @@ data(sim_actions)
 print(sim_actions)
 ```
 
-    ## # A tibble: 6 x 4
+    ## # A tibble: 6 × 4
     ##   name             cost locked_in locked_out
     ##   <chr>           <dbl> <lgl>     <lgl>     
     ## 1 F1_action        94.4 FALSE     FALSE     
@@ -155,7 +155,7 @@ data(sim_projects)
 print(sim_projects, width = Inf)
 ```
 
-    ## # A tibble: 6 x 13
+    ## # A tibble: 6 × 13
     ##   name             success     F1     F2      F3     F4     F5 F1_action
     ##   <chr>              <dbl>  <dbl>  <dbl>   <dbl>  <dbl>  <dbl> <lgl>    
     ## 1 F1_project         0.919  0.791 NA     NA      NA     NA     TRUE     
@@ -178,7 +178,7 @@ prioritization problem. Here our goal is to maximize the overall
 probability that each feature is expected to persist into the future
 (i.e. the feature richness), whilst also accounting for the relative
 importance of each feature and the fact that our resources are limited
-such that we can only spend at most $400 on funding management actions.
+such that we can only spend at most \$400 on funding management actions.
 Now, let’s build a project prioritization problem object that represents
 our goal.
 
@@ -225,7 +225,7 @@ s <- solve(p)
 print(s, width = Inf)
 ```
 
-    ## # A tibble: 1 x 21
+    ## # A tibble: 1 × 21
     ##   solution status    obj  cost F1_action F2_action F3_action F4_action F5_action
     ##      <int> <chr>   <dbl> <dbl>     <dbl>     <dbl>     <dbl>     <dbl>     <dbl>
     ## 1        1 OPTIMAL  1.75  395.         1         1         0         1         1

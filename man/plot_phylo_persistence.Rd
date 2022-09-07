@@ -39,7 +39,7 @@ to produce visually appealing publication quality plots.}
 the plot be returned instead of the plot? Defaults to \code{FALSE}.}
 }
 \value{
-A \code{\link[ggtree:ggtree]{ggtree::ggtree()}} object, or a
+A \code{ggtree::ggtree()} object, or a
 \code{\link[tidytree:treedata]{tidytree::treedata()}} object if \code{return_data} is
 \code{TRUE}.
 }
@@ -54,9 +54,14 @@ Since this package is distributed exclusively
 through \href{https://bioconductor.org}{Bioconductor}, and is not
 available on the
 \href{https://cran.r-project.org/}{Comprehensive R Archive Network},
-please execute the following command to install it:
-\verb{source("https://bioconductor.org/biocLite.R");biocLite("ggtree")}.
-If the installation process fails, please consult the package's \href{https://bioconductor.org/packages/release/bioc/html/ggtree.html}{online documentation}.
+please execute the following commands to install it:
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{if (!require(remotes)) install.packages("remotes")
+remotes::install_bioc("ggtree")
+}\if{html}{\out{</div>}}
+
+If the installation process fails, please consult the package's
+\href{https://bioconductor.org/packages/release/bioc/html/ggtree.html}{online documentation}.
 
 In this plot, each phylogenetic branch is colored according to probability
 that it is expected to persist into the future (see Faith 2008).

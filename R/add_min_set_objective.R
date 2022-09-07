@@ -175,7 +175,7 @@ add_min_set_objective <- function(x) {
         y$epf_matrix()[, y$feature_phylogeny()$tip.label, drop = FALSE],
         bm[, bo, drop = FALSE], fp$edge.length[bo],
         rep(0, y$number_of_features()), rep(0, y$number_of_features()),
-        methods::as(as.matrix(solution), "dgCMatrix"))
+        as_Matrix(as.matrix(solution), "dgCMatrix"))
     },
     apply = function(self, x, y) {
       assertthat::assert_that(inherits(x, "OptimizationProblem"),

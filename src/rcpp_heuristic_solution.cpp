@@ -33,7 +33,7 @@ Rcpp::LogicalMatrix rcpp_heuristic_solution(
   std::vector<double> curr_shared_actions(n_actions);
   std::vector<double> curr_project_costs(n_projects);
   std::size_t curr_iteration = 1;
-  std::size_t curr_project;
+  std::size_t curr_project = 0;
   double curr_objective_sans_project;
   bool targets_met = true;
 

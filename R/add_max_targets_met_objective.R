@@ -233,7 +233,7 @@ add_max_targets_met_objective <- function(x, budget) {
         y$action_costs(), y$pa_matrix(), y$epf_matrix(),
         bm[, bo, drop = FALSE], fp$edge.length[bo],
         y$targets$output()$value, w,
-        methods::as(as.matrix(solution), "dgCMatrix"))
+        as_Matrix(as.matrix(solution), "dgCMatrix"))
     },
     apply = function(self, x, y) {
       assertthat::assert_that(inherits(x, "OptimizationProblem"),

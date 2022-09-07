@@ -10,7 +10,7 @@ NULL
 #'
 #' @inheritParams add_gurobi_solver
 #'
-#' @details [*SYMPHONY*](https://projects.coin-or.org/SYMPHONY) is an
+#' @details [*SYMPHONY*](https://github.com/coin-or/SYMPHONY) is an
 #'   open-source integer programming solver that is part of the Computational
 #'   Infrastructure for Operations Research (COIN-OR) project, an initiative
 #'   to promote development of open-source tools for operations research (a

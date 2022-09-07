@@ -26,7 +26,7 @@ data(sim_features)
 data(sim_tree)
 }
 \description{
-Simulated data for prioritizing conservations projects.
+Simulated data for prioritizing conservation projects.
 }
 \details{
 The data set contains the following objects:

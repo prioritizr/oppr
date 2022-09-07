@@ -252,7 +252,7 @@ add_max_phylo_div_objective <- function(x, budget, tree) {
         bm[, bo, drop = FALSE], fp$edge.length[bo],
         rep(0, y$number_of_features()),
         y$feature_weights()[fp$tip.label],
-        methods::as(as.matrix(solution), "dgCMatrix"))
+        as_Matrix(as.matrix(solution), "dgCMatrix"))
     },
     apply = function(self, x, y) {
       assertthat::assert_that(inherits(x, "OptimizationProblem"),

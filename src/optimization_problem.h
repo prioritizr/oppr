@@ -1,3 +1,4 @@
+#pragma once
 #ifndef OPTIMIZATION_PROBLEM_H
 #define OPTIMIZATION_PROBLEM_H
 

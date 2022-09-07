@@ -43,7 +43,7 @@ quickcheck:
 
 check:
 	echo "\n===== R CMD CHECK =====\n" > check.log 2>&1
-	R --slave -e "devtools::check(build_args = '--no-build-vignettes', args = '--no-build-vignettes', run_dont_test = TRUE, vignettes = FALSE)" >> check.log 2>&1
+	R --slave -e "devtools::check(remote = TRUE, build_args = '--no-build-vignettes', args = '--no-build-vignettes', run_dont_test = TRUE, vignettes = FALSE)" >> check.log 2>&1
 	cp -Rf doc inst/
 	touch inst/doc/.gitkeep
 
@@ -66,7 +66,17 @@ quickbuild:
 	R --slave -e "devtools::build(vignettes = FALSE)"
 	cp -Rf doc inst/
 
+urlcheck:
+	R --slave -e "devtools::document();urlchecker::url_check()"
+
+spellcheck:
+	R --slave -e "devtools::document();devtools::spell_check()"
+
+examples:
+	R --slave -e "devtools::run_examples(run_donttest = TRUE, run_dontrun = TRUE);warnings()" > examples.log 2>&1
+	rm -f Rplots.pdf
+
 install:
-	R --slave -e "devtools::install_local('../oppr', force = TRUE, upgrade = 'never')"
+	R --slave -e "devtools::install_local('.', force = TRUE, upgrade = 'never')"
 
 .PHONY: initc data docs readme site test check checkwb build install man
