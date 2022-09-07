@@ -69,6 +69,9 @@ quickbuild:
 urlcheck:
 	R --slave -e "devtools::document();urlchecker::url_check()"
 
+spellcheck:
+	R --slave -e "devtools::document();devtools::spell_check()"
+
 examples:
 	R --slave -e "devtools::run_examples(run_donttest = TRUE, run_dontrun = TRUE);warnings()" > examples.log 2>&1
 	rm -f Rplots.pdf

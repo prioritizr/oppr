@@ -71,6 +71,7 @@ BugReports: https://github.com/prioritizr/oppr/issues
 VignetteBuilder: knitr
 RoxygenNote: 7.2.1
 Encoding: UTF-8
+Language: en-US
 Collate:
     'internal.R'
     'pproto.R'

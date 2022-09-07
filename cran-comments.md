@@ -1,6 +1,6 @@
 Dear CRAN maintainers,
 
-Thank you very much for reviewing this submission. This submission aims to address the warnings and errors raised by CRAN's checks. It also contains updates to ensure compatibility with the current and upcoming versions of the Matrix package.
+Thank you very much for reviewing this submission. This submission aims to address the warnings and errors raised by CRAN's checks. It also contains updates to ensure compatibility with the current and upcoming version of the Matrix package.
 
 Cheers,
 
@@ -29,7 +29,7 @@ Jeff
       Status: Service Unavailable
       Message: 503
 
-    **I have confirmed that the DOI is valid. Specifically, the DOI pertains to a scientific article published in the peer reviewed journal Methods in Ecology and Evolution.**
+    **This NOTE is a false positive and the DOI is valid. Specifically, the DOI pertains to a scientific article published in the peer reviewed journal Methods in Ecology and Evolution.**
 
 * checking package dependencies ... NOTE
     Package suggested but not available for checking: 'gurobi'
