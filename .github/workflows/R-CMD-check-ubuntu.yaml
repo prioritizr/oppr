@@ -52,7 +52,7 @@ jobs:
           pak-version: devel
           extra-packages: |
             any::rcmdcheck
-            any::XML
+            url::https://cran.r-project.org/src/contrib/XML_3.99-0.10.tar.gz
             any::remotes
             any::covr
             gurobi=?ignore
