@@ -46,18 +46,17 @@ jobs:
           r-version: ${{ matrix.config.r }}
           use-public-rspm: true
 
-      - name: Install system dependencies packages
+      - name: Install system dependencies
         run: |
           sudo apt-get install libxml2
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          cache-version: 2
+          cache-version: 4
           pak-version: devel
           extra-packages: |
-            any::rcmdcheck
-            url::https://cran.r-project.org/src/contrib/digest_0.6.29.tar.gz
             url::https://cran.r-project.org/src/contrib/XML_3.99-0.10.tar.gz
+            any::rcmdcheck
             any::remotes
             any::covr
             gurobi=?ignore
