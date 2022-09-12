@@ -56,7 +56,7 @@ jobs:
           pak-version: devel
           extra-packages: |
             any::rcmdcheck
-            any::digest
+            url::https://cran.r-project.org/src/contrib/digest_0.6.29.tar.gz
             url::https://cran.r-project.org/src/contrib/XML_3.99-0.10.tar.gz
             any::remotes
             any::covr
