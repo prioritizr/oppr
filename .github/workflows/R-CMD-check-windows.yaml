@@ -69,7 +69,7 @@ jobs:
       - name: Install additional packages
         run: |
           options(repos = "https://cloud.r-project.org/")
-          remotes::install("Rsymphony")
+          remotes::install_cran("Rsymphony")
           remotes::install_bioc("lpsymphony")
           remotes::install_bioc("ggtree")
         shell: Rscript {0}
