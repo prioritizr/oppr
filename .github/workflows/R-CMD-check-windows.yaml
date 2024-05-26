@@ -57,7 +57,7 @@ jobs:
           extra-packages: |
             cran/XML
             any::remotes
-            any::rmdcheck
+            any::rcmdcheck
             gurobi=?ignore
             Rsymphony=?ignore
             lpsymphony=?ignore
