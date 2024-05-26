@@ -35,7 +35,7 @@ package. This function can also be used to customize the behavior of the
 solver. It requires the \pkg{lpSolveAPI} package.
 }
 \details{
-\href{http://lpsolve.sourceforge.net/5.5/}{\emph{lp_solve}} is an
+\href{https://lpsolve.sourceforge.net/5.5/}{\emph{lp_solve}} is an
 open-source integer programming solver.
 Although this solver is the slowest currently supported solver,
 it is also the only exact algorithm solver that can be installed on all

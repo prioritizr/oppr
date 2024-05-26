@@ -44,7 +44,7 @@ The \pkg{lpsymphony} package may be easier to install on Windows or
 Max OSX systems than the \pkg{Rsymphony} package.}
 
 \item{\code{\link[=add_lpsolveapi_solver]{add_lpsolveapi_solver()}}}{
-\href{http://lpsolve.sourceforge.net/5.5/}{\emph{lp_solve}} is an
+\href{https://lpsolve.sourceforge.net/5.5/}{\emph{lp_solve}} is an
 open-source integer programming solver. The \pkg{lpSolveAPI} package
 provides an interface to this solver and is available on CRAN.
 Although this solver is the slowest currently supported solver,

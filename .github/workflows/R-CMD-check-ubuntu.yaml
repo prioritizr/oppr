@@ -53,10 +53,8 @@ jobs:
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           cache-version: 4
-          pak-version: devel
           extra-packages: |
-            url::https://cran.r-project.org/src/contrib/XML_3.99-0.10.tar.gz
-            any::rcmdcheck
+            cran/XML
             any::remotes
             any::covr
             gurobi=?ignore
@@ -95,5 +93,20 @@ jobs:
 
       - name: Test coverage
         if: runner.os == 'Linux' && matrix.config.r == 'release'
-        run: covr::codecov(quiet = FALSE)
+        run: |
+          cov <- covr::package_coverage(
+            quiet = FALSE,
+            clean = FALSE,
+            install_path = file.path(normalizePath(Sys.getenv("RUNNER_TEMP"), winslash = "/"), "package")
+          )
+          covr::to_cobertura(cov)
         shell: Rscript {0}
+
+      - uses: codecov/codecov-action@v4
+        if: runner.os == 'Linux' && matrix.config.r == 'release'
+        with:
+          fail_ci_if_error: ${{ github.event_name != 'pull_request' && true || false }}
+          file: ./cobertura.xml
+          plugin: noop
+          disable_search: true
+          token: ${{ secrets.CODECOV_TOKEN }}

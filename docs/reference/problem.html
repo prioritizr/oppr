@@ -25,7 +25,7 @@ solve() function can be used to identify solutions."><!-- mathjax --><script src
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.4.1</span>
       </span>
     </div>
 
@@ -247,17 +247,16 @@ the available objectives (listed in <a href="objectives.html">objectives</a>).</
 <span class="r-in"><span><span class="co"># print project data</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="print.html">print</a></span><span class="op">(</span><span class="va">sim_projects</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 13</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   name       success     F1     F2      F3     F4     F5 F1_ac…¹ F2_ac…² F3_ac…³</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> F1_project   0.919  0.791 <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     TRUE    FALSE   FALSE  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> F2_project   0.923 <span style="color: #BB0000;">NA</span>      0.888 <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     FALSE   TRUE    FALSE  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> F3_project   0.829 <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>      0.502  <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     FALSE   FALSE   TRUE   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> F4_project   0.848 <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>       0.690 <span style="color: #BB0000;">NA</span>     FALSE   FALSE   FALSE  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> F5_project   0.814 <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      0.617 FALSE   FALSE   FALSE  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> baseline_…   1      0.298  0.250  0.086<span style="text-decoration: underline;">5</span>  0.249  0.182 FALSE   FALSE   FALSE  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 3 more variables: F4_action &lt;lgl&gt;, F5_action &lt;lgl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   baseline_action &lt;lgl&gt;, and abbreviated variable names ¹​F1_action,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ²​F2_action, ³​F3_action</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   name           success     F1     F2      F3     F4     F5 F1_action F2_action</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> F1_project       0.919  0.791 <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     TRUE      FALSE    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> F2_project       0.923 <span style="color: #BB0000;">NA</span>      0.888 <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     FALSE     TRUE     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> F3_project       0.829 <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>      0.502  <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     FALSE     FALSE    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> F4_project       0.848 <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>       0.690 <span style="color: #BB0000;">NA</span>     FALSE     FALSE    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> F5_project       0.814 <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      0.617 FALSE     FALSE    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> baseline_proj…   1      0.298  0.250  0.086<span style="text-decoration: underline;">5</span>  0.249  0.182 FALSE     FALSE    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 4 more variables: F3_action &lt;lgl&gt;, F4_action &lt;lgl&gt;, F5_action &lt;lgl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   baseline_action &lt;lgl&gt;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># print action data</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="print.html">print</a></span><span class="op">(</span><span class="va">sim_features</span><span class="op">)</span></span></span>
@@ -307,8 +306,20 @@ the available objectives (listed in <a href="objectives.html">objectives</a>).</
 <span class="r-in"><span><span class="co"># \dontrun{</span></span></span>
 <span class="r-in"><span><span class="co"># solve problem</span></span></span>
 <span class="r-in"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="fu"><a href="solve.html">solve</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Gurobi Optimizer version 9.5.2 build v9.5.2rc0 (linux64)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Username</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter TimeLimit to value 2147483647</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter MIPGap to value 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter NumericFocus to value 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Presolve to value 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Threads to value 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter PoolSolutions to value 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter PoolSearchMode to value 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Academic license - for non-commercial use only - expires 2025-04-21</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Gurobi Optimizer version 11.0.2 build v11.0.2rc0 (linux64 - "Ubuntu 22.04.4 LTS")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CPU model: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Thread count: 4 physical cores, 8 logical processors, using up to 1 threads</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimize a model with 47 rows, 47 columns and 102 nonzeros</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model fingerprint: 0xa33f6587</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Variable types: 0 continuous, 42 integer (42 binary)</span>
@@ -337,6 +348,7 @@ the available objectives (listed in <a href="objectives.html">objectives</a>).</
 <span class="r-out co"><span class="r-pr">#&gt;</span> Thread count was 1 (of 8 available processors)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Solution count 1: 1.74904 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> No other solutions better than 1.74904</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimal solution found (tolerance 0.00e+00)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Best objective 1.749044775334e+00, best bound 1.749044775334e+00, gap 0.0000%</span>
@@ -344,14 +356,12 @@ the available objectives (listed in <a href="objectives.html">objectives</a>).</
 <span class="r-in"><span><span class="co"># print output</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="print.html">print</a></span><span class="op">(</span><span class="va">s</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 21</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   solution status    obj  cost F1_action F2_ac…¹ F3_ac…² F4_ac…³ F5_ac…⁴ basel…⁵</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>        1 OPTIMAL  1.75  395.         1       1       0       1       1       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 11 more variables: F1_project &lt;dbl&gt;, F2_project &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   F3_project &lt;dbl&gt;, F4_project &lt;dbl&gt;, F5_project &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   baseline_project &lt;dbl&gt;, F1 &lt;dbl&gt;, F2 &lt;dbl&gt;, F3 &lt;dbl&gt;, F4 &lt;dbl&gt;, F5 &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   and abbreviated variable names ¹​F2_action, ²​F3_action, ³​F4_action,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ⁴​F5_action, ⁵​baseline_action</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   solution status    obj  cost F1_action F2_action F3_action F4_action F5_action</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>        1 OPTIMAL  1.75  395.         1         1         0         1         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 12 more variables: baseline_action &lt;dbl&gt;, F1_project &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   F2_project &lt;dbl&gt;, F3_project &lt;dbl&gt;, F4_project &lt;dbl&gt;, F5_project &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   baseline_project &lt;dbl&gt;, F1 &lt;dbl&gt;, F2 &lt;dbl&gt;, F3 &lt;dbl&gt;, F4 &lt;dbl&gt;, F5 &lt;dbl&gt;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># print which actions are funded in the solution</span></span></span>
 <span class="r-in"><span><span class="va">s</span><span class="op">[</span>, <span class="va">sim_actions</span><span class="op">$</span><span class="va">name</span>, drop <span class="op">=</span> <span class="cn">FALSE</span><span class="op">]</span></span></span>
@@ -386,7 +396,7 @@ the available objectives (listed in <a href="objectives.html">objectives</a>).</
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

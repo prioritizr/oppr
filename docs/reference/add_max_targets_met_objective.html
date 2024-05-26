@@ -32,7 +32,7 @@ for specific features (see add_feature_weights())."><!-- mathjax --><script src=
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.4.1</span>
       </span>
     </div>
 
@@ -233,8 +233,20 @@ threat management. <em>Conservation Biology</em>, <strong>29</strong>, 525--536.
 <span class="r-in"><span><span class="co"># \dontrun{</span></span></span>
 <span class="r-in"><span><span class="co"># solve problem</span></span></span>
 <span class="r-in"><span><span class="va">s1</span> <span class="op">&lt;-</span> <span class="fu"><a href="solve.html">solve</a></span><span class="op">(</span><span class="va">p1</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Gurobi Optimizer version 9.5.2 build v9.5.2rc0 (linux64)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Username</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter TimeLimit to value 2147483647</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter MIPGap to value 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter NumericFocus to value 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Presolve to value 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Threads to value 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter PoolSolutions to value 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter PoolSearchMode to value 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Academic license - for non-commercial use only - expires 2025-04-21</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Gurobi Optimizer version 11.0.2 build v11.0.2rc0 (linux64 - "Ubuntu 22.04.4 LTS")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CPU model: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Thread count: 4 physical cores, 8 logical processors, using up to 1 threads</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimize a model with 47 rows, 47 columns and 102 nonzeros</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model fingerprint: 0x00731be5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Variable types: 0 continuous, 47 integer (47 binary)</span>
@@ -257,13 +269,14 @@ threat management. <em>Conservation Biology</em>, <strong>29</strong>, 525--536.
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    4.96141    0    4    3.00000    4.96141  65.4%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       4.0000000    4.96141  24.0%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    4.96141    0    4    4.00000    4.96141  24.0%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       4.0000000    4.96013  24.0%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    4.96013    0    4    4.00000    4.96013  24.0%     -    0s</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Explored 1 nodes (7 simplex iterations) in 0.00 seconds (0.00 work units)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Thread count was 1 (of 8 available processors)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Solution count 1: 4 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> No other solutions better than 4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimal solution found (tolerance 0.00e+00)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Best objective 4.000000000000e+00, best bound 4.000000000000e+00, gap 0.0000%</span>
@@ -271,14 +284,12 @@ threat management. <em>Conservation Biology</em>, <strong>29</strong>, 525--536.
 <span class="r-in"><span><span class="co"># print solution</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="print.html">print</a></span><span class="op">(</span><span class="va">s1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 21</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   solution status    obj  cost F1_action F2_ac…¹ F3_ac…² F4_ac…³ F5_ac…⁴ basel…⁵</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>        1 OPTIMAL     4  99.9         0       0       0       0       1       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 11 more variables: F1_project &lt;dbl&gt;, F2_project &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   F3_project &lt;dbl&gt;, F4_project &lt;dbl&gt;, F5_project &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   baseline_project &lt;dbl&gt;, F1 &lt;dbl&gt;, F2 &lt;dbl&gt;, F3 &lt;dbl&gt;, F4 &lt;dbl&gt;, F5 &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   and abbreviated variable names ¹​F2_action, ²​F3_action, ³​F4_action,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ⁴​F5_action, ⁵​baseline_action</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   solution status    obj  cost F1_action F2_action F3_action F4_action F5_action</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>        1 OPTIMAL     4  99.9         0         0         0         0         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 12 more variables: baseline_action &lt;dbl&gt;, F1_project &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   F2_project &lt;dbl&gt;, F3_project &lt;dbl&gt;, F4_project &lt;dbl&gt;, F5_project &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   baseline_project &lt;dbl&gt;, F1 &lt;dbl&gt;, F2 &lt;dbl&gt;, F3 &lt;dbl&gt;, F4 &lt;dbl&gt;, F5 &lt;dbl&gt;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># plot solution, and add a dashed line to indicate the feature targets</span></span></span>
 <span class="r-in"><span><span class="co"># we can see the three features meet the targets under the baseline</span></span></span>
@@ -296,8 +307,20 @@ threat management. <em>Conservation Biology</em>, <strong>29</strong>, 525--536.
 <span class="r-in"><span><span class="co"># \dontrun{</span></span></span>
 <span class="r-in"><span><span class="co"># solve problem</span></span></span>
 <span class="r-in"><span><span class="va">s2</span> <span class="op">&lt;-</span> <span class="fu"><a href="solve.html">solve</a></span><span class="op">(</span><span class="va">p2</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Gurobi Optimizer version 9.5.2 build v9.5.2rc0 (linux64)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Username</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter TimeLimit to value 2147483647</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter MIPGap to value 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter NumericFocus to value 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Presolve to value 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Threads to value 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter PoolSolutions to value 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter PoolSearchMode to value 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Academic license - for non-commercial use only - expires 2025-04-21</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Gurobi Optimizer version 11.0.2 build v11.0.2rc0 (linux64 - "Ubuntu 22.04.4 LTS")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CPU model: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Thread count: 4 physical cores, 8 logical processors, using up to 1 threads</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimize a model with 47 rows, 47 columns and 102 nonzeros</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model fingerprint: 0x2cfdc744</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Variable types: 0 continuous, 47 integer (47 binary)</span>
@@ -311,7 +334,7 @@ threat management. <em>Conservation Biology</em>, <strong>29</strong>, 525--536.
 <span class="r-out co"><span class="r-pr">#&gt;</span> Presolve time: 0.00s</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Presolved: 33 rows, 40 columns, 69 nonzeros</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Variable types: 0 continuous, 40 integer (40 binary)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation presolved: 33 rows, 40 columns, 69 nonzeros</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation presolved: 33 rows, 39 columns, 69 nonzeros</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation: objective 1.996013e+01, 7 iterations, 0.00 seconds (0.00 work units)</span>
@@ -320,13 +343,15 @@ threat management. <em>Conservation Biology</em>, <strong>29</strong>, 525--536.
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      0     0   19.96013    0    4   13.00000   19.96013  53.5%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                      19.0000000   19.96013  5.05%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0   19.96013    0    4   19.00000   19.96013  5.05%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                      14.0000000   19.76848  41.2%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                      19.0000000   19.76848  4.04%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0   19.76848    0    4   19.00000   19.76848  4.04%     -    0s</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Explored 1 nodes (7 simplex iterations) in 0.01 seconds (0.00 work units)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Explored 1 nodes (7 simplex iterations) in 0.00 seconds (0.00 work units)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Thread count was 1 (of 8 available processors)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Solution count 1: 19 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> No other solutions better than 19</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimal solution found (tolerance 0.00e+00)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Best objective 1.900000000000e+01, best bound 1.900000000000e+01, gap 0.0000%</span>
@@ -334,14 +359,12 @@ threat management. <em>Conservation Biology</em>, <strong>29</strong>, 525--536.
 <span class="r-in"><span><span class="co"># print solution</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="print.html">print</a></span><span class="op">(</span><span class="va">s2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 21</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   solution status    obj  cost F1_action F2_ac…¹ F3_ac…² F4_ac…³ F5_ac…⁴ basel…⁵</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>        1 OPTIMAL    19  103.         0       0       1       0       0       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 11 more variables: F1_project &lt;dbl&gt;, F2_project &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   F3_project &lt;dbl&gt;, F4_project &lt;dbl&gt;, F5_project &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   baseline_project &lt;dbl&gt;, F1 &lt;dbl&gt;, F2 &lt;dbl&gt;, F3 &lt;dbl&gt;, F4 &lt;dbl&gt;, F5 &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   and abbreviated variable names ¹​F2_action, ²​F3_action, ³​F4_action,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ⁴​F5_action, ⁵​baseline_action</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   solution status    obj  cost F1_action F2_action F3_action F4_action F5_action</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>        1 OPTIMAL    19  103.         0         0         1         0         0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 12 more variables: baseline_action &lt;dbl&gt;, F1_project &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   F2_project &lt;dbl&gt;, F3_project &lt;dbl&gt;, F4_project &lt;dbl&gt;, F5_project &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   baseline_project &lt;dbl&gt;, F1 &lt;dbl&gt;, F2 &lt;dbl&gt;, F3 &lt;dbl&gt;, F4 &lt;dbl&gt;, F5 &lt;dbl&gt;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># plot solution, and add a dashed line to indicate the feature targets</span></span></span>
 <span class="r-in"><span><span class="co"># we can see that adding weights to the problem has changed the solution</span></span></span>
@@ -365,7 +388,7 @@ threat management. <em>Conservation Biology</em>, <strong>29</strong>, 525--536.
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

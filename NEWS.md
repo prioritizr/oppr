@@ -1,3 +1,11 @@
+# oppr 1.0.4.1
+
+- Fix aliasing for package manual entry (#21).
+- Fix compatibility with updates to _ggplot2_ package.
+- Fix compatibility with updates to package citation format.
+- Fix broken URLs in package documentation.
+- Fix broken badges in README.
+
 # oppr 1.0.4
 
 - CRAN release.

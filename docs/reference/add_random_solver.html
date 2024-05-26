@@ -20,7 +20,7 @@ the effectiveness of solutions."><!-- mathjax --><script src="https://cdnjs.clou
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.4.1</span>
       </span>
     </div>
 
@@ -157,23 +157,22 @@ are met.</p></li>
 <span class="r-in"><span><span class="co"># print solutions</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="print.html">print</a></span><span class="op">(</span><span class="va">s1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 100 × 21</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    solution status   obj  cost F1_action F2_ac…¹ F3_ac…² F4_ac…³ F5_ac…⁴ basel…⁵</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>        1 <span style="color: #BB0000;">NA</span>      1.91  199.         0       0       0       1       1       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>        2 <span style="color: #BB0000;">NA</span>      1.96  198.         1       0       1       0       0       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>        3 <span style="color: #BB0000;">NA</span>      2.01  194.         1       0       0       1       0       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>        4 <span style="color: #BB0000;">NA</span>      2.19  195.         1       1       0       0       0       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>        5 <span style="color: #BB0000;">NA</span>      1.91  199.         0       0       0       1       1       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>        6 <span style="color: #BB0000;">NA</span>      2.01  194.         1       0       0       1       0       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>        7 <span style="color: #BB0000;">NA</span>      2.19  195.         1       1       0       0       0       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>        8 <span style="color: #BB0000;">NA</span>      2.19  195.         1       1       0       0       0       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>        9 <span style="color: #BB0000;">NA</span>      1.99  194.         1       0       0       0       1       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>       10 <span style="color: #BB0000;">NA</span>      1.96  198.         1       0       1       0       0       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 90 more rows, 11 more variables: F1_project &lt;dbl&gt;, F2_project &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   F3_project &lt;dbl&gt;, F4_project &lt;dbl&gt;, F5_project &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   baseline_project &lt;dbl&gt;, F1 &lt;dbl&gt;, F2 &lt;dbl&gt;, F3 &lt;dbl&gt;, F4 &lt;dbl&gt;, F5 &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   and abbreviated variable names ¹​F2_action, ²​F3_action, ³​F4_action,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ⁴​F5_action, ⁵​baseline_action</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    solution status   obj  cost F1_action F2_action F3_action F4_action F5_action</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>        1 <span style="color: #BB0000;">NA</span>      1.99  194.         1         0         0         0         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>        2 <span style="color: #BB0000;">NA</span>      2.01  194.         1         0         0         1         0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>        3 <span style="color: #BB0000;">NA</span>      1.96  198.         1         0         1         0         0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>        4 <span style="color: #BB0000;">NA</span>      1.96  198.         1         0         1         0         0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>        5 <span style="color: #BB0000;">NA</span>      1.91  199.         0         0         0         1         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>        6 <span style="color: #BB0000;">NA</span>      1.99  194.         1         0         0         0         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>        7 <span style="color: #BB0000;">NA</span>      1.96  198.         1         0         1         0         0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>        8 <span style="color: #BB0000;">NA</span>      1.96  198.         1         0         1         0         0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>        9 <span style="color: #BB0000;">NA</span>      1.96  198.         1         0         1         0         0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>       10 <span style="color: #BB0000;">NA</span>      2.19  195.         1         1         0         0         0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 90 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 12 more variables: baseline_action &lt;dbl&gt;, F1_project &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   F2_project &lt;dbl&gt;, F3_project &lt;dbl&gt;, F4_project &lt;dbl&gt;, F5_project &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   baseline_project &lt;dbl&gt;, F1 &lt;dbl&gt;, F2 &lt;dbl&gt;, F3 &lt;dbl&gt;, F4 &lt;dbl&gt;, F5 &lt;dbl&gt;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># plot first random solution</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">s1</span><span class="op">)</span></span></span>
@@ -194,8 +193,20 @@ are met.</p></li>
 <span class="r-in"><span>      <span class="fu"><a href="add_default_solver.html">add_default_solver</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>      <span class="fu"><a href="solve.html">solve</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>overwriting previously defined solver</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Gurobi Optimizer version 9.5.2 build v9.5.2rc0 (linux64)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Username</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter TimeLimit to value 2147483647</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter MIPGap to value 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter NumericFocus to value 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Presolve to value 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Threads to value 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter PoolSolutions to value 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter PoolSearchMode to value 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Academic license - for non-commercial use only - expires 2025-04-21</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Gurobi Optimizer version 11.0.2 build v11.0.2rc0 (linux64 - "Ubuntu 22.04.4 LTS")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CPU model: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Thread count: 4 physical cores, 8 logical processors, using up to 1 threads</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimize a model with 47 rows, 47 columns and 102 nonzeros</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model fingerprint: 0x193cb636</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Variable types: 0 continuous, 42 integer (42 binary)</span>
@@ -224,6 +235,7 @@ are met.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Thread count was 1 (of 8 available processors)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Solution count 1: 2.19038 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> No other solutions better than 2.19038</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimal solution found (tolerance 0.00e+00)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Best objective 2.190380737245e+00, best bound 2.190380737245e+00, gap 0.0000%</span>
@@ -251,7 +263,7 @@ are met.</p></li>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

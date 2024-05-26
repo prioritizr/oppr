@@ -20,7 +20,7 @@ pre-specified budget (Bennett et al. 2014, Faith 2008)."><!-- mathjax --><script
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.4.1</span>
       </span>
     </div>
 
@@ -241,10 +241,22 @@ research &amp; management science</em>. Springer.</p>
 <span class="r-in"><span><span class="co"># \dontrun{</span></span></span>
 <span class="r-in"><span><span class="co"># solve problem</span></span></span>
 <span class="r-in"><span><span class="va">s1</span> <span class="op">&lt;-</span> <span class="fu"><a href="solve.html">solve</a></span><span class="op">(</span><span class="va">p1</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Gurobi Optimizer version 9.5.2 build v9.5.2rc0 (linux64)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Username</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter TimeLimit to value 2147483647</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter MIPGap to value 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter NumericFocus to value 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Presolve to value 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Threads to value 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter PoolSolutions to value 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter PoolSearchMode to value 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Academic license - for non-commercial use only - expires 2025-04-21</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Gurobi Optimizer version 11.0.2 build v11.0.2rc0 (linux64 - "Ubuntu 22.04.4 LTS")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CPU model: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Thread count: 4 physical cores, 8 logical processors, using up to 1 threads</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimize a model with 50 rows, 50 columns and 123 nonzeros</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Model fingerprint: 0x3d5512d7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Model fingerprint: 0x8b6e070d</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model has 3 piecewise-linear objective terms</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Variable types: 3 continuous, 42 integer (42 binary)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Semi-Variable types: 5 continuous, 0 integer</span>
@@ -258,27 +270,28 @@ research &amp; management science</em>. Springer.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Found heuristic solution: objective 1.7230501</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Presolve removed 16 rows and 12 columns</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Presolve time: 0.00s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Presolved: 37 rows, 2547 columns, 2589 nonzeros</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Variable types: 2512 continuous, 35 integer (35 binary)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation presolve removed 3 rows and 3 columns</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation presolved: 34 rows, 2544 columns, 2583 nonzeros</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Presolved: 37 rows, 2530 columns, 2572 nonzeros</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Variable types: 2495 continuous, 35 integer (35 binary)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation presolved: 34 rows, 2527 columns, 2566 nonzeros</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation: objective 2.638346e+00, 24 iterations, 0.01 seconds (0.00 work units)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation: objective 2.638346e+00, 23 iterations, 0.00 seconds (0.01 work units)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Nodes    |    Current Node    |     Objective Bounds      |     Work</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    2.63835    0    6    1.72305    2.63835  53.1%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       1.9924877    2.63835  32.4%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       2.1724148    2.63835  21.4%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       2.5726722    2.63835  2.55%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     2    2.63696    0    6    2.57267    2.63696  2.50%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       1.9924876    2.62002  31.5%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       2.0656903    2.62002  26.8%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       2.1724148    2.62002  20.6%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       2.5726722    2.62002  1.84%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0 infeasible    0         2.57267    2.57267  0.00%     -    0s</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Explored 3 nodes (28 simplex iterations) in 0.06 seconds (0.02 work units)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Explored 1 nodes (28 simplex iterations) in 0.02 seconds (0.04 work units)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Thread count was 1 (of 8 available processors)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Solution count 1: 2.57267 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> No other solutions better than 2.57267</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimal solution found (tolerance 0.00e+00)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Best objective 2.572672188340e+00, best bound 2.572672188340e+00, gap 0.0000%</span>
@@ -286,14 +299,12 @@ research &amp; management science</em>. Springer.</p>
 <span class="r-in"><span><span class="co"># print solution</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="print.html">print</a></span><span class="op">(</span><span class="va">s1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 21</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   solution status    obj  cost F1_action F2_ac…¹ F3_ac…² F4_ac…³ F5_ac…⁴ basel…⁵</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>        1 OPTIMAL  2.57  194.         1       0       0       0       1       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 11 more variables: F1_project &lt;dbl&gt;, F2_project &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   F3_project &lt;dbl&gt;, F4_project &lt;dbl&gt;, F5_project &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   baseline_project &lt;dbl&gt;, F1 &lt;dbl&gt;, F2 &lt;dbl&gt;, F3 &lt;dbl&gt;, F4 &lt;dbl&gt;, F5 &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   and abbreviated variable names ¹​F2_action, ²​F3_action, ³​F4_action,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ⁴​F5_action, ⁵​baseline_action</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   solution status    obj  cost F1_action F2_action F3_action F4_action F5_action</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>        1 OPTIMAL  2.57  194.         1         0         0         0         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 12 more variables: baseline_action &lt;dbl&gt;, F1_project &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   F2_project &lt;dbl&gt;, F3_project &lt;dbl&gt;, F4_project &lt;dbl&gt;, F5_project &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   baseline_project &lt;dbl&gt;, F1 &lt;dbl&gt;, F2 &lt;dbl&gt;, F3 &lt;dbl&gt;, F4 &lt;dbl&gt;, F5 &lt;dbl&gt;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># plot solution</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">s1</span><span class="op">)</span></span></span>
@@ -305,10 +316,22 @@ research &amp; management science</em>. Springer.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># solve problem with feature weights</span></span></span>
 <span class="r-in"><span><span class="va">s2</span> <span class="op">&lt;-</span> <span class="fu"><a href="solve.html">solve</a></span><span class="op">(</span><span class="va">p2</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Gurobi Optimizer version 9.5.2 build v9.5.2rc0 (linux64)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Username</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter TimeLimit to value 2147483647</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter MIPGap to value 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter NumericFocus to value 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Presolve to value 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Threads to value 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter PoolSolutions to value 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter PoolSearchMode to value 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Academic license - for non-commercial use only - expires 2025-04-21</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Gurobi Optimizer version 11.0.2 build v11.0.2rc0 (linux64 - "Ubuntu 22.04.4 LTS")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CPU model: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Thread count: 4 physical cores, 8 logical processors, using up to 1 threads</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimize a model with 50 rows, 50 columns and 123 nonzeros</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Model fingerprint: 0x5feb5267</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Model fingerprint: 0x6f543abe</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model has 3 piecewise-linear objective terms</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Variable types: 3 continuous, 42 integer (42 binary)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Semi-Variable types: 5 continuous, 0 integer</span>
@@ -322,39 +345,39 @@ research &amp; management science</em>. Springer.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Found heuristic solution: objective 2.3885146</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Presolve removed 16 rows and 12 columns</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Presolve time: 0.00s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Presolved: 37 rows, 2547 columns, 2589 nonzeros</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Variable types: 2512 continuous, 35 integer (35 binary)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation presolve removed 3 rows and 3 columns</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation presolved: 34 rows, 2544 columns, 2583 nonzeros</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Presolved: 37 rows, 2530 columns, 2572 nonzeros</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Variable types: 2495 continuous, 35 integer (35 binary)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation presolved: 34 rows, 2527 columns, 2566 nonzeros</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation: objective 4.074411e+00, 25 iterations, 0.01 seconds (0.00 work units)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation: objective 4.074411e+00, 24 iterations, 0.00 seconds (0.01 work units)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Nodes    |    Current Node    |     Objective Bounds      |     Work</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    4.07441    0    6    2.38851    4.07441  70.6%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       4.0567449    4.07441  0.44%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       4.0560715    4.05682  0.02%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       4.0567449    4.05682  0.00%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0     cutoff    0         4.05674    4.05674  0.00%     -    0s</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Explored 1 nodes (25 simplex iterations) in 0.07 seconds (0.03 work units)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Explored 1 nodes (25 simplex iterations) in 0.01 seconds (0.03 work units)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Thread count was 1 (of 8 available processors)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Solution count 1: 4.05674 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> No other solutions better than 4.05674</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimal solution found (tolerance 0.00e+00)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Best objective 4.056744940702e+00, best bound 4.056744940718e+00, gap 0.0000%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Best objective 4.056744940702e+00, best bound 4.056744940702e+00, gap 0.0000%</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># print solution based on feature weights</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="print.html">print</a></span><span class="op">(</span><span class="va">s2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 21</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   solution status    obj  cost F1_action F2_ac…¹ F3_ac…² F4_ac…³ F5_ac…⁴ basel…⁵</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>        1 OPTIMAL  4.06  199.         0       0       0       1       1       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 11 more variables: F1_project &lt;dbl&gt;, F2_project &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   F3_project &lt;dbl&gt;, F4_project &lt;dbl&gt;, F5_project &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   baseline_project &lt;dbl&gt;, F1 &lt;dbl&gt;, F2 &lt;dbl&gt;, F3 &lt;dbl&gt;, F4 &lt;dbl&gt;, F5 &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   and abbreviated variable names ¹​F2_action, ²​F3_action, ³​F4_action,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ⁴​F5_action, ⁵​baseline_action</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   solution status    obj  cost F1_action F2_action F3_action F4_action F5_action</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>        1 OPTIMAL  4.06  199.         0         0         0         1         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 12 more variables: baseline_action &lt;dbl&gt;, F1_project &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   F2_project &lt;dbl&gt;, F3_project &lt;dbl&gt;, F4_project &lt;dbl&gt;, F5_project &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   baseline_project &lt;dbl&gt;, F1 &lt;dbl&gt;, F2 &lt;dbl&gt;, F3 &lt;dbl&gt;, F4 &lt;dbl&gt;, F5 &lt;dbl&gt;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># plot solution based on feature weights</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">p2</span>, <span class="va">s2</span><span class="op">)</span></span></span>
@@ -374,7 +397,7 @@ research &amp; management science</em>. Springer.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

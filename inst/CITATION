@@ -11,9 +11,9 @@ if (ndots == 3) {
 
 citHeader("To cite the oppr package in publications, please use:")
 
-citEntry(
-  entry = "Article",
-  author = personList(
+bibentry(
+  bibtype = "Article",
+  author = c(
     person(c("Jeffrey", "O"), "Hanson"),
     person(c("Richard"), "Schuster"),
     person(c("Matthew"), "Strimas-Mackey"),
@@ -28,9 +28,9 @@ citEntry(
   textVersion = paste0("Hanson JO, Schuster R, Strimas-Mackey M & Bennett JR (2019) Optimality in prioritizing conservation projects. Methods in Ecology & Evolution, 10: 1655--1663.")
 )
 
-citEntry(
-  entry = "Manual",
-  author = personList(
+bibentry(
+  bibtype = "Manual",
+  author = c(
     person(c("Jeffrey", "O"), "Hanson"),
     person(c("Richard"), "Schuster"),
     person(c("Matthew"), "Strimas-Mackey"),

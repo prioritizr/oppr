@@ -3,6 +3,7 @@
 \docType{package}
 \name{oppr}
 \alias{oppr}
+\alias{oppr-package}
 \title{oppr: Optimal Project Prioritization}
 \description{
 The \pkg{oppr} \emph{R} package a decision support tool for prioritizing
@@ -33,16 +34,12 @@ execute the following command to install it:
 If the installation process fails, please consult the
 \href{https://bioconductor.org/packages/release/bioc/html/ggtree.html}{package's online documentation}. To install the \pkg{gurobi} package, the
 \href{https://www.gurobi.com}{Gurobi} optimization suite will first need to
-be installed (see instructions for \href{https://www.gurobi.com/documentation/8.1/quickstart_linux/software_installation_guid.html}{Linux},
-\href{https://www.gurobi.com/documentation/8.1/quickstart_mac/software_installation_guid.html}{Mac OSX}, and
-\href{https://www.gurobi.com/documentation/8.1/quickstart_windows/software_installation_guid.html}{Windows} operating systems). Although
+be installed (see \url{https://support.gurobi.com/hc/en-us/articles/4534161999889-How-do-I-install-Gurobi-Optimizer} for instructions). Although
 \href{https://www.gurobi.com}{Gurobi} is a commercial software, academics
 can obtain a
 \href{https://www.gurobi.com/downloads/end-user-license-agreement-academic/}{special license for no cost}. After installing the
 \href{https://www.gurobi.com}{Gurobi} optimization suite, the \pkg{gurobi}
-package can then be installed (see instructions for \href{https://www.gurobi.com/documentation/8.1/quickstart_linux/r_installing_the_r_package.html}{Linux},
-\href{https://www.gurobi.com/documentation/8.1/quickstart_mac/r_installing_the_r_package.html}{Mac OSX}, and
-\href{https://www.gurobi.com/documentation/8.1/quickstart_windows/r_installing_the_r_package.html}{Windows} operating systems).
+package can then be installed (see \url{https://www.gurobi.com/documentation/current/refman/r_ins_the_r_package.html} for instructions).
 }
 
 \examples{
@@ -85,9 +82,21 @@ s[, sim_features$name, drop = FALSE]
 # visualize solution
 plot(p, s)
 }
+
 }
 \seealso{
 Please refer to the package vignette for more information and worked
 examples. This can be accessed using the code
 \code{vignette("oppr")}.
+}
+\author{
+\strong{Maintainer}: Jeffrey O Hanson \email{jeffrey.hanson@uqconnect.edu.au} (\href{https://orcid.org/0000-0002-4716-6134}{ORCID})
+
+Authors:
+\itemize{
+  \item Richard Schuster \email{mail@richard-schuster.com} (\href{https://orcid.org/0000-0003-3191-7869}{ORCID})
+  \item Matthew Strimas-Mackey \email{mstrimas@gmail.com} (\href{https://orcid.org/0000-0001-8929-7776}{ORCID})
+  \item Joseph R Bennett \email{joseph.bennett@carleton.ca} (\href{https://orcid.org/0000-0002-3901-9513}{ORCID})
+}
+
 }

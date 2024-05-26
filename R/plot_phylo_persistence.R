@@ -193,33 +193,55 @@ plot_phylo_persistence <- function(x, solution, n = 1, symbol_hjust = 0.007,
     paste0(tree2$parent, "_", tree2$node),
     paste0(tree$edge[, 1], "_", tree$edge[, 2]))]
   tree2$label <- paste0("   ", tree2$label)
+  any_nonmissing_status <- any(!is.na(tree2$status))
   tree2 <- suppressMessages(suppressWarnings(tidytree::as.treedata(tree2)))
 
   ## calculate padding for points
-  point_padding <- max(rowSums(as.matrix(branch_matrix(tree)) *
-                               matrix(tree$edge.length, ncol = nrow(tree$edge),
-                                      nrow = length(tree$tip.label)))) *
-                   symbol_hjust
+  point_padding <-
+    max(rowSums(
+      as.matrix(branch_matrix(tree)) *
+      matrix(
+        tree$edge.length,
+        ncol = nrow(tree$edge),
+        nrow = length(tree$tip.label)
+      )
+    )) * symbol_hjust
 
   ## prepare outputs
   if (!isTRUE(return_data)) {
-    o <- ggtree::ggtree(tree2, ggplot2::aes_string(color = "prob"),
-                        size = 1.1) +
-         ggtree::geom_tippoint(
-           ggplot2::aes_string(x = "x + point_padding",
-                               subset = "!is.na(status)",
-                               shape = "status"), color = "black") +
-         ggtree::geom_tiplab(color = "black", size = 2.5) +
-         ggplot2::scale_color_gradientn(name = "Probability of\npersistence",
-                                        colors = viridisLite::inferno(
-                                          150, begin = 0, end = 0.9,
-                                          direction = -1),
-                                        limits = c(0, 1)) +
-         ggplot2::scale_shape_manual(name = "Projects",
-                                     values = c("Funded" = 8,
-                                                "Partially Funded" = 1),
-                                     na.translate = FALSE) +
-         ggplot2::theme(legend.position = "right")
+    o <-
+      ggtree::ggtree(
+        tree2,
+        ggplot2::aes(color = !!rlang::sym("prob")),
+        size = 1.1
+      ) +
+      ggtree::geom_tiplab(color = "black", size = 2.5) +
+      ggplot2::scale_color_gradientn(
+        name = "Probability of\npersistence",
+        colors = viridisLite::inferno(
+          150, begin = 0, end = 0.9, direction = -1
+        ),
+        limits = c(0, 1)
+      ) +
+      ggplot2::theme(legend.position = "right")
+      if (isTRUE(any_nonmissing_status)) {
+      o <-
+        o +
+        ggtree::geom_tippoint(
+           mapping = ggplot2::aes(
+             x = !!rlang::expr(!!rlang::sym("x") + point_padding),
+            subset = !!rlang::expr(!is.na(!!rlang::sym("status"))),
+            shape = !!rlang::sym("status")
+          ),
+          color = "black"
+        ) +
+        ggplot2::scale_shape_manual(
+          name = "Projects",
+          values = c("Funded" = 8, "Partially Funded" = 1),
+          na.translate = FALSE,
+          drop = FALSE
+        )
+    }
   } else {
     o <- tree2
   }

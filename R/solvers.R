@@ -42,7 +42,7 @@ NULL
 #'     Max OSX systems than the \pkg{Rsymphony} package.}
 #'
 #'   \item{[add_lpsolveapi_solver()]}{
-#'     [*lp_solve*](http://lpsolve.sourceforge.net/5.5/) is an
+#'     [*lp_solve*](https://lpsolve.sourceforge.net/5.5/) is an
 #'     open-source integer programming solver. The \pkg{lpSolveAPI} package
 #'     provides an interface to this solver and is available on CRAN.
 #'     Although this solver is the slowest currently supported solver,

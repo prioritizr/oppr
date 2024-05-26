@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">oppr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.4.1</span>
       </span>
     </div>
 
@@ -111,17 +111,17 @@ Defaults to <code>FALSE</code>.</p></dd>
 <span class="r-in"><span><span class="co"># create a numeric matrix parameter</span></span></span>
 <span class="r-in"><span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu">numeric_matrix_parameter</span><span class="op">(</span><span class="st">"m"</span>, <span class="va">m</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="print.html">print</a></span><span class="op">(</span><span class="va">p1</span><span class="op">)</span> <span class="co"># print it</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x556a1b7c63e0&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x55774e6c3d58&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "MiscParameter" "MiscParameter" "Parameter"     "pproto"       </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [5] "proto"         "environment"  </span>
 <span class="r-in"><span><span class="va">p1</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="op">)</span> <span class="co"># get value</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           a          b         c</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a 0.3714649 0.21764370 0.3577770</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b 0.5189460 0.05271852 0.3794181</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> c 0.8149471 0.97241605 0.1247372</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            a         b         c</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> a 0.21314931 0.9447748 0.2882372</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> b 0.21031074 0.2449280 0.8753579</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> c 0.03952069 0.7811226 0.2957501</span>
 <span class="r-in"><span><span class="va">p1</span><span class="op">$</span><span class="va">id</span> <span class="co"># get id</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> id: f91439b7-76b8-4492-9766-f0e19d6e1451</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> id: 93842016-7783-4d49-b430-17a7aba38a59</span>
 <span class="r-in"><span><span class="va">p1</span><span class="op">$</span><span class="fu">validate</span><span class="op">(</span><span class="va">m</span><span class="op">[</span>, <span class="op">-</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span> <span class="co"># check if parameter can be updated</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"msg")</span>
@@ -138,17 +138,17 @@ Defaults to <code>FALSE</code>.</p></dd>
 <span class="r-in"><span><span class="co"># create a binary matrix parameter</span></span></span>
 <span class="r-in"><span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu">binary_matrix_parameter</span><span class="op">(</span><span class="st">"m"</span>, <span class="va">m</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="print.html">print</a></span><span class="op">(</span><span class="va">p2</span><span class="op">)</span> <span class="co"># print it</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x556a1aa979b0&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x55774ccb1dc8&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "MiscParameter" "MiscParameter" "Parameter"     "pproto"       </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [5] "proto"         "environment"  </span>
 <span class="r-in"><span><span class="va">p2</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="op">)</span> <span class="co"># get value</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   a b c</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a 1 0 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b 0 0 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> c 0 0 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> a 1 1 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> b 1 1 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> c 1 0 1</span>
 <span class="r-in"><span><span class="va">p2</span><span class="op">$</span><span class="va">id</span> <span class="co"># get id</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> id: 254cfd68-73d1-4ccd-8fc3-0d323205ee46</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> id: ebed9e50-ce26-45af-8f91-960295411e1a</span>
 <span class="r-in"><span><span class="va">p2</span><span class="op">$</span><span class="fu">validate</span><span class="op">(</span><span class="va">m</span><span class="op">[</span>, <span class="op">-</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span> <span class="co"># check if parameter can be updated</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"msg")</span>
@@ -170,7 +170,7 @@ Defaults to <code>FALSE</code>.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>
