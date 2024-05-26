@@ -14,7 +14,7 @@ NULL
 #'
 #' @inheritParams add_gurobi_solver
 #'
-#' @details [*lp_solve*](http://lpsolve.sourceforge.net/5.5/) is an
+#' @details [*lp_solve*](https://lpsolve.sourceforge.net/5.5/) is an
 #'   open-source integer programming solver.
 #'   Although this solver is the slowest currently supported solver,
 #'   it is also the only exact algorithm solver that can be installed on all

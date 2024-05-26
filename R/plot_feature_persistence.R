@@ -144,31 +144,49 @@ plot_feature_persistence <- function(x, solution, n = 1, symbol_hjust = 0.007,
   d$status[d$name %in% partially_funded_fts] <- "Partially Funded"
   d <- d[rev(seq_len(nrow(d))), ] # re-order data
   d$name <- factor(d$name, levels = unique(d$name))
+  d$status <- factor(d$status, levels = c("Funded", "Partially Funded"))
 
   # Main processing
   ## prepare outputs
   if (!isTRUE(return_data)) {
-    o <- ggplot2::ggplot(d, ggplot2::aes_string(x = "name", y = "prob",
-                                           fill = "weight")) +
-         ggplot2::geom_col() +
-         ggplot2::geom_point(data = d[!is.na(d$status), , drop = FALSE],
-                             ggplot2::aes_string(shape = "status"),
-                             size = 3, color = "black",
-                             position = ggplot2::position_nudge(
-                               y =  symbol_hjust)) +
-         ggplot2::scale_y_continuous(name = "Probability of persistence",
-                                     limits = c(0, 1)) +
-         ggplot2::xlab("") +
-         ggplot2::scale_fill_gradientn(name = "Weight",
-                                       colors = viridisLite::inferno(
-                                         150, begin = 0, end = 0.9,
-                                         direction = -1)) +
-         ggplot2::scale_shape_manual(name = "Projects",
-                                     values = c("Funded" = 8,
-                                                "Partially Funded" = 1),
-                                     na.translate = FALSE) +
-         ggplot2::theme(legend.position = "right") +
-         ggplot2::coord_flip()
+    o <-
+      ggplot2::ggplot(
+        d,
+        ggplot2::aes(
+          x = !!rlang::sym("name"),
+          y = !!rlang::sym("prob"),
+          fill = !!rlang::sym("weight")
+        )
+      ) +
+      ggplot2::geom_col() +
+
+      ggplot2::scale_y_continuous(
+        name = "Probability of persistence", limits = c(0, 1)
+      ) +
+      ggplot2::xlab("") +
+      ggplot2::scale_fill_gradientn(
+        name = "Weight",
+        colors = viridisLite::inferno(
+          150, begin = 0, end = 0.9, direction = -1
+        )
+      ) +
+      ggplot2::theme(legend.position = "right") +
+      ggplot2::coord_flip()
+    if (any(!is.na(d$status))) {
+      o <-
+        o +
+        ggplot2::geom_point(
+          data = d[!is.na(d$status), , drop = FALSE],
+          mapping = ggplot2::aes(shape = !!rlang::sym("status")),
+          size = 3, color = "black",
+          position = ggplot2::position_nudge(y =  symbol_hjust)) +
+        ggplot2::scale_shape_manual(
+          name = "Projects",
+          values = c("Funded" = 8, "Partially Funded" = 1),
+          na.translate = FALSE,
+          drop = FALSE
+        )
+    }
   } else {
    o <- d
   }

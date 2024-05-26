@@ -10,7 +10,7 @@ test_that("some projects funded", {
                              F3 =       c(0.00, 0.00, 0.00, 0.10),
                              A1 =       c(TRUE, FALSE, FALSE, FALSE),
                              A2 =       c(FALSE, TRUE, FALSE, FALSE),
-                             A3 =       c(FALSE, FALSE, TRUE, FALSE),
+                             A3 =       c(TRUE, FALSE, TRUE, FALSE),
                              A4 =       c(FALSE, FALSE, FALSE, TRUE))
   actions <- tibble::tibble(name =      c("A1", "A2", "A3", "A4"),
                             cost =      c(0.10, 0.10, 0.15, 0),

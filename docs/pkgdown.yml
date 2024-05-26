@@ -1,9 +1,9 @@
 pandoc: '2.13'
-pkgdown: 2.0.6
+pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   oppr: oppr.html
-last_built: 2022-09-06T22:14Z
+last_built: 2024-05-26T07:08Z
 urls:
   reference: https://prioritizr.github.io/oppr/reference
   article: https://prioritizr.github.io/oppr/articles
