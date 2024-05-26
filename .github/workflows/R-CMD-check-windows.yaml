@@ -54,11 +54,10 @@ jobs:
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           cache-version: 1
-          pak-version: devel
           extra-packages: |
-            any::rcmdcheck
-            any::XML
+            cran/XML
             any::remotes
+            any::rmdcheck
             gurobi=?ignore
             Rsymphony=?ignore
             lpsymphony=?ignore

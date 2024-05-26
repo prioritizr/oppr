@@ -57,6 +57,7 @@ jobs:
             cran/XML
             any::remotes
             any::covr
+            any::rmdcheck
             gurobi=?ignore
             Rsymphony=?ignore
             lpsymphony=?ignore

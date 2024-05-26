@@ -47,11 +47,11 @@ jobs:
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           cache-version: 1
-          pak-version: devel
           extra-packages: |
-            any::rcmdcheck
-            url::https://cran.r-project.org/src/contrib/XML_3.99-0.10.tar.gz
+            cran/XML
             any::remotes
+            any::covr
+            any::rmdcheck
             gurobi=?ignore
             Rsymphony=?ignore
             lpsymphony=?ignore
