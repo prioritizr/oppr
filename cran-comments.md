@@ -1,6 +1,6 @@
 Dear CRAN maintainers,
 
-Thank you very much for reviewing this submission. This submission aims to address the warnings and errors raised by CRAN's checks. It also contains updates to ensure compatibility with the current and upcoming version of the Matrix package.
+Thank you very much for reviewing this submission. This submission addresses the notes, warnings, and errors raised by CRAN's checks. In particular, it addresses issues related to the vignette build failure, citation file, and documentation links to other packages.
 
 Cheers,
 
@@ -8,8 +8,8 @@ Jeff
 
 # Test environments
 
-* [Ubuntu 20.04, R-release](https://github.com/prioritizr/oppr/actions?query=workflow%3AUbuntu)
-* [Ubuntu 20.04, R-devel](https://github.com/prioritizr/oppr/actions?query=workflow%3AUbuntu)
+* [Ubuntu 22.04, R-release](https://github.com/prioritizr/oppr/actions?query=workflow%3AUbuntu)
+* [Ubuntu 22.04, R-devel](https://github.com/prioritizr/oppr/actions?query=workflow%3AUbuntu)
 * [Mac OSX 10.15, R-release](https://github.com/prioritizr/oppr/actions?query=workflow%3A%22Mac+OSX%22)
 * [Windows Server 2019, R-release](https://github.com/prioritizr/oppr/actions?query=workflow%3AWindows)
 * [Windows Server 2019, R-devel](https://github.com/prioritizr/oppr/actions?query=workflow%3AWindows)

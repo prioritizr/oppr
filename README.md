@@ -9,7 +9,7 @@
 [![R-CMD-check-macOS](https://img.shields.io/github/actions/workflow/status/prioritizr/oppr/R-CMD-check-macos.yaml?branch=master&label=macOS)](https://github.com/prioritizr/oppr/actions)
 [![Coverage
 Status](https://img.shields.io/codecov/c/github/prioritizr/oppr?label=Coverage)](https://app.codecov.io/gh/prioritizr/oppr/branch/master)
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/oppr)](https://CRAN.R-project.org/package=oppr)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/oppr)](https://CRAN.R-project.org/package=oppr)
 
 The *oppr R* package is decision support tool for prioritizing
 conservation projects. Prioritizations can be developed by maximizing

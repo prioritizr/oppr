@@ -1,3 +1,9 @@
+# oppr 1.0.5
+
+- CRAN release.
+- Fix issue with vignette failing to build when the *fansi* package is not
+  installed.
+
 # oppr 1.0.4.1
 
 - Fix aliasing for package manual entry (#21).
@@ -23,9 +29,9 @@
 
 # oppr 1.0.2.5
 
-- Update minimum versions for tidytree and ggtree package dependencies.
+- Update minimum versions for *tidytree* and *ggtree* package dependencies.
   This is because some older versions of tidytree are not compatible with some
-  older versions of ggtree.
+  older versions of the *ggtree* package.
 
 # oppr 1.0.2.4
 
@@ -113,7 +119,7 @@
 # oppr 0.0.1.1
 
 - Fix address sanitizer issues causing CRAN checks to fail.
-- Tests successfully complete when the _shiny_ R package is not installed.
+- Tests successfully complete when the *shiny* package is not installed.
 
 # oppr 0.0.1
 

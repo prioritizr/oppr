@@ -25,7 +25,7 @@ benefits.
 \section{Installation}{
 
 To make the most of this package, the \href{https://bioconductor.org/packages/release/bioc/html/ggtree.html}{\pkg{ggtree}} and
-\href{https://www.gurobi.com/documentation/8.1/refman/r_api_overview.html}{\pkg{gurobi}} R packages will need to be installed.
+\href{http://docs.gurobi.com/projects/optimizer/en/current/reference/r.html}{\pkg{gurobi}} R packages will need to be installed.
 Since the \href{https://bioconductor.org/packages/release/bioc/html/ggtree.html}{\pkg{ggtree}} package is exclusively available
 at \href{https://bioconductor.org}{Bioconductor}---and is not available on
 \href{https://cran.r-project.org/}{The Comprehensive R Archive Network}---please
@@ -39,7 +39,7 @@ be installed (see \url{https://support.gurobi.com/hc/en-us/articles/453416199988
 can obtain a
 \href{https://www.gurobi.com/downloads/end-user-license-agreement-academic/}{special license for no cost}. After installing the
 \href{https://www.gurobi.com}{Gurobi} optimization suite, the \pkg{gurobi}
-package can then be installed (see \url{https://www.gurobi.com/documentation/current/refman/r_ins_the_r_package.html} for instructions).
+package can then be installed (see \url{https://support.gurobi.com/hc/en-us/articles/14462206790033-How-do-I-install-Gurobi-for-R} for instructions).
 }
 
 \examples{

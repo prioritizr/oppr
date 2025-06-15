@@ -43,7 +43,7 @@ one solution within the optimality gap and a number of additional
 solutions that are of any level of quality (such that the total number of
 solutions is equal to \code{number_solutions}), and \code{2} finding a
 specified number of solutions that are nearest to optimality. For more
-information, see the \emph{Gurobi} manual (i.e. \url{https://www.gurobi.com/documentation/8.0/refman/poolsearchmode.html#parameter:PoolSearchMode}). Defaults to 2.}
+information, see the \emph{Gurobi} manual (i.e. \url{https://docs.gurobi.com/projects/optimizer/en/current/reference/parameters.html#poolsearchmode}). Defaults to 2.}
 
 \item{time_limit}{\code{numeric} time limit in seconds to run the optimizer.
 The solver will return the current best solution when this time limit is
@@ -96,7 +96,7 @@ be installed (see \url{https://support.gurobi.com/hc/en-us/articles/453416199988
 can obtain a
 \href{https://www.gurobi.com/downloads/end-user-license-agreement-academic/}{special license for no cost}. After installing the
 \href{https://www.gurobi.com}{Gurobi} optimization suite, the \pkg{gurobi}
-package can then be installed (see \url{https://www.gurobi.com/documentation/current/refman/r_ins_the_r_package.html} for instructions).
+package can then be installed (see \url{https://support.gurobi.com/hc/en-us/articles/14462206790033-How-do-I-install-Gurobi-for-R} for instructions).
 }
 \examples{
 \dontrun{
