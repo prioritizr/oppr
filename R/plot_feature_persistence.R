@@ -19,7 +19,7 @@ NULL
 #'   projects that have non-zero costs and share actions with at least one
 #'   completely funded project---are depicted with an open circle symbol.
 #'
-#' @return A [ggplot()] object, or a
+#' @return A [ggplot2::ggplot()] object, or a
 #'   [tibble::tbl_df()] object if `return_data` is
 #'   `TRUE`.
 #'
