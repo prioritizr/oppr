@@ -58,6 +58,7 @@ jobs:
             any::remotes
             any::covr
             any::rcmdcheck
+            any::rmarkdown
             gurobi=?ignore
             Rsymphony=?ignore
             lpsymphony=?ignore

@@ -12,7 +12,7 @@ documentclass: article
 vignette: >
   %\VignetteIndexEntry{Optimal Project Prioritization}
   %\VignetteEngine{knitr::rmarkdown_notangle}
-  \usepackage[utf8]{inputenc}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r, include = FALSE}
