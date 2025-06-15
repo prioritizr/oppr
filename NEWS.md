@@ -3,6 +3,7 @@
 - CRAN release.
 - Fix issue with vignette failing to build when the *fansi* package is not
   installed.
+- Fix bug in `add_lpsolveapi_solver()`.
 
 # oppr 1.0.4.1
 
