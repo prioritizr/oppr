@@ -57,7 +57,8 @@ Suggests:
     lpsymphony (>= 1.10.0),
     shiny (>= 1.2.0),
     rhandsontable (>= 0.3.7),
-    tidyr (>= 0.8.2)
+    tidyr (>= 0.8.2),
+    fansi (>= 1.0.6)
 Depends:
     R(>= 3.4.0)
 LinkingTo:

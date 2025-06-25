@@ -1,6 +1,6 @@
 Dear CRAN maintainers,
 
-Thank you very much for reviewing this submission. This submission addresses the notes, warnings, and errors raised by CRAN's checks. In particular, it addresses issues related to the vignette build failure, citation file, and documentation links to other packages.
+Thank you very much for reviewing this submission. In particular, this submission contains an update for the *oppr* package. Although the package was originally accepted on CRAN in 2019, it was recently archived because I was unable to address issues with the package in time. I am sorry for my delay in submitting this update, and hope that it will be possible to get this package back on CRAN. This submission contains fixes for the errors raised by CRAN's checks that resulted in its archival. It also contains fixes for the notes raised by CRAN's checks. These fixes include addressing the vignette build failure, package citation file, and documentation links.
 
 Cheers,
 
@@ -37,8 +37,31 @@ Jeff
     **The gurobi R package is distributed with the Gurobi optimization software (http://gurobi.com). It is listed under the Enhances and Suggests fields by several R packages that are already on CRAN, such as the designmatch, DoE.MIParray, OptimalDesign, prioritizr, and raptr R packages. To help users, we have provided instructions to install the gurobi R package in the documentation for the oppr package (e.g. README file and the manual entry for the add_gurobi_solver function).**
 
 * checking installed package size ... NOTE
-    installed size is 16.9Mb
+    installed size is 12.9Mb
     sub-directories of 1Mb or more:
-      libs  15.2Mb
+      libs  11.4Mb
 
     **The package makes extensive use of compiled C++ code (via the Rcpp package) to reduce run times.**
+
+* Found the following (possibly) invalid URLs:
+    URL: https://support.gurobi.com/hc/en-us/articles/14462206790033-How-do-I-install-Gurobi-for-R
+      From: man/add_gurobi_solver.Rd
+            man/oppr.Rd
+            inst/doc/oppr.html
+      Status: 403
+      Message: Forbidden
+    URL: https://support.gurobi.com/hc/en-us/articles/4534161999889-How-do-I-install-Gurobi-Optimizer
+      From: man/add_gurobi_solver.Rd
+            man/oppr.Rd
+      Status: 403
+      Message: Forbidden
+
+    **I have manually checked these URLs and can confirm that they are valid.**
+
+* Possibly misspelled words in DESCRIPTION:
+    Prioritizations (6:5)
+    al (17:15)
+    et (17:12)
+    prioritizations (10:64, 16:5)
+
+     **I have manually checked these words and confirm that they are correct. In particular, the words "et al." are routinely used for in-text citations (see https://aut.ac.nz.libguides.com/APA7th/in-text). Additionally, "prioritizations" is a plural of the term "prioritization", and is a technical term for conservation plans (see https://doi.org/10.1038/35012251).**
