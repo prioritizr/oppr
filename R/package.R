@@ -28,7 +28,7 @@ NULL
 #'
 #' @section Installation:
 #' To make the most of this package, the \href{https://bioconductor.org/packages/release/bioc/html/ggtree.html}{\pkg{ggtree}} and
-#' \href{https://www.gurobi.com/documentation/8.1/refman/r_api_overview.html}{\pkg{gurobi}} R packages will need to be installed.
+#' \href{http://docs.gurobi.com/projects/optimizer/en/current/reference/r.html}{\pkg{gurobi}} R packages will need to be installed.
 #' Since the \href{https://bioconductor.org/packages/release/bioc/html/ggtree.html}{\pkg{ggtree}} package is exclusively available
 #' at [Bioconductor](https://bioconductor.org)---and is not available on
 #' [The Comprehensive R Archive Network](https://cran.r-project.org/)---please
@@ -42,7 +42,7 @@ NULL
 #' can obtain a
 #' [special license for no cost](https://www.gurobi.com/downloads/end-user-license-agreement-academic/). After installing the
 #' [Gurobi](https://www.gurobi.com) optimization suite, the \pkg{gurobi}
-#'  package can then be installed (see <https://www.gurobi.com/documentation/current/refman/r_ins_the_r_package.html> for instructions).
+#'  package can then be installed (see <https://support.gurobi.com/hc/en-us/articles/14462206790033-How-do-I-install-Gurobi-for-R> for instructions).
 #'
 #' @seealso Please refer to the package vignette for more information and worked
 #'   examples. This can be accessed using the code

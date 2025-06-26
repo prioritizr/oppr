@@ -35,7 +35,7 @@ the plot be returned instead of the plot? Defaults to \code{FALSE}.}
 \item{...}{not used.}
 }
 \value{
-A \code{\link[=ggplot]{ggplot()}} object.
+A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
 }
 \description{
 Create a plot to visualize how well a solution to a project prioritization

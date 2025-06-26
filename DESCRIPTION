@@ -1,6 +1,6 @@
 Package: oppr
 Type: Package
-Version: 1.0.4.1
+Version: 1.0.5
 Title: Optimal Project Prioritization
 Description: A decision support tool for prioritizing conservation projects.
     Prioritizations can be developed by maximizing expected feature richness,
@@ -57,7 +57,8 @@ Suggests:
     lpsymphony (>= 1.10.0),
     shiny (>= 1.2.0),
     rhandsontable (>= 0.3.7),
-    tidyr (>= 0.8.2)
+    tidyr (>= 0.8.2),
+    fansi (>= 1.0.6)
 Depends:
     R(>= 3.4.0)
 LinkingTo:
@@ -68,8 +69,8 @@ License: GPL-3
 LazyData: true
 URL: https://prioritizr.github.io/oppr/
 BugReports: https://github.com/prioritizr/oppr/issues
-VignetteBuilder: knitr
-RoxygenNote: 7.3.1
+VignetteBuilder: knitr, rmarkdown
+RoxygenNote: 7.3.2
 Encoding: UTF-8
 Language: en-US
 Collate:

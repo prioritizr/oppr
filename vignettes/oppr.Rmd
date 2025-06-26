@@ -12,7 +12,7 @@ documentclass: article
 vignette: >
   %\VignetteIndexEntry{Optimal Project Prioritization}
   %\VignetteEngine{knitr::rmarkdown_notangle}
-  \usepackage[utf8]{inputenc}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r, include = FALSE}
@@ -36,7 +36,9 @@ mean_percent <- 0
 is_check <- ("CheckExEnv" %in% search()) || any(c("_R_CHECK_TIMINGS_",
              "_R_CHECK_LICENSE_") %in% names(Sys.getenv()))
 knitr::opts_chunk$set(fig.align = "center", eval = !is_check)
+```
 
+```{r, include = FALSE}
 options(crayon.enabled = TRUE)
 options(pillar.bold = TRUE)
 
@@ -65,9 +67,12 @@ knitr::knit_hooks$set(
   warning = colourise_chunk("warning"),
   error = colourise_chunk("error")
 )
-# Fallback if fansi is missing
+
+# set function for colorizing html
 sgr_to_html <- identity
-sgr_to_html <- fansi::sgr_to_html
+if (requireNamespace("fansi", quietly = TRUE)) {
+  sgr_to_html <- fansi::sgr_to_html
+}
 ```
 
 ```{r, include = FALSE}
@@ -140,7 +145,7 @@ p1 <- problem(projects = projects, actions = actions, features = features,
 print(p1)
 ```
 
-After building the problem, we can solve it. Although backwards heuristic algorithms have conventionally been used to solve project prioritization problems [e.g. @r3; @r4; @r11], here we will use exact algorithms to develop a prioritization. Exact algorithms are superior to heuristic algorithms because they can provide guarantees on solution quality [@r12; @r13]. In other words, if you specify that you want an optimal solution when using exact algorithms, then you are guaranteed to get an optimal solution. Heuristic algorithms---and even more advanced meta-heuristic algorithms such as simulated annealing that are commonly to guide conservation decision making [@r22]---provide no such guarantees and can actually deliver remarkably poor solutions [e.g. @r21]. Later on we will experiment with heuristic algorithms, but for now, we will use exact algorithms. Since we haven't explicitly stated which solver we would like to use, the _oppr R_ package will identify the best exact algorithm solver currently installed on your system. This is typically the _lpSolveAPI R_ package unless you have manually installed the [_gurobi R_ package](https://www.gurobi.com/documentation/current/refman/r_ins_the_r_package.html) and the [Gurobi optimization suite](https://www.gurobi.com/). Although not shown here, when you try solving the problem you will see information printed to your screen as the solver tries to find an optimal solution. Please do not be alarmed, this is normal behavior and some of the information can actually be useful (e.g. to estimate how long it might take to solve the problem).
+After building the problem, we can solve it. Although backwards heuristic algorithms have conventionally been used to solve project prioritization problems [e.g. @r3; @r4; @r11], here we will use exact algorithms to develop a prioritization. Exact algorithms are superior to heuristic algorithms because they can provide guarantees on solution quality [@r12; @r13]. In other words, if you specify that you want an optimal solution when using exact algorithms, then you are guaranteed to get an optimal solution. Heuristic algorithms---and even more advanced meta-heuristic algorithms such as simulated annealing that are commonly to guide conservation decision making [@r22]---provide no such guarantees and can actually deliver remarkably poor solutions [e.g. @r21]. Later on we will experiment with heuristic algorithms, but for now, we will use exact algorithms. Since we haven't explicitly stated which solver we would like to use, the _oppr R_ package will identify the best exact algorithm solver currently installed on your system. This is typically the _lpSolveAPI R_ package unless you have manually installed the [_gurobi R_ package](https://support.gurobi.com/hc/en-us/articles/14462206790033-How-do-I-install-Gurobi-for-R) and the [Gurobi optimization suite](https://www.gurobi.com/). Although not shown here, when you try solving the problem you will see information printed to your screen as the solver tries to find an optimal solution. Please do not be alarmed, this is normal behavior and some of the information can actually be useful (e.g. to estimate how long it might take to solve the problem).
 
 ```{r, results = "hide", message = FALSE, warn = FALSE}
 # solve problem
@@ -276,7 +281,7 @@ a2 <- actions$name[which(as.logical(as.matrix(s2[, action_names(p2)])))]
 assertthat::assert_that(!setequal(a1, a2))
 ```
 
-Earlier, we talked about the _oppr R_ package using the default exact algorithm solver. Although you should have the _lpSolveAPI_ solver automatically installed, we strongly recommend installing the [_gurobi R_ package](https://www.gurobi.com/documentation/current/refman/r_ins_the_r_package.html) and the [Gurobi optimization suite](https://www.gurobi.com/). This is because Gurobi can solve optimization problems much faster than any other software currently supported and it can also easily generate multiple solutions. Unfortunately, you will have to install Gurobi manually, but please see the documentation for the solver for instructions (i.e. enter the command  `?add_gurobi_solver` into the console). If you have Gurobi installed, let's try using the Gurobi solver to generate multiple solutions. Here, we will manually specify the Gurobi solver and request 1,000 solutions (though we will probably obtain less than 1,000 solutions, so if we actually wanted 1,000 solutions then we would need to specify a much larger number).
+Earlier, we talked about the _oppr R_ package using the default exact algorithm solver. Although you should have the _lpSolveAPI_ solver automatically installed, we strongly recommend installing the [_gurobi R_ package](https://support.gurobi.com/hc/en-us/articles/14462206790033-How-do-I-install-Gurobi-for-R) and the [Gurobi optimization suite](https://www.gurobi.com/). This is because Gurobi can solve optimization problems much faster than any other software currently supported and it can also easily generate multiple solutions. Unfortunately, you will have to install Gurobi manually, but please see the documentation for the solver for instructions (i.e. enter the command  `?add_gurobi_solver` into the console). If you have Gurobi installed, let's try using the Gurobi solver to generate multiple solutions. Here, we will manually specify the Gurobi solver and request 1,000 solutions (though we will probably obtain less than 1,000 solutions, so if we actually wanted 1,000 solutions then we would need to specify a much larger number).
 
 ```{r}
 # create new problem, with Gurobi solver added and request multiple solutions

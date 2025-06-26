@@ -40,7 +40,7 @@ NULL
 #'   have non-zero costs and share actions with at least one funded
 #'   project---are depicted with an open circle symbol.
 #'
-#' @return A [ggplot()] object.
+#' @return A [ggplot2::ggplot()] object.
 #'
 #' @seealso This function is essentially a wrapper for
 #'   [plot_feature_persistence()] and
