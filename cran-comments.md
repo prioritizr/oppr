@@ -2,6 +2,8 @@ Dear CRAN maintainers,
 
 Thank you very much for reviewing this submission. In particular, this submission contains an update for the *oppr* package. Although the package was originally accepted on CRAN in 2019, it was recently archived because I was unable to address issues with the package in time. I am sorry for my delay in submitting this update, and hope that it will be possible to get this package back on CRAN. This submission contains fixes for the errors raised by CRAN's checks that resulted in its archival. It also contains fixes for the notes raised by CRAN's checks. These fixes include addressing the vignette build failure, package citation file, and documentation links.
 
+Also, you might notice that the VignetteBuilder field of the DESCRIPTION file contains both the knitr and rmarkdown packages. Although only knitr would typically be included here, the package does not pass checks unless rmarkdown is also included under the `_R_CHECK_DEPENDS_ONLY_=true` setting. My understanding is that CRAN will sometimes run package checks under this setting and, as such, I have included rmarkdown in the VignetteBuilder field to help ensure that the package passses CRAN checks. I also note that several other packages include both knitr and rmarkdown packages the VignetteBuilder field (e.g., [BTYD](https://github.com/cran/BTYD/blob/master/DESCRIPTION#L26), [BKTR](https://github.com/cran/BKTR/blob/master/DESCRIPTION#L31), [Require](https://github.com/cran/Require/blob/master/DESCRIPTION#L42)).
+
 Cheers,
 
 Jeff
@@ -17,7 +19,7 @@ Jeff
 
 # R CMD check results
 
-0 errors | 0 warnings | 2 notes
+0 errors | 0 warnings | 3 notes
 
 # Notes
 
