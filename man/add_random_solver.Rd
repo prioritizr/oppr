@@ -35,7 +35,7 @@ the objective specified for the project prioritization
 \code{\link[=problem]{problem()}}.
 
 For objectives which maximize benefit subject to budgetary constraints
-(e.g. \code{\link[=add_max_richness_objective]{add_max_richness_objective()}}):
+(e.g. \code{\link[=add_max_wtd_sum_objective]{add_max_wtd_sum_objective()}}):
 
 \enumerate{
 
@@ -78,7 +78,7 @@ data(sim_projects, sim_features, sim_actions)
 # build problem with random solver, and generate 100 random solutions
 p1 <- problem(sim_projects, sim_actions, sim_features,
              "name", "success", "name", "cost", "name") \%>\%
-     add_max_richness_objective(budget = 200) \%>\%
+     add_max_wtd_sum_objective(budget = 200) \%>\%
      add_binary_decisions() \%>\%
      add_random_solver(number_solutions = 100)
 
@@ -95,7 +95,8 @@ print(s1)
 plot(p1, s1)
 
 # plot histogram of the objective values for the random solutions
-hist(s1$obj, xlab = "Expected richness", xlim = c(0, 2.5),
+# according to the weighted sum objective
+hist(s1$obj, xlab = "Expected outcome", xlim = c(0, 2.5),
      main = "Histogram of random solutions")
 
 # since the objective values don't tell us much about the quality of the

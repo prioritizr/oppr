@@ -25,7 +25,7 @@ Set weights for conserving features in a project prioritization
 \details{
 Weights are used to specify the relative importance for
 maintaining the persistence of specific features. For budget constrained
-problems (e.g. \code{\link[=add_max_richness_objective]{add_max_richness_objective()}}), these
+problems (e.g. \code{\link[=add_max_wtd_sum_objective]{add_max_wtd_sum_objective()}}), these
 weights
 could be used to specify which features are more important than other
 features according to evolutionary or cultural metrics. Specifically,
@@ -61,10 +61,11 @@ data(sim_projects, sim_features, sim_actions)
 # print feature data
 print(sim_features)
 
-# build problem with maximum richness objective, $300 budget, and no weights
+# build problem with maximum weighted sum objective, $300 budget,
+# and no weights
 p1 <- problem(sim_projects, sim_actions, sim_features,
               "name", "success", "name", "cost", "name") \%>\%
-      add_max_richness_objective(budget = 200) \%>\%
+      add_max_wtd_sum_objective(budget = 200) \%>\%
       add_binary_decisions()
 
 # print problem

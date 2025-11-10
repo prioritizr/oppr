@@ -115,7 +115,7 @@ NULL
 #'
 #' @seealso [objectives], [targets].
 #'
-#' @inherit add_max_richness_objective return
+#' @inherit add_max_wtd_sum_objective return
 #'
 #' @examples
 #' # load the ggplot2 R package to customize plot

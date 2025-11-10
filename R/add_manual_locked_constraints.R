@@ -45,7 +45,7 @@ NULL
 #' # feature to have a 30% chance of persisting into the future
 #' p <- problem(sim_projects, sim_actions, sim_features,
 #'              "name", "success", "name", "cost", "name") %>%
-#'       add_max_richness_objective(budget = 500) %>%
+#'       add_max_wtd_sum_objective(budget = 500) %>%
 #'       add_manual_locked_constraints(status) %>%
 #'       add_binary_decisions()
 #'

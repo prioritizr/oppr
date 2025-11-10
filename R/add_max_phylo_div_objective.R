@@ -148,7 +148,7 @@ NULL
 #'  probabilities and using piecewise linear approximations (described in
 #'  Hillier & Price 2005 pp. 390--392) to approximate the exponent of this term.
 #'
-#' @inherit add_max_richness_objective seealso return
+#' @inherit add_max_wtd_sum_objective seealso return
 #'
 #' @references
 #' Bennett JR, Elliott G, Mellish B, Joseph LN, Tulloch AI,

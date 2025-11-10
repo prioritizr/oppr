@@ -17,7 +17,7 @@ test_that("valid arguments", {
   # create problem
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
                "name", FALSE) %>%
-       add_max_richness_objective(budget = 0.16) %>%
+       add_max_wtd_sum_objective(budget = 0.16) %>%
        add_binary_decisions()
   # calculate project cost-effectiveness
   o <- project_cost_effectiveness(p)
@@ -53,7 +53,7 @@ test_that("valid arguments (different number of actions/projects", {
   # create problem
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
                "name", FALSE) %>%
-       add_max_richness_objective(budget = 0.16) %>%
+       add_max_wtd_sum_objective(budget = 0.16) %>%
        add_binary_decisions()
   # calculate project cost-effectiveness
   o <- project_cost_effectiveness(p)

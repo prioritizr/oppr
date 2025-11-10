@@ -45,7 +45,7 @@ NULL
 #'    locked in actions) are also deselected.
 #'
 #'  \item If the objective function is to maximize biodiversity subject
-#'    to budgetary constraints (e.g. [add_max_richness_objective()])
+#'    to budgetary constraints (e.g. [add_max_wtd_sum_objective()])
 #'    then go to step 5. Otherwise, if the objective is to minimize cost
 #'    subject to biodiversity constraints (i.e.
 #'    [add_min_set_objective()]) then go to step 7.
@@ -150,7 +150,7 @@ NULL
 #' # build problem with heuristic solver and $200
 #' p1 <- problem(sim_projects, sim_actions, sim_features,
 #'              "name", "success", "name", "cost", "name") %>%
-#'      add_max_richness_objective(budget = 200) %>%
+#'      add_max_wtd_sum_objective(budget = 200) %>%
 #'      add_binary_decisions() %>%
 #'      add_heuristic_solver()
 #'

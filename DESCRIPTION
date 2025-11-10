@@ -1,6 +1,6 @@
 Package: oppr
 Type: Package
-Version: 1.0.5
+Version: 1.1.0.0
 Title: Optimal Project Prioritization
 Description: A decision support tool for prioritizing conservation projects.
     Prioritizations can be developed by maximizing expected feature richness,
@@ -32,7 +32,7 @@ Imports:
     utils,
     methods,
     stats,
-    Matrix,
+    Matrix (>= 1.3-0),
     magrittr (>= 1.5),
     uuid (>= 0.1.2),
     proto (>= 1.0.0),
@@ -112,8 +112,8 @@ Collate:
     'add_manual_locked_constraints.R'
     'add_max_phylo_div_objective.R'
     'star_phylogeny.R'
-    'add_max_richness_objective.R'
     'add_max_targets_met_objective.R'
+    'add_max_wtd_sum_objective.R'
     'add_min_set_objective.R'
     'add_random_solver.R'
     'add_relative_targets.R'
@@ -123,6 +123,7 @@ Collate:
     'constraints.R'
     'data.R'
     'decisions.R'
+    'deprecated.R'
     'feature_names.R'
     'magrittr-operators.R'
     'misc.R'
@@ -152,3 +153,5 @@ Collate:
     'weights.R'
     'zzz.R'
 Roxygen: list(markdown = TRUE)
+Remotes:
+  bioc::ggtree

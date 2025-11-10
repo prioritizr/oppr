@@ -139,7 +139,7 @@ test_that("maximum benefit objective (1 solution)", {
   # create problem
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
                "name", FALSE) %>%
-       add_max_richness_objective(budget = 0.15) %>%
+       add_max_wtd_sum_objective(budget = 0.15) %>%
        add_binary_decisions() %>%
        add_locked_in_constraints(1) %>%
        add_locked_out_constraints(2) %>%
@@ -181,7 +181,7 @@ test_that("maximum benefit objective (100 solutions, locked in)", {
   # create problem
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
                "name", FALSE) %>%
-       add_max_richness_objective(budget = 0.16) %>%
+       add_max_wtd_sum_objective(budget = 0.16) %>%
        add_binary_decisions() %>%
        add_locked_in_constraints(2) %>%
        add_random_solver(100, verbose = FALSE)
@@ -215,7 +215,7 @@ test_that("maximum benefit objective (100 solutions, locked out)", {
   # create problem
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
                "name", FALSE) %>%
-       add_max_richness_objective(budget = 0.15) %>%
+       add_max_wtd_sum_objective(budget = 0.15) %>%
        add_binary_decisions() %>%
        add_locked_out_constraints(2) %>%
        add_random_solver(100, verbose = FALSE)
@@ -237,7 +237,7 @@ test_that("maximum benefit objective (zero cost project locked out)", {
   data(sim_projects, sim_actions, sim_features)
   p <- problem(sim_projects, sim_actions, sim_features, "name", "success",
                "name", "cost", "name", FALSE) %>%
-       add_max_richness_objective(budget = 0.15) %>%
+       add_max_wtd_sum_objective(budget = 0.15) %>%
        add_binary_decisions() %>%
        add_locked_out_constraints(which(sim_actions$cost == 0)) %>%
        add_random_solver(100, verbose = FALSE)
@@ -267,7 +267,7 @@ test_that("maximum benefit (large problem, inc budgets)", {
     b <- sum(actions$cost) * p
     s <- problem(projects = projects, actions = actions, features = features,
                  "name", "success", "name", "cost", "name") %>%
-         add_max_richness_objective(budget = b) %>%
+         add_max_wtd_sum_objective(budget = b) %>%
          add_feature_weights("weight") %>%
          add_binary_decisions() %>%
          add_random_solver(verbose = FALSE, number_solutions = 5) %>%
@@ -295,7 +295,7 @@ test_that("maximum benefit (large problem, inc budgets, locked constraints)", {
     b <- sum(actions$cost) * p
     s <- problem(projects = projects, actions = actions, features = features,
                  "name", "success", "name", "cost", "name") %>%
-         add_max_richness_objective(budget = b) %>%
+         add_max_wtd_sum_objective(budget = b) %>%
          add_feature_weights("weight") %>%
          add_locked_in_constraints(c(1, 2, 3)) %>%
          add_locked_out_constraints(c(4, 5)) %>%
@@ -322,7 +322,7 @@ test_that("invalid arguments", {
   # all solutions locked out
   expect_warning({expect_error({
     p %>%
-    add_max_richness_objective(budget = 0.15) %>%
+    add_max_wtd_sum_objective(budget = 0.15) %>%
     add_binary_decisions() %>%
     add_locked_out_constraints(seq_len(nrow(sim_actions))) %>%
     add_random_solver(1, verbose = FALSE) %>%
@@ -331,7 +331,7 @@ test_that("invalid arguments", {
   # locked in actions exceed budget
   expect_warning({expect_error({
     p %>%
-    add_max_richness_objective(budget = 0.15) %>%
+    add_max_wtd_sum_objective(budget = 0.15) %>%
     add_binary_decisions() %>%
     add_locked_in_constraints(seq_len(nrow(sim_actions))) %>%
     add_random_solver(1, verbose = FALSE) %>%

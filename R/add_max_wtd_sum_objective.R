@@ -1,10 +1,10 @@
 #' @include internal.R pproto.R Objective-proto.R star_phylogeny.R
 NULL
 
-#' Add maximum richness objective
+#' Add maximum weighted sum objective
 #'
 #' Set the objective of a project prioritization [problem()] to
-#' maximize the total number of features that are expected to persist, whilst
+#' maximize the weighted sum of the expected outcomes for the projects, whilst
 #' ensuring that the cost of the solution is within a pre-specified budget
 #' (Joseph, Maloney & Possingham 2009). This objective is conceptually similar
 #' to maximizing species richness in a study area. Furthermore, weights can
@@ -130,7 +130,7 @@ NULL
 #' # build problem with maximum richness objective and $300 budget
 #' p1 <- problem(sim_projects, sim_actions, sim_features,
 #'              "name", "success", "name", "cost", "name") %>%
-#'      add_max_richness_objective(budget = 200) %>%
+#'      add_max_wtd_sum_objective(budget = 200) %>%
 #'      add_binary_decisions()
 #'
 #' \dontrun{
@@ -158,12 +158,12 @@ NULL
 #' # plot solution based on feature weights
 #' plot(p2, s2)
 #' }
-#' @name add_max_richness_objective
+#' @name add_max_wtd_sum_objective
 NULL
 
-#' @rdname add_max_richness_objective
+#' @rdname add_max_wtd_sum_objective
 #' @export
-add_max_richness_objective <- function(x, budget) {
+add_max_wtd_sum_objective <- function(x, budget) {
   # assert argument is valid
   assertthat::assert_that(inherits(x, "ProjectProblem"),
                           assertthat::is.number(budget),

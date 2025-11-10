@@ -77,10 +77,10 @@ action selected for funding.
 # load data
 data(sim_projects, sim_features, sim_actions)
 
-# build problem with maximum richness objective and $400 budget
+# build problem with maximum weighted sum objective and $400 budget
 p <- problem(sim_projects, sim_actions, sim_features,
              "name", "success", "name", "cost", "name") \%>\%
-     add_max_richness_objective(budget = 400) \%>\%
+     add_max_wtd_sum_objective(budget = 400) \%>\%
      add_feature_weights("weight") \%>\%
      add_binary_decisions()
 

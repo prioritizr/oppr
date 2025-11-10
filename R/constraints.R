@@ -28,10 +28,10 @@ NULL
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
-#' # build problem with maximum richness objective and $150 budget
+#' # build problem with maximum weighted sum objective and $150 budget
 #' p1 <- problem(sim_projects, sim_actions, sim_features,
 #'              "name", "success", "name", "cost", "name") %>%
-#'      add_max_richness_objective(budget = 150) %>%
+#'      add_max_wtd_sum_objective(budget = 150) %>%
 #'      add_binary_decisions()
 #'
 #' # print problem

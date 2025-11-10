@@ -213,7 +213,7 @@ plot_phylo_persistence <- function(x, solution, n = 1, symbol_hjust = 0.007,
       ggtree::ggtree(
         tree2,
         ggplot2::aes(color = !!rlang::sym("prob")),
-        size = 1.1
+        linewidth = 1.1
       ) +
       ggtree::geom_tiplab(color = "black", size = 2.5) +
       ggplot2::scale_color_gradientn(

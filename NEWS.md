@@ -1,9 +1,18 @@
+# oppr 1.1.0.0
+
+- New `multi_problem()` and `add_ref_point_approach()` functions for multi-
+  objective optimization.
+- Update `plot_phylo_persistence()` to be compatible with updates to
+  _ggplot2_ package.
+- Rename `add_max_richness_objective()` to be `add_max_wtd_sum_objective()`.
+- Update _Matrix_ package version dependency (#20).
+
 # oppr 1.0.5
 
 - CRAN release.
-- Fix issue with vignette failing to build when the *fansi* package is not
+- Fix issue with vignette failing to build when the _fansi_ package is not
   installed.
-- Add *fansi* package to optional dependencies (#22).
+- Add _fansi_ package to optional dependencies (#22).
 - Fix bug in `add_lpsolveapi_solver()`.
 
 # oppr 1.0.4.1
@@ -18,9 +27,9 @@
 
 - CRAN release.
 - Fix compiler warnings raised by CRAN checks.
-- Remove references to the *ggtree* package in documentation.
+- Remove references to the _ggtree_ package in documentation.
 - Fix memory issues encountered during installation on CRAN Windows server.
-- Fix compatibility issues with upcoming version of the *Matrix* package
+- Fix compatibility issues with upcoming version of the _Matrix_ package
   (version 1.4-2).
 - Fix broken URLs in package documentation.
 
@@ -31,9 +40,9 @@
 
 # oppr 1.0.2.5
 
-- Update minimum versions for *tidytree* and *ggtree* package dependencies.
+- Update minimum versions for _tidytree_ and _ggtree_ package dependencies.
   This is because some older versions of tidytree are not compatible with some
-  older versions of the *ggtree* package.
+  older versions of the _ggtree_ package.
 
 # oppr 1.0.2.4
 
@@ -44,7 +53,7 @@
 - Bug fix: previous versions of the package reported that the `gap` parameter
   for the `add_rsymphony_solver` and `add_lpsymphony_solver` corresponded to the
   maximum absolute difference from the optimal objective value.
-  This was an error due to misunderstanding the *SYMPHONY* documentation.
+  This was an error due to misunderstanding the _SYMPHONY_ documentation.
   Under previous versions of the package, the `gap` parameter actually
   corresponded to a relative optimality gap expressed
   as a percentage (such that`gap = 10` indicates that solutions must be at
@@ -121,7 +130,7 @@
 # oppr 0.0.1.1
 
 - Fix address sanitizer issues causing CRAN checks to fail.
-- Tests successfully complete when the *shiny* package is not installed.
+- Tests successfully complete when the _shiny_ package is not installed.
 
 # oppr 0.0.1
 

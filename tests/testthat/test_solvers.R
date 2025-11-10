@@ -36,7 +36,7 @@ test_that("add_default_solver (simple problem)", {
   # create problem
   s <- problem(projects, actions, features, "name", "success", "name", "cost",
                "name") %>%
-       add_max_richness_objective(budget = 0.16) %>%
+       add_max_wtd_sum_objective(budget = 0.16) %>%
        add_binary_decisions() %>%
        add_default_solver() %>%
        solve()
@@ -82,7 +82,7 @@ test_that("add_rsymphony_solver (simple problem)", {
   # create problem
   s <- problem(projects, actions, features, "name", "success", "name", "cost",
                "name") %>%
-       add_max_richness_objective(budget = 0.16) %>%
+       add_max_wtd_sum_objective(budget = 0.16) %>%
        add_binary_decisions() %>%
        add_rsymphony_solver() %>%
        solve()
@@ -130,7 +130,7 @@ test_that("add_lpsymphony_solver (simple problem)", {
   # create problem
   s <- problem(projects, actions, features, "name", "success", "name", "cost",
                "name") %>%
-       add_max_richness_objective(budget = 0.16) %>%
+       add_max_wtd_sum_objective(budget = 0.16) %>%
        add_binary_decisions() %>%
        add_lpsymphony_solver() %>%
        solve()
@@ -176,7 +176,7 @@ test_that("add_gurobi_solver (simple problem)", {
   # create problem
   s <- problem(projects, actions, features, "name", "success", "name", "cost",
                "name") %>%
-       add_max_richness_objective(budget = 0.16) %>%
+       add_max_wtd_sum_objective(budget = 0.16) %>%
        add_binary_decisions() %>%
        add_gurobi_solver() %>%
        solve()
@@ -220,7 +220,7 @@ test_that("add_lpsolveapi_solver (simple problem)", {
   # create problem
   s <- problem(projects, actions, features, "name", "success", "name", "cost",
                "name") %>%
-       add_max_richness_objective(budget = 0.16) %>%
+       add_max_wtd_sum_objective(budget = 0.16) %>%
        add_binary_decisions() %>%
        add_lpsolveapi_solver() %>%
        solve()

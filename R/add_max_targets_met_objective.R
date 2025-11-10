@@ -136,7 +136,7 @@ NULL
 #' Carwardine J (2015) Benefits of integrating complementarity into priority
 #' threat management. *Conservation Biology*, **29**, 525--536.
 #'
-#' @inherit add_max_richness_objective seealso return
+#' @inherit add_max_wtd_sum_objective seealso return
 #'
 #' @examples
 #' # load the ggplot2 R package to customize plot

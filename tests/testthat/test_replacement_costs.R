@@ -19,7 +19,7 @@ test_that("maximum obj", {
   # create problem, solution, output
   p <- problem(projects, actions, features, "name", "success", "name", "cost",
                "name", FALSE) %>%
-       add_max_richness_objective(budget = 0.26) %>%
+       add_max_wtd_sum_objective(budget = 0.26) %>%
        add_binary_decisions()
   s <- data.frame(A1 = 1, A2 = 0, A3 = 1, A4 = 1)
   r <- replacement_costs(p, s)
@@ -76,7 +76,7 @@ test_that("invalid arguments", {
   data(sim_projects, sim_actions, sim_features)
   p <- problem(sim_projects, sim_actions, sim_features, "name", "success",
                "name", "cost", "name", FALSE) %>%
-       add_max_richness_objective(0.16) %>%
+       add_max_wtd_sum_objective(0.16) %>%
        add_binary_decisions()
   solution <- as.data.frame(matrix(rep(1, p$number_of_actions()), nrow = 1,
                                    dimnames = list(NULL, p$action_names())))

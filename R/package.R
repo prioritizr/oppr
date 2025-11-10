@@ -12,7 +12,7 @@ NULL
 #'
 #'   The \pkg{oppr} *R* package a decision support tool for prioritizing
 #'   conservation projects. Prioritizations can be developed by maximizing
-#'   expected feature richness, expected
+#'   expected outcomes as a weighted sum (e.g., species richness), expected
 #'   phylogenetic diversity, the number of features that meet persistence
 #'   targets, or identifying a set of projects that meet persistence targets
 #'   for minimal cost. Constraints (e.g. lock in
@@ -64,7 +64,7 @@ NULL
 #' # build problem
 #' p <- problem(sim_projects, sim_actions, sim_features,
 #'              "name", "success", "name", "cost", "name") %>%
-#'      add_max_richness_objective(budget = 400) %>%
+#'      add_max_wtd_sum_objective(budget = 400) %>%
 #'      add_feature_weights("weight") %>%
 #'      add_binary_decisions()
 #'
