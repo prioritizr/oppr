@@ -1,4 +1,4 @@
-#' @include Solver-proto.R
+#' @include Solver-class.R
 NULL
 
 #' Add a default solver
@@ -6,33 +6,37 @@ NULL
 #' Identify the best solver currently installed on the system and specify that
 #' it should be used to solve a project prioritization [problem()].
 #'
-#' @param x [ProjectProblem-class] object.
+#' @inheritParams add_gurobi_solver
 #'
 #' @param ... arguments passed to the solver.
 #'
 #' @details
-#'   Ranked from best to worst, the solvers that can be used are:
-#'   \pkg{gurobi}, ([add_gurobi_solver()]),
-#'   \pkg{Rsymphony} ([add_rsymphony_solver()]), \pkg{lpsymphony}
-#'   ([add_lpsymphony_solver()]), and \pkg{lpSolveAPI}
-#'   ([add_lpsolveapi_solver()]). This function does not consider
-#'   solvers that generate solutions using heuristic algorithms (i.e.
-#'   [add_heuristic_solver()]) or random processes
-#'   (i.e. [add_random_solver()]) because they cannot provide
-#'   any guarantees on solution quality.
+#' Ranked from best to worst, the solvers that can be used are:
+#' \pkg{gurobi}, ([add_gurobi_solver()]),
+#' \pkg{Rsymphony} ([add_rsymphony_solver()]), \pkg{lpsymphony}
+#' ([add_lpsymphony_solver()]), and \pkg{lpSolveAPI}
+#' ([add_lpsolveapi_solver()]). This function does not consider
+#' solvers that generate solutions using heuristic algorithms (i.e.
+#' [add_heuristic_solver()]) or random processes
+#' (i.e. [add_random_solver()]) because they cannot provide
+#' any guarantees on solution quality.
 #'
-#' @seealso [solvers].
+#'
+#' @inherit add_gurobi_solver return seealso
 #'
 #' @examples
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
 #' # build problem with default solver
-#' p <- problem(sim_projects, sim_actions, sim_features,
-#'              "name", "success", "name", "cost", "name") %>%
-#'      add_max_wtd_sum_objective(budget = 200) %>%
-#'      add_binary_decisions() %>%
-#'      add_default_solver()
+#' p <-
+#'    problem(
+#'     sim_projects, sim_actions, sim_features,
+#'     "name", "success", "name", "cost", "name"
+#'   ) %>%
+#'   add_max_wtd_sum_objective(budget = 200) %>%
+#'   add_binary_decisions() %>%
+#'   add_default_solver()
 #'
 #' # print problem
 #' print(p)
@@ -60,13 +64,23 @@ add_default_solver <- function(x, ...) {
     return(add_lpsolveapi_solver(x, ...))
   } else {
     assertthat::assert_that(inherits(x, "ConservationProblem"))
-    return(x$add_solver(pproto(
-      "MissingSolver",
-      Solver,
-      name = "MissingSolver",
-      solve = function(self, x) {
-        stop("no optimization problem solvers found on system.")
-      })))
+    return(
+      x$add_solver(
+        R6::R6Class(
+          "MissingSolver",
+          inherit = Solver,
+          public = list(
+            name = "missing",
+            solve = function(x) {
+              stop(
+                "no optimization problem solvers found on system.",
+                call. = FALSE
+              )
+            }
+          )
+        )
+      )
+    )
   }
 }
 

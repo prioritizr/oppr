@@ -17,7 +17,7 @@ add_gurobi_solver(
 )
 }
 \arguments{
-\item{x}{\linkS4class{ProjectProblem} object.}
+\item{x}{\code{\link[=problem]{problem()}} object.}
 
 \item{gap}{\code{numeric} gap to optimality. This gap is relative
 and expresses the acceptable deviance from the optimal objective.
@@ -70,8 +70,7 @@ Defaults to \code{FALSE}.}
 optimization problems?}
 }
 \value{
-\linkS4class{ProjectProblem} object with the solver added
-to it.
+A \code{\link[=problem]{problem()}} object with the solver added o it.
 }
 \description{
 Specify that the \emph{Gurobi} software should be used to solve a
@@ -93,8 +92,7 @@ To install the \pkg{gurobi} package, the
 \href{https://www.gurobi.com}{Gurobi} optimization suite will first need to
 be installed (see \url{https://support.gurobi.com/hc/en-us/articles/4534161999889-How-do-I-install-Gurobi-Optimizer} for instructions). Although
 \href{https://www.gurobi.com}{Gurobi} is a commercial software, academics
-can obtain a
-\href{https://www.gurobi.com/downloads/end-user-license-agreement-academic/}{special license for no cost}. After installing the
+can obtain a \href{https://www.gurobi.com/downloads/end-user-license-agreement-academic/}{special license for no cost}. After installing the
 \href{https://www.gurobi.com}{Gurobi} optimization suite, the \pkg{gurobi}
 package can then be installed (see \url{https://support.gurobi.com/hc/en-us/articles/14462206790033-How-do-I-install-Gurobi-for-R} for instructions).
 }
@@ -104,14 +102,16 @@ package can then be installed (see \url{https://support.gurobi.com/hc/en-us/arti
 data(sim_projects, sim_features, sim_actions)
 
 # build problem
-p1 <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-     add_max_wtd_sum_objective(budget = 200) \%>\%
-     add_binary_decisions()
+p1 <-
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) \%>\%
+  add_max_wtd_sum_objective(budget = 200) \%>\%
+  add_binary_decisions()
 
 # build another problem, and specify the Gurobi solver
-p2 <- p1 \%>\%
-      add_gurobi_solver()
+p2 <- p1 \%>\% add_gurobi_solver()
 
 # print problem
 print(p2)
@@ -128,8 +128,7 @@ plot(p2, s2)
 # build another problem and obtain multiple solutions
 # note that this problem doesn't have 100 unique solutions so
 # the solver won't return 100 solutions
-p3 <- p1 \%>\%
-      add_gurobi_solver(number_solutions = 100)
+p3 <- p1 \%>\% add_gurobi_solver(number_solutions = 100)
 
 # print problem
 print(p3)
@@ -140,7 +139,9 @@ s3 <- solve(p3)
 # print solutions
 print(s3)
 }
+
 }
 \seealso{
 \link{solvers}.
 }
+\concept{solvers}

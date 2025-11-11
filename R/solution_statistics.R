@@ -17,26 +17,34 @@ NULL
 #'   and should be either zero or one. Arguments to `solution` can
 #'   contain additional columns, and they will be ignored.
 #'
-#' @return A [tibble::tibble()] table containing the following
-#'   columns:
+#' @return
+#' A [tibble::tibble()] table containing the following columns.
 #'
-#'   \describe{
+#' \describe{
 #'
-#'   \item{`"cost"`}{`numeric` cost of each solution.}
+#' \item{`"cost"`}{
+#' `numeric` cost of each solution.
+#' }
 #'
-#'   \item{`"obj"`}{`numeric` objective value for each solution.
-#'     This is calculated using the objective function defined for the
-#'     argument to `x`.}
+#' \item{`"obj"`}{
+#' `numeric` objective value for each solution.
+#' This is calculated using the objective function defined for the
+#' argument to `x`.
+#' }
 #'
-#'   \item{`x$project_names()`}{`numeric` column for each
-#'     project indicating if it was completely funded (with a value of 1)
-#'     or not (with a value of 0).}
+#' \item{`x$project_names()`}{
+#' `numeric` column for each
+#' project indicating if it was completely funded (with a value of 1)
+#' or not (with a value of 0).
+#' }
 #'
-#'   \item{`x$feature_names()`}{`numeric` column for each
-#'     feature indicating the probability that it will persist into
-#'     the future given each solution.}
+#' \item{`x$feature_names()`}{
+#' `numeric` column for each
+#' feature indicating the probability that it will persist into
+#' the future given each solution.
+#' }
 #'
-#'   }
+#' }
 #'
 #' @seealso [objectives], [replacement_costs()],
 #'   [project_cost_effectiveness()].
@@ -55,22 +63,27 @@ NULL
 #' print(sim_actions)
 #'
 #' # build problem
-#' p <- problem(sim_projects, sim_actions, sim_features,
-#'              "name", "success", "name", "cost", "name") %>%
-#'      add_max_wtd_sum_objective(budget = 400) %>%
-#'      add_feature_weights("weight") %>%
-#'      add_binary_decisions()
+#' p <-
+#'   problem(
+#'     sim_projects, sim_actions, sim_features,
+#'     "name", "success", "name", "cost", "name"
+#'   ) %>%
+#'   add_max_wtd_sum_objective(budget = 400) %>%
+#'   add_feature_weights("weight") %>%
+#'   add_binary_decisions()
 #'
 #' # print problem
 #' print(p)
 #'
 #' # create a table with some solutions
-#' solutions <- data.frame(F1_action =       c(0, 1, 1),
-#'                         F2_action =       c(0, 1, 0),
-#'                         F3_action =       c(0, 1, 1),
-#'                         F4_action =       c(0, 1, 0),
-#'                         F5_action =       c(0, 1, 1),
-#'                         baseline_action = c(1, 1, 1))
+#' solutions <- data.frame(
+#'   F1_action =       c(0, 1, 1),
+#'   F2_action =       c(0, 1, 0),
+#'   F3_action =       c(0, 1, 1),
+#'   F4_action =       c(0, 1, 0),
+#'   F5_action =       c(0, 1, 1),
+#'   baseline_action = c(1, 1, 1)
+#' )
 #'
 #' # print the solutions
 #' # the first solution only has the baseline action funded
@@ -83,33 +96,62 @@ NULL
 #' @export
 solution_statistics <- function(x, solution) {
   # assert arguments are valid
-  assertthat::assert_that(inherits(x, "ProjectProblem"),
-                          inherits(solution, "data.frame"),
-                          all(assertthat::has_name(solution, x$action_names())))
-  assertthat::assert_that(!is.Waiver(x$objective),
-    msg = "argument to x does not have an objective specified.")
-  if (!inherits(solution, "tbl_df"))
+  assertthat::assert_that(
+    inherits(x, "ProjectProblem"),
+    inherits(solution, "data.frame"),
+    all(assertthat::has_name(solution, x$action_names()))
+  )
+  assertthat::assert_that(
+    !is.Waiver(x$objective),
+    msg = "argument to x does not have an objective specified."
+  )
+  if (!inherits(solution, "tbl_df")) {
     solution <- tibble::as_tibble(solution)
+  }
   # calculate cost and objective values
   out <- tibble::tibble(
-    cost = rowSums(as.matrix(solution[, x$action_names()]) *
-                   matrix(x$action_costs(), byrow = TRUE,
-                          ncol = x$number_of_actions(),
-                          nrow = nrow(solution))),
-    obj = x$objective$evaluate(x, solution[, x$action_names()]))
+    cost = rowSums(
+      as.matrix(solution[, x$action_names()]) *
+      matrix(
+        x$action_costs(), byrow = TRUE,
+        ncol = x$number_of_actions(),
+        nrow = nrow(solution)
+      )
+    ),
+    obj = x$objective$evaluate(x, solution[, x$action_names()])
+  )
   # add in columns indicating if each project is funded or not
-  out <- tibble::as_tibble(cbind(out, stats::setNames(as.data.frame(
-    rcpp_funded_projects(
-      x$pa_matrix(),
-      as_Matrix(as.matrix(solution[, x$action_names()]), "dgCMatrix"))),
-    x$project_names())))
-  # add in columns for feature persistences
-  out <- tibble::as_tibble(cbind(out, stats::setNames(as.data.frame(
-    rcpp_expected_persistences(
-      x$pa_matrix(), x$epf_matrix(),
-      as_Matrix(diag(x$number_of_features()), "dgCMatrix"),
-      as_Matrix(as.matrix(solution[, x$action_names()]), "dgCMatrix"))),
-      x$feature_names())))
+  out <- tibble::as_tibble(
+    cbind(
+      out,
+      stats::setNames(
+        as.data.frame(
+         rcpp_funded_projects(
+           x$pa_matrix(),
+           as_Matrix(as.matrix(solution[, x$action_names()]), "dgCMatrix")
+         )
+       ),
+       x$project_names()
+     )
+   )
+ )
+  # add in columns for feature persistence values
+  out <- tibble::as_tibble(
+    cbind(
+      out,
+      stats::setNames(
+        as.data.frame(
+          rcpp_expected_persistences(
+            x$pa_matrix(),
+            x$eof_matrix(),
+            as_Matrix(diag(x$number_of_features()), "dgCMatrix"),
+            as_Matrix(as.matrix(solution[, x$action_names()]), "dgCMatrix")
+          )
+        ),
+        x$feature_names()
+      )
+    )
+  )
   # return output
   out
 }

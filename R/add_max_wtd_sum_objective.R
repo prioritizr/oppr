@@ -1,4 +1,4 @@
-#' @include internal.R pproto.R Objective-proto.R star_phylogeny.R
+#' @include internal.R Objective-class.R star_phylogeny.R
 NULL
 
 #' Add maximum weighted sum objective
@@ -11,64 +11,66 @@ NULL
 #' also be used to specify the relative importance of conserving specific
 #' features (see [add_feature_weights()]).
 #'
-#' @param x [ProjectProblem-class] object.
+#' @param x [problem()] object.
 #'
-#' @param budget `numeric` budget for funding actions.
+#' @param budget `numeric` value representing the maximum amount of total
+#' expenditure for funding actions.
 #'
-#' @details A problem objective is used to specify the overall goal of the
-#'   project prioritization problem.
-#'   Here, the maximum richness objective seeks to find the set of actions that
-#'   maximizes the total number of features  (e.g. populations, species,
-#'   ecosystems) that is expected to persist within a pre-specified budget.
-#'   Let \eqn{I} represent the set of conservation actions (indexed by
-#'   \eqn{i}). Let \eqn{C_i} denote the cost for funding action \eqn{i}, and
-#'   let \eqn{m} denote the maximum expenditure (i.e. the budget). Also,
-#'   let \eqn{F} represent each feature (indexed by \eqn{f}), \eqn{W_f}
-#'   represent the weight for each feature \eqn{f} (defaults to one for
-#'   each feature unless specified otherwise), and \eqn{E_f} denote the
-#'   probability that each feature will go extinct given the funded
-#'   conservation projects.
+#' @details
+#' A problem objective is used to specify the overall goal of the
+#' project prioritization problem.
+#' Here, the maximum richness objective seeks to find the set of actions that
+#' maximizes the total number of features  (e.g. populations, species,
+#' ecosystems) that is expected to persist within a pre-specified budget.
+#' Let \eqn{I} represent the set of conservation actions (indexed by
+#' \eqn{i}). Let \eqn{C_i} denote the cost for funding action \eqn{i}, and
+#' let \eqn{m} denote the maximum expenditure (i.e. the budget). Also,
+#' let \eqn{F} represent each feature (indexed by \eqn{f}), \eqn{W_f}
+#' represent the weight for each feature \eqn{f} (defaults to one for
+#' each feature unless specified otherwise), and \eqn{E_f} denote the
+#' probability that each feature will go extinct given the funded
+#' conservation projects.
 #'
-#'   To guide the prioritization, the conservation actions are organized into
-#'   conservation projects. Let \eqn{J} denote the set of conservation projects
-#'   (indexed by \eqn{j}), and let \eqn{A_{ij}} denote which actions
-#'   \eqn{i \in I}{i in I} comprise each conservation project
-#'   \eqn{j \in J}{j in J} using zeros and ones. Next, let \eqn{P_j} represent
-#'   the probability of project \eqn{j} being successful if it is funded. Also,
-#'   let \eqn{B_{fj}} denote the probability that each feature
-#'   \eqn{f \in F}{f in F} associated with the project \eqn{j \in J}{j in J}
-#'   will persist if all of the actions that comprise project \eqn{j} are funded
-#'   and that project is allocated to feature \eqn{f}. For convenience,
-#'   let \eqn{Q_{fj}} denote the actual probability that each
-#'   \eqn{f \in F}{f in F} associated with the project \eqn{j \in J}{j in J}
-#'   is expected to persist if the project is funded. If the argument
-#'   to `adjust_for_baseline` in the `problem` function was set to
-#'   `TRUE`, and this is the default behavior, then
-#'   \eqn{Q_{fj} = (P_{j} \times B_{fj}) + \bigg(\big(1 - (P_{j} B_{fj})\big)
-#'   \times (P_{n} \times B_{fn})\bigg)}{Q_{fj} = (P_j B_{fj}) + ((1 - (P_j
-#'   B_{fj})) * (P_n \times B_{fn}))}, where `n` corresponds to the
-#'   baseline "do nothing" project. This means that the probability
-#'   of a feature persisting if a project is allocated to a feature
-#'   depends on (i) the probability of the project succeeding, (ii) the
-#'   probability of the feature persisting if the project does not fail,
-#'   and (iii) the probability of the feature persisting even if the project
-#'   fails. Otherwise, if the argument is set to `FALSE`, then
-#'   \eqn{Q_{fj} = P_{j} \times B_{fj}}{Q_{fj} = P_{j} * B_{fj}}.
+#' To guide the prioritization, the conservation actions are organized into
+#' conservation projects. Let \eqn{J} denote the set of conservation projects
+#' (indexed by \eqn{j}), and let \eqn{A_{ij}} denote which actions
+#' \eqn{i \in I}{i in I} comprise each conservation project
+#' \eqn{j \in J}{j in J} using zeros and ones. Next, let \eqn{P_j} represent
+#' the probability of project \eqn{j} being successful if it is funded. Also,
+#' let \eqn{B_{fj}} denote the probability that each feature
+#' \eqn{f \in F}{f in F} associated with the project \eqn{j \in J}{j in J}
+#' will persist if all of the actions that comprise project \eqn{j} are funded
+#' and that project is allocated to feature \eqn{f}. For convenience,
+#' let \eqn{Q_{fj}} denote the actual probability that each
+#' \eqn{f \in F}{f in F} associated with the project \eqn{j \in J}{j in J}
+#' is expected to persist if the project is funded. If the argument
+#' to `adjust_for_baseline` in the `problem` function was set to
+#' `TRUE`, and this is the default behavior, then
+#' \eqn{Q_{fj} = (P_{j} \times B_{fj}) + \bigg(\big(1 - (P_{j} B_{fj})\big)
+#' \times (P_{n} \times B_{fn})\bigg)}{Q_{fj} = (P_j B_{fj}) + ((1 - (P_j
+#' B_{fj})) * (P_n \times B_{fn}))}, where `n` corresponds to the
+#' baseline "do nothing" project. This means that the probability
+#' of a feature persisting if a project is allocated to a feature
+#' depends on (i) the probability of the project succeeding, (ii) the
+#' probability of the feature persisting if the project does not fail,
+#' and (iii) the probability of the feature persisting even if the project
+#' fails. Otherwise, if the argument is set to `FALSE`, then
+#' \eqn{Q_{fj} = P_{j} \times B_{fj}}{Q_{fj} = P_{j} * B_{fj}}.
 #'
-#'   The binary control variables \eqn{X_i} in this problem indicate whether
-#'   each project \eqn{i \in I}{i in I} is funded or not. The decision
-#'   variables in this problem are the \eqn{Y_{j}}, \eqn{Z_{fj}}, and \eqn{E_f}
-#'   variables.
-#'   Specifically, the binary \eqn{Y_{j}} variables indicate if project \eqn{j}
-#'   is funded or not based on which actions are funded; the binary
-#'   \eqn{Z_{fj}} variables indicate if project \eqn{j} is used to manage
-#'   feature \eqn{f} or not; and the semi-continuous \eqn{E_f} variables
-#'   denote the probability that feature \eqn{f} will go extinct.
+#' The binary control variables \eqn{X_i} in this problem indicate whether
+#' each project \eqn{i \in I}{i in I} is funded or not. The decision
+#' variables in this problem are the \eqn{Y_{j}}, \eqn{Z_{fj}}, and \eqn{E_f}
+#' variables.
+#' Specifically, the binary \eqn{Y_{j}} variables indicate if project \eqn{j}
+#' is funded or not based on which actions are funded; the binary
+#' \eqn{Z_{fj}} variables indicate if project \eqn{j} is used to manage
+#' feature \eqn{f} or not; and the semi-continuous \eqn{E_f} variables
+#' denote the probability that feature \eqn{f} will go extinct.
 #'
-#'   Now that we have defined all the data and variables, we can formulate
-#'   the problem. For convenience, let the symbol used to denote each set also
-#'   represent its cardinality (e.g. if there are ten features, let \eqn{F}
-#'   represent the set of ten features and also the number ten).
+#' Now that we have defined all the data and variables, we can formulate
+#' the problem. For convenience, let the symbol used to denote each set also
+#' represent its cardinality (e.g. if there are ten features, let \eqn{F}
+#' represent the set of ten features and also the number ten).
 #'
 #' \deqn{
 #'   \mathrm{Maximize} \space \sum_{f = 0}^{F} (1 - E_f) W_f \space
@@ -87,7 +89,7 @@ NULL
 #'   \mathrm{(eqn \space 1g)} \\
 #'   X_{i}, Y_{j}, Z_{fj} \in [0, 1] \space \forall \space i \in I, j \in J, f
 #'   \in F \space \mathrm{(eqn \space 1h)}
-#'   }{
+#' }{
 #'   Maximize sum_f^F (1 - E_f) W_f (eqn 1a);
 #'   Subject to:
 #'   sum_i^I C_i X_i <= m for all f in F (eqn 1b),
@@ -97,7 +99,7 @@ NULL
 #'   A_{ij} Y_{j} <= X_{i} for all i I, j in J (eqn 1f),
 #'   E_f >= 0, E_f <= 1 for all f in F (eqn 1g),
 #'   X_i, Y_j, Z_{fj} in [0, 1] for all i in I, j in J, f in F (eqn 1h)
-#'   }
+#' }
 #'
 #' The objective (eqn 1a) is to maximize the weighted persistence of all the
 #' species. Constraint (eqn 1b) limits the maximum expenditure (i.e. ensures
@@ -118,8 +120,9 @@ NULL
 #' resources among threatened species: A project prioritization protocol.
 #' *Conservation Biology*, **23**, 328--338.
 #'
-#' @return [ProjectProblem-class] object with the objective
-#'   added to it.
+#' @return A [problem()] with the objective added to it.
+#'
+#' @family objectives
 #'
 #' @seealso [objectives].
 #'
@@ -128,10 +131,13 @@ NULL
 #' data(sim_projects, sim_features, sim_actions)
 #'
 #' # build problem with maximum richness objective and $300 budget
-#' p1 <- problem(sim_projects, sim_actions, sim_features,
-#'              "name", "success", "name", "cost", "name") %>%
-#'      add_max_wtd_sum_objective(budget = 200) %>%
-#'      add_binary_decisions()
+#' p1 <-
+#'   problem(
+#'     sim_projects, sim_actions, sim_features,
+#'     "name", "success", "name", "cost", "name"
+#'  ) %>%
+#'  add_max_wtd_sum_objective(budget = 200) %>%
+#'  add_binary_decisions()
 #'
 #' \dontrun{
 #' # solve problem
@@ -145,8 +151,7 @@ NULL
 #' }
 #'
 #' # build another problem that includes feature weights
-#' p2 <- p1 %>%
-#'      add_feature_weights("weight")
+#' p2 <- p1 %>% add_feature_weights("weight")
 #'
 #' \dontrun{
 #' # solve problem with feature weights
@@ -165,50 +170,74 @@ NULL
 #' @export
 add_max_wtd_sum_objective <- function(x, budget) {
   # assert argument is valid
-  assertthat::assert_that(inherits(x, "ProjectProblem"),
-                          assertthat::is.number(budget),
-                          assertthat::noNA(budget),
-                          isTRUE(budget >= 0))
+  assertthat::assert_that(
+    inherits(x, "ProjectProblem"),
+    assertthat::is.number(budget),
+    assertthat::noNA(budget),
+    isTRUE(budget >= 0)
+  )
   # add objective to problem
-  x$add_objective(pproto(
-    "MaximumRichnessObjective",
-    Objective,
-    name = "Maximum richness objective",
-    data = list(feature_names = feature_names(x)),
-    parameters = parameters(numeric_parameter("budget", budget,
-                                              lower_limit = 0)),
-    feature_phylogeny = function(self) {
-      star_phylogeny(self$data$feature_names,
-                     rep(0, length(self$data$feature_names)))
-    },
-    default_feature_weights = function(self) {
-      stats::setNames(rep(1, length(self$data$feature_names)),
-                      self$data$feature_names)
-    },
-    replace_feature_weights = function(self) {
-      TRUE
-    },
-    evaluate = function(self, y, solution) {
-      assertthat::assert_that(inherits(y, "ProjectProblem"),
-                              inherits(solution, "tbl_df"))
-      fp <- y$feature_phylogeny()
-      bm <- branch_matrix(fp, FALSE)
-      bo <- rcpp_branch_order(bm)
-      w <- y$feature_weights()[y$feature_phylogeny()$tip.label]
-      rcpp_evaluate_max_phylo_div_objective(
-        y$action_costs(), y$pa_matrix(),
-        y$epf_matrix()[, y$feature_phylogeny()$tip.label, drop = FALSE],
-        bm[, bo, drop = FALSE], rep(0, ncol(bm)),
-        rep(0, y$number_of_features()), w,
-        as_Matrix(as.matrix(solution), "dgCMatrix"))
-    },
-    apply = function(self, x, y) {
-      assertthat::assert_that(inherits(x, "OptimizationProblem"),
-                              inherits(y, "ProjectProblem"))
-      fp <- y$feature_phylogeny()
-      bo <- rcpp_branch_order(branch_matrix(fp, FALSE))
-      invisible(rcpp_apply_max_phylo_div_objective(
-        x$ptr, y$action_costs(), self$parameters$get("budget"),
-        fp$edge.length[bo]))
-    }))
+  x$add_objective(
+    R6::R6Class(
+      "MaxWeightedSumObjective",
+      inherit = Objective,
+      public = list(
+        name = "maximum weighted sum objective",
+        has_targets = FALSE,
+        has_weights = TRUE,
+        data = list(feature_names = x$feature_names(), budget = budget),
+        feature_phylogeny = function() {
+          star_phylogeny(
+            self$data$feature_names,
+            rep(0, length(self$data$feature_names))
+          )
+        },
+        default_feature_weights = function() {
+          stats::setNames(
+            rep(1, length(self$data$feature_names)),
+            self$data$feature_names
+          )
+        },
+        replace_feature_weights = function() {
+          TRUE
+        },
+        evaluate = function(y, solution) {
+          assertthat::assert_that(
+            inherits(y, "ProjectProblem"),
+            inherits(solution, "tbl_df")
+          )
+          fp <- y$feature_phylogeny()
+          bm <- branch_matrix(fp, FALSE)
+          bo <- rcpp_branch_order(bm)
+          w <- y$feature_weights()[y$feature_phylogeny()$tip.label]
+          rcpp_evaluate_max_phylo_div_objective(
+            y$action_costs(),
+            y$pa_matrix(),
+            y$eof_matrix()[, y$feature_phylogeny()$tip.label, drop = FALSE],
+            bm[, bo, drop = FALSE],
+            rep(0, ncol(bm)),
+            rep(0, y$number_of_features()),
+            w,
+            as_Matrix(as.matrix(solution), "dgCMatrix")
+          )
+        },
+        apply = function(x, y) {
+          assertthat::assert_that(
+            inherits(x, "OptimizationProblem"),
+            inherits(y, "ProjectProblem")
+          )
+          fp <- y$feature_phylogeny()
+          bo <- rcpp_branch_order(branch_matrix(fp, FALSE))
+          invisible(
+            rcpp_apply_max_phylo_div_objective(
+              x$ptr,
+              y$action_costs(),
+              self$get_data("budget"),
+              fp$edge.length[bo]
+            )
+          )
+        }
+      )
+    )$new()
+  )
 }

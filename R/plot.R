@@ -1,4 +1,4 @@
-#' @include internal.R ProjectProblem-proto.R solution_statistics.R
+#' @include internal.R ProjectProblem-class.R solution_statistics.R
 NULL
 
 #' Plot a solution to a project prioritization problem

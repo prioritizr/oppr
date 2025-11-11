@@ -7,7 +7,7 @@
 add_random_solver(x, number_solutions = 1, verbose = TRUE)
 }
 \arguments{
-\item{x}{\linkS4class{ProjectProblem} object.}
+\item{x}{\code{\link[=problem]{problem()}} object.}
 
 \item{number_solutions}{\code{integer} number of solutions desired.
 Defaults to 1. Note that the number of returned solutions can sometimes
@@ -20,8 +20,7 @@ solutions will be returned.}
 optimization problems?}
 }
 \value{
-\linkS4class{ProjectProblem} object with the solver added
-to it.
+A \code{\link[=problem]{problem()}} object with the solver added o it.
 }
 \description{
 Specify that solutions should be generated using random processes. Although
@@ -76,11 +75,14 @@ are met.
 data(sim_projects, sim_features, sim_actions)
 
 # build problem with random solver, and generate 100 random solutions
-p1 <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-     add_max_wtd_sum_objective(budget = 200) \%>\%
-     add_binary_decisions() \%>\%
-     add_random_solver(number_solutions = 100)
+p1 <-
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) \%>\%
+  add_max_wtd_sum_objective(budget = 200) \%>\%
+  add_binary_decisions() \%>\%
+  add_random_solver(number_solutions = 100)
 
 # print problem
 print(p1)
@@ -96,8 +98,10 @@ plot(p1, s1)
 
 # plot histogram of the objective values for the random solutions
 # according to the weighted sum objective
-hist(s1$obj, xlab = "Expected outcome", xlim = c(0, 2.5),
-     main = "Histogram of random solutions")
+hist(
+  s1$obj, xlab = "Expected outcome", xlim = c(0, 2.5),
+  main = "Histogram of random solutions"
+)
 
 # since the objective values don't tell us much about the quality of the
 # solutions, we can find the optimal solution and calculate how different
@@ -105,18 +109,19 @@ hist(s1$obj, xlab = "Expected outcome", xlim = c(0, 2.5),
 
 \dontrun{
 # find the optimal objective value using an exact algorithms solver
-s2 <- p1 \%>\%
-      add_default_solver() \%>\%
-      solve()
+s2 <- p1 \%>\% add_default_solver() \%>\% solve()
 
 # create new column in s1 with percent difference from optimality
 s1$optimality_diff <- ((s2$obj - s1$obj) / s1$obj) * 100
 
 # plot histogram showing the quality of the random solutions
 # higher numbers indicate worse solutions
-hist(s1$optimality_diff, xlab = "Difference from optimality (\%)",
-     main = "Histogram of random solutions", xlim = c(0, 50))
+hist(
+  s1$optimality_diff, xlab = "Difference from optimality (\%)",
+  main = "Histogram of random solutions", xlim = c(0, 50)
+)
 }
+
 }
 \seealso{
 \link{solvers}.

@@ -16,7 +16,7 @@ add_locked_out_constraints(x, locked_out)
 \S4method{add_locked_out_constraints}{ProjectProblem,character}(x, locked_out)
 }
 \arguments{
-\item{x}{\linkS4class{ProjectProblem} object.}
+\item{x}{\code{\link[=problem]{problem()}} object.}
 
 \item{locked_out}{Object that determines which planning units that should be
 locked out. See the Details section for more information.}
@@ -38,25 +38,26 @@ sim_actions$locked_out <- c(FALSE, TRUE, FALSE, FALSE, FALSE, FALSE)
 print(sim_actions)
 
 # build problem with maximum weighted sum objective and $150 budget
-p1 <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-     add_max_wtd_sum_objective(budget = 150) \%>\%
-     add_binary_decisions()
+p1 <-
+   problem(
+     sim_projects, sim_actions, sim_features,
+     "name", "success", "name", "cost", "name"
+   ) \%>\%
+   add_max_wtd_sum_objective(budget = 150) \%>\%
+   add_binary_decisions()
 
 # print problem
 print(p1)
 
 # build another problem, and lock out the second action using numeric inputs
-p2 <- p1 \%>\%
-      add_locked_out_constraints(c(2))
+p2 <- p1 \%>\% add_locked_out_constraints(c(2))
 
 # print problem
 print(p2)
 
 # build another problem, and lock out the actions using logical inputs
 # (i.e. TRUE/FALSE values) from the sim_actions table
-p3 <- p1 \%>\%
-      add_locked_out_constraints(sim_actions$locked_out)
+p3 <- p1 \%>\% add_locked_out_constraints(sim_actions$locked_out)
 
 # print problem
 print(p3)
@@ -64,8 +65,7 @@ print(p3)
 # build another problem, and lock out the actions using the column name
 # "locked_out" in the sim_actions table
 # the sim_actions table
-p4 <- p1 \%>\%
-      add_locked_out_constraints("locked_out")
+p4 <- p1 \%>\% add_locked_out_constraints("locked_out")
 
 # print problem
 print(p4)

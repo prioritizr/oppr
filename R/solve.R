@@ -1,4 +1,4 @@
-#' @include internal.R ProjectProblem-proto.R OptimizationProblem-proto.R compile.R
+#' @include internal.R ProjectProblem-class.R OptimizationProblem-class.R compile.R
 NULL
 
 #' Solve

@@ -7,7 +7,7 @@ NULL
 #'
 #' @param x [ProjectProblem-class].
 #'
-#' @return `character` action names.
+#' @return A `character` vector.
 #'
 #' @name action_names
 #'
@@ -17,12 +17,15 @@ NULL
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
-#' # build problem with default solver
-#' p <- problem(sim_projects, sim_actions, sim_features,
-#'              "name", "success", "name", "cost", "name") %>%
-#'      add_max_wtd_sum_objective(budget = 200) %>%
-#'      add_binary_decisions() %>%
-#'      add_default_solver()
+#' # build problem
+#' p <-
+#'   problem(
+#'     sim_projects, sim_actions, sim_features,
+#'     "name", "success", "name", "cost", "name"
+#'   ) %>%
+#'   add_max_wtd_sum_objective(budget = 200) %>%
+#'   add_binary_decisions() %>%
+#'   add_default_solver()
 #'
 #' # print problem
 #' print(p)
@@ -38,15 +41,17 @@ NULL
 #' @exportMethod action_names
 #'
 #' @usage action_names(x)
-#'
-methods::setGeneric("action_names",
-                    function(x) standardGeneric("action_names"))
+methods::setGeneric(
+  "action_names",
+  function(x) standardGeneric("action_names")
+)
 
 #' @name action_names
 #'
 #' @rdname action_names
 #'
 #' @usage \S4method{action_names}{ProjectProblem}(x)
-#'
-methods::setMethod("action_names", "ProjectProblem",
-  function(x) x$action_names())
+methods::setMethod(
+  "action_names", "ProjectProblem",
+  function(x) x$action_names()
+)

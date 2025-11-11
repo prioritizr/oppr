@@ -7,11 +7,10 @@
 add_binary_decisions(x)
 }
 \arguments{
-\item{x}{\linkS4class{ProjectProblem} object.}
+\item{x}{\code{\link[=problem]{problem()}} object.}
 }
 \value{
-\linkS4class{ProjectProblem} object with the decisions
-added to it.
+A \code{\link[=problem]{problem()}} object with the decisions added to it.
 }
 \description{
 Add a binary decision to a project prioritization \code{\link[=problem]{problem()}}.
@@ -21,7 +20,6 @@ for a management action or not.
 \details{
 Project prioritization problems involve making decisions about
 how funding will be allocated to management actions.
-Only a single decision should be added to a \code{ProjectProblem} object.
 If no decision is added to a problem then this decision type will
 be used by default. Currently, this is the only supported decision type.
 }
@@ -31,10 +29,13 @@ data(sim_projects, sim_features, sim_actions)
 
 # build problem with maximum weighted sum objective, $200 budget, and
 # binary decisions
-p <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-     add_max_wtd_sum_objective(budget = 200) \%>\%
-     add_binary_decisions()
+p <-
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) \%>\%
+  add_max_wtd_sum_objective(budget = 200) \%>\%
+  add_binary_decisions()
 
 # print problem
 print(p)

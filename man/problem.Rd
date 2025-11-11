@@ -17,8 +17,8 @@ problem(
 )
 }
 \arguments{
-\item{projects}{\code{\link[base:data.frame]{base::data.frame()}} or
-\code{\link[tibble:tibble]{tibble::tibble()}} table containing project data. Here, each row
+\item{projects}{\code{\link[base:data.frame]{base::data.frame()}} or \code{\link[tibble:tibble]{tibble::tibble()}} table
+containing project data. Here, each row
 should correspond to a different project and columns should contain data
 that correspond to each project. This object should contain data that
 denote (i)
@@ -138,7 +138,7 @@ The goal of a project prioritization exercise is then to identify which
 management actions---and as a consequence which conservation
 projects---should be funded. Broadly speaking, the goal
 of an optimization problem is to minimize (or maximize) an objective
-function given a set of control variables and decision variables that are
+unction given a set of control variables and decision variables that are
 subject to a series of constraints. In the context of project
 prioritization problems, the
 objective is usually some measure of utility (e.g. the net
@@ -165,11 +165,14 @@ print(sim_features)
 print(sim_actions)
 
 # build problem
-p <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-     add_max_wtd_sum_objective(budget = 400) \%>\%
-     add_feature_weights("weight") \%>\%
-     add_binary_decisions()
+p <-
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) \%>\%
+  add_max_wtd_sum_objective(budget = 400) \%>\%
+  add_feature_weights("weight") \%>\%
+  add_binary_decisions()
 
 # print problem
 print(p)

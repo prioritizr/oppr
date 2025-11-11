@@ -5,9 +5,15 @@
 \alias{nrow,tbl_df-method}
 \alias{ncol,tbl_df-method}
 \alias{as.list,tbl_df-method}
+\alias{nrow}
+\alias{ncol}
 \title{Manipulate tibbles}
 \usage{
+nrow(x)
+
 \S4method{nrow}{tbl_df}(x)
+
+ncol(x)
 
 \S4method{ncol}{tbl_df}(x)
 
@@ -24,9 +30,9 @@ The following methods are provided from manipulating
 \code{\link[tibble:tibble]{tibble::tibble()}} objects.
 
 \describe{
-\item{nrow}{extract \code{integer} number of rows.}
+\item{nrow}{\code{integer} number of rows.}
 
-\item{ncol}{extract \code{integer} number of columns.}
+\item{ncol}{\code{integer} number of columns.}
 
 \item{as.list}{convert to a \code{list}.}
 

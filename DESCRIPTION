@@ -34,8 +34,7 @@ Imports:
     stats,
     Matrix (>= 1.3-0),
     magrittr (>= 1.5),
-    uuid (>= 0.1.2),
-    proto (>= 1.0.0),
+    R6 (>= 2.5.1),
     cli (>= 1.0.1),
     assertthat (>= 0.2.0),
     tibble (>= 2.0.0),
@@ -55,9 +54,6 @@ Suggests:
     Rsymphony (>= 0.1.28),
     ggtree (>= 2.4.2),
     lpsymphony (>= 1.10.0),
-    shiny (>= 1.2.0),
-    rhandsontable (>= 0.3.7),
-    tidyr (>= 0.8.2),
     fansi (>= 1.0.6)
 Depends:
     R(>= 3.4.0)
@@ -70,36 +66,28 @@ LazyData: true
 URL: https://prioritizr.github.io/oppr/
 BugReports: https://github.com/prioritizr/oppr/issues
 VignetteBuilder: knitr, rmarkdown
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 Encoding: UTF-8
 Language: en-US
 Collate:
     'internal.R'
-    'pproto.R'
-    'Parameter-proto.R'
-    'ArrayParameter-proto.R'
-    'MiscParameter-proto.R'
-    'Parameters-proto.R'
-    'ScalarParameter-proto.R'
-    'parameters.R'
     'waiver.R'
-    'ProjectModifier-proto.R'
-    'Constraint-proto.R'
-    'Collection-proto.R'
-    'Decision-proto.R'
-    'Id.R'
-    'Objective-proto.R'
-    'OptimizationProblem-proto.R'
+    'ProjectProblem-class.R'
+    'ProjectModifier-class.R'
+    'Constraint-class.R'
+    'Decision-class.R'
+    'Objective-class.R'
+    'OptimizationProblem-class.R'
     'OptimizationProblem-methods.R'
-    'ProjectProblem-proto.R'
     'RcppExports.R'
-    'Solver-proto.R'
-    'Target-proto.R'
-    'Weight-proto.R'
+    'Solver-class.R'
+    'Target-class.R'
+    'Weight-class.R'
     'action_names.R'
     'add_absolute_targets.R'
     'add_binary_decisions.R'
     'add_default_solver.R'
+    'add_default_weights.R'
     'add_feature_weights.R'
     'add_gurobi_solver.R'
     'add_heuristic_solver.R'
@@ -107,9 +95,9 @@ Collate:
     'add_locked_out_constraints.R'
     'add_lpsolveapi_solver.R'
     'add_lpsymphony_solver.R'
+    'add_manual_locked_constraints.R'
     'tbl_df.R'
     'add_manual_targets.R'
-    'add_manual_locked_constraints.R'
     'add_max_phylo_div_objective.R'
     'star_phylogeny.R'
     'add_max_targets_met_objective.R'
@@ -118,6 +106,7 @@ Collate:
     'add_random_solver.R'
     'add_relative_targets.R'
     'add_rsymphony_solver.R'
+    'assertions.R'
     'branch_matrix.R'
     'compile.R'
     'constraints.R'
@@ -125,8 +114,6 @@ Collate:
     'decisions.R'
     'deprecated.R'
     'feature_names.R'
-    'magrittr-operators.R'
-    'misc.R'
     'new_optimization_problem.R'
     'number_of_actions.R'
     'number_of_features.R'
@@ -143,7 +130,9 @@ Collate:
     'project_cost_effectiveness.R'
     'project_names.R'
     'rake_phylogeny.R'
+    'reexports.R'
     'replacement_costs.R'
+    'repr.R'
     'show.R'
     'simulate_ppp_data.R'
     'simulate_ptm_data.R'
@@ -153,5 +142,7 @@ Collate:
     'weights.R'
     'zzz.R'
 Roxygen: list(markdown = TRUE)
+Config/Needs/website:
+    tidyr (>= 0.8.2)
 Remotes:
   bioc::ggtree

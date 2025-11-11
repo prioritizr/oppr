@@ -11,7 +11,7 @@ NULL
 #'   a value for each species. Defaults to assigning an equal weight for
 #'   each species.
 #'
-#' @return [ape::phylo()] tree object.
+#' @return An [ape::phylo()] tree object.
 #'
 #' @seealso [ape::stree()].
 #'
@@ -34,16 +34,20 @@ NULL
 #' @noRd
 star_phylogeny <- function(x, weights = rep(1, length(x))) {
   # assert that arguments are valid
-  assertthat::assert_that(is.character(x), length(x) > 0,
-                          assertthat::noNA(x), anyDuplicated(x) == 0,
-                          is.numeric(weights), length(weights) == length(x),
-                          assertthat::noNA(weights), all(weights >= 0))
-
+  assertthat::assert_that(
+    is.character(x),
+    length(x) > 0,
+    assertthat::noNA(x),
+    identical(anyDuplicated(x), 0L),
+    is.numeric(weights),
+    length(weights) == length(x),
+    assertthat::noNA(weights),
+    all(weights >= 0)
+  )
   # create star phylogeny
   out <- ape::stree(length(x), type = "star", tip.label = x)
   out$tip.label <- x
   out$edge.length <- weights
-
   # return output
   out
 }

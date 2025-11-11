@@ -2,6 +2,9 @@
 
 - New `multi_problem()` and `add_ref_point_approach()` functions for multi-
   objective optimization.
+- Update class system to use _R6_ classes instead of _proto_ classes.
+- Remove unused functionality for _shiny_ application integration.
+- Remove S3 methods for interacting with `new_optimization_problem()` objects.
 - Update `plot_phylo_persistence()` to be compatible with updates to
   _ggplot2_ package.
 - Rename `add_max_richness_objective()` to be `add_max_wtd_sum_objective()`.

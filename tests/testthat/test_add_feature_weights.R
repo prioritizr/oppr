@@ -6,12 +6,12 @@ test_that("numeric(5)", {
   # create problem
   p <- problem(sim_projects, sim_actions, sim_features,
                "name", "success", "name", "cost", "name", FALSE) %>%
-       add_feature_weights(seq_len(5))
+       add_feature_weights(seq(1.1, 5.1))
   # calculate weights
   weights <- p$feature_weights()
   # run tests
   expect_is(weights, "numeric")
-  expect_equal(weights, setNames(seq_len(5), sim_features$name))
+  expect_equal(weights, setNames(seq(1.1, 5.1), sim_features$name))
 })
 
 test_that("character(1)", {

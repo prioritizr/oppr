@@ -13,10 +13,13 @@ add_feature_weights(x, weights)
 \S4method{add_feature_weights}{ProjectProblem,character}(x, weights)
 }
 \arguments{
-\item{x}{\linkS4class{ProjectProblem} object.}
+\item{x}{\code{\link[=problem]{problem()}} object.}
 
 \item{weights}{Object that specifies the weights for each feature. See the
 Details section for more information.}
+}
+\value{
+A \code{\link[=problem]{problem()}} with the weights added to it.
 }
 \description{
 Set weights for conserving features in a project prioritization
@@ -25,8 +28,7 @@ Set weights for conserving features in a project prioritization
 \details{
 Weights are used to specify the relative importance for
 maintaining the persistence of specific features. For budget constrained
-problems (e.g. \code{\link[=add_max_wtd_sum_objective]{add_max_wtd_sum_objective()}}), these
-weights
+problems (e.g. \code{\link[=add_max_wtd_sum_objective]{add_max_wtd_sum_objective()}}), these weights
 could be used to specify which features are more important than other
 features according to evolutionary or cultural metrics. Specifically,
 features with a higher weight value are considered more important. It is
@@ -63,10 +65,13 @@ print(sim_features)
 
 # build problem with maximum weighted sum objective, $300 budget,
 # and no weights
-p1 <- problem(sim_projects, sim_actions, sim_features,
-              "name", "success", "name", "cost", "name") \%>\%
-      add_max_wtd_sum_objective(budget = 200) \%>\%
-      add_binary_decisions()
+p1 <-
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) \%>\%
+  add_max_wtd_sum_objective(budget = 200) \%>\%
+  add_binary_decisions()
 
 # print problem
 print(p1)
@@ -74,8 +79,7 @@ print(p1)
 # build another problem, and specify feature weights using the values in the
 # "weight" column of the sim_features table by specifying the column
 # name "weight"
-p2 <- p1 \%>\%
-      add_feature_weights("weight")
+p2 <- p1 \%>\% add_feature_weights("weight")
 
 # print problem
 print(p2)
@@ -84,8 +88,7 @@ print(p2)
 # values in the "weight column of the sim_features table, but
 # actually input the values rather than specifying the column name
 # "weights" column of the sim_features table
-p3 <- p1 \%>\%
-      add_feature_weights(sim_features$weight)
+p3 <- p1 \%>\% add_feature_weights(sim_features$weight)
 
 # print problem
 print(p3)

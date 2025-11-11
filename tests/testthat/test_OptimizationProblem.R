@@ -4,7 +4,7 @@ test_that("new problem", {
   # data
   x <- new_optimization_problem()
   # tests
-  expect_equal(ncell(x), 0)
+  expect_equal(x$ncell(), 0)
 })
 
 test_that("get methods", {
@@ -26,28 +26,31 @@ test_that("get methods", {
     sense = c("=", "="),
     vtype = c("B", "S", "C"),
     row_ids = c("a", "b"),
-    col_ids = c("d", "e", "f"))
+    col_ids = c("d", "e", "f")
+  )
   x <- predefined_optimization_problem(l, list(i = 4))
   # tests
-  expect_equal(nrow(x), 2)
-  expect_equal(ncol(x), 3)
-  expect_equal(ncell(x), length(l$A_x))
-  expect_equal(A(x), Matrix::sparseMatrix(i = l$A_i, j = l$A_j, x = l$A_x,
-                                          index1 = FALSE))
-  expect_equal(modelsense(x), l$modelsense)
-  expect_equal(obj(x), l$obj)
-  expect_equal(pwlobj(x), l$pwlobj)
-  expect_equal(rhs(x), l$rhs)
-  expect_equal(sense(x), l$sense)
-  expect_equal(lb(x), l$lb)
-  expect_equal(ub(x), l$ub)
-  expect_equal(number_of_projects(x), l$number_of_projects)
-  expect_equal(number_of_actions(x), l$number_of_actions)
-  expect_equal(number_of_features(x), l$number_of_features)
-  expect_equal(number_of_branches(x), l$number_of_branches)
-  expect_equal(col_ids(x), l$col_ids)
-  expect_equal(row_ids(x), l$row_ids)
-  expect_equal(get_data(x), list(i = 4))
+  expect_equal(x$nrow(), 2)
+  expect_equal(x$ncol(), 3)
+  expect_equal(x$ncell(), length(l$A_x))
+  expect_equal(
+    x$A(),
+    Matrix::sparseMatrix(i = l$A_i, j = l$A_j, x = l$A_x, index1 = FALSE)
+  )
+  expect_equal(x$modelsense(), l$modelsense)
+  expect_equal(x$obj(), l$obj)
+  expect_equal(x$pwlobj(), l$pwlobj)
+  expect_equal(x$rhs(), l$rhs)
+  expect_equal(x$sense(), l$sense)
+  expect_equal(x$lb(), l$lb)
+  expect_equal(x$ub(), l$ub)
+  expect_equal(x$number_of_projects(), l$number_of_projects)
+  expect_equal(x$number_of_actions(), l$number_of_actions)
+  expect_equal(x$number_of_features(), l$number_of_features)
+  expect_equal(x$number_of_branches(), l$number_of_branches)
+  expect_equal(x$col_ids(), l$col_ids)
+  expect_equal(x$row_ids(), l$row_ids)
+  expect_equal(x$get_data(), list(i = 4))
 })
 
 test_that("as.list", {
@@ -69,7 +72,8 @@ test_that("as.list", {
     sense = c("=", "="),
     vtype = c("B", "S", "C"),
     row_ids = c("a", "b"),
-    col_ids = c("d", "e", "f"))
+    col_ids = c("d", "e", "f")
+  )
   l2 <- as.list(predefined_optimization_problem(l))
   # tests
   expect_equal(l$modelsense, l2$modelsense)

@@ -7,13 +7,13 @@
 add_max_targets_met_objective(x, budget)
 }
 \arguments{
-\item{x}{\linkS4class{ProjectProblem} object.}
+\item{x}{\code{\link[=problem]{problem()}} object.}
 
-\item{budget}{\code{numeric} budget for funding actions.}
+\item{budget}{\code{numeric} value representing the maximum amount of total
+expenditure for funding actions.}
 }
 \value{
-\linkS4class{ProjectProblem} object with the objective
-added to it.
+A \code{\link[=problem]{problem()}} with the objective added to it.
 }
 \description{
 Set the objective of a project prioritization \code{\link[=problem]{problem()}} to
@@ -66,8 +66,8 @@ is expected to persist if the project is funded. If the argument
 to \code{adjust_for_baseline} in the \code{problem} function was set to
 \code{TRUE}, and this is the default behavior, then
 \eqn{Q_{fj} = (P_{j} \times B_{fj}) + \bigg(\big(1 - (P_{j} B_{fj})\big)
-  \times (P_{n} \times B_{fn})\bigg)}{Q_{fj} = (P_j B_{fj}) + ((1 - (P_j
-  B_{fj})) * (P_n \times B_{fn}))}, where \code{n} corresponds to the
+\times (P_{n} \times B_{fn})\bigg)}{Q_{fj} = (P_j B_{fj}) + ((1 - (P_j
+B_{fj})) * (P_n \times B_{fn}))}, where \code{n} corresponds to the
 baseline "do nothing" project. This means that the probability
 of a feature persisting if a project is allocated to a feature
 depends on (i) the probability of the project succeeding, (ii) the
@@ -112,7 +112,7 @@ represent the set of ten features and also the number ten).
   \mathrm{(eqn \space 1h)} \\
   G_{f}, X_{i}, Y_{j}, Z_{fj} \in [0, 1] \space \forall \space i \in I, j
   \in J, f \in F \space \mathrm{(eqn \space 1i)}
-  }{
+}{
   Maximize sum_f^F G_f W_f (eqn 1a);
   Subject to:
   sum_i^I C_i X_i <= m for all f in F (eqn 1b),
@@ -123,7 +123,7 @@ represent the set of ten features and also the number ten).
   A_{ij} Y_{j} <= X_{i} for all i I, j in J (eqn 1g),
   E_f >= 0, E_f <= 1 for all f in F (eqn 1h),
   G_f, X_i, Y_j, Z_{fj} in [0, 1] for all i in I, j in J, f in F (eqn 1i)
-  }
+}
 
 The objective (eqn 1a) is to maximize the weighted total number of the
 features that have their persistence targets met.
@@ -154,12 +154,15 @@ sim_features$weight <- c(8, 2, 6, 3, 1)
 # build problem with maximum targets met objective, a $200 budget,
 # targets that require each feature to have a 20\% chance of persisting into
 # the future, and zero cost actions locked in
-p1 <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-      add_max_targets_met_objective(budget = 200) \%>\%
-      add_absolute_targets(0.2) \%>\%
-      add_locked_in_constraints(which(sim_actions$cost < 1e-5)) \%>\%
-      add_binary_decisions()
+p1 <-
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) \%>\%
+  add_max_targets_met_objective(budget = 200) \%>\%
+  add_absolute_targets(0.2) \%>\%
+  add_locked_in_constraints(which(sim_actions$cost < 1e-5)) \%>\%
+  add_binary_decisions()
 
 \dontrun{
 # solve problem
@@ -177,8 +180,7 @@ geom_hline(yintercept = 0.2, linetype = "dashed")
 }
 
 # build another problem that includes feature weights
-p2 <- p1 \%>\%
-      add_feature_weights("weight")
+p2 <- p1 \%>\% add_feature_weights("weight")
 
 \dontrun{
 # solve problem
@@ -202,4 +204,7 @@ threat management. \emph{Conservation Biology}, \strong{29}, 525--536.
 }
 \seealso{
 \link{objectives}.
+
+Other objectives: 
+\code{\link{add_min_set_objective}()}
 }

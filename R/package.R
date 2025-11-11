@@ -4,27 +4,23 @@ NULL
 #' @useDynLib oppr, .registration = TRUE
 NULL
 
-#' @importFrom ape plot.phylo
-#' @export
-NULL
-
 #' oppr: Optimal Project Prioritization
 #'
-#'   The \pkg{oppr} *R* package a decision support tool for prioritizing
-#'   conservation projects. Prioritizations can be developed by maximizing
-#'   expected outcomes as a weighted sum (e.g., species richness), expected
-#'   phylogenetic diversity, the number of features that meet persistence
-#'   targets, or identifying a set of projects that meet persistence targets
-#'   for minimal cost. Constraints (e.g. lock in
-#'   specific actions) and feature weights can also be specified to further
-#'   customize prioritizations. After defining a project prioritization
-#'   problem, solutions can be obtained using exact algorithms, heuristic
-#'   algorithms, or random processes. In particular, it is recommended to
-#'   install the 'Gurobi' optimizer (available from
-#'   <https://www.gurobi.com>)
-#'   because it can identify optimal solutions very quickly. Finally, methods
-#'   are provided for comparing different prioritizations and evaluating their
-#'   benefits.
+#' The \pkg{oppr} *R* package a decision support tool for prioritizing
+#' conservation projects. Prioritizations can be developed by maximizing
+#' expected outcomes as a weighted sum (e.g., species richness), expected
+#' phylogenetic diversity, the number of features that meet persistence
+#' targets, or identifying a set of projects that meet persistence targets
+#' for minimal cost. Constraints (e.g. lock in
+#' specific actions) and feature weights can also be specified to further
+#' customize prioritizations. After defining a project prioritization
+#' problem, solutions can be obtained using exact algorithms, heuristic
+#' algorithms, or random processes. In particular, it is recommended to
+#' install the 'Gurobi' optimizer (available from
+#' <https://www.gurobi.com>)
+#' because it can identify optimal solutions very quickly. Finally, methods
+#' are provided for comparing different prioritizations and evaluating their
+#' benefits.
 #'
 #' @section Installation:
 #' To make the most of this package, the \href{https://bioconductor.org/packages/release/bioc/html/ggtree.html}{\pkg{ggtree}} and
@@ -44,9 +40,9 @@ NULL
 #' [Gurobi](https://www.gurobi.com) optimization suite, the \pkg{gurobi}
 #'  package can then be installed (see <https://support.gurobi.com/hc/en-us/articles/14462206790033-How-do-I-install-Gurobi-for-R> for instructions).
 #'
-#' @seealso Please refer to the package vignette for more information and worked
-#'   examples. This can be accessed using the code
-#'   `vignette("oppr")`.
+#' @seealso
+#' Please refer to the package vignette for more information and worked
+#' examples. This can be accessed using the code `vignette("oppr")`.
 #'
 #' @examples
 #' # load data
@@ -62,11 +58,14 @@ NULL
 #' print(sim_actions)
 #'
 #' # build problem
-#' p <- problem(sim_projects, sim_actions, sim_features,
-#'              "name", "success", "name", "cost", "name") %>%
-#'      add_max_wtd_sum_objective(budget = 400) %>%
-#'      add_feature_weights("weight") %>%
-#'      add_binary_decisions()
+#' p <-
+#'   problem(
+#'     sim_projects, sim_actions, sim_features,
+#'     "name", "success", "name", "cost", "name"
+#'   ) %>%
+#'   add_max_wtd_sum_objective(budget = 400) %>%
+#'   add_feature_weights("weight") %>%
+#'   add_binary_decisions()
 #'
 #' # print problem
 #' print(p)
@@ -93,3 +92,7 @@ NULL
 #' @docType package
 #' @aliases oppr-package
 "_PACKAGE"
+
+# avoid CRAN check NOTES due to R6 classes
+# see: https://github.com/r-lib/R6/issues/230
+if (getRversion() >= "2.15.1")  utils::globalVariables(c("self"))

@@ -13,14 +13,13 @@ add_manual_locked_constraints(x, locked)
 \S4method{add_manual_locked_constraints}{ProjectProblem,tbl_df}(x, locked)
 }
 \arguments{
-\item{x}{\linkS4class{ProjectProblem} object.}
+\item{x}{\code{\link[=problem]{problem()}} object.}
 
 \item{locked}{\code{data.frame} or \code{\link[tibble:tibble]{tibble::tibble()}} object. See
 the Details section for more information.}
 }
 \value{
-\linkS4class{ProjectProblem} object with the constraints
-added to it.
+A \code{\link[=problem]{problem()}} object with the constraints added to it.
 }
 \description{
 Add constraints to a project prioritization \code{\link[=problem]{problem()}} to ensure
@@ -29,15 +28,16 @@ more fine-grained control than the \code{\link[=add_locked_in_constraints]{add_l
 and \code{\link[=add_locked_out_constraints]{add_locked_out_constraints()}} functions.
 }
 \details{
-The argument to \code{locked} must contain the following fields
-(columns):
+The argument to \code{locked} must contain the following columns:
 
 \describe{
 
-\item{\code{"action"}}{\code{character} action name.}
+\item{\code{"action"}}{\code{character} values with action names.}
 
-\item{\code{"status"}}{\code{numeric} values indicating if actions should
-be funded (with a value of 1) or not (with a value of zero).}
+\item{\code{"status"}}{
+\code{numeric} values indicating if actions should
+be selected for funding (with a value of 1) or not (with a value of zero).
+}
 
 }
 }
@@ -45,21 +45,25 @@ be funded (with a value of 1) or not (with a value of zero).}
 # load data
 data(sim_projects, sim_features, sim_actions)
 
-
 # create data frame with locked statuses
-status <- data.frame(action = sim_actions$name[1:2],
-                     status = c(0, 1))
+status <- data.frame(
+  action = sim_actions$name[1:2],
+  status = c(0, 1)
+)
 
 # print locked statuses
 print(status)
 
 # build problem with minimum set objective and targets that require each
 # feature to have a 30\% chance of persisting into the future
-p <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-      add_max_wtd_sum_objective(budget = 500) \%>\%
-      add_manual_locked_constraints(status) \%>\%
-      add_binary_decisions()
+p <-
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) \%>\%
+  add_max_wtd_sum_objective(budget = 500) \%>\%
+  add_manual_locked_constraints(status) \%>\%
+  add_binary_decisions()
 
 # print problem
 print(p)

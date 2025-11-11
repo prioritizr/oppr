@@ -7,9 +7,12 @@
 add_default_solver(x, ...)
 }
 \arguments{
-\item{x}{\linkS4class{ProjectProblem} object.}
+\item{x}{\code{\link[=problem]{problem()}} object.}
 
 \item{...}{arguments passed to the solver.}
+}
+\value{
+A \code{\link[=problem]{problem()}} object with the solver added o it.
 }
 \description{
 Identify the best solver currently installed on the system and specify that
@@ -31,11 +34,14 @@ any guarantees on solution quality.
 data(sim_projects, sim_features, sim_actions)
 
 # build problem with default solver
-p <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-     add_max_wtd_sum_objective(budget = 200) \%>\%
-     add_binary_decisions() \%>\%
-     add_default_solver()
+p <-
+   problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) \%>\%
+  add_max_wtd_sum_objective(budget = 200) \%>\%
+  add_binary_decisions() \%>\%
+  add_default_solver()
 
 # print problem
 print(p)

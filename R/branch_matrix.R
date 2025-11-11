@@ -21,9 +21,10 @@ NULL
 #' @param ... not used.
 #'
 #'
-#' @return [Matrix::dgCMatrix-class] sparse matrix object. Each row
-#'   corresponds to a different species. Each column corresponds to a different
-#'   branch. Species that inherit from a given branch are indicated with a one.
+#' @return
+#' A [Matrix::dgCMatrix-class] sparse matrix object. Each row
+#' corresponds to a different species. Each column corresponds to a different
+#' branch. Species that inherit from a given branch are indicated with a one.
 #'
 #' @name branch_matrix
 #'

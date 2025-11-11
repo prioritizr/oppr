@@ -13,11 +13,19 @@ The following constraints can be added to a project prioritization
 
 \describe{
 
-\item{\code{\link[=add_locked_in_constraints]{add_locked_in_constraints()}}}{Add constraints to ensure
-that certain actions are prioritized for funding.}
+\item{\code{\link[=add_locked_in_constraints]{add_locked_in_constraints()}}}{
+Add constraints to ensure that certain actions are prioritized for funding.
+}
 
-\item{\code{\link[=add_locked_out_constraints]{add_locked_out_constraints()}}}{Add constraints to ensure
-that certain actions are not prioritized for funding.}
+\item{\code{\link[=add_locked_out_constraints]{add_locked_out_constraints()}}}{
+Add constraints to ensure that certain actions are not prioritized for
+funding.
+}
+
+\item{\code{\link[=add_manual_locked_constraints]{add_manual_locked_constraints()}}}{
+Add constraints to ensure that certain actions are prioritized, or not, for
+funding.
+}
 
 }
 }
@@ -26,24 +34,25 @@ that certain actions are not prioritized for funding.}
 data(sim_projects, sim_features, sim_actions)
 
 # build problem with maximum weighted sum objective and $150 budget
-p1 <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-     add_max_wtd_sum_objective(budget = 150) \%>\%
-     add_binary_decisions()
+p1 <-
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) \%>\%
+  add_max_wtd_sum_objective(budget = 150) \%>\%
+  add_binary_decisions()
 
 # print problem
 print(p1)
 
 # build another problem, and lock in the third action
-p2 <- p1 \%>\%
-      add_locked_in_constraints(c(3))
+p2 <- p1 \%>\% add_locked_in_constraints(c(3))
 
 # print problem
 print(p2)
 
 # build another problem, and lock out the second action
-p3 <- p1 \%>\%
-      add_locked_out_constraints(c(2))
+p3 <- p1 \%>\% add_locked_out_constraints(c(2))
 
 # print problem
 print(p3)
@@ -60,8 +69,4 @@ print(s2[, sim_actions$name])
 print(s3[, sim_actions$name])
 }
 }
-\seealso{
-\link{decisions}, \link{objectives},
-\code{\link[=problem]{problem()}}, \link{solvers}, \link{targets},
-\link{weights}.
-}
+\concept{overviews}

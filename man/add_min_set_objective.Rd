@@ -7,11 +7,10 @@
 add_min_set_objective(x)
 }
 \arguments{
-\item{x}{\linkS4class{ProjectProblem} object.}
+\item{x}{\code{\link[=problem]{problem()}} object.}
 }
 \value{
-\linkS4class{ProjectProblem} object with the objective
-added to it.
+A \code{\link[=problem]{problem()}} with the objective added to it.
 }
 \description{
 Set the objective of a project prioritization \code{\link[=problem]{problem()}} to
@@ -42,15 +41,14 @@ let \eqn{B_{fj}} denote the enhanced probability that each feature
 \eqn{f \in F}{f in F} associated with the project \eqn{j \in J}{j in J}
 will persist if all of the actions that comprise project \eqn{j} are funded
 and that project is allocated to feature \eqn{f}.
-For convenience,
-let \eqn{Q_{fj}} denote the actual probability that each
+For convenience, let \eqn{Q_{fj}} denote the actual probability that each
 \eqn{f \in F}{f in F} associated with the project \eqn{j \in J}{j in J}
 is expected to persist if the project is funded. If the argument
 to \code{adjust_for_baseline} in the \code{problem} function was set to
 \code{TRUE}, and this is the default behavior, then
 \eqn{Q_{fj} = (P_{j} \times B_{fj}) + \bigg(\big(1 - (P_{j} B_{fj})\big)
-  \times (P_{n} \times B_{fn})\bigg)}{Q_{fj} = (P_j B_{fj}) + ((1 - (P_j
-  B_{fj})) * (P_n \times B_{fn}))}, where \code{n} corresponds to the
+\times (P_{n} \times B_{fn})\bigg)}{Q_{fj} = (P_j B_{fj}) + ((1 - (P_j
+B_{fj})) * (P_n \times B_{fn}))}, where \code{n} corresponds to the
 baseline "do nothing" project. This means that the probability
 of a feature persisting if a project is allocated to a feature
 depends on (i) the probability of the project succeeding, (ii) the
@@ -62,10 +60,9 @@ fails. Otherwise, if the argument is set to \code{FALSE}, then
 The binary control variables \eqn{X_i} in this problem indicate whether
 each project \eqn{i \in I}{i in I} is funded or not. The decision
 variables in this problem are the \eqn{Y_{j}}, \eqn{Z_{fj}}, and \eqn{E_f}
-variables.
-Specifically, the binary \eqn{Y_{j}} variables indicate if project \eqn{j}
-is funded or not based on which actions are funded; the binary
-\eqn{Z_{fj}} variables indicate if project \eqn{j} is used to manage
+variables. Specifically, the binary \eqn{Y_{j}} variables indicate if
+project \eqn{j} is funded or not based on which actions are funded; the
+binary \eqn{Z_{fj}} variables indicate if project \eqn{j} is used to manage
 feature \eqn{f} or not; and the semi-continuous \eqn{E_f} variables
 denote the probability that feature \eqn{f} will go extinct.
 
@@ -92,7 +89,7 @@ represent the set of ten features and also the number ten).
   \mathrm{(eqn \space 1g)} \\
   X_{i}, Y_{j}, Z_{fj} \in [0, 1] \space \forall \space i \in I, j \in J, f
   \in F \space \mathrm{(eqn \space 1h)}
-  }{
+}{
   Maximize sum_i^I C_i X_i (eqn 1a);
   Subject to:
   E_f <= T_f for all f in F (eqn 1b),
@@ -102,7 +99,7 @@ represent the set of ten features and also the number ten).
   A_{ij} Y_{j} <= X_{i} for all i I, j in J (eqn 1f),
   E_f >= 0, E_f <= 1 for all f in F (eqn 1g),
   X_i, Y_j, Z_{fj} in [0, 1] for all i in I, j in J, f in F (eqn 1h)
-  }
+}
 
 The objective (eqn 1a) is to minimize the cost of the funded actions.
 Constraints (eqn 1b) ensure that the persistence targets are met.
@@ -126,11 +123,14 @@ data(sim_projects, sim_features, sim_actions)
 
 # build problem with minimum set objective and targets that require each
 # feature to have a 30\% chance of persisting into the future
-p <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-      add_min_set_objective() \%>\%
-      add_absolute_targets(0.3) \%>\%
-      add_binary_decisions()
+p <-
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) \%>\%
+  add_min_set_objective() \%>\%
+  add_absolute_targets(0.3) \%>\%
+  add_binary_decisions()
 
 \dontrun{
 # solve problem
@@ -152,4 +152,8 @@ computational tools}, 185-195.
 }
 \seealso{
 \link{objectives}, \link{targets}.
+
+Other objectives: 
+\code{\link{add_max_wtd_sum_objective}()}
 }
+\concept{objectives}

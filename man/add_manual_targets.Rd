@@ -15,14 +15,13 @@ add_manual_targets(x, targets)
 \S4method{add_manual_targets}{ProjectProblem,tbl_df}(x, targets)
 }
 \arguments{
-\item{x}{\linkS4class{ProjectProblem} object.}
+\item{x}{[problem() object.}
 
 \item{targets}{\code{data.frame} or \code{\link[tibble:tibble]{tibble::tibble()}} object. See
 the Details section for more information.}
 }
 \value{
-\linkS4class{ProjectProblem} object with the targets added
-to it.
+A \code{\link[=problem]{problem()}} object with the targets added to it.
 }
 \description{
 Set targets for a project prioritization \code{\link[=problem]{problem()}} by manually
@@ -49,18 +48,23 @@ The \code{targets} argument should contain the following columns:
 
 \describe{
 
-\item{\code{"feature"}}{\code{character} name of features in argument
-to \code{x}.}
+\item{\code{"feature"}}{
+\code{character} values with names of features in argument to \code{x}.
+}
 
-\item{\code{"type"}}{\code{character} describing the type of target.
+\item{\code{"type"}}{
+\code{character} values describing the type of target.
 Acceptable values include \code{"absolute"} and \code{"relative"}.
 These values correspond to \code{\link[=add_absolute_targets]{add_absolute_targets()}},
-and \code{\link[=add_relative_targets]{add_relative_targets()}} respectively.}
+and \code{\link[=add_relative_targets]{add_relative_targets()}} respectively.
+}
 
-\item{\code{"sense"}}{\code{character} sense of the target. The
-only acceptable value currently supported is: \code{">="}. This field
-(column) is optional and if it is missing then target senses will
-default to \code{">="} values.}
+\item{\code{"sense"}}{
+\code{character} values desecribing sense of the target.
+The only acceptable value currently supported is: \code{">="}.
+This field (column) is optional and if it is missing then target senses will
+default to \code{">="} values.
+}
 
 \item{\code{"target"}}{\code{numeric} target threshold.}
 
@@ -70,22 +74,26 @@ default to \code{">="} values.}
 # load data
 data(sim_projects, sim_features, sim_actions)
 
-
 # create data frame with targets
-targets <- data.frame(feature = sim_features$name,
-                      type = "absolute",
-                      target = 0.1)
+targets <- data.frame(
+  feature = sim_features$name,
+  type = "absolute",
+  target = 0.1
+)
 
 # print targets
 print(targets)
 
 # build problem with minimum set objective and targets that require each
 # feature to have a 30\% chance of persisting into the future
-p <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-      add_min_set_objective() \%>\%
-      add_manual_targets(targets) \%>\%
-      add_binary_decisions()
+p <-
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) \%>\%
+  add_min_set_objective() \%>\%
+  add_manual_targets(targets) \%>\%
+  add_binary_decisions()
 
 # print problem
 print(p)
@@ -99,5 +107,8 @@ print(s)
 }
 }
 \seealso{
-\link{targets}.
+Other targets: 
+\code{\link{add_absolute_targets}()},
+\code{\link{add_relative_targets}()}
 }
+\concept{targets}

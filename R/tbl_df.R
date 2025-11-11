@@ -1,14 +1,11 @@
 #' @include internal.R
 NULL
 
-#' @export
-#' @importClassesFrom tibble tbl_df
-NULL
-
-# create nrow/ncol/as.list methods for handling tibble's tbl_df class internally
-# we do this because nrow/ncol/as.list are overwritten as a S4 generic by the
+# Dear reader,
+# We create nrow/ncol/as.list methods for handling tibble's tbl_df class
+# internally because nrow/ncol/as.list are overwritten as a S4 generic by the
 # raster package, and so R needs to be forcefully told what to do because
-# tibble doesn't export it's S4 class definitions.
+# tibble doesn't export it's S4 class methods.
 
 #' Manipulate tibbles
 #'
@@ -16,23 +13,24 @@ NULL
 #'
 #' @param x [tibble::tibble()] object.
 #'
-#' @details The following methods are provided from manipulating
-#'   [tibble::tibble()] objects.
+#' @details
+#' The following methods are provided from manipulating
+#' [tibble::tibble()] objects.
 #'
-#'   \describe{
-#'   \item{nrow}{extract `integer` number of rows.}
+#' \describe{
+#' \item{nrow}{`integer` number of rows.}
 #'
-#'   \item{ncol}{extract `integer` number of columns.}
+#' \item{ncol}{`integer` number of columns.}
 #'
-#'   \item{as.list}{convert to a `list`.}
+#' \item{as.list}{convert to a `list`.}
 #'
-#'   \item{print}{print the object.}
+#' \item{print}{print the object.}
 #'
-#'   }
+#' }
 #'
 #' @name tibble-methods
 #'
-#' @aliases nrow,tbl_df-method ncol,tbl_df-method as.list,tbl_df-method
+#' @aliases nrow,tbl_df-method ncol,tbl_df-method as.list,tbl_df-method nrow ncol
 #'
 #' @examples
 #' # load tibble package
@@ -55,8 +53,26 @@ NULL
 #'
 #' @rdname tibble-methods
 #'
+#' @usage nrow(x)
+if (!isS4(nrow)) {
+  methods::setGeneric("nrow", function(x) standardGeneric("nrow"))
+}
+
+#' @name tibble-methods
+#'
+#' @rdname tibble-methods
+#'
 #' @usage \S4method{nrow}{tbl_df}(x)
 methods::setMethod("nrow", "tbl_df", function(x) dim(x)[1])
+
+#' @name tibble-methods
+#'
+#' @rdname tibble-methods
+#'
+#' @usage ncol(x)
+if (!isS4(ncol)) {
+  methods::setGeneric("ncol", function(x) standardGeneric("ncol"))
+}
 
 #' @name tibble-methods
 #'

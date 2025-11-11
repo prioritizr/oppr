@@ -7,7 +7,7 @@
 add_lpsolveapi_solver(x, gap = 0, presolve = FALSE, verbose = TRUE)
 }
 \arguments{
-\item{x}{\linkS4class{ProjectProblem} object.}
+\item{x}{\code{\link[=problem]{problem()}} object.}
 
 \item{gap}{\code{numeric} gap to optimality. This gap is relative
 and expresses the acceptable deviance from the optimal objective.
@@ -25,8 +25,7 @@ Defaults to \code{TRUE}.}
 optimization problems?}
 }
 \value{
-\linkS4class{ProjectProblem} object with the solver added
-to it.
+A \code{\link[=problem]{problem()}} object with the solver added o it.
 }
 \description{
 Specify that the \emph{lp_solve} software should be used to solve a
@@ -40,10 +39,9 @@ open-source integer programming solver.
 Although this solver is the slowest currently supported solver,
 it is also the only exact algorithm solver that can be installed on all
 operating systems without any manual installation steps. This solver is
-provided so that
-users can try solving small project prioritization problems, without
-needing to install additional software. When solve moderate or large
-project prioritization problems, consider using
+provided so that users can try solving small project prioritization
+problems, without needing to install additional software. When solve
+moderate or large project prioritization problems, consider using
 \code{\link[=add_gurobi_solver]{add_gurobi_solver()}}.
 }
 \examples{
@@ -51,11 +49,14 @@ project prioritization problems, consider using
 data(sim_projects, sim_features, sim_actions)
 
 # build problem with lpSolveAPI solver
-p <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-     add_max_wtd_sum_objective(budget = 200) \%>\%
-     add_binary_decisions() \%>\%
-     add_lpsolveapi_solver()
+p <-
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) \%>\%
+  add_max_wtd_sum_objective(budget = 200) \%>\%
+  add_binary_decisions() \%>\%
+  add_lpsolveapi_solver()
 
 # print problem
 print(p)
@@ -68,6 +69,7 @@ print(s)
 
 # plot solution
 plot(p, s)
+
 }
 \seealso{
 \link{solvers}.

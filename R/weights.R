@@ -1,4 +1,4 @@
-#' @include internal.R pproto.R ProjectProblem-proto.R
+#' @include internal.R ProjectProblem-class.R
 NULL
 
 #' Weights

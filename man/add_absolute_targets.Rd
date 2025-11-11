@@ -13,10 +13,13 @@ add_absolute_targets(x, targets)
 \S4method{add_absolute_targets}{ProjectProblem,character}(x, targets)
 }
 \arguments{
-\item{x}{\linkS4class{ProjectProblem} object.}
+\item{x}{[problem() object.}
 
 \item{targets}{Object that specifies the targets for each feature. See the
 Details section for more information.}
+}
+\value{
+A \code{\link[=problem]{problem()}} object with the targets added to it.
 }
 \description{
 Set targets for a project prioritization \code{\link[=problem]{problem()}} by
@@ -40,15 +43,19 @@ The targets for a problem can be specified in several different ways:
 
 \describe{
 
-\item{\code{numeric}}{\code{vector} of target values for each feature.
+\item{\code{numeric} vector}{
+specifying a target value for each feature.
 The order of the target values should correspond to the order
 of the features in the data used to create the argument to \code{x}.
 Additionally, for convenience, this type of argument can be a single
-value to assign the same target to each feature.}
+value to assign the same target to each feature.
+}
 
-\item{\code{character}}{specifying the name of column in the
+\item{\code{character} value}{
+specifying the name of column in the
 feature data (i.e. the argument to \code{features} in the
-\code{\link[=problem]{problem()}} function) that contains the persistence targets.}
+\code{\link[=problem]{problem()}} function) that contains the persistence targets.
+}
 
 }
 }
@@ -58,22 +65,28 @@ data(sim_projects, sim_features, sim_actions)
 
 # build problem with minimum set objective and targets that require each
 # feature to have a 30\% chance of persisting into the future
-p1 <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-      add_min_set_objective() \%>\%
-      add_absolute_targets(0.3) \%>\%
-      add_binary_decisions()
+p1 <-
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) \%>\%
+  add_min_set_objective() \%>\%
+  add_absolute_targets(0.3) \%>\%
+  add_binary_decisions()
 
 # print problem
 print(p1)
 
 # build problem with minimum set objective and specify targets that require
 # different levels of persistence for each feature
-p2 <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-      add_min_set_objective() \%>\%
-      add_absolute_targets(c(0.1, 0.2, 0.3, 0.4, 0.5)) \%>\%
-      add_binary_decisions()
+p2 <-
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) \%>\%
+  add_min_set_objective() \%>\%
+  add_absolute_targets(c(0.1, 0.2, 0.3, 0.4, 0.5)) \%>\%
+  add_binary_decisions()
 
 # print problem
 print(p2)
@@ -83,11 +96,14 @@ sim_features$target <- c(0.1, 0.2, 0.3, 0.4, 0.5)
 
 # build problem with minimum set objective and specify targets using
 # column name in the feature data
-p3 <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-      add_min_set_objective() \%>\%
-      add_absolute_targets("target") \%>\%
-      add_binary_decisions()
+p3 <-
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) \%>\%
+  add_min_set_objective() \%>\%
+  add_absolute_targets("target") \%>\%
+  add_binary_decisions()
 
 # print problem
 print(p3)
@@ -110,5 +126,8 @@ plot(p3, s3)
 }
 }
 \seealso{
-\link{targets}.
+Other targets: 
+\code{\link{add_manual_targets}()},
+\code{\link{add_relative_targets}()}
 }
+\concept{targets}

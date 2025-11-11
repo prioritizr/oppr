@@ -24,27 +24,33 @@ different solution, this argument should correspond to a row in
 the argument to \code{solutions}. Defaults to 1.}
 }
 \value{
-A \code{\link[tibble:tibble]{tibble::tibble()}} table containing the following
-columns:
+A \code{\link[tibble:tibble]{tibble::tibble()}} table containing the following columns.
 
 \describe{
 
-\item{\code{"action"}}{\code{character} name of each action.}
+\item{\code{"action"}}{
+\code{character} name of each action.
+}
 
-\item{\code{"cost"}}{\code{numeric} cost of each solution when each
-action is locked out.}
+\item{\code{"cost"}}{
+\code{numeric} cost of each solution when each action is locked out.
+}
 
-\item{\code{"obj"}}{\code{numeric} objective value of each solution when
-each action is locked out. This is calculated using the objective
-function defined for the argument to \code{x}.}
+\item{\code{"obj"}}{
+\code{numeric} objective value of each solution when each action is locked out.
+This is calculated using the objective function defined for the argument to
+\code{x}.
+}
 
-\item{\code{"rep_cost"}}{\code{numeric} replacement cost for each
+\item{\code{"rep_cost"}}{
+\code{numeric} replacement cost for each
 action. Greater values indicate greater irreplaceability. Missing
 (\code{NA}) values are assigned to actions which are not selected for
 funding in the specified solution, infinite (\code{Inf}) values are
 assigned to to actions which are required to meet feasibility
 constraints, and negative values mean that superior solutions than
-the specified solution exist.}
+the specified solution exist.
+}
 
 }
 }
@@ -78,11 +84,14 @@ action selected for funding.
 data(sim_projects, sim_features, sim_actions)
 
 # build problem with maximum weighted sum objective and $400 budget
-p <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-     add_max_wtd_sum_objective(budget = 400) \%>\%
-     add_feature_weights("weight") \%>\%
-     add_binary_decisions()
+p <-
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) \%>\%
+  add_max_wtd_sum_objective(budget = 400) \%>\%
+  add_feature_weights("weight") \%>\%
+  add_binary_decisions()
 
 # solve problem
 s <- solve(p)
@@ -107,6 +116,5 @@ cost of conservation areas: how does habitat loss influence priorities?
 \emph{Biological Conservation}, \strong{142}, 575--585.
 }
 \seealso{
-\code{\link[=solution_statistics]{solution_statistics()}},
-\code{\link[=project_cost_effectiveness]{project_cost_effectiveness()}}.
+\code{\link[=solution_statistics]{solution_statistics()}}, \code{\link[=project_cost_effectiveness]{project_cost_effectiveness()}}.
 }

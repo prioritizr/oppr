@@ -19,24 +19,31 @@ and should be either zero or one. Arguments to \code{solution} can
 contain additional columns, and they will be ignored.}
 }
 \value{
-A \code{\link[tibble:tibble]{tibble::tibble()}} table containing the following
-columns:
+A \code{\link[tibble:tibble]{tibble::tibble()}} table containing the following columns.
 
 \describe{
 
-\item{\code{"cost"}}{\code{numeric} cost of each solution.}
+\item{\code{"cost"}}{
+\code{numeric} cost of each solution.
+}
 
-\item{\code{"obj"}}{\code{numeric} objective value for each solution.
+\item{\code{"obj"}}{
+\code{numeric} objective value for each solution.
 This is calculated using the objective function defined for the
-argument to \code{x}.}
+argument to \code{x}.
+}
 
-\item{\code{x$project_names()}}{\code{numeric} column for each
+\item{\code{x$project_names()}}{
+\code{numeric} column for each
 project indicating if it was completely funded (with a value of 1)
-or not (with a value of 0).}
+or not (with a value of 0).
+}
 
-\item{\code{x$feature_names()}}{\code{numeric} column for each
+\item{\code{x$feature_names()}}{
+\code{numeric} column for each
 feature indicating the probability that it will persist into
-the future given each solution.}
+the future given each solution.
+}
 
 }
 }
@@ -58,22 +65,27 @@ print(sim_features)
 print(sim_actions)
 
 # build problem
-p <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-     add_max_wtd_sum_objective(budget = 400) \%>\%
-     add_feature_weights("weight") \%>\%
-     add_binary_decisions()
+p <-
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) \%>\%
+  add_max_wtd_sum_objective(budget = 400) \%>\%
+  add_feature_weights("weight") \%>\%
+  add_binary_decisions()
 
 # print problem
 print(p)
 
 # create a table with some solutions
-solutions <- data.frame(F1_action =       c(0, 1, 1),
-                        F2_action =       c(0, 1, 0),
-                        F3_action =       c(0, 1, 1),
-                        F4_action =       c(0, 1, 0),
-                        F5_action =       c(0, 1, 1),
-                        baseline_action = c(1, 1, 1))
+solutions <- data.frame(
+  F1_action =       c(0, 1, 1),
+  F2_action =       c(0, 1, 0),
+  F3_action =       c(0, 1, 1),
+  F4_action =       c(0, 1, 0),
+  F5_action =       c(0, 1, 1),
+  baseline_action = c(1, 1, 1)
+)
 
 # print the solutions
 # the first solution only has the baseline action funded

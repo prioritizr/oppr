@@ -1,4 +1,4 @@
-#' @include internal.R Parameters-proto.R Decision-proto.R
+#' @include internal.R
 NULL
 
 #' Specify the type of decisions

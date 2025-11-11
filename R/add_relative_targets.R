@@ -1,21 +1,23 @@
-#' @include internal.R pproto.R ProjectProblem-proto.R
+#' @include internal.R ProjectProblem-class.R
 NULL
 
 #' Add relative targets
 #'
 #' Set targets for a project prioritization [problem()] as a proportion
-#' (between 0 and 1) of the maximum probability of
-#' persistence associated with the best project for feature. For instance,
-#' if the best project for a feature has an 80% probability of persisting,
-#' setting a 50% (i.e. `0.5`) relative target will correspond to a 40%
-#' threshold probability of persisting.
+#' (between 0 and 1) of the expected outcome for each feature based on
+#' the best project for each feature.
+#' For instance, if the best project for a feature has an 80% probability of
+#' persisting, setting a 50% (i.e. `0.5`) relative target will correspond to a
+#' 40% threshold probability of persisting.
 #'
-#' @param x [ProjectProblem-class] object.
+#' @inheritParams add_manual_targets
 #'
 #' @param targets Object that specifies the targets for each feature. See the
 #'   Details section for more information.
 #'
 #' @inherit add_absolute_targets details return seealso
+#'
+#' @family targets
 #'
 #' @examples
 #' # load data
@@ -24,22 +26,28 @@ NULL
 #' # build problem with minimum set objective and targets that require each
 #' # feature to have a level of persistence that is greater than or equal to
 #' # 70% of the best project for conserving it
-#' p1 <- problem(sim_projects, sim_actions, sim_features,
-#'              "name", "success", "name", "cost", "name") %>%
-#'       add_min_set_objective() %>%
-#'       add_relative_targets(0.7) %>%
-#'       add_binary_decisions()
+#' p1 <-
+#'   problem(
+#'     sim_projects, sim_actions, sim_features,
+#'     "name", "success", "name", "cost", "name"
+#'   ) %>%
+#'   add_min_set_objective() %>%
+#'   add_relative_targets(0.7) %>%
+#'   add_binary_decisions()
 #'
 #' # print problem
 #' print(p1)
 #'
 #' # build problem with minimum set objective and specify targets that require
 #' # different levels of persistence for each feature
-#' p2 <- problem(sim_projects, sim_actions, sim_features,
-#'              "name", "success", "name", "cost", "name") %>%
-#'       add_min_set_objective() %>%
-#'       add_relative_targets(c(0.2, 0.3, 0.4, 0.5, 0.6)) %>%
-#'       add_binary_decisions()
+#' p2 <-
+#'   problem(
+#'     sim_projects, sim_actions, sim_features,
+#'     "name", "success", "name", "cost", "name"
+#'   ) %>%
+#'   add_min_set_objective() %>%
+#'    add_relative_targets(c(0.2, 0.3, 0.4, 0.5, 0.6)) %>%
+#'   add_binary_decisions()
 #'
 #' # print problem
 #' print(p2)
@@ -49,11 +57,14 @@ NULL
 #'
 #' # build problem with minimum set objective and specify targets using
 #' # column name in the feature data
-#' p3 <- problem(sim_projects, sim_actions, sim_features,
-#'              "name", "success", "name", "cost", "name") %>%
-#'       add_min_set_objective() %>%
-#'       add_relative_targets("target") %>%
-#'       add_binary_decisions()
+#' p3 <-
+#'    problem(
+#'      sim_projects, sim_actions, sim_features,
+#'      "name", "success", "name", "cost", "name"
+#'    ) %>%
+#'    add_min_set_objective() %>%
+#'    add_relative_targets("target") %>%
+#'    add_binary_decisions()
 #'
 #' \dontrun{
 #' # print problem
@@ -102,13 +113,20 @@ methods::setMethod(
       is.numeric(targets),
       assertthat::noNA(targets),
       min(targets) >= 0,
-      max(targets) <= 1)
+      max(targets) <= 1
+    )
     # add targets
-    add_manual_targets(x, tibble::tibble(feature = x$feature_names(),
-                                         type = "relative",
-                                         sense = ">=",
-                                         target = targets))
-})
+    add_manual_targets(
+      x,
+      tibble::tibble(
+        feature = x$feature_names(),
+        type = "relative",
+        sense = ">=",
+        target = targets
+      )
+    )
+  }
+)
 
 #' @name add_relative_targets
 #' @rdname add_relative_targets
@@ -126,7 +144,9 @@ methods::setMethod(
       is.numeric(x$data$features[[targets]]),
       assertthat::noNA(x$data$features[[targets]]),
       min(x$data$features[[targets]]) >= 0,
-      max(x$data$features[[targets]]) <= 1)
+      max(x$data$features[[targets]]) <= 1
+    )
     # add targets to problem
     add_relative_targets(x, x$data$features[[targets]])
-})
+  }
+)

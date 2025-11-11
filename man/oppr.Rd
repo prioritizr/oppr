@@ -56,11 +56,14 @@ print(sim_features)
 print(sim_actions)
 
 # build problem
-p <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-     add_max_wtd_sum_objective(budget = 400) \%>\%
-     add_feature_weights("weight") \%>\%
-     add_binary_decisions()
+p <-
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) \%>\%
+  add_max_wtd_sum_objective(budget = 400) \%>\%
+  add_feature_weights("weight") \%>\%
+  add_binary_decisions()
 
 # print problem
 print(p)
@@ -86,8 +89,7 @@ plot(p, s)
 }
 \seealso{
 Please refer to the package vignette for more information and worked
-examples. This can be accessed using the code
-\code{vignette("oppr")}.
+examples. This can be accessed using the code \code{vignette("oppr")}.
 }
 \author{
 \strong{Maintainer}: Jeffrey O Hanson \email{jeffrey.hanson@uqconnect.edu.au} (\href{https://orcid.org/0000-0002-4716-6134}{ORCID})

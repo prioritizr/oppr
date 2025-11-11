@@ -5,9 +5,9 @@ NULL
 #'
 #' Extract the names of the features in an object.
 #'
-#' @param x [ProjectProblem-class].
+#' @inheritParams action_names
 #'
-#' @return `character` feature names.
+#' @return A `character` vector.
 #'
 #' @name feature_names
 #'
@@ -17,12 +17,15 @@ NULL
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
-#' # build problem with default solver
-#' p <- problem(sim_projects, sim_actions, sim_features,
-#'              "name", "success", "name", "cost", "name") %>%
-#'      add_max_wtd_sum_objective(budget = 200) %>%
-#'      add_binary_decisions() %>%
-#'      add_default_solver()
+#' # build problem
+#' p <-
+#'   problem(
+#'     sim_projects, sim_actions, sim_features,
+#'     "name", "success", "name", "cost", "name"
+#'   ) %>%
+#'   add_max_wtd_sum_objective(budget = 200) %>%
+#'   add_binary_decisions() %>%
+#'   add_default_solver()
 #'
 #' # print problem
 #' print(p)
@@ -38,15 +41,17 @@ NULL
 #' @exportMethod feature_names
 #'
 #' @usage feature_names(x)
-#'
-methods::setGeneric("feature_names",
-                    function(x) standardGeneric("feature_names"))
+methods::setGeneric(
+  "feature_names",
+  function(x) standardGeneric("feature_names")
+)
 
 #' @name feature_names
 #'
 #' @rdname feature_names
 #'
 #' @usage \S4method{feature_names}{ProjectProblem}(x)
-#'
-methods::setMethod("feature_names", "ProjectProblem",
-  function(x) x$feature_names())
+methods::setMethod(
+  "feature_names", "ProjectProblem",
+  function(x) x$feature_names()
+)

@@ -32,54 +32,98 @@ Simulated data for prioritizing conservation projects.
 The data set contains the following objects:
 
 \describe{
-\item{\code{sim_projects}}{A \code{\link[tibble:tibble]{tibble::tibble()}} object containing
+
+\item{\code{sim_projects}}{
+A \code{\link[tibble:tibble]{tibble::tibble()}} object containing
 data for six simulated conservation projects. Each row corresponds to a
 different project and each column contains information about the
-projects. This table contains the following columns:
+projects. This table contains the following columns.
+
 \describe{
-\item{\code{"name"}}{\code{character} name for each project.}
-\item{\code{"success"}}{\code{numeric} probability of each project
-succeeding if it is funded.}
-\item{\code{"F1"} ... \code{"F5"}}{\code{numeric} columns for each
+
+\item{\code{"name"}}{
+\code{character} name for each project.
+}
+
+\item{\code{"success"}}{
+\code{numeric} probability of each project succeeding if it is funded.
+}
+
+\item{\code{"F1"} ... \code{"F5"}}{
+\code{numeric} columns for each
 feature (i.e. \code{"F1"}, \code{"F2"}, \code{"F3"}, \code{"F4"},
 \code{"F5"}, indicating the enhanced probability that each
 feature will survive if it funded. Missing values (\code{NA})
 indicate that a feature does not benefit from a project being
-funded.}
-\item{\code{"F1_action"} ... \code{"F5_action"}}{\code{logical}
-columns for each action, ranging from \code{"F1_action"} to
+funded.
+}
+
+\item{\code{"F1_action"} ... \code{"F5_action"}}{
+\code{logical} columns for each action, ranging from \code{"F1_action"} to
 \code{"F5_action"} indicating if
 an action is associated with a project (\code{TRUE}) or not
-(\code{FALSE}).}
-\item{\code{"baseline_action"}}{\code{logical}
-column indicating if a project is associated with the baseline
+(\code{FALSE}).
+}
+
+\item{\code{"baseline_action"}}{
+\code{logical} column indicating if a project is associated with the baseline
 action (\code{TRUE}) or not (\code{FALSE}). This action is only
-associated with the baseline project.}
+associated with the baseline project.
+}
+
 }
 }
-\item{\code{sim_actions}}{A \code{\link[tibble:tibble]{tibble::tibble()}} object containing
+
+\item{\code{sim_actions}}{
+A \code{\link[tibble:tibble]{tibble::tibble()}} object containing
 data for six simulated actions. Each row corresponds to a
 different action and each column contains information about the
-actions. This table contains the following columns:
+actions. This table contains the following columns.
+
 \describe{
-\item{\code{"name"}}{\code{character} name for each action.}
-\item{\code{"cost"}}{\code{numeric} cost for each action.}
-\item{\code{"locked_in"}}{\code{logical} indicating if certain
-actions should be locked into the solution.}
-\item{\code{"locked_out"}}{\code{logical} indicating if certain
-actions should be locked out of the solution.}
+
+\item{\code{"name"}}{
+\code{character} name for each action.
+}
+
+\item{\code{"cost"}}{
+\code{numeric} cost for each action.
+}
+
+\item{\code{"locked_in"}}{
+\code{logical} indicating if certain actions should be locked into the solution.
+}
+
+\item{\code{"locked_out"}}{
+\code{logical} indicating if certain actions should be locked out of the
+solution.
+}
+
 }
 }
-\item{\code{sim_features}}{A \code{\link[tibble:tibble]{tibble::tibble()}} object containing
+
+\item{\code{sim_features}}{
+A \code{\link[tibble:tibble]{tibble::tibble()}} object containing
 data for five simulated features. Each row corresponds to a
 different feature and each column contains information about the
-features. This table contains the following columns:
+features. This table contains the following columns.
+
 \describe{
-\item{\code{"name"}}{\code{character} name for each feature.}
-\item{\code{"weight"}}{\code{numeric} weight for each feature.}
+
+\item{\code{"weight"}}{
+\code{numeric} weight for each feature.
+}
+\item{\code{"name"}}{
+\code{character} name for each feature.
+}
+
 }
 }
-\item{tree}{\code{\link[ape:read.tree]{ape::phylo()}} phylogenetic tree for the features.}
+
+\item{tree}{
+A \code{\link[ape:read.tree]{ape::phylo()}} phylogenetic tree for the features.
+}
+
 }
 }
 \examples{

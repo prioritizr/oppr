@@ -1,4 +1,4 @@
-#' @include internal.R ProjectProblem-proto.R
+#' @include internal.R ProjectProblem-class.R
 NULL
 
 #' Project prioritization problem
@@ -13,8 +13,8 @@ NULL
 #' [solvers]. After building the problem, the
 #' [solve()] function can be used to identify solutions.
 #'
-#' @param projects [base::data.frame()] or
-#'   [tibble::tibble()] table containing project data. Here, each row
+#' @param projects [base::data.frame()] or [tibble::tibble()] table
+#'   containing project data. Here, each row
 #'   should correspond to a different project and columns should contain data
 #'   that correspond to each project. This object should contain data that
 #'   denote (i)
@@ -52,7 +52,6 @@ NULL
 #'   out (see [add_locked_in_constraints()] and
 #'   [add_locked_out_constraints()]). It should also contain a
 #'   zero-cost baseline action that is associated with the baseline project.
-#
 #'
 #' @param features [base::data.frame()] or
 #'   [tibble::tibble()]
@@ -99,40 +98,40 @@ NULL
 #'   project fails. Defaults to `TRUE`.
 #'
 #' @details
-#'   A project prioritization problem has actions, projects,
-#'   and features. Features are the biological entities that need to
-#'   be conserved (e.g. species, populations, ecosystems). Actions are
-#'   real-world management actions that can be implemented to enhance
-#'   biodiversity (e.g. habitat restoration, monitoring, pest eradication). Each
-#'   action should have a known cost, and this usually means that each
-#'   action should have a defined spatial extent and time period (though this
-#'   is not necessary). Conservation projects are groups of management actions
-#'   (they can also comprise a singular action too), and each project is
-#'   associated with a probability of success if all of its associated actions
-#'   are funded. To determine which projects should be funded, each project is
-#'   associated with an probability of persistence for the
-#'   features that they benefit. These values should indicate the
-#'   probability that each feature will persist if only that project funded
-#'   and not the additional benefit relative to the baseline project. Missing
-#'   (`NA`) values should be used to indicate which projects do not
-#'   enhance the probability of certain features.
+#' A project prioritization problem has actions, projects,
+#' and features. Features are the biological entities that need to
+#' be conserved (e.g. species, populations, ecosystems). Actions are
+#' real-world management actions that can be implemented to enhance
+#' biodiversity (e.g. habitat restoration, monitoring, pest eradication). Each
+#' action should have a known cost, and this usually means that each
+#' action should have a defined spatial extent and time period (though this
+#' is not necessary). Conservation projects are groups of management actions
+#' (they can also comprise a singular action too), and each project is
+#' associated with a probability of success if all of its associated actions
+#' are funded. To determine which projects should be funded, each project is
+#' associated with an probability of persistence for the
+#' features that they benefit. These values should indicate the
+#' probability that each feature will persist if only that project funded
+#' and not the additional benefit relative to the baseline project. Missing
+#' (`NA`) values should be used to indicate which projects do not
+#' enhance the probability of certain features.
 #'
-#'   The goal of a project prioritization exercise is then to identify which
-#'   management actions---and as a consequence which conservation
-#'   projects---should be funded. Broadly speaking, the goal
-#'   of an optimization problem is to minimize (or maximize) an objective
-#'   function given a set of control variables and decision variables that are
-#'   subject to a series of constraints. In the context of project
-#'   prioritization problems, the
-#'   objective is usually some measure of utility (e.g. the net
-#'   probability of each feature persisting into the future), the
-#'   control variables determine which actions should be funded or not,
-#'   the decision variables contain additional information needed to
-#'   ensure correct calculations,  and the
-#'   constraints impose limits such as the total budget available for funding
-#'   management actions. For more information on the mathematical
-#'   formulations used in this package, please refer to the manual entries for
-#'   the available objectives (listed in [objectives]).
+#' The goal of a project prioritization exercise is then to identify which
+#' management actions---and as a consequence which conservation
+#' projects---should be funded. Broadly speaking, the goal
+#' of an optimization problem is to minimize (or maximize) an objective
+#' unction given a set of control variables and decision variables that are
+#' subject to a series of constraints. In the context of project
+#' prioritization problems, the
+#' objective is usually some measure of utility (e.g. the net
+#' probability of each feature persisting into the future), the
+#' control variables determine which actions should be funded or not,
+#' the decision variables contain additional information needed to
+#' ensure correct calculations,  and the
+#' constraints impose limits such as the total budget available for funding
+#' management actions. For more information on the mathematical
+#' formulations used in this package, please refer to the manual entries for
+#' the available objectives (listed in [objectives]).
 #'
 #' @return A new [ProjectProblem-class] object.
 #'
@@ -157,11 +156,14 @@ NULL
 #' print(sim_actions)
 #'
 #' # build problem
-#' p <- problem(sim_projects, sim_actions, sim_features,
-#'              "name", "success", "name", "cost", "name") %>%
-#'      add_max_wtd_sum_objective(budget = 400) %>%
-#'      add_feature_weights("weight") %>%
-#'      add_binary_decisions()
+#' p <-
+#'   problem(
+#'     sim_projects, sim_actions, sim_features,
+#'     "name", "success", "name", "cost", "name"
+#'   ) %>%
+#'   add_max_wtd_sum_objective(budget = 400) %>%
+#'   add_feature_weights("weight") %>%
+#'   add_binary_decisions()
 #'
 #' # print problem
 #' print(p)
@@ -200,9 +202,15 @@ problem <- function(projects, actions, features, project_name_column,
     features <- tibble::as_tibble(features)
   ## assert that parameters are valid
   assertthat::assert_that(
-    inherits(projects, "tbl_df"), ncol(projects) > 0, nrow(projects) > 0,
-    inherits(actions, "tbl_df"), ncol(actions) > 0, nrow(actions) > 0,
-    inherits(features, "tbl_df"), ncol(features) > 0, nrow(features) > 0,
+    inherits(projects, "tbl_df"),
+    ncol(projects) > 0,
+    nrow(projects) > 0,
+    inherits(actions, "tbl_df"),
+    ncol(actions) > 0,
+    nrow(actions) > 0,
+    inherits(features, "tbl_df"),
+    ncol(features) > 0,
+    nrow(features) > 0,
     assertthat::is.string(project_name_column),
     assertthat::has_name(projects, project_name_column),
     assertthat::noNA(projects[[project_name_column]]),
@@ -234,50 +242,84 @@ problem <- function(projects, actions, features, project_name_column,
     inherits(features[[feature_name_column]], c("character", "factor")),
     all(assertthat::has_name(projects, features[[feature_name_column]])),
     is.numeric(as.matrix(projects[, features[[feature_name_column]]])),
-    min(as.matrix(projects[, features[[feature_name_column]]]),
-        na.rm = TRUE) >= 0,
-    max(as.matrix(projects[, features[[feature_name_column]]]),
-        na.rm = TRUE) <= 1,
+    min(
+      as.matrix(projects[, features[[feature_name_column]]]),
+      na.rm = TRUE
+    ) >= 0,
+    max(
+      as.matrix(projects[, features[[feature_name_column]]]),
+      na.rm = TRUE
+    ) <= 1,
     assertthat::is.flag(adjust_for_baseline),
-    assertthat::noNA(adjust_for_baseline))
-  assertthat::assert_that(min(actions[[action_cost_column]]) == 0,
-                          msg = "zero cost baseline project missing.")
+    assertthat::noNA(adjust_for_baseline)
+  )
+  assertthat::assert_that(
+    min(actions[[action_cost_column]]) == 0,
+    msg = "zero cost baseline project missing."
+  )
   # verify that features have finite persistence probabilities in baseline
   # project(s)
   bp <- actions$name[actions[[action_cost_column]] == 0]
-  assertthat::assert_that(length(bp) > 0,
-    msg = "no baseline action detected (i.e. no projects have a zero cost)")
-  assertthat::assert_that(length(bp) <= 1,
-    msg = "multiple baseline actions detected")
+  assertthat::assert_that(
+    length(bp) > 0,
+    msg = "no baseline action detected (i.e. no projects have a zero cost)"
+  )
+  assertthat::assert_that(
+    length(bp) <= 1,
+    msg = "multiple baseline actions detected"
+  )
   pa <- as.matrix(projects[, actions$name])
-  bp <- which(vapply(seq_len(nrow(pa)), FUN.VALUE = logical(1), function(i) {
-    setequal(actions$name[pa[i, ]], bp)
-  }))
-  assertthat::assert_that(length(bp) > 0, msg = "no baseline projects detected")
+  bp <- which(
+    vapply(seq_len(nrow(pa)), FUN.VALUE = logical(1), function(i) {
+      setequal(actions$name[pa[i, ]], bp)
+    })
+  )
+  assertthat::assert_that(
+    length(bp) > 0,
+    msg = "no baseline projects detected"
+  )
   bpp <- colSums(as.matrix(projects[bp, features[[feature_name_column]]]))
-  assertthat::assert_that(all(is.finite(bpp)),
-    msg = paste("feature(s) has a missing (NA) value for its",
-                "probability of persistence under the baseline",
-                "project, please provide baseline probabilities for:",
-                paste(features[[feature_name_column]][!is.finite(bpp)],
-                      collapse = ", "), "."))
-  bpp <- colSums(as.matrix(projects[bp, features[[feature_name_column]]]),
-                na.rm = TRUE)
-  assertthat::assert_that(all(bpp > 1e-11),
-    msg = paste("feature(s) has a zero probability of persistence under",
-                "the baseline project, please replace these zeros with",
-                "a small number (e.g. 1e-10) for:",
-                paste(features[[feature_name_column]][bpp <= 1e-11],
-                      collapse = ", "), "."))
+  assertthat::assert_that(
+    all(is.finite(bpp)),
+    msg = paste(
+      "feature(s) has a missing (NA) value for its",
+      "probability of persistence under the baseline",
+      "project, please provide baseline probabilities for:",
+      paste(
+        features[[feature_name_column]][!is.finite(bpp)],
+        collapse = ", "
+      ),
+      "."
+    )
+  )
+  bpp <- colSums(
+    as.matrix(projects[bp, features[[feature_name_column]]]),
+    na.rm = TRUE
+  )
+  assertthat::assert_that(
+    all(bpp > 1e-11),
+    msg = paste(
+      "feature(s) has a zero probability of persistence under",
+      "the baseline project, please replace these zeros with",
+      "a small number (e.g. 1e-10) for:",
+      paste(
+        features[[feature_name_column]][bpp <= 1e-11],
+        collapse = ", "
+      ),
+      "."
+    )
+  )
   # create ProjectProblem object
-  pproto(NULL, ProjectProblem,
-         constraints = pproto(NULL, Collection),
-         data = list(projects = projects, actions = actions,
-                     features = features,
-                     project_name_column = project_name_column,
-                     project_success_column = project_success_column,
-                     action_name_column = action_name_column,
-                     action_cost_column = action_cost_column,
-                     feature_name_column = feature_name_column,
-                     adjust_for_baseline = adjust_for_baseline))
+  ProjectProblem$new(
+    data = list(
+      projects = projects, actions = actions,
+      features = features,
+      project_name_column = project_name_column,
+      project_success_column = project_success_column,
+      action_name_column = action_name_column,
+      action_cost_column = action_cost_column,
+      feature_name_column = feature_name_column,
+      adjust_for_baseline = adjust_for_baseline
+    )
+  )
 }

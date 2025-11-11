@@ -12,7 +12,7 @@ add_heuristic_solver(
 )
 }
 \arguments{
-\item{x}{\linkS4class{ProjectProblem} object.}
+\item{x}{\code{\link[=problem]{problem()}} object.}
 
 \item{number_solutions}{\code{integer} number of solutions desired.
 Defaults to 1. Note that the number of returned solutions can sometimes
@@ -34,8 +34,7 @@ Defaults to \code{TRUE}.}
 optimization problems?}
 }
 \value{
-\linkS4class{ProjectProblem} object with the solver added
-to it.
+A \code{\link[=problem]{problem()}} object with the solver added o it.
 }
 \description{
 Specify that solutions should be generated using a backwards step-wise
@@ -88,7 +87,7 @@ be expressed mathematically as:
 
 \deqn{B_j = \frac{V(J) - V(J - j)}{C_j}}{B_j = (V(J) - V(J - j)) / C_j}
 
-Where \eqn{J} is the set of remaining projects currently
+Here \eqn{J} is the set of remaining projects currently
 selected for funding (indexed by \eqn{j}), \eqn{B_j} is the benefit
 associated with funding project \eqn{j}, \eqn{V(J)} is the objective
 value associated with the solution where all remaining projects are
@@ -119,11 +118,14 @@ solution decreases when the project is deselected for funding, relative to
 the cost of the project not shared by other remaining projects. This can
 be expressed mathematically as:
 
-\deqn{B_j = \frac{\big(\sum_{f}^{F} P_f(J) - T_f \big) -
-   \big( \sum_{f}^{F} P_f(J - j) - T_f \big)}{C_j}}{
-   B_j = ((sum_f^F P_f(J) - T_f) - (sum_f^F P_f(J - j) - T_f)) / C_j}
+\deqn{
+  B_j = \frac{\big(\sum_{f}^{F} P_f(J) - T_f \big) -
+  \big( \sum_{f}^{F} P_f(J - j) - T_f \big)}{C_j}
+}{
+  B_j = ((sum_f^F P_f(J) - T_f) - (sum_f^F P_f(J - j) - T_f)) / C_j
+}
 
-Where \eqn{F} is the set of features (indexed by \eqn{f}),
+Here \eqn{F} is the set of features (indexed by \eqn{f}),
 \eqn{T_f} is the target for feature \eqn{f}, \eqn{P} is the set of
 remaining projects that are selected for funding (indexed by \eqn{j}),
 \eqn{C_j} is the cost of all of the actions
@@ -153,11 +155,14 @@ library(ggplot2)
 data(sim_projects, sim_features, sim_actions)
 
 # build problem with heuristic solver and $200
-p1 <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-     add_max_wtd_sum_objective(budget = 200) \%>\%
-     add_binary_decisions() \%>\%
-     add_heuristic_solver()
+p1 <-
+   problem(
+     sim_projects, sim_actions, sim_features,
+     "name", "success", "name", "cost", "name"
+   ) \%>\%
+   add_max_wtd_sum_objective(budget = 200) \%>\%
+   add_binary_decisions() \%>\%
+   add_heuristic_solver()
 
 # print problem
 print(p1)
@@ -172,6 +177,7 @@ print(s1)
 # plot solution
 plot(p1, s1)
 }
+
 }
 \references{
 Rodrigues AS & Gaston KJ (2002) Optimisation in reserve selection

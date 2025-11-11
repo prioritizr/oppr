@@ -1,4 +1,4 @@
-#' @include internal.R Constraint-proto.R
+#' @include internal.R Constraint-class.R
 NULL
 
 #' Add locked in constraints
@@ -8,38 +8,42 @@ NULL
 #' example, it may be desirable to lock in actions for conserving culturally or
 #' taxonomically important species.
 #'
-#' @usage add_locked_in_constraints(x, locked_in)
-#'
-#' @param x [ProjectProblem-class] object.
+#' @param x [problem()] object.
 #'
 #' @param locked_in Object that determines which planning units that should be
 #'   locked in. See the Details section for more information.
 #'
-#' @details The locked actions can be specified in several different
-#'   ways:
+#' @details
+#' The locked actions can be specified in several different ways:
 #'
-#'   \describe{
+#' \describe{
 #'
-#'   \item{`integer`}{`vector` of indices pertaining to which
-#'     actions should be locked in the solution (i.e. row numbers of the
-#'     actions in the argument to `actions` in [problem()]).}
+#' \item{`integer` vector}{
+#' specifying indices that pertain to which
+#' actions should be locked when generating the solution
+#' (i.e. row numbers of the actions in the argument to `actions` in
+#' [problem()]).
+#' }
 #'
-#'   \item{`logical`}{`vector` containing `logical`
-#'     (i.e. `TRUE` and/or `FALSE` values) that indicate which
-#'     actions should be locked in the solution. These `logical`
-#'     values should correspond to each row in the argument to `actions`
-#'     in [problem()]).}
+#' \item{`logical` vector}{
+#' specifying `logical` (i.e. `TRUE` and/or `FALSE`) values that indicate which
+#' actions should be locked when generating the solution. These `logical`
+#' values should correspond to each row in the argument to `actions`
+#' in `x`.
+#' }
 #'
-#'   \item{`character`}{column name that indicates if actions
-#'     units should be locked in the solution. This argument
-#'     should  denote a column in the argument to `actions`
-#'     in [problem()] which contains `logical`
-#'     (i.e. `TRUE` and/or `FALSE` values) to indicate
-#'     which actions should be locked.}
-#'  }
+#' \item{`character` value}{
+#' specifying a column name that indicates if actions
+#' units should be locked when generating the solution. This argument
+#' should  denote a column in the argument to `actions`
+#' in [problem()] which contains `logical`
+#' (i.e. `TRUE` and/or `FALSE` values) to indicate
+#' which actions should be locked.
+#' }
 #'
-#' @return [ProjectProblem-class] object with the constraints
-#'   added to it.
+#' }
+#'
+#' @return A [problem()] object with the constraints added to it.
 #'
 #' @seealso [constraints].
 #'
@@ -51,25 +55,26 @@ NULL
 #' print(sim_actions)
 #'
 #' # build problem with maximum weighted sum objective and $150 budget
-#' p1 <- problem(sim_projects, sim_actions, sim_features,
-#'              "name", "success", "name", "cost", "name") %>%
-#'      add_max_wtd_sum_objective(budget = 150) %>%
-#'      add_binary_decisions()
+#' p1 <-
+#'   problem(
+#'     sim_projects, sim_actions, sim_features,
+#'     "name", "success", "name", "cost", "name"
+#'   ) %>%
+#'   add_max_wtd_sum_objective(budget = 150) %>%
+#'   add_binary_decisions()
 #'
 #' # print problem
 #' print(p1)
 #'
 #' # build another problem, and lock in the 3rd action using numeric inputs
-#' p2 <- p1 %>%
-#'       add_locked_in_constraints(c(3))
+#' p2 <- p1 %>% add_locked_in_constraints(c(3))
 #'
 #' # print problem
 #' print(p2)
 #'
 #' # build another problem, and lock in the actions using logical inputs from
 #' # the sim_actions table
-#' p3 <- p1 %>%
-#'       add_locked_in_constraints(sim_actions$locked_in)
+#' p3 <- p1 %>% add_locked_in_constraints(sim_actions$locked_in)
 #'
 #' # print problem
 #' print(p3)
@@ -77,8 +82,7 @@ NULL
 #' # build another problem, and lock in the actions using the column name
 #' # "locked_in" in the sim_actions table
 #' # the sim_actions table
-#' p4 <- p1 %>%
-#'       add_locked_in_constraints("locked_in")
+#' p4 <- p1 %>% add_locked_in_constraints("locked_in")
 #'
 #' # print problem
 #' print(p4)
@@ -103,10 +107,11 @@ NULL
 #' @aliases add_locked_in_constraints,ProjectProblem,numeric-method add_locked_in_constraints,ProjectProblem,logical-method add_locked_in_constraints,ProjectProblem,character-method
 #'
 #' @export
-methods::setGeneric("add_locked_in_constraints",
-                    signature = methods::signature("x", "locked_in"),
-                    function(x, locked_in)
-                      standardGeneric("add_locked_in_constraints"))
+methods::setGeneric(
+  "add_locked_in_constraints",
+  signature = methods::signature("x", "locked_in"),
+  function(x, locked_in) standardGeneric("add_locked_in_constraints")
+)
 
 #' @name add_locked_in_constraints
 #' @usage \S4method{add_locked_in_constraints}{ProjectProblem,numeric}(x, locked_in)
@@ -115,16 +120,21 @@ methods::setMethod("add_locked_in_constraints",
   methods::signature("ProjectProblem", "numeric"),
   function(x, locked_in) {
     # assert valid arguments
-    assertthat::assert_that(inherits(x, "ProjectProblem"),
+    assertthat::assert_that(
+      inherits(x, "ProjectProblem"),
       inherits(locked_in, c("integer", "numeric")),
       isTRUE(all(is.finite(locked_in))),
       isTRUE(all(round(locked_in) == locked_in)),
       isTRUE(max(locked_in) <= number_of_actions(x)),
-      isTRUE(min(locked_in) >= 1))
+      isTRUE(min(locked_in) >= 1)
+    )
     # add constraints
-    add_manual_locked_constraints(x,
-      data.frame(action = x$action_names()[locked_in], status = 1))
-})
+    add_manual_locked_constraints(
+      x,
+      data.frame(action = x$action_names()[locked_in], status = 1)
+    )
+  }
+)
 
 #' @name add_locked_in_constraints
 #' @usage \S4method{add_locked_in_constraints}{ProjectProblem,logical}(x, locked_in)
@@ -133,13 +143,16 @@ methods::setMethod("add_locked_in_constraints",
   methods::signature("ProjectProblem", "logical"),
   function(x, locked_in) {
     # assert valid arguments
-    assertthat::assert_that(inherits(x, "ProjectProblem"),
+    assertthat::assert_that(
+      inherits(x, "ProjectProblem"),
       inherits(locked_in, "logical"),
       assertthat::noNA(locked_in),
-      length(locked_in) == x$number_of_actions())
-      # add constraints
-      add_locked_in_constraints(x, which(locked_in))
-})
+      length(locked_in) == x$number_of_actions()
+    )
+    # add constraints
+    add_locked_in_constraints(x, which(locked_in))
+  }
+)
 
 #' @name add_locked_in_constraints
 #' @usage \S4method{add_locked_in_constraints}{ProjectProblem,character}(x, locked_in)
@@ -148,12 +161,15 @@ methods::setMethod("add_locked_in_constraints",
   methods::signature("ProjectProblem", "character"),
   function(x, locked_in) {
     # assert valid arguments
-    assertthat::assert_that(inherits(x, "ProjectProblem"),
+    assertthat::assert_that(
+      inherits(x, "ProjectProblem"),
       assertthat::is.string(locked_in),
       assertthat::noNA(locked_in),
       assertthat::has_name(x$data$actions, locked_in),
       is.logical(x$data$actions[[locked_in]]),
-      assertthat::noNA(x$data$actions[[locked_in]]))
+      assertthat::noNA(x$data$actions[[locked_in]])
+    )
     # add constraints
     add_locked_in_constraints(x, which(x$data$actions[[locked_in]]))
-})
+  }
+)

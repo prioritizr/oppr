@@ -3,18 +3,14 @@
 \name{number_of_projects}
 \alias{number_of_projects}
 \alias{number_of_projects,ProjectProblem-method}
-\alias{number_of_projects,OptimizationProblem-method}
 \title{Number of projects}
 \usage{
 number_of_projects(x)
 
 \S4method{number_of_projects}{ProjectProblem}(x)
-
-\S4method{number_of_projects}{OptimizationProblem}(x)
 }
 \arguments{
-\item{x}{\linkS4class{ProjectProblem} or
-\linkS4class{OptimizationProblem} object.}
+\item{x}{\code{\link[=problem]{problem()}} object.}
 }
 \value{
 \code{integer} number of projects.
@@ -26,12 +22,15 @@ Extract the number of projects in an object.
 # load data
 data(sim_projects, sim_features, sim_actions)
 
-# build problem with default solver
-p <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-     add_max_wtd_sum_objective(budget = 200) \%>\%
-     add_binary_decisions() \%>\%
-     add_default_solver()
+# build problem
+p <-
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) \%>\%
+  add_max_wtd_sum_objective(budget = 200) \%>\%
+  add_binary_decisions() \%>\%
+  add_default_solver()
 
 # print problem
 print(p)

@@ -13,7 +13,7 @@ action_names(x)
 \item{x}{\linkS4class{ProjectProblem}.}
 }
 \value{
-\code{character} action names.
+A \code{character} vector.
 }
 \description{
 Extract the names of the actions in an object.
@@ -22,12 +22,15 @@ Extract the names of the actions in an object.
 # load data
 data(sim_projects, sim_features, sim_actions)
 
-# build problem with default solver
-p <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-     add_max_wtd_sum_objective(budget = 200) \%>\%
-     add_binary_decisions() \%>\%
-     add_default_solver()
+# build problem
+p <-
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) \%>\%
+  add_max_wtd_sum_objective(budget = 200) \%>\%
+  add_binary_decisions() \%>\%
+  add_default_solver()
 
 # print problem
 print(p)

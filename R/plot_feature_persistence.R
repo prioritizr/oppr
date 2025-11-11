@@ -1,4 +1,4 @@
-#' @include internal.R ProjectProblem-proto.R solution_statistics.R
+#' @include internal.R ProjectProblem-class.R solution_statistics.R
 NULL
 
 #' Plot a bar plot to visualize a project prioritization
@@ -111,7 +111,7 @@ plot_feature_persistence <- function(x, solution, n = 1, symbol_hjust = 0.007,
 
   ## determine which features receive funding based on their project being
   ## funded
-  completely_funded_fts <- as.matrix(x$epf_matrix())[, x$feature_names(),
+  completely_funded_fts <- as.matrix(x$eof_matrix())[, x$feature_names(),
                                                     drop = FALSE] > 1e-15
   completely_funded_fts[!funded_projects, ] <- 0.0
   completely_funded_fts[zero_cost_projects, ] <- 0.0
@@ -120,7 +120,7 @@ plot_feature_persistence <- function(x, solution, n = 1, symbol_hjust = 0.007,
 
   ## determine which species receive indirect based on sharing actions with
   ## a funded project
-  partially_funded_fts <- as.matrix(x$epf_matrix())[, x$feature_names(),
+  partially_funded_fts <- as.matrix(x$eof_matrix())[, x$feature_names(),
                                                     drop = FALSE] > 1e-15
   partially_funded_fts[!partially_funded_projects, ] <- 0.0
   partially_funded_fts[zero_cost_projects, ] <- 0.0
@@ -131,7 +131,7 @@ plot_feature_persistence <- function(x, solution, n = 1, symbol_hjust = 0.007,
   ## pre-compute probabilities that each branch will persist
   feature_probs <- rcpp_expected_persistences(
     x$pa_matrix(),
-    x$epf_matrix()[, x$feature_names(), drop = FALSE],
+    x$eof_matrix()[, x$feature_names(), drop = FALSE],
     as_Matrix(diag(x$number_of_features()), "dgCMatrix"),
     as_Matrix(as.matrix(solution), "dgCMatrix"))[1, ]
 

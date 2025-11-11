@@ -13,7 +13,7 @@ add_rsymphony_solver(
 )
 }
 \arguments{
-\item{x}{\linkS4class{ProjectProblem} object.}
+\item{x}{\code{\link[=problem]{problem()}} object.}
 
 \item{gap}{\code{numeric} gap to optimality. This gap is relative
 and expresses the acceptable deviance from the optimal objective.
@@ -39,8 +39,7 @@ Defaults to \code{FALSE}.}
 optimization problems?}
 }
 \value{
-\linkS4class{ProjectProblem} object with the solver added
-to it.
+A \code{\link[=problem]{problem()}} object with the solver added o it.
 }
 \description{
 Specify that the \emph{SYMPHONY} software should be used to solve a
@@ -63,11 +62,14 @@ This solver uses the \pkg{Rsymphony} package to solve problems.
 data(sim_projects, sim_features, sim_actions)
 
 # build problem with Rsymphony solver
-p <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-     add_max_wtd_sum_objective(budget = 200) \%>\%
-     add_binary_decisions() \%>\%
-     add_rsymphony_solver()
+p <-
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) \%>\%
+  add_max_wtd_sum_objective(budget = 200) \%>\%
+  add_binary_decisions() \%>\%
+  add_rsymphony_solver()
 
 # print problem
 print(p)
@@ -81,6 +83,7 @@ print(s)
 # plot solution
 plot(p, s)
 }
+
 }
 \seealso{
 \link{solvers}.

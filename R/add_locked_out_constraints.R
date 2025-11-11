@@ -1,4 +1,4 @@
-#' @include internal.R Constraint-proto.R
+#' @include internal.R Constraint-class.R
 NULL
 
 #' Add locked out constraints
@@ -8,9 +8,7 @@ NULL
 #' example, it may be desirable to lock out specific actions to examine their
 #' importance to the optimal funding scheme.
 #'
-#' @usage add_locked_out_constraints(x, locked_out)
-#'
-#' @param x [ProjectProblem-class] object.
+#' @inheritParams add_locked_in_constraints
 #'
 #' @param locked_out Object that determines which planning units that should be
 #'   locked out. See the Details section for more information.
@@ -28,25 +26,26 @@ NULL
 #' print(sim_actions)
 #'
 #' # build problem with maximum weighted sum objective and $150 budget
-#' p1 <- problem(sim_projects, sim_actions, sim_features,
-#'              "name", "success", "name", "cost", "name") %>%
-#'      add_max_wtd_sum_objective(budget = 150) %>%
-#'      add_binary_decisions()
+#' p1 <-
+#'    problem(
+#'      sim_projects, sim_actions, sim_features,
+#'      "name", "success", "name", "cost", "name"
+#'    ) %>%
+#'    add_max_wtd_sum_objective(budget = 150) %>%
+#'    add_binary_decisions()
 #'
 #' # print problem
 #' print(p1)
 #'
 #' # build another problem, and lock out the second action using numeric inputs
-#' p2 <- p1 %>%
-#'       add_locked_out_constraints(c(2))
+#' p2 <- p1 %>% add_locked_out_constraints(c(2))
 #'
 #' # print problem
 #' print(p2)
 #'
 #' # build another problem, and lock out the actions using logical inputs
 #' # (i.e. TRUE/FALSE values) from the sim_actions table
-#' p3 <- p1 %>%
-#'       add_locked_out_constraints(sim_actions$locked_out)
+#' p3 <- p1 %>% add_locked_out_constraints(sim_actions$locked_out)
 #'
 #' # print problem
 #' print(p3)
@@ -54,8 +53,7 @@ NULL
 #' # build another problem, and lock out the actions using the column name
 #' # "locked_out" in the sim_actions table
 #' # the sim_actions table
-#' p4 <- p1 %>%
-#'       add_locked_out_constraints("locked_out")
+#' p4 <- p1 %>% add_locked_out_constraints("locked_out")
 #'
 #' # print problem
 #' print(p4)
@@ -80,10 +78,11 @@ NULL
 #' @aliases add_locked_out_constraints,ProjectProblem,numeric-method add_locked_out_constraints,ProjectProblem,logical-method add_locked_out_constraints,ProjectProblem,character-method
 #'
 #' @export
-methods::setGeneric("add_locked_out_constraints",
-                    signature = methods::signature("x", "locked_out"),
-                    function(x, locked_out)
-                      standardGeneric("add_locked_out_constraints"))
+methods::setGeneric(
+  "add_locked_out_constraints",
+  signature = methods::signature("x", "locked_out"),
+  function(x, locked_out) standardGeneric("add_locked_out_constraints")
+)
 
 #' @name add_locked_out_constraints
 #' @usage \S4method{add_locked_out_constraints}{ProjectProblem,numeric}(x, locked_out)
@@ -92,16 +91,21 @@ methods::setMethod("add_locked_out_constraints",
   methods::signature("ProjectProblem", "numeric"),
   function(x, locked_out) {
     # assert valid arguments
-    assertthat::assert_that(inherits(x, "ProjectProblem"),
+    assertthat::assert_that(
+      inherits(x, "ProjectProblem"),
       inherits(locked_out, c("integer", "numeric")),
       isTRUE(all(is.finite(locked_out))),
       isTRUE(all(round(locked_out) == locked_out)),
       isTRUE(max(locked_out) <= number_of_actions(x)),
-      isTRUE(min(locked_out) >= 1))
+      isTRUE(min(locked_out) >= 1)
+    )
     # add constraints
-    add_manual_locked_constraints(x,
-      data.frame(action = x$action_names()[locked_out], status = 0))
-})
+    add_manual_locked_constraints(
+      x,
+      data.frame(action = x$action_names()[locked_out], status = 0)
+    )
+  }
+)
 
 #' @name add_locked_out_constraints
 #' @usage \S4method{add_locked_out_constraints}{ProjectProblem,logical}(x, locked_out)
@@ -110,13 +114,16 @@ methods::setMethod("add_locked_out_constraints",
   methods::signature("ProjectProblem", "logical"),
   function(x, locked_out) {
     # assert valid arguments
-    assertthat::assert_that(inherits(x, "ProjectProblem"),
+    assertthat::assert_that(
+      inherits(x, "ProjectProblem"),
       inherits(locked_out, "logical"),
       assertthat::noNA(locked_out),
-      length(locked_out) == x$number_of_actions())
-      # add constraints
-      add_locked_out_constraints(x, which(locked_out))
-})
+      length(locked_out) == x$number_of_actions()
+    )
+    # add constraints
+    add_locked_out_constraints(x, which(locked_out))
+  }
+)
 
 #' @name add_locked_out_constraints
 #' @usage \S4method{add_locked_out_constraints}{ProjectProblem,character}(x, locked_out)
@@ -125,12 +132,15 @@ methods::setMethod("add_locked_out_constraints",
   methods::signature("ProjectProblem", "character"),
   function(x, locked_out) {
     # assert valid arguments
-    assertthat::assert_that(inherits(x, "ProjectProblem"),
+    assertthat::assert_that(
+      inherits(x, "ProjectProblem"),
       assertthat::is.string(locked_out),
       assertthat::noNA(locked_out),
       assertthat::has_name(x$data$actions, locked_out),
       is.logical(x$data$actions[[locked_out]]),
-      assertthat::noNA(x$data$actions[[locked_out]]))
+      assertthat::noNA(x$data$actions[[locked_out]])
+    )
     # add constraints
     add_locked_out_constraints(x, which(x$data$actions[[locked_out]]))
-})
+  }
+)

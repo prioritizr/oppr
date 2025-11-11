@@ -16,14 +16,13 @@ add_locked_in_constraints(x, locked_in)
 \S4method{add_locked_in_constraints}{ProjectProblem,character}(x, locked_in)
 }
 \arguments{
-\item{x}{\linkS4class{ProjectProblem} object.}
+\item{x}{\code{\link[=problem]{problem()}} object.}
 
 \item{locked_in}{Object that determines which planning units that should be
 locked in. See the Details section for more information.}
 }
 \value{
-\linkS4class{ProjectProblem} object with the constraints
-added to it.
+A \code{\link[=problem]{problem()}} object with the constraints added to it.
 }
 \description{
 Add constraints to a project prioritization \code{\link[=problem]{problem()}} to ensure
@@ -32,27 +31,33 @@ example, it may be desirable to lock in actions for conserving culturally or
 taxonomically important species.
 }
 \details{
-The locked actions can be specified in several different
-ways:
+The locked actions can be specified in several different ways:
 
 \describe{
 
-\item{\code{integer}}{\code{vector} of indices pertaining to which
-actions should be locked in the solution (i.e. row numbers of the
-actions in the argument to \code{actions} in \code{\link[=problem]{problem()}}).}
+\item{\code{integer} vector}{
+specifying indices that pertain to which
+actions should be locked when generating the solution
+(i.e. row numbers of the actions in the argument to \code{actions} in
+\code{\link[=problem]{problem()}}).
+}
 
-\item{\code{logical}}{\code{vector} containing \code{logical}
-(i.e. \code{TRUE} and/or \code{FALSE} values) that indicate which
-actions should be locked in the solution. These \code{logical}
+\item{\code{logical} vector}{
+specifying \code{logical} (i.e. \code{TRUE} and/or \code{FALSE}) values that indicate which
+actions should be locked when generating the solution. These \code{logical}
 values should correspond to each row in the argument to \code{actions}
-in \code{\link[=problem]{problem()}}).}
+in \code{x}.
+}
 
-\item{\code{character}}{column name that indicates if actions
-units should be locked in the solution. This argument
+\item{\code{character} value}{
+specifying a column name that indicates if actions
+units should be locked when generating the solution. This argument
 should  denote a column in the argument to \code{actions}
 in \code{\link[=problem]{problem()}} which contains \code{logical}
 (i.e. \code{TRUE} and/or \code{FALSE} values) to indicate
-which actions should be locked.}
+which actions should be locked.
+}
+
 }
 }
 \examples{
@@ -63,25 +68,26 @@ data(sim_projects, sim_features, sim_actions)
 print(sim_actions)
 
 # build problem with maximum weighted sum objective and $150 budget
-p1 <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-     add_max_wtd_sum_objective(budget = 150) \%>\%
-     add_binary_decisions()
+p1 <-
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) \%>\%
+  add_max_wtd_sum_objective(budget = 150) \%>\%
+  add_binary_decisions()
 
 # print problem
 print(p1)
 
 # build another problem, and lock in the 3rd action using numeric inputs
-p2 <- p1 \%>\%
-      add_locked_in_constraints(c(3))
+p2 <- p1 \%>\% add_locked_in_constraints(c(3))
 
 # print problem
 print(p2)
 
 # build another problem, and lock in the actions using logical inputs from
 # the sim_actions table
-p3 <- p1 \%>\%
-      add_locked_in_constraints(sim_actions$locked_in)
+p3 <- p1 \%>\% add_locked_in_constraints(sim_actions$locked_in)
 
 # print problem
 print(p3)
@@ -89,8 +95,7 @@ print(p3)
 # build another problem, and lock in the actions using the column name
 # "locked_in" in the sim_actions table
 # the sim_actions table
-p4 <- p1 \%>\%
-      add_locked_in_constraints("locked_in")
+p4 <- p1 \%>\% add_locked_in_constraints("locked_in")
 
 # print problem
 print(p4)

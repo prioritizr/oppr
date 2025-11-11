@@ -7,18 +7,17 @@
 add_max_phylo_div_objective(x, budget, tree)
 }
 \arguments{
-\item{x}{\linkS4class{ProjectProblem} object.}
+\item{x}{\code{\link[=problem]{problem()}} object.}
 
-\item{budget}{\code{numeric} budget for funding actions.}
+\item{budget}{\code{numeric} value representing the maximum amount of total
+expenditure for funding actions.}
 
 \item{tree}{\code{\link[ape:read.tree]{ape::phylo()}} phylogenetic tree describing the
-evolutionary relationships between the features. Note that the
-argument to \code{tree} must contain every feature, and only the
-features, present in the argument to \code{x}.}
+evolutionary relationships between the features. Note that \code{tree} must
+contain every feature, and only the features, present in \code{x}.}
 }
 \value{
-\linkS4class{ProjectProblem} object with the objective
-added to it.
+A \code{\link[=problem]{problem()}} with the objective added to it.
 }
 \description{
 Set the objective of a project prioritization \code{\link[=problem]{problem()}} to
@@ -71,8 +70,8 @@ is expected to persist if the project is funded. If the argument
 to \code{adjust_for_baseline} in the \code{problem} function was set to
 \code{TRUE}, and this is the default behavior, then
 \eqn{Q_{fj} = (P_{j} \times B_{fj}) + \bigg(\big(1 - (P_{j} B_{fj})\big)
-  \times (P_{n} \times B_{fn})\bigg)}{Q_{fj} = (P_j B_{fj}) + ((1 - (P_j
-  B_{fj})) * (P_n \times B_{fn}))}, where \code{n} corresponds to the
+\times (P_{n} \times B_{fn})\bigg)}{Q_{fj} = (P_j B_{fj}) + ((1 - (P_j
+B_{fj})) * (P_n \times B_{fn}))}, where \code{n} corresponds to the
 baseline "do nothing" project. This means that the probability
 of a feature persisting if a project is allocated to a feature
 depends on (i) the probability of the project succeeding, (ii) the
@@ -117,7 +116,7 @@ represent the set of ten features and also the number ten).
    \space f \in F \space \mathrm{(eqn \space 1h)} \\
   X_{i}, Y_{j}, Z_{fj} \in [0, 1] \space \forall \space i \in I, j \in J, f
   \in F \space \mathrm{(eqn \space 1i)}
-  }{
+}{
   Maximize (sum_b^B L_b R_b) (eqn 1a);
   Subject to:
   sum_i^I C_i X_i <= m for all f in F (eqn 1b),
@@ -128,7 +127,7 @@ represent the set of ten features and also the number ten).
   A_{ij} Y_{j} <= X_{i} for all i I, j in J (eqn 1g),
   E_f, R_b >= 0, E_f, R_b <= 1 for all b in B, f in F (eqn 1h),
   X_i, Y_j, Z_{fj} in [0, 1] for all i in I, j in J, f in F (eqn 1i)
-  }
+}
 
 The objective (eqn 1a) is to maximize the expected phylogenetic diversity
 (Faith 2008) plus the probability each feature will remain multiplied
@@ -166,10 +165,13 @@ data(sim_projects, sim_features, sim_actions, sim_tree)
 plot(sim_tree)
 
 # build problem with maximum phylogenetic diversity objective and $200 budget
-p1 <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-      add_max_phylo_div_objective(budget = 200, tree = sim_tree) \%>\%
-      add_binary_decisions()
+p1 <-
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+ ) \%>\%
+ add_max_phylo_div_objective(budget = 200, tree = sim_tree) \%>\%
+ add_binary_decisions()
 
 \dontrun{
 # solve problem
@@ -182,8 +184,7 @@ print(s1)
 plot(p1, s1)
 
 # build another problem that includes feature weights
-p2 <- p1 \%>\%
-      add_feature_weights("weight")
+p2 <- p1 \%>\% add_feature_weights("weight")
 
 # solve problem with feature weights
 s2 <- solve(p2)
@@ -213,4 +214,7 @@ research & management science}. Springer.
 }
 \seealso{
 \link{objectives}.
+
+Other objectives: 
+\code{\link{add_min_set_objective}()}
 }
