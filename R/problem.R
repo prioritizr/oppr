@@ -192,14 +192,17 @@ problem <- function(projects, actions, features, project_name_column,
                     adjust_for_baseline = TRUE) {
   # assertions
   ## coerce projects to tibble if just a regular data.frame
-  if (inherits(projects, "data.frame") && !inherits(projects, "tbl_df"))
+  if (inherits(projects, "data.frame") && !inherits(projects, "tbl_df")) {
     projects <- tibble::as_tibble(projects)
+  }
   ## coerce actions to tibble if just a regular data.frame
-  if (inherits(actions, "data.frame") && !inherits(actions, "tbl_df"))
+  if (inherits(actions, "data.frame") && !inherits(actions, "tbl_df")) {
     actions <- tibble::as_tibble(actions)
+  }
   ## coerce features to tibble if just a regular data.frame
-  if (inherits(features, "data.frame") && !inherits(features, "tbl_df"))
+  if (inherits(features, "data.frame") && !inherits(features, "tbl_df")) {
     features <- tibble::as_tibble(features)
+  }
   ## assert that parameters are valid
   assertthat::assert_that(
     inherits(projects, "tbl_df"),

@@ -135,9 +135,9 @@ NULL
 #'   problem(
 #'     sim_projects, sim_actions, sim_features,
 #'     "name", "success", "name", "cost", "name"
-#'  ) %>%
-#'  add_max_wtd_sum_objective(budget = 200) %>%
-#'  add_binary_decisions()
+#'   ) %>%
+#'   add_max_wtd_sum_objective(budget = 200) %>%
+#'   add_binary_decisions()
 #'
 #' \dontrun{
 #' # solve problem

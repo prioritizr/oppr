@@ -6,10 +6,12 @@
 #'
 #' @noRd
 matrix_to_triplet_dataframe <- function(x) {
-  if (inherits(x, c("dsCMatrix")))
+  if (inherits(x, c("dsCMatrix"))) {
     x <- methods::as(x, "dsTMatrix")
-  if (inherits(x, c("dgCMatrix", "matrix")))
+  }
+  if (inherits(x, c("dgCMatrix", "matrix"))) {
     x <- methods::as(x, "dgTMatrix")
+  }
   data.frame(i = x@i + 1, j = x@j + 1, x = x@x)
 }
 
@@ -24,12 +26,16 @@ matrix_to_triplet_dataframe <- function(x) {
 #' @return [Matrix::dgCMatrix-class] object.
 #'
 #' @noRd
-triplet_dataframe_to_matrix <- function(x, forceSymmetric=FALSE, ...) {
-  assertthat::assert_that(inherits(x, "data.frame"), isTRUE(ncol(x) == 3),
-    isTRUE(all(x[[1]] == round(x[[1]]))), isTRUE(all(x[[2]] == round(x[[2]]))))
+triplet_dataframe_to_matrix <- function(x, forceSymmetric = FALSE, ...) {
+  assertthat::assert_that(
+    inherits(x, "data.frame"), isTRUE(ncol(x) == 3),
+    isTRUE(all(x[[1]] == round(x[[1]]))), isTRUE(all(x[[2]] == round(x[[2]])))
+  )
   # create sparse amtrix
-  m <- Matrix::sparseMatrix(i = x[[1]], j = x[[2]], x = x[[3]],
-                            giveCsparse = FALSE, ...)
+  m <- Matrix::sparseMatrix(
+    i = x[[1]], j = x[[2]], x = x[[3]],
+    giveCsparse = FALSE, ...
+  )
   if (forceSymmetric) {
     # force the matrix to be symmetric
     # we cannot gurantee that the cells that are filled in belong to either

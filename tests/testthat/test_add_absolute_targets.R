@@ -4,9 +4,11 @@ test_that("numeric(1)", {
   # load data
   data(sim_projects, sim_actions, sim_features)
   # create problem
-  p <- problem(sim_projects, sim_actions, sim_features,
-               "name", "success", "name", "cost", "name", FALSE) %>%
-       add_absolute_targets(0.5)
+  p <- problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name", FALSE
+  ) %>%
+    add_absolute_targets(0.5)
   # calculate absolute targets
   targets <- p$targets$output()
   # run tests
@@ -24,9 +26,11 @@ test_that("numeric(4)", {
   # load data
   data(sim_projects, sim_actions, sim_features)
   # create problem
-  p <- problem(sim_projects, sim_actions, sim_features,
-               "name", "success", "name", "cost", "name", FALSE) %>%
-       add_absolute_targets(seq_len(5) * 0.1)
+  p <- problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name", FALSE
+  ) %>%
+    add_absolute_targets(seq_len(5) * 0.1)
   # calculate absolute targets
   targets <- p$targets$output()
   # run tests
@@ -45,9 +49,11 @@ test_that("character(1)", {
   data(sim_projects, sim_actions, sim_features)
   sim_features$target <- seq_len(5) * 0.1
   # create problem
-  p <- problem(sim_projects, sim_actions, sim_features,
-               "name", "success", "name", "cost", "name", FALSE) %>%
-       add_absolute_targets("target")
+  p <- problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name", FALSE
+  ) %>%
+    add_absolute_targets("target")
   # calculate absolute targets
   targets <- p$targets$output()
   # run tests
@@ -63,8 +69,10 @@ test_that("character(1)", {
 
 test_that("invalid arguments", {
   data(sim_projects, sim_actions, sim_features)
-  p <- problem(sim_projects, sim_actions, sim_features,
-               "name", "success", "name", "cost", "name", FALSE)
+  p <- problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name", FALSE
+  )
   ## single numeric values
   expect_error({
     add_absolute_targets(p, 2)

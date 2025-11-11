@@ -78,10 +78,13 @@ NULL
 #' data(sim_projects, sim_features, sim_actions, sim_tree)
 #'
 #' # build problem with maximum weighted sum objective and $200 budget
-#' p1 <- problem(sim_projects, sim_actions, sim_features,
-#'              "name", "success", "name", "cost", "name") %>%
-#'      add_max_wtd_sum_objective(budget = 200) %>%
-#'      add_binary_decisions()
+#' p1 <-
+#'   problem(
+#'     sim_projects, sim_actions, sim_features,
+#'     "name", "success", "name", "cost", "name"
+#'   ) %>%
+#'   add_max_wtd_sum_objective(budget = 200) %>%
+#'   add_binary_decisions()
 #'
 #' \dontrun{
 #' # solve problem
@@ -95,10 +98,13 @@ NULL
 #' }
 #'
 #' # build problem with maximum phylogenetic diversity objective and $200 budget
-#' p2 <- problem(sim_projects, sim_actions, sim_features,
-#'              "name", "success", "name", "cost", "name") %>%
-#'      add_max_phylo_div_objective(budget = 200, tree = sim_tree) %>%
-#'      add_binary_decisions()
+#' p2 <-
+#'   problem(
+#'     sim_projects, sim_actions, sim_features,
+#'     "name", "success", "name", "cost", "name"
+#'   ) %>%
+#'   add_max_phylo_div_objective(budget = 200, tree = sim_tree) %>%
+#'   add_binary_decisions()
 #'
 #' \dontrun{
 #' # solve problem
@@ -112,11 +118,14 @@ NULL
 #' }
 #' # build problem with maximum targets met objective, $200 budget, and
 #' # 40% persistence targets
-#' p3 <- problem(sim_projects, sim_actions, sim_features,
-#'              "name", "success", "name", "cost", "name") %>%
-#'      add_max_targets_met_objective(budget = 200) %>%
-#'      add_absolute_targets(0.4) %>%
-#'      add_binary_decisions()
+#' p3 <-
+#'   problem(
+#'     sim_projects, sim_actions, sim_features,
+#'     "name", "success", "name", "cost", "name"
+#'   ) %>%
+#'   add_max_targets_met_objective(budget = 200) %>%
+#'   add_absolute_targets(0.4) %>%
+#'   add_binary_decisions()
 #'
 #' \dontrun{
 #' # solve problem
@@ -131,11 +140,14 @@ NULL
 #'
 #' # build problem with minimum set objective, $200 budget, and 40%
 #' # persistence targets
-#' p4 <- problem(sim_projects, sim_actions, sim_features,
-#'              "name", "success", "name", "cost", "name") %>%
-#'      add_min_set_objective() %>%
-#'      add_absolute_targets(0.4) %>%
-#'      add_binary_decisions()
+#' p4 <-
+#'   problem(
+#'     sim_projects, sim_actions, sim_features,
+#'     "name", "success", "name", "cost", "name"
+#'   ) %>%
+#'   add_min_set_objective() %>%
+#'   add_absolute_targets(0.4) %>%
+#'   add_binary_decisions()
 #'
 #' \dontrun{
 #' # solve problem

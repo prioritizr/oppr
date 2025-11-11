@@ -15,8 +15,9 @@
 #' @noRd
 repr_options <- function(x, description = "") {
   n <- length(x)
-  if (nchar(description) > 0)
+  if (nchar(description) > 0) {
     description <- paste0(" ", description)
+  }
   if (length(x) <= 4) {
     x <- x[seq_len(min(length(x), 4))]
   } else {
@@ -45,15 +46,15 @@ repr_values <- function(x) {
     return("binary values (all equal to zero or one)")
   }
   if (all(x >= 0 & x <= 1)) {
-  return(
-    paste0(
-      "proportion values (between ",
-      round(min(x), 3),
-      " and ",
-      round(max(x), 3),
-      ")"
+    return(
+      paste0(
+        "proportion values (between ",
+        round(min(x), 3),
+        " and ",
+        round(max(x), 3),
+        ")"
+      )
     )
-  )
   }
   return(
     paste0(

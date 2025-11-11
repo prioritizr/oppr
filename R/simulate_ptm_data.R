@@ -267,7 +267,7 @@ simulate_ptm_data <- function(number_projects, number_actions, number_features,
     isTRUE(funded_max_persistence_probability >= 0),
     isTRUE(funded_max_persistence_probability <= 1),
     isTRUE(funded_max_persistence_probability >
-           funded_min_persistence_probability),
+      funded_min_persistence_probability),
     assertthat::is.number(baseline_min_persistence_probability),
     isTRUE(baseline_min_persistence_probability >= 0),
     isTRUE(baseline_min_persistence_probability <= 1),
@@ -275,9 +275,9 @@ simulate_ptm_data <- function(number_projects, number_actions, number_features,
     isTRUE(baseline_max_persistence_probability >= 0),
     isTRUE(baseline_max_persistence_probability <= 1),
     isTRUE(baseline_max_persistence_probability >
-           baseline_min_persistence_probability),
+      baseline_min_persistence_probability),
     isTRUE(funded_min_persistence_probability >
-           baseline_max_persistence_probability),
+      baseline_max_persistence_probability),
     assertthat::is.number(locked_in_proportion),
     isTRUE(locked_in_proportion >= 0),
     isTRUE(locked_in_proportion <= 1),
@@ -288,8 +288,8 @@ simulate_ptm_data <- function(number_projects, number_actions, number_features,
   assertthat::assert_that(
     isTRUE(
       number_features >
-      (ceiling(number_features * locked_in_proportion) +
-       ceiling(number_features * locked_out_proportion))
+        (ceiling(number_features * locked_in_proportion) +
+          ceiling(number_features * locked_out_proportion))
     ),
     msg = paste(
       "combined number of locked in and locked out projects",
@@ -378,7 +378,8 @@ simulate_ptm_data <- function(number_projects, number_actions, number_features,
 
   # organization data
   organization_data <- matrix(
-    FALSE, ncol = number_actions + 1,
+    FALSE,
+    ncol = number_actions + 1,
     nrow = number_projects + 1,
     dimnames = list(NULL, actions$name)
   )
@@ -400,8 +401,10 @@ simulate_ptm_data <- function(number_projects, number_actions, number_features,
   )
 
   # return result
-  list(projects = tibble::as_tibble(projects),
-       actions = actions,
-       features = features,
-       tree = tree)
+  list(
+    projects = tibble::as_tibble(projects),
+    actions = actions,
+    features = features,
+    tree = tree
+  )
 }

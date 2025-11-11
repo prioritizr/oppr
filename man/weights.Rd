@@ -25,11 +25,14 @@ data(sim_projects, sim_features, sim_actions)
 
 # build problem with maximum weighted sum objective, $300 budget, and
 # feature weights
-p <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-     add_max_wtd_sum_objective(budget = 200) \%>\%
-     add_feature_weights("weight") \%>\%
-     add_binary_decisions()
+p <-
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) \%>\%
+  add_max_wtd_sum_objective(budget = 200) \%>\%
+  add_feature_weights("weight") \%>\%
+  add_binary_decisions()
 
 \dontrun{
 # solve problem

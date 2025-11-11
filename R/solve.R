@@ -77,11 +77,14 @@ NULL
 #' print(sim_actions)
 #'
 #' # build problem
-#' p <- problem(sim_projects, sim_actions, sim_features,
-#'              "name", "success", "name", "cost", "name") %>%
-#'      add_max_wtd_sum_objective(budget = 400) %>%
-#'      add_feature_weights("weight") %>%
-#'      add_binary_decisions()
+#' p <-
+#'   problem(
+#'     sim_projects, sim_actions, sim_features,
+#'     "name", "success", "name", "cost", "name"
+#'   ) %>%
+#'   add_max_wtd_sum_objective(budget = 400) %>%
+#'   add_feature_weights("weight") %>%
+#'   add_binary_decisions()
 #'
 #' # print problem
 #' print(p)
@@ -130,8 +133,9 @@ methods::setMethod(
   function(a, b, ...) {
     ## solve problem
     # assign solver
-    if (inherits(a$solver, "Waiver"))
+    if (inherits(a$solver, "Waiver")) {
       a <- add_default_solver(a)
+    }
     # compile and solve optimisation problem
     opt <- compile.ProjectProblem(a, ...)
     sol <- a$solver$solve(opt)
@@ -141,8 +145,10 @@ methods::setMethod(
     }
     ## format solutions
     # extract actions
-    action_status <- lapply(sol,
-      function(x) matrix(x[[1]][seq_len(a$number_of_actions())], nrow = 1))
+    action_status <- lapply(
+      sol,
+      function(x) matrix(x[[1]][seq_len(a$number_of_actions())], nrow = 1)
+    )
     if (length(action_status) == 1) {
       action_status <- action_status[[1]]
     } else {
@@ -166,8 +172,10 @@ methods::setMethod(
     ### add remaining columns
     out <- tibble::as_tibble(cbind(out, solution_statistics(a, s)))
     ### reorder columns
-    out <- out[, c("solution", "status", "obj", "cost", a$action_names(),
-                   a$project_names(), a$feature_names())]
+    out <- out[, c(
+      "solution", "status", "obj", "cost", a$action_names(),
+      a$project_names(), a$feature_names()
+    )]
     # return result
     out
   }

@@ -4,11 +4,15 @@ test_that("valid arguments", {
   # load data
   data(sim_projects, sim_actions, sim_features)
   # create problem
-  p <- problem(sim_projects, sim_actions, sim_features,
-               "name", "success", "name", "cost", "name", FALSE) %>%
-       add_manual_targets(data.frame(feature = sim_features$name[seq_len(4)],
-                                     target = seq_len(4) * 0.1,
-                                     type = "absolute"))
+  p <- problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name", FALSE
+  ) %>%
+    add_manual_targets(data.frame(
+      feature = sim_features$name[seq_len(4)],
+      target = seq_len(4) * 0.1,
+      type = "absolute"
+    ))
   # calculate absolute targets
   targets <- p$targets$output()
   # run tests
@@ -24,8 +28,10 @@ test_that("valid arguments", {
 
 test_that("invalid arguments", {
   data(sim_projects, sim_actions, sim_features)
-  p <- problem(sim_projects, sim_actions, sim_features,
-               "name", "success", "name", "cost", "name", FALSE)
+  p <- problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name", FALSE
+  )
   # tests
   ## empty data.frame
   expect_error({
@@ -35,79 +41,92 @@ test_that("invalid arguments", {
   expect_error({
     add_manual_targets(p, data.frame(
       type = "absolute",
-      target = 0.5))
+      target = 0.5
+    ))
   })
   expect_error({
     add_manual_targets(p, data.frame(
       feature = "F1",
-      target = 0.5))
+      target = 0.5
+    ))
   })
   expect_error({
     add_manual_targets(p, data.frame(
       feature = "F1",
-      type = "absolute"))
+      type = "absolute"
+    ))
   })
   ## invalid feature column
   expect_error({
     add_manual_targets(p, data.frame(
       feature = "a",
       type = "absolute",
-      target = 0.5))
+      target = 0.5
+    ))
   })
   expect_error({
     add_manual_targets(p, data.frame(
       feature = NA_character_,
       type = "absolute",
-      target = 0.5))
+      target = 0.5
+    ))
   })
   expect_error({
     add_manual_targets(p, data.frame(
       feature = 1,
       type = "absolute",
-      target = 0.5))
+      target = 0.5
+    ))
   })
   ## invalid type column
   expect_error({
     add_manual_targets(p, data.frame(
       feature = "F1",
       type = "g",
-      target = 0.5))
+      target = 0.5
+    ))
   })
   expect_error({
     add_manual_targets(p, data.frame(
       feature = "F1",
       type = NA_character_,
-      target = 0.5))
+      target = 0.5
+    ))
   })
   expect_error({
     add_manual_targets(p, data.frame(
       feature = "F1",
       type = 1,
-      target = 0.5))
+      target = 0.5
+    ))
   })
   ## invalid target column
   expect_error({
     add_manual_targets(p, data.frame(
       feature = "F1",
       type = "absolute",
-      target = 2))
+      target = 2
+    ))
   })
   expect_error({
     add_manual_targets(p, data.frame(
       feature = "F1",
       type = "absolute",
-      target = -1))
+      target = -1
+    ))
   })
   expect_error({
     add_manual_targets(p, data.frame(
       feature = "F1",
       type = "absolute",
-      target = NA_real_))
+      target = NA_real_
+    ))
   })
   expect_error({
     add_manual_targets(p, data.frame(
       feature = "F1",
       type = "absolute",
-      target = "1"))
+      target = "1"
+    ))
   })
 })

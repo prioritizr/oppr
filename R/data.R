@@ -54,7 +54,7 @@ NULL
 #' (`FALSE`).
 #' }
 #'
-#'\item{`"baseline_action"`}{
+#' \item{`"baseline_action"`}{
 #' `logical` column indicating if a project is associated with the baseline
 #' action (`TRUE`) or not (`FALSE`). This action is only
 #' associated with the baseline project.
@@ -128,13 +128,13 @@ NULL
 #'
 #' # print project data
 #' print(sim_projects)
-#
+#'
 #' # print action data
 #' print(sim_actions)
 #'
 #' # print feature data
 #' print(sim_features)
-#
+#'
 #' # plot phylogenetic tree
 #' plot(sim_tree)
 #'

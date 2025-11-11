@@ -180,8 +180,9 @@ methods::setMethod(
             max_eof <- self$get_data("max_eof")
             feature_names <- self$get_data("feature_names")
             # add sense column if missing
-            if (!assertthat::has_name(targets, "sense"))
-             targets$sense <- ">="
+            if (!assertthat::has_name(targets, "sense")) {
+              targets$sense <- ">="
+            }
             targets$sense <- as.character(targets$sense)
             # add targets for missing features
             # these targets are -1 so they should always be met
@@ -189,16 +190,16 @@ methods::setMethod(
               feature_names, as.character(targets$feature)
             )
             if (length(missing_features) > 0) {
-            targets <- rbind(
-              targets,
-              tibble::tibble(
-                feature = missing_features,
-                type = "absolute",
-                sense = ">=",
-                target = -1
-               )
-             )
-             targets <- tibble::as_tibble(targets)
+              targets <- rbind(
+                targets,
+                tibble::tibble(
+                  feature = missing_features,
+                  type = "absolute",
+                  sense = ">=",
+                  target = -1
+                )
+              )
+              targets <- tibble::as_tibble(targets)
             }
             # convert feature names to indices
             targets$feature <- match(targets$feature, feature_names)
@@ -209,7 +210,7 @@ methods::setMethod(
               feature_id <- targets$feature[[relative_rows[[i]]]]
               targets$value[relative_rows[i]] <-
                 max_eof[feature_id] *
-                targets$target[relative_rows[i]]
+                  targets$target[relative_rows[i]]
             }
             # return tibble
             return(targets[, c("feature", "sense", "value")])

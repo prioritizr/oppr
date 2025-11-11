@@ -34,12 +34,15 @@ NULL
 #' data(sim_projects, sim_features, sim_actions)
 #'
 #' # build problem
-#' p <- problem(sim_projects, sim_actions, sim_features,
-#'              "name", "success", "name", "cost", "name") %>%
-#'       add_max_wtd_sum_objective(budget = 400) %>%
-#'       add_feature_weights("weight") %>%
-#'       add_binary_decisions() %>%
-#'       add_heuristic_solver(n = 10)
+#' p <-
+#'   problem(
+#'     sim_projects, sim_actions, sim_features,
+#'     "name", "success", "name", "cost", "name"
+#'   ) %>%
+#'   add_max_wtd_sum_objective(budget = 400) %>%
+#'   add_feature_weights("weight") %>%
+#'   add_binary_decisions() %>%
+#'   add_heuristic_solver(n = 10)
 #'
 #' \dontrun{
 #' # solve problem
@@ -65,8 +68,9 @@ plot_feature_persistence <- function(x, solution, n = 1, symbol_hjust = 0.007,
                                      return_data = FALSE) {
   # assertions
   ## coerce solution to tibble if just a regular data.frame
-  if (inherits(solution, "data.frame") && !inherits(solution, "tbl_df"))
+  if (inherits(solution, "data.frame") && !inherits(solution, "tbl_df")) {
     solution <- tibble::as_tibble(solution)
+  }
   ## assert that parameters are valid
   assertthat::assert_that(
     inherits(x, "ProjectProblem"),
@@ -83,9 +87,11 @@ plot_feature_persistence <- function(x, solution, n = 1, symbol_hjust = 0.007,
     assertthat::is.number(symbol_hjust),
     is.finite(symbol_hjust),
     assertthat::is.flag(return_data),
-    assertthat::noNA(return_data))
+    assertthat::noNA(return_data)
+  )
   assertthat::assert_that(!is.Waiver(x$objective),
-    msg = "argument to x does not have a defined objective")
+    msg = "argument to x does not have a defined objective"
+  )
   # preliminary processing
   ## subset solution and reorder columns
   solution <- solution[n, x$action_names(), drop = FALSE]
@@ -93,26 +99,31 @@ plot_feature_persistence <- function(x, solution, n = 1, symbol_hjust = 0.007,
   ## determine which projects are funded based on the funded actions
   ## and omit the baseline project
   prj <- as.matrix(x$pa_matrix())
-  funding_matrix <- matrix(TRUE, ncol = x$number_of_actions(),
-                           nrow = x$number_of_projects())
+  funding_matrix <- matrix(TRUE,
+    ncol = x$number_of_actions(),
+    nrow = x$number_of_projects()
+  )
   pos <- which(prj > 0.5, arr.ind = TRUE)
   funding_matrix[pos] <- as.matrix(solution)[1, pos[, 2]]
   funded_projects <- rowSums(funding_matrix) == ncol(prj)
   partially_funded_projects <- (rowSums(funding_matrix) > 0) &
-                               (rowSums(!funding_matrix ) < rowSums(prj)) &
-                               (rowSums(funding_matrix) != ncol(prj))
+    (rowSums(!funding_matrix) < rowSums(prj)) &
+    (rowSums(funding_matrix) != ncol(prj))
 
   ## determine baseline project(s)
   zero_cost_projects <- rowSums(as.matrix(x$pa_matrix()) *
-                                matrix(x$action_costs(), byrow = TRUE,
-                                       ncol = x$number_of_actions(),
-                                       nrow = x$number_of_projects()))
+    matrix(x$action_costs(),
+      byrow = TRUE,
+      ncol = x$number_of_actions(),
+      nrow = x$number_of_projects()
+    ))
   zero_cost_projects <- zero_cost_projects < 1e-15
 
   ## determine which features receive funding based on their project being
   ## funded
   completely_funded_fts <- as.matrix(x$eof_matrix())[, x$feature_names(),
-                                                    drop = FALSE] > 1e-15
+    drop = FALSE
+  ] > 1e-15
   completely_funded_fts[!funded_projects, ] <- 0.0
   completely_funded_fts[zero_cost_projects, ] <- 0.0
   completely_funded_fts <- colSums(completely_funded_fts) > 1e-15
@@ -121,25 +132,31 @@ plot_feature_persistence <- function(x, solution, n = 1, symbol_hjust = 0.007,
   ## determine which species receive indirect based on sharing actions with
   ## a funded project
   partially_funded_fts <- as.matrix(x$eof_matrix())[, x$feature_names(),
-                                                    drop = FALSE] > 1e-15
+    drop = FALSE
+  ] > 1e-15
   partially_funded_fts[!partially_funded_projects, ] <- 0.0
   partially_funded_fts[zero_cost_projects, ] <- 0.0
   partially_funded_fts <- colSums(partially_funded_fts) > 1e-15
-  partially_funded_fts <- setdiff(x$feature_names()[partially_funded_fts],
-                                  completely_funded_fts)
+  partially_funded_fts <- setdiff(
+    x$feature_names()[partially_funded_fts],
+    completely_funded_fts
+  )
 
   ## pre-compute probabilities that each branch will persist
   feature_probs <- rcpp_expected_persistences(
     x$pa_matrix(),
     x$eof_matrix()[, x$feature_names(), drop = FALSE],
     as_Matrix(diag(x$number_of_features()), "dgCMatrix"),
-    as_Matrix(as.matrix(solution), "dgCMatrix"))[1, ]
+    as_Matrix(as.matrix(solution), "dgCMatrix")
+  )[1, ]
 
   ## create plotting data
-  d <- tibble::tibble(name = x$feature_names(),
-                      prob = feature_probs,
-                      weight = x$feature_weights(),
-                      status = NA_character_)
+  d <- tibble::tibble(
+    name = x$feature_names(),
+    prob = feature_probs,
+    weight = x$feature_weights(),
+    status = NA_character_
+  )
   d$status[d$name %in% completely_funded_fts] <- "Funded"
   d$status[d$name %in% partially_funded_fts] <- "Partially Funded"
   d <- d[rev(seq_len(nrow(d))), ] # re-order data
@@ -159,7 +176,6 @@ plot_feature_persistence <- function(x, solution, n = 1, symbol_hjust = 0.007,
         )
       ) +
       ggplot2::geom_col() +
-
       ggplot2::scale_y_continuous(
         name = "Probability of persistence", limits = c(0, 1)
       ) +
@@ -167,7 +183,8 @@ plot_feature_persistence <- function(x, solution, n = 1, symbol_hjust = 0.007,
       ggplot2::scale_fill_gradientn(
         name = "Weight",
         colors = viridisLite::inferno(
-          150, begin = 0, end = 0.9, direction = -1
+          150,
+          begin = 0, end = 0.9, direction = -1
         )
       ) +
       ggplot2::theme(legend.position = "right") +
@@ -179,7 +196,8 @@ plot_feature_persistence <- function(x, solution, n = 1, symbol_hjust = 0.007,
           data = d[!is.na(d$status), , drop = FALSE],
           mapping = ggplot2::aes(shape = !!rlang::sym("status")),
           size = 3, color = "black",
-          position = ggplot2::position_nudge(y =  symbol_hjust)) +
+          position = ggplot2::position_nudge(y = symbol_hjust)
+        ) +
         ggplot2::scale_shape_manual(
           name = "Projects",
           values = c("Funded" = 8, "Partially Funded" = 1),
@@ -188,7 +206,7 @@ plot_feature_persistence <- function(x, solution, n = 1, symbol_hjust = 0.007,
         )
     }
   } else {
-   o <- d
+    o <- d
   }
 
   # Exports

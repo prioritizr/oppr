@@ -145,7 +145,7 @@ NULL
 #'
 #' # plot solution, and add a dashed line to indicate the feature targets
 #' plot(p, s) +
-#' geom_hline(yintercept = 0.3, linetype = "dashed")
+#'   geom_hline(yintercept = 0.3, linetype = "dashed")
 #' }
 #' @name add_min_set_objective
 NULL

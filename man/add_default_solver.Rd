@@ -35,7 +35,7 @@ data(sim_projects, sim_features, sim_actions)
 
 # build problem with default solver
 p <-
-   problem(
+  problem(
     sim_projects, sim_actions, sim_features,
     "name", "success", "name", "cost", "name"
   ) \%>\%

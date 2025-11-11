@@ -20,7 +20,6 @@ Objective <- R6::R6Class(
   "Objective",
   inherit = ProjectModifier,
   public = list(
-
     #' @field has_targets `logical` value indicating if the objective uses
     #' targets.
     has_targets = NULL,
@@ -67,6 +66,5 @@ Objective <- R6::R6Class(
       stop("No $evaluate method defined.")
       # nocov end
     }
-
   )
 )

@@ -24,7 +24,6 @@ NULL
 OptimizationProblem <- R6::R6Class(
   "OptimizationProblem",
   public = list(
-
     #' @field ptr A `Rcpp::Xptr` external pointer.
     ptr = NULL,
 
@@ -52,16 +51,20 @@ OptimizationProblem <- R6::R6Class(
     #' @return Invisible `TRUE`.
     print = function() {
       if (self$ncol() > 0) {
-      cv <- table(self$vtype())
-      cv <- paste(paste(unname(cv), paste0("(", names(cv), ")")),
-            collapse = ", ")
-      message("optimization problem",
-        "\n  objective:    ", ifelse(length(self$pwlobj()) == 0, "linear",
-                             "piece-wise linear"),
-        "\n  model sense: ", self$modelsense(),
-        "\n  dimensions:  ", self$nrow(), ", ", self$ncol(), ", ", self$ncell(),
-                            " (nrow, ncol, ncell)",
-        "\n  variables:   ", cv)
+        cv <- table(self$vtype())
+        cv <- paste(paste(unname(cv), paste0("(", names(cv), ")")),
+          collapse = ", "
+        )
+        message(
+          "optimization problem",
+          "\n  objective:    ", ifelse(length(self$pwlobj()) == 0, "linear",
+            "piece-wise linear"
+          ),
+          "\n  model sense: ", self$modelsense(),
+          "\n  dimensions:  ", self$nrow(), ", ", self$ncol(), ", ", self$ncell(),
+          " (nrow, ncol, ncell)",
+          "\n  variables:   ", cv
+        )
       } else {
         message("optimization problem (empty)")
       }

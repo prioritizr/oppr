@@ -30,7 +30,7 @@ NULL
 #'
 #' # build problem with default solver
 #' p <-
-#'    problem(
+#'   problem(
 #'     sim_projects, sim_actions, sim_features,
 #'     "name", "success", "name", "cost", "name"
 #'   ) %>%

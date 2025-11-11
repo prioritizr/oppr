@@ -176,7 +176,7 @@ print(s1)
 # scenario, and the project for F5 was prioritized for funding
 # so that its probability of persistence meets the target
 plot(p1, s1) +
-geom_hline(yintercept = 0.2, linetype = "dashed")
+  geom_hline(yintercept = 0.2, linetype = "dashed")
 }
 
 # build another problem that includes feature weights
@@ -194,7 +194,7 @@ print(s2)
 # specifically, the projects for the feature F3 is now funded
 # to enhance its probability of persistence
 plot(p2, s2) +
-geom_hline(yintercept = 0.2, linetype = "dashed")
+  geom_hline(yintercept = 0.2, linetype = "dashed")
 }
 }
 \references{

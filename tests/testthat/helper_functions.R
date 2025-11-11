@@ -5,7 +5,8 @@ r_phylo_div_mip_formulation <- function(project_data, action_data, tree, budget,
   n_projects <- nrow(project_data)
   n_actions <- nrow(action_data)
   n_shared_actions <- sum(as.matrix(project_data[, action_data$name,
-                                                 drop = FALSE]))
+    drop = FALSE
+  ]))
   species_names <- tree$tip.label
   n_spp <- length(species_names)
 
@@ -23,12 +24,16 @@ r_phylo_div_mip_formulation <- function(project_data, action_data, tree, budget,
   branch_nontip_indices <- which(Matrix::colSums(T_bs) > 1)
 
   ## create variable names
-  variable_names <- c(paste0("X_", seq_len(n_actions)),
-                      paste0("Y_", seq_len(n_projects)),
-                      paste0("Z_", outer(seq_len(n_projects),
-                                         species_names,
-                                         paste0)),
-                      paste0("R_", seq_len(n_branches)))
+  variable_names <- c(
+    paste0("X_", seq_len(n_actions)),
+    paste0("Y_", seq_len(n_projects)),
+    paste0("Z_", outer(
+      seq_len(n_projects),
+      species_names,
+      paste0
+    )),
+    paste0("R_", seq_len(n_branches))
+  )
 
   ## calculate number of variables
   n_v <- length(variable_names)
@@ -55,20 +60,24 @@ r_phylo_div_mip_formulation <- function(project_data, action_data, tree, budget,
   model$vtype[seq_len(n_actions)] <- "B"
   model$vtype[n_actions + seq_len(n_projects)] <- "B"
   model$vtype[n_actions + n_projects +
-              seq_along(outer(species_names, seq_len(n_projects),
-                              paste0))] <- "B"
+    seq_along(outer(
+      species_names, seq_len(n_projects),
+      paste0
+    ))] <- "B"
   model$vtype[match(paste0("R_", branch_nontip_indices), variable_names)] <- "C"
 
   ## set linear constraints
   ### initialize constraints
-  model$A <- Matrix::sparseMatrix(i = 1, j = 1, x = 0,
-                                  dims = c(1 +
-                                           n_shared_actions +
-                                           (n_spp * n_projects) +
-                                           n_spp +
-                                           n_spp +
-                                           length(branch_nontip_indices), n_v),
-                                  dimnames = list(NULL, variable_names))
+  model$A <- Matrix::sparseMatrix(
+    i = 1, j = 1, x = 0,
+    dims = c(1 +
+      n_shared_actions +
+      (n_spp * n_projects) +
+      n_spp +
+      n_spp +
+      length(branch_nontip_indices), n_v),
+    dimnames = list(NULL, variable_names)
+  )
   model$A <- Matrix::drop0(model$A)
   model$rhs <- rep(NA_real_, nrow(model$A))
   model$sense <- rep(NA_character_, nrow(model$A))
@@ -122,10 +131,10 @@ r_phylo_div_mip_formulation <- function(project_data, action_data, tree, budget,
     curr_row <- curr_row + 1
     curr_projects_for_spp <- which(project_data[[s]] > 0)
     b <- which((Matrix::colSums(T_bs) == 1) &
-               (T_bs[match(s, species_names), ] == 1))
+      (T_bs[match(s, species_names), ] == 1))
     model$A[curr_row, paste0("Z_", curr_projects_for_spp, s)] <-
       project_data[[s]][curr_projects_for_spp] *
-      project_data$success[curr_projects_for_spp]
+        project_data$success[curr_projects_for_spp]
     model$A[curr_row, paste0("R_", b)] <- -1
     model$sense[curr_row] <- "="
     model$rhs[curr_row] <- 0
@@ -147,7 +156,7 @@ r_phylo_div_mip_formulation <- function(project_data, action_data, tree, budget,
         curr_projects_for_spp <- which(project_data[[s]] > 0)
         model$A[curr_row, paste0("Z_", curr_projects_for_spp, s)] <-
           log(1 - (project_data[[s]][curr_projects_for_spp] *
-                   project_data$success[curr_projects_for_spp]))
+            project_data$success[curr_projects_for_spp]))
       }
       model$A[curr_row, paste0("R_", b)] <- -1
       model$sense[curr_row] <- "="
@@ -156,9 +165,11 @@ r_phylo_div_mip_formulation <- function(project_data, action_data, tree, budget,
       ### apply piecewise linear approximation constraints
       #### calculate extinction probabilities for each spp and project
       curr_probs <- as.matrix(project_data[, species_names[T_bs[, b] > 0.5]])
-      curr_probs <- curr_probs * matrix(project_data$success, byrow = FALSE,
-                                        ncol = ncol(curr_probs),
-                                        nrow = nrow(curr_probs))
+      curr_probs <- curr_probs * matrix(project_data$success,
+        byrow = FALSE,
+        ncol = ncol(curr_probs),
+        nrow = nrow(curr_probs)
+      )
       curr_probs[curr_probs < 1e-15] <- NA_real_
       curr_probs <- 1 - curr_probs
       #### calculate log-sum value of extinction probabilities if best project
@@ -170,10 +181,11 @@ r_phylo_div_mip_formulation <- function(project_data, action_data, tree, budget,
       model$pwlobj[[curr_pwl]] <- list()
       model$pwlobj[[curr_pwl]]$var <- match(paste0("R_", b), variable_names)
       model$pwlobj[[curr_pwl]]$x <- seq(curr_min_value * 0.99,
-                                        curr_max_value * 1.01,
-                                        length.out = n_approx_points)
+        curr_max_value * 1.01,
+        length.out = n_approx_points
+      )
       model$pwlobj[[curr_pwl]]$y <- L_b[b] * (1 -
-                                              exp(model$pwlobj[[curr_pwl]]$x))
+        exp(model$pwlobj[[curr_pwl]]$x))
     }
   }
 

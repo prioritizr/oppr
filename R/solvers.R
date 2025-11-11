@@ -74,51 +74,51 @@ NULL
 #' data(sim_projects, sim_features, sim_actions)
 #'
 #' # build problem
-#' p1 <- problem(sim_projects, sim_actions, sim_features,
-#'              "name", "success", "name", "cost", "name") %>%
-#'      add_max_wtd_sum_objective(budget = 200) %>%
-#'      add_binary_decisions()
+#' p1 <-
+#'   problem(
+#'     sim_projects, sim_actions, sim_features,
+#'     "name", "success", "name", "cost", "name"
+#'   ) %>%
+#'   add_max_wtd_sum_objective(budget = 200) %>%
+#'   add_binary_decisions()
 #'
 #' # build another problem, with the default solver
-#' p2 <- p1 %>%
-#'       add_default_solver()
+#' p2 <- p1 %>% add_default_solver()
 #'
 #' # build another problem, with the gurobi solver
 #' \dontrun{
-#' p3 <- p1 %>%
-#'       add_gurobi_solver()
+#' p3 <- p1 %>% add_gurobi_solver()
 #' }
 #'
 #' # build another problem, with the Rsympony solver
 #' \dontrun{
-#' p4 <- p1 %>%
-#'       add_rsymphony_solver()
+#' p4 <- p1 %>% add_rsymphony_solver()
 #' }
 #'
 #' # build another problem, with the lpsymphony solver
 #' \dontrun{
-#' p5 <- p1 %>%
-#'       add_lpsymphony_solver()
+#' p5 <- p1 %>% add_lpsymphony_solver()
 #' }
 #'
 #' # build another problem, with the lpSolveAPI solver
-#' p6 <- p1 %>%
-#'       add_lpsolveapi_solver()
+#' p6 <- p1 %>% add_lpsolveapi_solver()
 #'
 #' # build another problem, with the heuristic solver
-#' p7 <- p1 %>%
-#'       add_heuristic_solver()
+#' p7 <- p1 %>% add_heuristic_solver()
 #'
 #' # build another problem, with the random solver
-#' p8 <- p1 %>%
-#'       add_random_solver()
+#' p8 <- p1 %>% add_random_solver()
 #'
 #' \dontrun{
 #' # generate solutions using each of the solvers
-#' s <- rbind(solve(p2), solve(p3), solve(p4), solve(p5), solve(p6), solve(p7),
-#'            solve(p8))
-#' s$solver <- c("default", "gurobi", "Rsymphony", "lpsymphony", "lpSolveAPI",
-#'               "heuristic", "random")
+#' s <- rbind(
+#'   solve(p2), solve(p3), solve(p4), solve(p5), solve(p6), solve(p7),
+#'   solve(p8)
+#' )
+#' s$solver <- c(
+#'   "default", "gurobi", "Rsymphony", "lpsymphony", "lpSolveAPI",
+#'   "heuristic", "random"
+#' )
 #'
 #' # print solutions
 #' print(as.data.frame(s))

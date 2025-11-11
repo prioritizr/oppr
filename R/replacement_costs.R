@@ -122,7 +122,9 @@ replacement_costs <- function(x, solution, n = 1) {
     solution <- tibble::as_tibble(solution)
   }
   # over-write solver
-  suppressWarnings({x <- add_default_solver(x, gap = 0, verbose = FALSE)})
+  suppressWarnings({
+    x <- add_default_solver(x, gap = 0, verbose = FALSE)
+  })
   # calculate initial objective value
   obj <- try(
     solution_statistics(x, solution[n, x$action_names()])$obj,

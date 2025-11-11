@@ -153,13 +153,13 @@ NULL
 #'
 #' # build problem with heuristic solver and $200
 #' p1 <-
-#'    problem(
-#'      sim_projects, sim_actions, sim_features,
-#'      "name", "success", "name", "cost", "name"
-#'    ) %>%
-#'    add_max_wtd_sum_objective(budget = 200) %>%
-#'    add_binary_decisions() %>%
-#'    add_heuristic_solver()
+#'   problem(
+#'     sim_projects, sim_actions, sim_features,
+#'     "name", "success", "name", "cost", "name"
+#'   ) %>%
+#'   add_max_wtd_sum_objective(budget = 200) %>%
+#'   add_binary_decisions() %>%
+#'   add_heuristic_solver()
 #'
 #' # print problem
 #' print(p1)
@@ -181,13 +181,13 @@ add_heuristic_solver <- function(x, number_solutions = 1,
   # assert that arguments are valid
   assertthat::assert_that(
     inherits(x, "ProjectProblem"),
-      assertthat::is.count(number_solutions),
-      assertthat::noNA(number_solutions),
-      assertthat::is.flag(initial_sweep),
-      assertthat::noNA(initial_sweep),
-      assertthat::is.flag(verbose),
-      assertthat::noNA(verbose)
-    )
+    assertthat::is.count(number_solutions),
+    assertthat::noNA(number_solutions),
+    assertthat::is.flag(initial_sweep),
+    assertthat::noNA(initial_sweep),
+    assertthat::is.flag(verbose),
+    assertthat::noNA(verbose)
+  )
   # add solver
   x$add_solver(
     R6::R6Class(
@@ -231,12 +231,14 @@ add_heuristic_solver <- function(x, number_solutions = 1,
               self$get_data("number_solutions"),
               as.logical(self$get_data("initial_sweep")),
               as.logical(self$get_data("verbose")),
-              class(x$data$objective)[1])
+              class(x$data$objective)[1]
+            )
           })[[3]]
           # subset s if more solutions returned then desired
           if (nrow(s) > self$get_data("number_solutions")) {
             s <- s[
-              seq_len(self$get_data("number_solutions")), , drop = FALSE
+              seq_len(self$get_data("number_solutions")), ,
+              drop = FALSE
             ]
           }
           # convert s to integers

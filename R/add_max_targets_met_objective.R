@@ -172,7 +172,7 @@ NULL
 #' # scenario, and the project for F5 was prioritized for funding
 #' # so that its probability of persistence meets the target
 #' plot(p1, s1) +
-#' geom_hline(yintercept = 0.2, linetype = "dashed")
+#'   geom_hline(yintercept = 0.2, linetype = "dashed")
 #' }
 #'
 #' # build another problem that includes feature weights
@@ -190,7 +190,7 @@ NULL
 #' # specifically, the projects for the feature F3 is now funded
 #' # to enhance its probability of persistence
 #' plot(p2, s2) +
-#' geom_hline(yintercept = 0.2, linetype = "dashed")
+#'   geom_hline(yintercept = 0.2, linetype = "dashed")
 #' }
 #' @name add_max_targets_met_objective
 NULL

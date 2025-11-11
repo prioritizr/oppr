@@ -52,11 +52,14 @@ NULL
 #' data(sim_projects, sim_features, sim_actions)
 #'
 #' # build problem without phylogenetic data
-#' p1 <- problem(sim_projects, sim_actions, sim_features,
-#'              "name", "success", "name", "cost", "name") %>%
-#'       add_max_wtd_sum_objective(budget = 400) %>%
-#'       add_feature_weights("weight") %>%
-#'       add_binary_decisions()
+#' p1 <-
+#'   problem(
+#'     sim_projects, sim_actions, sim_features,
+#'     "name", "success", "name", "cost", "name"
+#'   ) %>%
+#'   add_max_wtd_sum_objective(budget = 400) %>%
+#'   add_feature_weights("weight") %>%
+#'   add_binary_decisions()
 #'
 #' \dontrun{
 #' # solve problem without phylogenetic data
@@ -67,10 +70,13 @@ NULL
 #' }
 #'
 #' # build problem with phylogenetic data
-#' p2 <- problem(sim_projects, sim_actions, sim_features,
-#'              "name", "success", "name", "cost", "name") %>%
-#'       add_max_phylo_div_objective(budget = 400, sim_tree) %>%
-#'       add_binary_decisions()
+#' p2 <-
+#'   problem(
+#'     sim_projects, sim_actions, sim_features,
+#'     "name", "success", "name", "cost", "name"
+#'   ) %>%
+#'   add_max_phylo_div_objective(budget = 400, sim_tree) %>%
+#'   add_binary_decisions()
 #'
 #' \dontrun{
 #' # solve problem with phylogenetic data
@@ -83,18 +89,30 @@ NULL
 plot.ProjectProblem <- function(x, solution, n = 1, symbol_hjust = 0.007,
                                 return_data = FALSE, ...) {
   # assert arguments are valid
-  assertthat::assert_that(inherits(x, "ProjectProblem"),
-                          no_extra_arguments(...))
+  assertthat::assert_that(
+    inherits(x, "ProjectProblem"),
+    no_extra_arguments(...)
+  )
   assertthat::assert_that(!is.Waiver(x$objective),
-    msg = "argument to x does not have a defined objective")
+    msg = "argument to x does not have a defined objective"
+  )
   # create plot
   if (inherits(x$objective, "MaximumPhyloDivObjective")) {
-    g <- plot_phylo_persistence(x, solution, n = n, symbol_hjust = symbol_hjust,
-                                return_data = return_data)
+    g <- plot_phylo_persistence(
+      x,
+      solution,
+      n = n,
+      symbol_hjust = symbol_hjust,
+      return_data = return_data
+    )
   } else {
-    g <- plot_feature_persistence(x, solution, n = n,
-                                  symbol_hjust = symbol_hjust,
-                                  return_data = return_data)
+    g <- plot_feature_persistence(
+      x,
+      solution,
+      n = n,
+      symbol_hjust = symbol_hjust,
+      return_data = return_data
+    )
   }
   g
 }

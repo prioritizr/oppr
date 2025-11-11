@@ -149,8 +149,8 @@ methods::setMethod(
             )
             invisible(rcpp_apply_feature_weights(
               x$ptr, self$get_data("weights")[y$feature_phylogeny()$tip.label],
-              y$objective$replace_feature_weights())
-            )
+              y$objective$replace_feature_weights()
+            ))
           }
         )
       )$new()

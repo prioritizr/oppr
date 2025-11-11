@@ -4,9 +4,11 @@ test_that("numeric(1)", {
   # load data
   data(sim_projects, sim_actions, sim_features)
   # create problem
-  p <- problem(sim_projects, sim_actions, sim_features,
-               "name", "success", "name", "cost", "name", FALSE) %>%
-       add_relative_targets(0.5)
+  p <- problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name", FALSE
+  ) %>%
+    add_relative_targets(0.5)
   # calculate relative targets
   mp <- unname(rep(apply(p$eof_matrix(), 2, max, na.rm = TRUE)))
   targets <- p$targets$output()
@@ -25,9 +27,11 @@ test_that("numeric(4)", {
   # load data
   data(sim_projects, sim_actions, sim_features)
   # create problem
-  p <- problem(sim_projects, sim_actions, sim_features,
-               "name", "success", "name", "cost", "name", FALSE) %>%
-       add_relative_targets(seq_len(5) * 0.1)
+  p <- problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name", FALSE
+  ) %>%
+    add_relative_targets(seq_len(5) * 0.1)
   # calculate relative targets
   targets <- p$targets$output()
   mp <- unname(rep(apply(p$eof_matrix(), 2, max, na.rm = TRUE)))
@@ -47,9 +51,11 @@ test_that("character", {
   data(sim_projects, sim_actions, sim_features)
   sim_features$target <- seq_len(5) * 0.1
   # create problem
-  p <- problem(sim_projects, sim_actions, sim_features,
-               "name", "success", "name", "cost", "name", FALSE) %>%
-       add_relative_targets("target")
+  p <- problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name", FALSE
+  ) %>%
+    add_relative_targets("target")
   # calculate relative targets
   mp <- unname(rep(apply(p$eof_matrix(), 2, max, na.rm = TRUE)))
   targets <- p$targets$output()
@@ -66,8 +72,10 @@ test_that("character", {
 
 test_that("invalid arguments", {
   data(sim_projects, sim_actions, sim_features)
-  p <- problem(sim_projects, sim_actions, sim_features,
-               "name", "success", "name", "cost", "name")
+  p <- problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  )
   ## single numeric values
   expect_error({
     add_relative_targets(p, 2)

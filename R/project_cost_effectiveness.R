@@ -112,7 +112,8 @@ project_cost_effectiveness <- function(x) {
   )
   # generate baseline- project solution
   bpm <- matrix(
-    x$action_costs() == 0, nrow = 1,
+    x$action_costs() == 0,
+    nrow = 1,
     dimnames = list(NULL, x$action_names())
   )
   bp_obj <- x$objective$evaluate(x, tibble::as_tibble(bpm))
@@ -120,7 +121,7 @@ project_cost_effectiveness <- function(x) {
   bpm <- bpm[rep(1, x$number_of_projects()), , drop = FALSE]
   pp <-
     as_Matrix(x$pa_matrix(), "lgCMatrix") |
-    as_Matrix(bpm, "lgCMatrix")
+      as_Matrix(bpm, "lgCMatrix")
   pp <- tibble::as_tibble(round(as.matrix(pp)))
   # evaluate solutions
   pp_obj <- x$objective$evaluate(x, pp)

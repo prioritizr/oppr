@@ -27,12 +27,12 @@ NULL
 #'
 #' # build problem with maximum weighted sum objective and $150 budget
 #' p1 <-
-#'    problem(
-#'      sim_projects, sim_actions, sim_features,
-#'      "name", "success", "name", "cost", "name"
-#'    ) %>%
-#'    add_max_wtd_sum_objective(budget = 150) %>%
-#'    add_binary_decisions()
+#'   problem(
+#'     sim_projects, sim_actions, sim_features,
+#'     "name", "success", "name", "cost", "name"
+#'   ) %>%
+#'   add_max_wtd_sum_objective(budget = 150) %>%
+#'   add_binary_decisions()
 #'
 #' # print problem
 #' print(p1)
@@ -87,7 +87,8 @@ methods::setGeneric(
 #' @name add_locked_out_constraints
 #' @usage \S4method{add_locked_out_constraints}{ProjectProblem,numeric}(x, locked_out)
 #' @rdname add_locked_out_constraints
-methods::setMethod("add_locked_out_constraints",
+methods::setMethod(
+  "add_locked_out_constraints",
   methods::signature("ProjectProblem", "numeric"),
   function(x, locked_out) {
     # assert valid arguments
@@ -110,7 +111,8 @@ methods::setMethod("add_locked_out_constraints",
 #' @name add_locked_out_constraints
 #' @usage \S4method{add_locked_out_constraints}{ProjectProblem,logical}(x, locked_out)
 #' @rdname add_locked_out_constraints
-methods::setMethod("add_locked_out_constraints",
+methods::setMethod(
+  "add_locked_out_constraints",
   methods::signature("ProjectProblem", "logical"),
   function(x, locked_out) {
     # assert valid arguments
@@ -128,7 +130,8 @@ methods::setMethod("add_locked_out_constraints",
 #' @name add_locked_out_constraints
 #' @usage \S4method{add_locked_out_constraints}{ProjectProblem,character}(x, locked_out)
 #' @rdname add_locked_out_constraints
-methods::setMethod("add_locked_out_constraints",
+methods::setMethod(
+  "add_locked_out_constraints",
   methods::signature("ProjectProblem", "character"),
   function(x, locked_out) {
     # assert valid arguments

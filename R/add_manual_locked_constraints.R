@@ -82,7 +82,8 @@ methods::setGeneric(
 #' @name add_manual_locked_constraints
 #' @usage \S4method{add_manual_locked_constraints}{ProjectProblem,data.frame}(x, locked)
 #' @rdname add_manual_locked_constraints
-methods::setMethod("add_manual_locked_constraints",
+methods::setMethod(
+  "add_manual_locked_constraints",
   methods::signature("ProjectProblem", "data.frame"),
   function(x, locked) {
     # assert valid arguments
@@ -98,7 +99,8 @@ methods::setMethod("add_manual_locked_constraints",
 #' @name add_manual_locked_constraints
 #' @usage \S4method{add_manual_locked_constraints}{ProjectProblem,tbl_df}(x, locked)
 #' @rdname add_manual_locked_constraints
-methods::setMethod("add_manual_locked_constraints",
+methods::setMethod(
+  "add_manual_locked_constraints",
   methods::signature("ProjectProblem", "tbl_df"),
   function(x, locked) {
     # assert arguments are valid
@@ -110,7 +112,7 @@ methods::setMethod("add_manual_locked_constraints",
       inherits(locked$action, c("character", "factor")),
       assertthat::noNA(locked$action),
       all(locked$action %in%
-          as.character(x$action_names())),
+        as.character(x$action_names())),
       assertthat::has_name(locked, "status"),
       is.numeric(locked$status),
       all(locked$status %in% c(0, 1)),
@@ -127,7 +129,7 @@ methods::setMethod("add_manual_locked_constraints",
       class_name <- "LockedManualConstraint"
       constraint_name <- "manually locked actions"
     }
-     # add constraints
+    # add constraints
     x$add_constraint(
       R6::R6Class(
         class_name,

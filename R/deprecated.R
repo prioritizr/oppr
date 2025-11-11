@@ -59,6 +59,6 @@ add_max_richness_objective <- function(...) {
 error_defunct <- function(old, new) {
   stop(
     paste0("`", old, "()` is defunct. Use `", new, "()` instead."),
-    call. =  FALSE
+    call. = FALSE
   )
 }

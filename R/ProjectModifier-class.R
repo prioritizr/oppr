@@ -61,8 +61,9 @@ ProjectModifier <- R6::R6Class(
     #' associated with the argument to `x`, then a [new_waiver()] object is
     #' returned.
     get_data = function(x) {
-      if (!x %in% names(self$data))
+      if (!x %in% names(self$data)) {
         return(new_waiver())
+      }
       return(self$data[[x]])
     },
 
@@ -83,7 +84,9 @@ ProjectModifier <- R6::R6Class(
     #' associated with the argument to `x`, then a [new_waiver()] object is
     #' returned.
     get_internal = function(x) {
-      if (!x %in% names(self$internal)) return(new_waiver())
+      if (!x %in% names(self$internal)) {
+        return(new_waiver())
+      }
       self$internal[[x]]
     },
 
@@ -119,6 +122,5 @@ ProjectModifier <- R6::R6Class(
       stop("No defined $apply method.")
       # nocov end
     }
-
   )
 )

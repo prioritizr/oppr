@@ -112,11 +112,12 @@ solution_statistics <- function(x, solution) {
   out <- tibble::tibble(
     cost = rowSums(
       as.matrix(solution[, x$action_names()]) *
-      matrix(
-        x$action_costs(), byrow = TRUE,
-        ncol = x$number_of_actions(),
-        nrow = nrow(solution)
-      )
+        matrix(
+          x$action_costs(),
+          byrow = TRUE,
+          ncol = x$number_of_actions(),
+          nrow = nrow(solution)
+        )
     ),
     obj = x$objective$evaluate(x, solution[, x$action_names()])
   )
@@ -126,15 +127,15 @@ solution_statistics <- function(x, solution) {
       out,
       stats::setNames(
         as.data.frame(
-         rcpp_funded_projects(
-           x$pa_matrix(),
-           as_Matrix(as.matrix(solution[, x$action_names()]), "dgCMatrix")
-         )
-       ),
-       x$project_names()
-     )
-   )
- )
+          rcpp_funded_projects(
+            x$pa_matrix(),
+            as_Matrix(as.matrix(solution[, x$action_names()]), "dgCMatrix")
+          )
+        ),
+        x$project_names()
+      )
+    )
+  )
   # add in columns for feature persistence values
   out <- tibble::as_tibble(
     cbind(

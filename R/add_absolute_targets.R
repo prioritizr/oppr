@@ -179,4 +179,5 @@ methods::setMethod(
     )
     # add targets to problem
     add_absolute_targets(x, x$data$features[[targets]])
-})
+  }
+)

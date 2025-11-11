@@ -19,7 +19,6 @@ Solver <- R6::R6Class(
   "Solver",
   inherit = ProjectModifier,
   public = list(
-
     #' @description
     #' Solve an optimization problem.
     #' @param x [new_optimization_problem()] object.

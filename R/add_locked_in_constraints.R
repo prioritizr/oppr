@@ -116,7 +116,8 @@ methods::setGeneric(
 #' @name add_locked_in_constraints
 #' @usage \S4method{add_locked_in_constraints}{ProjectProblem,numeric}(x, locked_in)
 #' @rdname add_locked_in_constraints
-methods::setMethod("add_locked_in_constraints",
+methods::setMethod(
+  "add_locked_in_constraints",
   methods::signature("ProjectProblem", "numeric"),
   function(x, locked_in) {
     # assert valid arguments
@@ -139,7 +140,8 @@ methods::setMethod("add_locked_in_constraints",
 #' @name add_locked_in_constraints
 #' @usage \S4method{add_locked_in_constraints}{ProjectProblem,logical}(x, locked_in)
 #' @rdname add_locked_in_constraints
-methods::setMethod("add_locked_in_constraints",
+methods::setMethod(
+  "add_locked_in_constraints",
   methods::signature("ProjectProblem", "logical"),
   function(x, locked_in) {
     # assert valid arguments
@@ -157,7 +159,8 @@ methods::setMethod("add_locked_in_constraints",
 #' @name add_locked_in_constraints
 #' @usage \S4method{add_locked_in_constraints}{ProjectProblem,character}(x, locked_in)
 #' @rdname add_locked_in_constraints
-methods::setMethod("add_locked_in_constraints",
+methods::setMethod(
+  "add_locked_in_constraints",
   methods::signature("ProjectProblem", "character"),
   function(x, locked_in) {
     # assert valid arguments

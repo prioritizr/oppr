@@ -82,11 +82,14 @@ library(ggplot2)
 data(sim_projects, sim_features, sim_actions)
 
 # build problem
-p <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-     add_max_phylo_div_objective(budget = 400, sim_tree) \%>\%
-     add_binary_decisions() \%>\%
-     add_heuristic_solver(number_solutions = 10)
+p <-
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) \%>\%
+  add_max_phylo_div_objective(budget = 400, sim_tree) \%>\%
+  add_binary_decisions() \%>\%
+  add_heuristic_solver(number_solutions = 10)
 
 \dontrun{
 # solve problem
@@ -106,24 +109,32 @@ plot(p, s) + ggtitle("solution")
 # we could also also set the minimum and maximum values in the color ramp to
 # correspond to those in the data, rather than being capped at 0 and 1
 plot(p, s) +
-scale_color_gradientn(name = "Probability of\npersistence",
-                      colors = viridisLite::inferno(150, begin = 0,
-                                                    end = 0.9,
-                                                    direction = -1)) +
-ggtitle("solution")
+  scale_color_gradientn(
+    name = "Probability of\npersistence",
+    colors = viridisLite::inferno(150,
+      begin = 0,
+      end = 0.9,
+      direction = -1
+    )
+  ) +
+  ggtitle("solution")
 
 # we could also change the color ramp
 plot(p, s) +
-scale_color_gradient(name = "Probability of\npersistence",
-                     low = "red", high = "black") +
-ggtitle("solution")
+  scale_color_gradient(
+    name = "Probability of\npersistence",
+    low = "red", high = "black"
+  ) +
+  ggtitle("solution")
 
 # we could even hide the legend if desired
 plot(p, s) +
-scale_color_gradient(name = "Probability of\npersistence",
-                     low = "red", high = "black") +
-theme(legend.position = "hide") +
-ggtitle("solution")
+  scale_color_gradient(
+    name = "Probability of\npersistence",
+    low = "red", high = "black"
+  ) +
+  theme(legend.position = "hide") +
+  ggtitle("solution")
 
 # we can also obtain the raw plotting data using return_data=TRUE
 plot_data <- plot(p, s, return_data = TRUE)

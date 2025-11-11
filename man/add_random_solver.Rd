@@ -99,7 +99,8 @@ plot(p1, s1)
 # plot histogram of the objective values for the random solutions
 # according to the weighted sum objective
 hist(
-  s1$obj, xlab = "Expected outcome", xlim = c(0, 2.5),
+  s1$obj,
+  xlab = "Expected outcome", xlim = c(0, 2.5),
   main = "Histogram of random solutions"
 )
 
@@ -109,7 +110,9 @@ hist(
 
 \dontrun{
 # find the optimal objective value using an exact algorithms solver
-s2 <- p1 \%>\% add_default_solver() \%>\% solve()
+s2 <- p1 \%>\%
+  add_default_solver() \%>\%
+  solve()
 
 # create new column in s1 with percent difference from optimality
 s1$optimality_diff <- ((s2$obj - s1$obj) / s1$obj) * 100
@@ -117,7 +120,8 @@ s1$optimality_diff <- ((s2$obj - s1$obj) / s1$obj) * 100
 # plot histogram showing the quality of the random solutions
 # higher numbers indicate worse solutions
 hist(
-  s1$optimality_diff, xlab = "Difference from optimality (\%)",
+  s1$optimality_diff,
+  xlab = "Difference from optimality (\%)",
   main = "Histogram of random solutions", xlim = c(0, 50)
 )
 }

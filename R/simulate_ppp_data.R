@@ -221,7 +221,7 @@ simulate_ppp_data <- function(number_features, cost_mean = 100, cost_sd = 5,
     isTRUE(funded_max_persistence_probability >= 0),
     isTRUE(funded_max_persistence_probability <= 1),
     isTRUE(funded_max_persistence_probability >
-           funded_min_persistence_probability),
+      funded_min_persistence_probability),
     assertthat::is.number(baseline_min_persistence_probability),
     isTRUE(baseline_min_persistence_probability >= 0),
     isTRUE(baseline_min_persistence_probability <= 1),
@@ -229,9 +229,9 @@ simulate_ppp_data <- function(number_features, cost_mean = 100, cost_sd = 5,
     isTRUE(baseline_max_persistence_probability >= 0),
     isTRUE(baseline_max_persistence_probability <= 1),
     isTRUE(baseline_max_persistence_probability >
-           baseline_min_persistence_probability),
+      baseline_min_persistence_probability),
     isTRUE(funded_min_persistence_probability >
-           baseline_max_persistence_probability),
+      baseline_max_persistence_probability),
     assertthat::is.number(locked_in_proportion),
     isTRUE(locked_in_proportion >= 0),
     isTRUE(locked_in_proportion <= 1),
@@ -241,16 +241,20 @@ simulate_ppp_data <- function(number_features, cost_mean = 100, cost_sd = 5,
   )
   assertthat::assert_that(
     isTRUE(number_features >
-           (ceiling(number_features * locked_in_proportion) +
-           ceiling(number_features * locked_out_proportion))),
-    msg = paste("combined number of locked in and locked out projects",
-                "exceeds the total number of projects.")
+      (ceiling(number_features * locked_in_proportion) +
+        ceiling(number_features * locked_out_proportion))),
+    msg = paste(
+      "combined number of locked in and locked out projects",
+      "exceeds the total number of projects."
+    )
   )
 
   # create action data
   actions <- tibble::tibble(
-    name = c(paste0("F", seq_len(number_features), "_action"),
-             "baseline_action"),
+    name = c(
+      paste0("F", seq_len(number_features), "_action"),
+      "baseline_action"
+    ),
     cost = c(stats::rnorm(number_features, cost_mean, cost_sd), 0),
     locked_in = FALSE,
     locked_out = FALSE
@@ -300,7 +304,8 @@ simulate_ppp_data <- function(number_features, cost_mean = 100, cost_sd = 5,
 
   # feature persistence probabilities
   spp_prob_matrix <- matrix(
-    NA_real_, ncol = number_features,
+    NA_real_,
+    ncol = number_features,
     nrow = number_features + 1,
     dimnames = list(NULL, tree$tip.label)
   )
@@ -318,7 +323,8 @@ simulate_ppp_data <- function(number_features, cost_mean = 100, cost_sd = 5,
 
   # organization data
   organization_data <- matrix(
-    FALSE, ncol = number_features + 1,
+    FALSE,
+    ncol = number_features + 1,
     nrow = number_features + 1,
     dimnames = list(NULL, actions$name)
   )
@@ -329,7 +335,7 @@ simulate_ppp_data <- function(number_features, cost_mean = 100, cost_sd = 5,
   features <- tibble::tibble(
     name = tree$tip.label,
     weight = tree$edge.length[
-    match(seq_along(tree$tip.label), tree$edge[, 2])
+      match(seq_along(tree$tip.label), tree$edge[, 2])
     ]
   )
 

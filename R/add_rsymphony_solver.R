@@ -103,8 +103,9 @@ add_rsymphony_solver <- function(x, gap = 0, time_limit = .Machine$integer.max,
           # build parameters
           p <- as.list(self$data)
           p$verbosity <- -1
-          if (!p$verbose)
+          if (!p$verbose) {
             p$verbosity <- -2
+          }
           p <- p[names(p) != "verbose"]
           names(p)[which(names(p) == "gap")] <- "gap_limit"
           p$first_feasible <- as.logical(p$first_feasible)
@@ -123,7 +124,7 @@ add_rsymphony_solver <- function(x, gap = 0, time_limit = .Machine$integer.max,
           # check if no solution found
           if (
             is.null(x$solution) ||
-            (x$status %in% c("TM_NO_SOLUTION", "PREP_NO_SOLUTION"))
+              (x$status %in% c("TM_NO_SOLUTION", "PREP_NO_SOLUTION"))
           ) {
             return(NULL)
           }
@@ -175,9 +176,11 @@ symphony_status <- function(x) {
     "-252" = "TM_ERROR__NUMERICAL_INSTABILITY",
     "-253" = "TM_ERROR__COMM_ERROR",
     "-275" = "TM_ERROR__USER",
-    "-276" = "PREP_ERROR")
+    "-276" = "PREP_ERROR"
+  )
   x <- codes[as.character(x)]
-  if (is.na(x))
+  if (is.na(x)) {
     warning("solver returned unrecognized code")
+  }
   as.character(x)
 }

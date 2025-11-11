@@ -22,7 +22,7 @@ NULL
 #'
 #' @usage \S4method{show}{ProjectModifier}(x)
 methods::setMethod(
- "show", "ProjectModifier",
+  "show", "ProjectModifier",
   function(object) object$show()
 )
 

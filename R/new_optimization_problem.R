@@ -1,4 +1,4 @@
- #' @include internal.R OptimizationProblem-class.R
+#' @include internal.R OptimizationProblem-class.R
 NULL
 
 #' Optimization problem

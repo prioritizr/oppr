@@ -21,7 +21,6 @@ NULL
 ProjectProblem <- R6::R6Class(
   "ProjectProblem",
   public = list(
-
     #' @field data `list` containing data (e.g., projects, features).
     data = list(),
 
@@ -145,8 +144,9 @@ ProjectProblem <- R6::R6Class(
     #' returned.
     get_data = function(x) {
       assertthat::assert_that(assertthat::is.string(x))
-      if (!x %in% names(self$data))
+      if (!x %in% names(self$data)) {
         return(new_waiver())
+      }
       return(self$data[[x]])
     },
 
@@ -209,8 +209,9 @@ ProjectProblem <- R6::R6Class(
     #' Obtain the feature weights.
     #' @return A named `numeric` vector.
     feature_weights = function() {
-      if (is.Waiver(self$weights))
+      if (is.Waiver(self$weights)) {
         return(self$objective$default_feature_weights())
+      }
       c(self$weights$output())
     },
 
@@ -218,8 +219,9 @@ ProjectProblem <- R6::R6Class(
     #' Obtain the feature targets.
     #' @return A [tibble::tibble()] object.
     feature_targets = function() {
-      if (is.Waiver(self$targets))
+      if (is.Waiver(self$targets)) {
         stop("problem is missing targets", call. = FALSE)
+      }
       self$targets$output()
     },
 
@@ -227,8 +229,9 @@ ProjectProblem <- R6::R6Class(
     #' Obtain the feature phylogeny.
     #' @return A [ape::phylo()] phylogenetic tree object.
     feature_phylogeny = function() {
-      if (is.Waiver(self$objective))
+      if (is.Waiver(self$objective)) {
         stop("problem is missing objective", call. = FALSE)
+      }
       self$objective$feature_phylogeny()
     },
 
@@ -269,12 +272,15 @@ ProjectProblem <- R6::R6Class(
     #' project is funded is successfully completed.
     #' @return A [Matrix::dgCMatrix-class] object.
     of_matrix = function() {
-      m <- as_Matrix(as.matrix(
-        self$data$projects[,
-          self$data$features[[self$data$feature_name_column]],
-          drop = FALSE]
-       ),
-        "dgCMatrix")
+      m <- as_Matrix(
+        as.matrix(
+          self$data$projects[,
+            self$data$features[[self$data$feature_name_column]],
+            drop = FALSE
+          ]
+        ),
+        "dgCMatrix"
+      )
       m@x[is.na(m@x)] <- 0
       rownames(m) <- self$project_names()
       colnames(m) <- self$feature_names()
@@ -289,7 +295,9 @@ ProjectProblem <- R6::R6Class(
         as.matrix(
           self$data$projects[,
             self$data$actions[[self$data$action_name_column]],
-            drop = FALSE]),
+            drop = FALSE
+          ]
+        ),
         "dgCMatrix"
       )
       rownames(m) <- self$data$projects[[self$data$project_name_column]]
@@ -305,12 +313,12 @@ ProjectProblem <- R6::R6Class(
       # extract the project outcome data and multiply by success probabilities
       m <- as_Matrix(
         self$of_matrix() *
-        matrix(
-          self$project_success_probabilities(),
-           ncol = self$number_of_features(),
-           nrow = self$number_of_projects()
-         ),
-         "dgCMatrix"
+          matrix(
+            self$project_success_probabilities(),
+            ncol = self$number_of_features(),
+            nrow = self$number_of_projects()
+          ),
+        "dgCMatrix"
       )
       m <- Matrix::drop0(m)
       # if include baseline probabilities, then account for probabilities of

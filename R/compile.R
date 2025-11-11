@@ -25,12 +25,12 @@ NULL
 #' # build problem with maximum weighted sum objective, $200 budget, and
 #' # binary decisions
 #' p <-
-#'    problem(
-#'      sim_projects, sim_actions, sim_features,
-#'      "name", "success", "name", "cost", "name"
-#'    ) %>%
-#'    add_max_wtd_sum_objective(budget = 200) %>%
-#'    add_binary_decisions()
+#'   problem(
+#'     sim_projects, sim_actions, sim_features,
+#'     "name", "success", "name", "cost", "name"
+#'   ) %>%
+#'   add_max_wtd_sum_objective(budget = 200) %>%
+#'   add_binary_decisions()
 #'
 #' # print problem
 #' print(p)

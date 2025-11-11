@@ -46,7 +46,7 @@ NULL
 #'     "name", "success", "name", "cost", "name"
 #'   ) %>%
 #'   add_min_set_objective() %>%
-#'    add_relative_targets(c(0.2, 0.3, 0.4, 0.5, 0.6)) %>%
+#'   add_relative_targets(c(0.2, 0.3, 0.4, 0.5, 0.6)) %>%
 #'   add_binary_decisions()
 #'
 #' # print problem
@@ -58,13 +58,13 @@ NULL
 #' # build problem with minimum set objective and specify targets using
 #' # column name in the feature data
 #' p3 <-
-#'    problem(
-#'      sim_projects, sim_actions, sim_features,
-#'      "name", "success", "name", "cost", "name"
-#'    ) %>%
-#'    add_min_set_objective() %>%
-#'    add_relative_targets("target") %>%
-#'    add_binary_decisions()
+#'   problem(
+#'     sim_projects, sim_actions, sim_features,
+#'     "name", "success", "name", "cost", "name"
+#'   ) %>%
+#'   add_min_set_objective() %>%
+#'   add_relative_targets("target") %>%
+#'   add_binary_decisions()
 #'
 #' \dontrun{
 #' # print problem
@@ -97,7 +97,8 @@ NULL
 methods::setGeneric(
   "add_relative_targets",
   signature = methods::signature("x", "targets"),
-  function(x, targets) standardGeneric("add_relative_targets"))
+  function(x, targets) standardGeneric("add_relative_targets")
+)
 
 #' @name add_relative_targets
 #' @rdname add_relative_targets

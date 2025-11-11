@@ -88,7 +88,7 @@ p2 <-
     "name", "success", "name", "cost", "name"
   ) \%>\%
   add_min_set_objective() \%>\%
-   add_relative_targets(c(0.2, 0.3, 0.4, 0.5, 0.6)) \%>\%
+  add_relative_targets(c(0.2, 0.3, 0.4, 0.5, 0.6)) \%>\%
   add_binary_decisions()
 
 # print problem
@@ -100,13 +100,13 @@ sim_features$target <- c(0.2, 0.3, 0.4, 0.5, 0.6)
 # build problem with minimum set objective and specify targets using
 # column name in the feature data
 p3 <-
-   problem(
-     sim_projects, sim_actions, sim_features,
-     "name", "success", "name", "cost", "name"
-   ) \%>\%
-   add_min_set_objective() \%>\%
-   add_relative_targets("target") \%>\%
-   add_binary_decisions()
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) \%>\%
+  add_min_set_objective() \%>\%
+  add_relative_targets("target") \%>\%
+  add_binary_decisions()
 
 \dontrun{
 # print problem

@@ -65,7 +65,7 @@ add_lpsymphony_solver <- function(x, gap = 0, time_limit = .Machine$integer.max,
     isTRUE(gap >= 0), isTRUE(all(is.finite(time_limit))),
     assertthat::is.number(time_limit),
     assertthat::is.count(time_limit) || isTRUE(time_limit
-      == -1),
+    == -1),
     assertthat::is.flag(verbose),
     assertthat::is.flag(first_feasible),
     requireNamespace("lpsymphony", quietly = TRUE)
@@ -138,7 +138,7 @@ add_lpsymphony_solver <- function(x, gap = 0, time_limit = .Machine$integer.max,
           # check if no solution found
           if (
             is.null(x$solution) ||
-            (x$status %in% c("TM_NO_SOLUTION", "PREP_NO_SOLUTION"))
+              (x$status %in% c("TM_NO_SOLUTION", "PREP_NO_SOLUTION"))
           ) {
             return(NULL)
           }

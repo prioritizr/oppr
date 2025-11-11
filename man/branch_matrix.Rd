@@ -47,7 +47,7 @@ data(sim_tree)
 m <- branch_matrix(sim_tree)
 
 # plot data
-par(mfrow = c(1,2))
+par(mfrow = c(1, 2))
 plot(sim_tree, main = "phylogeny")
 image(m, main = "branch matrix")
 

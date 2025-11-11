@@ -57,11 +57,14 @@ NULL
 #' data(sim_projects, sim_features, sim_actions)
 #'
 #' # build problem
-#' p <- problem(sim_projects, sim_actions, sim_features,
-#'              "name", "success", "name", "cost", "name") %>%
-#'      add_max_phylo_div_objective(budget = 400, sim_tree) %>%
-#'      add_binary_decisions() %>%
-#'      add_heuristic_solver(number_solutions = 10)
+#' p <-
+#'   problem(
+#'     sim_projects, sim_actions, sim_features,
+#'     "name", "success", "name", "cost", "name"
+#'   ) %>%
+#'   add_max_phylo_div_objective(budget = 400, sim_tree) %>%
+#'   add_binary_decisions() %>%
+#'   add_heuristic_solver(number_solutions = 10)
 #'
 #' \dontrun{
 #' # solve problem
@@ -81,24 +84,32 @@ NULL
 #' # we could also also set the minimum and maximum values in the color ramp to
 #' # correspond to those in the data, rather than being capped at 0 and 1
 #' plot(p, s) +
-#' scale_color_gradientn(name = "Probability of\npersistence",
-#'                       colors = viridisLite::inferno(150, begin = 0,
-#'                                                     end = 0.9,
-#'                                                     direction = -1)) +
-#' ggtitle("solution")
+#'   scale_color_gradientn(
+#'     name = "Probability of\npersistence",
+#'     colors = viridisLite::inferno(150,
+#'       begin = 0,
+#'       end = 0.9,
+#'       direction = -1
+#'     )
+#'   ) +
+#'   ggtitle("solution")
 #'
 #' # we could also change the color ramp
 #' plot(p, s) +
-#' scale_color_gradient(name = "Probability of\npersistence",
-#'                      low = "red", high = "black") +
-#' ggtitle("solution")
+#'   scale_color_gradient(
+#'     name = "Probability of\npersistence",
+#'     low = "red", high = "black"
+#'   ) +
+#'   ggtitle("solution")
 #'
 #' # we could even hide the legend if desired
 #' plot(p, s) +
-#' scale_color_gradient(name = "Probability of\npersistence",
-#'                      low = "red", high = "black") +
-#' theme(legend.position = "hide") +
-#' ggtitle("solution")
+#'   scale_color_gradient(
+#'     name = "Probability of\npersistence",
+#'     low = "red", high = "black"
+#'   ) +
+#'   theme(legend.position = "hide") +
+#'   ggtitle("solution")
 #'
 #' # we can also obtain the raw plotting data using return_data=TRUE
 #' plot_data <- plot(p, s, return_data = TRUE)
@@ -110,10 +121,12 @@ plot_phylo_persistence <- function(x, solution, n = 1, symbol_hjust = 0.007,
   # assertions
   ## assert that ggtree R package is installed
   assertthat::assert_that(requireNamespace("ggtree", quietly = TRUE),
-                          msg = "ggtree R package not installed.")
+    msg = "ggtree R package not installed."
+  )
   ## coerce solution to tibble if just a regular data.frame
-  if (inherits(solution, "data.frame") && !inherits(solution, "tbl_df"))
+  if (inherits(solution, "data.frame") && !inherits(solution, "tbl_df")) {
     solution <- tibble::as_tibble(solution)
+  }
   ## assert that parameters are valid
   assertthat::assert_that(
     inherits(x, "ProjectProblem"),
@@ -130,9 +143,11 @@ plot_phylo_persistence <- function(x, solution, n = 1, symbol_hjust = 0.007,
     assertthat::is.number(symbol_hjust),
     is.finite(symbol_hjust),
     assertthat::is.flag(return_data),
-    assertthat::noNA(return_data))
+    assertthat::noNA(return_data)
+  )
   assertthat::assert_that(!is.Waiver(x$objective),
-    msg = "argument to x does not have a defined objective")
+    msg = "argument to x does not have a defined objective"
+  )
   # preliminary data processing
   ## extract tree
   tree <- x$feature_phylogeny()
@@ -143,26 +158,31 @@ plot_phylo_persistence <- function(x, solution, n = 1, symbol_hjust = 0.007,
   ## determine which projects are funded based on the funded actions
   ## and omit the baseline project
   prj <- as.matrix(x$pa_matrix())
-  funding_matrix <- matrix(TRUE, ncol = x$number_of_actions(),
-                           nrow = x$number_of_projects())
+  funding_matrix <- matrix(TRUE,
+    ncol = x$number_of_actions(),
+    nrow = x$number_of_projects()
+  )
   pos <- which(prj > 0.5, arr.ind = TRUE)
   funding_matrix[pos] <- as.matrix(solution)[1, pos[, 2]]
   funded_projects <- rowSums(funding_matrix) == ncol(prj)
   partially_funded_projects <- (rowSums(funding_matrix) > 0) &
-                               (rowSums(!funding_matrix ) < rowSums(prj)) &
-                               (rowSums(funding_matrix) != ncol(prj))
+    (rowSums(!funding_matrix) < rowSums(prj)) &
+    (rowSums(funding_matrix) != ncol(prj))
 
   ## determine baseline project(s)
   zero_cost_projects <- rowSums(as.matrix(x$pa_matrix()) *
-                                matrix(x$action_costs(), byrow = TRUE,
-                                       ncol = x$number_of_actions(),
-                                       nrow = x$number_of_projects()))
+    matrix(x$action_costs(),
+      byrow = TRUE,
+      ncol = x$number_of_actions(),
+      nrow = x$number_of_projects()
+    ))
   zero_cost_projects <- zero_cost_projects < 1e-15
 
   ## determine which features receive funding based on their project being
   ## funded
   completely_funded_fts <- as.matrix(x$eof_matrix())[, tree$tip.label,
-                                                     drop = FALSE] > 1e-15
+    drop = FALSE
+  ] > 1e-15
   completely_funded_fts[!funded_projects, ] <- 0.0
   completely_funded_fts[zero_cost_projects, ] <- 0.0
   completely_funded_fts <- colSums(completely_funded_fts) > 1e-15
@@ -171,17 +191,21 @@ plot_phylo_persistence <- function(x, solution, n = 1, symbol_hjust = 0.007,
   ## determine which species receive indirect based on sharing actions with
   ## a funded project
   partially_funded_fts <- as.matrix(x$eof_matrix())[, tree$tip.label,
-                                                     drop = FALSE] > 1e-15
+    drop = FALSE
+  ] > 1e-15
   partially_funded_fts[!partially_funded_projects, ] <- 0.0
   partially_funded_fts[zero_cost_projects, ] <- 0.0
   partially_funded_fts <- colSums(partially_funded_fts) > 1e-15
-  partially_funded_fts <- setdiff(tree$tip.label[partially_funded_fts],
-                                  completely_funded_fts)
+  partially_funded_fts <- setdiff(
+    tree$tip.label[partially_funded_fts],
+    completely_funded_fts
+  )
 
   ## pre-compute probabilities that each branch will persist
   branch_probs <- rcpp_expected_persistences(
     x$pa_matrix(), x$eof_matrix()[, tree$tip.label, drop = FALSE],
-    branch_matrix(tree), as_Matrix(as.matrix(solution), "dgCMatrix"))
+    branch_matrix(tree), as_Matrix(as.matrix(solution), "dgCMatrix")
+  )
 
   # Main processing
   ## format tree data for plotting
@@ -191,7 +215,8 @@ plot_phylo_persistence <- function(x, solution, n = 1, symbol_hjust = 0.007,
   tree2$status[tree2$label %in% partially_funded_fts] <- "Partially Funded"
   tree2$prob <- c(branch_probs)[match(
     paste0(tree2$parent, "_", tree2$node),
-    paste0(tree$edge[, 1], "_", tree$edge[, 2]))]
+    paste0(tree$edge[, 1], "_", tree$edge[, 2])
+  )]
   tree2$label <- paste0("   ", tree2$label)
   any_nonmissing_status <- any(!is.na(tree2$status))
   tree2 <- suppressMessages(suppressWarnings(tidytree::as.treedata(tree2)))
@@ -200,11 +225,11 @@ plot_phylo_persistence <- function(x, solution, n = 1, symbol_hjust = 0.007,
   point_padding <-
     max(rowSums(
       as.matrix(branch_matrix(tree)) *
-      matrix(
-        tree$edge.length,
-        ncol = nrow(tree$edge),
-        nrow = length(tree$tip.label)
-      )
+        matrix(
+          tree$edge.length,
+          ncol = nrow(tree$edge),
+          nrow = length(tree$tip.label)
+        )
     )) * symbol_hjust
 
   ## prepare outputs
@@ -219,17 +244,18 @@ plot_phylo_persistence <- function(x, solution, n = 1, symbol_hjust = 0.007,
       ggplot2::scale_color_gradientn(
         name = "Probability of\npersistence",
         colors = viridisLite::inferno(
-          150, begin = 0, end = 0.9, direction = -1
+          150,
+          begin = 0, end = 0.9, direction = -1
         ),
         limits = c(0, 1)
       ) +
       ggplot2::theme(legend.position = "right")
-      if (isTRUE(any_nonmissing_status)) {
+    if (isTRUE(any_nonmissing_status)) {
       o <-
         o +
         ggtree::geom_tippoint(
-           mapping = ggplot2::aes(
-             x = !!rlang::expr(!!rlang::sym("x") + point_padding),
+          mapping = ggplot2::aes(
+            x = !!rlang::expr(!!rlang::sym("x") + point_padding),
             subset = !!rlang::expr(!is.na(!!rlang::sym("status"))),
             shape = !!rlang::sym("status")
           ),

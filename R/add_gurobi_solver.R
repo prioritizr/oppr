@@ -182,10 +182,12 @@ add_gurobi_solver <- function(x, gap = 0, number_solutions = 1,
             rhs = x$rhs(),
             sense = x$sense(),
             lb = x$lb(),
-            ub = x$ub())
+            ub = x$ub()
+          )
           # add pwl objective if present
-          if (!identical(x$pwlobj(), list()))
+          if (!identical(x$pwlobj(), list())) {
             model$pwlobj <- x$pwlobj()
+          }
           # create parameters
           p <- list(
             LogToConsole = as.numeric(self$get_data("verbose")),
@@ -204,9 +206,10 @@ add_gurobi_solver <- function(x, gap = 0, number_solutions = 1,
           }
           # solve problem
           rt <- system.time({
-              x <- withr::with_locale(
-                c(LC_CTYPE = "C"),
-                gurobi::gurobi(model = model, params = p))
+            x <- withr::with_locale(
+              c(LC_CTYPE = "C"),
+              gurobi::gurobi(model = model, params = p)
+            )
           })[[3]]
           # round binary variables because default precision is 1e-5
           b <- model$vtype == "B"
@@ -222,23 +225,23 @@ add_gurobi_solver <- function(x, gap = 0, number_solutions = 1,
           # if required, add solutions from solution pool
           if (
             is.numeric(x$x) && isTRUE(length(x$pool) > 1) &&
-            isTRUE(self$get_data("number_solutions") > 1)
+              isTRUE(self$get_data("number_solutions") > 1)
           ) {
             out <- append(
               out,
-              lapply(x$pool, function(z)
+              lapply(x$pool, function(z) {
                 list(
                   x = replace(z$xn, b, round(z$xn[b])),
                   objective = z$objval,
                   status = ifelse(
                     (x$status == "OPTIMAL") &&
-                    (abs(x$objval - z$objval) < 1e-5),
+                      (abs(x$objval - z$objval) < 1e-5),
                     "OPTIMAL",
                     "SUBOPTIMAL"
                   ),
                   runtime = x$runtime
                 )
-              )
+              })
             )
           }
           # return solution

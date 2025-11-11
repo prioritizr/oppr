@@ -176,9 +176,9 @@ NULL
 #'   problem(
 #'     sim_projects, sim_actions, sim_features,
 #'     "name", "success", "name", "cost", "name"
-#'  ) %>%
-#'  add_max_phylo_div_objective(budget = 200, tree = sim_tree) %>%
-#'  add_binary_decisions()
+#'   ) %>%
+#'   add_max_phylo_div_objective(budget = 200, tree = sim_tree) %>%
+#'   add_binary_decisions()
 #'
 #' \dontrun{
 #' # solve problem
