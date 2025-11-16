@@ -113,8 +113,11 @@ bool rcpp_add_raw_data(SEXP x, arma::sp_mat pa_matrix, arma::sp_mat pf_matrix,
   std::vector<std::vector<double>> model_pwl_y(n_branch_nontips);
   double curr_min_value;
   double curr_max_value;
+  double curr_abs_min_value;
+  double curr_abs_max_value;
   double curr_frac;
   double curr_tmp_value;
+  double curr_pwl_x;
   int p = -1;
   if (n_branch_nontips > 0) {
     /// initialize variables
@@ -148,13 +151,20 @@ bool rcpp_add_raw_data(SEXP x, arma::sp_mat pa_matrix, arma::sp_mat pf_matrix,
         curr_max_value += std::log(1.0 - curr_tmp_value);
       }
 
+      // calculate absolute values since these will be negative values
+      // also, note that we swap the max and min so that the min value
+      // will actually be smaller than the max value after we calculate
+      // the absolute values
+      curr_abs_min_value = std::abs(curr_max_value);
+      curr_abs_max_value = std::abs(curr_min_value);
+
       /// if min and max values differ by less than 1e-6 then we need
       /// to store some values that will later be modified by the
       /// phylogenetic objective c++ function, this is extraordinarily hacky
       /// but Gurobi doesn't seem to return valid solutions when
       /// a variable is constant and is associated with a piece-wise linear
       /// component in the objective function
-      if (std::abs(curr_min_value - curr_max_value) < 1.0e-6) {
+      if (std::abs(curr_abs_min_value - curr_abs_max_value) < 1.0e-6) {
         /// store variable
         model_pwl_var.push_back((ptr->_number_of_actions) +
                                 (ptr->_number_of_projects) +
@@ -183,7 +193,7 @@ bool rcpp_add_raw_data(SEXP x, arma::sp_mat pa_matrix, arma::sp_mat pf_matrix,
         //// increment variable
         ++r;
 
-        //// apply linear constraints to ensure correct calculatiosn of the
+        //// apply linear constraints to ensure correct calculations of the
         //// piece-wise linear objective function
         for (auto sitr = branch_matrix.begin_col(*bitr);
              sitr != branch_matrix.end_col(*bitr); ++sitr) {
@@ -200,16 +210,18 @@ bool rcpp_add_raw_data(SEXP x, arma::sp_mat pa_matrix, arma::sp_mat pf_matrix,
             curr_tmp_value = (*pitr);
             if (std::abs(1.0 - curr_tmp_value) < 1.0e-15)
               curr_tmp_value = 1.0 - 1.0e-15;
-            // add log value
-            ptr->_A_x.push_back(std::log(1.0 - curr_tmp_value));
+            // add abs(log(value))
+            // this is needed because we can't have negative values for
+            // semi-continuous values
+            ptr->_A_x.push_back(std::abs(std::log(1.0 - curr_tmp_value)));
           }
         }
         ptr->_row_ids.push_back("c5");
 
-        // first, slightly expand the range, note that these values
-        // should be negative since they range betwen log(1) and log(1e-15)
-        curr_min_value *= 1.01;
-        curr_max_value *= 0.99;
+        // slightly expand the range to ensure that they full encompass
+        // the range of values that should be interpolated
+        curr_abs_min_value *= 0.99;
+        curr_abs_max_value *= 1.01;
 
         /// pre-allocate vectors for xy pwl data
         model_pwl_x[p].reserve(n_approx_points);
@@ -221,14 +233,18 @@ bool rcpp_add_raw_data(SEXP x, arma::sp_mat pa_matrix, arma::sp_mat pf_matrix,
                                 (ptr->_number_of_features *
                                 (ptr->_number_of_projects)) +
                                 (*bitr) + 1.0);
-        curr_frac = (curr_max_value - curr_min_value) /
+        curr_frac = (curr_abs_max_value - curr_abs_min_value) /
                     static_cast<double>(n_approx_points - 1);
-        for (std::size_t i = 0; i < n_approx_points; ++i)
-          model_pwl_x[p].push_back(curr_min_value +
-                                   (static_cast<double>(i) * curr_frac));
-        for (std::size_t i = 0; i < n_approx_points; ++i)
-          model_pwl_y[p].push_back(branch_lengths[*bitr] *
-                                   (1.0 - std::exp(model_pwl_x[p][i])));
+        // note that we use the absolute value here
+        for (std::size_t i = 0; i < n_approx_points; ++i) {
+          curr_pwl_x =
+            curr_abs_min_value + (static_cast<double>(i) * curr_frac);
+          model_pwl_x[p].push_back(curr_pwl_x);
+          model_pwl_y[p].push_back(
+            branch_lengths[*bitr] *
+            (1.0 - std::exp(-curr_pwl_x))
+          );
+        }
       }
     }
   }
@@ -239,7 +255,8 @@ bool rcpp_add_raw_data(SEXP x, arma::sp_mat pa_matrix, arma::sp_mat pf_matrix,
     ptr->_pwlobj[i] = Rcpp::List::create(
       Rcpp::Named("var") = model_pwl_var[i],
       Rcpp::Named("x") = model_pwl_x[i],
-      Rcpp::Named("y") = model_pwl_y[i]);
+      Rcpp::Named("y") = model_pwl_y[i]
+    );
 
   // return result
   return true;

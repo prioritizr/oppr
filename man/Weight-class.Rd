@@ -12,6 +12,8 @@ This class is used to represent targets for optimization.
 Other classes: 
 \code{\link{Constraint-class}},
 \code{\link{Decision-class}},
+\code{\link{MultiObjApproach-class}},
+\code{\link{MultiObjProjectProblem-class}},
 \code{\link{Objective-class}},
 \code{\link{OptimizationProblem-class}},
 \code{\link{ProjectModifier-class}},

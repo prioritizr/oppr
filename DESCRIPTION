@@ -51,6 +51,7 @@ Suggests:
     roxygen2 (>= 6.1.0),
     rmarkdown (>= 1.10),
     gurobi (>= 8.0.0),
+    highs (>= 1.10.0.3),
     Rsymphony (>= 0.1.28),
     ggtree (>= 2.4.2),
     lpsymphony (>= 1.10.0),
@@ -76,6 +77,8 @@ Collate:
     'ProjectModifier-class.R'
     'Constraint-class.R'
     'Decision-class.R'
+    'MultiObjApproach-class.R'
+    'MultiObjProjectProblem-class.R'
     'Objective-class.R'
     'OptimizationProblem-class.R'
     'OptimizationProblem-methods.R'
@@ -91,6 +94,7 @@ Collate:
     'add_feature_weights.R'
     'add_gurobi_solver.R'
     'add_heuristic_solver.R'
+    'add_highs_solver.R'
     'add_locked_in_constraints.R'
     'add_locked_out_constraints.R'
     'add_lpsolveapi_solver.R'
@@ -104,6 +108,7 @@ Collate:
     'add_max_wtd_sum_objective.R'
     'add_min_set_objective.R'
     'add_random_solver.R'
+    'add_ref_point_approach.R'
     'add_relative_targets.R'
     'add_rsymphony_solver.R'
     'assertions.R'
@@ -114,9 +119,12 @@ Collate:
     'decisions.R'
     'deprecated.R'
     'feature_names.R'
+    'multi_compile.R'
+    'multi_problem.R'
     'new_optimization_problem.R'
     'number_of_actions.R'
     'number_of_features.R'
+    'number_of_problems.R'
     'number_of_projects.R'
     'objectives.R'
     'package.R'
@@ -134,6 +142,7 @@ Collate:
     'replacement_costs.R'
     'repr.R'
     'show.R'
+    'simulate_multi_ppp_data.R'
     'simulate_ppp_data.R'
     'simulate_ptm_data.R'
     'solve.R'

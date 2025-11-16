@@ -8,9 +8,9 @@ bool rcpp_apply_max_phylo_div_objective(SEXP x,
                                         Rcpp::NumericVector feature_weights) {
   // initialization
   Rcpp::XPtr<OPTIMIZATIONPROBLEM> ptr = Rcpp::as<Rcpp::XPtr<OPTIMIZATIONPROBLEM>>(x);
-   Rcpp::List curr_pwl_list;
-   Rcpp::NumericVector curr_pwl_x;
-   Rcpp::NumericVector curr_pwl_y;
+  Rcpp::List curr_pwl_list;
+  Rcpp::NumericVector curr_pwl_x;
+  Rcpp::NumericVector curr_pwl_y;
 
   // calculate number of non-tip branches
   std::size_t n_nontip_branches = ptr->_number_of_branches -
@@ -61,7 +61,7 @@ bool rcpp_apply_max_phylo_div_objective(SEXP x,
 
   // add variable types for new feature variables
   for (std::size_t f = 0; f < (ptr->_number_of_features); ++f)
-    ptr->_vtype.push_back("S");
+    ptr->_vtype.push_back("C");
 
   /// find row to start adding constraints
   r = std::find(ptr->_row_ids.begin(), ptr->_row_ids.end(),
@@ -91,7 +91,7 @@ bool rcpp_apply_max_phylo_div_objective(SEXP x,
         ptr->_obj.push_back(0.0);
 
         /// add bounds for the new branch variables
-        ptr->_lb.push_back(-std::numeric_limits<double>::infinity());
+        ptr->_lb.push_back(0.0);
         ptr->_ub.push_back(std::numeric_limits<double>::infinity());
 
         /// add types for the new branch variables

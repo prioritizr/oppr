@@ -17,6 +17,11 @@ extern SEXP _oppr_rcpp_apply_max_targets_met_objective(SEXP, SEXP, SEXP, SEXP, S
 extern SEXP _oppr_rcpp_apply_min_set_objective(SEXP, SEXP, SEXP);
 extern SEXP _oppr_rcpp_branch_matrix(SEXP);
 extern SEXP _oppr_rcpp_branch_order(SEXP);
+extern SEXP _oppr_rcpp_compile_multi_obj_problem(SEXP);
+extern SEXP _oppr_rcpp_convert_pwlobj(SEXP);
+extern SEXP _oppr_rcpp_convert_ref_point_max_method(SEXP, SEXP, SEXP, SEXP, SEXP);
+extern SEXP _oppr_rcpp_convert_ref_point_sum_method(SEXP, SEXP, SEXP, SEXP, SEXP);
+extern SEXP _oppr_rcpp_copy_optimization_problem(SEXP);
 extern SEXP _oppr_rcpp_evaluate_max_phylo_div_objective(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
 extern SEXP _oppr_rcpp_evaluate_max_targets_met_objective(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
 extern SEXP _oppr_rcpp_evaluate_min_set_objective(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
@@ -56,6 +61,11 @@ static const R_CallMethodDef CallEntries[] = {
     {"_oppr_rcpp_apply_min_set_objective",                     (DL_FUNC) &_oppr_rcpp_apply_min_set_objective,                      3},
     {"_oppr_rcpp_branch_matrix",                               (DL_FUNC) &_oppr_rcpp_branch_matrix,                                1},
     {"_oppr_rcpp_branch_order",                                (DL_FUNC) &_oppr_rcpp_branch_order,                                 1},
+    {"_oppr_rcpp_compile_multi_obj_problem",                   (DL_FUNC) &_oppr_rcpp_compile_multi_obj_problem,                    1},
+    {"_oppr_rcpp_convert_pwlobj",                              (DL_FUNC) &_oppr_rcpp_convert_pwlobj,                               1},
+    {"_oppr_rcpp_convert_ref_point_max_method",                (DL_FUNC) &_oppr_rcpp_convert_ref_point_max_method,                 5},
+    {"_oppr_rcpp_convert_ref_point_sum_method",                (DL_FUNC) &_oppr_rcpp_convert_ref_point_sum_method,                 5},
+    {"_oppr_rcpp_copy_optimization_problem",                   (DL_FUNC) &_oppr_rcpp_copy_optimization_problem,                    1},
     {"_oppr_rcpp_evaluate_max_phylo_div_objective",            (DL_FUNC) &_oppr_rcpp_evaluate_max_phylo_div_objective,             8},
     {"_oppr_rcpp_evaluate_max_targets_met_objective",          (DL_FUNC) &_oppr_rcpp_evaluate_max_targets_met_objective,           8},
     {"_oppr_rcpp_evaluate_min_set_objective",                  (DL_FUNC) &_oppr_rcpp_evaluate_min_set_objective,                   8},

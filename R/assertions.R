@@ -5,7 +5,7 @@
 #'
 #' @param ... arguments that are not used.
 #'
-#' @return `logical` indicating success.
+#' @return A `logical` value indicating success.
 #'
 #' @noRd
 no_extra_arguments <- function(...) {
@@ -38,7 +38,7 @@ assertthat::on_failure(no_extra_arguments) <- function(call, env) {
 #'
 #' @param x object.
 #'
-#' @return `logical` indicating success.
+#' @return A `logical` value indicating success.
 #'
 #' @noRd
 is_valid_phylo <- function(x) {

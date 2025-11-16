@@ -51,12 +51,12 @@ r_phylo_div_mip_formulation <- function(project_data, action_data, tree, budget,
   model$lb <- rep(0, n_v)
   model$ub <- rep(1, n_v)
   model$ub[match(paste0("R_", branch_nontip_indices), variable_names)] <- Inf
-  model$lb[match(paste0("R_", branch_nontip_indices), variable_names)] <- -Inf
+  model$lb[match(paste0("R_", branch_nontip_indices), variable_names)] <- 0
   model$lb[which(action_data$locked_in)] <- 1
   model$ub[which(action_data$locked_out)] <- 0
 
   ## set variable types
-  model$vtype <- rep("S", n_v)
+  model$vtype <- rep("C", n_v)
   model$vtype[seq_len(n_actions)] <- "B"
   model$vtype[n_actions + seq_len(n_projects)] <- "B"
   model$vtype[n_actions + n_projects +
@@ -155,8 +155,8 @@ r_phylo_div_mip_formulation <- function(project_data, action_data, tree, budget,
       for (s in species_names[which(T_bs[, b] > 0.5)]) {
         curr_projects_for_spp <- which(project_data[[s]] > 0)
         model$A[curr_row, paste0("Z_", curr_projects_for_spp, s)] <-
-          log(1 - (project_data[[s]][curr_projects_for_spp] *
-            project_data$success[curr_projects_for_spp]))
+          abs(log(1 - (project_data[[s]][curr_projects_for_spp] *
+            project_data$success[curr_projects_for_spp])))
       }
       model$A[curr_row, paste0("R_", b)] <- -1
       model$sense[curr_row] <- "="
@@ -178,14 +178,19 @@ r_phylo_div_mip_formulation <- function(project_data, action_data, tree, budget,
       #### calculate log-sum value of extinction probabilities if worst project
       ### funded for each species
       curr_max_value <- sum(log(apply(curr_probs, 2, max, na.rm = TRUE)))
+      ### compute absolute values
+      curr_abs_min_value <- min(abs(c(curr_min_value, curr_max_value))) * 0.99
+      curr_abs_max_value <- max(abs(c(curr_min_value, curr_max_value))) * 1.01
+      ### create piece-wise linear terms
       model$pwlobj[[curr_pwl]] <- list()
       model$pwlobj[[curr_pwl]]$var <- match(paste0("R_", b), variable_names)
-      model$pwlobj[[curr_pwl]]$x <- seq(curr_min_value * 0.99,
-        curr_max_value * 1.01,
+      model$pwlobj[[curr_pwl]]$x <- seq(
+        curr_abs_min_value,
+        curr_abs_max_value,
         length.out = n_approx_points
       )
-      model$pwlobj[[curr_pwl]]$y <- L_b[b] * (1 -
-        exp(model$pwlobj[[curr_pwl]]$x))
+      model$pwlobj[[curr_pwl]]$y <-
+        L_b[b] * (1 - exp(-model$pwlobj[[curr_pwl]]$x))
     }
   }
 

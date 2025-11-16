@@ -143,5 +143,8 @@ print(s3)
 }
 \seealso{
 \link{solvers}.
+
+Other solvers: 
+\code{\link{add_highs_solver}()}
 }
 \concept{solvers}

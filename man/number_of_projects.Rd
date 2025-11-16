@@ -3,17 +3,20 @@
 \name{number_of_projects}
 \alias{number_of_projects}
 \alias{number_of_projects,ProjectProblem-method}
+\alias{number_of_projects,MultiObjProjectProblem-method}
 \title{Number of projects}
 \usage{
 number_of_projects(x)
 
 \S4method{number_of_projects}{ProjectProblem}(x)
+
+\S4method{number_of_projects}{MultiObjProjectProblem}(x)
 }
 \arguments{
 \item{x}{\code{\link[=problem]{problem()}} object.}
 }
 \value{
-\code{integer} number of projects.
+An \code{integer} value.
 }
 \description{
 Extract the number of projects in an object.

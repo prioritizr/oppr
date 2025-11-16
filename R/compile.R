@@ -8,6 +8,10 @@ NULL
 #'
 #' @param x [ProjectProblem-class] object.
 #'
+#' @param n_approx `integer` number of points to use for piece-wise
+#'   linear approximations of non-linear terms.
+#'   Defaults to 100.
+#'
 #' @param ... not used.
 #'
 #' @details
@@ -45,10 +49,13 @@ compile <- function(x, ...) UseMethod("compile")
 
 #' @rdname compile
 #' @export
-compile.ProjectProblem <- function(x, ...) {
+compile.ProjectProblem <- function(x, n_approx = 100, ...) {
   # assert arguments are valid
   assertthat::assert_that(
     inherits(x, "ProjectProblem"),
+    assertthat::is.count(n_approx),
+    assertthat::noNA(n_approx),
+    n_approx >= 3,
     no_extra_arguments(...)
   )
   # sanity checks
@@ -114,7 +121,7 @@ compile.ProjectProblem <- function(x, ...) {
     x$eof_matrix()[, fp$tip.label, drop = FALSE],
     bm[, bo, drop = FALSE],
     fp$edge.length[bo],
-    1000
+    n_approx
   )
   # add decision types to optimization problem
   x$decisions$calculate(x)

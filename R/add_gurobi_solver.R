@@ -136,7 +136,7 @@ add_gurobi_solver <- function(x, gap = 0, number_solutions = 1,
                               verbose = TRUE) {
   # assert that arguments are valid
   assertthat::assert_that(
-    inherits(x, "ProjectProblem"),
+    inherits(x, c("ProjectProblem", "MultiObjProjectProblem")),
     isTRUE(all(is.finite(gap))),
     assertthat::is.number(gap),
     assertthat::is.count(number_solutions),
@@ -163,6 +163,7 @@ add_gurobi_solver <- function(x, gap = 0, number_solutions = 1,
       inherit = Solver,
       public = list(
         name = "gurobi solver",
+        has_pwlobj = TRUE,
         data = list(
           gap = gap,
           number_solutions = number_solutions,
@@ -185,7 +186,7 @@ add_gurobi_solver <- function(x, gap = 0, number_solutions = 1,
             ub = x$ub()
           )
           # add pwl objective if present
-          if (!identical(x$pwlobj(), list())) {
+          if (length(x$pwlobj()) > 0) {
             model$pwlobj <- x$pwlobj()
           }
           # create parameters
@@ -196,7 +197,7 @@ add_gurobi_solver <- function(x, gap = 0, number_solutions = 1,
             TimeLimit = self$get_data("time_limit"),
             Threads = self$get_data("threads"),
             LogFile = "",
-            NumericFocus = 3,
+            NumericFocus = 2,
             SolutionLimit = as.numeric(self$get_data("first_feasible")),
             PoolSolutions = self$get_data("number_solutions"),
             PoolSearchMode = self$get_data("solution_pool_method")
@@ -224,14 +225,19 @@ add_gurobi_solver <- function(x, gap = 0, number_solutions = 1,
           )
           # if required, add solutions from solution pool
           if (
-            is.numeric(x$x) && isTRUE(length(x$pool) > 1) &&
-              isTRUE(self$get_data("number_solutions") > 1)
+            is.numeric(x$x) &&
+            isTRUE(length(x$pool) > 1) &&
+            isTRUE(self$get_data("number_solutions") > 1)
           ) {
+            elem <- ifelse(
+              utils::packageVersion("gurobi") >= package_version("13.0.0"),
+              "poolnx", "xn"
+            )
             out <- append(
               out,
               lapply(x$pool, function(z) {
                 list(
-                  x = replace(z$xn, b, round(z$xn[b])),
+                  x = replace(z[[elem]], b, round(z[[elem]][b])),
                   objective = z$objval,
                   status = ifelse(
                     (x$status == "OPTIMAL") &&

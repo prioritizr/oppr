@@ -226,11 +226,14 @@ add_heuristic_solver <- function(x, number_solutions = 1,
               x$data$eof_matrix()[, fp$tip.label, drop = FALSE],
               bm[, bo, drop = FALSE],
               fp$edge.length[bo],
-              targets, x$data$feature_weights()[fp$tip.label], budget,
-              locked_in, locked_out,
+              targets,
+              x$data$feature_weights()[fp$tip.label],
+              budget,
+              locked_in,
+              locked_out,
               self$get_data("number_solutions"),
-              as.logical(self$get_data("initial_sweep")),
-              as.logical(self$get_data("verbose")),
+              self$get_data("initial_sweep"),
+              self$get_data("verbose"),
               class(x$data$objective)[1]
             )
           })[[3]]

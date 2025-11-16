@@ -235,7 +235,7 @@ add_max_phylo_div_objective <- function(x, budget, tree) {
       "MaximumPhyloDivObjective",
       inherit = Objective,
       public = list(
-        name = "maximum pphylogenetic diversity objective",
+        name = "maximum phylogenetic diversity objective",
         has_targets = FALSE,
         has_weights = TRUE,
         data = list(

@@ -3,11 +3,14 @@
 \name{project_names}
 \alias{project_names}
 \alias{project_names,ProjectProblem-method}
+\alias{project_names,MultiObjProjectProblem-method}
 \title{Project names}
 \usage{
 project_names(x)
 
 \S4method{project_names}{ProjectProblem}(x)
+
+\S4method{project_names}{MultiObjProjectProblem}(x)
 }
 \arguments{
 \item{x}{\linkS4class{ProjectProblem}.}

@@ -642,7 +642,6 @@ test_that("heuristic solver (locked constraints, multiple solutions)", {
   expect_is(s$A4, "numeric")
 })
 
-
 test_that("invalid arguments", {
   data(sim_projects, sim_actions, sim_features)
   p <- problem(

@@ -163,3 +163,33 @@ std::vector<std::string> rcpp_get_optimization_problem_col_ids(SEXP x) {
 std::vector<std::string> rcpp_get_optimization_problem_row_ids(SEXP x) {
   return(Rcpp::as<Rcpp::XPtr<OPTIMIZATIONPROBLEM>>(x)->_row_ids);
 }
+
+// [[Rcpp::export]]
+SEXP rcpp_copy_optimization_problem(SEXP x) {
+  // import ptr
+  Rcpp::XPtr<OPTIMIZATIONPROBLEM> ptr = Rcpp::as<Rcpp::XPtr<OPTIMIZATIONPROBLEM>>(x);
+  // create new problem
+  OPTIMIZATIONPROBLEM* y = new OPTIMIZATIONPROBLEM(0, 0, 0);
+  // copy objects
+  y->_modelsense = ptr->_modelsense;
+  y->_number_of_projects = ptr->_number_of_projects;
+  y->_number_of_actions = ptr->_number_of_actions;
+  y->_number_of_features = ptr->_number_of_features;
+  y->_number_of_branches = ptr->_number_of_branches;
+  y->_A_i = ptr->_A_i;
+  y->_A_j = ptr->_A_j;
+  y->_A_x = ptr->_A_x;
+  y->_obj = ptr->_obj;
+  y->_pwlobj = Rcpp::clone(ptr->_pwlobj);
+  y->_lb = ptr->_lb;
+  y->_ub = ptr->_ub;
+  y->_rhs = ptr->_rhs;
+  y->_sense = ptr->_sense;
+  y->_vtype = ptr->_vtype;
+  y->_row_ids = ptr->_row_ids;
+  y->_col_ids = ptr->_col_ids;
+  // return pointer
+  Rcpp::XPtr<OPTIMIZATIONPROBLEM> out =
+    Rcpp::XPtr<OPTIMIZATIONPROBLEM>(y, true);
+  return(out);
+}

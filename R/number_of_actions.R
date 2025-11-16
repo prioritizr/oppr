@@ -1,4 +1,4 @@
-#' @include internal.R
+#' @include internal.R ProjectProblem-class.R MultiObjProjectProblem-class.R
 NULL
 
 #' Number of actions
@@ -11,7 +11,7 @@ NULL
 #'
 #' @name number_of_actions
 #'
-#' @aliases number_of_actions,ProjectProblem-method
+#' @aliases number_of_actions,ProjectProblem-method  number_of_actions,MultiObjProjectProblem-method
 #'
 #' @examples
 #' # load data
@@ -53,5 +53,15 @@ methods::setGeneric(
 #' @usage \S4method{number_of_actions}{ProjectProblem}(x)
 methods::setMethod(
   "number_of_actions", "ProjectProblem",
+  function(x) x$number_of_actions()
+)
+
+#' @name number_of_actions
+#'
+#' @rdname number_of_actions
+#'
+#' @usage \S4method{number_of_actions}{MultiObjProjectProblem}(x)
+methods::setMethod(
+  "number_of_actions", "MultiObjProjectProblem",
   function(x) x$number_of_actions()
 )

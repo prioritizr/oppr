@@ -11,6 +11,8 @@ This class is used to represent the decision variables used in optimization.
 \seealso{
 Other classes: 
 \code{\link{Constraint-class}},
+\code{\link{MultiObjApproach-class}},
+\code{\link{MultiObjProjectProblem-class}},
 \code{\link{Objective-class}},
 \code{\link{OptimizationProblem-class}},
 \code{\link{ProjectModifier-class}},

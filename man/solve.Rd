@@ -4,11 +4,14 @@
 \alias{solve}
 \alias{solve,OptimizationProblem,Solver-method}
 \alias{solve,ProjectProblem,missing-method}
+\alias{solve,MultiObjProjectProblem,missing-method}
 \title{Solve}
 \usage{
 \S4method{solve}{OptimizationProblem,Solver}(a, b, ...)
 
 \S4method{solve}{ProjectProblem,missing}(a, b, ...)
+
+\S4method{solve}{MultiObjProjectProblem,missing}(a, b, ...)
 }
 \arguments{
 \item{a}{\linkS4class{ProjectProblem} or an

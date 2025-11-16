@@ -12,6 +12,8 @@ This class is used to represent solvers for optimization.
 Other classes: 
 \code{\link{Constraint-class}},
 \code{\link{Decision-class}},
+\code{\link{MultiObjApproach-class}},
+\code{\link{MultiObjProjectProblem-class}},
 \code{\link{Objective-class}},
 \code{\link{OptimizationProblem-class}},
 \code{\link{ProjectModifier-class}},
@@ -22,6 +24,14 @@ Other classes:
 \concept{classes}
 \section{Super class}{
 \code{\link[oppr:ProjectModifier]{oppr::ProjectModifier}} -> \code{Solver}
+}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{has_pwlobj}}{\code{logical} indicating if solver supports piece-wise
+linear components in an objective function.}
+}
+\if{html}{\out{</div>}}
 }
 \section{Methods}{
 \subsection{Public methods}{

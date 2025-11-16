@@ -97,6 +97,11 @@ NULL
 #'   means that the baseline "do nothing" scenario does not apply if a funded
 #'   project fails. Defaults to `TRUE`.
 #'
+#' @param baseline_project_name `character` name of the baseline project.
+#'   Defaults to `NULL` such that the baseline project name is automatically
+#'   inferred based on which action has a zero cost. Note that if multiple
+#'   actions have zero costs, then `baseline_project_name` must be specified.
+#'
 #' @details
 #' A project prioritization problem has actions, projects,
 #' and features. Features are the biological entities that need to
@@ -189,7 +194,8 @@ NULL
 problem <- function(projects, actions, features, project_name_column,
                     project_success_column, action_name_column,
                     action_cost_column, feature_name_column,
-                    adjust_for_baseline = TRUE) {
+                    adjust_for_baseline = TRUE,
+                    baseline_project_name = NULL) {
   # assertions
   ## coerce projects to tibble if just a regular data.frame
   if (inherits(projects, "data.frame") && !inherits(projects, "tbl_df")) {
@@ -260,27 +266,41 @@ problem <- function(projects, actions, features, project_name_column,
     min(actions[[action_cost_column]]) == 0,
     msg = "zero cost baseline project missing."
   )
-  # verify that features have finite persistence probabilities in baseline
-  # project(s)
-  bp <- actions$name[actions[[action_cost_column]] == 0]
-  assertthat::assert_that(
-    length(bp) > 0,
-    msg = "no baseline action detected (i.e. no projects have a zero cost)"
-  )
-  assertthat::assert_that(
-    length(bp) <= 1,
-    msg = "multiple baseline actions detected"
-  )
-  pa <- as.matrix(projects[, actions$name])
-  bp <- which(
-    vapply(seq_len(nrow(pa)), FUN.VALUE = logical(1), function(i) {
-      setequal(actions$name[pa[i, ]], bp)
-    })
-  )
-  assertthat::assert_that(
-    length(bp) > 0,
-    msg = "no baseline projects detected"
-  )
+  if (!is.null(baseline_project_name)) {
+    assertthat::assert_that(
+      assertthat::is.string(baseline_project_name),
+      baseline_project_name %in% projects[[project_name_column]]
+    )
+  }
+
+  # if needed, try to identify baseline project
+  if (is.null(baseline_project_name)) {
+    # verify that features have finite persistence probabilities in baseline
+    # project(s)
+    bp <- actions$name[actions[[action_cost_column]] == 0]
+    assertthat::assert_that(
+      length(bp) > 0,
+      msg = "no baseline action detected (i.e. no projects have a zero cost)"
+    )
+    assertthat::assert_that(
+      length(bp) <= 1,
+      msg = "multiple baseline actions detected"
+    )
+    pa <- as.matrix(projects[, actions$name])
+    bp <- which(
+      vapply(seq_len(nrow(pa)), FUN.VALUE = logical(1), function(i) {
+        setequal(actions$name[pa[i, ]], bp)
+      })
+    )
+    assertthat::assert_that(
+      length(bp) > 0,
+      msg = "no baseline projects detected"
+    )
+  } else {
+    bp <- which(projects[[project_name_column]] == baseline_project_name)
+  }
+
+  # very that baseline project has correct values
   bpp <- colSums(as.matrix(projects[bp, features[[feature_name_column]]]))
   assertthat::assert_that(
     all(is.finite(bpp)),
@@ -312,8 +332,9 @@ problem <- function(projects, actions, features, project_name_column,
       "."
     )
   )
+
   # create ProjectProblem object
-  ProjectProblem$new(
+  p <- ProjectProblem$new(
     data = list(
       projects = projects, actions = actions,
       features = features,
@@ -325,4 +346,13 @@ problem <- function(projects, actions, features, project_name_column,
       adjust_for_baseline = adjust_for_baseline
     )
   )
+
+  # add defaults
+  p <- suppressWarnings(add_default_solver(p))
+  p$defaults$solver <- TRUE
+  p <- suppressWarnings(add_default_decisions(p))
+  p$defaults$decisions <- TRUE
+
+  # return result
+  p
 }

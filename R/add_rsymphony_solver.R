@@ -54,9 +54,9 @@ add_rsymphony_solver <- function(x, gap = 0, time_limit = .Machine$integer.max,
                                  first_feasible = FALSE, verbose = TRUE) {
   # assert that arguments are valid
   assertthat::assert_that(
-    inherits(x, "ProjectProblem"),
-    isTRUE(all(is.finite(gap))),
+    inherits(x, c("ProjectProblem", "MultiObjProjectProblem")),
     assertthat::is.number(gap),
+    isTRUE(all(is.finite(gap))),
     isTRUE(gap >= 0), isTRUE(all(is.finite(time_limit))),
     assertthat::is.number(time_limit),
     assertthat::is.count(time_limit) ||
@@ -79,12 +79,6 @@ add_rsymphony_solver <- function(x, gap = 0, time_limit = .Machine$integer.max,
           verbose = verbose
         ),
         solve = function(x, ...) {
-          # assert arguments are valid
-          assertthat::assert_that(
-            identical(x$pwlobj(), list()),
-            msg =
-              "gurobi solver is required to solve problems with this objective"
-          )
           # build model
           model <- list(
             obj = x$obj(),
@@ -99,7 +93,11 @@ add_rsymphony_solver <- function(x, gap = 0, time_limit = .Machine$integer.max,
             max = isTRUE(x$modelsense() == "max")
           )
           model$dir <- replace(model$dir, model$dir == "=", "==")
-          model$types <- replace(model$types, model$types == "S", "C")
+          assertthat::assert_that(
+            !any(model$types == "S"),
+            msg =
+              "`add_rsymphony_solver()` is not compatible with this objective."
+          )
           # build parameters
           p <- as.list(self$data)
           p$verbosity <- -1

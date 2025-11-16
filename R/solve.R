@@ -1,4 +1,4 @@
-#' @include internal.R ProjectProblem-class.R OptimizationProblem-class.R compile.R
+#' @include internal.R ProjectProblem-class.R OptimizationProblem-class.R MultiObjProjectProblem-class.R compile.R
 NULL
 
 #' Solve
@@ -61,7 +61,7 @@ NULL
 #'
 #' @exportMethod solve
 #'
-#' @aliases solve,OptimizationProblem,Solver-method solve,ProjectProblem,missing-method
+#' @aliases solve,OptimizationProblem,Solver-method solve,ProjectProblem,missing-method solve,MultiObjProjectProblem,missing-method
 #'
 #' @examples
 #' # load data
@@ -138,6 +138,9 @@ methods::setMethod(
     }
     # compile and solve optimisation problem
     opt <- compile.ProjectProblem(a, ...)
+    if (!isTRUE(a$solver$has_pwlobj)) {
+      opt$convert_pwlobj()
+    }
     sol <- a$solver$solve(opt)
     # check that solution is valid
     if (is.null(sol) || is.null(sol[[1]]$x)) {
@@ -173,8 +176,83 @@ methods::setMethod(
     out <- tibble::as_tibble(cbind(out, solution_statistics(a, s)))
     ### reorder columns
     out <- out[, c(
-      "solution", "status", "obj", "cost", a$action_names(),
+      "solution", "status", "cost", "obj", a$action_names(),
       a$project_names(), a$feature_names()
+    )]
+    # return result
+    out
+  }
+)
+
+#' @name solve
+#'
+#' @rdname solve
+methods::setMethod(
+  "solve",
+  signature(a = "MultiObjProjectProblem", b = "missing"),
+  function(a, b, ...) {
+    ## solve problem
+    # assign solver
+    if (inherits(a$solver, "Waiver")) {
+      a <- add_default_solver(a)
+    }
+    # compile optimization problem
+    opt <- lapply(a$problems, compile.ProjectProblem, ...)
+    for (i in seq_along(opt)) {
+      opt[[i]]$convert_pwlobj()
+    }
+    opt <- multi_compile(opt)
+    # generate solution using approach
+    sol <- a$approach$run(opt, a$solver)
+    # check that solution is valid
+    if (is.null(sol) || is.null(sol[[1]]$x)) {
+      stop("project prioritization problem is infeasible")
+    }
+    ## format solutions
+    # extract actions
+    action_status <- lapply(
+      sol,
+      function(x) matrix(x[[1]][seq_len(a$number_of_actions())], nrow = 1)
+    )
+    if (length(action_status) == 1) {
+      action_status <- action_status[[1]]
+    } else {
+      action_status <- do.call(rbind, action_status)
+    }
+    ### remove duplicate solutions if not using random solver
+    if (!inherits(a$solver, "RandomSolver")) {
+      not_dups <- !duplicated(apply(action_status, 1, paste, collapse = "_"))
+      action_status <- action_status[not_dups, , drop = FALSE]
+      sol <- sol[not_dups]
+    }
+    # create solution data
+    ## initialize and add solution column
+    out <- tibble::tibble(solution = seq_len(nrow(action_status)))
+    ## add status column
+    out$status <- vapply(sol, `[[`, character(1), 3)
+    ## add solution columns
+    s <- tibble::as_tibble(as.data.frame(action_status))
+    names(s) <- a$action_names()
+    out <- tibble::as_tibble(cbind(out, s))
+    ### add remaining columns for first problem
+    ### (note this includes adding a cost column)
+    curr_stats <- solution_statistics(a$problems[[1]], s)
+    names(curr_stats)[[2]]  <- names(a$problems)[[1]]
+    out <- tibble::as_tibble(cbind(out, curr_stats))
+    ### add remaining columns for remaining problems
+    ### (note this does not add duplicate cost columns)
+    for (i in seq_along(a$problems)[-1]) {
+      curr_stats <- solution_statistics(a$problems[[i]], s)[, -1, drop = FALSE]
+      names(curr_stats)[[1]]  <- names(a$problems)[[i]]
+      out <- tibble::as_tibble(cbind(out, curr_stats))
+    }
+    #### reorder columns
+    out <- out[, c(
+      "solution", "status", "cost",
+      a$problem_names(),
+      unlist(a$action_names(), recursive = TRUE, use.names = FALSE),
+      unlist(a$project_names(), recursive = TRUE, use.names = FALSE),
+      unlist(a$feature_names(), recursive = TRUE, use.names = FALSE)
     )]
     # return result
     out

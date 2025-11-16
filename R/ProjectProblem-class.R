@@ -96,7 +96,7 @@ ProjectProblem <- R6::R6Class(
       }
       solver_msg <- "none specified"
       if (!isTRUE(self$defaults$solver)) {
-        solver_msg <- self$objective$repr()
+        solver_msg <- self$solver$repr()
       }
       # display message
       message(paste0(
@@ -182,7 +182,6 @@ ProjectProblem <- R6::R6Class(
     number_of_features = function() {
       nrow(self$data$features)
     },
-
 
     #' @description
     #' Obtain the names of the actions.

@@ -57,7 +57,7 @@ OptimizationProblem <- R6::R6Class(
         )
         message(
           "optimization problem",
-          "\n  objective:    ", ifelse(length(self$pwlobj()) == 0, "linear",
+          "\n  objective:   ", ifelse(length(self$pwlobj()) == 0, "linear",
             "piece-wise linear"
           ),
           "\n  model sense: ", self$modelsense(),
@@ -207,6 +207,25 @@ OptimizationProblem <- R6::R6Class(
     #' @return A `character` value.
     row_ids = function() {
       rcpp_get_optimization_problem_row_ids(self$ptr)
+    },
+
+    #' @description
+    #' Copy the object.
+    #' @return An `OptimizationProblem` object.
+    copy = function() {
+      OptimizationProblem$new(
+        ptr = rcpp_copy_optimization_problem(self$ptr),
+        data = self$data
+      )
+    },
+
+    #' @description
+    #' Convert the piece-wise linear components of the objective function
+    #' into linear objective components and constraints.
+    #' @return An invisible `TRUE`.
+    convert_pwlobj = function() {
+      rcpp_convert_pwlobj(self$ptr)
+      invisible(TRUE)
     }
   )
 )

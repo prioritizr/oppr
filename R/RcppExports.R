@@ -85,6 +85,10 @@ rcpp_get_optimization_problem_row_ids <- function(x) {
     .Call(`_oppr_rcpp_get_optimization_problem_row_ids`, x)
 }
 
+rcpp_copy_optimization_problem <- function(x) {
+    .Call(`_oppr_rcpp_copy_optimization_problem`, x)
+}
+
 rcpp_add_raw_data <- function(x, pa_matrix, pf_matrix, branch_matrix, branch_lengths, n_approx_points) {
     .Call(`_oppr_rcpp_add_raw_data`, x, pa_matrix, pf_matrix, branch_matrix, branch_lengths, n_approx_points)
 }
@@ -119,6 +123,22 @@ rcpp_branch_matrix <- function(x) {
 
 rcpp_branch_order <- function(x) {
     .Call(`_oppr_rcpp_branch_order`, x)
+}
+
+rcpp_compile_multi_obj_problem <- function(x) {
+    .Call(`_oppr_rcpp_compile_multi_obj_problem`, x)
+}
+
+rcpp_convert_pwlobj <- function(x) {
+    .Call(`_oppr_rcpp_convert_pwlobj`, x)
+}
+
+rcpp_convert_ref_point_max_method <- function(x, mopt_modelsense, mopt_obj, weights, goals) {
+    .Call(`_oppr_rcpp_convert_ref_point_max_method`, x, mopt_modelsense, mopt_obj, weights, goals)
+}
+
+rcpp_convert_ref_point_sum_method <- function(x, mopt_modelsense, mopt_obj, weights, goals) {
+    .Call(`_oppr_rcpp_convert_ref_point_sum_method`, x, mopt_modelsense, mopt_obj, weights, goals)
 }
 
 rcpp_evaluate_max_phylo_div_objective <- function(costs, pa_matrix, pf_matrix, branch_matrix, branch_lengths, targets, weights, solutions) {

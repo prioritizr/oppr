@@ -60,7 +60,7 @@ add_lpsolveapi_solver <- function(x, gap = 0, presolve = FALSE,
                                   verbose = TRUE) {
   # assert that arguments are valid
   assertthat::assert_that(
-    inherits(x, "ProjectProblem"),
+    inherits(x, c("ProjectProblem", "MultiObjProjectProblem")),
     isTRUE(all(is.finite(gap))),
     assertthat::is.number(gap),
     isTRUE(gap >= 0),
@@ -79,9 +79,8 @@ add_lpsolveapi_solver <- function(x, gap = 0, presolve = FALSE,
         solve = function(x, ...) {
           # assert valid argument
           assertthat::assert_that(
-            identical(x$pwlobj(), list()),
-            msg =
-              "gurobi solver is required to solve problems with this objective"
+            identical(length(x$pwlobj()), 0L),
+            msg =" failed to pre-processs piecewise-linear terms"
           )
           # extract parameters
           p <- as.list(self$data)

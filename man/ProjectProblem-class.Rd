@@ -19,6 +19,8 @@ This class is used to represent project prioritization problems.
 Other classes: 
 \code{\link{Constraint-class}},
 \code{\link{Decision-class}},
+\code{\link{MultiObjApproach-class}},
+\code{\link{MultiObjProjectProblem-class}},
 \code{\link{Objective-class}},
 \code{\link{OptimizationProblem-class}},
 \code{\link{ProjectModifier-class}},

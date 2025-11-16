@@ -3,11 +3,14 @@
 \name{number_of_features}
 \alias{number_of_features}
 \alias{number_of_features,ProjectProblem-method}
+\alias{number_of_features,MultiObjProjectProblem-method}
 \title{Number of features}
 \usage{
 number_of_features(x)
 
 \S4method{number_of_features}{ProjectProblem}(x)
+
+\S4method{number_of_features}{MultiObjProjectProblem}(x)
 }
 \arguments{
 \item{x}{\code{\link[=problem]{problem()}} object.}

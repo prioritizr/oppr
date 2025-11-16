@@ -19,6 +19,11 @@ Solver <- R6::R6Class(
   "Solver",
   inherit = ProjectModifier,
   public = list(
+
+    #' @field has_pwlobj `logical` indicating if solver supports piece-wise
+    #' linear components in an objective function.
+    has_pwlobj = FALSE,
+
     #' @description
     #' Solve an optimization problem.
     #' @param x [new_optimization_problem()] object.

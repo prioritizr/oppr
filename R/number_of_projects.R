@@ -1,4 +1,4 @@
-#' @include internal.R
+#' @include internal.R ProjectProblem-class.R MultiObjProjectProblem-class.R
 NULL
 
 #' Number of projects
@@ -7,11 +7,11 @@ NULL
 #'
 #' @inheritParams number_of_actions
 #'
-#' @return `integer` number of projects.
+#' @return An `integer` value.
 #'
 #' @name number_of_projects
 #'
-#' @aliases number_of_projects,ProjectProblem-method
+#' @aliases number_of_projects,ProjectProblem-method number_of_projects,MultiObjProjectProblem-method
 #'
 #' @examples
 #' # load data
@@ -53,5 +53,15 @@ methods::setGeneric(
 #' @usage \S4method{number_of_projects}{ProjectProblem}(x)
 methods::setMethod(
   "number_of_projects", "ProjectProblem",
+  function(x) x$number_of_projects()
+)
+
+#' @name number_of_projects
+#'
+#' @rdname number_of_projects
+#'
+#' @usage \S4method{number_of_projects}{MultiObjProjectProblem}(x)
+methods::setMethod(
+  "number_of_projects", "MultiObjProjectProblem",
   function(x) x$number_of_projects()
 )

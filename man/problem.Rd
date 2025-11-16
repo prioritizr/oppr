@@ -13,7 +13,8 @@ problem(
   action_name_column,
   action_cost_column,
   feature_name_column,
-  adjust_for_baseline = TRUE
+  adjust_for_baseline = TRUE,
+  baseline_project_name = NULL
 )
 }
 \arguments{
@@ -100,6 +101,11 @@ scenario in the event that the funded projects fail to succeed?
 This should always be \code{TRUE}, except when funding a project
 means that the baseline "do nothing" scenario does not apply if a funded
 project fails. Defaults to \code{TRUE}.}
+
+\item{baseline_project_name}{\code{character} name of the baseline project.
+Defaults to \code{NULL} such that the baseline project name is automatically
+inferred based on which action has a zero cost. Note that if multiple
+actions have zero costs, then \code{baseline_project_name} must be specified.}
 }
 \value{
 A new \linkS4class{ProjectProblem} object.

@@ -87,4 +87,7 @@ plot(p, s)
 }
 \seealso{
 \link{solvers}.
+
+Other solvers: 
+\code{\link{add_highs_solver}()}
 }

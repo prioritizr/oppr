@@ -17,6 +17,8 @@ with them (e.g., \code{\link[base:list]{base::as.list()}}).
 Other classes: 
 \code{\link{Constraint-class}},
 \code{\link{Decision-class}},
+\code{\link{MultiObjApproach-class}},
+\code{\link{MultiObjProjectProblem-class}},
 \code{\link{Objective-class}},
 \code{\link{ProjectModifier-class}},
 \code{\link{ProjectProblem-class}},
@@ -60,6 +62,8 @@ Create a new optimization problem object.}
 \item \href{#method-OptimizationProblem-number_of_projects}{\code{OptimizationProblem$number_of_projects()}}
 \item \href{#method-OptimizationProblem-col_ids}{\code{OptimizationProblem$col_ids()}}
 \item \href{#method-OptimizationProblem-row_ids}{\code{OptimizationProblem$row_ids()}}
+\item \href{#method-OptimizationProblem-copy}{\code{OptimizationProblem$copy()}}
+\item \href{#method-OptimizationProblem-convert_pwlobj}{\code{OptimizationProblem$convert_pwlobj()}}
 \item \href{#method-OptimizationProblem-clone}{\code{OptimizationProblem$clone()}}
 }
 }
@@ -355,6 +359,33 @@ Obtain the identifiers for the rows.
 
 \subsection{Returns}{
 A \code{character} value.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-OptimizationProblem-copy"></a>}}
+\if{latex}{\out{\hypertarget{method-OptimizationProblem-copy}{}}}
+\subsection{Method \code{copy()}}{
+Copy the object.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{OptimizationProblem$copy()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+An \code{OptimizationProblem} object.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-OptimizationProblem-convert_pwlobj"></a>}}
+\if{latex}{\out{\hypertarget{method-OptimizationProblem-convert_pwlobj}{}}}
+\subsection{Method \code{convert_pwlobj()}}{
+Convert the piece-wise linear components of the objective function
+into linear objective components and constraints.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{OptimizationProblem$convert_pwlobj()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+An invisible \code{TRUE}.
 }
 }
 \if{html}{\out{<hr>}}

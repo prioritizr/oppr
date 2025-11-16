@@ -59,7 +59,7 @@ add_lpsymphony_solver <- function(x, gap = 0, time_limit = .Machine$integer.max,
                                   first_feasible = FALSE, verbose = TRUE) {
   # assert that arguments are valid
   assertthat::assert_that(
-    inherits(x, "ProjectProblem"),
+    inherits(x, c("ProjectProblem", "MultiObjProjectProblem")),
     isTRUE(all(is.finite(gap))),
     assertthat::is.number(gap),
     isTRUE(gap >= 0), isTRUE(all(is.finite(time_limit))),
@@ -115,7 +115,11 @@ add_lpsymphony_solver <- function(x, gap = 0, time_limit = .Machine$integer.max,
             max = isTRUE(x$modelsense() == "max")
           )
           model$dir <- replace(model$dir, model$dir == "=", "==")
-          model$types <- replace(model$types, model$types == "S", "C")
+          assertthat::assert_that(
+            !any(model$types == "S"),
+            msg =
+              "`add_lpsymphony_solver()` is not compatible with this objective."
+          )
           # prepare parameters
           p <- self$data
           if (!isTRUE(p$verbose)) {
