@@ -824,3 +824,162 @@ test_that("add_max_wtd_sum_objective (large problem, low budget)", {
   expect_true(all(s$action_5 == 0))
   expect_true(all(s$cost <= b))
 })
+
+test_that("add_max_targets_objective (single solution)", {
+  # make data
+  projects <- tibble::tibble(
+    name = c("P1", "P2", "P3", "P4"),
+    success = c(0.95, 0.96, 0.94, 1.00),
+    F1 = c(0.91, 0.00, 0.80, 0.10),
+    F2 = c(0.00, 0.92, 0.80, 0.10),
+    F3 = c(0.00, 0.00, 0.00, 0.10),
+    A1 = c(TRUE, FALSE, FALSE, FALSE),
+    A2 = c(FALSE, TRUE, FALSE, FALSE),
+    A3 = c(FALSE, FALSE, TRUE, FALSE),
+    A4 = c(FALSE, FALSE, FALSE, TRUE)
+  )
+  actions <- tibble::tibble(
+    name = c("A1", "A2", "A3", "A4"),
+    cost = c(0.10, 0.10, 0.15, 0)
+  )
+  features <- tibble::tibble(
+    name = c("F1", "F2", "F3"),
+    target = c(0.05, 0.9, 0.05)
+  )
+  # create problem
+  p <- problem(
+    projects, actions, features, "name", "success", "name", "cost",
+    "name", FALSE
+  ) %>%
+    add_max_targets_met_objective(budget = 0.11) %>%
+    add_absolute_targets("target") %>%
+    add_binary_decisions() %>%
+    add_heuristic_solver()
+  # solve problem
+  s <- solve(p)
+  # tests
+  ## s1
+  expect_is(s, "tbl_df")
+  expect_equal(nrow(s), 1)
+  expect_equal(s$solution, 1L)
+  expect_equal(s$status, NA_character_)
+  expect_equal(s$cost, 0.1)
+  expect_equal(s$obj, 2)
+  expect_equal(s$A1, 0)
+  expect_equal(s$A2, 1)
+  expect_equal(s$A3, 0)
+  expect_equal(s$A4, 1)
+  expect_equal(s$F1, 1 * 0.1)
+  expect_equal(s$F2, 0.96 * 0.92)
+  expect_equal(s$F3, 1 * 0.1)
+})
+
+test_that("add_max_targets_objective (single feasible solution)", {
+  # make data
+  projects <- tibble::tibble(
+    name = c("P1", "P2", "P3", "P4"),
+    success = c(0.95, 0.96, 0.94, 1.00),
+    F1 = c(0.91, 0.00, 0.80, 0.10),
+    F2 = c(0.00, 0.92, 0.80, 0.10),
+    F3 = c(0.00, 0.00, 0.00, 0.10),
+    A1 = c(TRUE, FALSE, FALSE, FALSE),
+    A2 = c(FALSE, TRUE, FALSE, FALSE),
+    A3 = c(FALSE, FALSE, TRUE, FALSE),
+    A4 = c(FALSE, FALSE, FALSE, TRUE)
+  )
+  actions <- tibble::tibble(
+    name = c("A1", "A2", "A3", "A4"),
+    cost = c(0.10, 0.10, 0.15, 0)
+  )
+  features <- tibble::tibble(
+    name = c("F1", "F2", "F3"),
+    target = c(0.9, 0.05, 0.05)
+  )
+  # create problem
+  p <- problem(
+    projects, actions, features, "name", "success", "name", "cost",
+    "name", FALSE
+  ) %>%
+    add_max_targets_met_objective(budget = 0.11) %>%
+    add_absolute_targets("target") %>%
+    add_binary_decisions() %>%
+    add_heuristic_solver(number_solutions = 100)
+  # solve problem
+  s <- solve(p)
+  # tests
+  expect_is(s, "tbl_df")
+  expect_gt(nrow(s), 1)
+  expect_equal(s$solution, seq_len(nrow(s)))
+  expect_equal(s$status, rep(NA_character_, nrow(s)))
+  expect_equal(s$obj, (s$F1 >= features$target[1]) +
+    (s$F2 >= features$target[2]) +
+    (s$F3 >= features$target[3]))
+  expect_equal(s$cost, (s$A1 * actions$cost[1]) +
+    (s$A2 * actions$cost[2]) +
+    (s$A3 * actions$cost[3]) +
+    (s$A4 * actions$cost[4]))
+  expect_is(s$F1, "numeric")
+  expect_is(s$F2, "numeric")
+  expect_is(s$F3, "numeric")
+  expect_is(s$A1, "numeric")
+  expect_is(s$A2, "numeric")
+  expect_is(s$A3, "numeric")
+  expect_is(s$A4, "numeric")
+})
+
+test_that("add_max_targets_objective (locked constraints)", {
+  # make data
+  projects <- tibble::tibble(
+    name = c("P1", "P2", "P3", "P4"),
+    success = c(0.95, 0.96, 0.94, 1.00),
+    F1 = c(0.91, 0.00, 0.80, 0.10),
+    F2 = c(0.00, 0.92, 0.80, 0.10),
+    F3 = c(0.00, 0.00, 0.00, 0.10),
+    A1 = c(TRUE, FALSE, FALSE, FALSE),
+    A2 = c(FALSE, TRUE, FALSE, FALSE),
+    A3 = c(FALSE, FALSE, TRUE, FALSE),
+    A4 = c(FALSE, FALSE, FALSE, TRUE)
+  )
+  actions <- tibble::tibble(
+    name = c("A1", "A2", "A3", "A4"),
+    cost = c(0.10, 0.10, 0.15, 0)
+  )
+  features <- tibble::tibble(
+    name = c("F1", "F2", "F3"),
+    target = c(0.9, 0.05, 0.05)
+  )
+  # create problem
+  p <- problem(
+    projects, actions, features, "name", "success", "name", "cost",
+    "name", FALSE
+  ) %>%
+    add_max_targets_met_objective(budget = 0.11) %>%
+    add_absolute_targets("target") %>%
+    add_locked_in_constraints(1) %>%
+    add_locked_out_constraints(2) %>%
+    add_binary_decisions() %>%
+    add_heuristic_solver(number_solutions = 100)
+  # solve problem
+  s <- solve(p)
+  # tests
+  expect_is(s, "tbl_df")
+  expect_equal(nrow(s), 1)
+  expect_equal(s$solution, seq_len(nrow(s)))
+  expect_equal(s$status, rep(NA_character_, nrow(s)))
+  expect_equal(s$obj, (s$F1 >= features$target[1]) +
+    (s$F2 >= features$target[2]) +
+    (s$F3 >= features$target[3]))
+  expect_equal(s$cost, (s$A1 * actions$cost[1]) +
+    (s$A2 * actions$cost[2]) +
+    (s$A3 * actions$cost[3]) +
+    (s$A4 * actions$cost[4]))
+  expect_is(s$F1, "numeric")
+  expect_is(s$F2, "numeric")
+  expect_is(s$F3, "numeric")
+  expect_is(s$A1, "numeric")
+  expect_true(all(s$A1 > 0.5))
+  expect_is(s$A2, "numeric")
+  expect_true(all(s$A2 < 0.5))
+  expect_is(s$A3, "numeric")
+  expect_is(s$A4, "numeric")
+})

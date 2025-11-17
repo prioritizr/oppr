@@ -30,8 +30,8 @@ test_that("compile", {
     add_max_phylo_div_objective(0.16, tree) %>%
     add_binary_decisions()
   # create optimization problem
-  o1 <- compile(p)
-  o2 <- r_phylo_div_mip_formulation(projects, actions, tree, 0.16, 1000)
+  o1 <- compile(p, n_approx = 10)
+  o2 <- max_phylo_div_mip_formulation(projects, actions, tree, 0.16, 10)
   # run tests
   expect_equal(o1$obj(), o2$obj)
   expect_equal(o1$vtype(), o2$vtype)
@@ -39,6 +39,7 @@ test_that("compile", {
   expect_equal(o1$ub(), o2$ub)
   expect_equal(o1$sense(), o2$sense)
   expect_equal(o1$rhs(), o2$rhs)
+  expect_equal(o1$pwlobj(), o2$pwlobj)
   expect_true(all(o1$A() == o2$A))
 })
 

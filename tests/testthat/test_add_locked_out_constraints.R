@@ -12,11 +12,8 @@ test_that("integer (compile)", {
   # compile problem
   o <- compile(p)
   # check that constraints added correctly
-  expect_equal(o$lb(), replace(
-    rep(0, nrow(sim_actions) + nrow(sim_projects) +
-      (nrow(sim_projects) *
-        nrow(sim_features)) +
-      nrow(sim_features)),
+  expect_equal(o$ub(), replace(
+    rep(1, length(o$obj())),
     which(sim_actions$locked_out), 0
   ))
 })
@@ -73,11 +70,8 @@ test_that("logical (compile)", {
   # compile problem
   o <- compile(p)
   # check that constraints added correctly
-  expect_equal(o$lb(), replace(
-    rep(0, nrow(sim_actions) + nrow(sim_projects) +
-      (nrow(sim_projects) *
-        nrow(sim_features)) +
-      nrow(sim_features)),
+  expect_equal(o$ub(), replace(
+    rep(1, length(o$obj())),
     which(sim_actions$locked_out), 0
   ))
 })
@@ -131,11 +125,8 @@ test_that("character (compile)", {
   # compile problem
   o <- compile(p)
   # check that constraints added correctly
-  expect_equal(o$lb(), replace(
-    rep(0, nrow(sim_actions) + nrow(sim_projects) +
-      (nrow(sim_projects) *
-        nrow(sim_features)) +
-      nrow(sim_features)),
+  expect_equal(o$ub(), replace(
+    rep(1, length(o$obj())),
     which(sim_actions$locked_out), 0
   ))
 })

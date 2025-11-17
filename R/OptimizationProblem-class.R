@@ -182,6 +182,15 @@ OptimizationProblem <- R6::R6Class(
     },
 
     #' @description
+    #' Obtain the number of allocation variables. This number represents
+    #' the total number of decision variables used to identify if
+    #' each project is allocated to each variable.
+    #' @return A `numeric` value.
+    number_of_allocations = function() {
+      rcpp_get_optimization_problem_number_of_allocations(self$ptr);
+    },
+
+    #' @description
     #' Obtain the number of actions
     #' @return A `numeric` value.
     number_of_actions = function() {

@@ -15,13 +15,35 @@ bool rcpp_add_raw_data(SEXP x, arma::sp_mat pa_matrix, arma::sp_mat pf_matrix,
   ptr->_number_of_actions = static_cast<std::size_t>(pa_matrix.n_cols);
   ptr->_number_of_features = static_cast<std::size_t>(pf_matrix.n_cols);
   ptr->_number_of_branches = branch_lengths.size();
+  ptr->_number_of_allocations = pf_matrix.n_nonzero;
+
+  // declare counters
+  std::size_t counter = 0;
+
+  // create matrix to store information on which projects are associated
+  // with each feature - this is used for the allocation variables
+  arma::Col<std::size_t> fp_values(ptr->_number_of_allocations);
+  std::iota(fp_values.begin(), fp_values.end(), 0);
+  arma::umat fp_locations(2, ptr->_number_of_allocations);
+  for (auto pitr = pf_matrix.begin(); pitr != pf_matrix.end(); ++pitr) {
+    fp_locations(0, counter) = pitr.row();
+    fp_locations(1, counter) = pitr.col();
+    ++counter;
+  }
+  counter = 0;
+  arma::SpMat<std::size_t> fp_matrix(fp_locations, fp_values);
+  fp_locations.clear();
+  fp_values.clear();
 
   /// identify branches that are not tips
-  std::size_t n_branch_nontips = (ptr->_number_of_branches) -
-                                 (ptr->_number_of_features);
+  std::size_t n_branch_nontips =
+    (ptr->_number_of_branches) - (ptr->_number_of_features);
   std::vector<std::size_t> branch_nontip_indices(n_branch_nontips);
-  std::iota(branch_nontip_indices.begin(), branch_nontip_indices.end(),
-            (ptr->_number_of_features));
+  std::iota(
+    branch_nontip_indices.begin(),
+    branch_nontip_indices.end(),
+    (ptr->_number_of_features)
+  );
 
   // set up problem with raw data
   int r = -1;
@@ -31,8 +53,7 @@ bool rcpp_add_raw_data(SEXP x, arma::sp_mat pa_matrix, arma::sp_mat pf_matrix,
     ptr->_col_ids.push_back("i");
   for (std::size_t i = 0; i < (ptr->_number_of_projects); ++i)
     ptr->_col_ids.push_back("j");
-  for (std::size_t i = 0;
-       i < ((ptr->_number_of_features) *(ptr->_number_of_projects)); ++i)
+  for (std::size_t i = 0; i < ptr->_number_of_allocations; ++i)
     ptr->_col_ids.push_back("fj");
 
   //// constraints to ensure that projects can only be funded if all of their
@@ -54,57 +75,73 @@ bool rcpp_add_raw_data(SEXP x, arma::sp_mat pa_matrix, arma::sp_mat pf_matrix,
 
   //// constraints to ensure that features can only be allocated to funded
   //// projects
-  for (std::size_t f = 0; f < (ptr->_number_of_features); ++f) {
-    for (std::size_t p = 0; p < (ptr->_number_of_projects); ++p) {
+  counter = 0;
+  for (auto pitr = pf_matrix.begin(); pitr != pf_matrix.end(); ++pitr) {
+    if ((*pitr) > 1.0e-5) {
       r += 1;
       ptr->_A_i.push_back(r);
       ptr->_A_i.push_back(r);
-      ptr->_A_j.push_back((ptr->_number_of_actions) + p);
-      ptr->_A_j.push_back((ptr->_number_of_actions) +
-                          (ptr->_number_of_projects) +
-                          (f * (ptr->_number_of_projects)) + p);
+      ptr->_A_j.push_back((ptr->_number_of_actions) + pitr.row());
+      ptr->_A_j.push_back(
+        (ptr->_number_of_actions) +
+        (ptr->_number_of_projects) +
+        counter
+      );
       ptr->_A_x.push_back(1.0);
       ptr->_A_x.push_back(-1.0);
       ptr->_sense.push_back(">=");
       ptr->_rhs.push_back(0.0);
       ptr->_row_ids.push_back("c2");
+      ++counter;
     }
   }
 
   //// constraints to ensure that each feature can only be allocated to a single
   //// project
-  for (std::size_t f = 0; f < (ptr->_number_of_features); ++f) {
-    r += 1;
-    for (std::size_t p = 0; p < (ptr->_number_of_projects); ++p) {
-      if (pf_matrix(p, f) > 1.0e-15) {
-        ptr->_A_i.push_back(r);
-        ptr->_A_j.push_back((ptr->_number_of_actions) +
-                            (ptr->_number_of_projects) +
-                            (f * (ptr->_number_of_projects)) + p);
-        ptr->_A_x.push_back(1.0);
-      }
+  counter = 0;
+  ++r;
+  for (auto pitr = pf_matrix.begin(); pitr != pf_matrix.end(); ++pitr) {
+    if ((*pitr) > 1.0e-5) {
+      ptr->_A_i.push_back(r + pitr.col());
+      ptr->_A_j.push_back(
+        (ptr->_number_of_actions) +
+        (ptr->_number_of_projects) +
+        counter
+      );
+      ptr->_A_x.push_back(1.0);
+      ++counter;
     }
+  }
+  for (std::size_t i = 0; i < pf_matrix.n_cols; ++i) {
     ptr->_sense.push_back("=");
     ptr->_row_ids.push_back("c3");
     ptr->_rhs.push_back(1.0);
   }
+  // update row counter so that it has the current number of rows
+  r += pf_matrix.n_cols;
+  --r;
 
   /// constraints for persistence probabilities for features
-  for (std::size_t f = 0; f < (ptr->_number_of_features); ++f) {
-    //// increment row
-    r += 1;
-    //// apply constraint for the feature
-    for (auto pitr = pf_matrix.begin_col(f);
-         pitr != pf_matrix.end_col(f); ++pitr) {
-        ptr->_A_i.push_back(r);
-        ptr->_A_j.push_back((ptr->_number_of_actions) +
-                            (ptr->_number_of_projects) +
-                            (f * (ptr->_number_of_projects)) +
-                            pitr.row());
-        ptr->_A_x.push_back(*pitr);
+  counter = 0;
+  ++r;
+  for (auto pitr = pf_matrix.begin(); pitr != pf_matrix.end(); ++pitr) {
+    if ((*pitr) > 1.0e-5) {
+      ptr->_A_i.push_back(r + pitr.col());
+      ptr->_A_j.push_back(
+        (ptr->_number_of_actions) +
+        (ptr->_number_of_projects) +
+        counter
+      );
+      ptr->_A_x.push_back(*pitr);
+      ++counter;
     }
+  }
+  for (std::size_t i = 0; i < pf_matrix.n_cols; ++i) {
     ptr->_row_ids.push_back("c4");
   }
+  // update row counter so that it has the current number of rows
+  r += pf_matrix.n_cols;
+  --r;
 
   /// constraints for the log-sum probabilities for nontip branches
   std::vector<std::size_t> model_pwl_var;
@@ -166,11 +203,13 @@ bool rcpp_add_raw_data(SEXP x, arma::sp_mat pa_matrix, arma::sp_mat pf_matrix,
       /// component in the objective function
       if (std::abs(curr_abs_min_value - curr_abs_max_value) < 1.0e-6) {
         /// store variable
-        model_pwl_var.push_back((ptr->_number_of_actions) +
-                                (ptr->_number_of_projects) +
-                                (ptr->_number_of_features *
-                                (ptr->_number_of_projects)) +
-                                (*bitr) + 1.0);
+        model_pwl_var.push_back(
+          (ptr->_number_of_actions) +
+          (ptr->_number_of_projects) +
+          ptr->_number_of_allocations +
+          (*bitr) +
+          1.0
+        );
 
         /// pre-allocate vectors for xy pwl data
         model_pwl_x[p].reserve(1);
@@ -200,10 +239,11 @@ bool rcpp_add_raw_data(SEXP x, arma::sp_mat pa_matrix, arma::sp_mat pf_matrix,
           for (auto pitr = pf_matrix.begin_col(sitr.row());
                pitr != pf_matrix.end_col(sitr.row()); ++pitr) {
             ptr->_A_i.push_back(r);
-            ptr->_A_j.push_back((ptr->_number_of_actions) +
-                                (ptr->_number_of_projects) +
-                                (sitr.row() * (ptr->_number_of_projects)) +
-                                pitr.row());
+            ptr->_A_j.push_back(
+              (ptr->_number_of_actions) +
+              (ptr->_number_of_projects) +
+              fp_matrix(pitr.row(), sitr.row())
+            );
             //// if probability of persistence is really close to 1, so that
             //// log(1 - prob) is Inf, then replace with number that is
             //// very close but not equal to 1
@@ -228,11 +268,13 @@ bool rcpp_add_raw_data(SEXP x, arma::sp_mat pa_matrix, arma::sp_mat pf_matrix,
         model_pwl_y[p].reserve(n_approx_points);
 
         /// add pwl objective function
-        model_pwl_var.push_back((ptr->_number_of_actions) +
-                                (ptr->_number_of_projects) +
-                                (ptr->_number_of_features *
-                                (ptr->_number_of_projects)) +
-                                (*bitr) + 1.0);
+        model_pwl_var.push_back(
+          (ptr->_number_of_actions) +
+          (ptr->_number_of_projects) +
+          ptr->_number_of_allocations +
+          (*bitr) +
+          1.0
+        );
         curr_frac = (curr_abs_max_value - curr_abs_min_value) /
                     static_cast<double>(n_approx_points - 1);
         // note that we use the absolute value here

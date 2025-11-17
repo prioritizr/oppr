@@ -12,33 +12,34 @@ bool rcpp_apply_max_targets_met_objective(SEXP x,
   Rcpp::NumericVector targets_value = targets_list["value"];
   Rcpp::CharacterVector targets_sense = targets_list["sense"];
 
-
   // calculate number of non-tip branches
-  std::size_t n_nontip_branches = ptr->_number_of_branches -
-                                  ptr->_number_of_features;
+  std::size_t n_nontip_branches =
+    ptr->_number_of_branches - ptr->_number_of_features;
 
   // add objective function
-  for (std::size_t i = 0;
-       i < (ptr->_number_of_actions) +
-           (ptr->_number_of_projects) +
-           ((ptr->_number_of_projects) * (ptr->_number_of_features)); ++i) {
+  for (
+    std::size_t i = 0;
+    i < (ptr->_number_of_actions) + (ptr->_number_of_projects) +
+    (ptr->_number_of_allocations); ++i) {
     ptr->_obj.push_back(0.0);
   }
   for (std::size_t i = 0; i < (ptr->_number_of_features); ++i)
     ptr->_obj.push_back(feature_weights[i]);
 
   // add constraints for feature variables
-  std::size_t r = std::find(ptr->_row_ids.begin(), ptr->_row_ids.end(), "c4") -
-      (ptr->_row_ids.begin());
+  std::size_t r =
+    std::find(ptr->_row_ids.begin(), ptr->_row_ids.end(), "c4") -
+    (ptr->_row_ids.begin());
   --r;
   for (std::size_t f = 0; f < (ptr->_number_of_features); ++f) {
     r += 1;
     ptr->_A_i.push_back(r);
-    ptr->_A_j.push_back((ptr->_number_of_actions) +
-                       (ptr->_number_of_projects) +
-                       ((ptr->_number_of_features) *
-                        (ptr->_number_of_projects)) +
-                       f);
+    ptr->_A_j.push_back(
+      (ptr->_number_of_actions) +
+      (ptr->_number_of_projects) +
+      (ptr->_number_of_allocations) +
+      f
+    );
     ptr->_A_x.push_back(-1.0 * targets_value[f]);
     ptr->_sense.push_back(Rcpp::as<std::string>(targets_sense[f]));
     ptr->_rhs.push_back(0.0);

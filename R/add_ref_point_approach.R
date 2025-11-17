@@ -125,9 +125,6 @@ add_ref_point_approach <- function(x, weights, goals, method = "sum",
                 weights[i, ], goals[i, ]
               )
             }
-
-             assign("mo", mo, .GlobalEnv)
-
             ### solve problem
             sols[[i]] <- solver$solve(mo)
             ## if needed, update progress bar

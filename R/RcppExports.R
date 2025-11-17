@@ -49,6 +49,10 @@ rcpp_get_optimization_problem_number_of_branches <- function(x) {
     .Call(`_oppr_rcpp_get_optimization_problem_number_of_branches`, x)
 }
 
+rcpp_get_optimization_problem_number_of_allocations <- function(x) {
+    .Call(`_oppr_rcpp_get_optimization_problem_number_of_allocations`, x)
+}
+
 rcpp_get_optimization_problem_vtype <- function(x) {
     .Call(`_oppr_rcpp_get_optimization_problem_vtype`, x)
 }

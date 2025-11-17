@@ -58,6 +58,7 @@ Create a new optimization problem object.}
 \item \href{#method-OptimizationProblem-ub}{\code{OptimizationProblem$ub()}}
 \item \href{#method-OptimizationProblem-number_of_features}{\code{OptimizationProblem$number_of_features()}}
 \item \href{#method-OptimizationProblem-number_of_branches}{\code{OptimizationProblem$number_of_branches()}}
+\item \href{#method-OptimizationProblem-number_of_allocations}{\code{OptimizationProblem$number_of_allocations()}}
 \item \href{#method-OptimizationProblem-number_of_actions}{\code{OptimizationProblem$number_of_actions()}}
 \item \href{#method-OptimizationProblem-number_of_projects}{\code{OptimizationProblem$number_of_projects()}}
 \item \href{#method-OptimizationProblem-col_ids}{\code{OptimizationProblem$col_ids()}}
@@ -303,6 +304,21 @@ A \code{numeric} value.
 Obtain the number of phylogenetic branches.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{OptimizationProblem$number_of_branches()}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+A \code{numeric} value.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-OptimizationProblem-number_of_allocations"></a>}}
+\if{latex}{\out{\hypertarget{method-OptimizationProblem-number_of_allocations}{}}}
+\subsection{Method \code{number_of_allocations()}}{
+Obtain the number of allocation variables. This number represents
+the total number of decision variables used to identify if
+each project is allocated to each variable.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{OptimizationProblem$number_of_allocations()}\if{html}{\out{</div>}}
 }
 
 \subsection{Returns}{

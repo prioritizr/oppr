@@ -20,15 +20,17 @@ Rcpp::List rcpp_compile_multi_obj_problem(const Rcpp::List x) {
   std::vector<std::size_t> opt_n_nrow(n);
   std::vector<std::size_t> opt_n_A(n);
   std::vector<std::size_t> opt_n_features(n);
-  std::vector<std::size_t> opt_n_branches(n);
   std::vector<std::size_t> opt_n_projects(n);
+  std::vector<std::size_t> opt_n_branches(n);
+  std::vector<std::size_t> opt_n_allocations(n);
   for (std::size_t i = 0; i < n; ++i) {
     opt_n_ncol[i] = opt[i]->ncol();
     opt_n_nrow[i] = opt[i]->nrow();
     opt_n_A[i] = opt[i]->_A_i.size();
     opt_n_features[i] = opt[i]->_number_of_features;
-    opt_n_branches[i] = opt[i]->_number_of_branches;
     opt_n_projects[i] = opt[i]->_number_of_projects;
+    opt_n_branches[i] = opt[i]->_number_of_branches;
+    opt_n_allocations[i] = opt[i]->_number_of_allocations;
   }
   // define offset variables for rows and columns
   std::vector<std::size_t> opt_row_offset(n, 0);
@@ -64,20 +66,21 @@ Rcpp::List rcpp_compile_multi_obj_problem(const Rcpp::List x) {
   OPTIMIZATIONPROBLEM* mopt = new OPTIMIZATIONPROBLEM(
     std::string("min"),                   // modelsense
     std::accumulate(                      // number_of_projects
-      opt_n_features.begin(),
-      opt_n_features.end(), 0
+      opt_n_projects.begin(),
+      opt_n_projects.end(), 0
     ),
-    std::accumulate(                      // number_of_actions
-      opt_n_features.begin(),
-      opt_n_features.end(), 0
-    ),
+    opt[0]->_number_of_actions,            // number_of_actions
     std::accumulate(                      // number_of_features
       opt_n_features.begin(),
       opt_n_features.end(), 0
     ),
     std::accumulate(                      // number_of_branches
-      opt_n_features.begin(),
-      opt_n_features.end(), 0
+      opt_n_branches.begin(),
+      opt_n_branches.end(), 0
+    ),
+    std::accumulate(                      // number_of_allocations
+      opt_n_allocations.begin(),
+      opt_n_allocations.end(), 0
     ),
     std::vector<std::size_t>(mopt_n_A),   // A_i
     std::vector<std::size_t>(mopt_n_A),   // A_j

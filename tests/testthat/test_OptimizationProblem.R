@@ -23,6 +23,7 @@ test_that("get methods", {
     number_of_actions = 3,
     number_of_features = 1,
     number_of_branches = 10,
+    number_of_allocations = 5,
     sense = c("=", "="),
     vtype = c("B", "S", "C"),
     row_ids = c("a", "b"),
@@ -48,6 +49,7 @@ test_that("get methods", {
   expect_equal(x$number_of_actions(), l$number_of_actions)
   expect_equal(x$number_of_features(), l$number_of_features)
   expect_equal(x$number_of_branches(), l$number_of_branches)
+  expect_equal(x$number_of_allocations(), l$number_of_allocations)
   expect_equal(x$col_ids(), l$col_ids)
   expect_equal(x$row_ids(), l$row_ids)
   expect_equal(x$get_data(), list(i = 4))
@@ -69,6 +71,7 @@ test_that("as.list", {
     number_of_actions = 3,
     number_of_features = 1,
     number_of_branches = 10,
+    number_of_allocations = 5,
     sense = c("=", "="),
     vtype = c("B", "S", "C"),
     row_ids = c("a", "b"),
@@ -89,6 +92,7 @@ test_that("as.list", {
   expect_equal(l$number_of_actions, l2$number_of_actions)
   expect_equal(l$number_of_features, l2$number_of_features)
   expect_equal(l$number_of_branches, l2$number_of_branches)
+  expect_equal(l$number_of_allocations, l2$number_of_allocations)
   expect_equal(l$sense, l2$sense)
   expect_equal(l$vtype, l2$vtype)
   expect_equal(l$row_ids, l2$row_ids)

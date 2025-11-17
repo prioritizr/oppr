@@ -21,6 +21,7 @@ it should be used to solve a project prioritization \code{\link[=problem]{proble
 \details{
 Ranked from best to worst, the solvers that can be used are:
 \pkg{gurobi}, (\code{\link[=add_gurobi_solver]{add_gurobi_solver()}}),
+\pkg{highs}, (\code{\link[=add_highs_solver]{add_highs_solver()}}),
 \pkg{Rsymphony} (\code{\link[=add_rsymphony_solver]{add_rsymphony_solver()}}), \pkg{lpsymphony}
 (\code{\link[=add_lpsymphony_solver]{add_lpsymphony_solver()}}), and \pkg{lpSolveAPI}
 (\code{\link[=add_lpsolveapi_solver]{add_lpsolveapi_solver()}}). This function does not consider
