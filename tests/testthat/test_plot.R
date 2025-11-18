@@ -1,7 +1,7 @@
 context("plot.ProjectProblem")
 
 test_that("no phylogenetic data", {
-  # make data
+  # create data
   projects <- tibble::tibble(
     name = letters[1:4],
     success = c(0.95, 0.96, 0.94, 1.00),
@@ -21,17 +21,18 @@ test_that("no phylogenetic data", {
   )
   features <- tibble::tibble(name = c("F1", "F2", "F3"))
   solution <- tibble::tibble(A1 = 1, A2 = 1, A3 = 0, A4 = 1)
-  # make problem
-  p <- problem(
-    projects, actions, features, "name", "success", "name", "cost",
-    "name"
-  ) %>%
+  # build problem
+  p <-
+    problem(
+      projects, actions, features, "name", "success", "name", "cost",
+      "name"
+    ) %>%
     add_max_wtd_sum_objective(0.16) %>%
     add_binary_decisions()
   # make plot
   g <- plot(p, solution)
   d <- plot(p, solution, return_data = TRUE)
-  # tests
+  # run tests
   expect_is(g, "ggplot")
   expect_true({
     f <- tempfile(fileext = ".png")
@@ -45,8 +46,10 @@ test_that("no phylogenetic data", {
 })
 
 test_that("phylogenetic data", {
+  # define skips
   skip_on_cran()
   skip_if_not_installed("ggtree")
+  # create data
   projects <- tibble::tibble(
     name = letters[1:4],
     success = c(0.95, 0.96, 0.94, 1.00),
@@ -68,17 +71,18 @@ test_that("phylogenetic data", {
   tree <- ape::read.tree(text = "((F1,F2),F3);")
   tree$edge.length <- c(100, 5, 5, 5)
   solution <- tibble::tibble(A1 = 1, A2 = 1, A3 = 0, A4 = 1)
-  # make problem
-  p <- problem(
-    projects, actions, features, "name", "success", "name", "cost",
-    "name"
-  ) %>%
+  # build problem
+  p <-
+    problem(
+      projects, actions, features, "name", "success", "name", "cost",
+      "name"
+    ) %>%
     add_max_phylo_div_objective(0.16, tree) %>%
     add_binary_decisions()
   # make plot
   g <- plot(p, solution)
   d <- plot(p, solution, return_data = TRUE)
-  # tests
+  # run tests
   expect_is(g, "ggtree")
   expect_true({
     f <- tempfile(fileext = ".png")
@@ -92,30 +96,38 @@ test_that("phylogenetic data", {
 })
 
 test_that("invalid arguments", {
-  # initialize test data
+  # load data
   data(sim_projects, sim_actions, sim_features)
-  p <- problem(
-    sim_projects, sim_actions, sim_features, "name", "success",
-    "name", "cost", "name"
-  ) %>%
+  # build problem
+  p <-
+    problem(
+      sim_projects, sim_actions, sim_features, "name", "success",
+      "name", "cost", "name"
+    ) %>%
     add_max_wtd_sum_objective(0.16) %>%
     add_binary_decisions()
-  solution <- as.data.frame(matrix(rep(1, p$number_of_actions()),
-    nrow = 1,
-    dimnames = list(NULL, p$action_names())
-  ))
-  # verify that test data yields plot
+  # create solution
+  solution <- as.data.frame(
+    matrix(
+      rep(1, p$number_of_actions()),
+      nrow = 1,
+      dimnames = list(NULL, p$action_names())
+    )
+  )
+  # run tests
+  ## verify that test data yields plot
   expect_is(plot(p, solution), "ggplot")
-  # invalid problem
+  ## invalid problem
   expect_error({
     plot(
       problem(
         sim_projects, sim_actions, sim_features, "name", "success",
         "name", "cost", "name"
-      ), solution
+      ),
+      solution
     )
   })
-  # additional arguments
+  ## additional arguments
   expect_error({
     plot(p, s, extra_argument = NULL)
   })

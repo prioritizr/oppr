@@ -1,7 +1,7 @@
 context("star_phylogeny")
 
 test_that("valid arguments", {
-  # make data
+  # create data
   n <- letters[1:5]
   w <- round(runif(5), 2)
   s <- star_phylogeny(n, w)

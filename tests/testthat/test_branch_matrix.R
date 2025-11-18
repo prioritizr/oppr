@@ -14,10 +14,9 @@ test_that("phylo input", {
         0.22146653640084, 0.357243377715349, 0.00875525642186403,
         0.967695261584595,
         0.723838896490633, 0.0858941006008536
-      ), Nnode = 4L, .Names = c(
-        "edge",
-        "tip.label", "edge.length", "Nnode", "tip.labels"
-      )
+      ),
+      Nnode = 4L,
+      .Names = c("edge", "tip.label", "edge.length", "Nnode", "tip.labels")
     ),
     class = "phylo", order = "cladewise"
   )
@@ -31,14 +30,16 @@ test_that("phylo input", {
   s[4, c(7, 6)] <- 1
   s[5, c(8, 6)] <- 1
   s <- as_Matrix(s, "dgCMatrix")
-  # tests
+  # run tests
   expect_is(m, "dgCMatrix")
   expect_true(all(m == s))
 })
 
 test_that("invalid arguments", {
+  # create data
   tr <- ape::rtree(3)
   tr$edge[1] <- 0
+  # run tests
   expect_error(branch_matrix(tr))
   expect_error(branch_matrix("a"))
 })

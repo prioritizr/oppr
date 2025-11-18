@@ -1,17 +1,19 @@
 context("add_locked_out_constraints")
 
 test_that("integer (compile)", {
-  # create problem
+  # load data
   data(sim_projects, sim_actions, sim_features)
-  p <- problem(
-    sim_projects, sim_actions, sim_features,
-    "name", "success", "name", "cost", "name", FALSE
-  ) %>%
+  # build problem
+  p <-
+    problem(
+      sim_projects, sim_actions, sim_features,
+      "name", "success", "name", "cost", "name", FALSE
+    ) %>%
     add_max_wtd_sum_objective(1) %>%
     add_locked_out_constraints(which(sim_actions$locked_out))
   # compile problem
   o <- compile(p)
-  # check that constraints added correctly
+  # run tests
   expect_equal(o$ub(), replace(
     rep(1, length(o$obj())),
     which(sim_actions$locked_out), 0
@@ -19,31 +21,38 @@ test_that("integer (compile)", {
 })
 
 test_that("integer (solve)", {
+  # define skips
   skip_on_cran()
   skip_if_not(any_solvers_installed())
-  # create problem
+  # load data
   data(sim_projects, sim_actions, sim_features)
-  p <- problem(
-    sim_projects, sim_actions, sim_features,
-    "name", "success", "name", "cost", "name", FALSE
-  ) %>%
+  # create problem
+  p <-
+    problem(
+      sim_projects, sim_actions, sim_features,
+      "name", "success", "name", "cost", "name", FALSE
+    ) %>%
     add_max_wtd_sum_objective(1e+5) %>%
     add_locked_out_constraints(which(sim_actions$locked_out))
   # solve problem
   s <- solve(p)
-  # check solution
+  # run tests
   for (i in sim_actions$name[sim_actions$locked_out]) {
     expect_equal(s[[i]], 0)
   }
 })
 
 test_that("integer (invalid arguments)", {
+  # load data
   data(sim_projects, sim_actions, sim_features)
-  p <- problem(
-    sim_projects, sim_actions, sim_features,
-    "name", "success", "name", "cost", "name", FALSE
-  ) %>%
+  # build problem
+  p <-
+    problem(
+      sim_projects, sim_actions, sim_features,
+      "name", "success", "name", "cost", "name", FALSE
+    ) %>%
     add_max_wtd_sum_objective(1)
+  # run tests
   expect_error({
     add_locked_out_constraints(p, -1)
   })
@@ -59,17 +68,19 @@ test_that("integer (invalid arguments)", {
 })
 
 test_that("logical (compile)", {
-  # create problem
+  # load data
   data(sim_projects, sim_actions, sim_features)
-  p <- problem(
-    sim_projects, sim_actions, sim_features,
-    "name", "success", "name", "cost", "name", FALSE
-  ) %>%
+  # build problem
+  p <-
+    problem(
+      sim_projects, sim_actions, sim_features,
+      "name", "success", "name", "cost", "name", FALSE
+    ) %>%
     add_max_wtd_sum_objective(1) %>%
     add_locked_out_constraints(sim_actions$locked_out)
   # compile problem
   o <- compile(p)
-  # check that constraints added correctly
+  # run tests
   expect_equal(o$ub(), replace(
     rep(1, length(o$obj())),
     which(sim_actions$locked_out), 0
@@ -77,12 +88,16 @@ test_that("logical (compile)", {
 })
 
 test_that("logical (invalid arguments)", {
+  # load data
   data(sim_projects, sim_actions, sim_features)
-  p <- problem(
-    sim_projects, sim_actions, sim_features,
-    "name", "success", "name", "cost", "name", FALSE
-  ) %>%
+  # build problem
+  p <-
+    problem(
+      sim_projects, sim_actions, sim_features,
+      "name", "success", "name", "cost", "name", FALSE
+    ) %>%
     add_max_wtd_sum_objective(1)
+  # run tests
   expect_error({
     add_locked_out_constraints(p, FALSE)
   })
@@ -95,49 +110,62 @@ test_that("logical (invalid arguments)", {
 })
 
 test_that("logical (solve)", {
+  # define skips
   skip_on_cran()
   skip_if_not(any_solvers_installed())
-  # create problem
+  # load data
   data(sim_projects, sim_actions, sim_features)
-  p <- problem(
-    sim_projects, sim_actions, sim_features,
-    "name", "success", "name", "cost", "name", FALSE
-  ) %>%
+  # build problem
+  p <-
+    problem(
+      sim_projects, sim_actions, sim_features,
+      "name", "success", "name", "cost", "name", FALSE
+    ) %>%
     add_max_wtd_sum_objective(1e+5) %>%
     add_locked_out_constraints(sim_actions$locked_out)
   # solve problem
   s <- solve(p)
-  # check solution
+  # run tests
   for (i in sim_actions$name[sim_actions$locked_out]) {
     expect_equal(s[[i]], 0)
   }
 })
 
 test_that("character (compile)", {
-  # create problem
+  # load data
   data(sim_projects, sim_actions, sim_features)
-  p <- problem(
-    sim_projects, sim_actions, sim_features,
-    "name", "success", "name", "cost", "name", FALSE
-  ) %>%
+  # build problem
+  p <-
+    problem(
+      sim_projects, sim_actions, sim_features,
+      "name", "success", "name", "cost", "name", FALSE
+    ) %>%
     add_max_wtd_sum_objective(1) %>%
     add_locked_out_constraints("locked_out")
   # compile problem
   o <- compile(p)
-  # check that constraints added correctly
-  expect_equal(o$ub(), replace(
-    rep(1, length(o$obj())),
-    which(sim_actions$locked_out), 0
-  ))
+  # run tests
+  expect_equal(
+    o$ub(),
+    replace(
+      rep(1, length(o$obj())),
+      which(sim_actions$locked_out),
+      0
+    )
+  )
 })
 
 test_that("logical (invalid arguments)", {
+  # load data
   data(sim_projects, sim_actions, sim_features)
-  p <- problem(
-    sim_projects, sim_actions, sim_features,
-    "name", "success", "name", "cost", "name", FALSE
-  ) %>%
+  # build problem
+  p <-
+    problem(
+      sim_projects, sim_actions, sim_features,
+      "name", "success", "name", "cost", "name", FALSE
+    ) %>%
     add_max_wtd_sum_objective(1)
+  # run tests
   expect_error({
     add_locked_out_constraints(p, "name")
   })
@@ -150,19 +178,22 @@ test_that("logical (invalid arguments)", {
 })
 
 test_that("character (solve)", {
+  # define skips
   skip_on_cran()
   skip_if_not(any_solvers_installed())
-  # create problem
+  # load data
   data(sim_projects, sim_actions, sim_features)
-  p <- problem(
-    sim_projects, sim_actions, sim_features,
-    "name", "success", "name", "cost", "name", FALSE
-  ) %>%
+  # build problem
+  p <-
+    problem(
+      sim_projects, sim_actions, sim_features,
+      "name", "success", "name", "cost", "name", FALSE
+    ) %>%
     add_max_wtd_sum_objective(1e+5) %>%
     add_locked_out_constraints("locked_out")
   # solve problem
   s <- solve(p)
-  # check solution
+  # run tests
   for (i in sim_actions$name[sim_actions$locked_out]) {
     expect_equal(s[[i]], 0)
   }

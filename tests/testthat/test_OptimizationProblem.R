@@ -1,9 +1,9 @@
 context("OptimizationProblem")
 
 test_that("new problem", {
-  # data
+  # create data
   x <- new_optimization_problem()
-  # tests
+  # run tests
   expect_equal(x$ncell(), 0)
 })
 
@@ -30,7 +30,7 @@ test_that("get methods", {
     col_ids = c("d", "e", "f")
   )
   x <- predefined_optimization_problem(l, list(i = 4))
-  # tests
+  # run tests
   expect_equal(x$nrow(), 2)
   expect_equal(x$ncol(), 3)
   expect_equal(x$ncell(), length(l$A_x))

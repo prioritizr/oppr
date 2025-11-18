@@ -1,28 +1,34 @@
 context("add_rsymphony_solver")
 
 test_that("format", {
+  # define skips
   skip_on_cran()
   skip_if_not_installed("Rsymphony")
-  # make data
+  # load data
   data(sim_projects, sim_actions, sim_features)
-  p <- problem(
-    sim_projects, sim_actions, sim_features,
-    "name", "success", "name", "cost", "name", FALSE
-  ) %>%
+  # build problem
+  p <-
+    problem(
+      sim_projects, sim_actions, sim_features,
+      "name", "success", "name", "cost", "name", FALSE
+    ) %>%
     add_min_set_objective() %>%
     add_relative_targets(0.5) %>%
     add_binary_decisions() %>%
     add_rsymphony_solver()
+  # solve problem
   s <- solve(p)
-  # check that solution has correct properties
+  # run tests
   expect_true(inherits(s, "tbl_df"))
   expect_equal(nrow(s), 1)
   expect_gt(ncol(s), 0)
 })
 
 test_that("linear objective", {
+  # define skips
   skip_on_cran()
   skip_if_not_installed("Rsymphony")
+  # create data
   projects <- tibble::tibble(
     name = c("P1", "P2", "P3", "P4"),
     success = c(0.95, 0.96, 0.94, 1.00),
@@ -39,15 +45,18 @@ test_that("linear objective", {
     cost = c(0.10, 0.10, 0.15, 0)
   )
   features <- tibble::tibble(name = c("F1", "F2", "F3"))
-  # create problem
-  s <- problem(
-    projects, actions, features, "name", "success", "name", "cost",
-    "name"
-  ) %>%
+  # build problem
+  p <-
+    problem(
+      projects, actions, features, "name", "success", "name", "cost",
+      "name"
+    ) %>%
     add_max_wtd_sum_objective(budget = 0.16) %>%
     add_binary_decisions() %>%
-    add_rsymphony_solver() %>%
-    solve()
+    add_rsymphony_solver()
+  # solve problem
+  s <- solve(p)
+  # solve problem
   expect_equal(s$A1, 0)
   expect_equal(s$A2, 0)
   expect_equal(s$A3, 1)

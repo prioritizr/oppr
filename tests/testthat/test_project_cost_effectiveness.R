@@ -1,6 +1,6 @@
 context("project cost-effectiveness")
 
-test_that("valid arguments", {
+test_that("single action per project", {
   # create data
   projects <- tibble::tibble(
     name = c("P1", "P2", "P3", "P4"),
@@ -18,25 +18,29 @@ test_that("valid arguments", {
     cost = c(0.10, 0.10, 0.15, 0)
   )
   features <- tibble::tibble(name = c("F1", "F2", "F3"))
-  # create problem
-  p <- problem(
-    projects, actions, features, "name", "success", "name", "cost",
-    "name", FALSE
-  ) %>%
+  # build problem
+  p <-
+    problem(
+      projects, actions, features, "name", "success", "name", "cost",
+      "name", FALSE
+    ) %>%
     add_max_wtd_sum_objective(budget = 0.16) %>%
     add_binary_decisions()
   # calculate project cost-effectiveness
   o <- project_cost_effectiveness(p)
-  # tests
+  # run tests
   expect_is(o, "tbl_df")
   expect_equal(o$project, p$project_names())
   expect_equal(o$cost, c(0.1, 0.1, 0.15, 0))
-  expect_equal(o$obj, c(
-    ((0.95 * 0.91) + 0.2),
-    ((0.96 * 0.92) + 0.2),
-    ((0.94 * 0.8) + (0.94 * 0.8) + 0.1),
-    0.3
-  ))
+  expect_equal(
+    o$obj,
+    c(
+      ((0.95 * 0.91) + 0.2),
+      ((0.96 * 0.92) + 0.2),
+      ((0.94 * 0.8) + (0.94 * 0.8) + 0.1),
+      0.3
+    )
+  )
   ce <- c((o$obj - 0.3) / o$cost)
   ce[!is.finite(ce)] <- NaN
   expect_equal(o$benefit, o$obj - 0.3)
@@ -44,7 +48,7 @@ test_that("valid arguments", {
   expect_equal(o$rank, c(3, 2, 1, 4))
 })
 
-test_that("valid arguments (different number of actions/projects", {
+test_that("varying number of actions per project", {
   # create data
   projects <- tibble::tibble(
     name = c("P1", "P2"),
@@ -62,16 +66,17 @@ test_that("valid arguments (different number of actions/projects", {
     cost = c(0.10, 0.10, 0.15, 0)
   )
   features <- tibble::tibble(name = c("F1", "F2", "F3"))
-  # create problem
-  p <- problem(
-    projects, actions, features, "name", "success", "name", "cost",
-    "name", FALSE
-  ) %>%
+  # build problem
+  p <-
+    problem(
+      projects, actions, features, "name", "success", "name", "cost",
+      "name", FALSE
+    ) %>%
     add_max_wtd_sum_objective(budget = 0.16) %>%
     add_binary_decisions()
   # calculate project cost-effectiveness
   o <- project_cost_effectiveness(p)
-  # tests
+  # run tests
   expect_is(o, "tbl_df")
   expect_equal(o$project, p$project_names())
   expect_equal(o$cost, c(0.35, 0))
@@ -84,20 +89,22 @@ test_that("valid arguments (different number of actions/projects", {
 })
 
 test_that("invalid arguments", {
+  # load data
   data(sim_projects, sim_actions, sim_features)
+  # run tests
   expect_error({
     problem(
       sim_projects, sim_actions, sim_features, "name",
       "success", "name", "cost", "name"
     ) %>%
-      project_cost_effectiveness()
+    project_cost_effectiveness()
   })
   expect_error({
     problem(
       sim_projects, sim_actions, sim_features, "name",
       "success", "name", "cost", "name"
     ) %>%
-      add_minimum_set_objective() %>%
-      project_cost_effectiveness()
+    add_minimum_set_objective() %>%
+    project_cost_effectiveness()
   })
 })

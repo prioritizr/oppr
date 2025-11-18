@@ -1,13 +1,14 @@
 context("problem")
 
 test_that("valid arguments (include_baseline = FALSE)", {
-  # data
+  # load data
   data(sim_projects, sim_actions, sim_features)
+  # build problem
   p <- problem(
     sim_projects, sim_actions, sim_features,
     "name", "success", "name", "cost", "name", FALSE
   )
-  # tests
+  # run tests
   ## display methods
   expect_is(print(p), "logical")
   expect_is(show(p), "logical")
@@ -41,23 +42,27 @@ test_that("valid arguments (include_baseline = FALSE)", {
   )
   expect_equal(rownames(p$of_matrix()), sim_projects$name)
   expect_equal(colnames(p$of_matrix()), sim_features$name)
-  expect_true(all(
-    p$eof_matrix() ==
-      as_Matrix(
-        as.matrix(sim_projects[, sim_features$name]) *
-          matrix(p$project_success_probabilities(),
-            ncol = p$number_of_features(),
-            nrow = p$number_of_projects()
-          ),
-        "dgCMatrix"
-      ),
-    na.rm = TRUE
-  ))
+  expect_true(
+    all(
+      p$eof_matrix() ==
+        as_Matrix(
+          as.matrix(sim_projects[, sim_features$name]) *
+            matrix(p$project_success_probabilities(),
+              ncol = p$number_of_features(),
+              nrow = p$number_of_projects()
+            ),
+          "dgCMatrix"
+        ),
+      na.rm = TRUE
+    )
+  )
   expect_equal(rownames(p$eof_matrix()), sim_projects$name)
   expect_equal(colnames(p$eof_matrix()), sim_features$name)
   expect_true(
-    all(p$pa_matrix() ==
-      as_Matrix(as.matrix(sim_projects[, sim_actions$name]), "dgCMatrix"))
+    all(
+      p$pa_matrix() ==
+        as_Matrix(as.matrix(sim_projects[, sim_actions$name]), "dgCMatrix")
+    )
   )
   expect_equal(rownames(p$pa_matrix()), sim_projects$name)
   expect_equal(colnames(p$pa_matrix()), sim_actions$name)
@@ -69,13 +74,15 @@ test_that("valid arguments (include_baseline = FALSE)", {
 })
 
 test_that("valid arguments (include_baseline = TRUE)", {
-  # data
+  # load data
   data(sim_projects, sim_actions, sim_features)
-  p <- problem(
-    sim_projects, sim_actions, sim_features,
-    "name", "success", "name", "cost", "name", TRUE
-  )
-  # tests
+  # build problem
+  p <-
+    problem(
+      sim_projects, sim_actions, sim_features,
+      "name", "success", "name", "cost", "name", TRUE
+    )
+  # run tests
   ## display methods
   expect_is(print(p), "logical")
   expect_is(show(p), "logical")
@@ -100,25 +107,26 @@ test_that("valid arguments (include_baseline = TRUE)", {
     p$project_success_probabilities(),
     setNames(sim_projects$success, sim_projects$name)
   )
-  expect_true(all(
-    p$of_matrix() ==
-      as_Matrix(
-        as.matrix(sim_projects[, sim_features$name]),
-        "dgCMatrix"
-      ),
-    na.rm = TRUE
-  ))
+  expect_true(
+    all(
+      p$of_matrix() ==
+        as_Matrix(
+          as.matrix(sim_projects[, sim_features$name]),
+          "dgCMatrix"
+        ),
+      na.rm = TRUE
+    )
+  )
   expect_equal(rownames(p$of_matrix()), sim_projects$name)
   expect_equal(colnames(p$of_matrix()), sim_features$name)
-  sim_epf_matrix <-
-    as_Matrix(
-      as.matrix(sim_projects[, sim_features$name]) *
-        matrix(p$project_success_probabilities(),
-          ncol = p$number_of_features(),
-          nrow = p$number_of_projects()
-        ),
-      "dgCMatrix"
-    )
+  sim_epf_matrix <- as_Matrix(
+    as.matrix(sim_projects[, sim_features$name]) *
+      matrix(p$project_success_probabilities(),
+        ncol = p$number_of_features(),
+        nrow = p$number_of_projects()
+      ),
+    "dgCMatrix"
+  )
   for (i in seq_len(ncol(sim_epf_matrix))) {
     j <- which(sim_epf_matrix[-nrow(sim_epf_matrix), i] > 1e-10)
     curr_p <- sim_epf_matrix[j, i]
@@ -130,8 +138,10 @@ test_that("valid arguments (include_baseline = TRUE)", {
   expect_equal(rownames(p$eof_matrix()), sim_projects$name)
   expect_equal(colnames(p$eof_matrix()), sim_features$name)
   expect_true(
-    all(p$pa_matrix() ==
-      as_Matrix(as.matrix(sim_projects[, sim_actions$name]), "dgCMatrix"))
+    all(
+      p$pa_matrix() ==
+        as_Matrix(as.matrix(sim_projects[, sim_actions$name]), "dgCMatrix")
+    )
   )
   expect_equal(rownames(p$pa_matrix()), sim_projects$name)
   expect_equal(colnames(p$pa_matrix()), sim_actions$name)
@@ -143,8 +153,9 @@ test_that("valid arguments (include_baseline = TRUE)", {
 })
 
 test_that("invalid arguments", {
-  # verify that function works using built-in dataset
+  # load data
   data(sim_projects, sim_actions, sim_features)
+  # verify works with build in dataset
   expect_is(
     problem(
       sim_projects, sim_actions, sim_features,
@@ -152,7 +163,8 @@ test_that("invalid arguments", {
     ),
     "ProjectProblem"
   )
-  # invalid names
+  # run tests
+  ## invalid names
   expect_error({
     data(sim_projects, sim_actions, sim_features)
     problem(
@@ -188,7 +200,7 @@ test_that("invalid arguments", {
       "name", "success", "name", "cost", "name1"
     )
   })
-  # invalid success
+  ## invalid success
   expect_error({
     data(sim_projects, sim_actions, sim_features)
     sim_projects$success[1] <- NA_real_
@@ -221,7 +233,7 @@ test_that("invalid arguments", {
       "name", "success", "name", "cost", "name"
     )
   })
-  # invalid costs
+  ## invalid costs
   expect_error({
     data(sim_projects, sim_actions, sim_features)
     sim_actions$cost[1] <- NA_real_
@@ -246,7 +258,7 @@ test_that("invalid arguments", {
       "name", "success", "name", "cost", "name"
     )
   })
-  # invalid species probabilities
+  ## invalid species probabilities
   expect_error({
     data(sim_projects, sim_actions, sim_features)
     sim_projects$F1[1] <- NA_real_
@@ -293,7 +305,7 @@ test_that("invalid arguments", {
       "name", "success", "name", "cost", "name"
     )
   })
-  # feature columns
+  ## feature columns
   expect_error({
     data(sim_projects, sim_actions, sim_features)
     sim_features$name[1] <- NA_character_

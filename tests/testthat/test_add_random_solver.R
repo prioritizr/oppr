@@ -19,10 +19,11 @@ test_that("minimum set objective (1 solution)", {
   )
   features <- tibble::tibble(name = c("F1", "F2", "F3"))
   # create problem
-  p <- problem(
-    projects, actions, features, "name", "success", "name", "cost",
-    "name", FALSE
-  ) %>%
+  p <-
+    problem(
+      projects, actions, features, "name", "success", "name", "cost",
+      "name", FALSE
+    ) %>%
     add_min_set_objective() %>%
     add_absolute_targets(c(0.7, 0.7, 0.05)) %>%
     add_binary_decisions() %>%
@@ -31,7 +32,7 @@ test_that("minimum set objective (1 solution)", {
     add_random_solver(1, verbose = FALSE)
   # generate solution
   s <- solve(p)
-  # tests
+  # run tests
   expect_is(s, "tbl_df")
   expect_equal(s$solution, 1L)
   expect_equal(s$status, NA_character_)
@@ -65,10 +66,11 @@ test_that("minimum set objective (100 solutions, locked in)", {
   )
   features <- tibble::tibble(name = c("F1", "F2", "F3"))
   # create problem
-  p <- problem(
-    projects, actions, features, "name", "success", "name", "cost",
-    "name", FALSE
-  ) %>%
+  p <-
+    problem(
+      projects, actions, features, "name", "success", "name", "cost",
+      "name", FALSE
+    ) %>%
     add_min_set_objective() %>%
     add_absolute_targets(c(0.7, 0.7, 0.05)) %>%
     add_binary_decisions() %>%
@@ -82,10 +84,13 @@ test_that("minimum set objective (100 solutions, locked in)", {
   expect_equal(s$status, rep(NA_character_, 100))
   expect_true(all(s$obj %in% c(0.2, 0.25)))
   expect_equal(s$obj, s$cost)
-  expect_equal(s$cost, (0.1 * s$A1) +
-    (0.1 * s$A2) +
-    (0.15 * s$A3) +
-    (0.0 * s$A4))
+  expect_equal(
+    s$cost,
+    (0.1 * s$A1) +
+      (0.1 * s$A2) +
+      (0.15 * s$A3) +
+      (0.0 * s$A4)
+  )
   expect_equal(s$A1, rep(1, 100))
   expect_equal(s$A2 + s$A3, rep(1, 100))
   expect_equal(s$A4, rep(1, 100))
@@ -112,11 +117,12 @@ test_that("minimum set objective (100 solutions, locked out)", {
     cost = c(0.10, 0.10, 0.15, 0)
   )
   features <- tibble::tibble(name = c("F1", "F2", "F3"))
-  # create problem
-  p <- problem(
-    projects, actions, features, "name", "success", "name", "cost",
-    "name", FALSE
-  ) %>%
+  # build problem
+  p <-
+    problem(
+      projects, actions, features, "name", "success", "name", "cost",
+      "name", FALSE
+    ) %>%
     add_min_set_objective() %>%
     add_absolute_targets(c(0.7, 0.7, 0.05)) %>%
     add_binary_decisions() %>%
@@ -124,16 +130,19 @@ test_that("minimum set objective (100 solutions, locked out)", {
     add_random_solver(100, verbose = FALSE)
   # generate solution
   s <- solve(p)
-  # tests
+  # run tests
   expect_is(s, "tbl_df")
   expect_equal(s$solution, seq_len(100))
   expect_equal(s$status, rep(NA_character_, 100))
   expect_true(all(s$obj %in% c(0.15, 0.25)))
   expect_equal(s$obj, s$cost)
-  expect_equal(s$cost, (0.1 * s$A1) +
-    (0.1 * s$A2) +
-    (0.15 * s$A3) +
-    (0.0 * s$A4))
+  expect_equal(
+    s$cost,
+      (0.1 * s$A1) +
+      (0.1 * s$A2) +
+      (0.15 * s$A3) +
+      (0.0 * s$A4)
+  )
   expect_equal(s$A1, rep(0, 100))
   expect_true(all(s$F1 > 0.7))
   expect_true(all(s$F2 > 0.7))
@@ -158,27 +167,31 @@ test_that("maximum benefit objective (1 solution)", {
     cost = c(0.10, 0.10, 0.15, 0)
   )
   features <- tibble::tibble(name = c("F1", "F2", "F3"))
-  # create problem
-  p <- problem(
-    projects, actions, features, "name", "success", "name", "cost",
-    "name", FALSE
-  ) %>%
+  # build problem
+  p <-
+    problem(
+      projects, actions, features, "name", "success", "name", "cost",
+      "name", FALSE
+    ) %>%
     add_max_wtd_sum_objective(budget = 0.15) %>%
     add_binary_decisions() %>%
     add_locked_in_constraints(1) %>%
     add_locked_out_constraints(2) %>%
     add_random_solver(1, verbose = FALSE)
-  # generate solution
+  # solve problem
   s <- solve(p)
-  # tests
+  # run tests
   expect_is(s, "tbl_df")
   expect_equal(s$solution, 1L)
   expect_equal(s$status, NA_character_)
   expect_equal(s$obj, s$F1 + s$F2 + s$F3)
-  expect_equal(s$cost, (0.1 * s$A1) +
-    (0.1 * s$A2) +
-    (0.15 * s$A3) +
-    (0.0 * s$A4))
+  expect_equal(
+    s$cost,
+    (0.1 * s$A1) +
+      (0.1 * s$A2) +
+      (0.15 * s$A3) +
+      (0.0 * s$A4)
+  )
   expect_equal(s$A1, 1)
   expect_equal(s$A2, 0)
   expect_equal(s$A3, 0)
@@ -206,18 +219,19 @@ test_that("maximum benefit objective (100 solutions, locked in)", {
     cost = c(0.10, 0.10, 0.15, 0)
   )
   features <- tibble::tibble(name = c("F1", "F2", "F3"))
-  # create problem
-  p <- problem(
-    projects, actions, features, "name", "success", "name", "cost",
-    "name", FALSE
-  ) %>%
+  # build problem
+  p <-
+    problem(
+      projects, actions, features, "name", "success", "name", "cost",
+      "name", FALSE
+    ) %>%
     add_max_wtd_sum_objective(budget = 0.16) %>%
     add_binary_decisions() %>%
     add_locked_in_constraints(2) %>%
     add_random_solver(100, verbose = FALSE)
-  # generate solution
+  # solve problem
   s <- solve(p)
-  # tests
+  # run tests
   expect_is(s, "tbl_df")
   expect_equal(s$solution, seq_len(100))
   expect_equal(s$status, rep(NA_character_, 100))
@@ -246,16 +260,17 @@ test_that("maximum benefit objective (100 solutions, locked out)", {
     cost = c(0.10, 0.10, 0.15, 0)
   )
   features <- tibble::tibble(name = c("F1", "F2", "F3"))
-  # create problem
-  p <- problem(
-    projects, actions, features, "name", "success", "name", "cost",
-    "name", FALSE
-  ) %>%
+  # build problem
+  p <-
+    problem(
+      projects, actions, features, "name", "success", "name", "cost",
+      "name", FALSE
+    ) %>%
     add_max_wtd_sum_objective(budget = 0.15) %>%
     add_binary_decisions() %>%
     add_locked_out_constraints(2) %>%
     add_random_solver(100, verbose = FALSE)
-  # generate solution
+  # solve problem
   s <- solve(p)
   # tests
   expect_is(s, "tbl_df")
@@ -269,17 +284,19 @@ test_that("maximum benefit objective (100 solutions, locked out)", {
 })
 
 test_that("maximum benefit objective (zero cost project locked out)", {
-  # create problem
+  # load data
   data(sim_projects, sim_actions, sim_features)
-  p <- problem(
-    sim_projects, sim_actions, sim_features, "name", "success",
-    "name", "cost", "name", FALSE
-  ) %>%
+  # build problem
+  p <-
+    problem(
+      sim_projects, sim_actions, sim_features, "name", "success",
+      "name", "cost", "name", FALSE
+    ) %>%
     add_max_wtd_sum_objective(budget = 0.15) %>%
     add_binary_decisions() %>%
     add_locked_out_constraints(which(sim_actions$cost == 0)) %>%
     add_random_solver(100, verbose = FALSE)
-  # generate solution
+  # solve problem
   s <- solve(p)
   # tests
   expect_is(s, "tbl_df")
@@ -291,7 +308,7 @@ test_that("maximum benefit objective (zero cost project locked out)", {
 })
 
 test_that("maximum benefit (large problem, inc budgets)", {
-  # make data
+  # create data
   set.seed(1000)
   sim_data <- simulate_ptm_data(
     number_projects = 70, number_actions = 30,
@@ -301,20 +318,21 @@ test_that("maximum benefit (large problem, inc budgets)", {
   actions <- sim_data$actions
   features <- sim_data$features
   features$weight <- exp(runif(nrow(features), 1, 15))
-  # solutions and tests
+  # generate solutions and run tests
   for (p in seq(0, 1, length.out = 5)) {
-    # generate solutions
+    # generate solution
     b <- sum(actions$cost) * p
-    s <- problem(
-      projects = projects, actions = actions, features = features,
-      "name", "success", "name", "cost", "name"
-    ) %>%
+    s <-
+      problem(
+        projects = projects, actions = actions, features = features,
+        "name", "success", "name", "cost", "name"
+      ) %>%
       add_max_wtd_sum_objective(budget = b) %>%
       add_feature_weights("weight") %>%
       add_binary_decisions() %>%
       add_random_solver(verbose = FALSE, number_solutions = 5) %>%
       solve()
-    # tests
+    # run tests
     expect_is(s, "tbl_df")
     expect_equal(nrow(s), 5)
     expect_equal(s$status, rep(NA_character_, nrow(s)))
@@ -323,7 +341,7 @@ test_that("maximum benefit (large problem, inc budgets)", {
 })
 
 test_that("maximum benefit (large problem, inc budgets, locked constraints)", {
-  # make data
+  # create data
   set.seed(1000)
   sim_data <- simulate_ptm_data(
     number_projects = 70, number_actions = 30,
@@ -333,14 +351,15 @@ test_that("maximum benefit (large problem, inc budgets, locked constraints)", {
   actions <- sim_data$actions
   features <- sim_data$features
   features$weight <- exp(runif(nrow(features), 1, 15))
-  # solutions and tests
+  # generate solutions and run tests
   for (p in seq(0.15, 1, length.out = 5)) {
-    # generate solutions
+    # generate solution
     b <- sum(actions$cost) * p
-    s <- problem(
-      projects = projects, actions = actions, features = features,
-      "name", "success", "name", "cost", "name"
-    ) %>%
+    s <-
+      problem(
+        projects = projects, actions = actions, features = features,
+        "name", "success", "name", "cost", "name"
+      ) %>%
       add_max_wtd_sum_objective(budget = b) %>%
       add_feature_weights("weight") %>%
       add_locked_in_constraints(c(1, 2, 3)) %>%
@@ -348,7 +367,7 @@ test_that("maximum benefit (large problem, inc budgets, locked constraints)", {
       add_binary_decisions() %>%
       add_random_solver(verbose = FALSE, number_solutions = 5) %>%
       solve()
-    # tests
+    # run tests
     expect_is(s, "tbl_df")
     expect_equal(nrow(s), 5)
     expect_equal(s$status, rep(NA_character_, nrow(s)))
@@ -362,46 +381,49 @@ test_that("maximum benefit (large problem, inc budgets, locked constraints)", {
 })
 
 test_that("invalid arguments", {
+  # load data
   data(sim_projects, sim_actions, sim_features)
+  # build problem
   p <- problem(
     sim_projects, sim_actions, sim_features,
     "name", "success", "name", "cost", "name", FALSE
   )
-  # all solutions locked out
+  # run tests
+  ## load out all actions
   expect_warning({
     expect_error({
       p %>%
-        add_max_wtd_sum_objective(budget = 0.15) %>%
-        add_binary_decisions() %>%
-        add_locked_out_constraints(seq_len(nrow(sim_actions))) %>%
-        add_random_solver(1, verbose = FALSE) %>%
-        solve()
+      add_max_wtd_sum_objective(budget = 0.15) %>%
+      add_binary_decisions() %>%
+      add_locked_out_constraints(seq_len(nrow(sim_actions))) %>%
+      add_random_solver(1, verbose = FALSE) %>%
+      solve()
     })
   })
-  # locked in actions exceed budget
+  ## locked in actions exceed budget
   expect_warning({
     expect_error({
       p %>%
-        add_max_wtd_sum_objective(budget = 0.15) %>%
-        add_binary_decisions() %>%
-        add_locked_in_constraints(seq_len(nrow(sim_actions))) %>%
-        add_random_solver(1, verbose = FALSE) %>%
-        solve()
+      add_max_wtd_sum_objective(budget = 0.15) %>%
+      add_binary_decisions() %>%
+      add_locked_in_constraints(seq_len(nrow(sim_actions))) %>%
+      add_random_solver(1, verbose = FALSE) %>%
+      solve()
     })
   })
-  # locked out actions make targets impossible to meet
+  ## locked out actions make targets impossible to meet
   expect_warning({
     expect_error({
       p %>%
-        add_min_set_objective() %>%
-        add_absolute_targets(0.999) %>%
-        add_binary_decisions() %>%
-        add_locked_out_constraints(seq_len(nrow(sim_actions))) %>%
-        add_random_solver(1, verbose = FALSE) %>%
-        solve()
+      add_min_set_objective() %>%
+      add_absolute_targets(0.999) %>%
+      add_binary_decisions() %>%
+      add_locked_out_constraints(seq_len(nrow(sim_actions))) %>%
+      add_random_solver(1, verbose = FALSE) %>%
+      solve()
     })
   })
-  # number_solutions
+  ## number_solutions
   expect_error({
     add_random_solver(p, number_solutions = NA_integer_)
   })
@@ -417,7 +439,7 @@ test_that("invalid arguments", {
   expect_error({
     add_random_solver(p, number_solutions = TRUE)
   })
-  # verbose
+  ## verbose
   expect_error({
     add_random_solver(p, verbose = NA)
   })

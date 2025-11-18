@@ -3,16 +3,19 @@ context("add_manual_targets")
 test_that("valid arguments", {
   # load data
   data(sim_projects, sim_actions, sim_features)
-  # create problem
-  p <- problem(
-    sim_projects, sim_actions, sim_features,
-    "name", "success", "name", "cost", "name", FALSE
-  ) %>%
-    add_manual_targets(data.frame(
-      feature = sim_features$name[seq_len(4)],
-      target = seq_len(4) * 0.1,
-      type = "absolute"
-    ))
+  # build problem
+  p <-
+    problem(
+      sim_projects, sim_actions, sim_features,
+      "name", "success", "name", "cost", "name", FALSE
+    ) %>%
+    add_manual_targets(
+      data.frame(
+        feature = sim_features$name[seq_len(4)],
+        target = seq_len(4) * 0.1,
+        type = "absolute"
+      )
+    )
   # calculate absolute targets
   targets <- p$targets$output()
   # run tests
@@ -27,12 +30,14 @@ test_that("valid arguments", {
 })
 
 test_that("invalid arguments", {
+  # load data
   data(sim_projects, sim_actions, sim_features)
+  # build problem
   p <- problem(
     sim_projects, sim_actions, sim_features,
     "name", "success", "name", "cost", "name", FALSE
   )
-  # tests
+  # run tests
   ## empty data.frame
   expect_error({
     add_manual_targets(p, data.frame())

@@ -1,3 +1,5 @@
+context("simulate_multi_ppp_data")
+
 test_that("works", {
   # create data
   d <- simulate_multi_ppp_data(
@@ -5,7 +7,7 @@ test_that("works", {
     number_features = 7,
     number_actions = 5
   )
-  # tests
+  # run tests
   ## classes
   expect_is(d, "list")
   expect_is(d$projects, "list")
