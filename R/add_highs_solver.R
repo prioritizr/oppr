@@ -63,7 +63,7 @@ NULL
 
 #' @rdname add_highs_solver
 #' @export
-add_highs_solver <- function(x, gap = 0.1, time_limit = .Machine$integer.max,
+add_highs_solver <- function(x, gap = 0, time_limit = .Machine$integer.max,
                              presolve = TRUE, threads = 1,
                              verbose = TRUE,
                              control = list()) {

@@ -17,7 +17,7 @@ NULL
 #'   it has found a solution within 1% of optimality.
 #'   Additionally, a value of 0 will result in the solver stopping
 #'   when it has found an optimal solution.
-#'   The default value is 0.1 (i.e. 10% from optimality).
+#'   The default value is 0 (i.e. 0% from optimality).
 #'
 #' @param number_solutions `integer` number of solutions desired.
 #'   Defaults to 1. Note that the number of returned solutions can sometimes
