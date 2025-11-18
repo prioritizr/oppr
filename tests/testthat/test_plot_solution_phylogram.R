@@ -1,4 +1,7 @@
 test_that("some projects funded", {
+  # define skips
+  skip_on_cran()
+  skip_if_not_installed("ggtree")
   # create data
   projects <- tibble::tibble(
     name = letters[1:4],
@@ -18,6 +21,8 @@ test_that("some projects funded", {
     locked_out = FALSE
   )
   features <- tibble::tibble(name = c("F1", "F2", "F3"))
+  tree <- ape::read.tree(text = "((F1,F2),F3);")
+  tree$edge.length <- c(100, 5, 5, 5)
   solution <- tibble::tibble(A1 = 1, A2 = 1, A3 = 0, A4 = 1)
   # build problem
   p <-
@@ -25,12 +30,12 @@ test_that("some projects funded", {
       projects, actions, features, "name", "success", "name", "cost",
       "name"
     ) %>%
-    add_max_wtd_sum_objective(0.16) %>%
+    add_max_phylo_div_objective(0.16, tree) %>%
     add_binary_decisions()
   # make plot
-  g <- plot_feature_persistence(p, solution)
+  g <- plot_solution_phylogram(p, solution)
   # run tests
-  expect_s3_class(g, "ggplot")
+  expect_s3_class(g, "ggtree")
   expect_true({
     f <- tempfile(fileext = ".png")
     png(f)
@@ -42,6 +47,9 @@ test_that("some projects funded", {
 })
 
 test_that("all projects funded", {
+  # define skips
+  skip_on_cran()
+  skip_if_not_installed("ggtree")
   # create data
   projects <- tibble::tibble(
     name = letters[1:4],
@@ -61,6 +69,8 @@ test_that("all projects funded", {
     locked_out = FALSE
   )
   features <- tibble::tibble(name = c("F1", "F2", "F3"))
+  tree <- ape::read.tree(text = "((F1,F2),F3);")
+  tree$edge.length <- c(100, 5, 5, 5)
   solution <- tibble::tibble(A1 = 1, A2 = 1, A3 = 1, A4 = 1)
   # build problem
   p <-
@@ -68,12 +78,12 @@ test_that("all projects funded", {
       projects, actions, features, "name", "success", "name", "cost",
       "name"
     ) %>%
-    add_max_wtd_sum_objective(0.16) %>%
+    add_max_phylo_div_objective(0.16, tree) %>%
     add_binary_decisions()
   # make plot
-  g <- plot_feature_persistence(p, solution)
+  g <- plot_solution_phylogram(p, solution)
   # run tests
-  expect_s3_class(g, "ggplot")
+  expect_s3_class(g, "ggtree")
   expect_true({
     f <- tempfile(fileext = ".png")
     png(f)
@@ -85,6 +95,9 @@ test_that("all projects funded", {
 })
 
 test_that("no projects funded", {
+  # define skips
+  skip_on_cran()
+  skip_if_not_installed("ggtree")
   # create data
   projects <- tibble::tibble(
     name = letters[1:4],
@@ -104,6 +117,8 @@ test_that("no projects funded", {
     locked_out = FALSE
   )
   features <- tibble::tibble(name = c("F1", "F2", "F3"))
+  tree <- ape::read.tree(text = "((F1,F2),F3);")
+  tree$edge.length <- c(100, 5, 5, 5)
   solution <- tibble::tibble(A1 = 0, A2 = 0, A3 = 0, A4 = 0)
   # build problem
   p <-
@@ -111,12 +126,12 @@ test_that("no projects funded", {
       projects, actions, features, "name", "success", "name", "cost",
       "name"
     ) %>%
-    add_max_wtd_sum_objective(0.16) %>%
+    add_max_phylo_div_objective(0.16, tree) %>%
     add_binary_decisions()
   # make plot
-  g <- plot_feature_persistence(p, solution)
+  g <- plot_solution_phylogram(p, solution)
   # run tests
-  expect_s3_class(g, "ggplot")
+  expect_s3_class(g, "ggtree")
   expect_true({
     f <- tempfile(fileext = ".png")
     png(f)
@@ -128,15 +143,18 @@ test_that("no projects funded", {
 })
 
 test_that("invalid arguments", {
+  # define skips
+  skip_on_cran()
+  skip_if_not_installed("ggtree")
   # load data
-  data(sim_projects, sim_actions, sim_features)
+  data(sim_projects, sim_actions, sim_features, sim_tree)
   # build problem
   p <-
     problem(
       sim_projects, sim_actions, sim_features, "name", "success",
       "name", "cost", "name"
     ) %>%
-    add_max_wtd_sum_objective(0.16) %>%
+    add_max_phylo_div_objective(0.16, sim_tree) %>%
     add_binary_decisions()
   # create solution
   solution <- as.data.frame(
@@ -148,10 +166,10 @@ test_that("invalid arguments", {
   )
   # run tests
   ## verify that test data yields plot
-  expect_s3_class(plot_feature_persistence(p, solution), "ggplot")
+  expect_s3_class(plot_solution_phylogram(p, solution), "ggtree")
   ## invalid problem
   expect_error({
-    plot_feature_persistence(
+    plot_solution_phylogram(
       problem(
         sim_projects, sim_actions, sim_features, "name", "success",
         "name", "cost", "name"
@@ -161,40 +179,40 @@ test_that("invalid arguments", {
   })
   ## invalid solution
   expect_error({
-    plot_feature_persistence(p, as.matrix(solution))
+    plot_solution_phylogram(p, as.matrix(solution))
   })
   expect_error({
     s <- solution
     s[[1]] <- NA_real_
-    plot_feature_persistence(p, s)
+    plot_solution_phylogram(p, s)
   })
   expect_error({
     s <- solution
     s[[1]] <- "a"
-    plot_feature_persistence(p, s)
+    plot_solution_phylogram(p, s)
   })
   expect_error({
     s <- solution
-    plot_feature_persistence(p, solution[, -1, drop = FALSE])
+    plot_solution_phylogram(p, solution[, -1, drop = FALSE])
   })
   ## invalid n
   expect_error({
-    plot_feature_persistence(p, solution, NA_integer_)
+    plot_solution_phylogram(p, solution, NA_integer_)
   })
   expect_error({
-    plot_feature_persistence(p, solution, "a")
+    plot_solution_phylogram(p, solution, "a")
   })
   expect_error({
-    plot_feature_persistence(p, solution, TRUE)
+    plot_solution_phylogram(p, solution, TRUE)
   })
   ## invalid hjust
   expect_error({
-    plot_feature_persistence(p, solution, 1, NA_real_)
+    plot_solution_phylogram(p, solution, 1, NA_real_)
   })
   expect_error({
-    plot_feature_persistence(p, solution, 1, "a")
+    plot_solution_phylogram(p, solution, 1, "a")
   })
   expect_error({
-    plot_feature_persistence(p, solution, 1, TRUE)
+    plot_solution_phylogram(p, solution, 1, TRUE)
   })
 })

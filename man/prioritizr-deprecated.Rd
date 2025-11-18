@@ -3,9 +3,15 @@
 \name{prioritizr-deprecated}
 \alias{prioritizr-deprecated}
 \alias{add_max_richness_objective}
+\alias{plot_feature_persistence}
+\alias{plot_phylo_persistence}
 \title{Deprecation notice}
 \usage{
 add_max_richness_objective(...)
+
+plot_feature_persistence(...)
+
+plot_phylo_persistence(...)
 }
 \arguments{
 \item{...}{not used.}
@@ -30,6 +36,12 @@ The following functions have been deprecated:
 
 \item{\code{add_max_richness_objective()}}{renamed
 as the \code{\link[=add_max_wtd_sum_objective]{add_max_wtd_sum_objective()}} function.}
+
+\item{\code{plot_feature_persistence()}}{renamed
+as the \code{\link[=plot_solution_barplot]{plot_solution_barplot()}} function.}
+
+\item{\code{plot_phylo_persistence()}}{renamed
+as the \code{\link[=plot_solution_phylogram]{plot_solution_phylogram()}} function.}
 
 }
 }

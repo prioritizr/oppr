@@ -35,7 +35,8 @@ the plot be returned instead of the plot? Defaults to \code{FALSE}.}
 \item{...}{not used.}
 }
 \value{
-A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
+A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object. If \code{return_data = TRUE}, then a \code{data.frame}
+is returned.
 }
 \description{
 Create a plot to visualize how well a solution to a project prioritization
@@ -45,18 +46,20 @@ Create a plot to visualize how well a solution to a project prioritization
 The type of plot that this function creates depends on the
 problem objective. If the problem objective contains phylogenetic data,
 then this function plots a phylogenetic tree where each branch
-is colored according to its probability of persistence. Otherwise,
+is colored according to its probability of persistence based on
+the projects selected for funding by the solution. Otherwise,
 if the problem does not contain phylogenetic data, then this function
 creates a bar plot where each bar corresponds to a different feature.
-The height of the bars indicate each feature's probability of
-persistence, and the width of the bars indicate each feature's weight.
-
-Features that directly benefit from at least a single
+The height of the bars indicate the expected outcome for each feature
+based on the projects selected for funding by the solution, and the
+color of the bars indicate each feature's weight.
+Additionally, regardless of the problem objective, features
+that directly benefit from at least a single
 completely funded project with a non-zero cost are depicted with an
 asterisk symbol. Additionally, features that indirectly benefit from funded
-projects---because they are associated with partially funded projects that
+projects -- because they are associated with partially funded projects that
 have non-zero costs and share actions with at least one funded
-project---are depicted with an open circle symbol.
+project -- are depicted with an open circle symbol.
 }
 \examples{
 # load data
@@ -98,8 +101,7 @@ plot(p2, s2)
 }
 }
 \seealso{
-This function is essentially a wrapper for
-\code{\link[=plot_feature_persistence]{plot_feature_persistence()}} and
-\code{\link[=plot_phylo_persistence]{plot_phylo_persistence()}}, so refer to the documentation
+This function is a wrapper for \code{\link[=plot_solution_phylogram]{plot_solution_phylogram()}} and
+\code{\link[=plot_solution_barplot]{plot_solution_barplot()}}, so refer to the documentation
 for these functions for more information.
 }

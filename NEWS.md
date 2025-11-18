@@ -2,13 +2,18 @@
 
 - New `multi_problem()` and `add_ref_point_approach()` functions for multi-
   objective optimization.
+- Update `problem()` to be compatible with outcome data that are not
+  probabilities of persistence (e.g., amount of land covered by an ecosystem).
 - Update class system to use _R6_ classes instead of _proto_ classes.
+- Update `plot()` functions to be compatible with updates to _ggplot2_ package.
+- Update _Matrix_ package version dependency (#20).
+- Update unit tests for compatibility with _testthat_ edition 3.
+- Rename `add_max_richness_objective()` to be `add_max_wtd_sum_objective()`.
+- Rename `plot_phylo_persistence()` to be `plot_solution_phylogram()`.
+- Rename `plot_feature_persistence()` to be `plot_solution_barplot()`.
+- Rename `add_max_richness_objective()` to be `add_max_wtd_sum_objective()`.
 - Remove unused functionality for _shiny_ application integration.
 - Remove S3 methods for interacting with `new_optimization_problem()` objects.
-- Update `plot_phylo_persistence()` to be compatible with updates to
-  _ggplot2_ package.
-- Rename `add_max_richness_objective()` to be `add_max_wtd_sum_objective()`.
-- Update _Matrix_ package version dependency (#20).
 
 # oppr 1.0.5
 

@@ -24,6 +24,8 @@ Set the objective of a project prioritization \code{\link[=problem]{problem()}} 
 maximize the phylogenetic diversity that is expected to persist into the
 future, whilst ensuring that the cost of the solution is within a
 pre-specified budget (Bennett \emph{et al.} 2014, Faith 2008).
+Note that this objective requires that the outcome data in the
+\code{\link[=problem]{problem()}} reflect probabilities of persistence.
 }
 \details{
 A problem objective is used to specify the overall goal of the

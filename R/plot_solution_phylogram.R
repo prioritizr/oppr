@@ -10,6 +10,17 @@ NULL
 #' @inheritParams plot.ProjectProblem
 #'
 #' @details
+#' In this plot, each phylogenetic branch is colored according to probability
+#' that it is expected to persist into the future (per Faith 2008),
+#' based on the projects selected for funding by the solution.
+#' Features that directly benefit from at least a single
+#' completely funded project with a non-zero cost are depicted with an
+#' asterisk symbol. Additionally, features that indirectly benefit from funded
+#' projects -- because they are associated with partially funded projects that
+#' have non-zero costs and share actions with at least one completely funded
+#' project -- are depicted with an open circle symbol.
+#'
+#' @section Dependencies:
 #' This function requires the \pkg{ggtree} (Yu *et al.* 2017).
 #' Since this package is distributed exclusively
 #' through [Bioconductor](https://bioconductor.org), and is not
@@ -22,15 +33,8 @@ NULL
 #' ```
 #'  If the installation process fails, please consult the package's
 #'  [online documentation](https://bioconductor.org/packages/release/bioc/html/ggtree.html).
-#'
-#' In this plot, each phylogenetic branch is colored according to probability
-#' that it is expected to persist into the future (see Faith 2008).
-#' Features that directly benefit from at least a single
-#' completely funded project with a non-zero cost are depicted with an
-#' asterisk symbol. Additionally, features that indirectly benefit from funded
-#' projects---because they are associated with partially funded projects that
-#' have non-zero costs and share actions with at least one completely funded
-#' project---are depicted with an open circle symbol.
+
+#' @inherit plot.ProjectProblem return
 #'
 #' @references
 #' Faith DP (2008) Threatened species and the potential loss of
@@ -116,11 +120,12 @@ NULL
 #' print(plot_data)
 #' }
 #' @export
-plot_phylo_persistence <- function(x, solution, n = 1, symbol_hjust = 0.007,
-                                   return_data = FALSE) {
+plot_solution_phylogram <- function(x, solution, n = 1, symbol_hjust = 0.007,
+                                    return_data = FALSE) {
   # assertions
   ## assert that ggtree R package is installed
-  assertthat::assert_that(requireNamespace("ggtree", quietly = TRUE),
+  assertthat::assert_that(
+    requireNamespace("ggtree", quietly = TRUE),
     msg = "ggtree R package not installed."
   )
   ## coerce solution to tibble if just a regular data.frame
@@ -146,8 +151,17 @@ plot_phylo_persistence <- function(x, solution, n = 1, symbol_hjust = 0.007,
     assertthat::noNA(return_data)
   )
   assertthat::assert_that(!is.Waiver(x$objective),
-    msg = "argument to x does not have a defined objective"
+    msg = "`x` does not have a defined objective"
   )
+  assertthat::assert_that(
+    all(x$of_matrix() >= 0, na.rm = TRUE),
+    all(x$of_matrix() <= 1, na.rm = TRUE),
+    msg = paste(
+      "The outcome associated with each project in `x`",
+      "must be a probability value for all features."
+    )
+  )
+
   # preliminary data processing
   ## extract tree
   tree <- x$feature_phylogeny()

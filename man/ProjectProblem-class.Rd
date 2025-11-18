@@ -353,8 +353,8 @@ A \code{numeric} vector.
 \if{html}{\out{<a id="method-ProjectProblem-of_matrix"></a>}}
 \if{latex}{\out{\hypertarget{method-ProjectProblem-of_matrix}{}}}
 \subsection{Method \code{of_matrix()}}{
-Obtain information on the outcome for each feature assuming that each
-project is funded is successfully completed.
+Obtain information on the outcome for each feature that would be
+expected if each project funded and is successfully completed.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ProjectProblem$of_matrix()}\if{html}{\out{</div>}}
 }
@@ -381,8 +381,8 @@ A \link[Matrix:dgCMatrix-class]{Matrix::dgCMatrix} object.
 \if{latex}{\out{\hypertarget{method-ProjectProblem-eof_matrix}{}}}
 \subsection{Method \code{eof_matrix()}}{
 Calculate the expected outcome for each feature assuming that each
-project is funded, and accounting for the potential failure of the
-project.
+project is funded and accounting for the possibility that
+funded projects may fail to be successfully completed.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ProjectProblem$eof_matrix()}\if{html}{\out{</div>}}
 }

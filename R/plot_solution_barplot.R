@@ -3,25 +3,24 @@ NULL
 
 #' Plot a bar plot to visualize a project prioritization
 #'
-#' Create a bar plot to visualize how likely features are to persist into
-#' the future under a solution to a project prioritization [problem()].
+#' Create a bar plot to visualize the expected outcome associated with
+#' each feature given the projects selected for funding by a solution.
 #'
 #' @inheritParams plot.ProjectProblem
 #'
-#' @details In this plot, each bar corresponds to a different feature.
-#'   The length of each bar indicates the probability that a given feature
-#'   will persist into the future, and the color of each bar indicates
-#'   the weight for a given feature.
-#'   Features that directly benefit from at least a single completely funded
-#'   project with a non-zero cost are depicted with an asterisk symbol.
-#'   Additionally, features that indirectly benefit from funded
-#'   projects---because they are associated with partially funded
-#'   projects that have non-zero costs and share actions with at least one
-#'   completely funded project---are depicted with an open circle symbol.
+#' @details
+#' In this plot, each bar corresponds to a different feature.
+#' The length of each bar indicates the expected outcome for the
+#' a given feature (e.g., probability of persistence),
+#' and the color of each bar indicates the weight for a given feature.
+#' Features that directly benefit from at least a single completely funded
+#' project with a non-zero cost are depicted with an asterisk symbol.
+#' Additionally, features that indirectly benefit from funded
+#' projects -- because they are associated with partially funded
+#' projects that have non-zero costs and share actions with at least one
+#' completely funded project -- are depicted with an open circle symbol.
 #'
-#' @return A [ggplot2::ggplot()] object, or a
-#'   [tibble::tbl_df()] object if `return_data` is
-#'   `TRUE`.
+#' @inherit plot.ProjectProblem return
 #'
 #' @examples
 #' # set seed for reproducibility
@@ -64,8 +63,8 @@ NULL
 #' print(plot_data)
 #' }
 #' @export
-plot_feature_persistence <- function(x, solution, n = 1, symbol_hjust = 0.007,
-                                     return_data = FALSE) {
+plot_solution_barplot <- function(x, solution, n = 1, symbol_hjust = 0.007,
+                                  return_data = FALSE) {
   # assertions
   ## coerce solution to tibble if just a regular data.frame
   if (inherits(solution, "data.frame") && !inherits(solution, "tbl_df")) {
@@ -90,7 +89,7 @@ plot_feature_persistence <- function(x, solution, n = 1, symbol_hjust = 0.007,
     assertthat::noNA(return_data)
   )
   assertthat::assert_that(!is.Waiver(x$objective),
-    msg = "argument to x does not have a defined objective"
+    msg = "`x` does not have a defined objective"
   )
   # preliminary processing
   ## subset solution and reorder columns
@@ -142,8 +141,8 @@ plot_feature_persistence <- function(x, solution, n = 1, symbol_hjust = 0.007,
     completely_funded_fts
   )
 
-  ## pre-compute probabilities that each branch will persist
-  feature_probs <- rcpp_expected_persistences(
+  ## compute expected outcomes for each feature persist
+  feature_outcomes <- rcpp_expected_persistences(
     x$pa_matrix(),
     x$eof_matrix()[, x$feature_names(), drop = FALSE],
     as_Matrix(diag(x$number_of_features()), "dgCMatrix"),
@@ -153,7 +152,7 @@ plot_feature_persistence <- function(x, solution, n = 1, symbol_hjust = 0.007,
   ## create plotting data
   d <- tibble::tibble(
     name = x$feature_names(),
-    prob = feature_probs,
+    outcome = feature_outcomes,
     weight = x$feature_weights(),
     status = NA_character_
   )
@@ -171,20 +170,23 @@ plot_feature_persistence <- function(x, solution, n = 1, symbol_hjust = 0.007,
         d,
         ggplot2::aes(
           x = !!rlang::sym("name"),
-          y = !!rlang::sym("prob"),
+          y = !!rlang::sym("outcome"),
           fill = !!rlang::sym("weight")
         )
       ) +
       ggplot2::geom_col() +
       ggplot2::scale_y_continuous(
-        name = "Probability of persistence", limits = c(0, 1)
+        name = "Expected outcome",
+        limits = c(0, NA_real_)
       ) +
       ggplot2::xlab("") +
       ggplot2::scale_fill_gradientn(
         name = "Weight",
         colors = viridisLite::inferno(
-          150,
-          begin = 0, end = 0.9, direction = -1
+          n = 150,
+          begin = 0,
+          end = 0.9,
+          direction = -1
         )
       ) +
       ggplot2::theme(legend.position = "right") +

@@ -21,22 +21,25 @@ problem(
 \item{projects}{\code{\link[base:data.frame]{base::data.frame()}} or \code{\link[tibble:tibble]{tibble::tibble()}} table
 containing project data. Here, each row
 should correspond to a different project and columns should contain data
-that correspond to each project. This object should contain data that
+that correspond to each project. It should contain data that
 denote (i)
 the name of each project (specified in the argument to
 \code{project_name_column}), (ii) the
 probability that each project will succeed if all of its actions are funded
 (specified in the argument to \code{project_success_column}), (iii)
-the enhanced probability that each feature will persist if it
-is funded (using a column for each feature),
+the outcome (e.g., probability of species' persistence,
+amount of land covered by an ecosystem) that would be
+expected for each feature assuming that the project
+if successfully completed (using a column for each feature),
 and (iv) and which actions are associated with which projects
-(using a column for each action). This object
-must have a baseline project, with a zero cost value, that represents the
-probability that each feature will persist if no other conservation
-project is funded.
-Since each feature is assigned the greatest probability of persistence
-given the funded projects in a solution, the combined benefits of multiple
-projects can be encoded by creating additional projects that represent
+(using a column for each action). Additionally,
+\code{projects} must have a baseline project (with a zero cost value) that
+represents the outcome that would be expected if no other project
+is successfully completed for each feature.
+Since each feature is assigned the greatest outcome value
+based on the projects selected for funding in a solution, the combined
+benefits of multiple
+projects can be specified by creating additional projects that represent
 "combined projects". For instance, a habitat restoration project might
 cost $100 and mean that a feature has a 40\% chance of persisting, and
 a pest eradication project might cost $50 and mean that a feature has a
@@ -94,13 +97,15 @@ the name for each feature. This argument corresponds to the
 \code{feature} table. Note that the feature names must not contain any
 duplicates or missing values.}
 
-\item{adjust_for_baseline}{\code{logical} should the probability of
-features persisting when projects are funded be adjusted to account for the
-probability of features persisting under the baseline "do nothing"
-scenario in the event that the funded projects fail to succeed?
-This should always be \code{TRUE}, except when funding a project
-means that the baseline "do nothing" scenario does not apply if a funded
-project fails. Defaults to \code{TRUE}.}
+\item{adjust_for_baseline}{\code{logical} should the expected outcome
+associated with a particular project be adjusted to account for
+the outcome associated with the baseline project in the event
+that the particular project is not successfully competed?
+This should almost always be set to \code{TRUE} to ensure that
+the calculations do not assume that failing to successfully
+complete a funded project will result in an outcome with a value of zero
+(which is often worse than the baseline project).
+Defaults to \code{TRUE}.}
 
 \item{baseline_project_name}{\code{character} name of the baseline project.
 Defaults to \code{NULL} such that the baseline project name is automatically
@@ -151,7 +156,7 @@ objective is usually some measure of utility (e.g., the net
 probability of each feature persisting into the future), the
 control variables determine which actions should be funded or not,
 the decision variables contain additional information needed to
-ensure correct calculations,  and the
+ensure correct calculations, and the
 constraints impose limits such as the total budget available for funding
 management actions. For more information on the mathematical
 formulations used in this package, please refer to the manual entries for

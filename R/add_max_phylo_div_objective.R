@@ -7,6 +7,8 @@ NULL
 #' maximize the phylogenetic diversity that is expected to persist into the
 #' future, whilst ensuring that the cost of the solution is within a
 #' pre-specified budget (Bennett *et al.* 2014, Faith 2008).
+#' Note that this objective requires that the outcome data in the
+#' [problem()] reflect probabilities of persistence.
 #'
 #' @inheritParams add_max_wtd_sum_objective
 #'
@@ -217,6 +219,14 @@ add_max_phylo_div_objective <- function(x, budget, tree) {
     inherits(tree, "phylo"),
     is_valid_phylo(tree),
     setequal(tree$tip.label, x$feature_names())
+  )
+  assertthat::assert_that(
+    all(x$of_matrix() >= 0, na.rm = TRUE),
+    all(x$of_matrix() <= 1, na.rm = TRUE),
+    msg = paste(
+      "The outcome associated with each project in `x`",
+      "must be a probability value for all features."
+    )
   )
   # add edge lengths if missing
   if (is.null(tree$edge.length)) {

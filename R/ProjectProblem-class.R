@@ -267,8 +267,8 @@ ProjectProblem <- R6::R6Class(
     },
 
     #' @description
-    #' Obtain information on the outcome for each feature assuming that each
-    #' project is funded is successfully completed.
+    #' Obtain information on the outcome for each feature that would be
+    #' expected if each project funded and is successfully completed.
     #' @return A [Matrix::dgCMatrix-class] object.
     of_matrix = function() {
       m <- as_Matrix(
@@ -305,8 +305,8 @@ ProjectProblem <- R6::R6Class(
 
     #' @description
     #' Calculate the expected outcome for each feature assuming that each
-    #' project is funded, and accounting for the potential failure of the
-    #' project.
+    #' project is funded and accounting for the possibility that
+    #' funded projects may fail to be successfully completed.
     #' @return A [Matrix::dgCMatrix-class] object.
     eof_matrix = function() {
       # extract the project outcome data and multiply by success probabilities

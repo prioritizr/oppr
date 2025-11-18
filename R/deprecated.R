@@ -25,6 +25,12 @@ NULL
 #' \item{`add_max_richness_objective()`}{renamed
 #'   as the [add_max_wtd_sum_objective()] function.}
 #'
+#' \item{`plot_feature_persistence()`}{renamed
+#'   as the [plot_solution_barplot()] function.}
+#'
+#' \item{`plot_phylo_persistence()`}{renamed
+#'   as the [plot_solution_phylogram()] function.}
+#'
 #' }
 #'
 #' @keywords deprecated
@@ -38,6 +44,24 @@ add_max_richness_objective <- function(...) {
   error_defunct(
     old = "add_max_richness_objective",
     new = "add_max_wtd_sum_objective"
+  )
+}
+
+#' @rdname prioritizr-deprecated
+#' @export
+plot_feature_persistence <- function(...) {
+  error_defunct(
+    old = "plot_feature_persistence",
+    new = "plot_solution_barplot"
+  )
+}
+
+#' @rdname prioritizr-deprecated
+#' @export
+plot_phylo_persistence <- function(...) {
+  error_defunct(
+    old = "plot_phylo_persistence",
+    new = "plot_solution_phylogram"
   )
 }
 

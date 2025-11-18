@@ -1,7 +1,4 @@
 test_that("some projects funded", {
-  # define skips
-  skip_on_cran()
-  skip_if_not_installed("ggtree")
   # create data
   projects <- tibble::tibble(
     name = letters[1:4],
@@ -21,8 +18,6 @@ test_that("some projects funded", {
     locked_out = FALSE
   )
   features <- tibble::tibble(name = c("F1", "F2", "F3"))
-  tree <- ape::read.tree(text = "((F1,F2),F3);")
-  tree$edge.length <- c(100, 5, 5, 5)
   solution <- tibble::tibble(A1 = 1, A2 = 1, A3 = 0, A4 = 1)
   # build problem
   p <-
@@ -30,12 +25,12 @@ test_that("some projects funded", {
       projects, actions, features, "name", "success", "name", "cost",
       "name"
     ) %>%
-    add_max_phylo_div_objective(0.16, tree) %>%
+    add_max_wtd_sum_objective(0.16) %>%
     add_binary_decisions()
   # make plot
-  g <- plot_phylo_persistence(p, solution)
+  g <- plot_solution_barplot(p, solution)
   # run tests
-  expect_s3_class(g, "ggtree")
+  expect_s3_class(g, "ggplot")
   expect_true({
     f <- tempfile(fileext = ".png")
     png(f)
@@ -47,9 +42,6 @@ test_that("some projects funded", {
 })
 
 test_that("all projects funded", {
-  # define skips
-  skip_on_cran()
-  skip_if_not_installed("ggtree")
   # create data
   projects <- tibble::tibble(
     name = letters[1:4],
@@ -69,8 +61,6 @@ test_that("all projects funded", {
     locked_out = FALSE
   )
   features <- tibble::tibble(name = c("F1", "F2", "F3"))
-  tree <- ape::read.tree(text = "((F1,F2),F3);")
-  tree$edge.length <- c(100, 5, 5, 5)
   solution <- tibble::tibble(A1 = 1, A2 = 1, A3 = 1, A4 = 1)
   # build problem
   p <-
@@ -78,12 +68,12 @@ test_that("all projects funded", {
       projects, actions, features, "name", "success", "name", "cost",
       "name"
     ) %>%
-    add_max_phylo_div_objective(0.16, tree) %>%
+    add_max_wtd_sum_objective(0.16) %>%
     add_binary_decisions()
   # make plot
-  g <- plot_phylo_persistence(p, solution)
+  g <- plot_solution_barplot(p, solution)
   # run tests
-  expect_s3_class(g, "ggtree")
+  expect_s3_class(g, "ggplot")
   expect_true({
     f <- tempfile(fileext = ".png")
     png(f)
@@ -95,9 +85,6 @@ test_that("all projects funded", {
 })
 
 test_that("no projects funded", {
-  # define skips
-  skip_on_cran()
-  skip_if_not_installed("ggtree")
   # create data
   projects <- tibble::tibble(
     name = letters[1:4],
@@ -117,8 +104,6 @@ test_that("no projects funded", {
     locked_out = FALSE
   )
   features <- tibble::tibble(name = c("F1", "F2", "F3"))
-  tree <- ape::read.tree(text = "((F1,F2),F3);")
-  tree$edge.length <- c(100, 5, 5, 5)
   solution <- tibble::tibble(A1 = 0, A2 = 0, A3 = 0, A4 = 0)
   # build problem
   p <-
@@ -126,12 +111,55 @@ test_that("no projects funded", {
       projects, actions, features, "name", "success", "name", "cost",
       "name"
     ) %>%
-    add_max_phylo_div_objective(0.16, tree) %>%
+    add_max_wtd_sum_objective(0.16) %>%
     add_binary_decisions()
   # make plot
-  g <- plot_phylo_persistence(p, solution)
+  g <- plot_solution_barplot(p, solution)
   # run tests
-  expect_s3_class(g, "ggtree")
+  expect_s3_class(g, "ggplot")
+  expect_true({
+    f <- tempfile(fileext = ".png")
+    png(f)
+    print(g)
+    dev.off()
+    unlink(f)
+    TRUE
+  })
+})
+
+test_that("non-probability outcome values for a feature", {
+  # create data
+  projects <- tibble::tibble(
+    name = letters[1:4],
+    success = c(0.95, 0.96, 0.94, 1.00),
+    F1 = c(91, 0.00, 80, 10),
+    F2 = c(0.00, 0.92, 0.80, 0.10),
+    F3 = c(0.00, 0.00, 0.00, 0.10),
+    A1 = c(TRUE, FALSE, FALSE, FALSE),
+    A2 = c(FALSE, TRUE, FALSE, FALSE),
+    A3 = c(TRUE, FALSE, TRUE, FALSE),
+    A4 = c(FALSE, FALSE, FALSE, TRUE)
+  )
+  actions <- tibble::tibble(
+    name = c("A1", "A2", "A3", "A4"),
+    cost = c(0.10, 0.10, 0.15, 0),
+    locked_in = FALSE,
+    locked_out = FALSE
+  )
+  features <- tibble::tibble(name = c("F1", "F2", "F3"))
+  solution <- tibble::tibble(A1 = 1, A2 = 1, A3 = 0, A4 = 1)
+  # build problem
+  p <-
+    problem(
+      projects, actions, features, "name", "success", "name", "cost",
+      "name"
+    ) %>%
+    add_max_wtd_sum_objective(0.16) %>%
+    add_binary_decisions()
+  # make plot
+  g <- plot_solution_barplot(p, solution)
+  # run tests
+  expect_s3_class(g, "ggplot")
   expect_true({
     f <- tempfile(fileext = ".png")
     png(f)
@@ -143,18 +171,15 @@ test_that("no projects funded", {
 })
 
 test_that("invalid arguments", {
-  # define skips
-  skip_on_cran()
-  skip_if_not_installed("ggtree")
   # load data
-  data(sim_projects, sim_actions, sim_features, sim_tree)
+  data(sim_projects, sim_actions, sim_features)
   # build problem
   p <-
     problem(
       sim_projects, sim_actions, sim_features, "name", "success",
       "name", "cost", "name"
     ) %>%
-    add_max_phylo_div_objective(0.16, sim_tree) %>%
+    add_max_wtd_sum_objective(0.16) %>%
     add_binary_decisions()
   # create solution
   solution <- as.data.frame(
@@ -166,10 +191,10 @@ test_that("invalid arguments", {
   )
   # run tests
   ## verify that test data yields plot
-  expect_s3_class(plot_phylo_persistence(p, solution), "ggtree")
+  expect_s3_class(plot_solution_barplot(p, solution), "ggplot")
   ## invalid problem
   expect_error({
-    plot_phylo_persistence(
+    plot_solution_barplot(
       problem(
         sim_projects, sim_actions, sim_features, "name", "success",
         "name", "cost", "name"
@@ -179,40 +204,40 @@ test_that("invalid arguments", {
   })
   ## invalid solution
   expect_error({
-    plot_phylo_persistence(p, as.matrix(solution))
+    plot_solution_barplot(p, as.matrix(solution))
   })
   expect_error({
     s <- solution
     s[[1]] <- NA_real_
-    plot_phylo_persistence(p, s)
+    plot_solution_barplot(p, s)
   })
   expect_error({
     s <- solution
     s[[1]] <- "a"
-    plot_phylo_persistence(p, s)
+    plot_solution_barplot(p, s)
   })
   expect_error({
     s <- solution
-    plot_phylo_persistence(p, solution[, -1, drop = FALSE])
+    plot_solution_barplot(p, solution[, -1, drop = FALSE])
   })
   ## invalid n
   expect_error({
-    plot_phylo_persistence(p, solution, NA_integer_)
+    plot_solution_barplot(p, solution, NA_integer_)
   })
   expect_error({
-    plot_phylo_persistence(p, solution, "a")
+    plot_solution_barplot(p, solution, "a")
   })
   expect_error({
-    plot_phylo_persistence(p, solution, TRUE)
+    plot_solution_barplot(p, solution, TRUE)
   })
   ## invalid hjust
   expect_error({
-    plot_phylo_persistence(p, solution, 1, NA_real_)
+    plot_solution_barplot(p, solution, 1, NA_real_)
   })
   expect_error({
-    plot_phylo_persistence(p, solution, 1, "a")
+    plot_solution_barplot(p, solution, 1, "a")
   })
   expect_error({
-    plot_phylo_persistence(p, solution, 1, TRUE)
+    plot_solution_barplot(p, solution, 1, TRUE)
   })
 })

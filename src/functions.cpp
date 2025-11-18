@@ -10,18 +10,26 @@ Rcpp::NumericVector evaluate_max_phylo_div_objective(
   Rcpp::NumericVector costs, arma::sp_mat pa_matrix, arma::sp_mat pf_matrix,
   arma::sp_mat branch_matrix, Rcpp::NumericVector branch_lengths,
   Rcpp::NumericVector targets, Rcpp::NumericVector weights,
-  arma::sp_mat solutions) {
-    arma::mat p = expected_persistences(pa_matrix, pf_matrix,
-                                        branch_matrix,
-                                        solutions);
-    Rcpp::NumericVector out(solutions.n_rows, 0.0);
+  arma::sp_mat solutions
+) {
+  // compute expected persistences for each branch
+  arma::mat p = expected_persistences(
+    pa_matrix, pf_matrix, branch_matrix, solutions
+  );
+  // compute output
+  Rcpp::NumericVector out(solutions.n_rows, 0.0);
+  // for each solution, calculate the value as the sum of values
+  // resulting from multiplying branch lenghts by probability of persistence
+  for (std::size_t i = 0; i < p.n_rows; ++i)
+    for (std::size_t j = 0; j < p.n_cols; ++j)
+      out[i] += p(i, j) * branch_lengths[j];
+  // next, for each solution, add a value that is calcualted
+  // by multiplying each feature's probability of persistence by its weight
+  for (std::size_t j = 0; j < pf_matrix.n_cols; ++j)
     for (std::size_t i = 0; i < p.n_rows; ++i)
-      for (std::size_t j = 0; j < p.n_cols; ++j)
-        out[i] += p(i, j) * branch_lengths[j];
-    for (std::size_t j = 0; j < pf_matrix.n_cols; ++j)
-      for (std::size_t i = 0; i < p.n_rows; ++i)
-         out[i] += p(i, j) * weights[j];
-    return out;
+       out[i] += p(i, j) * weights[j];
+  // return output
+  return out;
 }
 
 // calculate max targets objective values
@@ -29,14 +37,20 @@ Rcpp::NumericVector evaluate_max_targets_met_objective(
   Rcpp::NumericVector costs, arma::sp_mat pa_matrix, arma::sp_mat pf_matrix,
   arma::sp_mat branch_matrix, Rcpp::NumericVector branch_lengths,
   Rcpp::NumericVector targets, Rcpp::NumericVector weights,
-  arma::sp_mat solutions) {
-    arma::mat p = expected_persistences(pa_matrix, pf_matrix, branch_matrix,
-                                        solutions);
-    Rcpp::NumericVector out(solutions.n_rows, 0.0);
-    for (std::size_t j = 0; j < p.n_cols; ++j)
-      for (std::size_t i = 0; i < p.n_rows; ++i)
-        out[i] += (static_cast<double>(p(i, j) >= targets[j]) * weights[j]);
-    return out;
+  arma::sp_mat solutions
+) {
+  // calculate expected outcome for each feature
+  arma::mat p = expected_persistences(
+    pa_matrix, pf_matrix, branch_matrix, solutions
+  );
+  // compute output
+  Rcpp::NumericVector out(solutions.n_rows, 0.0);
+  // for each solution, calculated the weighted number of targets that are met
+  for (std::size_t j = 0; j < p.n_cols; ++j)
+    for (std::size_t i = 0; i < p.n_rows; ++i)
+      out[i] += (static_cast<double>(p(i, j) >= targets[j]) * weights[j]);
+  // return output
+  return out;
 }
 
 // calculate min set objective values
@@ -44,14 +58,19 @@ Rcpp::NumericVector evaluate_min_set_objective(
   Rcpp::NumericVector costs, arma::sp_mat pa_matrix, arma::sp_mat pf_matrix,
   arma::sp_mat branch_matrix, Rcpp::NumericVector branch_lengths,
   Rcpp::NumericVector targets, Rcpp::NumericVector weights,
-  arma::sp_mat solutions) {
-    std::size_t n_actions = costs.size();
-    std::size_t n_solutions = solutions.n_rows;
-    Rcpp::NumericVector out(solutions.n_rows, 0.0);
-    for (std::size_t i = 0; i < n_actions; ++i)
-      for (std::size_t j = 0; j < n_solutions; ++j)
-        out[j] += (solutions(j, i) * costs[i]);
-    return out;
+  arma::sp_mat solutions
+) {
+  // initialization
+  std::size_t n_actions = costs.size();
+  std::size_t n_solutions = solutions.n_rows;
+  Rcpp::NumericVector out(solutions.n_rows, 0.0);
+  // for each solution, calculate the total cost of the actions selected
+  // for funding
+  for (std::size_t i = 0; i < n_actions; ++i)
+    for (std::size_t j = 0; j < n_solutions; ++j)
+      out[j] += (solutions(j, i) * costs[i]);
+  // return output
+  return out;
 }
 
 // calculate shortfall in expected persistences
@@ -61,13 +80,13 @@ arma::mat expected_persistences_shortfalls(
   // create dummy branch matrix
   arma::sp_mat bm(pf_matrix.n_cols, pf_matrix.n_cols);
   bm.eye();
-  // calculate persistences
+  // calculate expected outcomes for each feature given each solution
   arma::mat p = expected_persistences(pa_matrix, pf_matrix, bm, solutions);
   // calculate shortfall for each feature
   arma::mat out(solutions.n_rows, pf_matrix.n_cols);
   for (std::size_t f = 0; f < p.n_cols; ++f)
     for (std::size_t i = 0; i < solutions.n_rows; ++i)
-      out(i, f) = targets[f] - p(i, f);
+      out(i, f) = std::max(targets[f] - p(i, f), 0.0);
   // return shortfall
   return out;
 }
@@ -75,7 +94,8 @@ arma::mat expected_persistences_shortfalls(
 // calculate expected persistence
 arma::mat expected_persistences(
   arma::sp_mat pa_matrix, arma::sp_mat pf_matrix, arma::sp_mat branch_matrix,
-  arma::sp_mat solutions) {
+  arma::sp_mat solutions
+) {
   // Initialization
   std::size_t n_features = pf_matrix.n_cols;
   std::size_t n_projects = pf_matrix.n_rows;

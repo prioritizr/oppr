@@ -24,28 +24,33 @@ NULL
 #'
 #' @param ... not used.
 #'
-#' @details The type of plot that this function creates depends on the
-#'   problem objective. If the problem objective contains phylogenetic data,
-#'   then this function plots a phylogenetic tree where each branch
-#'   is colored according to its probability of persistence. Otherwise,
-#'   if the problem does not contain phylogenetic data, then this function
-#'   creates a bar plot where each bar corresponds to a different feature.
-#'   The height of the bars indicate each feature's probability of
-#'   persistence, and the width of the bars indicate each feature's weight.
+#' @details
+#' The type of plot that this function creates depends on the
+#' problem objective. If the problem objective contains phylogenetic data,
+#' then this function plots a phylogenetic tree where each branch
+#' is colored according to its probability of persistence based on
+#' the projects selected for funding by the solution. Otherwise,
+#' if the problem does not contain phylogenetic data, then this function
+#' creates a bar plot where each bar corresponds to a different feature.
+#' The height of the bars indicate the expected outcome for each feature
+#' based on the projects selected for funding by the solution, and the
+#' color of the bars indicate each feature's weight.
+#' Additionally, regardless of the problem objective, features
+#' that directly benefit from at least a single
+#' completely funded project with a non-zero cost are depicted with an
+#' asterisk symbol. Additionally, features that indirectly benefit from funded
+#' projects -- because they are associated with partially funded projects that
+#' have non-zero costs and share actions with at least one funded
+#' project -- are depicted with an open circle symbol.
 #'
-#'   Features that directly benefit from at least a single
-#'   completely funded project with a non-zero cost are depicted with an
-#'   asterisk symbol. Additionally, features that indirectly benefit from funded
-#'   projects---because they are associated with partially funded projects that
-#'   have non-zero costs and share actions with at least one funded
-#'   project---are depicted with an open circle symbol.
+#' @return
+#' A [ggplot2::ggplot()] object. If `return_data = TRUE`, then a `data.frame`
+#' is returned.
 #'
-#' @return A [ggplot2::ggplot()] object.
-#'
-#' @seealso This function is essentially a wrapper for
-#'   [plot_feature_persistence()] and
-#'   [plot_phylo_persistence()], so refer to the documentation
-#'   for these functions for more information.
+#' @seealso
+#' This function is a wrapper for [plot_solution_phylogram()] and
+#' [plot_solution_barplot()], so refer to the documentation
+#' for these functions for more information.
 #'
 #' @examples
 #' # load data
@@ -94,11 +99,11 @@ plot.ProjectProblem <- function(x, solution, n = 1, symbol_hjust = 0.007,
     no_extra_arguments(...)
   )
   assertthat::assert_that(!is.Waiver(x$objective),
-    msg = "argument to x does not have a defined objective"
+    msg = "`x` does not have a defined objective"
   )
   # create plot
   if (inherits(x$objective, "MaximumPhyloDivObjective")) {
-    g <- plot_phylo_persistence(
+    g <- plot_solution_phylogram(
       x,
       solution,
       n = n,
@@ -106,7 +111,7 @@ plot.ProjectProblem <- function(x, solution, n = 1, symbol_hjust = 0.007,
       return_data = return_data
     )
   } else {
-    g <- plot_feature_persistence(
+    g <- plot_solution_barplot(
       x,
       solution,
       n = n,
