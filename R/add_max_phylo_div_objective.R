@@ -20,10 +20,10 @@ NULL
 #' Here, the maximum phylogenetic diversity objective seeks to find the set
 #' of actions that maximizes the expected amount of evolutionary history
 #' that is expected to persist into the future given the evolutionary
-#' relationships between the features (e.g. populations, species).
+#' relationships between the features (e.g., populations, species).
 #' Let \eqn{I} represent the set of conservation actions (indexed by
 #' \eqn{i}). Let \eqn{C_i} denote the cost for funding action \eqn{i}, and
-#' let \eqn{m} denote the maximum expenditure (i.e. the budget). Also,
+#' let \eqn{m} denote the maximum expenditure (i.e., the budget). Also,
 #' let \eqn{F} represent each feature (indexed by \eqn{f}), \eqn{W_f}
 #' represent the weight for each feature \eqn{f} (defaults to zero for
 #' each feature unless specified otherwise), and \eqn{E_f}
@@ -83,7 +83,7 @@ NULL
 #'
 #' Now that we have defined all the data and variables, we can formulate
 #' the problem. For convenience, let the symbol used to denote each set also
-#' represent its cardinality (e.g. if there are ten features, let \eqn{F}
+#' represent its cardinality (e.g., if there are ten features, let \eqn{F}
 #' represent the set of ten features and also the number ten).
 #'
 #' \deqn{

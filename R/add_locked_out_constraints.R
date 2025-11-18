@@ -44,7 +44,7 @@ NULL
 #' print(p2)
 #'
 #' # build another problem, and lock out the actions using logical inputs
-#' # (i.e. TRUE/FALSE values) from the sim_actions table
+#' # (i.e., TRUE/FALSE values) from the sim_actions table
 #' p3 <- p1 %>% add_locked_out_constraints(sim_actions$locked_out)
 #'
 #' # print problem

@@ -40,7 +40,7 @@ NULL
 #'
 #' \item{`"F1"` ... `"F5"`}{
 #' `numeric` columns for each
-#' feature (i.e. `"F1"`, `"F2"`, `"F3"`, `"F4"`,
+#' feature (i.e., `"F1"`, `"F2"`, `"F3"`, `"F4"`,
 #' `"F5"`, indicating the enhanced probability that each
 #' feature will survive if it funded. Missing values (`NA`)
 #' indicate that a feature does not benefit from a project being

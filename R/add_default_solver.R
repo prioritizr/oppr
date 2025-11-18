@@ -19,7 +19,7 @@ NULL
 #' ([add_lpsolveapi_solver()]). This function does not consider
 #' solvers that generate solutions using heuristic algorithms (i.e.
 #' [add_heuristic_solver()]) or random processes
-#' (i.e. [add_random_solver()]) because they cannot provide
+#' (i.e., [add_random_solver()]) because they cannot provide
 #' any guarantees on solution quality.
 #'
 #'

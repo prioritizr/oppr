@@ -26,13 +26,13 @@ Set targets for a project prioritization \code{\link[=problem]{problem()}} as a 
 (between 0 and 1) of the expected outcome for each feature based on
 the best project for each feature.
 For instance, if the best project for a feature has an 80\% probability of
-persisting, setting a 50\% (i.e. \code{0.5}) relative target will correspond to a
+persisting, setting a 50\% (i.e., \code{0.5}) relative target will correspond to a
 40\% threshold probability of persisting.
 }
 \details{
 Targets are used to specify the minimum probability of persistence
 for each feature in solutions. For minimum set objectives
-(i.e. \code{\link[=add_min_set_objective]{add_min_set_objective()}}, these targets
+(i.e., \code{\link[=add_min_set_objective]{add_min_set_objective()}}, these targets
 specify the minimum probability of persistence required for each species
 in the solution. And for budget constrained objectives that use targets
 (i.e.\code{\link[=add_max_targets_met_objective]{add_max_targets_met_objective()}}), these targets
@@ -55,7 +55,7 @@ value to assign the same target to each feature.
 
 \item{\code{character} value}{
 specifying the name of column in the
-feature data (i.e. the argument to \code{features} in the
+feature data (i.e., the argument to \code{features} in the
 \code{\link[=problem]{problem()}} function) that contains the persistence targets.
 }
 

@@ -27,7 +27,7 @@ prior to running the backwards heuristic. This step prevents
 projects which exceed the budget, and so would never be selected in
 the final solution, from biasing the cost-sharing calculations.
 However, previous algorithms for project prioritization have not
-used this step (e.g. Probert \emph{et al.} 2016).
+used this step (e.g., Probert \emph{et al.} 2016).
 Defaults to \code{TRUE}.}
 
 \item{verbose}{\code{logical} should information be printed while solving
@@ -69,7 +69,7 @@ and (iii) actions which are not associated with any project (excepting
 locked in actions) are also deselected.
 
 \item If the objective function is to maximize biodiversity subject
-to budgetary constraints (e.g. \code{\link[=add_max_wtd_sum_objective]{add_max_wtd_sum_objective()}})
+to budgetary constraints (e.g., \code{\link[=add_max_wtd_sum_objective]{add_max_wtd_sum_objective()}})
 then go to step 5. Otherwise, if the objective is to minimize cost
 subject to biodiversity constraints (i.e.
 \code{\link[=add_min_set_objective]{add_min_set_objective()}}) then go to step 7.
@@ -96,11 +96,11 @@ solution where all remaining projects except for project \eqn{j} are
 funded, and \eqn{C_j} is the sum cost of all of the actions
 associated with project \eqn{j}---excluding locked in actions---with the
 cost of each action divided by the total number of remaining
-projects that share the action (e.g. if two projects both share a $100
+projects that share the action (e.g., if two projects both share a $100
 action, then this action contributes $50 to the overall cost of each
 project).
 
-The project with the smallest benefit (i.e. \eqn{B_j} value) is then
+The project with the smallest benefit (i.e., \eqn{B_j} value) is then
 deselected for funding. In cases where multiple projects have
 the same benefit (\eqn{B_j}) value, the project with the greatest overall
 cost (including actions which are shared among multiple remaining
@@ -130,7 +130,7 @@ Here \eqn{F} is the set of features (indexed by \eqn{f}),
 remaining projects that are selected for funding (indexed by \eqn{j}),
 \eqn{C_j} is the cost of all of the actions
 associated with project \eqn{j}---excluding locked in actions---and
-accounting for shared costs among remaining projects (e.g. if two
+accounting for shared costs among remaining projects (e.g., if two
 projects both share a $100 action, then this action contributes $50 to
 the overall cost of each project), \eqn{B_p} is the benefit
 associated with funding project \eqn{p}, \eqn{P(J)} is probability
@@ -139,7 +139,7 @@ that each feature is expected to persist when the remaining projects
 each feature is expected to persist when all the remaining projects except
 for action \eqn{j} are funded.
 
-The project with the smallest benefit (i.e. \eqn{B_j} value) is then
+The project with the smallest benefit (i.e., \eqn{B_j} value) is then
 deselected for funding. In cases where multiple projects have
 the same \eqn{B_j} value, the project with the greatest overall cost
 (including actions which are shared among multiple remaining projects)

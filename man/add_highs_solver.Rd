@@ -6,7 +6,7 @@
 \usage{
 add_highs_solver(
   x,
-  gap = 0.1,
+  gap = 0,
   time_limit = .Machine$integer.max,
   presolve = TRUE,
   threads = 1,
@@ -23,7 +23,7 @@ For example, a value of 0.01 will result in the solver stopping when
 it has found a solution within 1\% of optimality.
 Additionally, a value of 0 will result in the solver stopping
 when it has found an optimal solution.
-The default value is 0.1 (i.e. 10\% from optimality).}
+The default value is 0 (i.e., 0\% from optimality).}
 
 \item{time_limit}{\code{numeric} time limit in seconds to run the optimizer.
 The solver will return the current best solution when this time limit is

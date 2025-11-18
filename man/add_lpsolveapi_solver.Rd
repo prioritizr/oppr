@@ -15,7 +15,7 @@ For example, a value of 0.01 will result in the solver stopping when
 it has found a solution within 1\% of optimality.
 Additionally, a value of 0 will result in the solver stopping
 when it has found an optimal solution.
-The default value is 0.1 (i.e. 10\% from optimality).}
+The default value is 0 (i.e., 0\% from optimality).}
 
 \item{presolve}{\code{logical} indicating if attempts to should be made
 to simplify the optimization problem (\code{TRUE}) or not (\code{FALSE}).

@@ -25,7 +25,7 @@ For example, a value of 0.01 will result in the solver stopping when
 it has found a solution within 1\% of optimality.
 Additionally, a value of 0 will result in the solver stopping
 when it has found an optimal solution.
-The default value is 0.1 (i.e. 10\% from optimality).}
+The default value is 0 (i.e., 0\% from optimality).}
 
 \item{number_solutions}{\code{integer} number of solutions desired.
 Defaults to 1. Note that the number of returned solutions can sometimes
@@ -43,7 +43,7 @@ one solution within the optimality gap and a number of additional
 solutions that are of any level of quality (such that the total number of
 solutions is equal to \code{number_solutions}), and \code{2} finding a
 specified number of solutions that are nearest to optimality. For more
-information, see the \emph{Gurobi} manual (i.e. \url{https://docs.gurobi.com/projects/optimizer/en/current/reference/parameters.html#poolsearchmode}). Defaults to 2.}
+information, see the \emph{Gurobi} manual (i.e., \url{https://docs.gurobi.com/projects/optimizer/en/current/reference/parameters.html#poolsearchmode}). Defaults to 2.}
 
 \item{time_limit}{\code{numeric} time limit in seconds to run the optimizer.
 The solver will return the current best solution when this time limit is

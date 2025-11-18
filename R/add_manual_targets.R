@@ -19,10 +19,10 @@ NULL
 #' @details
 #' Targets are used to specify the minimum probability of persistence
 #' for each feature in solutions. For minimum set objectives
-#' (i.e. [add_min_set_objective()], these targets
+#' (i.e., [add_min_set_objective()], these targets
 #' specify the minimum probability of persistence required for each species
 #' in the solution. And for budget constrained objectives that use targets
-#' (i.e. [add_max_targets_met_objective()]), these targets
+#' (i.e., [add_max_targets_met_objective()]), these targets
 #' specify the minimum threshold probability of persistence that needs to be
 #' achieved to count the benefits for conserving these species.
 #' Please note that attempting to solve problems with objectives that require

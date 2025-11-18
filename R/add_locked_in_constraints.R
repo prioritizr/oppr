@@ -21,12 +21,12 @@ NULL
 #' \item{`integer` vector}{
 #' specifying indices that pertain to which
 #' actions should be locked when generating the solution
-#' (i.e. row numbers of the actions in the argument to `actions` in
+#' (i.e., row numbers of the actions in the argument to `actions` in
 #' [problem()]).
 #' }
 #'
 #' \item{`logical` vector}{
-#' specifying `logical` (i.e. `TRUE` and/or `FALSE`) values that indicate which
+#' specifying `logical` (i.e., `TRUE` and/or `FALSE`) values that indicate which
 #' actions should be locked when generating the solution. These `logical`
 #' values should correspond to each row in the argument to `actions`
 #' in `x`.
@@ -37,7 +37,7 @@ NULL
 #' units should be locked when generating the solution. This argument
 #' should  denote a column in the argument to `actions`
 #' in [problem()] which contains `logical`
-#' (i.e. `TRUE` and/or `FALSE` values) to indicate
+#' (i.e., `TRUE` and/or `FALSE` values) to indicate
 #' which actions should be locked.
 #' }
 #'

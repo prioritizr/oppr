@@ -140,7 +140,7 @@ solution.
 
 \item{\code{"features"}}{
 A \code{\link[tibble:tibble]{tibble::tibble()}} containing
-the data for the conservation features (e.g. species). It contains the
+the data for the conservation features (e.g., species). It contains the
 following columns.
 
 \describe{

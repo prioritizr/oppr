@@ -3,7 +3,7 @@ NULL
 
 #' Plot a phylogram to visualize a project prioritization
 #'
-#' Create a plot showing a phylogenetic tree (i.e. a "phylogram") to visualize
+#' Create a plot showing a phylogenetic tree (i.e., a "phylogram") to visualize
 #' the probability that phylogenetic branches are expected to persist
 #' into the future under a solution to a project prioritization [problem()].
 #'

@@ -34,7 +34,7 @@ the objective specified for the project prioritization
 \code{\link[=problem]{problem()}}.
 
 For objectives which maximize benefit subject to budgetary constraints
-(e.g. \code{\link[=add_max_wtd_sum_objective]{add_max_wtd_sum_objective()}}):
+(e.g., \code{\link[=add_max_wtd_sum_objective]{add_max_wtd_sum_objective()}}):
 
 \enumerate{
 
@@ -53,7 +53,7 @@ exceeding the budget.
 }
 
 For objectives which minimize cost subject to biodiversity constraints
-(i.e. \code{\link[=add_min_set_objective]{add_min_set_objective()}}:
+(i.e., \code{\link[=add_min_set_objective]{add_min_set_objective()}}:
 
 \enumerate{
 

@@ -38,12 +38,12 @@ The locked actions can be specified in several different ways:
 \item{\code{integer} vector}{
 specifying indices that pertain to which
 actions should be locked when generating the solution
-(i.e. row numbers of the actions in the argument to \code{actions} in
+(i.e., row numbers of the actions in the argument to \code{actions} in
 \code{\link[=problem]{problem()}}).
 }
 
 \item{\code{logical} vector}{
-specifying \code{logical} (i.e. \code{TRUE} and/or \code{FALSE}) values that indicate which
+specifying \code{logical} (i.e., \code{TRUE} and/or \code{FALSE}) values that indicate which
 actions should be locked when generating the solution. These \code{logical}
 values should correspond to each row in the argument to \code{actions}
 in \code{x}.
@@ -54,7 +54,7 @@ specifying a column name that indicates if actions
 units should be locked when generating the solution. This argument
 should  denote a column in the argument to \code{actions}
 in \code{\link[=problem]{problem()}} which contains \code{logical}
-(i.e. \code{TRUE} and/or \code{FALSE} values) to indicate
+(i.e., \code{TRUE} and/or \code{FALSE} values) to indicate
 which actions should be locked.
 }
 

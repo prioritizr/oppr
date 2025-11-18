@@ -8,12 +8,12 @@ NULL
 #' ensuring that the cost of the solution is within a pre-specified budget
 #' (Chades *et al.* 2015). In some project prioritization exercises,
 #' decision makers may have a target level of persistence for each feature
-#' (e.g. a 90% persistence target corresponding to a 90% chance for the
+#' (e.g., a 90% persistence target corresponding to a 90% chance for the
 #' features persisting into the future). In such exercises, the decision makers
-#' do not perceive any benefit when a target is not met (e.g. if a feature
+#' do not perceive any benefit when a target is not met (e.g., if a feature
 #' has a persistence target of 90% and a solution only secures a 70% chance
 #' of persistence then no benefit is accrued for that feature) or when a target
-#' is surpassed (e.g. if a feature has a persistence target of 50%, then a
+#' is surpassed (e.g., if a feature has a persistence target of 50%, then a
 #' solution which
 #' secures a 95% chance of persistence will accrue the same benefit as a
 #' solution which secures a 50% chance of persistence). Furthermore, weights
@@ -26,11 +26,11 @@ NULL
 #' A problem objective is used to specify the overall goal of the
 #' project prioritization problem.
 #' Here, the maximum targets met objective seeks to find the set of actions
-#' that maximizes the total number of features (e.g. populations, species,
+#' that maximizes the total number of features (e.g., populations, species,
 #' ecosystems) that have met their persistence targets within a
 #' pre-specified budget. Let \eqn{I} represent the set of conservation
 #' actions (indexed by \eqn{i}). Let \eqn{C_i} denote the cost for funding
-#' action \eqn{i}, and let \eqn{m} denote the maximum expenditure (i.e. the
+#' action \eqn{i}, and let \eqn{m} denote the maximum expenditure (i.e., the
 #' budget). Also, let \eqn{F} represent each feature (indexed by \eqn{f}),
 #' \eqn{W_f} represent the weight for each feature \eqn{f} (defaults to one
 #' for each feature unless specified otherwise), \eqn{T_f} represent the
@@ -79,7 +79,7 @@ NULL
 #'
 #' Now that we have defined all the data and variables, we can formulate
 #' the problem. For convenience, let the symbol used to denote each set also
-#' represent its cardinality (e.g. if there are ten features, let \eqn{F}
+#' represent its cardinality (e.g., if there are ten features, let \eqn{F}
 #' represent the set of ten features and also the number ten).
 #'
 #' \deqn{
@@ -117,7 +117,7 @@ NULL
 #' The objective (eqn 1a) is to maximize the weighted total number of the
 #' features that have their persistence targets met.
 #' Constraints (eqn 1b) calculate which persistence targets have been met.
-#' Constraint (eqn 1c) limits the maximum expenditure (i.e. ensures
+#' Constraint (eqn 1c) limits the maximum expenditure (i.e., ensures
 #' that the cost of the funded actions do not exceed the budget).
 #' Constraints (eqn 1d) calculate the probability that each feature
 #' will go extinct according to their allocated project.

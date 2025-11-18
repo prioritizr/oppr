@@ -7,7 +7,7 @@ NULL
 #' Here, data are simulated such that each objective has its own features,
 #' and each feature has its own conservation project.
 #' This structure is similar to species-based prioritizations
-#' (e.g. Bennett *et al.* 2014).
+#' (e.g., Bennett *et al.* 2014).
 #'
 #' @inheritParams simulate_ptm_data
 #'

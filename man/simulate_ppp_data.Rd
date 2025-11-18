@@ -132,7 +132,7 @@ solution.
 
 \item{\code{"features"}}{
 A \code{\link[tibble:tibble]{tibble::tibble()}} containing
-the data for the conservation features (e.g. species). It contains the
+the data for the conservation features (e.g., species). It contains the
 following columns.
 
 \describe{
@@ -162,7 +162,7 @@ An \code{\link[ape:read.tree]{ape::phylo()}} phylogenetic tree for the features.
 \description{
 Simulate data for developing project prioritizations. Here, data are
 simulated such that each feature has its own conservation project,
-similar to species-based prioritizations (e.g. Bennett \emph{et al.} 2014).
+similar to species-based prioritizations (e.g., Bennett \emph{et al.} 2014).
 }
 \details{
 The simulated data set will contain one conservation project for

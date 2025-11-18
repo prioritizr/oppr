@@ -6,7 +6,7 @@ NULL
 #' Set targets for a project prioritization [problem()] by
 #' specifying exactly what probability of persistence is required
 #' for each feature. For instance, setting an absolute target of 10%
-#' (i.e. `0.1`) corresponds to a threshold 10% probability of persisting.
+#' (i.e., `0.1`) corresponds to a threshold 10% probability of persisting.
 #'
 #' @inheritParams add_manual_targets
 #'
@@ -16,7 +16,7 @@ NULL
 #' @details
 #' Targets are used to specify the minimum probability of persistence
 #' for each feature in solutions. For minimum set objectives
-#' (i.e. [add_min_set_objective()], these targets
+#' (i.e., [add_min_set_objective()], these targets
 #' specify the minimum probability of persistence required for each species
 #' in the solution. And for budget constrained objectives that use targets
 #' (i.e.[add_max_targets_met_objective()]), these targets
@@ -39,7 +39,7 @@ NULL
 #'
 #' \item{`character` value}{
 #'   specifying the name of column in the
-#'   feature data (i.e. the argument to `features` in the
+#'   feature data (i.e., the argument to `features` in the
 #'   [problem()] function) that contains the persistence targets.
 #' }
 #'

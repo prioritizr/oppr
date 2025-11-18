@@ -16,7 +16,7 @@ NULL
 #' [problem()].
 #'
 #' For objectives which maximize benefit subject to budgetary constraints
-#' (e.g. [add_max_wtd_sum_objective()]):
+#' (e.g., [add_max_wtd_sum_objective()]):
 #'
 #' \enumerate{
 #'
@@ -35,7 +35,7 @@ NULL
 #' }
 #'
 #' For objectives which minimize cost subject to biodiversity constraints
-#' (i.e. [add_min_set_objective()]:
+#' (i.e., [add_min_set_objective()]:
 #'
 #' \enumerate{
 #'

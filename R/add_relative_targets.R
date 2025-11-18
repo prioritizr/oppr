@@ -7,7 +7,7 @@ NULL
 #' (between 0 and 1) of the expected outcome for each feature based on
 #' the best project for each feature.
 #' For instance, if the best project for a feature has an 80% probability of
-#' persisting, setting a 50% (i.e. `0.5`) relative target will correspond to a
+#' persisting, setting a 50% (i.e., `0.5`) relative target will correspond to a
 #' 40% threshold probability of persisting.
 #'
 #' @inheritParams add_manual_targets

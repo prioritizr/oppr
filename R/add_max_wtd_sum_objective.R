@@ -20,11 +20,11 @@ NULL
 #' A problem objective is used to specify the overall goal of the
 #' project prioritization problem.
 #' Here, the maximum richness objective seeks to find the set of actions that
-#' maximizes the total number of features  (e.g. populations, species,
+#' maximizes the total number of features  (e.g., populations, species,
 #' ecosystems) that is expected to persist within a pre-specified budget.
 #' Let \eqn{I} represent the set of conservation actions (indexed by
 #' \eqn{i}). Let \eqn{C_i} denote the cost for funding action \eqn{i}, and
-#' let \eqn{m} denote the maximum expenditure (i.e. the budget). Also,
+#' let \eqn{m} denote the maximum expenditure (i.e., the budget). Also,
 #' let \eqn{F} represent each feature (indexed by \eqn{f}), \eqn{W_f}
 #' represent the weight for each feature \eqn{f} (defaults to one for
 #' each feature unless specified otherwise), and \eqn{E_f} denote the
@@ -69,7 +69,7 @@ NULL
 #'
 #' Now that we have defined all the data and variables, we can formulate
 #' the problem. For convenience, let the symbol used to denote each set also
-#' represent its cardinality (e.g. if there are ten features, let \eqn{F}
+#' represent its cardinality (e.g., if there are ten features, let \eqn{F}
 #' represent the set of ten features and also the number ten).
 #'
 #' \deqn{
@@ -102,7 +102,7 @@ NULL
 #' }
 #'
 #' The objective (eqn 1a) is to maximize the weighted persistence of all the
-#' species. Constraint (eqn 1b) limits the maximum expenditure (i.e. ensures
+#' species. Constraint (eqn 1b) limits the maximum expenditure (i.e., ensures
 #' that the cost of the funded actions do not exceed the budget).
 #' Constraints (eqn 1c) calculate the probability that each feature
 #' will go extinct according to their allocated project.

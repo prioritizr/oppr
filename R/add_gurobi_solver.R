@@ -17,7 +17,7 @@ NULL
 #'   it has found a solution within 1% of optimality.
 #'   Additionally, a value of 0 will result in the solver stopping
 #'   when it has found an optimal solution.
-#'   The default value is 0 (i.e. 0% from optimality).
+#'   The default value is 0 (i.e., 0% from optimality).
 #'
 #' @param number_solutions `integer` number of solutions desired.
 #'   Defaults to 1. Note that the number of returned solutions can sometimes
@@ -35,7 +35,7 @@ NULL
 #'   solutions that are of any level of quality (such that the total number of
 #'   solutions is equal to `number_solutions`), and `2` finding a
 #'   specified number of solutions that are nearest to optimality. For more
-#'   information, see the *Gurobi* manual (i.e. <https://docs.gurobi.com/projects/optimizer/en/current/reference/parameters.html#poolsearchmode>). Defaults to 2.
+#'   information, see the *Gurobi* manual (i.e., <https://docs.gurobi.com/projects/optimizer/en/current/reference/parameters.html#poolsearchmode>). Defaults to 2.
 #'
 #' @param time_limit `numeric` time limit in seconds to run the optimizer.
 #'   The solver will return the current best solution when this time limit is

@@ -170,7 +170,7 @@ Simulate data for developing multi-objective project prioritizations.
 Here, data are simulated such that each objective has its own features,
 and each feature has its own conservation project.
 This structure is similar to species-based prioritizations
-(e.g. Bennett \emph{et al.} 2014).
+(e.g., Bennett \emph{et al.} 2014).
 }
 \details{
 The simulated data set will contain a set of projects,

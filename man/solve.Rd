@@ -27,7 +27,7 @@ The type of object returned from this function depends on the
 argument to \code{a}. If the argument to \code{a} is an
 \linkS4class{OptimizationProblem} object, then the
 solution is returned as a \code{list} containing the prioritization and
-additional information (e.g. run time, solver status). On the other hand,
+additional information (e.g., run time, solver status). On the other hand,
 if the argument
 to \code{a} is an \linkS4class{ProjectProblem} object,
 then a \code{\link[tibble:tibble]{tibble::tibble()}} table object will be returned. In this

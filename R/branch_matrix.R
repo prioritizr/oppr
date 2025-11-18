@@ -14,7 +14,7 @@ NULL
 #'
 #' @param x [ape::phylo()] tree object.
 #'
-#' @param assert_validity `logical` value (i.e. `TRUE` or `FALSE`
+#' @param assert_validity `logical` value (i.e., `TRUE` or `FALSE`
 #'   indicating if the argument to `x` should be checked for validity.
 #'   Defaults to `TRUE`.
 #'

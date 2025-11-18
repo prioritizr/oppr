@@ -114,7 +114,7 @@ A new \linkS4class{ProjectProblem} object.
 Create a project prioritization problem. This function is used to
 specify the underlying data used in a prioritization problem: the projects,
 the management actions, and the features that need
-to be conserved (e.g. species, ecosystems). After constructing this
+to be conserved (e.g., species, ecosystems). After constructing this
 \code{ProjectProblem-class} object,
 it can be customized using \link{objectives}, \link{targets},
 \link{weights}, \link{constraints}, \link{decisions} and
@@ -124,9 +124,9 @@ it can be customized using \link{objectives}, \link{targets},
 \details{
 A project prioritization problem has actions, projects,
 and features. Features are the biological entities that need to
-be conserved (e.g. species, populations, ecosystems). Actions are
+be conserved (e.g., species, populations, ecosystems). Actions are
 real-world management actions that can be implemented to enhance
-biodiversity (e.g. habitat restoration, monitoring, pest eradication). Each
+biodiversity (e.g., habitat restoration, monitoring, pest eradication). Each
 action should have a known cost, and this usually means that each
 action should have a defined spatial extent and time period (though this
 is not necessary). Conservation projects are groups of management actions
@@ -147,7 +147,7 @@ of an optimization problem is to minimize (or maximize) an objective
 unction given a set of control variables and decision variables that are
 subject to a series of constraints. In the context of project
 prioritization problems, the
-objective is usually some measure of utility (e.g. the net
+objective is usually some measure of utility (e.g., the net
 probability of each feature persisting into the future), the
 control variables determine which actions should be funded or not,
 the decision variables contain additional information needed to

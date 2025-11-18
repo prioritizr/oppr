@@ -51,7 +51,7 @@ projects. This table contains the following columns.
 
 \item{\code{"F1"} ... \code{"F5"}}{
 \code{numeric} columns for each
-feature (i.e. \code{"F1"}, \code{"F2"}, \code{"F3"}, \code{"F4"},
+feature (i.e., \code{"F1"}, \code{"F2"}, \code{"F3"}, \code{"F4"},
 \code{"F5"}, indicating the enhanced probability that each
 feature will survive if it funded. Missing values (\code{NA})
 indicate that a feature does not benefit from a project being

@@ -17,7 +17,7 @@ NULL
 #'   argument to `a`. If the argument to `a` is an
 #'   [OptimizationProblem-class] object, then the
 #'   solution is returned as a `list` containing the prioritization and
-#'   additional information (e.g. run time, solver status). On the other hand,
+#'   additional information (e.g., run time, solver status). On the other hand,
 #'   if the argument
 #'   to `a` is an [ProjectProblem-class] object,
 #'   then a [tibble::tibble()] table object will be returned. In this

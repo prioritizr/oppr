@@ -5,7 +5,7 @@ NULL
 #'
 #' Simulate data for developing project prioritizations. Here, data are
 #' simulated such that each feature has its own conservation project,
-#' similar to species-based prioritizations (e.g. Bennett *et al.* 2014).
+#' similar to species-based prioritizations (e.g., Bennett *et al.* 2014).
 #'
 #' @inheritParams simulate_ptm_data
 #'
@@ -134,7 +134,7 @@ NULL
 #'
 #' \item{`"features"`}{
 #' A [tibble::tibble()] containing
-#' the data for the conservation features (e.g. species). It contains the
+#' the data for the conservation features (e.g., species). It contains the
 #' following columns.
 #'
 #' \describe{

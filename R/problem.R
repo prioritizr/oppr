@@ -6,7 +6,7 @@ NULL
 #' Create a project prioritization problem. This function is used to
 #' specify the underlying data used in a prioritization problem: the projects,
 #' the management actions, and the features that need
-#' to be conserved (e.g. species, ecosystems). After constructing this
+#' to be conserved (e.g., species, ecosystems). After constructing this
 #' `ProjectProblem-class` object,
 #' it can be customized using [objectives], [targets],
 #' [weights], [constraints], [decisions] and
@@ -105,9 +105,9 @@ NULL
 #' @details
 #' A project prioritization problem has actions, projects,
 #' and features. Features are the biological entities that need to
-#' be conserved (e.g. species, populations, ecosystems). Actions are
+#' be conserved (e.g., species, populations, ecosystems). Actions are
 #' real-world management actions that can be implemented to enhance
-#' biodiversity (e.g. habitat restoration, monitoring, pest eradication). Each
+#' biodiversity (e.g., habitat restoration, monitoring, pest eradication). Each
 #' action should have a known cost, and this usually means that each
 #' action should have a defined spatial extent and time period (though this
 #' is not necessary). Conservation projects are groups of management actions
@@ -128,7 +128,7 @@ NULL
 #' unction given a set of control variables and decision variables that are
 #' subject to a series of constraints. In the context of project
 #' prioritization problems, the
-#' objective is usually some measure of utility (e.g. the net
+#' objective is usually some measure of utility (e.g., the net
 #' probability of each feature persisting into the future), the
 #' control variables determine which actions should be funded or not,
 #' the decision variables contain additional information needed to
@@ -280,7 +280,7 @@ problem <- function(projects, actions, features, project_name_column,
     bp <- actions$name[actions[[action_cost_column]] == 0]
     assertthat::assert_that(
       length(bp) > 0,
-      msg = "no baseline action detected (i.e. no projects have a zero cost)"
+      msg = "no baseline action detected (i.e., no projects have a zero cost)"
     )
     assertthat::assert_that(
       length(bp) <= 1,
@@ -324,7 +324,7 @@ problem <- function(projects, actions, features, project_name_column,
     msg = paste(
       "feature(s) has a zero probability of persistence under",
       "the baseline project, please replace these zeros with",
-      "a small number (e.g. 1e-10) for:",
+      "a small number (e.g., 1e-10) for:",
       paste(
         features[[feature_name_column]][bpp <= 1e-11],
         collapse = ", "

@@ -24,7 +24,7 @@ project prioritization problem.
 Here, the minimum set objective seeks to find the set of actions that
 minimizes the overall cost of the prioritization, while ensuring that the
 funded projects meet a set of persistence targets for the conservation
-features (e.g. populations, species, ecosystems). Let \eqn{I} represent
+features (e.g., populations, species, ecosystems). Let \eqn{I} represent
 the set of conservation actions (indexed by \eqn{i}). Let \eqn{C_i} denote
 the cost for funding action \eqn{i}. Also, let \eqn{F} represent each
 feature (indexed by \eqn{f}), \eqn{T_f} represent the persistence target
@@ -68,7 +68,7 @@ denote the probability that feature \eqn{f} will go extinct.
 
 Now that we have defined all the data and variables, we can formulate
 the problem. For convenience, let the symbol used to denote each set also
-represent its cardinality (e.g. if there are ten features, let \eqn{F}
+represent its cardinality (e.g., if there are ten features, let \eqn{F}
 represent the set of ten features and also the number ten).
 
 \deqn{

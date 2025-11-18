@@ -25,12 +25,12 @@ A \code{\link[=problem]{problem()}} object with the targets added to it.
 Set targets for a project prioritization \code{\link[=problem]{problem()}} by
 specifying exactly what probability of persistence is required
 for each feature. For instance, setting an absolute target of 10\%
-(i.e. \code{0.1}) corresponds to a threshold 10\% probability of persisting.
+(i.e., \code{0.1}) corresponds to a threshold 10\% probability of persisting.
 }
 \details{
 Targets are used to specify the minimum probability of persistence
 for each feature in solutions. For minimum set objectives
-(i.e. \code{\link[=add_min_set_objective]{add_min_set_objective()}}, these targets
+(i.e., \code{\link[=add_min_set_objective]{add_min_set_objective()}}, these targets
 specify the minimum probability of persistence required for each species
 in the solution. And for budget constrained objectives that use targets
 (i.e.\code{\link[=add_max_targets_met_objective]{add_max_targets_met_objective()}}), these targets
@@ -53,7 +53,7 @@ value to assign the same target to each feature.
 
 \item{\code{character} value}{
 specifying the name of column in the
-feature data (i.e. the argument to \code{features} in the
+feature data (i.e., the argument to \code{features} in the
 \code{\link[=problem]{problem()}} function) that contains the persistence targets.
 }
 
