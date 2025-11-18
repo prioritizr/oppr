@@ -1,5 +1,3 @@
-context("add_default_solver")
-
 test_that("format", {
   # define skips
   skip_on_cran()

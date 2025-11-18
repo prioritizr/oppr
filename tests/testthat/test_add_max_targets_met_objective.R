@@ -1,5 +1,3 @@
-context("add_max_targets_met_objective")
-
 test_that("compile (no weights)", {
   # create data
   projects <- tibble::tibble(
@@ -147,13 +145,10 @@ test_that("solve (single solution)", {
   s3 <- solve(p3)
   # run tests
   ## s1
-  expect_is(s1, "tbl_df")
+  expect_s3_class(s1, "tbl_df")
   expect_equal(nrow(s1), 1)
   expect_equal(s1$solution, 1L)
-  expect_true(
-    s1$status %in%
-    c("OPTIMAL", "TM_OPTIMAL_SOLUTION_FOUND", "optimal solution found")
-  )
+  expect_true(is_optimal_solver_status(s1$status))
   expect_equal(s1$cost, 0.1)
   expect_equal(s1$obj, 2)
   expect_equal(s1$A1, 1)
@@ -164,13 +159,10 @@ test_that("solve (single solution)", {
   expect_equal(s1$F2, 1 * 0.1)
   expect_equal(s1$F3, 1 * 0.1)
   ## s2
-  expect_is(s2, "tbl_df")
+  expect_s3_class(s2, "tbl_df")
   expect_equal(nrow(s2), 1)
   expect_equal(s2$solution, 1L)
-  expect_true(
-    s2$status %in%
-    c("OPTIMAL", "TM_OPTIMAL_SOLUTION_FOUND", "optimal solution found")
-  )
+  expect_true(is_optimal_solver_status(s2$status))
   expect_equal(s2$obj, 2)
   expect_equal(s2$cost, 0.1)
   expect_equal(s2$A1, 0)
@@ -181,13 +173,10 @@ test_that("solve (single solution)", {
   expect_equal(s2$F2, 0.96 * 0.92)
   expect_equal(s2$F3, 1 * 0.1)
   ## s3
-  expect_is(s3, "tbl_df")
+  expect_s3_class(s3, "tbl_df")
   expect_equal(nrow(s3), 1)
   expect_equal(s3$solution, 1L)
-  expect_true(
-    s3$status %in%
-    c("OPTIMAL", "TM_OPTIMAL_SOLUTION_FOUND", "optimal solution found")
-  )
+  expect_true(is_optimal_solver_status(s3$status))
   expect_equal(s3$obj, 3)
   expect_equal(s3$cost, 0.15)
   expect_equal(s3$A1, 0)

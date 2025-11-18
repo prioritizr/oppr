@@ -1,6 +1,4 @@
-context("Waiver")
-
-test_that("Waiver", {
+test_that("works", {
   # constructor
   i <- new_waiver()
   # methods

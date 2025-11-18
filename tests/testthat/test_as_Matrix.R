@@ -1,30 +1,28 @@
-context("as_Matrix")
-
 test_that("dgCMatrix", {
   d <- matrix(round(runif(9), 5), ncol = 3)
   x <- as_Matrix(d, "dgCMatrix")
-  expect_equivalent(as.matrix(x), d)
-  expect_equal(class(x)[[1]], "dgCMatrix")
+  expect_equal(as.matrix(x), d, ignore_attr = TRUE)
+  expect_s4_class(x, "dgCMatrix")
 })
 
 test_that("dgTMatrix", {
   d <- matrix(round(runif(9), 5), ncol = 3)
   x <- as_Matrix(d, "dgTMatrix")
-  expect_equivalent(as.matrix(x), d)
-  expect_equal(class(x)[[1]], "dgTMatrix")
+  expect_equal(as.matrix(x), d, ignore_attr = TRUE)
+  expect_s4_class(x, "dgTMatrix")
 })
 
 test_that("dsCMatrix", {
   d <- matrix(round(runif(9), 5), ncol = 3)
   d[lower.tri(d)] <- d[upper.tri(d)]
   x <- as_Matrix(d, "dsCMatrix")
-  expect_equivalent(as.matrix(x), d)
-  expect_equal(class(x)[[1]], "dsCMatrix")
+  expect_equal(as.matrix(x), d, ignore_attr = TRUE)
+  expect_s4_class(x, "dsCMatrix")
 })
 
 test_that("lgCMatrix", {
   d <- matrix(sample(c(TRUE, FALSE), 9, replace = TRUE), ncol = 3)
   x <- as_Matrix(d, "lgCMatrix")
-  expect_equivalent(as.matrix(x), d)
-  expect_equal(class(x)[[1]], "lgCMatrix")
+  expect_equal(as.matrix(x), d, ignore_attr = TRUE)
+  expect_s4_class(x, "lgCMatrix")
 })

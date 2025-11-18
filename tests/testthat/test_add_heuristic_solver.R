@@ -1,5 +1,3 @@
-context("add_heuristic_solver")
-
 test_that("add_phylo_div_objective", {
   # create data
   projects <- tibble::tibble(
@@ -85,7 +83,7 @@ test_that("add_max_targets_met", {
   # solve problem
   s <- solve(p)
   # run tests
-  expect_is(s, "tbl_df")
+  expect_s3_class(s, "tbl_df")
   expect_equal(nrow(s), 1)
   expect_equal(s$solution, 1L)
   expect_equal(s$status, NA_character_)
@@ -134,7 +132,7 @@ test_that("add_min_set_objective", {
   # solve problem
   s <- solve(p)
   # run tests
-  expect_is(s, "tbl_df")
+  expect_s3_class(s, "tbl_df")
   expect_equal(nrow(s), 1)
   expect_equal(s$solution, 1L)
   expect_equal(s$status, NA_character_)
@@ -183,7 +181,7 @@ test_that("add_max_wtd_sum_objective", {
   # solve problem
   s <- solve(p)
   # run tests
-  expect_is(s, "tbl_df")
+  expect_s3_class(s, "tbl_df")
   expect_equal(nrow(s), 1L)
   expect_equal(s$solution, 1L)
   expect_equal(s$status, NA_character_)
@@ -229,7 +227,7 @@ test_that("shared actions", {
   # solve problem
   s <- solve(p)
   # run tests
-  expect_is(s, "tbl_df")
+  expect_s3_class(s, "tbl_df")
   expect_equal(nrow(s), 3L)
   expect_equal(s$solution, seq_len(3))
   expect_equal(s$status, rep(NA_character_, 3))
@@ -272,7 +270,7 @@ test_that("zero budget", {
   # solve problem
   s <- solve(p)
   # tests
-  expect_is(s, "tbl_df")
+  expect_s3_class(s, "tbl_df")
   expect_equal(nrow(s), 1)
   expect_equal(s$obj, 0.3)
   expect_equal(s$cost, 0)
@@ -309,7 +307,7 @@ test_that("large problem)", {
       add_heuristic_solver(verbose = FALSE, number_solutions = 100) %>%
       solve()
     # run tests
-    expect_is(s, "tbl_df")
+    expect_s3_class(s, "tbl_df")
     expect_gte(nrow(s), 1)
     expect_equal(s$status, rep(NA_character_, nrow(s)))
     expect_true(all(s$cost <= b))
@@ -350,7 +348,7 @@ test_that("multiple solutions (min set obj)", {
   # solve problem
   s <- solve(p)
   # tests
-  expect_is(s, "tbl_df")
+  expect_s3_class(s, "tbl_df")
   expect_gt(nrow(s), 1)
   expect_equal(s$solution, seq_len(nrow(s)))
   expect_equal(s$status, rep(NA_character_, nrow(s)))
@@ -365,10 +363,10 @@ test_that("multiple solutions (min set obj)", {
   expect_true(all(s$F1 >= 0.09))
   expect_true(all(s$F2 >= 0.7))
   expect_true(all(s$F3 >= 0.09))
-  expect_is(s$A1, "numeric")
-  expect_is(s$A2, "numeric")
-  expect_is(s$A3, "numeric")
-  expect_is(s$A4, "numeric")
+  expect_type(s$A1, "double")
+  expect_type(s$A2, "double")
+  expect_type(s$A3, "double")
+  expect_type(s$A4, "double")
   expect_true(all((s$A1 + s$A2 + s$A3) >= 1))
 })
 
@@ -403,7 +401,7 @@ test_that("heuristic solver (shared actions, multiple solutions)", {
   # solve problem
   s <- solve(p)
   # run tests
-  expect_is(s, "tbl_df")
+  expect_s3_class(s, "tbl_df")
   expect_equal(nrow(s), 3L)
   expect_equal(s$solution, seq_len(3))
   expect_equal(s$status, rep(NA_character_, 3))
@@ -453,7 +451,7 @@ test_that("single feasible solution", {
   # solve problem
   s <- solve(p)
   # run tests
-  expect_is(s, "tbl_df")
+  expect_s3_class(s, "tbl_df")
   expect_gt(nrow(s), 1)
   expect_equal(s$solution, seq_len(nrow(s)))
   expect_equal(s$status, rep(NA_character_, nrow(s)))
@@ -470,13 +468,13 @@ test_that("single feasible solution", {
       (s$A3 * actions$cost[3]) +
       (s$A4 * actions$cost[4])
   )
-  expect_is(s$F1, "numeric")
-  expect_is(s$F2, "numeric")
-  expect_is(s$F3, "numeric")
-  expect_is(s$A1, "numeric")
-  expect_is(s$A2, "numeric")
-  expect_is(s$A3, "numeric")
-  expect_is(s$A4, "numeric")
+  expect_type(s$F1, "double")
+  expect_type(s$F2, "double")
+  expect_type(s$F3, "double")
+  expect_type(s$A1, "double")
+  expect_type(s$A2, "double")
+  expect_type(s$A3, "double")
+  expect_type(s$A4, "double")
 })
 
 test_that("locked constraints (max benefit obj)", {
@@ -515,7 +513,7 @@ test_that("locked constraints (max benefit obj)", {
   # solve problem
   s <- solve(p)
   # run tests
-  expect_is(s, "tbl_df")
+  expect_s3_class(s, "tbl_df")
   expect_equal(nrow(s), 1)
   expect_equal(s$solution, seq_len(nrow(s)))
   expect_equal(s$status, rep(NA_character_, nrow(s)))
@@ -532,15 +530,15 @@ test_that("locked constraints (max benefit obj)", {
       (s$A3 * actions$cost[3]) +
       (s$A4 * actions$cost[4])
   )
-  expect_is(s$F1, "numeric")
-  expect_is(s$F2, "numeric")
-  expect_is(s$F3, "numeric")
-  expect_is(s$A1, "numeric")
+  expect_type(s$F1, "double")
+  expect_type(s$F2, "double")
+  expect_type(s$F3, "double")
+  expect_type(s$A1, "double")
   expect_true(all(s$A1 > 0.5))
-  expect_is(s$A2, "numeric")
+  expect_type(s$A2, "double")
   expect_true(all(s$A2 < 0.5))
-  expect_is(s$A3, "numeric")
-  expect_is(s$A4, "numeric")
+  expect_type(s$A3, "double")
+  expect_type(s$A4, "double")
 })
 
 test_that("locked constraints (min set obj)", {
@@ -579,7 +577,7 @@ test_that("locked constraints (min set obj)", {
   # solve problem
   s <- solve(p)
   # run tests
-  expect_is(s, "tbl_df")
+  expect_s3_class(s, "tbl_df")
   expect_equal(nrow(s), 1)
   expect_equal(s$solution, seq_len(nrow(s)))
   expect_equal(s$status, rep(NA_character_, nrow(s)))
@@ -594,12 +592,12 @@ test_that("locked constraints (min set obj)", {
   expect_true(all(s$F1 >= 0.09))
   expect_true(all(s$F2 >= 0.7))
   expect_true(all(s$F3 >= 0.09))
-  expect_is(s$A1, "numeric")
+  expect_type(s$A1, "double")
   expect_true(all(s$A1 > 0.5))
-  expect_is(s$A2, "numeric")
+  expect_type(s$A2, "double")
   expect_true(all(s$A2 < 0.5))
-  expect_is(s$A3, "numeric")
-  expect_is(s$A4, "numeric")
+  expect_type(s$A3, "double")
+  expect_type(s$A4, "double")
   expect_true(all((s$A1 + s$A2 + s$A3) >= 1))
 })
 
@@ -641,7 +639,7 @@ test_that("no sweep", {
   s2 <- solve(p2)
   # tests
   ## s1
-  expect_is(s1, "tbl_df")
+  expect_s3_class(s1, "tbl_df")
   expect_equal(nrow(s1), 1L)
   expect_equal(s1$solution, 1L)
   expect_equal(s1$status, NA_character_)
@@ -655,7 +653,7 @@ test_that("no sweep", {
   expect_equal(s1$F2, 0.96 * 0.92)
   expect_equal(s1$F3, 1 * 0.1)
   ## s2
-  expect_is(s2, "tbl_df")
+  expect_s3_class(s2, "tbl_df")
   expect_equal(nrow(s2), 1L)
   expect_equal(s2$solution, 1L)
   expect_equal(s2$status, NA_character_)
@@ -698,7 +696,7 @@ test_that("large problem (no sweep)", {
     ) %>%
     solve()
   # tests
-  expect_is(s, "tbl_df")
+  expect_s3_class(s, "tbl_df")
   expect_gt(nrow(s), 1)
   expect_equal(s$status, rep(NA_character_, nrow(s)))
   expect_true(all(s$action_1 == 1))

@@ -1,5 +1,3 @@
-context("project cost-effectiveness")
-
 test_that("single action per project", {
   # create data
   projects <- tibble::tibble(
@@ -29,7 +27,7 @@ test_that("single action per project", {
   # calculate project cost-effectiveness
   o <- project_cost_effectiveness(p)
   # run tests
-  expect_is(o, "tbl_df")
+  expect_s3_class(o, "tbl_df")
   expect_equal(o$project, p$project_names())
   expect_equal(o$cost, c(0.1, 0.1, 0.15, 0))
   expect_equal(
@@ -77,7 +75,7 @@ test_that("varying number of actions per project", {
   # calculate project cost-effectiveness
   o <- project_cost_effectiveness(p)
   # run tests
-  expect_is(o, "tbl_df")
+  expect_s3_class(o, "tbl_df")
   expect_equal(o$project, p$project_names())
   expect_equal(o$cost, c(0.35, 0))
   expect_equal(o$obj, c((0.95 * 0.91) + 0.2, 0.3))

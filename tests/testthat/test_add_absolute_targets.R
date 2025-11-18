@@ -1,5 +1,3 @@
-context("add_absolute_targets")
-
 test_that("numeric(1)", {
   # load data
   data(sim_projects, sim_actions, sim_features)
@@ -13,11 +11,11 @@ test_that("numeric(1)", {
   # calculate absolute targets
   targets <- p$targets$output()
   # run tests
-  expect_is(targets, "tbl_df")
+  expect_s3_class(targets, "tbl_df")
   expect_true(all(names(targets) == c("feature", "sense", "value")))
-  expect_is(targets$feature, "integer")
-  expect_is(targets$value, "numeric")
-  expect_is(targets$sense, "character")
+  expect_type(targets$feature, "integer")
+  expect_type(targets$value, "double")
+  expect_type(targets$sense, "character")
   expect_equal(targets$feature, seq_len(nrow(sim_features)))
   expect_equal(targets$value, rep(0.5, nrow(sim_features)))
   expect_equal(targets$sense, rep(">=", nrow(sim_features)))
@@ -36,11 +34,11 @@ test_that("numeric(4)", {
   # calculate absolute targets
   targets <- p$targets$output()
   # run tests
-  expect_is(targets, "tbl_df")
+  expect_s3_class(targets, "tbl_df")
   expect_true(all(names(targets) == c("feature", "sense", "value")))
-  expect_is(targets$feature, "integer")
-  expect_is(targets$value, "numeric")
-  expect_is(targets$sense, "character")
+  expect_type(targets$feature, "integer")
+  expect_type(targets$value, "double")
+  expect_type(targets$sense, "character")
   expect_equal(targets$feature, seq_len(nrow(sim_features)))
   expect_equal(targets$value, seq_len(5) * 0.1)
   expect_equal(targets$sense, rep(">=", nrow(sim_features)))
@@ -60,11 +58,11 @@ test_that("character(1)", {
   # calculate absolute targets
   targets <- p$targets$output()
   # run tests
-  expect_is(targets, "tbl_df")
+  expect_s3_class(targets, "tbl_df")
   expect_true(all(names(targets) == c("feature", "sense", "value")))
-  expect_is(targets$feature, "integer")
-  expect_is(targets$value, "numeric")
-  expect_is(targets$sense, "character")
+  expect_type(targets$feature, "integer")
+  expect_type(targets$value, "double")
+  expect_type(targets$sense, "character")
   expect_equal(targets$feature, seq_len(nrow(sim_features)))
   expect_equal(targets$value, seq_len(5) * 0.1)
   expect_equal(targets$sense, rep(">=", nrow(sim_features)))

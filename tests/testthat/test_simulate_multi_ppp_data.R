@@ -1,5 +1,3 @@
-context("simulate_multi_ppp_data")
-
 test_that("works", {
   # create data
   d <- simulate_multi_ppp_data(
@@ -9,22 +7,22 @@ test_that("works", {
   )
   # run tests
   ## classes
-  expect_is(d, "list")
-  expect_is(d$projects, "list")
-  expect_is(d$actions, "tbl_df")
-  expect_is(d$features, "list")
-  expect_is(d$tree, "list")
+  expect_type(d, "list")
+  expect_type(d$projects, "list")
+  expect_s3_class(d$actions, "tbl_df")
+  expect_type(d$features, "list")
+  expect_type(d$tree, "list")
   ## projects
   expect_length(d$projects, 3)
   for (i in seq_along(d$projects)) {
     ## class
-    expect_is(d$projects[[i]], "tbl_df")
+    expect_s3_class(d$projects[[i]], "tbl_df")
     ## name
     expect_true(assertthat::has_name(d$projects[[i]], "name"))
-    expect_is(d$projects[[i]]$name, "character")
+    expect_type(d$projects[[i]]$name, "character")
     ## success
     expect_true(assertthat::has_name(d$projects[[i]], "success"))
-    expect_is(d$projects[[i]]$success, "numeric")
+    expect_type(d$projects[[i]]$success, "double")
     expect_true(all(d$projects[[i]]$success >= 0))
     expect_true(all(d$projects[[i]]$success <= 1))
     ## actions
@@ -49,28 +47,28 @@ test_that("works", {
     )
   }
   ## actions
-  expect_is(d$actions, "tbl_df")
-  expect_is(d$actions$name, "character")
-  expect_is(d$actions$cost, "numeric")
-  expect_is(d$actions$locked_in, "logical")
-  expect_is(d$actions$locked_out, "logical")
+  expect_s3_class(d$actions, "tbl_df")
+  expect_type(d$actions$name, "character")
+  expect_type(d$actions$cost, "double")
+  expect_type(d$actions$locked_in, "logical")
+  expect_type(d$actions$locked_out, "logical")
   ## features
   expect_length(d$features, 3)
   for (i in seq_along(d$features)) {
     ## class
-    expect_is(d$features[[i]], "tbl_df")
+    expect_s3_class(d$features[[i]], "tbl_df")
     ## name
     expect_true(assertthat::has_name(d$features[[i]], "name"))
-    expect_is(d$features[[i]]$name, "character")
+    expect_type(d$features[[i]]$name, "character")
     ## weight
     expect_true(assertthat::has_name(d$features[[i]], "weight"))
-    expect_is(d$features[[i]]$weight, "numeric")
+    expect_type(d$features[[i]]$weight, "double")
   }
   ## tree
   expect_length(d$tree, 3)
   for (i in seq_along(d$tree)) {
     ## class
-    expect_is(d$tree[[i]], "phylo")
+    expect_s3_class(d$tree[[i]], "phylo")
     ## tip.labels
     expect_equal(
       sort(d$features[[i]]$name),

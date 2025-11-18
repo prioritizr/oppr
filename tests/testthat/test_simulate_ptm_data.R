@@ -1,5 +1,3 @@
-context("simulate_ptm_data")
-
 test_that("valid arguments", {
   # set seed for reproducibility
   set.seed(500)
@@ -9,16 +7,16 @@ test_that("valid arguments", {
   )
   # tests
   ## verify object structure
-  expect_is(s, "list")
-  expect_is(s$projects, "tbl_df")
-  expect_is(s$actions, "tbl_df")
-  expect_is(s$features, "tbl_df")
-  expect_is(s$tree, "phylo")
+  expect_type(s, "list")
+  expect_s3_class(s$projects, "tbl_df")
+  expect_s3_class(s$actions, "tbl_df")
+  expect_s3_class(s$features, "tbl_df")
+  expect_s3_class(s$tree, "phylo")
   ## project data
   ### dimensions
   expect_equal(nrow(s$projects), 7)
   ### name column
-  expect_is(s$projects$name, "character")
+  expect_type(s$projects$name, "character")
   expect_equal(anyDuplicated(s$projects$name), 0)
   expect_equal(s$projects$name[nrow(s$projects)], "baseline_project")
   expect_equal(
@@ -26,7 +24,7 @@ test_that("valid arguments", {
     paste0("project_", seq_len(6))
   )
   ### success column
-  expect_is(s$projects$success, "numeric")
+  expect_type(s$projects$success, "double")
   expect_true(all(s$projects$success >= 0.7))
   expect_true(all(s$projects$success[-nrow(s$projects)] <= 0.99))
   expect_equal(s$projects$success[nrow(s$projects)], 1)
@@ -96,22 +94,22 @@ test_that("valid arguments", {
   expect_equal(ncol(s$actions), 4)
   expect_equal(nrow(s$actions), 9)
   ### name column
-  expect_is(s$actions$name, "character")
+  expect_type(s$actions$name, "character")
   expect_equal(anyDuplicated(s$actions$name), 0)
   expect_equal(s$actions$name, c(
     paste0("action_", seq_len(8)),
     "baseline_action"
   ))
   ### locked in column
-  expect_is(s$actions$locked_in, "logical")
+  expect_type(s$actions$locked_in, "logical")
   expect_equal(sum(s$actions$locked_in), 1L)
   expect_true(assertthat::noNA(s$actions$locked_in))
   ### locked out column
-  expect_is(s$actions$locked_out, "logical")
+  expect_type(s$actions$locked_out, "logical")
   expect_equal(sum(s$actions$locked_out), 1L)
   expect_true(assertthat::noNA(s$actions$locked_out))
   ### cost column
-  expect_is(s$actions$cost, "numeric")
+  expect_type(s$actions$cost, "double")
   expect_true(all(s$actions$cost >= 0))
   expect_true(all(is.finite(s$actions$cost)))
   ## species
@@ -119,7 +117,7 @@ test_that("valid arguments", {
   expect_equal(ncol(s$features), 2)
   expect_equal(nrow(s$features), 5)
   ### name column
-  expect_is(s$features$name, "character")
+  expect_type(s$features$name, "character")
   expect_equal(anyDuplicated(s$features$name), 0)
   expect_equal(s$features$name, paste0("F", seq_len(5)))
   ## tree

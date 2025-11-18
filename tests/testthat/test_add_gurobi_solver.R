@@ -1,9 +1,7 @@
-context("add_gurobi_solver")
-
 test_that("format", {
   # define skips
   skip_on_cran()
-  skip_if_not_installed("gurobi")
+  skip_if_not_installed("gurobi", "8.0.0")
   # load data
   data(sim_projects, sim_actions, sim_features)
   # build problem
@@ -19,7 +17,7 @@ test_that("format", {
   # solve problem
   s <- solve(p)
   # check that solution has correct properties
-  expect_true(inherits(s, "tbl_df"))
+  expect_s3_class(s, "tbl_df")
   expect_equal(nrow(s), 1)
   expect_gt(ncol(s), 0)
 })
@@ -27,7 +25,7 @@ test_that("format", {
 test_that("linear objective", {
   # define skips
   skip_on_cran()
-  skip_if_not_installed("gurobi")
+  skip_if_not_installed("gurobi", "8.0.0")
   # make data
   projects <- tibble::tibble(
     name = c("P1", "P2", "P3", "P4"),

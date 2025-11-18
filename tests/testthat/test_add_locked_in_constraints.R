@@ -1,5 +1,3 @@
-context("add_locked_in_constraints")
-
 test_that("integer (compile)", {
   # create problem
   data(sim_projects, sim_actions, sim_features)

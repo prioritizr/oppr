@@ -1,5 +1,3 @@
-context("add_relative_targets")
-
 test_that("numeric(1)", {
   # load data
   data(sim_projects, sim_actions, sim_features)
@@ -14,11 +12,11 @@ test_that("numeric(1)", {
   mp <- unname(rep(apply(p$eof_matrix(), 2, max, na.rm = TRUE)))
   targets <- p$targets$output()
   # run tests
-  expect_is(targets, "tbl_df")
+  expect_s3_class(targets, "tbl_df")
   expect_true(all(names(targets) == c("feature", "sense", "value")))
-  expect_is(targets$feature, "integer")
-  expect_is(targets$value, "numeric")
-  expect_is(targets$sense, "character")
+  expect_type(targets$feature, "integer")
+  expect_type(targets$value, "double")
+  expect_type(targets$sense, "character")
   expect_equal(targets$feature, seq_len(nrow(sim_features)))
   expect_equal(targets$value, mp * 0.5)
   expect_equal(targets$sense, rep(">=", nrow(sim_features)))
@@ -38,11 +36,11 @@ test_that("numeric(4)", {
   targets <- p$targets$output()
   mp <- unname(rep(apply(p$eof_matrix(), 2, max, na.rm = TRUE)))
   # run tests
-  expect_is(targets, "tbl_df")
+  expect_s3_class(targets, "tbl_df")
   expect_true(all(names(targets) == c("feature", "sense", "value")))
-  expect_is(targets$feature, "integer")
-  expect_is(targets$value, "numeric")
-  expect_is(targets$sense, "character")
+  expect_type(targets$feature, "integer")
+  expect_type(targets$value, "double")
+  expect_type(targets$sense, "character")
   expect_equal(targets$feature, seq_len(nrow(sim_features)))
   expect_equal(targets$value, mp * seq_len(5) * 0.1)
   expect_equal(targets$sense, rep(">=", nrow(sim_features)))
@@ -63,11 +61,11 @@ test_that("character", {
   mp <- unname(rep(apply(p$eof_matrix(), 2, max, na.rm = TRUE)))
   targets <- p$targets$output()
   # run tests
-  expect_is(targets, "tbl_df")
+  expect_s3_class(targets, "tbl_df")
   expect_true(all(names(targets) == c("feature", "sense", "value")))
-  expect_is(targets$feature, "integer")
-  expect_is(targets$value, "numeric")
-  expect_is(targets$sense, "character")
+  expect_type(targets$feature, "integer")
+  expect_type(targets$value, "double")
+  expect_type(targets$sense, "character")
   expect_equal(targets$feature, seq_len(nrow(sim_features)))
   expect_equal(targets$value, mp * sim_features$target)
   expect_equal(targets$sense, rep(">=", nrow(sim_features)))

@@ -1,5 +1,3 @@
-context("add_feature_weights")
-
 test_that("numeric(5)", {
   # load data
   data(sim_projects, sim_actions, sim_features)
@@ -13,7 +11,7 @@ test_that("numeric(5)", {
   # calculate weights
   weights <- p$feature_weights()
   # run tests
-  expect_is(weights, "numeric")
+  expect_type(weights, "double")
   expect_equal(weights, setNames(seq(1.1, 5.1), sim_features$name))
 })
 
@@ -30,7 +28,7 @@ test_that("character(1)", {
   # calculate weights
   weights <- p$feature_weights()
   # run tests
-  expect_is(weights, "numeric")
+  expect_type(weights, "double")
   expect_equal(weights, setNames(sim_features$weight, sim_features$name))
 })
 

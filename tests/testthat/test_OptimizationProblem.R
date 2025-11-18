@@ -1,5 +1,3 @@
-context("OptimizationProblem")
-
 test_that("new problem", {
   # create data
   x <- new_optimization_problem()

@@ -1,6 +1,4 @@
-context("problem")
-
-test_that("valid arguments (include_baseline = FALSE)", {
+test_that("works (include_baseline = FALSE)", {
   # load data
   data(sim_projects, sim_actions, sim_features)
   # build problem
@@ -10,8 +8,8 @@ test_that("valid arguments (include_baseline = FALSE)", {
   )
   # run tests
   ## display methods
-  expect_is(print(p), "logical")
-  expect_is(show(p), "logical")
+  expect_type(print(p), "logical")
+  expect_type(show(p), "logical")
   expect_equal(p$repr(), "ProjectProblem object")
   ## getters
   expect_equal(p$get_data("projects"), sim_projects)
@@ -73,7 +71,7 @@ test_that("valid arguments (include_baseline = FALSE)", {
   p$set_data("feature_name_column", "name")
 })
 
-test_that("valid arguments (include_baseline = TRUE)", {
+test_that("works (include_baseline = TRUE)", {
   # load data
   data(sim_projects, sim_actions, sim_features)
   # build problem
@@ -84,8 +82,8 @@ test_that("valid arguments (include_baseline = TRUE)", {
     )
   # run tests
   ## display methods
-  expect_is(print(p), "logical")
-  expect_is(show(p), "logical")
+  expect_type(print(p), "logical")
+  expect_type(show(p), "logical")
   expect_equal(p$repr(), "ProjectProblem object")
   ## getters
   expect_equal(p$get_data("projects"), sim_projects)
@@ -156,7 +154,7 @@ test_that("invalid arguments", {
   # load data
   data(sim_projects, sim_actions, sim_features)
   # verify works with build in dataset
-  expect_is(
+  expect_s3_class(
     problem(
       sim_projects, sim_actions, sim_features,
       "name", "success", "name", "cost", "name"

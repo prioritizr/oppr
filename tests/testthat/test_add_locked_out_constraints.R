@@ -1,5 +1,3 @@
-context("add_locked_out_constraints")
-
 test_that("integer (compile)", {
   # load data
   data(sim_projects, sim_actions, sim_features)

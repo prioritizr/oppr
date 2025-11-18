@@ -1,6 +1,4 @@
-context("add_manual_targets")
-
-test_that("valid arguments", {
+test_that("works", {
   # load data
   data(sim_projects, sim_actions, sim_features)
   # build problem
@@ -19,11 +17,11 @@ test_that("valid arguments", {
   # calculate absolute targets
   targets <- p$targets$output()
   # run tests
-  expect_is(targets, "tbl_df")
+  expect_s3_class(targets, "tbl_df")
   expect_true(all(names(targets) == c("feature", "sense", "value")))
-  expect_is(targets$feature, "integer")
-  expect_is(targets$value, "numeric")
-  expect_is(targets$sense, "character")
+  expect_type(targets$feature, "integer")
+  expect_type(targets$value, "double")
+  expect_type(targets$sense, "character")
   expect_equal(targets$feature, seq_len(nrow(sim_features)))
   expect_equal(targets$value, c(seq_len(4) * 0.1, -1))
   expect_equal(targets$sense, rep(">=", nrow(sim_features)))

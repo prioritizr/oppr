@@ -1,5 +1,3 @@
-context("add_min_set_objective")
-
 test_that("compile", {
   # create data
   projects <- tibble::tibble(
@@ -80,13 +78,10 @@ test_that("solve (single solution)", {
   # solve problem
   s <- solve(p)
   # run tests
-  expect_is(s, "tbl_df")
+  expect_s3_class(s, "tbl_df")
   expect_equal(nrow(s), 1)
   expect_equal(s$solution, 1L)
-  expect_true(
-    s$status %in%
-    c("OPTIMAL", "TM_OPTIMAL_SOLUTION_FOUND", "optimal solution found")
-  )
+  expect_true(is_optimal_solver_status(s$status))
   expect_equal(s$cost, 0.15)
   expect_equal(s$obj, 0.15)
   expect_equal(s$A1, 0)

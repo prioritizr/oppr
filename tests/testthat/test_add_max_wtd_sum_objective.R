@@ -1,5 +1,3 @@
-context("add_max_wtd_sum_objective")
-
 test_that("compile (no weights)", {
   # create data
   projects <- tibble::tibble(
@@ -127,13 +125,10 @@ test_that("solve (single solution)", {
   s2 <- solve(p2)
   # run tests
   ## s1
-  expect_is(s1, "tbl_df")
+  expect_s3_class(s1, "tbl_df")
   expect_equal(nrow(s1), 1L)
   expect_equal(s1$solution, 1L)
-  expect_true(
-    s1$status %in%
-    c("OPTIMAL", "TM_OPTIMAL_SOLUTION_FOUND", "optimal solution found")
-  )
+  expect_true(is_optimal_solver_status(s1$status))
   expect_equal(s1$obj, s1$F1 + s1$F2 + s1$F3)
   expect_equal(s1$cost, 0.15)
   expect_equal(s1$A1, 0)
@@ -144,13 +139,10 @@ test_that("solve (single solution)", {
   expect_equal(s1$F2, 0.94 * 0.8)
   expect_equal(s1$F3, 1 * 0.1)
   ## s2
-  expect_is(s2, "tbl_df")
+  expect_s3_class(s2, "tbl_df")
   expect_equal(nrow(s2), 1L)
   expect_equal(s2$solution, 1L)
-  expect_true(
-    s2$status %in%
-    c("OPTIMAL", "TM_OPTIMAL_SOLUTION_FOUND", "optimal solution found")
-  )
+  expect_true(is_optimal_solver_status(s2$status))
   expect_equal(s2$obj, s2$F1 + s2$F2 + s2$F3)
   expect_equal(s2$cost, 0.2)
   expect_equal(s2$A1, 1)
@@ -193,7 +185,7 @@ test_that("solve (tricky problem)", {
   # solve problem
   s <- solve(p)
   # run tests
-  expect_is(s, "tbl_df")
+  expect_s3_class(s, "tbl_df")
   expect_equal(nrow(s), 1L)
   expect_equal(s$cost, 1)
   expect_true(

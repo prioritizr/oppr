@@ -1,5 +1,3 @@
-context("add_lpsolveapi_solver")
-
 test_that("format", {
   # define skips
   skip_on_cran()

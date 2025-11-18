@@ -1,5 +1,3 @@
-context("add_max_phylo_div_objective")
-
 test_that("compile", {
   # create data
   projects <- tibble::tibble(
@@ -96,10 +94,10 @@ test_that("solve (single solution)", {
   s3 <- solve(p3)
   # run tests
   ## s1
-  expect_is(s1, "tbl_df")
+  expect_s3_class(s1, "tbl_df")
   expect_equal(nrow(s1), 1)
   expect_equal(s1$solution, 1L)
-  expect_equal(s1$status, "OPTIMAL")
+  expect_true(is_optimal_solver_status(s1$status))
   expect_equal(s1$cost, 0.15)
   expect_equal(
     s1$obj,
@@ -116,10 +114,10 @@ test_that("solve (single solution)", {
   expect_equal(s1$F2, 0.94 * 0.8)
   expect_equal(s1$F3, 0.1 * 1)
   ## s2
-  expect_is(s2, "tbl_df")
+  expect_s3_class(s2, "tbl_df")
   expect_equal(nrow(s2), 1)
   expect_equal(s2$solution, 1L)
-  expect_equal(s2$status, "OPTIMAL")
+  expect_true(is_optimal_solver_status(s2$status))
   expect_equal(
     s2$obj,
     (5 * s2$F1) +
@@ -136,10 +134,10 @@ test_that("solve (single solution)", {
   expect_equal(s2$F2, 0.96 * 0.92)
   expect_equal(s2$F3, 0.1 * 1)
   ## s3
-  expect_is(s3, "tbl_df")
+  expect_s3_class(s3, "tbl_df")
   expect_equal(nrow(s3), 1)
   expect_equal(s3$solution, 1L)
-  expect_equal(s3$status, "OPTIMAL")
+  expect_true(is_optimal_solver_status(s3$status))
   expect_equal(
     s3$obj,
     (100 * s3$F1) +
@@ -192,10 +190,10 @@ test_that("solve (random order)", {
   # solve problem
   s <- solve(p)
   # solve problem
-  expect_is(s, "tbl_df")
+  expect_s3_class(s, "tbl_df")
   expect_equal(nrow(s), 1)
   expect_equal(s$solution, 1L)
-  expect_equal(s$status, "OPTIMAL")
+  expect_true(is_optimal_solver_status(s$status))
   expect_equal(
     s$obj,
     (5 * 0.95 * 0.91) +
@@ -250,10 +248,10 @@ test_that("solve (weights)", {
   # solve problem
   s <- solve(p)
   # solve problem
-  expect_is(s, "tbl_df")
+  expect_s3_class(s, "tbl_df")
   expect_equal(nrow(s), 1)
   expect_equal(s$solution, 1L)
-  expect_equal(s$status, "OPTIMAL")
+  expect_true(is_optimal_solver_status(s$status))
   expect_equal(
     s$obj,
     (5 * 0.1 * 1) + (4 * 0.1 * 1) +
@@ -309,10 +307,10 @@ test_that("solve (constant branch probabilities)", {
   # solve problem
   s <- solve(p)
   # run tests
-  expect_is(s, "tbl_df")
+  expect_s3_class(s, "tbl_df")
   expect_equal(nrow(s), 1)
   expect_equal(s$solution, 1L)
-  expect_equal(s$status, "OPTIMAL")
+  expect_true(is_optimal_solver_status(s$status))
   expect_equal(
     s$obj,
     (0.752 * 5) +

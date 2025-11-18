@@ -1,5 +1,3 @@
-context("plot_phylo_persistence")
-
 test_that("some projects funded", {
   # define skips
   skip_on_cran()
@@ -37,7 +35,7 @@ test_that("some projects funded", {
   # make plot
   g <- plot_phylo_persistence(p, solution)
   # run tests
-  expect_is(g, "ggtree")
+  expect_s3_class(g, "ggtree")
   expect_true({
     f <- tempfile(fileext = ".png")
     png(f)
@@ -85,7 +83,7 @@ test_that("all projects funded", {
   # make plot
   g <- plot_phylo_persistence(p, solution)
   # run tests
-  expect_is(g, "ggtree")
+  expect_s3_class(g, "ggtree")
   expect_true({
     f <- tempfile(fileext = ".png")
     png(f)
@@ -133,7 +131,7 @@ test_that("no projects funded", {
   # make plot
   g <- plot_phylo_persistence(p, solution)
   # run tests
-  expect_is(g, "ggtree")
+  expect_s3_class(g, "ggtree")
   expect_true({
     f <- tempfile(fileext = ".png")
     png(f)
@@ -168,7 +166,7 @@ test_that("invalid arguments", {
   )
   # run tests
   ## verify that test data yields plot
-  expect_is(plot_phylo_persistence(p, solution), "ggtree")
+  expect_s3_class(plot_phylo_persistence(p, solution), "ggtree")
   ## invalid problem
   expect_error({
     plot_phylo_persistence(

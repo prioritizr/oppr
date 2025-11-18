@@ -1,5 +1,3 @@
-context("add_binary_decisions")
-
 test_that("compile", {
   # load data
   data(sim_projects, sim_actions, sim_features)

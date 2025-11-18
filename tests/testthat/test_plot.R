@@ -1,5 +1,3 @@
-context("plot.ProjectProblem")
-
 test_that("no phylogenetic data", {
   # create data
   projects <- tibble::tibble(
@@ -33,7 +31,7 @@ test_that("no phylogenetic data", {
   g <- plot(p, solution)
   d <- plot(p, solution, return_data = TRUE)
   # run tests
-  expect_is(g, "ggplot")
+  expect_s3_class(g, "ggplot")
   expect_true({
     f <- tempfile(fileext = ".png")
     png(f)
@@ -42,7 +40,7 @@ test_that("no phylogenetic data", {
     unlink(f)
     TRUE
   })
-  expect_is(d, "tbl_df")
+  expect_s3_class(d, "tbl_df")
 })
 
 test_that("phylogenetic data", {
@@ -83,7 +81,7 @@ test_that("phylogenetic data", {
   g <- plot(p, solution)
   d <- plot(p, solution, return_data = TRUE)
   # run tests
-  expect_is(g, "ggtree")
+  expect_s3_class(g, "ggtree")
   expect_true({
     f <- tempfile(fileext = ".png")
     png(f)
@@ -92,7 +90,7 @@ test_that("phylogenetic data", {
     unlink(f)
     TRUE
   })
-  expect_is(d, "treedata")
+  expect_s4_class(d, "treedata")
 })
 
 test_that("invalid arguments", {
@@ -116,7 +114,7 @@ test_that("invalid arguments", {
   )
   # run tests
   ## verify that test data yields plot
-  expect_is(plot(p, solution), "ggplot")
+  expect_s3_class(plot(p, solution), "ggplot")
   ## invalid problem
   expect_error({
     plot(

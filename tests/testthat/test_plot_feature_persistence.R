@@ -1,5 +1,3 @@
-context("plot_feature_persistence")
-
 test_that("some projects funded", {
   # create data
   projects <- tibble::tibble(
@@ -32,7 +30,7 @@ test_that("some projects funded", {
   # make plot
   g <- plot_feature_persistence(p, solution)
   # run tests
-  expect_is(g, "ggplot")
+  expect_s3_class(g, "ggplot")
   expect_true({
     f <- tempfile(fileext = ".png")
     png(f)
@@ -75,7 +73,7 @@ test_that("all projects funded", {
   # make plot
   g <- plot_feature_persistence(p, solution)
   # run tests
-  expect_is(g, "ggplot")
+  expect_s3_class(g, "ggplot")
   expect_true({
     f <- tempfile(fileext = ".png")
     png(f)
@@ -118,7 +116,7 @@ test_that("no projects funded", {
   # make plot
   g <- plot_feature_persistence(p, solution)
   # run tests
-  expect_is(g, "ggplot")
+  expect_s3_class(g, "ggplot")
   expect_true({
     f <- tempfile(fileext = ".png")
     png(f)
@@ -150,7 +148,7 @@ test_that("invalid arguments", {
   )
   # run tests
   ## verify that test data yields plot
-  expect_is(plot_feature_persistence(p, solution), "ggplot")
+  expect_s3_class(plot_feature_persistence(p, solution), "ggplot")
   ## invalid problem
   expect_error({
     plot_feature_persistence(

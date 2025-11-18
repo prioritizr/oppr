@@ -1,5 +1,3 @@
-context("add_random_solver")
-
 test_that("minimum set objective (1 solution)", {
   # create data
   projects <- tibble::tibble(
@@ -33,7 +31,7 @@ test_that("minimum set objective (1 solution)", {
   # generate solution
   s <- solve(p)
   # run tests
-  expect_is(s, "tbl_df")
+  expect_s3_class(s, "tbl_df")
   expect_equal(s$solution, 1L)
   expect_equal(s$status, NA_character_)
   expect_equal(s$obj, 0.25)
@@ -79,7 +77,7 @@ test_that("minimum set objective (100 solutions, locked in)", {
   # generate solution
   s <- solve(p)
   # tests
-  expect_is(s, "tbl_df")
+  expect_s3_class(s, "tbl_df")
   expect_equal(s$solution, seq_len(100))
   expect_equal(s$status, rep(NA_character_, 100))
   expect_true(all(s$obj %in% c(0.2, 0.25)))
@@ -131,7 +129,7 @@ test_that("minimum set objective (100 solutions, locked out)", {
   # generate solution
   s <- solve(p)
   # run tests
-  expect_is(s, "tbl_df")
+  expect_s3_class(s, "tbl_df")
   expect_equal(s$solution, seq_len(100))
   expect_equal(s$status, rep(NA_character_, 100))
   expect_true(all(s$obj %in% c(0.15, 0.25)))
@@ -181,7 +179,7 @@ test_that("maximum benefit objective (1 solution)", {
   # solve problem
   s <- solve(p)
   # run tests
-  expect_is(s, "tbl_df")
+  expect_s3_class(s, "tbl_df")
   expect_equal(s$solution, 1L)
   expect_equal(s$status, NA_character_)
   expect_equal(s$obj, s$F1 + s$F2 + s$F3)
@@ -232,7 +230,7 @@ test_that("maximum benefit objective (100 solutions, locked in)", {
   # solve problem
   s <- solve(p)
   # run tests
-  expect_is(s, "tbl_df")
+  expect_s3_class(s, "tbl_df")
   expect_equal(s$solution, seq_len(100))
   expect_equal(s$status, rep(NA_character_, 100))
   expect_equal(s$obj, s$F1 + s$F2 + s$F3)
@@ -273,7 +271,7 @@ test_that("maximum benefit objective (100 solutions, locked out)", {
   # solve problem
   s <- solve(p)
   # tests
-  expect_is(s, "tbl_df")
+  expect_s3_class(s, "tbl_df")
   expect_equal(s$solution, seq_len(100))
   expect_equal(s$status, rep(NA_character_, 100))
   expect_equal(s$obj, s$F1 + s$F2 + s$F3)
@@ -299,7 +297,7 @@ test_that("maximum benefit objective (zero cost project locked out)", {
   # solve problem
   s <- solve(p)
   # tests
-  expect_is(s, "tbl_df")
+  expect_s3_class(s, "tbl_df")
   expect_equal(s$solution, seq_len(100))
   expect_equal(s$status, rep(NA_character_, 100))
   expect_equal(s$obj, s$F1 + s$F2 + s$F3)
@@ -333,7 +331,7 @@ test_that("maximum benefit (large problem, inc budgets)", {
       add_random_solver(verbose = FALSE, number_solutions = 5) %>%
       solve()
     # run tests
-    expect_is(s, "tbl_df")
+    expect_s3_class(s, "tbl_df")
     expect_equal(nrow(s), 5)
     expect_equal(s$status, rep(NA_character_, nrow(s)))
     expect_true(all(s$cost <= b))
@@ -368,7 +366,7 @@ test_that("maximum benefit (large problem, inc budgets, locked constraints)", {
       add_random_solver(verbose = FALSE, number_solutions = 5) %>%
       solve()
     # run tests
-    expect_is(s, "tbl_df")
+    expect_s3_class(s, "tbl_df")
     expect_equal(nrow(s), 5)
     expect_equal(s$status, rep(NA_character_, nrow(s)))
     expect_true(all(s$action_1 == 1))

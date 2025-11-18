@@ -1,5 +1,3 @@
-context("solution_statistics")
-
 test_that("add_max_phylo_div_objective", {
   # create data
   projects <- tibble::tibble(
