@@ -12,7 +12,7 @@ add_heuristic_solver(
 )
 }
 \arguments{
-\item{x}{\code{\link[=problem]{problem()}} object.}
+\item{x}{\code{\link[=problem]{problem()}} or \code{\link[=multi_problem]{multi_problem()}} object.}
 
 \item{number_solutions}{\code{integer} number of solutions desired.
 Defaults to 1. Note that the number of returned solutions can sometimes
@@ -26,22 +26,23 @@ actions which exceed the budget should be automatically excluded
 prior to running the backwards heuristic. This step prevents
 projects which exceed the budget, and so would never be selected in
 the final solution, from biasing the cost-sharing calculations.
-However, previous algorithms for project prioritization have not
-used this step (e.g., Probert \emph{et al.} 2016).
+Although this step can improve solution quality, previous algorithms for
+project prioritization have not used it (e.g., Probert \emph{et al.} 2016).
 Defaults to \code{TRUE}.}
 
-\item{verbose}{\code{logical} should information be printed while solving
-optimization problems?}
+\item{verbose}{\code{logical} should information be printed during optimization?
+Defaults to \code{TRUE}.}
 }
 \value{
-A \code{\link[=problem]{problem()}} object with the solver added o it.
+A \code{\link[=problem]{problem()}} object with the solver added to it.
 }
 \description{
-Specify that solutions should be generated using a backwards step-wise
-heuristic algorithm (inspired by Cabeza \emph{et al.} 2004,
+Add a solver to a project prioritization problem to generate solutions
+using a backwards step-wise heuristic algorithm
+(inspired by Cabeza \emph{et al.} 2004,
 Korte & Vygen 2000, Probert \emph{et al.} 2016). Ideally,
-solutions should be generated using exact algorithm solvers (e.g.
-\code{\link[=add_rsymphony_solver]{add_rsymphony_solver()}} or \code{\link[=add_gurobi_solver]{add_gurobi_solver()}})
+solutions should be generated using exact algorithm solvers (e.g.,
+\code{\link[=add_highs_solver]{add_highs_solver()}} or \code{\link[=add_gurobi_solver]{add_gurobi_solver()}})
 because they are guaranteed to identify optimal solutions (Rodrigues & Gaston
 2002).
 }
@@ -85,7 +86,11 @@ solution decreases when the project is deselected for funding, relative to
 the cost of the project not shared by other remaining projects. This can
 be expressed mathematically as:
 
-\deqn{B_j = \frac{V(J) - V(J - j)}{C_j}}{B_j = (V(J) - V(J - j)) / C_j}
+\deqn{
+B_j = \frac{V(J) - V(J - j)}{C_j}
+}{
+B_j = (V(J) - V(J - j)) / C_j
+}
 
 Here \eqn{J} is the set of remaining projects currently
 selected for funding (indexed by \eqn{j}), \eqn{B_j} is the benefit
@@ -148,6 +153,7 @@ is deselected.
 }
 }
 \examples{
+\dontrun{
 # load ggplot2 package for making plots
 library(ggplot2)
 
@@ -167,7 +173,6 @@ p1 <-
 # print problem
 print(p1)
 
-\dontrun{
 # solve problem
 s1 <- solve(p1)
 
@@ -198,8 +203,12 @@ Formerly available at \url{https://github.com/p-robot}
 (copy available at \url{https://github.com/jeffreyhanson/ppp}).
 }
 \seealso{
-\link{solvers}.
-
 Other solvers: 
-\code{\link{add_highs_solver}()}
+\code{\link{add_gurobi_solver}()},
+\code{\link{add_highs_solver}()},
+\code{\link{add_lpsolveapi_solver}()},
+\code{\link{add_lpsymphony_solver}()},
+\code{\link{add_random_solver}()},
+\code{\link{add_rsymphony_solver}()}
 }
+\concept{solvers}

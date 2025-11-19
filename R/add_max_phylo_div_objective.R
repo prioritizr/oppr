@@ -3,18 +3,18 @@ NULL
 
 #' Add maximum phylogenetic diversity objective
 #'
-#' Set the objective of a project prioritization [problem()] to
-#' maximize the phylogenetic diversity that is expected to persist into the
-#' future, whilst ensuring that the cost of the solution is within a
-#' pre-specified budget (Bennett *et al.* 2014, Faith 2008).
+#' Add an objective to a project prioritization problem based on
+#' maximizing phylogenetic diversity, whilst ensuring that the cost of the
+#' solution is within a pre-specified budget
+#' (Bennett *et al.* 2014, Faith 2008).
 #' Note that this objective requires that the outcome data in the
 #' [problem()] reflect probabilities of persistence.
 #'
 #' @inheritParams add_max_wtd_sum_objective
 #'
 #' @param tree [ape::phylo()] phylogenetic tree describing the
-#'   evolutionary relationships between the features. Note that `tree` must
-#'   contain every feature, and only the features, present in `x`.
+#' evolutionary relationships between the features. Note that `tree` must
+#' contain every feature, and only the features, present in `x`.
 #'
 #' @details
 #' A problem objective is used to specify the overall goal of the
@@ -41,7 +41,7 @@ NULL
 #' features \eqn{f \in F}{f in F} are associated with which phylogenetic
 #' branches \eqn{b \in B}{b in B} using zeros and ones. Ideally, the set of
 #' features \eqn{F} would contain all of the species in the study
-#' area---including non-threatened species---to fully account for the benefits
+#' area -- including non-threatened species -- to fully account for the benefits
 #' for funding different actions.
 #'
 #' To guide the prioritization, the conservation actions are organized into
@@ -150,6 +150,8 @@ NULL
 #'
 #' @inherit add_max_wtd_sum_objective seealso return
 #'
+#' @family objectives
+#'
 #' @references
 #' Bennett JR, Elliott G, Mellish B, Joseph LN, Tulloch AI,
 #' Probert WJ, Di Fonzo MMI, Monks JM, Possingham HP & Maloney R (2014)
@@ -167,6 +169,7 @@ NULL
 #' research & management science*. Springer.
 #'
 #' @examples
+#' \dontrun{
 #' # load data
 #' data(sim_projects, sim_features, sim_actions, sim_tree)
 #'
@@ -182,7 +185,6 @@ NULL
 #'   add_max_phylo_div_objective(budget = 200, tree = sim_tree) %>%
 #'   add_binary_decisions()
 #'
-#' \dontrun{
 #' # solve problem
 #' s1 <- solve(p1)
 #'

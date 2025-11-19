@@ -13,10 +13,15 @@ add_min_set_objective(x)
 A \code{\link[=problem]{problem()}} with the objective added to it.
 }
 \description{
-Set the objective of a project prioritization \code{\link[=problem]{problem()}} to
-minimize the cost of the solution whilst ensuring that all targets are met.
-This objective is conceptually similar to that used in \emph{Marxan}
-(Ball, Possingham & Watts 2009).
+Add an objective to a project prioritization problem based on
+minimizing the cost of the solution, whilst ensuring that the target
+thresholds for each feature is met (Chadés \emph{et al.} 2015).
+In some project prioritization exercises,
+decision makers may have a target threshold level of expected outcome
+for each feature (e.g., a 90\% chance of persistence for each feature).
+This objective is especially useful for identifying solutions
+that ensure that each feature achieves, at least, some minimum level
+of expected outcome based on the target thresholds.
 }
 \details{
 A problem objective is used to specify the overall goal of the
@@ -115,6 +120,7 @@ that the action funding (\eqn{X_i}), project funding (\eqn{Y_j}), and
 project allocation (\eqn{Z_{fj}}) variables are binary.
 }
 \examples{
+\dontrun{
 # load the ggplot2 R package to customize plot
 library(ggplot2)
 
@@ -132,7 +138,6 @@ p <-
   add_absolute_targets(0.3) \%>\%
   add_binary_decisions()
 
-\dontrun{
 # solve problem
 s <- solve(p)
 
@@ -140,20 +145,20 @@ s <- solve(p)
 print(s)
 
 # plot solution, and add a dashed line to indicate the feature targets
-plot(p, s) +
-  geom_hline(yintercept = 0.3, linetype = "dashed")
+plot(p, s) + geom_hline(yintercept = 0.3, linetype = "dashed")
 }
 }
 \references{
-Ball IR, Possingham HP & Watts M (2009) Marxan and relatives: software for
-spatial conservation prioritisation.
-\emph{Spatial conservation prioritisation: Quantitative methods and
-computational tools}, 185-195.
+Chadés I, Nicol S, van Leeuwen S, Walters B, Firn J, Reeson A, Martin TG &
+Carwardine J (2015) Benefits of integrating complementarity into priority
+threat management. Conservation Biology \strong{29}: 525--536.
 }
 \seealso{
-\link{objectives}, \link{targets}.
+See \link{targets} for an overview of functions for adding targets.
 
 Other objectives: 
+\code{\link{add_max_phylo_div_objective}()},
+\code{\link{add_max_targets_met_objective}()},
 \code{\link{add_max_wtd_sum_objective}()}
 }
 \concept{objectives}

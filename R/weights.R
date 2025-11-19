@@ -3,48 +3,55 @@ NULL
 
 #' Weights
 #'
-#' Weights are used to specify the relative importance for specific
-#' features persisting into the future. Please note that only some
+#' Weights are used to specify the relative importance for particular
+#' features in a project prioritization problem. Please note that only some
 #' objectives require weights, and attempting to solve a problem that does not
 #' require weights will throw a warning and the weights will be ignored.
 #'
-#' @details Currently, only one function can be used to specify weights:
+#' @details
+#' The following functions can be used to add weights to a project
+#' prioritization problem.
 #'
-#'   \describe{
+#' \describe{
 #'
-#'   \item{[add_feature_weights()]}{
-#'     Set feature weights for a project prioritization [problem()].}
+#' \item{[add_default_weights()]}{
+#' Add default weights.
+#' }
 #'
-#'   }
+#' \item{[add_feature_weights()]}{
+#' Add different weights for each feature.
+#' }
 #'
-#' @seealso [constraints], [decisions],
-#'  [objectives], [problem()],
-#'  [solvers], [targets].
+#' }
+#'
+#' @family overviews
 #'
 #' @examples
+#' \dontrun{
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
-#' # build problem with maximum weighted sum objective, $300 budget, and
-#' # feature weights
-#' p <-
+#' # build problem with maximum weighted sum objective and $300 budget
+#' p1 <-
 #'   problem(
 #'     sim_projects, sim_actions, sim_features,
 #'     "name", "success", "name", "cost", "name"
 #'   ) %>%
 #'   add_max_wtd_sum_objective(budget = 200) %>%
-#'   add_feature_weights("weight") %>%
 #'   add_binary_decisions()
 #'
-#' \dontrun{
-#' # solve problem
-#' s <- solve(p)
+#' # build problem with default weights
+#' p2 <- p1 %>% add_default_weights()
 #'
-#' # print solution
-#' print(s)
+#' # build problem with feature weights
+#' p3 <- p1 %>% add_feature_weights("weight")
 #'
-#' # plot solution
-#' plot(p, s)
+#' # generate solutions using
+#' s <- rbind(solve(p2), solve(p3))
+#' s$weights <- c("default", "weights")
+#'
+#' # print solutions
+#' print(as.data.frame(s))
 #' }
 #' @name weights
 NULL

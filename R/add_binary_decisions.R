@@ -3,9 +3,9 @@ NULL
 
 #' Add binary decisions
 #'
-#' Add a binary decision to a project prioritization [problem()].
-#' This is the conventional decision of either prioritizing funding
-#' for a management action or not.
+#' Add binary decisions to a project prioritization problem.
+#' This means that the optimization process aims to determine if
+#' each action should be selected for funding or not.
 #'
 #' @param x [problem()] object.
 #'
@@ -17,9 +17,10 @@ NULL
 #'
 #' @return A [problem()] object with the decisions added to it.
 #'
-#' @seealso [decisions].
+#' @family decisions
 #'
 #' @examples
+#' \dontrun{
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
@@ -36,7 +37,6 @@ NULL
 #' # print problem
 #' print(p)
 #'
-#' \dontrun{
 #' # solve problem
 #' s <- solve(p)
 #'

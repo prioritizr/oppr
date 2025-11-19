@@ -13,9 +13,9 @@ add_binary_decisions(x)
 A \code{\link[=problem]{problem()}} object with the decisions added to it.
 }
 \description{
-Add a binary decision to a project prioritization \code{\link[=problem]{problem()}}.
-This is the conventional decision of either prioritizing funding
-for a management action or not.
+Add binary decisions to a project prioritization problem.
+This means that the optimization process aims to determine if
+each action should be selected for funding or not.
 }
 \details{
 Project prioritization problems involve making decisions about
@@ -24,6 +24,7 @@ If no decision is added to a problem then this decision type will
 be used by default. Currently, this is the only supported decision type.
 }
 \examples{
+\dontrun{
 # load data
 data(sim_projects, sim_features, sim_actions)
 
@@ -40,7 +41,6 @@ p <-
 # print problem
 print(p)
 
-\dontrun{
 # solve problem
 s <- solve(p)
 
@@ -51,6 +51,4 @@ print(s)
 plot(p, s)
 }
 }
-\seealso{
-\link{decisions}.
-}
+\concept{decisions}

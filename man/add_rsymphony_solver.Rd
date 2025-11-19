@@ -13,7 +13,7 @@ add_rsymphony_solver(
 )
 }
 \arguments{
-\item{x}{\code{\link[=problem]{problem()}} object.}
+\item{x}{\code{\link[=problem]{problem()}} or \code{\link[=multi_problem]{multi_problem()}} object.}
 
 \item{gap}{\code{numeric} gap to optimality. This gap is relative
 and expresses the acceptable deviance from the optimal objective.
@@ -35,16 +35,16 @@ solution is not an arbitrary solution, rather it is derived from the
 relaxed solution, and is therefore often reasonably close to optimality.
 Defaults to \code{FALSE}.}
 
-\item{verbose}{\code{logical} should information be printed while solving
-optimization problems?}
+\item{verbose}{\code{logical} should information be printed during optimization?
+Defaults to \code{TRUE}.}
 }
 \value{
-A \code{\link[=problem]{problem()}} object with the solver added o it.
+A \code{\link[=problem]{problem()}} object with the solver added to it.
 }
 \description{
-Specify that the \emph{SYMPHONY} software should be used to solve a
-project prioritization \code{\link[=problem]{problem()}} using the \pkg{Rsymphony}
-package. This function can also be used to customize the behavior of the
+Add a solver to generate solutions to a project prioritization problem
+with the \emph{SYMPHONY} software via the \pkg{Rsymphony} package.
+This function can also be used to customize the behavior of the
 solver. It requires the \pkg{Rsymphony} package.
 }
 \details{
@@ -83,11 +83,14 @@ print(s)
 # plot solution
 plot(p, s)
 }
-
 }
 \seealso{
-\link{solvers}.
-
 Other solvers: 
-\code{\link{add_highs_solver}()}
+\code{\link{add_gurobi_solver}()},
+\code{\link{add_heuristic_solver}()},
+\code{\link{add_highs_solver}()},
+\code{\link{add_lpsolveapi_solver}()},
+\code{\link{add_lpsymphony_solver}()},
+\code{\link{add_random_solver}()}
 }
+\concept{solvers}

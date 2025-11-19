@@ -3,9 +3,9 @@ NULL
 
 #' Add a SYMPHONY solver with \pkg{Rsymphony}
 #'
-#' Specify that the *SYMPHONY* software should be used to solve a
-#' project prioritization [problem()] using the \pkg{Rsymphony}
-#' package. This function can also be used to customize the behavior of the
+#' Add a solver to generate solutions to a project prioritization problem
+#' with the *SYMPHONY* software via the \pkg{Rsymphony} package.
+#' This function can also be used to customize the behavior of the
 #' solver. It requires the \pkg{Rsymphony} package.
 #'
 #' @inheritParams add_gurobi_solver
@@ -20,6 +20,8 @@ NULL
 #' This solver uses the \pkg{Rsymphony} package to solve problems.
 #'
 #' @inherit add_gurobi_solver seealso return
+#'
+#' @family solvers
 #'
 #' @examples
 #' \dontrun{
@@ -48,7 +50,6 @@ NULL
 #' # plot solution
 #' plot(p, s)
 #' }
-#'
 #' @export
 add_rsymphony_solver <- function(x, gap = 0, time_limit = .Machine$integer.max,
                                  first_feasible = FALSE, verbose = TRUE) {

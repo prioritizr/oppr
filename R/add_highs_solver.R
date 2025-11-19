@@ -3,10 +3,9 @@ NULL
 
 #' Add a *HiGHS* solver
 #'
-#' Specify that the [*HiGHS*](https://highs.dev/) software
-#' should be used to solve a conservation planning problem
-#' (Huangfu and Hall 2018). This function can also be used to
-#' customize the behavior of the solver.
+#' Add a solver to generate solutions to a project prioritization problem
+#' with the [*HiGHS*](https://highs.dev/) software (Huangfu and Hall 2018).
+#' This function can also be used to customize the behavior of the solver.
 #' It requires the \pkg{highs} package to be installed.
 #'
 #' @inheritParams add_gurobi_solver
@@ -57,7 +56,6 @@ NULL
 #' # plot solution
 #' plot(p, s)
 #' }
-#'
 #' @name add_highs_solver
 NULL
 

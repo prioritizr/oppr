@@ -7,7 +7,7 @@
 solution_statistics(x, solution)
 }
 \arguments{
-\item{x}{project prioritization \code{\link[=problem]{problem()}}.}
+\item{x}{\code{\link[=problem]{problem()}} object.}
 
 \item{solution}{\code{\link[base:data.frame]{base::data.frame()}} or
 \code{\link[tibble:tibble]{tibble::tibble()}} table containing the solutions. Here,
@@ -41,8 +41,8 @@ or not (with a value of 0).
 
 \item{\code{x$feature_names()}}{
 \code{numeric} column for each
-feature indicating the probability that it will persist into
-the future given each solution.
+feature indicating the expected outcome for each feature given the
+projects selected for funding by the solution.
 }
 
 }

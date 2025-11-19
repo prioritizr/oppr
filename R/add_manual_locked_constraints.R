@@ -3,18 +3,19 @@ NULL
 
 #' Add manually specified locked constraints
 #'
-#' Add constraints to a project prioritization [problem()] to ensure
-#' that solutions fund (or do not fund) specific actions. This function offers
+#' Add constraints to a project prioritization problem to ensure
+#' that particular actions are selected, or not selected, for funding
+#' by the solution. This function offers
 #' more fine-grained control than the [add_locked_in_constraints()]
 #' and [add_locked_out_constraints()] functions.
 #'
 #' @inheritParams add_locked_in_constraints
 #'
 #' @param locked `data.frame` or [tibble::tibble()] object. See
-#'   the Details section for more information.
+#' the Details section for more information.
 #'
 #' @details
-#' The argument to `locked` must contain the following columns:
+#' The argument to `locked` must contain the following columns.
 #'
 #' \describe{
 #'
@@ -29,7 +30,10 @@ NULL
 #'
 #' @inherit add_locked_in_constraints return seealso
 #'
+#' @family constraints
+#'
 #' @examples
+#' \dontrun{
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
@@ -56,7 +60,6 @@ NULL
 #' # print problem
 #' print(p)
 #'
-#' \dontrun{
 #' # solve problem
 #' s <- solve(p)
 #'

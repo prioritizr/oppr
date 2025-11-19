@@ -11,9 +11,7 @@ NULL
 #'   a value for each species. Defaults to assigning an equal weight for
 #'   each species.
 #'
-#' @return An [ape::phylo()] tree object.
-#'
-#' @seealso [ape::stree()].
+#' @return A [ape::phylo()] tree object.
 #'
 #' @examples
 #' # load ape package

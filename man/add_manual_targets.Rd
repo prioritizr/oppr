@@ -24,43 +24,35 @@ the Details section for more information.}
 A \code{\link[=problem]{problem()}} object with the targets added to it.
 }
 \description{
-Set targets for a project prioritization \code{\link[=problem]{problem()}} by manually
-specifying all the required information for each target. This function
-is useful because it can be used to customize all aspects of a target. For
-most cases, targets can be specified using the
-\code{\link[=add_absolute_targets]{add_absolute_targets()}} and \code{\link[=add_relative_targets]{add_relative_targets()}}
-functions. However, this function can be used to mix absolute and
-relative targets for different features.
+Add targets to a project prioritization problem by manually
+specifying detailed information for each target threshold.
+Although this function is useful because it can be used to customize all
+aspects of a target, it requires considerable more information
+that other functions for adding targets (e.g., \code{\link[=add_absolute_targets]{add_absolute_targets()}}
+and \code{\link[=add_relative_targets]{add_relative_targets()}}).
 }
 \details{
-Targets are used to specify the minimum probability of persistence
-for each feature in solutions. For minimum set objectives
-(i.e., \code{\link[=add_min_set_objective]{add_min_set_objective()}}, these targets
-specify the minimum probability of persistence required for each species
-in the solution. And for budget constrained objectives that use targets
-(i.e., \code{\link[=add_max_targets_met_objective]{add_max_targets_met_objective()}}), these targets
-specify the minimum threshold probability of persistence that needs to be
-achieved to count the benefits for conserving these species.
+Targets are used to specify a threshold minimum desirable
+expected outcome for each feature. These should ideally be set
+according to stakeholder requirements and expert knowledge.
 Please note that attempting to solve problems with objectives that require
 targets without specifying targets will throw an error.
 
-The \code{targets} argument should contain the following columns:
+The argument to \code{targets} should contain the following columns:
 
 \describe{
 
 \item{\code{"feature"}}{
-\code{character} values with names of features in argument to \code{x}.
+\code{character} values with names of features in \code{x}.
 }
 
 \item{\code{"type"}}{
 \code{character} values describing the type of target.
 Acceptable values include \code{"absolute"} and \code{"relative"}.
-These values correspond to \code{\link[=add_absolute_targets]{add_absolute_targets()}},
-and \code{\link[=add_relative_targets]{add_relative_targets()}} respectively.
 }
 
 \item{\code{"sense"}}{
-\code{character} values desecribing sense of the target.
+\code{character} values indicating the constraint sense for the target.
 The only acceptable value currently supported is: \code{">="}.
 This field (column) is optional and if it is missing then target senses will
 default to \code{">="} values.
@@ -107,6 +99,8 @@ print(s)
 }
 }
 \seealso{
+See \link{targets} for an overview for functions for adding targets.
+
 Other targets: 
 \code{\link{add_absolute_targets}()},
 \code{\link{add_relative_targets}()}

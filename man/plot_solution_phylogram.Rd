@@ -13,7 +13,7 @@ plot_solution_phylogram(
 )
 }
 \arguments{
-\item{x}{project prioritization \code{\link[=problem]{problem()}}.}
+\item{x}{\code{\link[=problem]{problem()}} object.}
 
 \item{solution}{\code{\link[base:data.frame]{base::data.frame()}} or
 \code{\link[tibble:tibble]{tibble::tibble()}} table containing the solutions. Here,

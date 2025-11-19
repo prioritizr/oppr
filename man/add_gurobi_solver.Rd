@@ -17,7 +17,7 @@ add_gurobi_solver(
 )
 }
 \arguments{
-\item{x}{\code{\link[=problem]{problem()}} object.}
+\item{x}{\code{\link[=problem]{problem()}} or \code{\link[=multi_problem]{multi_problem()}} object.}
 
 \item{gap}{\code{numeric} gap to optimality. This gap is relative
 and expresses the acceptable deviance from the optimal objective.
@@ -43,7 +43,8 @@ one solution within the optimality gap and a number of additional
 solutions that are of any level of quality (such that the total number of
 solutions is equal to \code{number_solutions}), and \code{2} finding a
 specified number of solutions that are nearest to optimality. For more
-information, see the \emph{Gurobi} manual (i.e., \url{https://docs.gurobi.com/projects/optimizer/en/current/reference/parameters.html#poolsearchmode}). Defaults to 2.}
+information, see the \emph{Gurobi} manual (i.e., \url{https://docs.gurobi.com/projects/optimizer/en/current/reference/parameters.html#poolsearchmode}).
+Defaults to 2.}
 
 \item{time_limit}{\code{numeric} time limit in seconds to run the optimizer.
 The solver will return the current best solution when this time limit is
@@ -66,18 +67,16 @@ solution is not an arbitrary solution, rather it is derived from the
 relaxed solution, and is therefore often reasonably close to optimality.
 Defaults to \code{FALSE}.}
 
-\item{verbose}{\code{logical} should information be printed while solving
-optimization problems?}
+\item{verbose}{\code{logical} should information be printed during optimization?
+Defaults to \code{TRUE}.}
 }
 \value{
-A \code{\link[=problem]{problem()}} object with the solver added o it.
+A \code{\link[=problem]{problem()}} object with the solver added to it.
 }
 \description{
-Specify that the \emph{Gurobi} software should be used to solve a
-project prioritization \code{\link[=problem]{problem()}}. This function can also be
-used to customize the behavior of the solver. In addition to the
-\emph{Gurobi} software suite, it also requires the \pkg{gurobi} package to
-be installed.
+Add a solver to generate solutions to a project prioritization problem
+with the \href{https://www.gurobi.com}{\emph{Gurobi}} software.
+This function can also be used to customize the behavior of the solver.
 }
 \details{
 \href{https://www.gurobi.com}{\emph{Gurobi}} is a
@@ -142,9 +141,14 @@ print(s3)
 
 }
 \seealso{
-\link{solvers}.
+See \link{solvers} for an overview of functions for adding solvers.
 
 Other solvers: 
-\code{\link{add_highs_solver}()}
+\code{\link{add_heuristic_solver}()},
+\code{\link{add_highs_solver}()},
+\code{\link{add_lpsolveapi_solver}()},
+\code{\link{add_lpsymphony_solver}()},
+\code{\link{add_random_solver}()},
+\code{\link{add_rsymphony_solver}()}
 }
 \concept{solvers}

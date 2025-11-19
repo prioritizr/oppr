@@ -16,11 +16,12 @@ expenditure for funding actions.}
 A \code{\link[=problem]{problem()}} with the objective added to it.
 }
 \description{
-Set the objective of a project prioritization \code{\link[=problem]{problem()}} to
-maximize the weighted sum of the expected outcomes for the projects, whilst
-ensuring that the cost of the solution is within a pre-specified budget
+Add an objective to a project prioritization problem based on
+maximizing the weighted sum of expected outcomes associated with the
+features, whilst ensuring that the cost of the
+solution is within a pre-specified budget
 (Joseph, Maloney & Possingham 2009). This objective is conceptually similar
-to maximizing species richness in a study area. Furthermore, weights can
+to maximizing species richness. Furthermore, weights can
 also be used to specify the relative importance of conserving specific
 features (see \code{\link[=add_feature_weights]{add_feature_weights()}}).
 }
@@ -167,9 +168,11 @@ resources among threatened species: A project prioritization protocol.
 \emph{Conservation Biology}, \strong{23}, 328--338.
 }
 \seealso{
-\link{objectives}.
+See \link{objectives} for an overview of functions for adding objectives.
 
 Other objectives: 
+\code{\link{add_max_phylo_div_objective}()},
+\code{\link{add_max_targets_met_objective}()},
 \code{\link{add_min_set_objective}()}
 }
 \concept{objectives}

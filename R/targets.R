@@ -3,39 +3,40 @@ NULL
 
 #' Targets
 #'
-#' Targets are used to specify the minimum probability of persistence required
-#' for each feature. Please note that only some objectives require
+#' Targets are used to specify a threshold minimum outcome for each feature.
+#' Please note that only some objectives require
 #' targets, and attempting to solve a problem that requires targets will throw
 #' an error if targets are not supplied, and attempting to solve a problem that
 #' does not require targets will throw a warning if targets are supplied.
 #'
-#' @details The following functions can be used to specify targets for a
-#'   project prioritization [problem()]:
+#' @details
+#' The following functions can be used to specify targets for a
+#' project prioritization problem.
 #'
-#'   \describe{
+#' \describe{
 #'
-#'   \item{[add_relative_targets()]}{
-#'     Set targets as a proportion (between 0 and 1) of the maximum probability
-#'     of persistence associated with the best project for each feature. For
-#'     instance, if the best project for a feature has an 80% probability of
-#'     persisting, setting a 50% (i.e., `0.5`) relative target will
-#'     correspond to a 40% threshold probability of persisting.}
+#' \item{[add_relative_targets()]}{
+#' Set targets as a proportion (between 0 and 1) of the maximum probability
+#' of persistence associated with the best project for each feature. For
+#' instance, if the best project for a feature has an 80% probability of
+#' persisting, setting a 50% (i.e., `0.5`) relative target will
+#' correspond to a 40% threshold probability of persisting.
+#' }
 #'
-#'   \item{[add_absolute_targets()]}{
-#'     Set targets by specifying exactly what probability of persistence is
-#'     required for each feature. For instance, setting an absolute target of
-#'     10% (i.e., `0.1`) corresponds to a threshold 10% probability of
-#'     persisting.}
+#' \item{[add_absolute_targets()]}{
+#' Set targets by specifying exactly what probability of persistence is
+#' required for each feature. For instance, setting an absolute target of
+#' 10% (i.e., `0.1`) corresponds to a threshold 10% probability of
+#' persisting.
+#' }
 #'
-#'   \item{[add_manual_targets()]}{
-#'     Set targets by manually specifying all the required information for each
-#'     target.}
+#' \item{[add_manual_targets()]}{
+#' Set targets by manually specifying all the required information for each
+#' target.}
 #'
-#'   }
+#' }
 #'
-#' @seealso [constraints], [decisions],
-#'  [objectives], [problem()],
-#'  [solvers].
+#' @family overviews
 #'
 #' @examples
 #' # load data
@@ -90,5 +91,8 @@ add_default_targets <- function(x) {
   # assert arguments are valid
   assertthat::assert_that(inherits(x, "ProjectProblem"))
   # throw error because targets must be chosen by the user
-  stop("problem is missing targets and they must be explicitly defined")
+  stop(
+    "problem is missing targets and they must be explicitly defined",
+    call. = FALSE
+  )
 }

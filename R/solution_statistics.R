@@ -6,7 +6,7 @@ NULL
 #' Calculate statistics describing a solution to a project prioritization
 #' [problem()].
 #'
-#' @param x project prioritization [problem()].
+#' @param x [problem()] object.
 #'
 #' @param solution [base::data.frame()] or
 #'   [tibble::tibble()] table containing the solutions. Here,
@@ -40,8 +40,8 @@ NULL
 #'
 #' \item{`x$feature_names()`}{
 #' `numeric` column for each
-#' feature indicating the probability that it will persist into
-#' the future given each solution.
+#' feature indicating the expected outcome for each feature given the
+#' projects selected for funding by the solution.
 #' }
 #'
 #' }
@@ -103,7 +103,7 @@ solution_statistics <- function(x, solution) {
   )
   assertthat::assert_that(
     !is.Waiver(x$objective),
-    msg = "argument to x does not have an objective specified."
+    msg = "`x` does not have an objective specified."
   )
   if (!inherits(solution, "tbl_df")) {
     solution <- tibble::as_tibble(solution)

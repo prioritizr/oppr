@@ -18,9 +18,7 @@ NULL
 #' A rake phylogeny is essentially a star phylogeny, with an additional
 #' branch that connects to all the species.
 #'
-#' @return [ape::phylo()] tree object.
-#'
-#' @seealso [ape::stree()].
+#' @return A [ape::phylo()] tree object.
 #'
 #' @examples
 #' # load ape package

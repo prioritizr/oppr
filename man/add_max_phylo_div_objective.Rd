@@ -20,10 +20,10 @@ contain every feature, and only the features, present in \code{x}.}
 A \code{\link[=problem]{problem()}} with the objective added to it.
 }
 \description{
-Set the objective of a project prioritization \code{\link[=problem]{problem()}} to
-maximize the phylogenetic diversity that is expected to persist into the
-future, whilst ensuring that the cost of the solution is within a
-pre-specified budget (Bennett \emph{et al.} 2014, Faith 2008).
+Add an objective to a project prioritization problem based on
+maximizing phylogenetic diversity, whilst ensuring that the cost of the
+solution is within a pre-specified budget
+(Bennett \emph{et al.} 2014, Faith 2008).
 Note that this objective requires that the outcome data in the
 \code{\link[=problem]{problem()}} reflect probabilities of persistence.
 }
@@ -52,7 +52,7 @@ mathematical notation by letting \eqn{B} represent the branches (indexed by
 features \eqn{f \in F}{f in F} are associated with which phylogenetic
 branches \eqn{b \in B}{b in B} using zeros and ones. Ideally, the set of
 features \eqn{F} would contain all of the species in the study
-area---including non-threatened species---to fully account for the benefits
+area -- including non-threatened species -- to fully account for the benefits
 for funding different actions.
 
 To guide the prioritization, the conservation actions are organized into
@@ -160,6 +160,7 @@ probabilities and using piecewise linear approximations (described in
 Hillier & Price 2005 pp. 390--392) to approximate the exponent of this term.
 }
 \examples{
+\dontrun{
 # load data
 data(sim_projects, sim_features, sim_actions, sim_tree)
 
@@ -175,7 +176,6 @@ p1 <-
   add_max_phylo_div_objective(budget = 200, tree = sim_tree) \%>\%
   add_binary_decisions()
 
-\dontrun{
 # solve problem
 s1 <- solve(p1)
 
@@ -215,8 +215,9 @@ Hillier FS & Price CC (2005) \emph{International series in operations
 research & management science}. Springer.
 }
 \seealso{
-\link{objectives}.
-
 Other objectives: 
+\code{\link{add_max_targets_met_objective}()},
+\code{\link{add_max_wtd_sum_objective}()},
 \code{\link{add_min_set_objective}()}
 }
+\concept{objectives}

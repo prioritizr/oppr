@@ -3,9 +3,9 @@ NULL
 
 #' Action names
 #'
-#' Extract the names of the actions in an object.
+#' Extract the names of actions in an object.
 #'
-#' @param x [ProjectProblem-class].
+#' @param x [problem()] or [multi_problem()] object.
 #'
 #' @return A `character` vector.
 #'

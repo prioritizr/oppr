@@ -3,48 +3,40 @@ NULL
 
 #' Add manual targets
 #'
-#' Set targets for a project prioritization [problem()] by manually
-#' specifying all the required information for each target. This function
-#' is useful because it can be used to customize all aspects of a target. For
-#' most cases, targets can be specified using the
-#' [add_absolute_targets()] and [add_relative_targets()]
-#' functions. However, this function can be used to mix absolute and
-#' relative targets for different features.
+#' Add targets to a project prioritization problem by manually
+#' specifying detailed information for each target threshold.
+#' Although this function is useful because it can be used to customize all
+#' aspects of a target, it requires considerable more information
+#' that other functions for adding targets (e.g., [add_absolute_targets()]
+#' and [add_relative_targets()]).
 #'
 #' @param x [problem() object.
 #'
 #' @param targets `data.frame` or [tibble::tibble()] object. See
-#'   the Details section for more information.
+#' the Details section for more information.
 #'
 #' @details
-#' Targets are used to specify the minimum probability of persistence
-#' for each feature in solutions. For minimum set objectives
-#' (i.e., [add_min_set_objective()], these targets
-#' specify the minimum probability of persistence required for each species
-#' in the solution. And for budget constrained objectives that use targets
-#' (i.e., [add_max_targets_met_objective()]), these targets
-#' specify the minimum threshold probability of persistence that needs to be
-#' achieved to count the benefits for conserving these species.
+#' Targets are used to specify a threshold minimum desirable
+#' expected outcome for each feature. These should ideally be set
+#' according to stakeholder requirements and expert knowledge.
 #' Please note that attempting to solve problems with objectives that require
 #' targets without specifying targets will throw an error.
 #'
-#' The `targets` argument should contain the following columns:
+#' The argument to `targets` should contain the following columns:
 #'
 #' \describe{
 #'
 #' \item{`"feature"`}{
-#' `character` values with names of features in argument to `x`.
+#' `character` values with names of features in `x`.
 #' }
 #'
 #' \item{`"type"`}{
 #' `character` values describing the type of target.
 #' Acceptable values include `"absolute"` and `"relative"`.
-#' These values correspond to [add_absolute_targets()],
-#' and [add_relative_targets()] respectively.
 #' }
 #'
 #' \item{`"sense"`}{
-#' `character` values desecribing sense of the target.
+#' `character` values indicating the constraint sense for the target.
 #' The only acceptable value currently supported is: `">="`.
 #' This field (column) is optional and if it is missing then target senses will
 #' default to `">="` values.
@@ -57,6 +49,9 @@ NULL
 #' @return A [problem()] object with the targets added to it.
 #'
 #' @family targets
+#'
+#' @seealso
+#' See [targets] for an overview for functions for adding targets.
 #'
 #' @examples
 #' # load data
@@ -132,18 +127,21 @@ methods::setMethod(
     assertthat::assert_that(
       inherits(x, "ProjectProblem"),
       inherits(targets, "tbl_df"),
-      nrow(targets) > 0, ncol(targets) > 0,
+      nrow(targets) > 0,
+      ncol(targets) > 0,
       assertthat::has_name(targets, "feature"),
       assertthat::has_name(targets, "target"),
       assertthat::has_name(targets, "type"),
-      all(names(targets) %in% c("feature", "type", "sense", "target")),
       is.character(targets$feature) || is.factor(targets$feature),
       all(as.character(targets$feature) %in% feature_names(x)),
       is.numeric(targets$target), all(is.finite(targets$target)),
       is.character(targets$type) || is.factor(targets$type),
       all(targets$type %in% c("absolute", "relative")),
-      min(targets$target) >= 0,
-      max(targets$target) <= 1
+      min(targets$target) >= 0
+    )
+    assertthat::assert_that(
+      all(targets$target[targets$type == "relative"] <= 1),
+      msg = "target values for relative targets must range between 0 and 1."
     )
     if (assertthat::has_name(targets, "sense")) {
       assertthat::assert_that(
@@ -151,6 +149,7 @@ methods::setMethod(
         all(as.character(targets$sense) %in% c(">="))
       )
     }
+
     # add targets to problem
     x$add_targets(
       R6::R6Class(
@@ -213,7 +212,7 @@ methods::setMethod(
                   targets$target[relative_rows[i]]
             }
             # return tibble
-            return(targets[, c("feature", "sense", "value")])
+            targets[, c("feature", "sense", "value")]
           }
         )
       )$new()

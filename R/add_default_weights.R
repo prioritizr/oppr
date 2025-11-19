@@ -3,13 +3,16 @@ NULL
 
 #' Add default weights
 #'
-#' Add the default weights to a project prioritization [problem()].
+#' Add the default weights to a project prioritization problem.
 #'
-#' @param x [ProjectProblem-class] object.
+#' @param x [problem()] object.
 #'
-#' @seealso [add_feature_weights()].
+#' @family weights
+#'
+#' @inherit add_feature_weights return seealso
 #'
 #' @examples
+#' \dontrun{
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
@@ -27,7 +30,6 @@ NULL
 #' # print problem
 #' print(p)
 #'
-#' \dontrun{
 #' # solve problem
 #' s <- solve(p)
 #'
@@ -37,8 +39,7 @@ NULL
 #' # plot solution
 #' plot(p, s)
 #' }
-#'
-#' @noRd
+#' @export
 add_default_weights <- function(x) {
   # assert arguments are valid
   assertthat::assert_that(inherits(x, "ProjectProblem"))

@@ -3,44 +3,46 @@ NULL
 
 #' Add absolute targets
 #'
-#' Set targets for a project prioritization [problem()] by
-#' specifying exactly what probability of persistence is required
-#' for each feature. For instance, setting an absolute target of 10%
-#' (i.e., `0.1`) corresponds to a threshold 10% probability of persisting.
+#' Add targets to a project prioritization that specify the
+#' desired expected outcome for each feature in the same units
+#' as the outcomes values.
+#' For example, if a feature has its outcome values expressed
+#' probabilities of persistence, then setting an absolute target of 0.1
+#' means that the feature should ideally have a 10% chance of persistence.
 #'
 #' @inheritParams add_manual_targets
 #'
 #' @param targets Object that specifies the targets for each feature. See the
-#'   Details section for more information.
+#' Details section for more information.
 #'
 #' @details
-#' Targets are used to specify the minimum probability of persistence
-#' for each feature in solutions. For minimum set objectives
-#' (i.e., [add_min_set_objective()], these targets
-#' specify the minimum probability of persistence required for each species
-#' in the solution. And for budget constrained objectives that use targets
-#' (i.e.[add_max_targets_met_objective()]), these targets
-#' specify the minimum threshold probability of persistence that needs to be
-#' achieved to count the benefits for conserving these species.
+#' Targets are used to specify a threshold minimum desirable
+#' expected outcome for each feature. These should ideally be set
+#' according to stakeholder requirements and expert knowledge.
 #' Please note that attempting to solve problems with objectives that require
 #' targets without specifying targets will throw an error.
 #'
-#' The targets for a problem can be specified in several different ways:
+#' The targets for a problem can be specified using the following options.
 #'
 #' \describe{
 #'
+#' \item{`numeric` value}{
+#' The value is used to set the target threshold for each feature.
+#' This option may be useful when all features should be assigned the same
+#' target threshold.
+#' }
+#'
 #' \item{`numeric` vector}{
-#'   specifying a target value for each feature.
-#'   The order of the target values should correspond to the order
-#'   of the features in the data used to create the argument to `x`.
-#'   Additionally, for convenience, this type of argument can be a single
-#'   value to assign the same target to each feature.
+#' Each value specifies a target threshold for each feature.
+#' The order of the values should correspond to the order
+#' of the features in `x`.
 #' }
 #'
 #' \item{`character` value}{
-#'   specifying the name of column in the
-#'   feature data (i.e., the argument to `features` in the
-#'   [problem()] function) that contains the persistence targets.
+#' The value specifies the name of a column in the
+#' feature data (i.e., the argument to `features` in the
+#' [problem()] function). The target threshold for each feature
+#' is set according the column values.
 #' }
 #'
 #' }

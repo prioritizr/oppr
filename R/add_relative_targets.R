@@ -3,17 +3,18 @@ NULL
 
 #' Add relative targets
 #'
-#' Set targets for a project prioritization [problem()] as a proportion
-#' (between 0 and 1) of the expected outcome for each feature based on
-#' the best project for each feature.
-#' For instance, if the best project for a feature has an 80% probability of
-#' persisting, setting a 50% (i.e., `0.5`) relative target will correspond to a
-#' 40% threshold probability of persisting.
+#' Add targets to a project prioritization problem that specify the
+#' desired expected outcome for each feature as a proportion of the
+#' the best possible outcome that could be achieved.
+#' For instance, if a feature is associated with three projects that
+#' would be expected to result in a 30%, 60%, and 80% chance of persistence
+#' (adjusted for baseline outcomes), then setting a relative target of 0.5
+#' would correspond to a 40% chance of persistence (i.e., 50% times 80%).
 #'
 #' @inheritParams add_manual_targets
 #'
 #' @param targets Object that specifies the targets for each feature. See the
-#'   Details section for more information.
+#' Details section for more information.
 #'
 #' @inherit add_absolute_targets details return seealso
 #'

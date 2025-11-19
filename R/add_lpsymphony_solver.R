@@ -3,10 +3,9 @@ NULL
 
 #' Add a SYMPHONY solver with \pkg{lpsymphony}
 #'
-#' Specify that the *SYMPHONY* software should be used to solve a
-#' project prioritization [problem()] using the \pkg{lpsymphony}
-#' package. This function can also be used to customize the behavior of the
-#' solver. It requires the \pkg{lpsymphony} package.
+#' Add a solver to generate solutions to a project prioritization problem
+#' with the *SYMPHONY* software. This function can also be used to customize
+#' the behavior of the solver. It requires the \pkg{lpsymphony} package.
 #'
 #' @inheritParams add_gurobi_solver
 #'
@@ -24,7 +23,7 @@ NULL
 #'
 #' @inherit add_gurobi_solver seealso return
 #'
-#' @seealso [solvers].
+#' @family solvers
 #'
 #' @examples
 #' \dontrun{
@@ -53,7 +52,6 @@ NULL
 #' # plot solution
 #' plot(p, s)
 #' }
-#'
 #' @export
 add_lpsymphony_solver <- function(x, gap = 0, time_limit = .Machine$integer.max,
                                   first_feasible = FALSE, verbose = TRUE) {
@@ -64,8 +62,8 @@ add_lpsymphony_solver <- function(x, gap = 0, time_limit = .Machine$integer.max,
     assertthat::is.number(gap),
     isTRUE(gap >= 0), isTRUE(all(is.finite(time_limit))),
     assertthat::is.number(time_limit),
-    assertthat::is.count(time_limit) || isTRUE(time_limit
-    == -1),
+    assertthat::is.count(time_limit) ||
+      isTRUE(time_limit == -1),
     assertthat::is.flag(verbose),
     assertthat::is.flag(first_feasible),
     requireNamespace("lpsymphony", quietly = TRUE)

@@ -13,7 +13,7 @@ project_names(x)
 \S4method{project_names}{MultiObjProjectProblem}(x)
 }
 \arguments{
-\item{x}{\linkS4class{ProjectProblem}.}
+\item{x}{\code{\link[=problem]{problem()}} or \code{\link[=multi_problem]{multi_problem()}} object.}
 }
 \value{
 A \code{character} vector.

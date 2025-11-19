@@ -7,19 +7,19 @@
 add_default_solver(x, ...)
 }
 \arguments{
-\item{x}{\code{\link[=problem]{problem()}} object.}
+\item{x}{\code{\link[=problem]{problem()}} or \code{\link[=multi_problem]{multi_problem()}} object.}
 
 \item{...}{arguments passed to the solver.}
 }
 \value{
-A \code{\link[=problem]{problem()}} object with the solver added o it.
+A \code{\link[=problem]{problem()}} object with the solver added to it.
 }
 \description{
-Identify the best solver currently installed on the system and specify that
-it should be used to solve a project prioritization \code{\link[=problem]{problem()}}.
+Add the best solver currently installed to a project
+prioritization problem.
 }
 \details{
-Ranked from best to worst, the solvers that can be used are:
+The solvers that can be used are as follows (ordered best to worst):
 \pkg{gurobi}, (\code{\link[=add_gurobi_solver]{add_gurobi_solver()}}),
 \pkg{highs}, (\code{\link[=add_highs_solver]{add_highs_solver()}}),
 \pkg{Rsymphony} (\code{\link[=add_rsymphony_solver]{add_rsymphony_solver()}}), \pkg{lpsymphony}
@@ -31,6 +31,7 @@ solvers that generate solutions using heuristic algorithms (i.e.
 any guarantees on solution quality.
 }
 \examples{
+\dontrun{
 # load data
 data(sim_projects, sim_features, sim_actions)
 
@@ -47,7 +48,6 @@ p <-
 # print problem
 print(p)
 
-\dontrun{
 # solve problem
 s <- solve(p)
 
@@ -59,8 +59,13 @@ plot(p, s)
 }
 }
 \seealso{
-\link{solvers}.
+See \link{solvers} for an overview of functions for adding solvers.
 
 Other solvers: 
-\code{\link{add_highs_solver}()}
+\code{\link{add_heuristic_solver}()},
+\code{\link{add_highs_solver}()},
+\code{\link{add_lpsolveapi_solver}()},
+\code{\link{add_lpsymphony_solver}()},
+\code{\link{add_random_solver}()},
+\code{\link{add_rsymphony_solver}()}
 }

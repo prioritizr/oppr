@@ -3,10 +3,15 @@ NULL
 
 #' Add minimum set objective
 #'
-#' Set the objective of a project prioritization [problem()] to
-#' minimize the cost of the solution whilst ensuring that all targets are met.
-#' This objective is conceptually similar to that used in *Marxan*
-#' (Ball, Possingham & Watts 2009).
+#' Add an objective to a project prioritization problem based on
+#' minimizing the cost of the solution, whilst ensuring that the target
+#' thresholds for each feature is met (Chadés *et al.* 2015).
+#' In some project prioritization exercises,
+#' decision makers may have a target threshold level of expected outcome
+#' for each feature (e.g., a 90% chance of persistence for each feature).
+#' This objective is especially useful for identifying solutions
+#' that ensure that each feature achieves, at least, some minimum level
+#' of expected outcome based on the target thresholds.
 #'
 #' @inheritParams add_max_wtd_sum_objective
 #'
@@ -107,18 +112,19 @@ NULL
 #' project allocation (\eqn{Z_{fj}}) variables are binary.
 #'
 #' @references
-#' Ball IR, Possingham HP & Watts M (2009) Marxan and relatives: software for
-#' spatial conservation prioritisation.
-#' *Spatial conservation prioritisation: Quantitative methods and
-#' computational tools*, 185-195.
+#' Chadés I, Nicol S, van Leeuwen S, Walters B, Firn J, Reeson A, Martin TG &
+#' Carwardine J (2015) Benefits of integrating complementarity into priority
+#' threat management. Conservation Biology **29**: 525--536.
 #'
 #' @family objectives
 #'
-#' @seealso [objectives], [targets].
+#' @inherit add_max_wtd_sum_objective return seealso
 #'
-#' @inherit add_max_wtd_sum_objective return
+#' @seealso
+#' See [targets] for an overview of functions for adding targets.
 #'
 #' @examples
+#' \dontrun{
 #' # load the ggplot2 R package to customize plot
 #' library(ggplot2)
 #'
@@ -136,7 +142,6 @@ NULL
 #'   add_absolute_targets(0.3) %>%
 #'   add_binary_decisions()
 #'
-#' \dontrun{
 #' # solve problem
 #' s <- solve(p)
 #'
@@ -144,8 +149,7 @@ NULL
 #' print(s)
 #'
 #' # plot solution, and add a dashed line to indicate the feature targets
-#' plot(p, s) +
-#'   geom_hline(yintercept = 0.3, linetype = "dashed")
+#' plot(p, s) + geom_hline(yintercept = 0.3, linetype = "dashed")
 #' }
 #' @name add_min_set_objective
 NULL

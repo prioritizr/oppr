@@ -15,7 +15,7 @@ add_highs_solver(
 )
 }
 \arguments{
-\item{x}{\code{\link[=problem]{problem()}} object.}
+\item{x}{\code{\link[=problem]{problem()}} or \code{\link[=multi_problem]{multi_problem()}} object.}
 
 \item{gap}{\code{numeric} gap to optimality. This gap is relative
 and expresses the acceptable deviance from the optimal objective.
@@ -38,8 +38,8 @@ trying to simplify the problem.}
 optimization algorithm. The default value of 1 will result in only
 one thread being used.}
 
-\item{verbose}{\code{logical} should information be printed while solving
-optimization problems?}
+\item{verbose}{\code{logical} should information be printed during optimization?
+Defaults to \code{TRUE}.}
 
 \item{control}{\code{list} with additional parameters for tuning
 the optimization process.
@@ -49,13 +49,12 @@ See the \href{https://ergo-code.github.io/HiGHS/dev/options/definitions/}{online
 for information on the parameters.}
 }
 \value{
-A \code{\link[=problem]{problem()}} object with the solver added o it.
+A \code{\link[=problem]{problem()}} object with the solver added to it.
 }
 \description{
-Specify that the \href{https://highs.dev/}{\emph{HiGHS}} software
-should be used to solve a conservation planning problem
-(Huangfu and Hall 2018). This function can also be used to
-customize the behavior of the solver.
+Add a solver to generate solutions to a project prioritization problem
+with the \href{https://highs.dev/}{\emph{HiGHS}} software (Huangfu and Hall 2018).
+This function can also be used to customize the behavior of the solver.
 It requires the \pkg{highs} package to be installed.
 }
 \details{
@@ -89,7 +88,6 @@ print(s)
 # plot solution
 plot(p, s)
 }
-
 }
 \references{
 Huangfu Q and Hall JAJ (2018). Parallelizing the dual revised simplex
@@ -97,6 +95,11 @@ method. \emph{Mathematical Programming Computation}, 10: 119-142.
 }
 \seealso{
 Other solvers: 
-\code{\link{add_gurobi_solver}()}
+\code{\link{add_gurobi_solver}()},
+\code{\link{add_heuristic_solver}()},
+\code{\link{add_lpsolveapi_solver}()},
+\code{\link{add_lpsymphony_solver}()},
+\code{\link{add_random_solver}()},
+\code{\link{add_rsymphony_solver}()}
 }
 \concept{solvers}

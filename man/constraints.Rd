@@ -69,4 +69,11 @@ print(s2[, sim_actions$name])
 print(s3[, sim_actions$name])
 }
 }
+\seealso{
+Other overviews: 
+\code{\link{objectives}},
+\code{\link{solvers}},
+\code{\link{targets}},
+\code{\link{weights}()}
+}
 \concept{overviews}

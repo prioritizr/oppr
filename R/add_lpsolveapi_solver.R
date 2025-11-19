@@ -3,14 +3,14 @@ NULL
 
 #' Add a lp_solve solver with \pkg{lpSolveAPI}
 #'
-#' Specify that the *lp_solve* software should be used to solve a
-#' project prioritization [problem()] using the \pkg{lpSolveAPI}
-#' package. This function can also be used to customize the behavior of the
+#' Add a solver to generate solutions to a project prioritization problem
+#' with the *lp_solve* software.
+#' This function can also be used to customize the behavior of the
 #' solver. It requires the \pkg{lpSolveAPI} package.
 #'
 #' @param presolve `logical` indicating if attempts to should be made
-#'   to simplify the optimization problem (`TRUE`) or not (`FALSE`).
-#'   Defaults to `TRUE`.
+#' to simplify the optimization problem (`TRUE`) or not (`FALSE`).
+#' Defaults to `TRUE`.
 #'
 #' @inheritParams add_gurobi_solver
 #'
@@ -25,11 +25,12 @@ NULL
 #' moderate or large project prioritization problems, consider using
 #' [add_gurobi_solver()].
 #'
-#' @inherit add_gurobi_solver seealso return
+#' @inherit add_gurobi_solver seealso return seealso
 #'
-#' @seealso [solvers].
+#' @family solvers
 #'
 #' @examples
+#' \dontrun{
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
@@ -54,7 +55,7 @@ NULL
 #'
 #' # plot solution
 #' plot(p, s)
-#'
+#' }
 #' @export
 add_lpsolveapi_solver <- function(x, gap = 0, presolve = FALSE,
                                   verbose = TRUE) {

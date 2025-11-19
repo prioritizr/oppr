@@ -7,7 +7,7 @@
 add_lpsolveapi_solver(x, gap = 0, presolve = FALSE, verbose = TRUE)
 }
 \arguments{
-\item{x}{\code{\link[=problem]{problem()}} object.}
+\item{x}{\code{\link[=problem]{problem()}} or \code{\link[=multi_problem]{multi_problem()}} object.}
 
 \item{gap}{\code{numeric} gap to optimality. This gap is relative
 and expresses the acceptable deviance from the optimal objective.
@@ -21,16 +21,16 @@ The default value is 0 (i.e., 0\% from optimality).}
 to simplify the optimization problem (\code{TRUE}) or not (\code{FALSE}).
 Defaults to \code{TRUE}.}
 
-\item{verbose}{\code{logical} should information be printed while solving
-optimization problems?}
+\item{verbose}{\code{logical} should information be printed during optimization?
+Defaults to \code{TRUE}.}
 }
 \value{
-A \code{\link[=problem]{problem()}} object with the solver added o it.
+A \code{\link[=problem]{problem()}} object with the solver added to it.
 }
 \description{
-Specify that the \emph{lp_solve} software should be used to solve a
-project prioritization \code{\link[=problem]{problem()}} using the \pkg{lpSolveAPI}
-package. This function can also be used to customize the behavior of the
+Add a solver to generate solutions to a project prioritization problem
+with the \emph{lp_solve} software.
+This function can also be used to customize the behavior of the
 solver. It requires the \pkg{lpSolveAPI} package.
 }
 \details{
@@ -45,6 +45,7 @@ moderate or large project prioritization problems, consider using
 \code{\link[=add_gurobi_solver]{add_gurobi_solver()}}.
 }
 \examples{
+\dontrun{
 # load data
 data(sim_projects, sim_features, sim_actions)
 
@@ -69,8 +70,15 @@ print(s)
 
 # plot solution
 plot(p, s)
-
+}
 }
 \seealso{
-\link{solvers}.
+Other solvers: 
+\code{\link{add_gurobi_solver}()},
+\code{\link{add_heuristic_solver}()},
+\code{\link{add_highs_solver}()},
+\code{\link{add_lpsymphony_solver}()},
+\code{\link{add_random_solver}()},
+\code{\link{add_rsymphony_solver}()}
 }
+\concept{solvers}

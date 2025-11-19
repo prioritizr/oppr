@@ -16,22 +16,22 @@ expenditure for funding actions.}
 A \code{\link[=problem]{problem()}} with the objective added to it.
 }
 \description{
-Set the objective of a project prioritization \code{\link[=problem]{problem()}} to
-maximize the total number of persistence targets met for the features, whilst
-ensuring that the cost of the solution is within a pre-specified budget
+Add an objective to a project prioritization problem based on
+maximizing the number of targets met, whilst ensuring that the cost of the
+solution is within a pre-specified budget
 (Chades \emph{et al.} 2015). In some project prioritization exercises,
-decision makers may have a target level of persistence for each feature
-(e.g., a 90\% persistence target corresponding to a 90\% chance for the
-features persisting into the future). In such exercises, the decision makers
+decision makers may have a target threshold level of expected outcome
+for each feature (e.g., a 90\% chance of persistence for each feature).
+In such exercises, the decision makers
 do not perceive any benefit when a target is not met (e.g., if a feature
-has a persistence target of 90\% and a solution only secures a 70\% chance
-of persistence then no benefit is accrued for that feature) or when a target
-is surpassed (e.g., if a feature has a persistence target of 50\%, then a
-solution which
-secures a 95\% chance of persistence will accrue the same benefit as a
-solution which secures a 50\% chance of persistence). Furthermore, weights
-can also be used to specify the relative importance of meeting targets
-for specific features (see \code{\link[=add_feature_weights]{add_feature_weights()}}).
+has a target corresponding to a 90\% chance of persistence, then no benefit
+is accrued if the feature has a 50\% chance of persistence), and do not
+assign any greater benefit for surpassing a target (e.g., if a feature has a
+target corresponding to a 90\% chance of persistence, then the same level
+of benefit would be accrued if the feature had a 90\% or 95\% chance
+of persistence). Furthermore, weights can also be used to specify the
+relative importance of meeting targets for particular features
+(see \code{\link[=add_feature_weights]{add_feature_weights()}}).
 }
 \details{
 A problem objective is used to specify the overall goal of the
@@ -142,6 +142,7 @@ that the target met (\eqn{G_f}), action funding (\eqn{X_i}), project funding
 (\eqn{Y_j}), and project allocation (\eqn{Z_{fj}}) variables are binary.
 }
 \examples{
+\dontrun{
 # load the ggplot2 R package to customize plot
 library(ggplot2)
 
@@ -164,7 +165,6 @@ p1 <-
   add_locked_in_constraints(which(sim_actions$cost < 1e-5)) \%>\%
   add_binary_decisions()
 
-\dontrun{
 # solve problem
 s1 <- solve(p1)
 
@@ -175,14 +175,11 @@ print(s1)
 # we can see the three features meet the targets under the baseline
 # scenario, and the project for F5 was prioritized for funding
 # so that its probability of persistence meets the target
-plot(p1, s1) +
-  geom_hline(yintercept = 0.2, linetype = "dashed")
-}
+plot(p1, s1) + geom_hline(yintercept = 0.2, linetype = "dashed")
 
 # build another problem that includes feature weights
 p2 <- p1 \%>\% add_feature_weights("weight")
 
-\dontrun{
 # solve problem
 s2 <- solve(p2)
 
@@ -193,8 +190,7 @@ print(s2)
 # we can see that adding weights to the problem has changed the solution
 # specifically, the projects for the feature F3 is now funded
 # to enhance its probability of persistence
-plot(p2, s2) +
-  geom_hline(yintercept = 0.2, linetype = "dashed")
+plot(p2, s2) + geom_hline(yintercept = 0.2, linetype = "dashed")
 }
 }
 \references{
@@ -203,8 +199,9 @@ Carwardine J (2015) Benefits of integrating complementarity into priority
 threat management. \emph{Conservation Biology}, \strong{29}, 525--536.
 }
 \seealso{
-\link{objectives}.
-
 Other objectives: 
+\code{\link{add_max_phylo_div_objective}()},
+\code{\link{add_max_wtd_sum_objective}()},
 \code{\link{add_min_set_objective}()}
 }
+\concept{objectives}

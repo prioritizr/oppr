@@ -7,7 +7,7 @@
 add_random_solver(x, number_solutions = 1, verbose = TRUE)
 }
 \arguments{
-\item{x}{\code{\link[=problem]{problem()}} object.}
+\item{x}{\code{\link[=problem]{problem()}} or \code{\link[=multi_problem]{multi_problem()}} object.}
 
 \item{number_solutions}{\code{integer} number of solutions desired.
 Defaults to 1. Note that the number of returned solutions can sometimes
@@ -16,25 +16,24 @@ argument to \code{solution_pool_method}, for example if 100
 solutions are requested but only 10 unique solutions exist, then only 10
 solutions will be returned.}
 
-\item{verbose}{\code{logical} should information be printed while solving
-optimization problems?}
+\item{verbose}{\code{logical} should information be printed during optimization?
+Defaults to \code{TRUE}.}
 }
 \value{
-A \code{\link[=problem]{problem()}} object with the solver added o it.
+A \code{\link[=problem]{problem()}} object with the solver added to it.
 }
 \description{
-Specify that solutions should be generated using random processes. Although
-prioritizations should be developed using optimization routines,
-a portfolio of randomly generated solutions can be useful for evaluating
-the effectiveness of solutions.
+Add a solver to generate solutions to a project prioritization problem
+based on random selection. Although prioritizations should be developed
+using optimization routines, a portfolio of randomly generated solutions can
+be useful for evaluating the effectiveness of an optimized solution.
 }
 \details{
 The algorithm used to randomly generate solutions depends on the
-the objective specified for the project prioritization
-\code{\link[=problem]{problem()}}.
+the objective specified for the project prioritization problem.
 
-For objectives which maximize benefit subject to budgetary constraints
-(e.g., \code{\link[=add_max_wtd_sum_objective]{add_max_wtd_sum_objective()}}):
+The following steps are used for objectives that maximize benefit subject to
+budgetary constraints (e.g., \code{\link[=add_max_wtd_sum_objective]{add_max_wtd_sum_objective()}}).
 
 \enumerate{
 
@@ -52,8 +51,8 @@ exceeding the budget.
 
 }
 
-For objectives which minimize cost subject to biodiversity constraints
-(i.e., \code{\link[=add_min_set_objective]{add_min_set_objective()}}:
+The following steps are used for objectives that  minimize cost subject to
+biodiversity constraints (i.e., \code{\link[=add_min_set_objective]{add_min_set_objective()}}.
 
 \enumerate{
 
@@ -71,6 +70,7 @@ are met.
 }
 }
 \examples{
+\dontrun{
 # load data
 data(sim_projects, sim_features, sim_actions)
 
@@ -108,7 +108,6 @@ hist(
 # solutions, we can find the optimal solution and calculate how different
 # each of the random solutions is from optimality
 
-\dontrun{
 # find the optimal objective value using an exact algorithms solver
 s2 <- p1 \%>\%
   add_default_solver() \%>\%
@@ -125,11 +124,14 @@ hist(
   main = "Histogram of random solutions", xlim = c(0, 50)
 )
 }
-
 }
 \seealso{
-\link{solvers}.
-
 Other solvers: 
-\code{\link{add_highs_solver}()}
+\code{\link{add_gurobi_solver}()},
+\code{\link{add_heuristic_solver}()},
+\code{\link{add_highs_solver}()},
+\code{\link{add_lpsolveapi_solver}()},
+\code{\link{add_lpsymphony_solver}()},
+\code{\link{add_rsymphony_solver}()}
 }
+\concept{solvers}

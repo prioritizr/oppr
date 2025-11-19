@@ -3,11 +3,12 @@ NULL
 
 #' Add maximum weighted sum objective
 #'
-#' Set the objective of a project prioritization [problem()] to
-#' maximize the weighted sum of the expected outcomes for the projects, whilst
-#' ensuring that the cost of the solution is within a pre-specified budget
+#' Add an objective to a project prioritization problem based on
+#' maximizing the weighted sum of expected outcomes associated with the
+#' features, whilst ensuring that the cost of the
+#' solution is within a pre-specified budget
 #' (Joseph, Maloney & Possingham 2009). This objective is conceptually similar
-#' to maximizing species richness in a study area. Furthermore, weights can
+#' to maximizing species richness. Furthermore, weights can
 #' also be used to specify the relative importance of conserving specific
 #' features (see [add_feature_weights()]).
 #'
@@ -124,7 +125,8 @@ NULL
 #'
 #' @family objectives
 #'
-#' @seealso [objectives].
+#' @seealso
+#' See [objectives] for an overview of functions for adding objectives.
 #'
 #' @examples
 #' # load data

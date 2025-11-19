@@ -3,19 +3,22 @@ NULL
 
 #' Add locked out constraints
 #'
-#' Add constraints to a project prioritization [problem()] to ensure
-#' that specific actions are not prioritized for funding in the solution. For
-#' example, it may be desirable to lock out specific actions to examine their
-#' importance to the optimal funding scheme.
+#' Add constraints to a project prioritization problem to ensure
+#' that particular actions are not selected for funding by the solution.
+#' For example, it may be desirable to lock out specific actions to examine
+#' their importance to the optimal funding scheme.
 #'
 #' @inheritParams add_locked_in_constraints
 #'
 #' @param locked_out Object that determines which planning units that should be
-#'   locked out. See the Details section for more information.
+#' locked out. See the Details section for more information.
 #'
 #' @inherit add_locked_out_constraints details seealso return
 #'
+#' @family constraints
+#'
 #' @examples
+#' \dontrun{
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
@@ -52,13 +55,11 @@ NULL
 #'
 #' # build another problem, and lock out the actions using the column name
 #' # "locked_out" in the sim_actions table
-#' # the sim_actions table
 #' p4 <- p1 %>% add_locked_out_constraints("locked_out")
 #'
 #' # print problem
 #' print(p4)
 #'
-#' \dontrun{
 #' # solve problems
 #' s1 <- solve(p1)
 #' s2 <- solve(p2)

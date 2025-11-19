@@ -22,13 +22,14 @@ the Details section for more information.}
 A \code{\link[=problem]{problem()}} object with the constraints added to it.
 }
 \description{
-Add constraints to a project prioritization \code{\link[=problem]{problem()}} to ensure
-that solutions fund (or do not fund) specific actions. This function offers
+Add constraints to a project prioritization problem to ensure
+that particular actions are selected, or not selected, for funding
+by the solution. This function offers
 more fine-grained control than the \code{\link[=add_locked_in_constraints]{add_locked_in_constraints()}}
 and \code{\link[=add_locked_out_constraints]{add_locked_out_constraints()}} functions.
 }
 \details{
-The argument to \code{locked} must contain the following columns:
+The argument to \code{locked} must contain the following columns.
 
 \describe{
 
@@ -42,6 +43,7 @@ be selected for funding (with a value of 1) or not (with a value of zero).
 }
 }
 \examples{
+\dontrun{
 # load data
 data(sim_projects, sim_features, sim_actions)
 
@@ -68,7 +70,6 @@ p <-
 # print problem
 print(p)
 
-\dontrun{
 # solve problem
 s <- solve(p)
 
@@ -79,4 +80,9 @@ print(s)
 }
 \seealso{
 \link{constraints}.
+
+Other constraints: 
+\code{\link{add_locked_in_constraints}()},
+\code{\link{add_locked_out_constraints}()}
 }
+\concept{constraints}

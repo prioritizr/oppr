@@ -13,13 +13,13 @@ action_names(x)
 \S4method{action_names}{MultiObjProjectProblem}(x)
 }
 \arguments{
-\item{x}{\linkS4class{ProjectProblem}.}
+\item{x}{\code{\link[=problem]{problem()}} or \code{\link[=multi_problem]{multi_problem()}} object.}
 }
 \value{
 A \code{character} vector.
 }
 \description{
-Extract the names of the actions in an object.
+Extract the names of actions in an object.
 }
 \examples{
 # load data

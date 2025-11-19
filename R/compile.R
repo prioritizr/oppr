@@ -60,7 +60,7 @@ compile.ProjectProblem <- function(x, n_approx = 100, ...) {
   )
   # sanity checks
   if (isTRUE(x$defaults$targets) && isTRUE(x$objective$has_targets)) {
-    stop("specified objective requires targets and no targets specified.")
+    stop("problem has an objective that requires targets.")
   }
   if (!isTRUE(x$defaults$targets) && !isTRUE(x$objective$has_targets)) {
     warning(

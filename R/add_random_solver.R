@@ -3,20 +3,19 @@ NULL
 
 #' Add a random solver
 #'
-#' Specify that solutions should be generated using random processes. Although
-#' prioritizations should be developed using optimization routines,
-#' a portfolio of randomly generated solutions can be useful for evaluating
-#' the effectiveness of solutions.
+#' Add a solver to generate solutions to a project prioritization problem
+#' based on random selection. Although prioritizations should be developed
+#' using optimization routines, a portfolio of randomly generated solutions can
+#' be useful for evaluating the effectiveness of an optimized solution.
 #'
 #' @inheritParams add_gurobi_solver
 #'
 #' @details
 #' The algorithm used to randomly generate solutions depends on the
-#' the objective specified for the project prioritization
-#' [problem()].
+#' the objective specified for the project prioritization problem.
 #'
-#' For objectives which maximize benefit subject to budgetary constraints
-#' (e.g., [add_max_wtd_sum_objective()]):
+#' The following steps are used for objectives that maximize benefit subject to
+#' budgetary constraints (e.g., [add_max_wtd_sum_objective()]).
 #'
 #' \enumerate{
 #'
@@ -34,8 +33,8 @@ NULL
 #'
 #' }
 #'
-#' For objectives which minimize cost subject to biodiversity constraints
-#' (i.e., [add_min_set_objective()]:
+#' The following steps are used for objectives that  minimize cost subject to
+#' biodiversity constraints (i.e., [add_min_set_objective()].
 #'
 #' \enumerate{
 #'
@@ -54,7 +53,10 @@ NULL
 #'
 #' @inherit add_gurobi_solver seealso return
 #'
+#' @family solvers
+#'
 #' @examples
+#' \dontrun{
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
@@ -92,7 +94,6 @@ NULL
 #' # solutions, we can find the optimal solution and calculate how different
 #' # each of the random solutions is from optimality
 #'
-#' \dontrun{
 #' # find the optimal objective value using an exact algorithms solver
 #' s2 <- p1 %>%
 #'   add_default_solver() %>%
@@ -109,7 +110,6 @@ NULL
 #'   main = "Histogram of random solutions", xlim = c(0, 50)
 #' )
 #' }
-#'
 #' @export
 add_random_solver <- function(x, number_solutions = 1, verbose = TRUE) {
   # assert that arguments are valid

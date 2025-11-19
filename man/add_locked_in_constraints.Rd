@@ -25,8 +25,8 @@ locked in. See the Details section for more information.}
 A \code{\link[=problem]{problem()}} object with the constraints added to it.
 }
 \description{
-Add constraints to a project prioritization \code{\link[=problem]{problem()}} to ensure
-that specific actions are prioritized for funding in the solution. For
+Add constraints to a project prioritization problem to ensure
+that particular actions are selected for funding by the solution. For
 example, it may be desirable to lock in actions for conserving culturally or
 taxonomically important species.
 }
@@ -36,31 +36,30 @@ The locked actions can be specified in several different ways:
 \describe{
 
 \item{\code{integer} vector}{
-specifying indices that pertain to which
-actions should be locked when generating the solution
+Each values specifies the index for an action that should be locked when
+generating solutions
 (i.e., row numbers of the actions in the argument to \code{actions} in
 \code{\link[=problem]{problem()}}).
 }
 
 \item{\code{logical} vector}{
-specifying \code{logical} (i.e., \code{TRUE} and/or \code{FALSE}) values that indicate which
-actions should be locked when generating the solution. These \code{logical}
-values should correspond to each row in the argument to \code{actions}
-in \code{x}.
+Each value (i.e., \code{TRUE} and/or \code{FALSE}) indicates
+if an action should be locked (or not) when generating the solution.
+These \code{logical} values should correspond to each row in the argument to
+\code{actions} in \code{\link[=problem]{problem()}}.
 }
 
 \item{\code{character} value}{
-specifying a column name that indicates if actions
-units should be locked when generating the solution. This argument
-should  denote a column in the argument to \code{actions}
-in \code{\link[=problem]{problem()}} which contains \code{logical}
-(i.e., \code{TRUE} and/or \code{FALSE} values) to indicate
-which actions should be locked.
+The value specifies the name of a column in the action data
+(i.e., argument to \code{actions} in \code{\link[=problem]{problem()}}). The column must
+have \code{logical} (i.e., \code{TRUE} and/or \code{FALSE}) values, and these
+values are used to indicate which actions are locked (or not).
 }
 
 }
 }
 \examples{
+\dontrun{
 # load data
 data(sim_projects, sim_features, sim_actions)
 
@@ -94,13 +93,11 @@ print(p3)
 
 # build another problem, and lock in the actions using the column name
 # "locked_in" in the sim_actions table
-# the sim_actions table
 p4 <- p1 \%>\% add_locked_in_constraints("locked_in")
 
 # print problem
 print(p4)
 
-\dontrun{
 # solve problems
 s1 <- solve(p1)
 s2 <- solve(p2)
@@ -115,5 +112,10 @@ print(s4[, sim_actions$name])
 }
 }
 \seealso{
-\link{constraints}.
+See \link{constraints} for an overview of functions for adding constraints.
+
+Other constraints: 
+\code{\link{add_locked_out_constraints}()},
+\code{\link{add_manual_locked_constraints}()}
 }
+\concept{constraints}

@@ -26,10 +26,6 @@ NULL
 #' corresponds to a different species. Each column corresponds to a different
 #' branch. Species that inherit from a given branch are indicated with a one.
 #'
-#' @name branch_matrix
-#'
-#' @rdname branch_matrix
-#'
 #' @examples
 #' # load Matrix package to plot matrices
 #' library(Matrix)

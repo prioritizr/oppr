@@ -3,15 +3,15 @@ NULL
 
 #' Add a default solver
 #'
-#' Identify the best solver currently installed on the system and specify that
-#' it should be used to solve a project prioritization [problem()].
+#' Add the best solver currently installed to a project
+#' prioritization problem.
 #'
 #' @inheritParams add_gurobi_solver
 #'
 #' @param ... arguments passed to the solver.
 #'
 #' @details
-#' Ranked from best to worst, the solvers that can be used are:
+#' The solvers that can be used are as follows (ordered best to worst):
 #' \pkg{gurobi}, ([add_gurobi_solver()]),
 #' \pkg{highs}, ([add_highs_solver()]),
 #' \pkg{Rsymphony} ([add_rsymphony_solver()]), \pkg{lpsymphony}
@@ -26,6 +26,7 @@ NULL
 #' @inherit add_gurobi_solver return seealso
 #'
 #' @examples
+#' \dontrun{
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
@@ -42,7 +43,6 @@ NULL
 #' # print problem
 #' print(p)
 #'
-#' \dontrun{
 #' # solve problem
 #' s <- solve(p)
 #'

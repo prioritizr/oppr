@@ -3,15 +3,15 @@ NULL
 
 #' Add locked in constraints
 #'
-#' Add constraints to a project prioritization [problem()] to ensure
-#' that specific actions are prioritized for funding in the solution. For
+#' Add constraints to a project prioritization problem to ensure
+#' that particular actions are selected for funding by the solution. For
 #' example, it may be desirable to lock in actions for conserving culturally or
 #' taxonomically important species.
 #'
 #' @param x [problem()] object.
 #'
 #' @param locked_in Object that determines which planning units that should be
-#'   locked in. See the Details section for more information.
+#' locked in. See the Details section for more information.
 #'
 #' @details
 #' The locked actions can be specified in several different ways:
@@ -19,35 +19,37 @@ NULL
 #' \describe{
 #'
 #' \item{`integer` vector}{
-#' specifying indices that pertain to which
-#' actions should be locked when generating the solution
+#' Each values specifies the index for an action that should be locked when
+#' generating solutions
 #' (i.e., row numbers of the actions in the argument to `actions` in
 #' [problem()]).
 #' }
 #'
 #' \item{`logical` vector}{
-#' specifying `logical` (i.e., `TRUE` and/or `FALSE`) values that indicate which
-#' actions should be locked when generating the solution. These `logical`
-#' values should correspond to each row in the argument to `actions`
-#' in `x`.
+#' Each value (i.e., `TRUE` and/or `FALSE`) indicates
+#' if an action should be locked (or not) when generating the solution.
+#' These `logical` values should correspond to each row in the argument to
+#' `actions` in [problem()].
 #' }
 #'
 #' \item{`character` value}{
-#' specifying a column name that indicates if actions
-#' units should be locked when generating the solution. This argument
-#' should  denote a column in the argument to `actions`
-#' in [problem()] which contains `logical`
-#' (i.e., `TRUE` and/or `FALSE` values) to indicate
-#' which actions should be locked.
+#' The value specifies the name of a column in the action data
+#' (i.e., argument to `actions` in [problem()]). The column must
+#' have `logical` (i.e., `TRUE` and/or `FALSE`) values, and these
+#' values are used to indicate which actions are locked (or not).
 #' }
 #'
 #' }
 #'
 #' @return A [problem()] object with the constraints added to it.
 #'
-#' @seealso [constraints].
+#' @seealso
+#' See [constraints] for an overview of functions for adding constraints.
+#'
+#' @family constraints
 #'
 #' @examples
+#' \dontrun{
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
@@ -81,13 +83,11 @@ NULL
 #'
 #' # build another problem, and lock in the actions using the column name
 #' # "locked_in" in the sim_actions table
-#' # the sim_actions table
 #' p4 <- p1 %>% add_locked_in_constraints("locked_in")
 #'
 #' # print problem
 #' print(p4)
 #'
-#' \dontrun{
 #' # solve problems
 #' s1 <- solve(p1)
 #' s2 <- solve(p2)

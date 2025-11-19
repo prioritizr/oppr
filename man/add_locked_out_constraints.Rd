@@ -22,12 +22,13 @@ add_locked_out_constraints(x, locked_out)
 locked out. See the Details section for more information.}
 }
 \description{
-Add constraints to a project prioritization \code{\link[=problem]{problem()}} to ensure
-that specific actions are not prioritized for funding in the solution. For
-example, it may be desirable to lock out specific actions to examine their
-importance to the optimal funding scheme.
+Add constraints to a project prioritization problem to ensure
+that particular actions are not selected for funding by the solution.
+For example, it may be desirable to lock out specific actions to examine
+their importance to the optimal funding scheme.
 }
 \examples{
+\dontrun{
 # load data
 data(sim_projects, sim_features, sim_actions)
 
@@ -64,13 +65,11 @@ print(p3)
 
 # build another problem, and lock out the actions using the column name
 # "locked_out" in the sim_actions table
-# the sim_actions table
 p4 <- p1 \%>\% add_locked_out_constraints("locked_out")
 
 # print problem
 print(p4)
 
-\dontrun{
 # solve problems
 s1 <- solve(p1)
 s2 <- solve(p2)
@@ -84,3 +83,9 @@ print(s3[, sim_actions$name])
 print(s4[, sim_actions$name])
 }
 }
+\seealso{
+Other constraints: 
+\code{\link{add_locked_in_constraints}()},
+\code{\link{add_manual_locked_constraints}()}
+}
+\concept{constraints}
