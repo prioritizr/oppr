@@ -7,49 +7,48 @@
 solution_statistics(x, solution)
 }
 \arguments{
-\item{x}{\code{\link[=problem]{problem()}} object.}
+\item{x}{\code{\link[=problem]{problem()}} or \code{\link[=multi_problem]{multi_problem()}} object.}
 
 \item{solution}{\code{\link[base:data.frame]{base::data.frame()}} or
-\code{\link[tibble:tibble]{tibble::tibble()}} table containing the solutions. Here,
+\code{\link[tibble:tibble]{tibble::tibble()}} containing the solutions. Here,
 rows correspond to different solutions and columns correspond to
 different actions. Each column in the argument to \code{solution} should
 be named according to a different action in \code{x}.
 Cell values indicate if an action is funded in a given solution or not,
 and should be either zero or one. Arguments to \code{solution} can
-contain additional columns, and they will be ignored.}
+contain additional columns, though they will be ignored.}
 }
 \value{
-A \code{\link[tibble:tibble]{tibble::tibble()}} table containing the following columns.
+A \code{\link[tibble:tibble]{tibble::tibble()}} containing the following columns.
 
 \describe{
 
 \item{\code{"cost"}}{
-\code{numeric} cost of each solution.
+This column contains \code{numeric} values describing the cost of each solution.
 }
 
 \item{\code{"obj"}}{
-\code{numeric} objective value for each solution.
-This is calculated using the objective function defined for the
-argument to \code{x}.
+This column contains \code{numeric} values describing the objective value
+for each solution. This is calculated using the objective function defined
+for the argument to \code{x}. Note that if \code{x} is a \code{\link[=multi_problem]{multi_problem()}} object,
+then an objective column will be created for each problem in \code{x}.
 }
 
 \item{\code{x$project_names()}}{
-\code{numeric} column for each
-project indicating if it was completely funded (with a value of 1)
-or not (with a value of 0).
+These columns contain \code{logical} values that indicate if each
+project had all of its actions selected for funding or not.
 }
 
 \item{\code{x$feature_names()}}{
-\code{numeric} column for each
-feature indicating the expected outcome for each feature given the
-projects selected for funding by the solution.
+These columns contain \code{numeric} values that describe the expected outcome
+for each feature based on the actions selected for funding.
 }
 
 }
 }
 \description{
-Calculate statistics describing a solution to a project prioritization
-\code{\link[=problem]{problem()}}.
+Calculate statistics to describe a solution to a project prioritization
+problem.
 }
 \examples{
 # load data
@@ -79,11 +78,11 @@ print(p)
 
 # create a table with some solutions
 solutions <- data.frame(
-  F1_action =       c(0, 1, 1),
-  F2_action =       c(0, 1, 0),
-  F3_action =       c(0, 1, 1),
-  F4_action =       c(0, 1, 0),
-  F5_action =       c(0, 1, 1),
+  F1_action = c(0, 1, 1),
+  F2_action = c(0, 1, 0),
+  F3_action = c(0, 1, 1),
+  F4_action = c(0, 1, 0),
+  F5_action = c(0, 1, 1),
   baseline_action = c(1, 1, 1)
 )
 
@@ -93,10 +92,6 @@ solutions <- data.frame(
 # the third solution has only some actions funded
 print(solutions)
 
-# calculate statistics
+# calculate statistics for the solutions
 solution_statistics(p, solutions)
-}
-\seealso{
-\link{objectives}, \code{\link[=replacement_costs]{replacement_costs()}},
-\code{\link[=project_cost_effectiveness]{project_cost_effectiveness()}}.
 }

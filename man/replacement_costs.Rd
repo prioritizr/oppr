@@ -7,16 +7,16 @@
 replacement_costs(x, solution, n = 1)
 }
 \arguments{
-\item{x}{\code{\link[=problem]{problem()}} object.}
+\item{x}{\code{\link[=problem]{problem()}} or \code{\link[=multi_problem]{multi_problem()}} object.}
 
 \item{solution}{\code{\link[base:data.frame]{base::data.frame()}} or
-\code{\link[tibble:tibble]{tibble::tibble()}} table containing the solutions. Here,
+\code{\link[tibble:tibble]{tibble::tibble()}} containing the solutions. Here,
 rows correspond to different solutions and columns correspond to
 different actions. Each column in the argument to \code{solution} should
 be named according to a different action in \code{x}.
 Cell values indicate if an action is funded in a given solution or not,
 and should be either zero or one. Arguments to \code{solution} can
-contain additional columns, and they will be ignored.}
+contain additional columns, though they will be ignored.}
 
 \item{n}{\code{integer} solution number to calculate replacement cost values.
 Since each row in the argument to \code{solutions} corresponds to a

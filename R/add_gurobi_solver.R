@@ -154,7 +154,8 @@ add_gurobi_solver <- function(x, gap = 0, number_solutions = 1,
     isTRUE(threads <= parallel::detectCores(TRUE)),
     assertthat::is.flag(first_feasible),
     assertthat::is.flag(verbose),
-    requireNamespace("gurobi", quietly = TRUE)
+    requireNamespace("gurobi", quietly = TRUE),
+    utils::packageVersion("gurobi") >= package_version("13.0.0")
   )
   # add solver
   x$add_solver(
@@ -235,7 +236,7 @@ add_gurobi_solver <- function(x, gap = 0, number_solutions = 1,
             )
             out <- append(
               out,
-              lapply(x$pool, function(z) {
+              lapply(x$pool[-1], function(z) {
                 list(
                   x = replace(z[[elem]], b, round(z[[elem]][b])),
                   objective = z$objval,

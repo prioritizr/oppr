@@ -50,7 +50,7 @@ Suggests:
     knitr (>= 1.20),
     roxygen2 (>= 6.1.0),
     rmarkdown (>= 1.10),
-    gurobi (>= 8.0.0),
+    gurobi (>= 13.0.0),
     Rsymphony (>= 0.1.28),
     ggtree (>= 2.4.2),
     lpsymphony (>= 1.10.0),

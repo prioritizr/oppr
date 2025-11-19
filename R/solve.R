@@ -5,56 +5,74 @@ NULL
 #'
 #' Solve a conservation planning [problem()].
 #'
-#' @param a [ProjectProblem-class] or an
-#'   [OptimizationProblem-class] object.
+#' @param a [problem()], [multi_problem()], or [OptimizationProblem-class]
+#' object.
 #'
-#' @param b [Solver-class] object. Not used if `a` is an
-#'   [ProjectProblem-class] object.
+#' @param b [Solver-class] object. Note that this parameter is only used
+#' if `a` is an [OptimizationProblem-class] object.
 #'
 #' @param ... arguments passed to [compile()].
 #'
-#' @return The type of object returned from this function depends on the
-#'   argument to `a`. If the argument to `a` is an
-#'   [OptimizationProblem-class] object, then the
-#'   solution is returned as a `list` containing the prioritization and
-#'   additional information (e.g., run time, solver status). On the other hand,
-#'   if the argument
-#'   to `a` is an [ProjectProblem-class] object,
-#'   then a [tibble::tibble()] table object will be returned. In this
-#'   table, each row row corresponds to a different solution and each column
-#'   describes a different property or result associated with each solution:
+#' @return
+#' The type of object returned from this function depends on the
+#' argument to `a`. If the argument to `a` is an
+#' [OptimizationProblem-class] object, then the
+#' solution is returned as a `list` containing the prioritization and
+#' additional information (e.g., run time, solver status). On the other hand,
+#' if the argument to `a` is a [problem()] or [multi_problem()] object,
+#' then a [tibble::tibble()] object will be returned. In this
+#' table, each row row corresponds to a different solution and each column
+#' describes a different property or result associated with each solution.
+#' In particular, it will have the following columns.
 #'
-#'   \describe{
+#' \describe{
 #'
-#'   \item{`"solution"`}{`integer` solution identifier.}
+#' \item{`"solution"`}{
+#' This column contains `integer` identifiers for the solutions.
+#' }
 #'
-#'   \item{`"status"`}{`character` describing each solution.
-#'    For example, is the solution optimal, suboptimal, or was it returned
-#'    because the solver ran out of time?}
+#' \item{`"status"`}{
+#' This column contains `character` values that describe the solver status.
+#' For example, these values may indicate if the solver returned
+#' an optimal or suboptimal solution.
+#' }
 #'
-#'   \item{`"obj"`}{`numeric` objective value for each solution.
-#'     This is calculated using the objective function defined for the
-#'     argument to `x`.}
+#' \item{`"obj"`}{
+#' This column contains `numeric` values that contain the objective
+#' value for each solution. This is calculated using the objective function
+#' defined for the argument to `a`. Note that if `a` is a [multi_problem()]
+#' object, then an objective column will be created for each problem in `a`.
+#' }
 #'
-#'   \item{`"cost"`}{`numeric` total cost associated with each
-#'     solution.}
+#' \item{`"cost"`}{
+#' This column contains `numeric` values that describe the total cost
+#' associated with each solution.
+#' }
 #'
-#'   \item{`x$action_names()`}{`numeric` column for each action
-#'     indicating if they were funded in each solution or not.}
+#' \item{`x$action_names()`}{
+#' These columns contain `logical` (`TRUE`/`FALSE`) values that indicate if each
+#' for each action was selected for funding (or not) by each solution.
+#' }
 #'
-#'   \item{`x$project_names()`}{`numeric` column for each
-#'     project indicating if it was completely funded (with a value of 1)
-#'     or not (with a value of 0).}
+#' \item{`x$project_names()`}{
+#' These columns contain `logical` (`TRUE`/`FALSE`) values that indicate if each
+#' for each project had all of its actions selected for funding (or not) by
+#' each solution.
+#' }
 #'
-#'   \item{`x$feature_names()`}{`numeric` column for each
-#'     feature indicating the probability that it will persist into
-#'     the future given each solution.}
+#' \item{`x$feature_names()`}{`
+#' These columns contain `numeric` values that describe the expected outcome
+#' for each feature based on the actions selected for funding.
+#' }
 #'
-#'   }
+#' }
 #'
-#' @seealso [problem()], [solution_statistics()],
-#'   [solvers].
-#'
+#' @seealso
+#' The [solution_statistics()] function can be used to compute these
+#' statistics for solutions. This may be useful to evaluate the performance of
+#' solutions generated based on expert opinion, or solutions according
+#' to objectives that are different from those used to generate them.
+#
 #' @name solve
 #'
 #' @importFrom Matrix solve
@@ -64,6 +82,7 @@ NULL
 #' @aliases solve,OptimizationProblem,Solver-method solve,ProjectProblem,missing-method solve,MultiObjProjectProblem,missing-method
 #'
 #' @examples
+#' \dontrun{
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
@@ -89,7 +108,6 @@ NULL
 #' # print problem
 #' print(p)
 #'
-#' \dontrun{
 #' # solve problem
 #' s <- solve(p)
 #'
@@ -172,12 +190,12 @@ methods::setMethod(
     s <- tibble::as_tibble(as.data.frame(action_status))
     names(s) <- a$action_names()
     out <- tibble::as_tibble(cbind(out, s))
-    ### add remaining columns
+    ### add statistics columns
     out <- tibble::as_tibble(cbind(out, solution_statistics(a, s)))
     ### reorder columns
     out <- out[, c(
-      "solution", "status", "cost", "obj", a$action_names(),
-      a$project_names(), a$feature_names()
+      "solution", "status", "cost", "obj",
+      a$action_names(), a$project_names(), a$feature_names()
     )]
     # return result
     out
@@ -210,21 +228,11 @@ methods::setMethod(
     }
     ## format solutions
     # extract actions
-    action_status <- lapply(
+    action_status <- t(vapply(
       sol,
-      function(x) matrix(x[[1]][seq_len(a$number_of_actions())], nrow = 1)
-    )
-    if (length(action_status) == 1) {
-      action_status <- action_status[[1]]
-    } else {
-      action_status <- do.call(rbind, action_status)
-    }
-    ### remove duplicate solutions if not using random solver
-    if (!inherits(a$solver, "RandomSolver")) {
-      not_dups <- !duplicated(apply(action_status, 1, paste, collapse = "_"))
-      action_status <- action_status[not_dups, , drop = FALSE]
-      sol <- sol[not_dups]
-    }
+      function(x) x$x[seq_len(a$number_of_actions())] > 0.5,
+      logical(a$number_of_actions())
+    ))
     # create solution data
     ## initialize and add solution column
     out <- tibble::tibble(solution = seq_len(nrow(action_status)))
@@ -234,23 +242,13 @@ methods::setMethod(
     s <- tibble::as_tibble(as.data.frame(action_status))
     names(s) <- a$action_names()
     out <- tibble::as_tibble(cbind(out, s))
-    ### add remaining columns for first problem
-    ### (note this includes adding a cost column)
-    curr_stats <- solution_statistics(a$problems[[1]], s)
-    names(curr_stats)[[2]]  <- names(a$problems)[[1]]
-    out <- tibble::as_tibble(cbind(out, curr_stats))
-    ### add remaining columns for remaining problems
-    ### (note this does not add duplicate cost columns)
-    for (i in seq_along(a$problems)[-1]) {
-      curr_stats <- solution_statistics(a$problems[[i]], s)[, -1, drop = FALSE]
-      names(curr_stats)[[1]]  <- names(a$problems)[[i]]
-      out <- tibble::as_tibble(cbind(out, curr_stats))
-    }
-    #### reorder columns
+    ## add statistics columns
+    out <- tibble::as_tibble(cbind(out, solution_statistics(a, s)))
+    ## reorder columns
     out <- out[, c(
       "solution", "status", "cost",
       a$problem_names(),
-      unlist(a$action_names(), recursive = TRUE, use.names = FALSE),
+      a$action_names(),
       unlist(a$project_names(), recursive = TRUE, use.names = FALSE),
       unlist(a$feature_names(), recursive = TRUE, use.names = FALSE)
     )]
