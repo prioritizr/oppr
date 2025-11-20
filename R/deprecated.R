@@ -40,15 +40,6 @@ NULL
 
 #' @rdname prioritizr-deprecated
 #' @export
-add_max_richness_objective <- function(...) {
-  error_defunct(
-    old = "add_max_richness_objective",
-    new = "add_max_wtd_sum_objective"
-  )
-}
-
-#' @rdname prioritizr-deprecated
-#' @export
 plot_feature_persistence <- function(...) {
   error_defunct(
     old = "plot_feature_persistence",

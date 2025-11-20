@@ -2,13 +2,10 @@
 % Please edit documentation in R/deprecated.R
 \name{prioritizr-deprecated}
 \alias{prioritizr-deprecated}
-\alias{add_max_richness_objective}
 \alias{plot_feature_persistence}
 \alias{plot_phylo_persistence}
 \title{Deprecation notice}
 \usage{
-add_max_richness_objective(...)
-
 plot_feature_persistence(...)
 
 plot_phylo_persistence(...)

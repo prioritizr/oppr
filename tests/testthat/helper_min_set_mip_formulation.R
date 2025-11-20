@@ -26,7 +26,6 @@ min_set_mip_formulation <- function(project_data, action_data, feature_data) {
 
   # remove unused variables
   col_idx <- which(startsWith(model$colnames, "R_"))
-
   model$obj <- model$obj[-col_idx]
   model$ub <- model$ub[-col_idx]
   model$lb <- model$lb[-col_idx]

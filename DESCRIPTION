@@ -1,6 +1,6 @@
 Package: oppr
 Type: Package
-Version: 1.1.0.0
+Version: 1.1.0
 Title: Optimal Project Prioritization
 Description: A decision support tool for prioritizing conservation projects.
     Prioritizations can be developed by maximizing expected feature richness,
@@ -105,6 +105,7 @@ Collate:
     'add_manual_targets.R'
     'add_max_phylo_div_objective.R'
     'star_phylogeny.R'
+    'add_max_richness_objective.R'
     'add_max_targets_met_objective.R'
     'add_max_wtd_sum_objective.R'
     'add_min_set_objective.R'

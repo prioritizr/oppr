@@ -4,7 +4,8 @@
 \alias{targets}
 \title{Targets}
 \description{
-Targets are used to specify a threshold minimum outcome for each feature.
+Targets are used to specify a threshold minimum outcome for each feature
+in a project prioritization problem.
 Please note that only some objectives require
 targets, and attempting to solve a problem that requires targets will throw
 an error if targets are not supplied, and attempting to solve a problem that

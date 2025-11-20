@@ -93,12 +93,6 @@ add_lpsymphony_solver <- function(x, gap = 0, time_limit = .Machine$integer.max,
           verbose = verbose
         ),
         solve = function(x, ...) {
-          # assert arguments is valid
-          assertthat::assert_that(
-            identical(x$pwlobj(), list()),
-            msg =
-              "gurobi solver is required to solve problems with this objective"
-          )
           # prepare model
           model <- list(
             obj = x$obj(),

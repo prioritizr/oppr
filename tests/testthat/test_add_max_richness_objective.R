@@ -3,9 +3,9 @@ test_that("compile (no weights)", {
   projects <- tibble::tibble(
     name = c("P1", "P2", "P3", "P4"),
     success = c(0.95, 0.96, 0.94, 1.00),
-    F1 = c(91, 0.00, 80, 10),
-    F2 = c(0.00, 92, 80, 10),
-    F3 = c(0.00, 0.00, 0.00, 10),
+    F1 = c(0.91, 0.00, 0.80, 0.10),
+    F2 = c(0.00, 0.92, 0.80, 0.10),
+    F3 = c(0.00, 0.00, 0.00, 0.10),
     A1 = c(TRUE, FALSE, FALSE, FALSE),
     A2 = c(FALSE, TRUE, FALSE, FALSE),
     A3 = c(FALSE, FALSE, TRUE, FALSE),
@@ -24,11 +24,11 @@ test_that("compile (no weights)", {
       projects, actions, features, "name", "success", "name", "cost",
       "name", FALSE
     ) %>%
-    add_max_wtd_sum_objective(budget = 0.16) %>%
+    add_max_richness_objective(budget = 0.16) %>%
     add_binary_decisions()
   # create optimization problem
   o1 <- compile(p)
-  o2 <- max_wtd_sum_mip_formulation(projects, actions, features, 0.16)
+  o2 <- max_richness_mip_formulation(projects, actions, features, 0.16)
   # run tests
   expect_equal(o1$obj(), o2$obj)
   expect_equal(o1$vtype(), o2$vtype)
@@ -44,9 +44,9 @@ test_that("compile (weights)", {
   projects <- tibble::tibble(
     name = c("P1", "P2", "P3", "P4"),
     success = c(0.95, 0.96, 0.94, 1.00),
-    F1 = c(91, 0.00, 80, 10),
-    F2 = c(0.00, 92, 80, 10),
-    F3 = c(0.00, 0.00, 0.00, 10),
+    F1 = c(0.91, 0.00, 0.80, 0.10),
+    F2 = c(0.00, 0.92, 0.80, 0.10),
+    F3 = c(0.00, 0.00, 0.00, 0.10),
     A1 = c(TRUE, FALSE, FALSE, FALSE),
     A2 = c(FALSE, TRUE, FALSE, FALSE),
     A3 = c(FALSE, FALSE, TRUE, FALSE),
@@ -68,12 +68,12 @@ test_that("compile (weights)", {
       projects, actions, features, "name", "success", "name", "cost",
       "name", FALSE
     ) %>%
-    add_max_wtd_sum_objective(budget = 0.16) %>%
+    add_max_richness_objective(budget = 0.16) %>%
     add_feature_weights(weight = features$weight) %>%
     add_binary_decisions()
   # create optimization problem
   o1 <- compile(p)
-  o2 <- max_wtd_sum_mip_formulation(projects, actions, features, 0.16)
+  o2 <- max_richness_mip_formulation(projects, actions, features, 0.16)
   # run tests
   expect_equal(o1$obj(), o2$obj)
   expect_equal(o1$vtype(), o2$vtype)
@@ -92,9 +92,9 @@ test_that("solve (single solution)", {
   projects <- tibble::tibble(
     name = c("P1", "P2", "P3", "P4"),
     success = c(0.95, 0.96, 0.94, 1.00),
-    F1 = c(91, 0.00, 80, 10),
-    F2 = c(0.00, 92, 80, 10),
-    F3 = c(0.00, 0.00, 0.00, 10),
+    F1 = c(0.91, 0.00, 0.80, 0.10),
+    F2 = c(0.00, 0.92, 0.80, 0.10),
+    F3 = c(0.00, 0.00, 0.00, 0.10),
     A1 = c(TRUE, FALSE, FALSE, FALSE),
     A2 = c(FALSE, TRUE, FALSE, FALSE),
     A3 = c(FALSE, FALSE, TRUE, FALSE),
@@ -111,14 +111,14 @@ test_that("solve (single solution)", {
       projects, actions, features, "name", "success", "name", "cost",
       "name", FALSE
     ) %>%
-    add_max_wtd_sum_objective(budget = 0.16) %>%
+    add_max_richness_objective(budget = 0.16) %>%
     add_binary_decisions()
   p2 <-
     problem(
       projects, actions, features, "name", "success", "name", "cost",
       "name", FALSE
     ) %>%
-    add_max_wtd_sum_objective(budget = 0.26) %>%
+    add_max_richness_objective(budget = 0.26) %>%
     add_binary_decisions()
   # solve problem
   s1 <- solve(p1)
@@ -135,9 +135,9 @@ test_that("solve (single solution)", {
   expect_equal(s1$A2, 0)
   expect_equal(s1$A3, 1)
   expect_equal(s1$A4, 1)
-  expect_equal(s1$F1, 94 * 0.8)
-  expect_equal(s1$F2, 94 * 0.8)
-  expect_equal(s1$F3, 10 * 1)
+  expect_equal(s1$F1, 0.94 * 0.8)
+  expect_equal(s1$F2, 0.94 * 0.8)
+  expect_equal(s1$F3, 1 * 0.1)
   ## s2
   expect_s3_class(s2, "tbl_df")
   expect_equal(nrow(s2), 1L)
@@ -149,9 +149,52 @@ test_that("solve (single solution)", {
   expect_equal(s2$A2, 1)
   expect_equal(s2$A3, 0)
   expect_equal(s2$A4, 1)
-  expect_equal(s2$F1, 95 * 0.91)
-  expect_equal(s2$F2, 96 * 0.92)
-  expect_equal(s2$F3, 10 * 1)
+  expect_equal(s2$F1, 0.95 * 0.91)
+  expect_equal(s2$F2, 0.96 * 0.92)
+  expect_equal(s2$F3, 1 * 0.1)
+})
+
+test_that("solve (tricky problem)", {
+  # define skips
+  skip_on_cran()
+  skip_if_not(any_solvers_installed())
+  # create data
+  projects <- tibble::tibble(
+    name = letters[1:4],
+    success = c(0.9, 0.9, 0.9, 1.00),
+    F1 = c(0.3, 0.2, 0.1, 0.01),
+    F2 = c(0, 0, 0, 0.01),
+    A1 = c(TRUE, FALSE, FALSE, FALSE),
+    A2 = c(TRUE, TRUE, FALSE, FALSE),
+    A3 = c(TRUE, TRUE, TRUE, FALSE),
+    A4 = c(FALSE, FALSE, FALSE, TRUE)
+  )
+  actions <- tibble::tibble(
+    name = c("A1", "A2", "A3", "A4"),
+    cost = c(0.5, 0.5, 0.5, 0)
+  )
+  features <- tibble::tibble(name = c("F1", "F2"), weight = c(5, 5))
+  # build problem
+  p <-
+    problem(
+      projects, actions, features, "name", "success", "name", "cost",
+      "name", FALSE
+    ) %>%
+    add_max_richness_objective(budget = 1.0) %>%
+    add_binary_decisions()
+  # solve problem
+  s <- solve(p)
+  # run tests
+  expect_s3_class(s, "tbl_df")
+  expect_equal(nrow(s), 1L)
+  expect_equal(s$cost, 1)
+  expect_true(is_optimal_solver_status(s$status))
+  expect_equal(s$obj, 0.19)
+  expect_equal(s$F1, 0.18)
+  expect_equal(s$F2, 0.01)
+  expect_equal(s$A2, 1)
+  expect_equal(s$A3, 1)
+  expect_equal(s$A4, 1)
 })
 
 test_that("invalid arguments", {
@@ -165,15 +208,15 @@ test_that("invalid arguments", {
     )
   # run tests
   expect_error({
-    add_max_wtd_sum_objective(p, NA_real_)
+    add_max_richness_objective(p, NA_real_)
   })
   expect_error({
-    add_max_wtd_sum_objective(p, c(1, 1))
+    add_max_richness_objective(p, c(1, 1))
   })
   expect_error({
-    add_max_wtd_sum_objective(p, "a")
+    add_max_richness_objective(p, "a")
   })
   expect_error({
-    add_max_wtd_sum_objective(p, TRUE)
+    add_max_richness_objective(p, TRUE)
   })
 })

@@ -38,16 +38,15 @@ A problem objective is used to specify the overall goal of the
 project prioritization problem.
 Here, the maximum targets met objective seeks to find the set of actions
 that maximizes the total number of features (e.g., populations, species,
-ecosystems) that have met their persistence targets within a
+ecosystems) that have met their targets within a
 pre-specified budget. Let \eqn{I} represent the set of conservation
 actions (indexed by \eqn{i}). Let \eqn{C_i} denote the cost for funding
 action \eqn{i}, and let \eqn{m} denote the maximum expenditure (i.e., the
 budget). Also, let \eqn{F} represent each feature (indexed by \eqn{f}),
 \eqn{W_f} represent the weight for each feature \eqn{f} (defaults to one
 for each feature unless specified otherwise), \eqn{T_f} represent the
-persistence target for each feature \eqn{f}, and \eqn{E_f} denote the
-probability that each feature will go extinct given the funded
-conservation projects.
+target for each feature \eqn{f}, and \eqn{E_f} denote the
+expected outcome for each feature given the funded conservation projects.
 
 To guide the prioritization, the conservation actions are organized into
 conservation projects. Let \eqn{J} denote the set of conservation projects
@@ -55,25 +54,25 @@ conservation projects. Let \eqn{J} denote the set of conservation projects
 \eqn{i \in I}{i in I} comprise each conservation project
 \eqn{j \in J}{j in J} using zeros and ones. Next, let \eqn{P_j} represent
 the probability of project \eqn{j} being successful if it is funded. Also,
-let \eqn{B_{fj}} denote the enhanced probability that each feature
+let \eqn{B_{fj}} denote the outcome for each feature
 \eqn{f \in F}{f in F} associated with the project \eqn{j \in J}{j in J}
-will persist if all of the actions that comprise project \eqn{j} are funded
-and that project is allocated to feature \eqn{f}.
-For convenience,
-let \eqn{Q_{fj}} denote the actual probability that each
+assuming that all of the actions comprising project \eqn{j} are funded
+and that project is allocated to feature \eqn{f}. For convenience,
+let \eqn{Q_{fj}} denote the expected outcome for each
 \eqn{f \in F}{f in F} associated with the project \eqn{j \in J}{j in J}
-is expected to persist if the project is funded. If the argument
+if the project is funded. If the argument
 to \code{adjust_for_baseline} in the \code{problem} function was set to
 \code{TRUE}, and this is the default behavior, then
 \eqn{Q_{fj} = (P_{j} \times B_{fj}) + \bigg(\big(1 - (P_{j} B_{fj})\big)
 \times (P_{n} \times B_{fn})\bigg)}{Q_{fj} = (P_j B_{fj}) + ((1 - (P_j
 B_{fj})) * (P_n \times B_{fn}))}, where \code{n} corresponds to the
-baseline "do nothing" project. This means that the probability
-of a feature persisting if a project is allocated to a feature
+baseline "do nothing" project. This means that the expected outcome
+for a feature given that a project is funded and allocated to the feature
 depends on (i) the probability of the project succeeding, (ii) the
-probability of the feature persisting if the project does not fail,
-and (iii) the probability of the feature persisting even if the project
-fails. Otherwise, if the argument is set to \code{FALSE}, then
+outcome for the feature if the project succeeds,
+and (iii) the outcome for the feature if the project fails
+(per the baseline project).
+Otherwise, if the argument is set to \code{FALSE}, then
 \eqn{Q_{fj} = P_{j} \times B_{fj}}{Q_{fj} = P_{j} * B_{fj}}.
 
 The binary control variables \eqn{X_i} in this problem indicate whether
@@ -83,9 +82,9 @@ and \eqn{G_f} variables.
 Specifically, the binary \eqn{Y_{j}} variables indicate if project \eqn{j}
 is funded or not based on which actions are funded; the binary
 \eqn{Z_{fj}} variables indicate if project \eqn{j} is used to manage
-feature \eqn{f} or not; the semi-continuous \eqn{E_f} variables
-denote the probability that feature \eqn{f} will go extinct; and the
-\eqn{G_f} variables indicate if the persistence target for feature
+feature \eqn{f} or not; the continuous \eqn{E_f} variables
+denote the expected outcome for feature \eqn{f}; and the binary
+\eqn{G_f} variables indicate if the target for feature
 \eqn{f} is met.
 
 Now that we have defined all the data and variables, we can formulate
@@ -98,9 +97,9 @@ represent the set of ten features and also the number ten).
   \mathrm{(eqn \space 1a)} \\
   \mathrm{Subject \space to}
   \sum_{i = 0}^{I} C_i \leq m \space \mathrm{(eqn \space 1b)} \\
-  G_f (1 - E_f) \geq T_f \space \forall \space f \in F \space
+  E_f \geq G_f T_f \space \forall \space f \in F \space
   \mathrm{(eqn \space 1c)} \\
-  E_f = 1 - \sum_{j = 0}^{J} Z_{fj} Q_{fj} \space \forall \space f \in F
+  E_f = \sum_{j = 0}^{J} Z_{fj} Q_{fj} \space \forall \space f \in F
   \space \mathrm{(eqn \space 1d)} \\
   Z_{fj} \leq Y_{j} \space \forall \space j \in J \space \mathrm{(eqn \space
   1e)} \\
@@ -108,36 +107,36 @@ represent the set of ten features and also the number ten).
   \space f \in F \space \mathrm{(eqn \space 1f)} \\
   A_{ij} Y_{j} \leq X_{i} \space \forall \space i \in I, j \in J \space
   \mathrm{(eqn \space 1g)} \\
-  E_{f} \geq 0, E_{f} \leq 1 \space \forall \space b \in B \space
+  E_{f} \geq 0 \space \forall \space f \in F \space
   \mathrm{(eqn \space 1h)} \\
-  G_{f}, X_{i}, Y_{j}, Z_{fj} \in [0, 1] \space \forall \space i \in I, j
+  G_{f}, X_{i}, Y_{j}, Z_{fj} \in \{0, 1\} \space \forall \space i \in I, j
   \in J, f \in F \space \mathrm{(eqn \space 1i)}
 }{
   Maximize sum_f^F G_f W_f (eqn 1a);
   Subject to:
   sum_i^I C_i X_i <= m for all f in F (eqn 1b),
-  G_f (1 - E_f) >= T_f for all f \in F (eqn 1c),
-  E_f = 1 - sum_j^J Y_{fj} Q_{fj} for all f in F (eqn 1d),
+  E_f >= G_f T_f for all f \in F (eqn 1c),
+  E_f = sum_j^J Y_{fj} Q_{fj} for all f in F (eqn 1d),
   Z_{fj} <= Y_j for all j in J (eqn 1e),
   sum_j^J Z_{fj} * ceil(Q_{fj}) = 1 for all f in F (eqn 1f),
   A_{ij} Y_{j} <= X_{i} for all i I, j in J (eqn 1g),
-  E_f >= 0, E_f <= 1 for all f in F (eqn 1h),
-  G_f, X_i, Y_j, Z_{fj} in [0, 1] for all i in I, j in J, f in F (eqn 1i)
+  E_f >= 0 for all f in F (eqn 1h),
+  G_f, X_i, Y_j, Z_{fj} in \{0, 1\} for all i in I, j in J, f in F (eqn 1i)
 }
 
 The objective (eqn 1a) is to maximize the weighted total number of the
-features that have their persistence targets met.
-Constraints (eqn 1b) calculate which persistence targets have been met.
+features that have their targets met.
+Constraints (eqn 1b) calculate which targets have been met.
 Constraint (eqn 1c) limits the maximum expenditure (i.e., ensures
 that the cost of the funded actions do not exceed the budget).
-Constraints (eqn 1d) calculate the probability that each feature
-will go extinct according to their allocated project.
+Constraints (eqn 1d) calculate the expected outcome for each feature
+according to their allocated project.
 Constraints (eqn 1e) ensure that feature can only be allocated to projects
 that have all of their actions funded. Constraints (eqn 1f) state that each
 feature can only be allocated to a single project. Constraints (eqn 1g)
 ensure that a project cannot be funded unless all of its actions are funded.
-Constraints (eqns 1h) ensure that the probability variables
-(\eqn{E_f}) are bounded between zero and one. Constraints (eqns 1i) ensure
+Constraints (eqns 1h) ensure that the expected outcome variables
+(\eqn{E_f}) are greater than zero. Constraints (eqns 1i) ensure
 that the target met (\eqn{G_f}), action funding (\eqn{X_i}), project funding
 (\eqn{Y_j}), and project allocation (\eqn{Z_{fj}}) variables are binary.
 }
@@ -201,6 +200,7 @@ threat management. \emph{Conservation Biology}, \strong{29}, 525--536.
 \seealso{
 Other objectives: 
 \code{\link{add_max_phylo_div_objective}()},
+\code{\link{add_max_richness_objective}()},
 \code{\link{add_max_wtd_sum_objective}()},
 \code{\link{add_min_set_objective}()}
 }

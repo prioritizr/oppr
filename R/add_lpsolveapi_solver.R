@@ -122,7 +122,6 @@ add_lpsolveapi_solver <- function(x, gap = 0, presolve = FALSE,
           lpSolveAPI::set.constr.type(l, msense, seq_len(nrow(m)))
           lpSolveAPI::set.bounds(l, lower = x$lb(), upper = x$ub())
           v <- x$vtype()
-          s <- which(v == "S")
           v[v == "B"] <- "binary"
           v[v == "C"] <- "real"
           v[v == "S"] <- "real"
@@ -130,6 +129,7 @@ add_lpsolveapi_solver <- function(x, gap = 0, presolve = FALSE,
           for (i in unique(v)) {
             lpSolveAPI::set.type(l, which(v == i), i)
           }
+          s <- which(v == "S")
           if (length(s) > 0) {
             lpSolveAPI::set.semicont(l, s)
           }

@@ -323,8 +323,8 @@ BEGIN_RCPP
 END_RCPP
 }
 // rcpp_apply_max_phylo_div_objective
-bool rcpp_apply_max_phylo_div_objective(SEXP x, Rcpp::NumericVector costs, double budget, Rcpp::NumericVector feature_weights);
-RcppExport SEXP _oppr_rcpp_apply_max_phylo_div_objective(SEXP xSEXP, SEXP costsSEXP, SEXP budgetSEXP, SEXP feature_weightsSEXP) {
+bool rcpp_apply_max_phylo_div_objective(SEXP x, Rcpp::NumericVector costs, double budget, Rcpp::NumericVector feature_weights, Rcpp::NumericVector feature_ub);
+RcppExport SEXP _oppr_rcpp_apply_max_phylo_div_objective(SEXP xSEXP, SEXP costsSEXP, SEXP budgetSEXP, SEXP feature_weightsSEXP, SEXP feature_ubSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -332,7 +332,8 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type costs(costsSEXP);
     Rcpp::traits::input_parameter< double >::type budget(budgetSEXP);
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type feature_weights(feature_weightsSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_apply_max_phylo_div_objective(x, costs, budget, feature_weights));
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type feature_ub(feature_ubSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_apply_max_phylo_div_objective(x, costs, budget, feature_weights, feature_ub));
     return rcpp_result_gen;
 END_RCPP
 }

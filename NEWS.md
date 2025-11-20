@@ -1,14 +1,19 @@
-# oppr 1.1.0.0
+# oppr 1.1.0
 
 - New `multi_problem()` and `add_ref_point_approach()` functions for multi-
   objective optimization.
+- New `add_max_wtd_sum_objective()` that is designed for datasets when some
+  (or all) of the features do not have probability values to describe their
+  expected outcome when projects are completed. For example, this may
+  be useful when the expected outcome values for a feature reflect the
+  total amount of land expected to be covered by an ecosystem, or the
+  number of individuals present in a population.
 - Update `problem()` to be compatible with outcome data that are not
   probabilities of persistence (e.g., amount of land covered by an ecosystem).
-- Update class system to use _R6_ classes instead of _proto_ classes.
 - Update `plot()` functions to be compatible with updates to _ggplot2_ package.
 - Update _Matrix_ package version dependency (#20).
+- Update class system to use _R6_ classes instead of _proto_ classes.
 - Update unit tests for compatibility with _testthat_ edition 3.
-- Rename `add_max_richness_objective()` to be `add_max_wtd_sum_objective()`.
 - Rename `plot_phylo_persistence()` to be `plot_solution_phylogram()`.
 - Rename `plot_feature_persistence()` to be `plot_solution_barplot()`.
 - Rename `add_max_richness_objective()` to be `add_max_wtd_sum_objective()`.

@@ -4,7 +4,7 @@ NULL
 #' Problem objective
 #'
 #' An objective is used to specify the overall goal of a project prioritization
-#' [problem()]. All project prioritization problems involve
+#' problem. All project prioritization problems involve
 #' minimizing or maximizing some kind of objective. For instance, the decision
 #' maker may require a funding scheme that maximizes the total number of
 #' species that are expected to persist into the future whilst ensuring that
@@ -22,16 +22,9 @@ NULL
 #'
 #' \describe{
 #'
-#' \item{[add_max_wtd_sum_objective()]}{
-#' Maximize the weighted sum of the expected outcomes of the features,
-#' whilst ensuring that the cost of the solution is within a pre-specified
-#' budget (Joseph, Maloney & Possingham 2009).
-#' }
-#'
-#' \item{[add_max_targets_met_objective()]}{
-#' Maximize the total number of persistence targets met for the features,
-#' whilst ensuring that the cost of the solution is within a pre-specified
-#' budget (Chades *et al.* 2015).
+#' \item{[add_max_richness_objective()]}{
+#' Maximize the total number of features expected to persist into the future
+#' (Joseph, Maloney & Possingham 2009).
 #' }
 #'
 #' \item{[add_max_phylo_div_objective()]}{
@@ -40,9 +33,21 @@ NULL
 #' pre-specified budget (Bennett *et al.* 2014, Faith 2008).
 #' }
 #'
+#' \item{[add_max_targets_met_objective()]}{
+#' Maximize the total number of persistence targets met for the features,
+#' whilst ensuring that the cost of the solution is within a pre-specified
+#' budget (Chades *et al.* 2015).
+#' }
+#'
 #' \item{[add_min_set_objective()]}{
 #' Minimize the cost of the solution, whilst ensuring that all targets are
 #' met (Chadés *et al.* 2015),
+#' }
+#'
+#' \item{[add_max_wtd_sum_objective()]}{
+#' Maximize the weighted sum of the expected outcomes of the features,
+#' whilst ensuring that the cost of the solution is within a pre-specified
+#' budget (Joseph, Maloney & Possingham 2009).
 #' }
 #'
 #' }
@@ -83,8 +88,8 @@ NULL
 #'   ) %>%
 #'   add_binary_decisions()
 #'
-#' # build problem with maximum weighted sum objective and $200 budget
-#' p2 <- p1 %>% add_max_wtd_sum_objective(budget = 200)
+#' # build problem with maximum richness objective and $200 budget
+#' p2 <- p1 %>% add_max_richness_objective(budget = 200)
 #'
 #' # build problem with maximum phylogenetic diversity objective and $200 budget
 #' p3 <- p1 %>% add_max_phylo_div_objective(budget = 200, tree = sim_tree)
@@ -102,8 +107,14 @@ NULL
 #'   add_min_set_objective() %>%
 #'   add_absolute_targets(0.4)
 #'
+#' # build problem with maximum weighted sum objective and $200 budget,
+#' # note that this is identical to the maximum richness objective
+#' # when using probability of persistence values, such as those
+#' # present in the simulated data
+#' p6 <- p1 %>% add_max_wtd_sum_objective(budget = 200)
+#'
 #' # solve problems
-#' s <- rbind(solve(p2), solve(p3), solve(p4), solve(p5))
+#' s <- rbind(solve(p2), solve(p3), solve(p4), solve(p5), solve(p6))
 #'
 #' # print solutions
 #' print(s)

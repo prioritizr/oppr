@@ -12,10 +12,10 @@ test_that("integer (compile)", {
   # compile problem
   o <- compile(p)
   # run tests
-  expect_equal(o$ub(), replace(
-    rep(1, length(o$obj())),
-    which(sim_actions$locked_out), 0
-  ))
+  expect_equal(
+    o$ub(),
+    replace(o$ub(), which(sim_actions$locked_out), 0)
+  )
 })
 
 test_that("integer (solve)", {
@@ -79,10 +79,10 @@ test_that("logical (compile)", {
   # compile problem
   o <- compile(p)
   # run tests
-  expect_equal(o$ub(), replace(
-    rep(1, length(o$obj())),
-    which(sim_actions$locked_out), 0
-  ))
+  expect_equal(
+    o$ub(),
+    replace(o$ub(), which(sim_actions$locked_out), 0)
+  )
 })
 
 test_that("logical (invalid arguments)", {
@@ -145,11 +145,7 @@ test_that("character (compile)", {
   # run tests
   expect_equal(
     o$ub(),
-    replace(
-      rep(1, length(o$obj())),
-      which(sim_actions$locked_out),
-      0
-    )
+    replace(o$ub(), which(sim_actions$locked_out), 0)
   )
 })
 

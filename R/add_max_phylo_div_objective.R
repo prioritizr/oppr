@@ -78,9 +78,9 @@ NULL
 #' Specifically, the binary \eqn{Y_{j}} variables indicate if project \eqn{j}
 #' is funded or not based on which actions are funded; the binary
 #' \eqn{Z_{fj}} variables indicate if project \eqn{j} is used to manage
-#' feature \eqn{f} or not; the semi-continuous \eqn{E_f} variables
+#' feature \eqn{f} or not; the continuous \eqn{E_f} variables
 #' denote the probability that feature \eqn{f} will go extinct; and
-#' the semi-continuous \eqn{R_b} variables denote the probability that
+#' the continuous \eqn{R_b} variables denote the probability that
 #' phylogenetic branch \eqn{b} will remain in the future.
 #'
 #' Now that we have defined all the data and variables, we can formulate
@@ -105,7 +105,7 @@ NULL
 #'   \mathrm{(eqn \space 1g)} \\
 #'   E_{f}, R_{b} \geq 0, E_{f}, R_{b} \leq 1 \space \forall \space b \in B
 #'    \space f \in F \space \mathrm{(eqn \space 1h)} \\
-#'   X_{i}, Y_{j}, Z_{fj} \in [0, 1] \space \forall \space i \in I, j \in J, f
+#'   X_{i}, Y_{j}, Z_{fj} \in \{0, 1\} \space \forall \space i \in I, j \in J, f
 #'   \in F \space \mathrm{(eqn \space 1i)}
 #' }{
 #'   Maximize (sum_b^B L_b R_b) (eqn 1a);
@@ -117,7 +117,7 @@ NULL
 #'   sum_j^J Z_{fj} * ceil(Q_{fj}) = 1 for all f in F (eqn 1f),
 #'   A_{ij} Y_{j} <= X_{i} for all i I, j in J (eqn 1g),
 #'   E_f, R_b >= 0, E_f, R_b <= 1 for all b in B, f in F (eqn 1h),
-#'   X_i, Y_j, Z_{fj} in [0, 1] for all i in I, j in J, f in F (eqn 1i)
+#'   X_i, Y_j, Z_{fj} in \{0, 1\} for all i in I, j in J, f in F (eqn 1i)
 #' }
 #'
 #' The objective (eqn 1a) is to maximize the expected phylogenetic diversity
@@ -298,7 +298,8 @@ add_max_phylo_div_objective <- function(x, budget, tree) {
               x$ptr,
               y$action_costs(),
               self$get_data("budget"),
-              fp$edge.length[bo]
+              fp$edge.length[bo],
+              rep(1, y$number_of_features())
             )
           )
         }

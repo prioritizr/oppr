@@ -6,7 +6,7 @@
 \alias{oppr-package}
 \title{oppr: Optimal Project Prioritization}
 \description{
-The \pkg{oppr} \emph{R} package a decision support tool for prioritizing
+The \pkg{oppr} package a decision support tool for prioritizing
 conservation projects. Prioritizations can be developed by maximizing
 expected outcomes as a weighted sum (e.g., species richness), expected
 phylogenetic diversity, the number of features that meet persistence
@@ -21,6 +21,10 @@ install the 'Gurobi' optimizer (available from
 because it can identify optimal solutions very quickly. Finally, methods
 are provided for comparing different prioritizations and evaluating their
 benefits.
+}
+\details{
+This package has a vignette to showcase its usage. To view the
+vignette, please use the code \code{vignette("oppr", package = "oppr")}.
 }
 \section{Installation}{
 
@@ -42,7 +46,18 @@ can obtain a
 package can then be installed (see \url{https://support.gurobi.com/hc/en-us/articles/14462206790033-How-do-I-install-Gurobi-for-R} for instructions).
 }
 
+\section{Citation}{
+
+Please cite the \emph{oppr R} package when using it in publications. To
+cite the package, please use:
+
+Hanson JO, Schuster R, Strimas-Mackey M & Bennett JR (2019) Optimality in
+prioritizing conservation projects. \emph{Methods in Ecology & Evolution},
+10: 1655--1663.
+}
+
 \examples{
+\dontrun{
 # load data
 data(sim_projects, sim_features, sim_actions)
 
@@ -68,7 +83,6 @@ p <-
 # print problem
 print(p)
 
-\dontrun{
 # solve problem
 s <- solve(p)
 
@@ -88,17 +102,19 @@ plot(p, s)
 
 }
 \seealso{
-Please refer to the package vignette for more information and worked
-examples. This can be accessed using the code \code{vignette("oppr")}.
+Useful links:
+\itemize{
+\item Package website (\url{https://prioritizr.github.io/oppr})
+\item Source code repository (\url{https://github.com/prioritizr/oppr})
+\item Report bugs (\url{https://github.com/prioritizr/oppr/issues})
+}
 }
 \author{
-\strong{Maintainer}: Jeffrey O Hanson \email{jeffrey.hanson@uqconnect.edu.au} (\href{https://orcid.org/0000-0002-4716-6134}{ORCID})
-
 Authors:
 \itemize{
-  \item Richard Schuster \email{mail@richard-schuster.com} (\href{https://orcid.org/0000-0003-3191-7869}{ORCID})
-  \item Matthew Strimas-Mackey \email{mstrimas@gmail.com} (\href{https://orcid.org/0000-0001-8929-7776}{ORCID})
-  \item Joseph R Bennett \email{joseph.bennett@carleton.ca} (\href{https://orcid.org/0000-0002-3901-9513}{ORCID})
+\item Jeffrey O Hanson \email{jeffrey.hanson@uqconnect.edu.au} (\href{https://orcid.org/0000-0002-4716-6134}{ORCID})
+\item Richard Schuster \email{richard.schuster@glel.carleton.ca} (\href{https://orcid.org/0000-0003-3191-7869}{ORCID}, maintainer)
+\item Matthew Strimas-Mackey \email{mstrimas@gmail.com} (\href{https://orcid.org/0000-0001-8929-7776}{ORCID})
+\item Joseph Bennett \email{joseph.bennett@carleton.ca} (\href{https://orcid.org/0000-0002-3901-9513}{ORCID})
 }
-
 }

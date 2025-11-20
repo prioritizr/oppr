@@ -5,7 +5,8 @@
 bool rcpp_apply_max_phylo_div_objective(SEXP x,
                                         Rcpp::NumericVector costs,
                                         double budget,
-                                        Rcpp::NumericVector feature_weights) {
+                                        Rcpp::NumericVector feature_weights,
+                                        Rcpp::NumericVector feature_ub) {
   // initialization
   Rcpp::XPtr<OPTIMIZATIONPROBLEM> ptr = Rcpp::as<Rcpp::XPtr<OPTIMIZATIONPROBLEM>>(x);
   Rcpp::List curr_pwl_list;
@@ -59,7 +60,7 @@ bool rcpp_apply_max_phylo_div_objective(SEXP x,
   for (std::size_t f = 0; f < (ptr->_number_of_features); ++f)
     ptr->_lb.push_back(0.0);
   for (std::size_t f = 0; f < (ptr->_number_of_features); ++f)
-    ptr->_ub.push_back(1.0);
+    ptr->_ub.push_back(feature_ub[f]);
 
   // add variable types for new feature variables
   for (std::size_t f = 0; f < (ptr->_number_of_features); ++f)

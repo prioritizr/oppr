@@ -14,11 +14,7 @@ test_that("integer (compile)", {
   # run tests
   expect_equal(
     o$lb(),
-    replace(
-      rep(0, length(o$obj())),
-      which(sim_actions$locked_in),
-      1
-    )
+    replace(o$lb(), which(sim_actions$locked_in), 1)
   )
 })
 
@@ -85,11 +81,7 @@ test_that("logical (compile)", {
   # run tests
   expect_equal(
     o$lb(),
-    replace(
-      rep(0, length(o$obj())),
-      which(sim_actions$locked_in),
-      1
-    )
+    replace(o$lb(), which(sim_actions$locked_in), 1)
   )
 })
 
@@ -153,11 +145,7 @@ test_that("character (compile)", {
   # run tests
   expect_equal(
     o$lb(),
-    replace(
-      rep(0, length(o$obj())),
-      which(sim_actions$locked_in),
-      1
-    )
+    replace(o$lb(), which(sim_actions$locked_in), 1)
   )
 })
 

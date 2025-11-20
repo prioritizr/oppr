@@ -6,7 +6,7 @@ NULL
 
 #' oppr: Optimal Project Prioritization
 #'
-#' The \pkg{oppr} *R* package a decision support tool for prioritizing
+#' The \pkg{oppr} package a decision support tool for prioritizing
 #' conservation projects. Prioritizations can be developed by maximizing
 #' expected outcomes as a weighted sum (e.g., species richness), expected
 #' phylogenetic diversity, the number of features that meet persistence
@@ -40,11 +40,34 @@ NULL
 #' [Gurobi](https://www.gurobi.com) optimization suite, the \pkg{gurobi}
 #'  package can then be installed (see <https://support.gurobi.com/hc/en-us/articles/14462206790033-How-do-I-install-Gurobi-for-R> for instructions).
 #'
+#' @details
+#' This package has a vignette to showcase its usage. To view the
+#' vignette, please use the code `vignette("oppr", package = "oppr")`.
+#'
+#' @section Citation:
+#' Please cite the _oppr R_ package when using it in publications. To
+#' cite the package, please use:
+#'
+#' Hanson JO, Schuster R, Strimas-Mackey M & Bennett JR (2019) Optimality in
+#' prioritizing conservation projects. *Methods in Ecology & Evolution*,
+#' 10: 1655--1663.
+#'
 #' @seealso
-#' Please refer to the package vignette for more information and worked
-#' examples. This can be accessed using the code `vignette("oppr")`.
+#' Useful links:
+#' * Package website (<https://prioritizr.github.io/oppr>)
+#' * Source code repository (<https://github.com/prioritizr/oppr>)
+#' * Report bugs (<https://github.com/prioritizr/oppr/issues>)
+#'
+#' @author
+#'  Authors:
+#' * Jeffrey O Hanson \email{jeffrey.hanson@uqconnect.edu.au} ([ORCID](https://orcid.org/0000-0002-4716-6134))
+#' * Richard Schuster \email{richard.schuster@glel.carleton.ca} ([ORCID](https://orcid.org/0000-0003-3191-7869), maintainer)
+#' * Matthew Strimas-Mackey \email{mstrimas@gmail.com} ([ORCID](https://orcid.org/0000-0001-8929-7776))
+#' * Joseph Bennett \email{joseph.bennett@carleton.ca} ([ORCID](https://orcid.org/0000-0002-3901-9513))
+#'
 #'
 #' @examples
+#' \dontrun{
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
@@ -70,7 +93,6 @@ NULL
 #' # print problem
 #' print(p)
 #'
-#' \dontrun{
 #' # solve problem
 #' s <- solve(p)
 #'

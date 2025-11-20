@@ -14,8 +14,8 @@ NULL
 #' The solvers that can be used are as follows (ordered best to worst):
 #' \pkg{gurobi}, ([add_gurobi_solver()]),
 #' \pkg{highs}, ([add_highs_solver()]),
-#' \pkg{Rsymphony} ([add_rsymphony_solver()]), \pkg{lpsymphony}
-#' ([add_lpsymphony_solver()]), and \pkg{lpSolveAPI}
+#' \pkg{Rsymphony} ([add_rsymphony_solver()]),
+#' \pkg{lpsymphony} ([add_lpsymphony_solver()]), and \pkg{lpSolveAPI}
 #' ([add_lpsolveapi_solver()]). This function does not consider
 #' solvers that generate solutions using heuristic algorithms (i.e.
 #' [add_heuristic_solver()]) or random processes

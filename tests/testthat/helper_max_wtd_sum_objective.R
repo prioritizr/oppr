@@ -1,18 +1,21 @@
 max_wtd_sum_mip_formulation <- function(project_data, action_data, feature_data,
-                                        budget, n_approx_points) {
-  # initialize problem based on phylogenetic diversity formulation
-  model <- max_phylo_div_mip_formulation(
+                                        budget) {
+  # initialize problem based on max richness formulation
+  model <- max_richness_mip_formulation(
     project_data = project_data,
     action_data = action_data,
-    tree = star_phylogeny(feature_data$name),
-    budget = budget,
-    n_approx_points = n_approx_points
+    feature_data = feature_data,
+    budget = budget
   )
 
-  # if present, assign weights
-  if (assertthat::has_name(feature_data, "weight")) {
-    model$obj[grep("R_", model$colnames, fixed = TRUE)] <- feature_data$weight
-  }
+  # set upper bound for feature outcome variables based on maximum
+  # expected outcome values
+  feature_max_outcome <- vapply(
+    seq_len(nrow(feature_data)), FUN.VALUE = numeric(1), function(i) {
+      max(project_data[[feature_data$name[[i]]]] * project_data$success)
+    }
+  )
+  model$ub[model$vtype == "C"] <- feature_max_outcome
 
   # Exports
   model
