@@ -8,6 +8,7 @@ docs: man readme vigns site
 
 data:
 	Rscript --slave inst/extdata/simulate_data.R
+	Rscript --slave inst/extdata/simulate_multi_data.R
 
 man:
 	R --slave -e "devtools::document()"

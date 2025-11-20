@@ -99,25 +99,27 @@ ProjectProblem <- R6::R6Class(
         solver_msg <- self$solver$repr()
       }
       # display message
-      message(paste0(
-        "Project Prioritization Problem",
-        "\nactions:         ",
-        repr_options(self$action_names(), "actions"),
-        "\nprojects:        ",
-        repr_options(self$project_names(), "projects"),
-        "\nfeatures:        ",
-        repr_options(self$feature_names(), "features"),
-        "\naction costs:    ",
-        repr_values(self$action_costs()),
-        "\nproject success: ",
-        repr_values(self$project_success_probabilities()),
-        "\nobjective:       ", obj_msg,
-        "\ntargets:         ", targets_msg,
-        "\nweights:         ", weights_msg,
-        "\ndecisions        ", decisions_msg,
-        "\nconstraints:     ", constraints_msg,
-        "\nsolver:          ", solver_msg
-      ))
+      message(
+        paste0(
+          "Project Prioritization Problem",
+          "\nactions:         ",
+          repr_options(self$action_names(), "actions"),
+          "\nprojects:        ",
+          repr_options(self$project_names(), "projects"),
+          "\nfeatures:        ",
+          repr_options(self$feature_names(), "features"),
+          "\naction costs:    ",
+          repr_values(self$action_costs()),
+          "\nproject success: ",
+          repr_values(self$project_success_probabilities()),
+          "\nobjective:       ", obj_msg,
+          "\ntargets:         ", targets_msg,
+          "\nweights:         ", weights_msg,
+          "\nconstraints:     ", constraints_msg,
+          "\ndecisions:       ", decisions_msg,
+          "\nsolver:          ", solver_msg
+        )
+      )
       invisible(TRUE)
     },
 

@@ -3,7 +3,7 @@ NULL
 
 #' Number of projects
 #'
-#' Extract the number of projects in an object.
+#' Get the number of projects in an object.
 #'
 #' @inheritParams number_of_actions
 #'

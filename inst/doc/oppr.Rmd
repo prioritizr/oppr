@@ -33,8 +33,10 @@ s9 <- data.frame()
 mean_percent <- 0
 
 # disable running vignette code during R CMD check
-is_check <- ("CheckExEnv" %in% search()) || any(c("_R_CHECK_TIMINGS_",
-             "_R_CHECK_LICENSE_") %in% names(Sys.getenv()))
+is_check <- ("CheckExEnv" %in% search()) || any(c(
+  "_R_CHECK_TIMINGS_",
+  "_R_CHECK_LICENSE_"
+) %in% names(Sys.getenv()))
 knitr::opts_chunk$set(fig.align = "center", eval = !is_check)
 ```
 
@@ -113,8 +115,10 @@ Now we will simulate a dataset to practice developing project prioritizations. S
 
 ```{r}
 # simulate data
-sim_data <- simulate_ptm_data(number_projects = 70, number_actions = 30,
-                              number_features = 40)
+sim_data <- simulate_ptm_data(
+  number_projects = 70, number_actions = 30,
+  number_features = 40
+)
 
 # extract project, action, feature data
 projects <- sim_data$projects
@@ -126,7 +130,7 @@ features$weight <- exp(runif(nrow(features), 1, 15))
 
 # print data
 print(projects) # data for conservation projects
-print(actions)  # data for management actions
+print(actions) # data for management actions
 print(features) # data for biodiversity features
 ```
 
@@ -136,10 +140,12 @@ Let's assume that we want to maximize the overall persistence of the conservatio
 
 ```{r}
 # build problem
-p1 <- problem(projects = projects, actions = actions, features = features,
-              "name", "success", "name", "cost", "name") %>%
-      add_max_richness_objective(budget = 1000) %>%
-      add_binary_decisions()
+p1 <- problem(
+  projects = projects, actions = actions, features = features,
+  "name", "success", "name", "cost", "name"
+) %>%
+  add_max_richness_objective(budget = 1000) %>%
+  add_binary_decisions()
 
 # print problem
 print(p1)
@@ -164,7 +170,7 @@ Since the text printed to the screen doesn't show which projects were completely
 ```{r}
 # extract names of funded projects
 s1_projects <- s1[, c("solution", p1$project_names())] %>%
-               gather(project, status, -solution)
+  gather(project, status, -solution)
 
 # print project results
 print(s1_projects)
@@ -199,9 +205,9 @@ We could also save these table to our computer (e.g. so we could view them in a 
 cat(getwd(), "\n")
 
 # save table to file
-write.table(s1, "solutions.csv" , sep = ",", row.names = FALSE)
-write.table(s1_projects, "project_statuses.csv" , sep = ",", row.names = FALSE)
-write.table(p1_pce, "project_ce.csv" , sep = ",", row.names = FALSE)
+write.table(s1, "solutions.csv", sep = ",", row.names = FALSE)
+write.table(s1_projects, "project_statuses.csv", sep = ",", row.names = FALSE)
+write.table(p1_pce, "project_ce.csv", sep = ",", row.names = FALSE)
 ```
 
 Since visualizations are an effective way to understand data, let's create a bar plot to visualize how well this solution would conserve the features. In this plot, each bar corresponds to a different feature, the width of each bar corresponds to its expected probability of persistence, the color of each bar corresponds to the feature's weight (since we didn't specify any weights, all bars are the same color). Asterisks denote features that benefit from fully funded projects, and open circles (if any) denote features that do not benefit from fully funded projects but may indirectly benefit from partially funded projects.
@@ -223,10 +229,10 @@ print(features)
 
 # plot histogram of feature weights
 ggplot(data = features, aes(weight)) +
-geom_histogram(bins = 30) +
-scale_x_continuous(labels = scales::comma) +
-xlab("Feature weight") +
-ylab("Frequency")
+  geom_histogram(bins = 30) +
+  scale_x_continuous(labels = scales::comma) +
+  xlab("Feature weight") +
+  ylab("Frequency")
 ```
 
 We can see that most features have a low weighting (less than 1,000), but a few features have very high weightings (greater than 500,000). Let's make a new problem based on the original problem, add the feature weights to the new problem, and then solve this new problem.
@@ -234,7 +240,7 @@ We can see that most features have a low weighting (less than 1,000), but a few 
 ```{r}
 # build on existing problem and add feature weights
 p2 <- p1 %>%
-      add_feature_weights("weight")
+  add_feature_weights("weight")
 
 # print problem
 print(p2)
@@ -270,7 +276,7 @@ actions$name[which(as.logical(as.matrix(s2[, action_names(p2)])))]
 
 # calculate number of actions funded in both solutions
 sum((as.matrix(s1[, action_names(p1)]) == 1) &
-    (as.matrix(s2[, action_names(p2)]) == 1))
+  (as.matrix(s2[, action_names(p2)]) == 1))
 ```
 
 ```{r, include = FALSE}
@@ -289,7 +295,7 @@ Earlier, we talked about the _oppr R_ package using the default exact algorithm 
 # in the top 1,000 solutions (for more information on why read the Gurobi
 # documentation on solution pools)
 p3 <- p2 %>%
-      add_gurobi_solver(gap = 0.5, number_solution = 1000)
+  add_gurobi_solver(gap = 0.5, number_solution = 1000)
 ```
 
 ```{r, results = "hide", message = FALSE, warn = FALSE}
@@ -312,12 +318,12 @@ We obtained `r nrow(s3)` solutions. Let's briefly explore them.
 # plot histogram of objective values, and add red dashed line to indicate the
 # objective value for the optimal solution
 ggplot(data = s3, aes(obj)) +
-geom_histogram(bins = 10) +
-geom_vline(xintercept = s2$obj, color = "red", linetype = "dashed") +
-scale_x_continuous(labels = scales::comma) +
-xlab("Expected richness (objective function)") +
-ylab("Frequency") +
-theme(plot.margin = unit(c(5.5, 10.5, 5.5, 5.5), "pt"))
+  geom_histogram(bins = 10) +
+  geom_vline(xintercept = s2$obj, color = "red", linetype = "dashed") +
+  scale_x_continuous(labels = scales::comma) +
+  xlab("Expected richness (objective function)") +
+  ylab("Frequency") +
+  theme(plot.margin = unit(c(5.5, 10.5, 5.5, 5.5), "pt"))
 ```
 
 We can see that some of our solutions performed much better than other solutions. And we can also see that there are several solutions that perform nearly as well as the optimal solution.
@@ -342,10 +348,10 @@ head(actions[order(actions$sel_freq, decreasing = TRUE), ], n = 10)
 
 # plot histogram showing solution frequency
 ggplot(data = actions, aes(sel_freq)) +
-geom_histogram(bins = 30) +
-coord_cartesian(xlim = c(0, 100)) +
-xlab("Selection frequency (%)") +
-ylab("Frequency")
+  geom_histogram(bins = 30) +
+  coord_cartesian(xlim = c(0, 100)) +
+  xlab("Selection frequency (%)") +
+  ylab("Frequency")
 ```
 
 Although selection frequency might seem like an appealing metric, it suffers from an assumption that is unrealistic for most large-scale problems. Specifically, it assumes that our portfolio of solutions is a representative sample of the near-optimal solutions to the problem. And we do not currently have any method to verify this, except by enumerating all possible solutions---which is not feasible for reasonably sized project prioritization exercises. So now we shall examine a superior metric termed the "replacement cost" [@r20]. Given a set of priority actions and a project prioritization problem, the replacement cost can be calculated for a given priority action by re-solving the problem with the priority action locked out, and calculating the difference between the objective value based on the priority actions and the new objective value with the priority action locked out. So let's calculate the replacement cost for the priority actions in object `s2` using the problem `p2`.
@@ -378,10 +384,10 @@ cor.test(x = actions$sel_freq, y = actions$rep_cost, method = "pearson")
 
 # plot histogram of replacement costs,
 ggplot(data = actions, aes(rep_cost)) +
-geom_histogram(bins = 30, na.rm = TRUE) +
-scale_x_continuous(labels = scales::comma) +
-xlab("Replacement cost") +
-ylab("Frequency")
+  geom_histogram(bins = 30, na.rm = TRUE) +
+  scale_x_continuous(labels = scales::comma) +
+  xlab("Replacement cost") +
+  ylab("Frequency")
 ```
 
 ## Complementarity in project prioritizations
@@ -390,11 +396,13 @@ Broadly speaking, the principle of complementarity is that individual conservati
 
 ```{r}
 # build problem
-p4 <- problem(projects = projects, actions = actions, features = features,
-              "name", "success", "name", "cost", "name") %>%
-      add_max_targets_met_objective(budget = 1000) %>%
-      add_absolute_targets(0.7) %>%
-      add_binary_decisions()
+p4 <- problem(
+  projects = projects, actions = actions, features = features,
+  "name", "success", "name", "cost", "name"
+) %>%
+  add_max_targets_met_objective(budget = 1000) %>%
+  add_absolute_targets(0.7) %>%
+  add_binary_decisions()
 
 # print problem
 print(p4)
@@ -427,13 +435,15 @@ targets <- c(0.7, 0.85)
 # run prioritizations and compile results
 comp_data <- lapply(targets, function(i) {
   o <- lapply(budgets, function(b) {
-    problem(projects = projects, actions = actions, features = features,
-            "name", "success", "name", "cost", "name") %>%
-    add_max_targets_met_objective(budget = b) %>%
-    add_absolute_targets(i) %>%
-    add_binary_decisions() %>%
-    add_default_solver(verbose = FALSE) %>%
-    solve()
+    problem(
+      projects = projects, actions = actions, features = features,
+      "name", "success", "name", "cost", "name"
+    ) %>%
+      add_max_targets_met_objective(budget = b) %>%
+      add_absolute_targets(i) %>%
+      add_binary_decisions() %>%
+      add_default_solver(verbose = FALSE) %>%
+      solve()
   })
   o <- as_tibble(do.call(rbind, o))
   o$budget <- budgets
@@ -445,21 +455,23 @@ comp_data <- as_tibble(do.call(rbind, comp_data))
 # plot the relationship between the number of features that meet the target
 # in a solution and the cost of a solution
 ggplot(comp_data, aes(x = cost, y = obj, color = target)) +
-geom_step() +
-xlab("Solution cost ($)") +
-ylab("Number of features with targets") +
-labs(color = "Target")
+  geom_step() +
+  xlab("Solution cost ($)") +
+  ylab("Number of features with targets") +
+  labs(color = "Target")
 ```
 
 We might also be interested in understanding how exactly how much it would cost to implement a set of management actions that would result in all of the features meeting a specific target. Let's see if we can find out how much it would cost to ensure that every feature has a 99% probability of persistence.
 
 ```{r}
 # build problem
-p5 <- problem(projects = projects, actions = actions, features = features,
-              "name", "success", "name", "cost", "name") %>%
-      add_min_set_objective() %>%
-      add_absolute_targets(0.99) %>%
-      add_binary_decisions()
+p5 <- problem(
+  projects = projects, actions = actions, features = features,
+  "name", "success", "name", "cost", "name"
+) %>%
+  add_min_set_objective() %>%
+  add_absolute_targets(0.99) %>%
+  add_binary_decisions()
 
 # print problem
 print(p5)
@@ -478,11 +490,13 @@ We received an error instead of a solution. If we read the error message, then w
 
 ```{r}
 # build problem
-p6 <- problem(projects = projects, actions = actions, features = features,
-              "name", "success", "name", "cost", "name") %>%
-      add_min_set_objective() %>%
-      add_absolute_targets(0.60) %>%
-      add_binary_decisions()
+p6 <- problem(
+  projects = projects, actions = actions, features = features,
+  "name", "success", "name", "cost", "name"
+) %>%
+  add_min_set_objective() %>%
+  add_absolute_targets(0.60) %>%
+  add_binary_decisions()
 
 # print problem
 print(p6)
@@ -513,13 +527,15 @@ budgets <- seq(0, sum(actions$cost), length.out = 100)
 
 # generate solutions using heuristic algorithms
 s7 <- lapply(budgets, function(b) {
-  problem(projects = projects, actions = actions, features = features,
-          "name", "success", "name", "cost", "name") %>%
-  add_max_richness_objective(budget = b) %>%
-  add_feature_weights("weight") %>%
-  add_binary_decisions() %>%
-  add_heuristic_solver(verbose = FALSE) %>%
-  solve()
+  problem(
+    projects = projects, actions = actions, features = features,
+    "name", "success", "name", "cost", "name"
+  ) %>%
+    add_max_richness_objective(budget = b) %>%
+    add_feature_weights("weight") %>%
+    add_binary_decisions() %>%
+    add_heuristic_solver(verbose = FALSE) %>%
+    solve()
 })
 s7 <- as_tibble(do.call(rbind, s7))
 s7$budget <- budgets
@@ -534,13 +550,15 @@ Now let's generate a portfolio of solutions using random processes.
 # generate random solutions under the various budgets and store
 # the objective value of the best and worst solutions
 s8 <- lapply(budgets, function(b) {
-  o <- problem(projects = projects, actions = actions, features = features,
-              "name", "success", "name", "cost", "name") %>%
-       add_max_richness_objective(budget = b) %>%
-       add_feature_weights("weight") %>%
-       add_binary_decisions() %>%
-       add_random_solver(verbose = FALSE, number_solutions = 100) %>%
-       solve()
+  o <- problem(
+    projects = projects, actions = actions, features = features,
+    "name", "success", "name", "cost", "name"
+  ) %>%
+    add_max_richness_objective(budget = b) %>%
+    add_feature_weights("weight") %>%
+    add_binary_decisions() %>%
+    add_random_solver(verbose = FALSE, number_solutions = 100) %>%
+    solve()
   data.frame(budget = b, min_obj = min(o$obj), max_obj = max(o$obj))
 })
 s8 <- as_tibble(do.call(rbind, s8))
@@ -554,14 +572,16 @@ Now we can visualize how well the solutions identified using the heuristic algor
 ```{r, fig.width = 4.5, fig.height = 4.5}
 # make plot
 ggplot() +
-geom_ribbon(aes(x = budget, ymin = min_obj, ymax = max_obj), data = s8,
-            color = "#3366FF26", fill = "#3366FF26") +
-geom_step(aes(x = budget, y = obj), data = s7, color = "orange") +
-scale_x_continuous(labels = scales::comma) +
-scale_y_continuous(labels = scales::comma) +
-xlab("Budget available ($)") +
-ylab("Expected richness (objective function)") +
-theme(axis.text.y = element_text(angle = 90, vjust = 1))
+  geom_ribbon(aes(x = budget, ymin = min_obj, ymax = max_obj),
+    data = s8,
+    color = "#3366FF26", fill = "#3366FF26"
+  ) +
+  geom_step(aes(x = budget, y = obj), data = s7, color = "orange") +
+  scale_x_continuous(labels = scales::comma) +
+  scale_y_continuous(labels = scales::comma) +
+  xlab("Budget available ($)") +
+  ylab("Expected richness (objective function)") +
+  theme(axis.text.y = element_text(angle = 90, vjust = 1))
 ```
 
 Here, we can see the that heuristic algorithm generally performs better than funding conservation projects using random processes. We can also see that for some budgets, the heuristic algorithm returns a worse solution (i.e. has a lower objective value) then solutions it found for lower budgets (i.e. where there is a step down in the orange line). Unfortunately, this behavior is normal because heuristic algorithms often deliver suboptimal solutions and the degree of suboptimality often varies depending on the budget. Despite these occasional drops in solution quality, you might be tempted to think that these results show that heuristic algorithms can perform pretty well on balance. But we can do better. Let's generate a series of solutions using exact algorithms.
@@ -569,13 +589,15 @@ Here, we can see the that heuristic algorithm generally performs better than fun
 ```{r}
 # generate solutions
 s9 <- lapply(budgets, function(b) {
-  problem(projects = projects, actions = actions, features = features,
-          "name", "success", "name", "cost", "name") %>%
-  add_max_richness_objective(budget = b) %>%
-  add_feature_weights("weight") %>%
-  add_binary_decisions() %>%
-  add_default_solver(verbose = FALSE) %>%
-  solve()
+  problem(
+    projects = projects, actions = actions, features = features,
+    "name", "success", "name", "cost", "name"
+  ) %>%
+    add_max_richness_objective(budget = b) %>%
+    add_feature_weights("weight") %>%
+    add_binary_decisions() %>%
+    add_default_solver(verbose = FALSE) %>%
+    solve()
 })
 s9 <- as_tibble(do.call(rbind, s9))
 s9$budget <- budgets
@@ -588,15 +610,17 @@ Now let's redraw the previous graph and add a red line to the plot to represent 
 ```{r, fig.width = 4.5, fig.height = 4.5}
 # make plot
 ggplot() +
-geom_ribbon(aes(x = budget, ymin = min_obj, ymax = max_obj), data = s8,
-            color = "#3366FF26", fill = "#3366FF26") +
-geom_step(aes(x = budget, y = obj), data = s7, color = "orange") +
-geom_step(aes(x = budget, y = obj), data = s9, color = "red") +
-scale_x_continuous(labels = scales::comma) +
-scale_y_continuous(labels = scales::comma) +
-xlab("Budget available ($)") +
-ylab("Expected richness (objective function)") +
-theme(axis.text.y = element_text(angle = 90, hjust = 0.5, vjust = 1))
+  geom_ribbon(aes(x = budget, ymin = min_obj, ymax = max_obj),
+    data = s8,
+    color = "#3366FF26", fill = "#3366FF26"
+  ) +
+  geom_step(aes(x = budget, y = obj), data = s7, color = "orange") +
+  geom_step(aes(x = budget, y = obj), data = s9, color = "red") +
+  scale_x_continuous(labels = scales::comma) +
+  scale_y_continuous(labels = scales::comma) +
+  xlab("Budget available ($)") +
+  ylab("Expected richness (objective function)") +
+  theme(axis.text.y = element_text(angle = 90, hjust = 0.5, vjust = 1))
 ```
 
 So, we can see that the exact algorithm solver performs much better than heuristic algorithms---even if heuristic algorithms perform better than random on average.

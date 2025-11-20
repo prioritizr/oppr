@@ -19,7 +19,7 @@ number_of_projects(x)
 An \code{integer} value.
 }
 \description{
-Extract the number of projects in an object.
+Get the number of projects in an object.
 }
 \examples{
 # load data

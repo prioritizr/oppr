@@ -19,7 +19,7 @@ number_of_features(x)
 An \code{integer} value.
 }
 \description{
-Extract the number of features in an object.
+Get the number of features in an object.
 }
 \examples{
 # load data

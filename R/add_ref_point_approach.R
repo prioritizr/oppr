@@ -32,18 +32,100 @@ NULL
 #' displayed? Defaults to `TRUE`.
 #'
 #' @details
-#' TODO.
+#' The reference point approach for multi-objective optimization involves
+#' creating a new objective that is calculated based on multiple objectives.
+#' In particular, the new objective uses weights to specify the relative
+#' importance of each individual objective, and goals to specify
+#' a threshold minimum level of performance for each objective
+#' (conceptually similar to target thresholds used in conservation planning).
+#' This function supports two methods for formulating a new objective
+#' based on multiple objectives. Below we provide their mathematical details.
+#'
+#' To describe the reference point approach mathematically, we will define the
+#' following terminology.
+#' Let \eqn{O} denote the set of objectives (indexed by \eqn{o}).
+#' For each objective, let \eqn{W_o}{wo} denote the weight goal each objective
+#' \eqn{o \in O}{o in O}, \eqn{G_o}{Go} denote the goal each objective
+#' \eqn{o \in O}{o in O}, and \eqn{V_o}{wo} denote the objective value
+#' for a candidate solution as measured based on each objective
+#' \eqn{o \in O}{o in O}. After defining these terms, we can define the
+#' methods for formulating a new objective based on multiple objectives.
+#'
+#' One method involves creating a new objective that is based on calculating
+#' the weighted sum of the goal shortfalls (per `method = "sum"`).
+#' This method is based on the following equation.
+#'
+#' \deqn{
+#' \mathrm{Minimize} \space \sum_{o = 0}^{O} W_o \times \frac{V_o}{W_o}
+#' }{
+#' Minimize sum_o^O W_o * (V_o / W_o)
+#' }
+#'
+#' Another method involves creating a new objective that is based on calculating
+#' the weighted maximum of the goal shortfalls (per `method = "max"`).
+#' This method is based on the following equation.
+#'
+#' \deqn{
+#' \mathrm{Minimize} \space \max_{o = 0}^{O} W_o \times \frac{V_o}{W_o}
+#' }{
+#' Minimize max_o^O W_o * (V_o / W_o)
+#' }
 #'
 #' @return
-#' TODO.
+#' A [multi_problem()] object with the approach added to it.
 #'
 #' @family approaches
 #'
 #' @examples
 #' \dontrun{
-#' # TODO
-#' }
+#' # load data
+#' data(sim_multi_projects)
+#' data(sim_multi_features)
+#' data(sim_multi_actions)
+#' data(sim_multi_tree)
 #'
+#' # build problem
+#' p <-
+#'   multi_problem(
+#'     obj1 =
+#'       problem(
+#'         sim_multi_projects[[1]], sim_multi_actions, sim_multi_features[[1]],
+#'         "name", "success", "name", "cost", "name",
+#'         baseline_project_name = "baseline_project_obj1"
+#'       ) %>%
+#'       add_max_phylo_div_objective(
+#'        budget = 200, tree = sim_multi_tree[[1]]
+#'       ) %>%
+#'       add_binary_decisions(),
+#'    obj2 =
+#'      problem(
+#'        sim_multi_projects[[2]], sim_multi_actions, sim_multi_features[[2]],
+#'        "name", "success", "name", "cost", "name",
+#'        baseline_project_name = "baseline_project_obj2"
+#'      ) %>%
+#'      add_max_richness_objective(budget = 200) %>%
+#'      add_binary_decisions(),
+#'    obj3 =
+#'      problem(
+#'        sim_multi_projects[[3]], sim_multi_actions, sim_multi_features[[3]],
+#'        "name", "success", "name", "cost", "name",
+#'        baseline_project_name = "baseline_project_obj3"
+#'      ) %>%
+#'      add_max_wtd_sum_objective(budget = 200) %>%
+#'      add_binary_decisions()
+#'  ) %>%
+#'  add_ref_point_approach(weights = c(10, 11, 12), goals = c(3, 4, 5)) %>%
+#'  add_default_solver()
+#'
+#' # print problem
+#' print(p)
+#'
+#' # solve problem
+#' s <- solve(p)
+#'
+#' # print solution
+#' print(s)
+#' }
 #' @export
 add_ref_point_approach <- function(x, weights, goals, method = "sum",
                                    verbose = TRUE) {

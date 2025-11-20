@@ -16,10 +16,10 @@ project_names(x)
 \item{x}{\code{\link[=problem]{problem()}} or \code{\link[=multi_problem]{multi_problem()}} object.}
 }
 \value{
-A \code{character} vector.
+A \code{character} vector or \code{list} of \code{character} vectors.
 }
 \description{
-Extract the names of the projects in an object.
+Get the names of the projects in an object.
 }
 \examples{
 # load data

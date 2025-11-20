@@ -3,7 +3,7 @@ NULL
 
 #' Action names
 #'
-#' Extract the names of actions in an object.
+#' Get the names of actions in an object.
 #'
 #' @param x [problem()] or [multi_problem()] object.
 #'

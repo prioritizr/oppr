@@ -1,9 +1,9 @@
 #' @include internal.R MultiObjProjectProblem-class.R ProjectProblem-class.R assertions.R
 NULL
 
-#' Multi-objective conservation planning problem
+#' Multi-objective project prioritization problem
 #'
-#' Create a multi-objective systematic conservation planning problem.
+#' Create a multi-objective systematic project prioritization problem.
 #'
 #' @param ... [problem()] objects.
 #'
@@ -12,17 +12,65 @@ NULL
 #' automatically.
 #'
 #' @details
-#' TODO.
+#' A multi-objective project prioritization problem contains multiple
+#' single-objective project prioritization problems (i.e., created with
+#' [problem()]). Each of these single-objective project prioritization problems
+#' must have exactly the same actions (i.e., argument to `actions`).
+#' Additionally, each single-objective project prioritization problem
+#' must have a different set of projects and features (i.e., they have
+#' have different names).
 #'
-#' @seealso
-#' TODO.
-#'
-#' @references
-#' TODO.
+#' @return A [MultiObjProjectProblem-class] object.
 #'
 #' @examples
 #' \dontrun{
-#' # TODO
+#' # load data
+#' data(sim_multi_projects)
+#' data(sim_multi_features)
+#' data(sim_multi_actions)
+#' data(sim_multi_tree)
+#'
+#' # build problem
+#' p <-
+#'   multi_problem(
+#'     obj1 =
+#'       problem(
+#'         sim_multi_projects[[1]], sim_multi_actions, sim_multi_features[[1]],
+#'         "name", "success", "name", "cost", "name",
+#'         baseline_project_name = "baseline_project_obj1"
+#'       ) %>%
+#'       add_max_phylo_div_objective(
+#'        budget = 200, tree = sim_multi_tree[[1]]
+#'       ) %>%
+#'       add_binary_decisions(),
+#'    obj2 =
+#'      problem(
+#'        sim_multi_projects[[2]], sim_multi_actions, sim_multi_features[[2]],
+#'        "name", "success", "name", "cost", "name",
+#'        baseline_project_name = "baseline_project_obj2"
+#'      ) %>%
+#'      add_max_richness_objective(budget = 200) %>%
+#'      add_binary_decisions(),
+#'    obj3 =
+#'      problem(
+#'        sim_multi_projects[[3]], sim_multi_actions, sim_multi_features[[3]],
+#'        "name", "success", "name", "cost", "name",
+#'        baseline_project_name = "baseline_project_obj3"
+#'      ) %>%
+#'      add_max_wtd_sum_objective(budget = 200) %>%
+#'      add_binary_decisions()
+#'  ) %>%
+#'  add_ref_point_approach(weights = c(10, 11, 12), goals = c(3, 4, 5)) %>%
+#'  add_default_solver()
+#'
+#' # print problem
+#' print(p)
+#'
+#' # solve problem
+#' s <- solve(p)
+#'
+#' # print solution
+#' print(s)
 #' }
 #' @export
 multi_problem <- function(..., problem_names = NULL) {

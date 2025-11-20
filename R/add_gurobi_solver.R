@@ -1,11 +1,12 @@
 #' @include Solver-class.R
 NULL
 
-#' Add a \pkg{Gurobi} solver
+#' Add a *Gurobi* solver
 #'
 #' Add a solver to generate solutions to a project prioritization problem
 #' with the [*Gurobi*](https://www.gurobi.com) software.
 #' This function can also be used to customize the behavior of the solver.
+#' See below for details on installation requirements.
 #'
 #' @param x [problem()] or [multi_problem()] object.
 #'

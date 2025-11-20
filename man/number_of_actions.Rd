@@ -19,7 +19,7 @@ number_of_actions(x)
 An \code{integer} value.
 }
 \description{
-Extract the number of actions in an object.
+Get the number of actions in an object.
 }
 \examples{
 # load data

@@ -1,12 +1,12 @@
 #' @include Solver-class.R
 NULL
 
-#' Add a lp_solve solver with \pkg{lpSolveAPI}
+#' Add a *lp_solve* solver with *lpSolveAPI*
 #'
 #' Add a solver to generate solutions to a project prioritization problem
 #' with the *lp_solve* software.
 #' This function can also be used to customize the behavior of the
-#' solver. It requires the \pkg{lpSolveAPI} package.
+#' solver. It requires the \pkg{lpSolveAPI} package to be installed.
 #'
 #' @param presolve `logical` indicating if attempts to should be made
 #' to simplify the optimization problem (`TRUE`) or not (`FALSE`).
@@ -81,7 +81,7 @@ add_lpsolveapi_solver <- function(x, gap = 0, presolve = FALSE,
           # assert valid argument
           assertthat::assert_that(
             identical(length(x$pwlobj()), 0L),
-            msg =" failed to pre-processs piecewise-linear terms"
+            msg = "failed to pre-processs piecewise-linear terms."
           )
           # extract parameters
           p <- as.list(self$data)
@@ -89,25 +89,6 @@ add_lpsolveapi_solver <- function(x, gap = 0, presolve = FALSE,
           m <- as_Matrix(x$A(), "dgTMatrix")
           mrhs <- x$rhs()
           msense <- x$sense()
-          # manually add in locked constraints
-          locked_in <- which(x$lb() > 0.5)
-          locked_out <- which(x$ub() < 0.5)
-          n_locked <- length(locked_in) + length(locked_out)
-          if (n_locked > 0) {
-            mrhs <- c(
-              mrhs,
-              rep(1, length(locked_in)),
-              rep(0, length(locked_out))
-            )
-            msense <- c(msense, rep("=", length(n_locked)))
-            m2 <- Matrix::sparseMatrix(
-              i = seq_len(n_locked),
-              j = c(locked_in, locked_out),
-              x = rep(1, n_locked),
-              dims = c(n_locked, ncol(m))
-            )
-            m <- rbind(m, m2)
-          }
           # prepare inputs
           l <- lpSolveAPI::make.lp(
             nrow(m), ncol(m),

@@ -127,6 +127,7 @@ hist(
 }
 \seealso{
 Other solvers: 
+\code{\link{add_default_solver}()},
 \code{\link{add_gurobi_solver}()},
 \code{\link{add_heuristic_solver}()},
 \code{\link{add_highs_solver}()},

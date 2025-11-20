@@ -2,7 +2,7 @@
 % Please edit documentation in R/add_lpsolveapi_solver.R
 \name{add_lpsolveapi_solver}
 \alias{add_lpsolveapi_solver}
-\title{Add a lp_solve solver with \pkg{lpSolveAPI}}
+\title{Add a \emph{lp_solve} solver with \emph{lpSolveAPI}}
 \usage{
 add_lpsolveapi_solver(x, gap = 0, presolve = FALSE, verbose = TRUE)
 }
@@ -31,7 +31,7 @@ A \code{\link[=problem]{problem()}} object with the solver added to it.
 Add a solver to generate solutions to a project prioritization problem
 with the \emph{lp_solve} software.
 This function can also be used to customize the behavior of the
-solver. It requires the \pkg{lpSolveAPI} package.
+solver. It requires the \pkg{lpSolveAPI} package to be installed.
 }
 \details{
 \href{https://lpsolve.sourceforge.net/5.5/}{\emph{lp_solve}} is an
@@ -74,6 +74,7 @@ plot(p, s)
 }
 \seealso{
 Other solvers: 
+\code{\link{add_default_solver}()},
 \code{\link{add_gurobi_solver}()},
 \code{\link{add_heuristic_solver}()},
 \code{\link{add_highs_solver}()},

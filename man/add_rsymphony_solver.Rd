@@ -2,7 +2,7 @@
 % Please edit documentation in R/add_rsymphony_solver.R
 \name{add_rsymphony_solver}
 \alias{add_rsymphony_solver}
-\title{Add a SYMPHONY solver with \pkg{Rsymphony}}
+\title{Add a \emph{SYMPHONY} solver with \emph{Rsymphony}}
 \usage{
 add_rsymphony_solver(
   x,
@@ -45,7 +45,7 @@ A \code{\link[=problem]{problem()}} object with the solver added to it.
 Add a solver to generate solutions to a project prioritization problem
 with the \emph{SYMPHONY} software via the \pkg{Rsymphony} package.
 This function can also be used to customize the behavior of the
-solver. It requires the \pkg{Rsymphony} package.
+solver. It requires the \pkg{Rsymphony} package to be installed.
 }
 \details{
 \href{https://github.com/coin-or/SYMPHONY}{\emph{SYMPHONY}} is an
@@ -86,6 +86,7 @@ plot(p, s)
 }
 \seealso{
 Other solvers: 
+\code{\link{add_default_solver}()},
 \code{\link{add_gurobi_solver}()},
 \code{\link{add_heuristic_solver}()},
 \code{\link{add_highs_solver}()},

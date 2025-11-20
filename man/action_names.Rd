@@ -19,7 +19,7 @@ action_names(x)
 A \code{character} vector.
 }
 \description{
-Extract the names of actions in an object.
+Get the names of actions in an object.
 }
 \examples{
 # load data

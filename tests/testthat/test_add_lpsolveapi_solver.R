@@ -23,6 +23,9 @@ test_that("format", {
 })
 
 test_that("linear objective", {
+  # define skips
+  skip_on_cran()
+  skip_if_not_installed("lpSolveAPI")
   # create data
   projects <- tibble::tibble(
     name = c("P1", "P2", "P3", "P4"),

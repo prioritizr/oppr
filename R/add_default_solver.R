@@ -25,6 +25,8 @@ NULL
 #'
 #' @inherit add_gurobi_solver return seealso
 #'
+#' @family solvers
+#'
 #' @examples
 #' \dontrun{
 #' # load data

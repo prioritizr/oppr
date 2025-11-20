@@ -59,9 +59,8 @@ plot(p, s)
 }
 }
 \seealso{
-See \link{solvers} for an overview of functions for adding solvers.
-
 Other solvers: 
+\code{\link{add_gurobi_solver}()},
 \code{\link{add_heuristic_solver}()},
 \code{\link{add_highs_solver}()},
 \code{\link{add_lpsolveapi_solver}()},
@@ -69,3 +68,4 @@ Other solvers:
 \code{\link{add_random_solver}()},
 \code{\link{add_rsymphony_solver}()}
 }
+\concept{solvers}

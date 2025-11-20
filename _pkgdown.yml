@@ -11,6 +11,8 @@ authors:
     href: https://josephrbennett.wordpress.com
 
 template:
+  bootstrap: 5
+  math-rendering: katex
   params:
     bootswatch: flatly
 
@@ -23,87 +25,84 @@ reference:
     desc: Simulated datasets and data simulation functions
     contents:
       - sim_data
+      - sim_multi_data
       - starts_with("simulate_")
   - title: Create and solve problems
     desc: Functions for creating new problems and solving them
     contents:
       - problem
+      - multi_problem
       - solve
-  - title: Evaluate solutions
-    desc: Functions for evaluating and visualizing solutions to a problem
-    contents:
-      - starts_with("plot")
-      - solution_statistics
-      - replacement_costs
-      - project_cost_effectiveness
   - title: Objectives
     desc: Functions for adding an objective to a problem
     contents:
       - objectives
-      - ends_with("_objective")
+      - has_concept("objectives")
   - title: Weights
     desc: Functions for adding weights to a problem
     contents:
       - weights
-      - add_feature_weights
+      - has_concept("weights")
   - title: Targets
     desc: Functions for adding targets to a problem
     contents:
       - targets
-      - ends_with("_targets")
+      - has_concept("targets")
   - title: Constraints
     desc: Functions for adding constraints to a problem
     contents:
       - constraints
-      - ends_with("_constraints")
+      - has_concept("constraints")
   - title: Decisions
     desc: Functions for specifying the type of decisions in a problem
     contents:
       - decisions
-      - ends_with("_decisions")
+      - has_concept("decisions")
   - title: Solvers
     desc: Functions for specifying how a problem should be solved
     contents:
       - solvers
-      - ends_with("_solver")
+      - has_concept("solvers")
+  - title: Approaches
+    desc: Functions for specifying multi-objective optimization approaches
+    contents:
+      - has_concept("approaches")
+  - title: Evaluate solutions
+    desc: Functions for evaluating and visualizing solutions to a problem
+    contents:
+      - plot.ProjectProblem
+      - plot_solution_barplot
+      - plot_solution_phylogram
+      - solution_statistics
+      - replacement_costs
+      - project_cost_effectiveness
   - title: Problem manipulation functions
     desc: Functions for extracting information from problems
     contents:
       - feature_names
       - action_names
       - project_names
+      - problem_names
       - number_of_features
       - number_of_actions
       - number_of_projects
+      - number_of_problems
   - title: Miscellaneous functions
     desc: Assorted functions distributed with the package
     contents:
-      - print
       - show
-      - pipe
-      - tee
-      - is
-      - as
       - compile
       - branch_matrix
-  - title: Class definitions and methods
-    desc: >
-     These pages document the package's internal data structures and functions
-     for manipulating them---they contain information that is really only
-     useful when adding new functionality to the package
+  - title: Deprecated functions
+    desc: Functions that are no longer distributed with the package
     contents:
-      - new_id
+      - prioritizr-deprecated
+  - title: Class definitions and methods
+    desc: Internal data structures and functions
+    contents:
       - new_waiver
-      - pproto
+      - is.Waiver
       - new_optimization_problem
       - as.list.OptimizationProblem
       - ends_with("-class")
       - ends_with("-methods")
-  - title: Parameter definitions
-    desc: >
-      These pages document the package's internal data structures for
-      representing different types of variables---they contain information that
-      is really only useful when adding new functionality to the package
-    contents:
-      - contains("_parameter")
-      - parameters

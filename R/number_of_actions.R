@@ -3,7 +3,7 @@ NULL
 
 #' Number of actions
 #'
-#' Extract the number of actions in an object.
+#' Get the number of actions in an object.
 #'
 #' @param x [problem()] object.
 #'

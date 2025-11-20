@@ -2,7 +2,7 @@
 % Please edit documentation in R/add_gurobi_solver.R
 \name{add_gurobi_solver}
 \alias{add_gurobi_solver}
-\title{Add a \pkg{Gurobi} solver}
+\title{Add a \emph{Gurobi} solver}
 \usage{
 add_gurobi_solver(
   x,
@@ -77,6 +77,7 @@ A \code{\link[=problem]{problem()}} object with the solver added to it.
 Add a solver to generate solutions to a project prioritization problem
 with the \href{https://www.gurobi.com}{\emph{Gurobi}} software.
 This function can also be used to customize the behavior of the solver.
+See below for details on installation requirements.
 }
 \details{
 \href{https://www.gurobi.com}{\emph{Gurobi}} is a
@@ -144,6 +145,7 @@ print(s3)
 See \link{solvers} for an overview of functions for adding solvers.
 
 Other solvers: 
+\code{\link{add_default_solver}()},
 \code{\link{add_heuristic_solver}()},
 \code{\link{add_highs_solver}()},
 \code{\link{add_lpsolveapi_solver}()},

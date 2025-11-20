@@ -3,11 +3,11 @@ NULL
 
 #' Feature names
 #'
-#' Extract the names of the features in an object.
+#' Get the names of the features in an object.
 #'
 #' @inheritParams action_names
 #'
-#' @return A `character` vector.
+#' @return A `character` vector or `list` of `character` vectors.
 #'
 #' @name feature_names
 #'

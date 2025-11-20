@@ -1,11 +1,12 @@
 #' @include Solver-class.R
 NULL
 
-#' Add a SYMPHONY solver with \pkg{lpsymphony}
+#' Add a *SYMPHONY* solver with *lpsymphony*
 #'
 #' Add a solver to generate solutions to a project prioritization problem
 #' with the *SYMPHONY* software. This function can also be used to customize
-#' the behavior of the solver. It requires the \pkg{lpsymphony} package.
+#' the behavior of the solver.
+#' It requires the \pkg{lpsymphony} package to be installed.
 #'
 #' @inheritParams add_gurobi_solver
 #'
@@ -93,6 +94,11 @@ add_lpsymphony_solver <- function(x, gap = 0, time_limit = .Machine$integer.max,
           verbose = verbose
         ),
         solve = function(x, ...) {
+          # assert valid argument
+          assertthat::assert_that(
+            identical(length(x$pwlobj()), 0L),
+            msg = "failed to pre-processs piecewise-linear terms."
+          )
           # prepare model
           model <- list(
             obj = x$obj(),

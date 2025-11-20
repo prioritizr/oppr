@@ -1,12 +1,12 @@
 #' @include Solver-class.R
 NULL
 
-#' Add a SYMPHONY solver with \pkg{Rsymphony}
+#' Add a *SYMPHONY* solver with *Rsymphony*
 #'
 #' Add a solver to generate solutions to a project prioritization problem
 #' with the *SYMPHONY* software via the \pkg{Rsymphony} package.
 #' This function can also be used to customize the behavior of the
-#' solver. It requires the \pkg{Rsymphony} package.
+#' solver. It requires the \pkg{Rsymphony} package to be installed.
 #'
 #' @inheritParams add_gurobi_solver
 #'
@@ -80,6 +80,11 @@ add_rsymphony_solver <- function(x, gap = 0, time_limit = .Machine$integer.max,
           verbose = verbose
         ),
         solve = function(x, ...) {
+          # assert valid argument
+          assertthat::assert_that(
+            identical(length(x$pwlobj()), 0L),
+            msg = "failed to pre-processs piecewise-linear terms."
+          )
           # build model
           model <- list(
             obj = x$obj(),

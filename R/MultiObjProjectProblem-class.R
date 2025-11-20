@@ -56,10 +56,75 @@ MultiObjProjectProblem <- R6::R6Class(
     #' Print concise information about the object.
     #' @return Invisible `TRUE`.
     print = function() {
-      # TODO: update this method to provide more useful information
+      # specify text to display
+      ## prepare text for constituent problems
+      problem_msgs <- vapply(
+        seq_along(self$problems), FUN.VALUE = character(1), function(i) {
+          ### prepare text each component for i'th constituent of problem
+          obj_msg <- "none specified"
+          if (!isTRUE(self$problems[[i]]$defaults$objective)) {
+            obj_msg <- self$problems[[i]]$objective$repr()
+          }
+          targets_msg <- "none specified"
+          if (!isTRUE(self$problems[[i]]$defaults$targets)) {
+            targets_msg <- self$problems[[i]]$targets$repr()
+          }
+          weights_msg <- "none specified"
+          if (!isTRUE(self$problems[[i]]$defaults$weights)) {
+            weights_msg <- self$problems[[i]]$weights$repr()
+          }
+          decisions_msg <- "none specified"
+          if (!isTRUE(self$problems[[i]]$defaults$decisions)) {
+            decisions_msg <- self$problems[[i]]$decisions$repr()
+          }
+          constraints_msg <- "none specified"
+          if (!isTRUE(self$problems[[i]]$defaults$constraints)) {
+            constraints_msg <- paste(
+              vapply(
+                self$problems[[i]]$constraints,
+                function(x) x$repr(),
+                character(1)
+              ),
+              collapse = ", "
+            )
+          }
+          ### prepare text for x'th constituent of problem
+          paste0(
+            "\nobjective:         ", self$problem_names()[[i]],
+            "\n  projects:        ",
+            repr_options(self$problems[[i]]$project_names(), "projects"),
+            "\n  features:        ",
+            repr_options(self$problems[[i]]$feature_names(), "features"),
+            "\n  project success: ",
+            repr_values(self$problems[[i]]$project_success_probabilities()),
+            "\n  objective:       ", obj_msg,
+            "\n  targets:         ", targets_msg,
+            "\n  weights:         ", weights_msg,
+            "\n  constraints:     ", constraints_msg,
+            "\n  decisions:       ", decisions_msg
+          )
+        }
+      )
+      ## prepare text for other components
+      approach_msg <- "none specified"
+      if (!isTRUE(self$defaults$approach)) {
+        approach_msg <- self$approach$repr()
+      }
+      solver_msg <- "none specified"
+      if (!isTRUE(self$defaults$solver)) {
+        solver_msg <- self$solver$repr()
+      }
+      # display message
       message(
         paste0(
-          "Multi-objective Project Prioritization Problem"
+          "Multi-objective Project Prioritization Problem",
+          paste(problem_msgs, collapse = ""),
+          "\nactions:           ",
+          repr_options(self$action_names(), "actions"),
+          "\naction costs:      ",
+          repr_values(self$problems[[1]]$action_costs()),
+          "\napproach:          ", approach_msg,
+          "\nsolver:            ", solver_msg
         )
       )
       # return success

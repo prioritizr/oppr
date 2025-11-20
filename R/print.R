@@ -15,3 +15,13 @@ print.ProjectModifier <- function(x, ...) x$print()
 #'
 #' @export
 print.OptimizationProblem <- function(x, ...) x$print()
+
+#' @method print MultiObjProjectProblem
+#'
+#' @export
+print.MultiObjProjectProblem <- function(x, ...) x$print()
+
+#' @method print MultiObjApproach
+#'
+#' @export
+print.MultiObjApproach <- function(x, ...) x$print()

@@ -95,6 +95,7 @@ method. \emph{Mathematical Programming Computation}, 10: 119-142.
 }
 \seealso{
 Other solvers: 
+\code{\link{add_default_solver}()},
 \code{\link{add_gurobi_solver}()},
 \code{\link{add_heuristic_solver}()},
 \code{\link{add_lpsolveapi_solver}()},

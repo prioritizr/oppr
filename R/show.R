@@ -13,7 +13,7 @@ NULL
 #'
 #' @name show
 #'
-#' @aliases show,ProjectProblem-method show,ProjectModifier-method show,OptimizationProblem-method
+#' @aliases show,ProjectProblem-method show,ProjectModifier-method show,OptimizationProblem-method show,MultiObjProjectProblem-method show,MultiObjApproach-method
 NULL
 
 #' @name show
@@ -43,5 +43,25 @@ methods::setMethod(
 #' @usage \S4method{show}{OptimizationProblem}(x)
 methods::setMethod(
   "show", "OptimizationProblem",
+  function(object) object$show()
+)
+
+#' @name show
+#'
+#' @rdname show
+#'
+#' @usage \S4method{show}{MultiObjProjectProblem}(x)
+methods::setMethod(
+  "show", "MultiObjProjectProblem",
+  function(object) object$show()
+)
+
+#' @name show
+#'
+#' @rdname show
+#'
+#' @usage \S4method{show}{MultiObjApproach}(x)
+methods::setMethod(
+  "show", "MultiObjApproach",
   function(object) object$show()
 )

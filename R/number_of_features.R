@@ -3,7 +3,7 @@ NULL
 
 #' Number of features
 #'
-#' Extract the number of features in an object.
+#' Get the number of features in an object.
 #'
 #' @inheritParams number_of_actions
 #'

@@ -5,6 +5,8 @@
 \alias{show,ProjectProblem-method}
 \alias{show,ProjectModifier-method}
 \alias{show,OptimizationProblem-method}
+\alias{show,MultiObjProjectProblem-method}
+\alias{show,MultiObjApproach-method}
 \title{Show}
 \usage{
 \S4method{show}{ProjectModifier}(x)
@@ -12,6 +14,10 @@
 \S4method{show}{ProjectProblem}(x)
 
 \S4method{show}{OptimizationProblem}(x)
+
+\S4method{show}{MultiObjProjectProblem}(x)
+
+\S4method{show}{MultiObjApproach}(x)
 }
 \arguments{
 \item{x}{Any object.}
