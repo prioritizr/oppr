@@ -82,17 +82,34 @@ multi_problem <- function(..., problem_names = NULL) {
     problem_names <- paste("Problem", seq_along(x))
   }
 
+  # if needed, ensure that no duplicate names
+  if (!is.null(names(x))) {
+    ## assert arguments are valid
+    assertthat::assert_that(
+      is.character(names(x)),
+      msg = "names of `...` must be `character` values."
+    )
+    assertthat::assert_that(
+      assertthat::noNA(names(x)),
+      msg = "names of `...` must not have missing (`NA`) values."
+    )
+    assertthat::assert_that(
+      identical(anyDuplicated(x), 0L),
+      msg = "names of `...` must not have duplicated values."
+    )
+  }
+
   # if need, assign names
   if (is.null(names(x)) && !is.null(problem_names)) {
     ## assert arguments are valid
     assertthat::assert_that(
       is.character(problem_names),
       assertthat::noNA(problem_names),
-      length(unique(problem_names)) == 1
+      identical(anyDuplicated(problem_names), 0L)
     )
     assertthat::assert_that(
       identical(length(problem_names), length(x)),
-      msg = "`problem_names` must have a value each object in `...`."
+      msg = "`problem_names` must have a value for each object in `...`."
     )
     ## assign names
     names(x) <- problem_names
@@ -101,17 +118,11 @@ multi_problem <- function(..., problem_names = NULL) {
   # assert that arguments are valid
   assertthat::assert_that(
     length(x) >= 2,
-    msg = "`...` must contain at least two `problem` objects."
+    msg = "`...` must contain at least two `problem()` objects."
   )
   assertthat::assert_that(
     all(vapply(x, inherits, FUN.VALUE = logical(1), "ProjectProblem")),
-    msg = "`...` must contain only `problem` objects."
-  )
-
-  # assert objects are all ProjectProblem objects
-  assertthat::assert_that(
-    all(vapply(x, inherits, logical(1), "ProjectProblem")),
-    msg = "`...` must contain `ProjectProblem` objects."
+    msg = "`...` must contain only `problem()` objects."
   )
 
   # assert that each object has exactly the same actions

@@ -3,7 +3,7 @@
 \name{compile}
 \alias{compile}
 \alias{compile.ProjectProblem}
-\alias{multi_compile.MultiObjConservationProblem}
+\alias{multi_compile.MultiObjProjectProblem}
 \alias{multi_compile.list}
 \title{Compile a problem}
 \usage{
@@ -11,7 +11,7 @@ compile(x, ...)
 
 \method{compile}{ProjectProblem}(x, n_approx = 100, ...)
 
-\method{multi_compile}{MultiObjConservationProblem}(x, ...)
+\method{multi_compile}{MultiObjProjectProblem}(x, ...)
 
 \method{multi_compile}{list}(x, ...)
 }

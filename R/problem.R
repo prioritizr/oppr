@@ -275,8 +275,11 @@ problem <- function(projects, actions, features, project_name_column,
   )
   if (!is.null(baseline_project_name)) {
     assertthat::assert_that(
-      assertthat::is.string(baseline_project_name),
-      baseline_project_name %in% projects[[project_name_column]]
+      assertthat::is.string(baseline_project_name)
+    )
+    assertthat::assert_that(
+      baseline_project_name %in% projects[[project_name_column]],
+      msg = "`baseline_project_name` must refer to valid project name."
     )
   }
 

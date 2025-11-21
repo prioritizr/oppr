@@ -43,3 +43,22 @@ gsub_names <- function(x, pattern, replacement) {
     gsub(pattern, replacement, names(x))
   )
 }
+
+reorder_matrix <- function(x, y) {
+  assertthat::assert_that(
+    inherits(x, "dgCMatrix"),
+    inherits(y, "dgCMatrix"),
+    identical(dim(x), dim(y))
+  )
+  out <- matrix(NA, ncol = ncol(x), nrow = nrow(y))
+  for (i in seq_len(nrow(y))) {
+    xdists <- Matrix::rowSums(abs(y[rep(i, nrow(x)), , drop = FALSE] - x))
+    xidx <- which(xdists == 0)
+    if (length(xidx) == 0) {
+      out[i, ] <- x[i, ]
+    } else {
+      out[i, ] <- x[xidx[[1]], ]
+    }
+  }
+  as_Matrix(out, "dgCMatrix")
+}

@@ -131,6 +131,13 @@ Rcpp::List rcpp_compile_multi_obj_problem(const Rcpp::List x) {
       mopt->_lb.begin() + n_actions + opt_col_offset[i]
     );
   }
+  /// set lb for each action status variable in the multi-objective problem
+  /// based on the maximum lb value for each problem
+  for (std::size_t i = 1; i < n; ++i) {
+    for (std::size_t j = 0; j < n_actions; ++j) {
+      mopt->_lb[j] = std::max(mopt->_lb[j], opt[i]->_lb[j]);
+    }
+  }
 
   // Specify upper bounds for multi-objective problem
   /// store values for action status variables based on 1st problem
@@ -147,6 +154,13 @@ Rcpp::List rcpp_compile_multi_obj_problem(const Rcpp::List x) {
       opt[i]->_ub.end(),
       mopt->_ub.begin() + n_actions + opt_col_offset[i]
     );
+  }
+  /// set ub for each action status variable in the multi-objective problem
+  /// based on the minimum ub value for each problem
+  for (std::size_t i = 1; i < n; ++i) {
+    for (std::size_t j = 0; j < n_actions; ++j) {
+      mopt->_ub[j] = std::min(mopt->_ub[j], opt[i]->_ub[j]);
+    }
   }
 
   // Specify variable types for multi-objective problem

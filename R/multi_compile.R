@@ -33,7 +33,8 @@ multi_compile <- function(x, ...) {
 }
 
 #' @rdname compile
-multi_compile.MultiObjConservationProblem <- function(x, ...) {
+#' @export
+multi_compile.MultiObjProjectProblem <- function(x, ...) {
   # compile each problem individually, and compile into multi-objective problem
   multi_compile.list(
     stats::setNames(
@@ -44,6 +45,7 @@ multi_compile.MultiObjConservationProblem <- function(x, ...) {
 }
 
 #' @rdname compile
+#' @export
 multi_compile.list <- function(x, ...) {
   # assert arguments are valid
   assertthat::assert_that(is.list(x))
