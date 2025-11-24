@@ -17,6 +17,7 @@
 <url><loc>https://prioritizr.github.io/oppr/reference/Target-class.html</loc></url>
 <url><loc>https://prioritizr.github.io/oppr/reference/Weight-class.html</loc></url>
 <url><loc>https://prioritizr.github.io/oppr/reference/action_names.html</loc></url>
+<url><loc>https://prioritizr.github.io/oppr/reference/add_abs_epsilon_approach.html</loc></url>
 <url><loc>https://prioritizr.github.io/oppr/reference/add_absolute_targets.html</loc></url>
 <url><loc>https://prioritizr.github.io/oppr/reference/add_binary_decisions.html</loc></url>
 <url><loc>https://prioritizr.github.io/oppr/reference/add_default_solver.html</loc></url>
@@ -48,6 +49,7 @@
 <url><loc>https://prioritizr.github.io/oppr/reference/feature_names.html</loc></url>
 <url><loc>https://prioritizr.github.io/oppr/reference/index.html</loc></url>
 <url><loc>https://prioritizr.github.io/oppr/reference/is.Waiver.html</loc></url>
+<url><loc>https://prioritizr.github.io/oppr/reference/multi_compile.MultiObjConservationProblem.html</loc></url>
 <url><loc>https://prioritizr.github.io/oppr/reference/multi_problem.html</loc></url>
 <url><loc>https://prioritizr.github.io/oppr/reference/new_optimization_problem.html</loc></url>
 <url><loc>https://prioritizr.github.io/oppr/reference/new_waiver.html</loc></url>
