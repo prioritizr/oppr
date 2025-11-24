@@ -137,7 +137,7 @@ replacement_costs <- function(x, solution, n = 1) {
   a <- which(c(as.matrix(solution[n, x$action_names()])) > 0.5)
   # calculate cost and objective values
   out <- lapply(a, function(i) {
-    o <- try(solve(add_locked_out_constraints(x, i)), silent = TRUE)
+    o <- try(solve(add_locked_out_action_constraints(x, i)), silent = TRUE)
     if (inherits(o, "try-error")) {
       o <- data.frame(cost = Inf, obj = Inf)
     } else {

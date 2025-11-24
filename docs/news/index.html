@@ -36,15 +36,20 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.1.0" id="oppr-110">oppr 1.1.0<a class="anchor" aria-label="anchor" href="#oppr-110"></a></h2>
 <ul><li>New <code><a href="../reference/multi_problem.html">multi_problem()</a></code> and <code><a href="../reference/add_ref_point_approach.html">add_ref_point_approach()</a></code> functions for multi- objective optimization.</li>
-<li>New <code><a href="../reference/add_max_wtd_sum_objective.html">add_max_wtd_sum_objective()</a></code> that is designed for datasets when some (or all) of the features do not have probability values to describe their expected outcome when projects are completed. For example, this may be useful when the expected outcome values for a feature reflect the total amount of land expected to be covered by an ecosystem, or the number of individuals present in a population.</li>
+<li>New <code><a href="../reference/add_max_wtd_sum_objective.html">add_max_wtd_sum_objective()</a></code> function that is designed for datasets when some (or all) of the features do not have probability values to describe their expected outcome when projects are completed. For example, this may be useful when the expected outcome values for a feature reflect the total amount of land expected to be covered by an ecosystem, or the number of individuals present in a population.</li>
+<li>New <code><a href="../reference/add_ref_point_approach.html">add_ref_point_approach()</a></code> function for performing multi-objective optimization following the reference point approach.</li>
+<li>New <code><a href="../reference/add_abs_epsilon_approach.html">add_abs_epsilon_approach()</a></code> function for performing multi-objective optimization based on the epsilon constraint approach with absolute values for each objective.</li>
 <li>Update <code><a href="../reference/problem.html">problem()</a></code> to be compatible with outcome data that are not probabilities of persistence (e.g., amount of land covered by an ecosystem).</li>
 <li>Update <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code> functions to be compatible with updates to <em>ggplot2</em> package.</li>
 <li>Update <em>Matrix</em> package version dependency (<a href="https://github.com/prioritizr/oppr/issues/20" class="external-link">#20</a>).</li>
 <li>Update class system to use <em>R6</em> classes instead of <em>proto</em> classes.</li>
 <li>Update unit tests for compatibility with <em>testthat</em> edition 3.</li>
-<li>Rename <code><a href="../reference/prioritizr-deprecated.html">plot_phylo_persistence()</a></code> to be <code><a href="../reference/plot_solution_phylogram.html">plot_solution_phylogram()</a></code>.</li>
-<li>Rename <code><a href="../reference/prioritizr-deprecated.html">plot_feature_persistence()</a></code> to be <code><a href="../reference/plot_solution_barplot.html">plot_solution_barplot()</a></code>.</li>
-<li>Rename <code><a href="../reference/add_max_richness_objective.html">add_max_richness_objective()</a></code> to be <code><a href="../reference/add_max_wtd_sum_objective.html">add_max_wtd_sum_objective()</a></code>.</li>
+<li>Rename <code><a href="../reference/prioritizr-deprecated.html">plot_phylo_persistence()</a></code> to <code><a href="../reference/plot_solution_phylogram.html">plot_solution_phylogram()</a></code>.</li>
+<li>Rename <code><a href="../reference/prioritizr-deprecated.html">plot_feature_persistence()</a></code> to <code><a href="../reference/plot_solution_barplot.html">plot_solution_barplot()</a></code>.</li>
+<li>Rename <code><a href="../reference/add_max_richness_objective.html">add_max_richness_objective()</a></code> to <code><a href="../reference/add_max_wtd_sum_objective.html">add_max_wtd_sum_objective()</a></code>.</li>
+<li>Rename <code>add_locked_in_constraints()</code> to <code><a href="../reference/add_locked_in_action_constraints.html">add_locked_in_action_constraints()</a></code>.</li>
+<li>Rename <code>add_locked_out_constraints()</code> to <code><a href="../reference/add_locked_out_action_constraints.html">add_locked_out_action_constraints()</a></code>.</li>
+<li>Rename <code>add_manual_locked_constraints()</code> to <code><a href="../reference/add_manual_locked_action_constraints.html">add_manual_locked_action_constraints()</a></code>.</li>
 <li>Remove unused functionality for <em>shiny</em> application integration.</li>
 <li>Remove S3 methods for interacting with <code><a href="../reference/new_optimization_problem.html">new_optimization_problem()</a></code> objects.</li>
 </ul></div>

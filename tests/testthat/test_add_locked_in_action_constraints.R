@@ -1,5 +1,5 @@
 test_that("integer (compile)", {
-  # load data
+  # create problem
   data(sim_projects, sim_actions, sim_features)
   # build problem
   p <-
@@ -8,13 +8,13 @@ test_that("integer (compile)", {
       "name", "success", "name", "cost", "name", FALSE
     ) %>%
     add_max_wtd_sum_objective(1) %>%
-    add_locked_out_constraints(which(sim_actions$locked_out))
+    add_locked_in_action_constraints(which(sim_actions$locked_in))
   # compile problem
   o <- compile(p)
   # run tests
   expect_equal(
-    o$ub(),
-    replace(o$ub(), which(sim_actions$locked_out), 0)
+    o$lb(),
+    replace(o$lb(), which(sim_actions$locked_in), 1)
   )
 })
 
@@ -24,19 +24,19 @@ test_that("integer (solve)", {
   skip_if_not(any_solvers_installed())
   # load data
   data(sim_projects, sim_actions, sim_features)
-  # create problem
+  # build problemks
   p <-
     problem(
       sim_projects, sim_actions, sim_features,
       "name", "success", "name", "cost", "name", FALSE
     ) %>%
     add_max_wtd_sum_objective(1e+5) %>%
-    add_locked_out_constraints(which(sim_actions$locked_out))
+    add_locked_in_action_constraints(which(sim_actions$locked_in))
   # solve problem
   s <- solve(p)
   # run tests
-  for (i in sim_actions$name[sim_actions$locked_out]) {
-    expect_equal(s[[i]], 0)
+  for (i in sim_actions$name[sim_actions$locked_in]) {
+    expect_equal(s[[i]], 1)
   }
 })
 
@@ -52,16 +52,16 @@ test_that("integer (invalid arguments)", {
     add_max_wtd_sum_objective(1)
   # run tests
   expect_error({
-    add_locked_out_constraints(p, -1)
+    add_locked_in_action_constraints(p, -1)
   })
   expect_error({
-    add_locked_out_constraints(p, 0)
+    add_locked_in_action_constraints(p, 0)
   })
   expect_error({
-    add_locked_out_constraints(p, nrow(sim_actions) + 1)
+    add_locked_in_action_constraints(p, nrow(sim_actions) + 1)
   })
   expect_error({
-    add_locked_out_constraints(p, NA_real_)
+    add_locked_in_action_constraints(p, NA_real_)
   })
 })
 
@@ -75,13 +75,13 @@ test_that("logical (compile)", {
       "name", "success", "name", "cost", "name", FALSE
     ) %>%
     add_max_wtd_sum_objective(1) %>%
-    add_locked_out_constraints(sim_actions$locked_out)
+    add_locked_in_action_constraints(sim_actions$locked_in)
   # compile problem
   o <- compile(p)
   # run tests
   expect_equal(
-    o$ub(),
-    replace(o$ub(), which(sim_actions$locked_out), 0)
+    o$lb(),
+    replace(o$lb(), which(sim_actions$locked_in), 1)
   )
 })
 
@@ -97,13 +97,13 @@ test_that("logical (invalid arguments)", {
     add_max_wtd_sum_objective(1)
   # run tests
   expect_error({
-    add_locked_out_constraints(p, FALSE)
+    add_locked_in_action_constraints(p, FALSE)
   })
   expect_error({
-    add_locked_out_constraints(p, c(TRUE, TRUE))
+    add_locked_in_action_constraints(p, c(TRUE, TRUE))
   })
   expect_error({
-    add_locked_out_constraints(p, NA)
+    add_locked_in_action_constraints(p, NA)
   })
 })
 
@@ -120,12 +120,12 @@ test_that("logical (solve)", {
       "name", "success", "name", "cost", "name", FALSE
     ) %>%
     add_max_wtd_sum_objective(1e+5) %>%
-    add_locked_out_constraints(sim_actions$locked_out)
+    add_locked_in_action_constraints(sim_actions$locked_in)
   # solve problem
   s <- solve(p)
   # run tests
-  for (i in sim_actions$name[sim_actions$locked_out]) {
-    expect_equal(s[[i]], 0)
+  for (i in sim_actions$name[sim_actions$locked_in]) {
+    expect_equal(s[[i]], 1)
   }
 })
 
@@ -139,13 +139,13 @@ test_that("character (compile)", {
       "name", "success", "name", "cost", "name", FALSE
     ) %>%
     add_max_wtd_sum_objective(1) %>%
-    add_locked_out_constraints("locked_out")
+    add_locked_in_action_constraints("locked_in")
   # compile problem
   o <- compile(p)
   # run tests
   expect_equal(
-    o$ub(),
-    replace(o$ub(), which(sim_actions$locked_out), 0)
+    o$lb(),
+    replace(o$lb(), which(sim_actions$locked_in), 1)
   )
 })
 
@@ -161,13 +161,13 @@ test_that("logical (invalid arguments)", {
     add_max_wtd_sum_objective(1)
   # run tests
   expect_error({
-    add_locked_out_constraints(p, "name")
+    add_locked_in_action_constraints(p, "name")
   })
   expect_error({
-    add_locked_out_constraints(p, "column_that_doesnt_exist")
+    add_locked_in_action_constraints(p, "column_that_doesnt_exist")
   })
   expect_error({
-    add_locked_out_constraints(p, NA_character_)
+    add_locked_in_action_constraints(p, NA_character_)
   })
 })
 
@@ -184,11 +184,11 @@ test_that("character (solve)", {
       "name", "success", "name", "cost", "name", FALSE
     ) %>%
     add_max_wtd_sum_objective(1e+5) %>%
-    add_locked_out_constraints("locked_out")
+    add_locked_in_action_constraints("locked_in")
   # solve problem
   s <- solve(p)
   # run tests
-  for (i in sim_actions$name[sim_actions$locked_out]) {
-    expect_equal(s[[i]], 0)
+  for (i in sim_actions$name[sim_actions$locked_in]) {
+    expect_equal(s[[i]], 1)
   }
 })

@@ -506,8 +506,8 @@ test_that("locked constraints (max benefit obj)", {
     ) %>%
     add_max_targets_met_objective(budget = 0.11) %>%
     add_absolute_targets("target") %>%
-    add_locked_in_constraints(1) %>%
-    add_locked_out_constraints(2) %>%
+    add_locked_in_action_constraints(1) %>%
+    add_locked_out_action_constraints(2) %>%
     add_binary_decisions() %>%
     add_heuristic_solver(number_solutions = 100)
   # solve problem
@@ -570,8 +570,8 @@ test_that("locked constraints (min set obj)", {
     ) %>%
     add_min_set_objective() %>%
     add_absolute_targets("target") %>%
-    add_locked_in_constraints(1) %>%
-    add_locked_out_constraints(2) %>%
+    add_locked_in_action_constraints(1) %>%
+    add_locked_out_action_constraints(2) %>%
     add_binary_decisions() %>%
     add_heuristic_solver(number_solutions = 100)
   # solve problem
@@ -687,8 +687,8 @@ test_that("large problem (no sweep)", {
   ) %>%
     add_max_wtd_sum_objective(budget = b) %>%
     add_feature_weights("weight") %>%
-    add_locked_in_constraints(c(1, 2, 3)) %>%
-    add_locked_out_constraints(c(4, 5)) %>%
+    add_locked_in_action_constraints(c(1, 2, 3)) %>%
+    add_locked_out_action_constraints(c(4, 5)) %>%
     add_binary_decisions() %>%
     add_heuristic_solver(
       initial_sweep = FALSE, verbose = FALSE,

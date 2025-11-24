@@ -309,16 +309,16 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// rcpp_apply_locked_constraints
-bool rcpp_apply_locked_constraints(SEXP x, Rcpp::IntegerVector actions, Rcpp::NumericVector status);
-RcppExport SEXP _oppr_rcpp_apply_locked_constraints(SEXP xSEXP, SEXP actionsSEXP, SEXP statusSEXP) {
+// rcpp_apply_locked_action_constraints
+bool rcpp_apply_locked_action_constraints(SEXP x, Rcpp::IntegerVector actions, Rcpp::NumericVector status);
+RcppExport SEXP _oppr_rcpp_apply_locked_action_constraints(SEXP xSEXP, SEXP actionsSEXP, SEXP statusSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
     Rcpp::traits::input_parameter< Rcpp::IntegerVector >::type actions(actionsSEXP);
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type status(statusSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_apply_locked_constraints(x, actions, status));
+    rcpp_result_gen = Rcpp::wrap(rcpp_apply_locked_action_constraints(x, actions, status));
     return rcpp_result_gen;
 END_RCPP
 }

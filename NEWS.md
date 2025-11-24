@@ -2,21 +2,31 @@
 
 - New `multi_problem()` and `add_ref_point_approach()` functions for multi-
   objective optimization.
-- New `add_max_wtd_sum_objective()` that is designed for datasets when some
-  (or all) of the features do not have probability values to describe their
+- New `add_max_wtd_sum_objective()` function that is designed for datasets when
+  some (or all) of the features do not have probability values to describe their
   expected outcome when projects are completed. For example, this may
   be useful when the expected outcome values for a feature reflect the
   total amount of land expected to be covered by an ecosystem, or the
   number of individuals present in a population.
+- New `add_ref_point_approach()` function for performing multi-objective
+  optimization following the reference point approach.
+- New `add_abs_epsilon_approach()` function for performing multi-objective
+  optimization based on the epsilon constraint approach with absolute
+  values for each objective.
 - Update `problem()` to be compatible with outcome data that are not
   probabilities of persistence (e.g., amount of land covered by an ecosystem).
 - Update `plot()` functions to be compatible with updates to _ggplot2_ package.
 - Update _Matrix_ package version dependency (#20).
 - Update class system to use _R6_ classes instead of _proto_ classes.
 - Update unit tests for compatibility with _testthat_ edition 3.
-- Rename `plot_phylo_persistence()` to be `plot_solution_phylogram()`.
-- Rename `plot_feature_persistence()` to be `plot_solution_barplot()`.
-- Rename `add_max_richness_objective()` to be `add_max_wtd_sum_objective()`.
+- Rename `plot_phylo_persistence()` to `plot_solution_phylogram()`.
+- Rename `plot_feature_persistence()` to `plot_solution_barplot()`.
+- Rename `add_max_richness_objective()` to `add_max_wtd_sum_objective()`.
+- Rename `add_locked_in_constraints()` to `add_locked_in_action_constraints()`.
+- Rename `add_locked_out_constraints()` to
+  `add_locked_out_action_constraints()`.
+- Rename `add_manual_locked_constraints()` to
+  `add_manual_locked_action_constraints()`.
 - Remove unused functionality for _shiny_ application integration.
 - Remove S3 methods for interacting with `new_optimization_problem()` objects.
 

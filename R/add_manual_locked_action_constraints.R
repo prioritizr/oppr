@@ -1,15 +1,15 @@
 #' @include internal.R ProjectProblem-class.R
 NULL
 
-#' Add manually specified locked constraints
+#' Add manually specified locked constraints for actions
 #'
 #' Add constraints to a project prioritization problem to ensure
 #' that particular actions are selected, or not selected, for funding
 #' by the solution. This function offers
-#' more fine-grained control than the [add_locked_in_constraints()]
-#' and [add_locked_out_constraints()] functions.
+#' more fine-grained control than the [add_locked_in_action_constraints()]
+#' and [add_locked_out_action_constraints()] functions.
 #'
-#' @inheritParams add_locked_in_constraints
+#' @inheritParams add_locked_in_action_constraints
 #'
 #' @param locked `data.frame` or [tibble::tibble()] object. See
 #' the Details section for more information.
@@ -28,7 +28,7 @@ NULL
 #'
 #' }
 #'
-#' @inherit add_locked_in_constraints return seealso
+#' @inherit add_locked_in_action_constraints return seealso
 #'
 #' @family constraints
 #'
@@ -54,7 +54,7 @@ NULL
 #'     "name", "success", "name", "cost", "name"
 #'   ) %>%
 #'   add_max_wtd_sum_objective(budget = 500) %>%
-#'   add_manual_locked_constraints(status) %>%
+#'   add_manual_locked_action_constraints(status) %>%
 #'   add_binary_decisions()
 #'
 #' # print problem
@@ -69,24 +69,24 @@ NULL
 #'
 #' @seealso [constraints].
 #'
-#' @name add_manual_locked_constraints
+#' @name add_manual_locked_action_constraints
 #'
-#' @exportMethod add_manual_locked_constraints
+#' @exportMethod add_manual_locked_action_constraints
 #'
-#' @aliases add_manual_locked_constraints,ProjectProblem,data.frame-method add_manual_locked_constraints,ProjectProblem,tbl_df-method
+#' @aliases add_manual_locked_action_constraints,ProjectProblem,data.frame-method add_manual_locked_action_constraints,ProjectProblem,tbl_df-method
 #'
 #' @export
 methods::setGeneric(
-  "add_manual_locked_constraints",
+  "add_manual_locked_action_constraints",
   signature = methods::signature("x", "locked"),
-  function(x, locked) standardGeneric("add_manual_locked_constraints")
+  function(x, locked) standardGeneric("add_manual_locked_action_constraints")
 )
 
-#' @name add_manual_locked_constraints
-#' @usage \S4method{add_manual_locked_constraints}{ProjectProblem,data.frame}(x, locked)
-#' @rdname add_manual_locked_constraints
+#' @name add_manual_locked_action_constraints
+#' @usage \S4method{add_manual_locked_action_constraints}{ProjectProblem,data.frame}(x, locked)
+#' @rdname add_manual_locked_action_constraints
 methods::setMethod(
-  "add_manual_locked_constraints",
+  "add_manual_locked_action_constraints",
   methods::signature("ProjectProblem", "data.frame"),
   function(x, locked) {
     # assert valid arguments
@@ -95,15 +95,15 @@ methods::setMethod(
       inherits(locked, "data.frame")
     )
     # add constraints
-    add_manual_locked_constraints(x, tibble::as_tibble(locked))
+    add_manual_locked_action_constraints(x, tibble::as_tibble(locked))
   }
 )
 
-#' @name add_manual_locked_constraints
-#' @usage \S4method{add_manual_locked_constraints}{ProjectProblem,tbl_df}(x, locked)
-#' @rdname add_manual_locked_constraints
+#' @name add_manual_locked_action_constraints
+#' @usage \S4method{add_manual_locked_action_constraints}{ProjectProblem,tbl_df}(x, locked)
+#' @rdname add_manual_locked_action_constraints
 methods::setMethod(
-  "add_manual_locked_constraints",
+  "add_manual_locked_action_constraints",
   methods::signature("ProjectProblem", "tbl_df"),
   function(x, locked) {
     # assert arguments are valid
@@ -147,7 +147,7 @@ methods::setMethod(
             )
             d <- self$get_data("locked")
             invisible(
-              rcpp_apply_locked_constraints(
+              rcpp_apply_locked_action_constraints(
                 x$ptr,
                 match(d$action, self$data$action_names),
                 as.integer(d$status)

@@ -52,8 +52,8 @@ NULL
 #'   `action_name_column`), (ii) the cost of each action (specified in the
 #'   argument to `action_cost_column`). Optionally, it may also contain
 #'   data that indicate actions should be (iii) locked in or (iv) locked
-#'   out (see [add_locked_in_constraints()] and
-#'   [add_locked_out_constraints()]). It should also contain a
+#'   out (see [add_locked_in_action_constraints()] and
+#'   [add_locked_out_action_constraints()]). It should also contain a
 #'   zero-cost baseline action that is associated with the baseline project.
 #'
 #' @param features [base::data.frame()] or

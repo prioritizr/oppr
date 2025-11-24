@@ -71,7 +71,7 @@ test_that("locked constraints", {
           baseline_project_name = "baseline_project_obj1"
         ) %>%
         add_max_wtd_sum_objective(budget = 200) %>%
-        add_locked_in_constraints("locked_in") %>%
+        add_locked_in_action_constraints("locked_in") %>%
         add_binary_decisions(),
       obj2 =
         problem(
@@ -80,7 +80,7 @@ test_that("locked constraints", {
           baseline_project_name = "baseline_project_obj2"
         ) %>%
         add_max_wtd_sum_objective(budget = 200) %>%
-        add_locked_out_constraints("locked_out") %>%
+        add_locked_out_action_constraints("locked_out") %>%
         add_binary_decisions()
     )
   # compile problem

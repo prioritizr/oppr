@@ -105,8 +105,8 @@ rcpp_apply_feature_weights <- function(x, weights, replace) {
     .Call(`_oppr_rcpp_apply_feature_weights`, x, weights, replace)
 }
 
-rcpp_apply_locked_constraints <- function(x, actions, status) {
-    .Call(`_oppr_rcpp_apply_locked_constraints`, x, actions, status)
+rcpp_apply_locked_action_constraints <- function(x, actions, status) {
+    .Call(`_oppr_rcpp_apply_locked_action_constraints`, x, actions, status)
 }
 
 rcpp_apply_max_phylo_div_objective <- function(x, costs, budget, feature_weights, feature_ub) {

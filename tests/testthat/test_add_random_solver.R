@@ -25,8 +25,8 @@ test_that("minimum set objective (1 solution)", {
     add_min_set_objective() %>%
     add_absolute_targets(c(0.7, 0.7, 0.05)) %>%
     add_binary_decisions() %>%
-    add_locked_in_constraints(1) %>%
-    add_locked_out_constraints(2) %>%
+    add_locked_in_action_constraints(1) %>%
+    add_locked_out_action_constraints(2) %>%
     add_random_solver(1, verbose = FALSE)
   # generate solution
   s <- solve(p)
@@ -72,7 +72,7 @@ test_that("minimum set objective (100 solutions, locked in)", {
     add_min_set_objective() %>%
     add_absolute_targets(c(0.7, 0.7, 0.05)) %>%
     add_binary_decisions() %>%
-    add_locked_in_constraints(1) %>%
+    add_locked_in_action_constraints(1) %>%
     add_random_solver(100, verbose = FALSE)
   # generate solution
   s <- solve(p)
@@ -124,7 +124,7 @@ test_that("minimum set objective (100 solutions, locked out)", {
     add_min_set_objective() %>%
     add_absolute_targets(c(0.7, 0.7, 0.05)) %>%
     add_binary_decisions() %>%
-    add_locked_out_constraints(1) %>%
+    add_locked_out_action_constraints(1) %>%
     add_random_solver(100, verbose = FALSE)
   # generate solution
   s <- solve(p)
@@ -173,8 +173,8 @@ test_that("maximum benefit objective (1 solution)", {
     ) %>%
     add_max_wtd_sum_objective(budget = 0.15) %>%
     add_binary_decisions() %>%
-    add_locked_in_constraints(1) %>%
-    add_locked_out_constraints(2) %>%
+    add_locked_in_action_constraints(1) %>%
+    add_locked_out_action_constraints(2) %>%
     add_random_solver(1, verbose = FALSE)
   # solve problem
   s <- solve(p)
@@ -225,7 +225,7 @@ test_that("maximum benefit objective (100 solutions, locked in)", {
     ) %>%
     add_max_wtd_sum_objective(budget = 0.16) %>%
     add_binary_decisions() %>%
-    add_locked_in_constraints(2) %>%
+    add_locked_in_action_constraints(2) %>%
     add_random_solver(100, verbose = FALSE)
   # solve problem
   s <- solve(p)
@@ -266,7 +266,7 @@ test_that("maximum benefit objective (100 solutions, locked out)", {
     ) %>%
     add_max_wtd_sum_objective(budget = 0.15) %>%
     add_binary_decisions() %>%
-    add_locked_out_constraints(2) %>%
+    add_locked_out_action_constraints(2) %>%
     add_random_solver(100, verbose = FALSE)
   # solve problem
   s <- solve(p)
@@ -292,7 +292,7 @@ test_that("maximum benefit objective (zero cost project locked out)", {
     ) %>%
     add_max_wtd_sum_objective(budget = 0.15) %>%
     add_binary_decisions() %>%
-    add_locked_out_constraints(which(sim_actions$cost == 0)) %>%
+    add_locked_out_action_constraints(which(sim_actions$cost == 0)) %>%
     add_random_solver(100, verbose = FALSE)
   # solve problem
   s <- solve(p)
@@ -360,8 +360,8 @@ test_that("maximum benefit (large problem, inc budgets, locked constraints)", {
       ) %>%
       add_max_wtd_sum_objective(budget = b) %>%
       add_feature_weights("weight") %>%
-      add_locked_in_constraints(c(1, 2, 3)) %>%
-      add_locked_out_constraints(c(4, 5)) %>%
+      add_locked_in_action_constraints(c(1, 2, 3)) %>%
+      add_locked_out_action_constraints(c(4, 5)) %>%
       add_binary_decisions() %>%
       add_random_solver(verbose = FALSE, number_solutions = 5) %>%
       solve()
@@ -393,7 +393,7 @@ test_that("invalid arguments", {
       p %>%
       add_max_wtd_sum_objective(budget = 0.15) %>%
       add_binary_decisions() %>%
-      add_locked_out_constraints(seq_len(nrow(sim_actions))) %>%
+      add_locked_out_action_constraints(seq_len(nrow(sim_actions))) %>%
       add_random_solver(1, verbose = FALSE) %>%
       solve()
     })
@@ -404,7 +404,7 @@ test_that("invalid arguments", {
       p %>%
       add_max_wtd_sum_objective(budget = 0.15) %>%
       add_binary_decisions() %>%
-      add_locked_in_constraints(seq_len(nrow(sim_actions))) %>%
+      add_locked_in_action_constraints(seq_len(nrow(sim_actions))) %>%
       add_random_solver(1, verbose = FALSE) %>%
       solve()
     })
@@ -416,7 +416,7 @@ test_that("invalid arguments", {
       add_min_set_objective() %>%
       add_absolute_targets(0.999) %>%
       add_binary_decisions() %>%
-      add_locked_out_constraints(seq_len(nrow(sim_actions))) %>%
+      add_locked_out_action_constraints(seq_len(nrow(sim_actions))) %>%
       add_random_solver(1, verbose = FALSE) %>%
       solve()
     })

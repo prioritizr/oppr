@@ -57,8 +57,8 @@ the name of each action (specified in the argument to
 \code{action_name_column}), (ii) the cost of each action (specified in the
 argument to \code{action_cost_column}). Optionally, it may also contain
 data that indicate actions should be (iii) locked in or (iv) locked
-out (see \code{\link[=add_locked_in_constraints]{add_locked_in_constraints()}} and
-\code{\link[=add_locked_out_constraints]{add_locked_out_constraints()}}). It should also contain a
+out (see \code{\link[=add_locked_in_action_constraints]{add_locked_in_action_constraints()}} and
+\code{\link[=add_locked_out_action_constraints]{add_locked_out_action_constraints()}}). It should also contain a
 zero-cost baseline action that is associated with the baseline project.}
 
 \item{features}{\code{\link[base:data.frame]{base::data.frame()}} or

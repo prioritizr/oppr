@@ -2,9 +2,9 @@
 #include "optimization_problem.h"
 
 // [[Rcpp::export]]
-bool rcpp_apply_locked_constraints(SEXP x,
-                                   Rcpp::IntegerVector actions,
-                                   Rcpp::NumericVector status) {
+bool rcpp_apply_locked_action_constraints(SEXP x,
+                                          Rcpp::IntegerVector actions,
+                                          Rcpp::NumericVector status) {
   Rcpp::XPtr<OPTIMIZATIONPROBLEM> ptr = Rcpp::as<Rcpp::XPtr<OPTIMIZATIONPROBLEM>>(x);
 
   // apply constraints

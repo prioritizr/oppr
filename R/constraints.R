@@ -12,21 +12,21 @@ NULL
 #'
 #' \describe{
 #'
-#' \item{[add_locked_in_constraints()]}{
-#' Add constraints to ensure that certain actions are prioritized for funding.
+#' \item{[add_locked_in_action_constraints()]}{
+#' Add constraints to ensure that particular actions are selected for funding.
 #' }
 #'
-#' \item{[add_locked_out_constraints()]}{
-#' Add constraints to ensure that certain actions are not prioritized for
+#' \item{[add_locked_out_action_constraints()]}{
+#' Add constraints to ensure that particular actions are not selected for
 #' funding.
 #' }
 #'
-#' \item{[add_manual_locked_constraints()]}{
-#' Add constraints to ensure that certain actions are prioritized, or not, for
+#' \item{[add_manual_locked_action_constraints()]}{
+#' Add constraints to ensure that particular actions are selected, or not, for
 #' funding.
 #' }
 #'
-#'  }
+#' }
 #'
 #' @family overviews
 #'
@@ -47,13 +47,13 @@ NULL
 #' print(p1)
 #'
 #' # build another problem, and lock in the third action
-#' p2 <- p1 %>% add_locked_in_constraints(c(3))
+#' p2 <- p1 %>% add_locked_in_action_constraints(c(3))
 #'
 #' # print problem
 #' print(p2)
 #'
 #' # build another problem, and lock out the second action
-#' p3 <- p1 %>% add_locked_out_constraints(c(2))
+#' p3 <- p1 %>% add_locked_out_action_constraints(c(2))
 #'
 #' # print problem
 #' print(p3)
