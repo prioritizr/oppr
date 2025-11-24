@@ -12,6 +12,7 @@ extern SEXP _oppr_rcpp_add_raw_data(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
 extern SEXP _oppr_rcpp_apply_decisions(SEXP, SEXP, SEXP, SEXP);
 extern SEXP _oppr_rcpp_apply_feature_weights(SEXP, SEXP, SEXP);
 extern SEXP _oppr_rcpp_apply_locked_action_constraints(SEXP, SEXP, SEXP);
+extern SEXP _oppr_rcpp_apply_locked_project_constraints(SEXP, SEXP, SEXP);
 extern SEXP _oppr_rcpp_apply_max_phylo_div_objective(SEXP, SEXP, SEXP, SEXP, SEXP);
 extern SEXP _oppr_rcpp_apply_max_targets_met_objective(SEXP, SEXP, SEXP, SEXP, SEXP);
 extern SEXP _oppr_rcpp_apply_min_set_objective(SEXP, SEXP, SEXP);
@@ -58,6 +59,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_oppr_rcpp_apply_decisions",                                (DL_FUNC) &_oppr_rcpp_apply_decisions,                                 4},
     {"_oppr_rcpp_apply_feature_weights",                          (DL_FUNC) &_oppr_rcpp_apply_feature_weights,                           3},
     {"_oppr_rcpp_apply_locked_action_constraints",                (DL_FUNC) &_oppr_rcpp_apply_locked_action_constraints,                 3},
+    {"_oppr_rcpp_apply_locked_project_constraints",               (DL_FUNC) &_oppr_rcpp_apply_locked_project_constraints,                3},
     {"_oppr_rcpp_apply_max_phylo_div_objective",                  (DL_FUNC) &_oppr_rcpp_apply_max_phylo_div_objective,                   5},
     {"_oppr_rcpp_apply_max_targets_met_objective",                (DL_FUNC) &_oppr_rcpp_apply_max_targets_met_objective,                 5},
     {"_oppr_rcpp_apply_min_set_objective",                        (DL_FUNC) &_oppr_rcpp_apply_min_set_objective,                         3},

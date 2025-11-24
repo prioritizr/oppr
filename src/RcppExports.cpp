@@ -322,6 +322,19 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// rcpp_apply_locked_project_constraints
+bool rcpp_apply_locked_project_constraints(SEXP x, Rcpp::IntegerVector projects, Rcpp::NumericVector status);
+RcppExport SEXP _oppr_rcpp_apply_locked_project_constraints(SEXP xSEXP, SEXP projectsSEXP, SEXP statusSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
+    Rcpp::traits::input_parameter< Rcpp::IntegerVector >::type projects(projectsSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type status(statusSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_apply_locked_project_constraints(x, projects, status));
+    return rcpp_result_gen;
+END_RCPP
+}
 // rcpp_apply_max_phylo_div_objective
 bool rcpp_apply_max_phylo_div_objective(SEXP x, Rcpp::NumericVector costs, double budget, Rcpp::NumericVector feature_weights, Rcpp::NumericVector feature_ub);
 RcppExport SEXP _oppr_rcpp_apply_max_phylo_div_objective(SEXP xSEXP, SEXP costsSEXP, SEXP budgetSEXP, SEXP feature_weightsSEXP, SEXP feature_ubSEXP) {

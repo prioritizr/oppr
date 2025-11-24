@@ -13,6 +13,10 @@
 - New `add_abs_epsilon_approach()` function for performing multi-objective
   optimization based on the epsilon constraint approach with absolute
   values for each objective.
+- New `add_locked_in_project_constraints()`,
+  `add_locked_out_project_constraints()`, and
+  `add_manual_locked_project_constraints()` functions for adding constraints
+  to lock the selection of projects during optimization.
 - Update `problem()` to be compatible with outcome data that are not
   probabilities of persistence (e.g., amount of land covered by an ecosystem).
 - Update `plot()` functions to be compatible with updates to _ggplot2_ package.

@@ -86,6 +86,9 @@ print(s4[, sim_actions$name])
 \seealso{
 Other constraints: 
 \code{\link{add_locked_in_action_constraints}()},
-\code{\link{add_manual_locked_action_constraints}()}
+\code{\link{add_locked_in_project_constraints}()},
+\code{\link{add_locked_out_project_constraints}()},
+\code{\link{add_manual_locked_action_constraints}()},
+\code{\link{add_manual_locked_project_constraints}()}
 }
 \concept{constraints}

@@ -31,14 +31,23 @@ NULL
 #' \item{`plot_phylo_persistence()`}{renamed
 #'   as the [plot_solution_phylogram()] function.}
 #'
+#' \item{`add_locked_in_constraints()`}{renamed
+#'   as the [add_locked_in_action_constraints()] function.}
+#'
+#' \item{`add_locked_out_constraints()`}{renamed
+#'   as the [add_locked_out_action_constraints()] function.}
+#'
+#' \item{`add_manual_locked_constraints()`}{renamed
+#'   as the [add_manual_locked_action_constraints()] function.}
+#'
 #' }
 #'
 #' @keywords deprecated
 #'
-#' @name prioritizr-deprecated
+#' @name oppr-deprecated
 NULL
 
-#' @rdname prioritizr-deprecated
+#' @rdname oppr-deprecated
 #' @export
 plot_feature_persistence <- function(...) {
   error_defunct(
@@ -47,12 +56,39 @@ plot_feature_persistence <- function(...) {
   )
 }
 
-#' @rdname prioritizr-deprecated
+#' @rdname oppr-deprecated
 #' @export
 plot_phylo_persistence <- function(...) {
   error_defunct(
     old = "plot_phylo_persistence",
     new = "plot_solution_phylogram"
+  )
+}
+
+#' @rdname oppr-deprecated
+#' @export
+add_locked_in_constraints <- function(...) {
+  error_defunct(
+    old = "add_locked_in_constraints",
+    new = "add_locked_in_action_constraints"
+  )
+}
+
+#' @rdname oppr-deprecated
+#' @export
+add_locked_out_constraints <- function(...) {
+  error_defunct(
+    old = "add_locked_out_constraints",
+    new = "add_locked_out_action_constraints"
+  )
+}
+
+#' @rdname oppr-deprecated
+#' @export
+add_manual_locked_constraints <- function(...) {
+  error_defunct(
+    old = "add_manual_locked_constraints",
+    new = "add_manual_locked_action_constraints"
   )
 }
 

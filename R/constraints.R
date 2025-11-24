@@ -26,6 +26,20 @@ NULL
 #' funding.
 #' }
 #'
+#' \item{[add_locked_in_project_constraints()]}{
+#' Add constraints to ensure that particular projects are selected for funding.
+#' }
+#'
+#' \item{[add_locked_out_project_constraints()]}{
+#' Add constraints to ensure that particular projects are not selected for
+#' funding.
+#' }
+#'
+#' \item{[add_manual_locked_project_constraints()]}{
+#' Add constraints to ensure that particular projects are selected, or not, for
+#' funding.
+#' }
+#'
 #' }
 #'
 #' @family overviews
@@ -58,16 +72,32 @@ NULL
 #' # print problem
 #' print(p3)
 #'
+#' # build another problem, and lock in the first project
+#' p4 <- p1 %>% add_locked_out_project_constraints(c(1))
+#'
+#' # print problem
+#' print(p4)
+#'
+#' # build another problem, and lock out the second project
+#' p5 <- p1 %>% add_locked_out_project_constraints(c(2))
+#'
+#' # print problem
+#' print(p5)
+#'
 #' \dontrun{
 #' # solve problems
 #' s1 <- solve(p1)
 #' s2 <- solve(p2)
 #' s3 <- solve(p3)
+#' s4 <- solve(p4)
+#' s5 <- solve(p5)
 #'
-#' # print the actions selected for funding in each of the solutions
+#' # print the projects selected for funding in each of the solutions
 #' print(s1[, sim_actions$name])
 #' print(s2[, sim_actions$name])
 #' print(s3[, sim_actions$name])
+#' print(s4[, sim_actions$name])
+#' print(s5[, sim_actions$name])
 #' }
 #' @name constraints
 NULL
