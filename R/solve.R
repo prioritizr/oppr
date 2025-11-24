@@ -222,22 +222,24 @@ methods::setMethod(
     opt <- multi_compile(opt)
     # generate solution using approach
     sol <- a$approach$run(opt, a$solver)
-    # check that solution is valid
-    if (is.null(sol) || is.null(sol[[1]]$x)) {
+    ## format solutions
+    # identify feasible solutions
+    sol_is_feasible <- vapply(sol, function(x) !is.null(x$x), logical(1))
+    # check that at least solution is valid
+    if (!any(sol_is_feasible)) {
       stop("project prioritization problem is infeasible")
     }
-    ## format solutions
     # extract actions
     action_status <- t(vapply(
-      sol,
+      sol[sol_is_feasible],
       function(x) x$x[seq_len(a$number_of_actions())] > 0.5,
       logical(a$number_of_actions())
     ))
     # create solution data
     ## initialize and add solution column
-    out <- tibble::tibble(solution = seq_len(nrow(action_status)))
+    out <- tibble::tibble(solution = which(sol_is_feasible))
     ## add status column
-    out$status <- vapply(sol, `[[`, character(1), 3)
+    out$status <- vapply(sol[sol_is_feasible], `[[`, character(1), 3)
     ## add solution columns
     s <- tibble::as_tibble(as.data.frame(action_status))
     names(s) <- a$action_names()
