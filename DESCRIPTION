@@ -88,6 +88,7 @@ Collate:
     'Target-class.R'
     'Weight-class.R'
     'action_names.R'
+    'add_abs_epsilon_approach.R'
     'add_absolute_targets.R'
     'add_binary_decisions.R'
     'add_default_solver.R'
