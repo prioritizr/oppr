@@ -294,7 +294,10 @@ problem <- function(projects, actions, features, project_name_column,
     )
     assertthat::assert_that(
       length(bp) <= 1,
-      msg = "multiple baseline actions detected"
+      msg = paste(
+        "`baseline_project_name` must be specified,",
+        "because actions have zero costs."
+      )
     )
     pa <- as.matrix(projects[, actions$name])
     bp <- which(

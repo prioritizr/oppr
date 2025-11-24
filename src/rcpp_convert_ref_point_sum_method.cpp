@@ -61,7 +61,7 @@ bool rcpp_convert_ref_point_sum_method(
   for (std::size_t i =  0; i < n; ++i) {
     ptr->_A_i.push_back(A_nrow + i);
     ptr->_A_j.push_back(A_ncol + i);
-    ptr->_A_x.push_back(goals[i] * weights[i]);
+    ptr->_A_x.push_back(goals[i]);
   }
   for (std::size_t i = 0; i < n; ++i) {
     ptr->_rhs.push_back(goals[i]);

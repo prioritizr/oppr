@@ -57,7 +57,7 @@ Suggests:
     lpSolveAPI (>= 5.5.2.0.17),
     fansi (>= 1.0.6)
 Depends:
-    R(>= 3.4.0)
+    R(>= 3.5.0)
 LinkingTo:
     Rcpp (>= 0.12.19),
     RcppArmadillo (>= 0.9.100.5.0),

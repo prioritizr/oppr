@@ -26,7 +26,15 @@ bool rcpp_convert_ref_point_max_method(
   // Set model sense
   ptr->_modelsense = "min";
 
-  // Define additional decision variable
+  // Define additional decision variables for shortfall variables
+  for (std::size_t i = 0; i < n; ++i) {
+    ptr->_ub.push_back(1.0);
+    ptr->_lb.push_back(0.0);
+    ptr->_vtype.push_back("C");
+    ptr->_col_ids.push_back("sh");
+  }
+
+  // Define additional decision variables for maximum value
   ptr->_ub.push_back(1.0);
   ptr->_lb.push_back(0.0);
   ptr->_vtype.push_back("C");
@@ -36,9 +44,12 @@ bool rcpp_convert_ref_point_max_method(
   for (std::size_t i = 0; i < A_ncol; ++i) {
     ptr->_obj[i] = 0.0;
   }
+  for (std::size_t i = 0; i < n; ++i) {
+    ptr->_obj.push_back(0.0);
+  }
   ptr->_obj.push_back(1.0);
 
-  // Add linear constraints for calculating maximum shortfall of goals
+  // Add linear constraints for calculating shortfall of goals
   for (std::size_t j = 0; j < A_ncol; ++j) {
     for (std::size_t i = 0; i < n; ++i) {
       if (mopt_obj(i, j) >= 1.0e-6) {
@@ -48,9 +59,9 @@ bool rcpp_convert_ref_point_max_method(
       }
     }
   }
-  for (std::size_t i =  0; i < n; ++i) {
+  for (std::size_t i = 0; i < n; ++i) {
     ptr->_A_i.push_back(A_nrow + i);
-    ptr->_A_j.push_back(A_ncol);
+    ptr->_A_j.push_back(A_ncol + i);
     ptr->_A_x.push_back(goals[i]);
   }
   for (std::size_t i = 0; i < n; ++i) {
@@ -61,6 +72,25 @@ bool rcpp_convert_ref_point_max_method(
   }
   for (std::size_t i = 0; i < n; ++i) {
     ptr->_row_ids.push_back("sh");
+  }
+
+  // Add linear constraints for calculating the maximum of the shortfalls
+  for (std::size_t i = 0; i < n; ++i) {
+    ptr->_A_i.push_back(A_nrow + n + i);
+    ptr->_A_j.push_back(A_ncol + n);
+    ptr->_A_x.push_back(1.0);
+    ptr->_A_i.push_back(A_nrow + n + i);
+    ptr->_A_j.push_back(A_ncol + i);
+    ptr->_A_x.push_back(-1.0 * weights[i]);
+  }
+  for (std::size_t i = 0; i < n; ++i) {
+    ptr->_rhs.push_back(0.0);
+  }
+  for (std::size_t i = 0; i < n; ++i) {
+    ptr->_sense.push_back(">=");
+  }
+  for (std::size_t i = 0; i < n; ++i) {
+    ptr->_row_ids.push_back("max");
   }
 
   // return success
