@@ -3,7 +3,7 @@
 #include "functions.h"
 
 // [[Rcpp::export]]
-bool rcpp_convert_abs_epsilon_approach(
+bool rcpp_convert_abs_constraint_approach(
   SEXP x,
   Rcpp::CharacterVector mopt_modelsense,
   Rcpp::NumericMatrix mopt_obj,

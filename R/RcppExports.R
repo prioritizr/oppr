@@ -137,8 +137,8 @@ rcpp_compile_multi_obj_problem <- function(x) {
     .Call(`_oppr_rcpp_compile_multi_obj_problem`, x)
 }
 
-rcpp_convert_abs_epsilon_approach <- function(x, mopt_modelsense, mopt_obj, goals) {
-    .Call(`_oppr_rcpp_convert_abs_epsilon_approach`, x, mopt_modelsense, mopt_obj, goals)
+rcpp_convert_abs_constraint_approach <- function(x, mopt_modelsense, mopt_obj, goals) {
+    .Call(`_oppr_rcpp_convert_abs_constraint_approach`, x, mopt_modelsense, mopt_obj, goals)
 }
 
 rcpp_convert_pwlobj <- function(x) {

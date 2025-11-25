@@ -13,9 +13,9 @@ multi-objective project prioritization problem.
 
 \describe{
 
-\item{\code{\link[=add_abs_epsilon_approach]{add_abs_epsilon_approach()}}}{
-Add an approach to generate solutions with the epsilon constraint
-method with objectives values expressed in absolute units.
+\item{\code{\link[=add_abs_constraint_approach]{add_abs_constraint_approach()}}}{
+Add an approach to generate solutions based on constraints
+that specify the required objectives values.
 }
 
 \item{\code{\link[=add_ref_point_approach]{add_ref_point_approach()}}}{
@@ -73,10 +73,10 @@ p2 <-
     method = "sum"
   )
 
-# build another problem, with the absolute epsilon constraint method
+# build another problem, with the absolute constraint method
 p3 <-
   p1 \%>\%
-  add_abs_epsilon_approach(
+  add_abs_constraint_approach(
     goals = c(NA, 0.01, 0.01)
   )
 

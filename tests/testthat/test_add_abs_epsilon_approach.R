@@ -58,11 +58,11 @@ test_that("all feasible solutions", {
   # solve problems
   s1 <-
     p %>%
-    add_abs_epsilon_approach(goals = c(NA, 0.8)) %>%
+    add_abs_constraint_approach(goals = c(NA, 0.8)) %>%
     solve()
   s2 <-
     p %>%
-    add_abs_epsilon_approach(goals = c(80, 0.8)) %>%
+    add_abs_constraint_approach(goals = c(80, 0.8)) %>%
     solve()
   # run tests
   ## s1
@@ -149,7 +149,7 @@ test_that("some feasible solutions", {
       add_max_wtd_sum_objective(budget = 0.25) %>%
       add_binary_decisions()
     ) %>%
-    add_abs_epsilon_approach(
+    add_abs_constraint_approach(
       goals = matrix(c(NA, 9999, NA, 0.8), ncol = 2, byrow = TRUE)
     ) %>%
     add_default_solver(gap = 0)
@@ -227,7 +227,7 @@ test_that("no feasible solutions", {
       add_max_wtd_sum_objective(budget = 0.25) %>%
       add_binary_decisions()
     ) %>%
-    add_abs_epsilon_approach(
+    add_abs_constraint_approach(
       goals = matrix(c(NA, 9999, 9999, 9999), ncol = 2, byrow = TRUE)
     ) %>%
     add_default_solver(gap = 0)

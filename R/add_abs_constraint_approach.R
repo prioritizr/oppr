@@ -1,10 +1,10 @@
 #' @include internal.R MultiObjApproach-class.R
 NULL
 
-#' Add an absolute epsilon constraint approach
+#' Add an absolute constraint approach
 #'
-#' Add an epsilon constraint approach based on absolute values for multi-
-#' objective optimization to a project problem.
+#' Add an constraint approach for multi-objective optimization to a project
+#' problem based on the required objective values.
 #'
 #' @inheritParams add_ref_point_approach
 #'
@@ -18,9 +18,9 @@ NULL
 #' corresponds to a different objective.
 #'
 #' @details
-#' The epsilon constraint approach for multi-objective optimization involves
+#' Constraint-based approaches for multi-objective optimization involves
 #' adding constraints to a problem formulation to ensure that solutions
-#' achieve a pre-specified level of performance for particular objectives,
+#' achieve a particular level of performance each objective,
 #' whilst maximizing performance according to a primary objective.
 #' In particular, each objective is associated with a goal that specifies
 #' a threshold minimum level of performance (conceptually similar to a target
@@ -91,7 +91,7 @@ NULL
 #'      add_max_wtd_sum_objective(budget = 200) %>%
 #'      add_binary_decisions()
 #'  ) %>%
-#'  add_abs_epsilon_approach(goals = c(NA, 0.01, 0.01)) %>%
+#'  add_abs_constraint_approach(goals = c(NA, 0.01, 0.01)) %>%
 #'  add_default_solver()
 #'
 #' # print problem
@@ -104,7 +104,7 @@ NULL
 #' print(s)
 #' }
 #' @export
-add_abs_epsilon_approach <- function(x, goals, verbose = TRUE) {
+add_abs_constraint_approach <- function(x, goals, verbose = TRUE) {
   # assert arguments are valid
   assertthat::assert_that(
     inherits(x, "MultiObjProjectProblem"),
@@ -123,10 +123,10 @@ add_abs_epsilon_approach <- function(x, goals, verbose = TRUE) {
   # add approach
   x$add_approach(
     R6::R6Class(
-      "AbsEpsilonApproach",
+      "AbsConstraintApproach",
       inherit = MultiObjApproach,
       public = list(
-        name = "absolute epsilon approach",
+        name = "absolute constraint approach",
         data = list(goals = goals, verbose = verbose),
         run = function(x, solver) {
           ## initialization
@@ -143,8 +143,8 @@ add_abs_epsilon_approach <- function(x, goals, verbose = TRUE) {
           for (i in seq_len(nrow(goals))) {
             ### copy optimization problem
             mo <- x$opt$copy()
-            ### convert to absolute epsilon constraint formulation
-            rcpp_convert_abs_epsilon_approach(
+            ### convert to absolute constraint formulation
+            rcpp_convert_abs_constraint_approach(
               mo$ptr, x$modelsense, x$obj, goals[i, ]
             )
             ### solve problem

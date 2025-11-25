@@ -12,9 +12,9 @@ NULL
 #'
 #' \describe{
 #'
-#' \item{[add_abs_epsilon_approach()]}{
-#' Add an approach to generate solutions with the epsilon constraint
-#' method with objectives values expressed in absolute units.
+#' \item{[add_abs_constraint_approach()]}{
+#' Add an approach to generate solutions based on constraints
+#' that specify the required objectives values.
 #' }
 #'
 #' \item{[add_ref_point_approach()]}{
@@ -76,10 +76,10 @@ NULL
 #'     method = "sum"
 #'   )
 #'
-#' # build another problem, with the absolute epsilon constraint method
+#' # build another problem, with the absolute constraint method
 #' p3 <-
 #'   p1 %>%
-#'   add_abs_epsilon_approach(
+#'   add_abs_constraint_approach(
 #'     goals = c(NA, 0.01, 0.01)
 #'   )
 #'
