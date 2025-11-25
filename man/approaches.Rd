@@ -19,15 +19,18 @@ that specify the required objectives values.
 }
 
 \item{\code{\link[=add_wtd_goal_approach]{add_wtd_goal_approach()}}}{
-Add an approach to generate solutions with the weighted goal method.
+Add an approach to generate solutions with the weighted goal method
+(Jones and Tamiz 2010).
 }
 
-\item{\code{\link[=add_chebyshev_approach]{add_chebyshev_approach()}}}{
-Add an approach to generate solutions with the Chebyshev method.
+\item{\code{\link[=add_chebyshev_goal_approach]{add_chebyshev_goal_approach()}}}{
+Add an approach to generate solutions with the Chebyshev goal method.
+(Jones and Tamiz 2010).
 }
 
 \item{\code{\link[=add_ref_point_approach]{add_ref_point_approach()}}}{
-Add an approach to generate solutions with the reference point method.
+Add an approach to generate solutions with the reference point method
+(Vanderpooten 1990)
 }
 
 }
@@ -90,7 +93,7 @@ p3 <-
 # build another problem, with the Chebyshev method
 p4 <-
   p1 \%>\%
-  add_chebyshev_approach(
+  add_chebyshev_goal_approach(
     weights = c(1, 0.5, 0.1),
     goals = c(1, 3, 0.2)
   )
@@ -105,11 +108,19 @@ p5 <-
 
 # generate solutions using each approach
 s <- rbind(solve(p2), solve(p3), solve(p4), solve(p5))
-s$approach <- c("abs epsilon", "wtd goal", "Chebyshev", "ref point")
+s$approach <- c("abs epsilon", "wtd goal", "Chebyshev goal", "ref point")
 
 # print solutions
 print(as.data.frame(s))
 }
+}
+\references{
+Jones D and Tamiz M (2010) \emph{Goal Programming Variants}.
+and Management Science, volume 141. Springer, Boston, MA.
+
+Vanderpooten D (1990) \emph{Multiobjective programming: Basic concepts and}
+\emph{approaches}. In: Stochastic Versus Fuzzy Approaches to Multiobjective
+Mathematical Programming Under Uncertainty. Springer, Berlin.
 }
 \seealso{
 Other overviews: 

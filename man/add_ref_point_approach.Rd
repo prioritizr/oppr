@@ -30,7 +30,7 @@ A \code{\link[=multi_problem]{multi_problem()}} object with the approach added t
 }
 \description{
 Add a reference point approach for multi-objective optimization to a
-project problem.
+project problem (Vanderpooten 1990).
 }
 \details{
 The reference point approach for multi-objective optimization involves
@@ -113,12 +113,17 @@ s <- solve(p)
 print(s)
 }
 }
+\references{
+Vanderpooten D (1990) \emph{Multiobjective programming: Basic concepts and}
+\emph{approaches}. In: Stochastic Versus Fuzzy Approaches to Multiobjective
+Mathematical Programming Under Uncertainty. Springer, Berlin.
+}
 \seealso{
 See \link{approaches} for an overview of functions for adding approaches.
 
 Other approaches: 
 \code{\link{add_abs_constraint_approach}()},
-\code{\link{add_chebyshev_approach}()},
+\code{\link{add_chebyshev_goal_approach}()},
 \code{\link{add_wtd_goal_approach}()}
 }
 \concept{approaches}

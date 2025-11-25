@@ -4,7 +4,7 @@ NULL
 #' Add a weighted goal achievement approach
 #'
 #' Add a weighted goal achievement approach for multi-objective
-#' optimization to a project problem.
+#' optimization to a project problem (Jones and Tamiz 2010).
 #'
 #' @inheritParams add_ref_point_approach
 #'
@@ -39,6 +39,11 @@ NULL
 #' @inherit add_ref_point_approach return seealso
 #'
 #' @family approaches
+#
+#' @references
+#' Jones D and Tamiz M (2010) _Goal Programming Variants_.
+# 'In: Practical Goal Programming. International Series in Operations Research
+#' and Management Science, volume 141. Springer, Boston, MA.
 #'
 #' @examples
 #' \dontrun{

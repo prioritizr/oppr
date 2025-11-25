@@ -4,7 +4,7 @@ NULL
 #' Add a reference point approach
 #'
 #' Add a reference point approach for multi-objective optimization to a
-#' project problem.
+#' project problem (Vanderpooten 1990).
 #'
 #' @param x [multi_problem()] object.
 #'
@@ -61,6 +61,11 @@ NULL
 #' See [approaches] for an overview of functions for adding approaches.
 #'
 #' @family approaches
+#'
+#' @references
+#' Vanderpooten D (1990) _Multiobjective programming: Basic concepts and_
+#' _approaches_. In: Stochastic Versus Fuzzy Approaches to Multiobjective
+#' Mathematical Programming Under Uncertainty. Springer, Berlin.
 #'
 #' @examples
 #' \dontrun{

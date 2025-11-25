@@ -113,7 +113,7 @@ print(s)
 }
 \seealso{
 Other approaches: 
-\code{\link{add_chebyshev_approach}()},
+\code{\link{add_chebyshev_goal_approach}()},
 \code{\link{add_ref_point_approach}()},
 \code{\link{add_wtd_goal_approach}()}
 }

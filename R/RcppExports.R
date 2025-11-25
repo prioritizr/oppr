@@ -141,8 +141,8 @@ rcpp_convert_abs_constraint_approach <- function(x, mopt_modelsense, mopt_obj, g
     .Call(`_oppr_rcpp_convert_abs_constraint_approach`, x, mopt_modelsense, mopt_obj, goals)
 }
 
-rcpp_convert_chebyshev_method <- function(x, mopt_modelsense, mopt_obj, weights, goals) {
-    .Call(`_oppr_rcpp_convert_chebyshev_method`, x, mopt_modelsense, mopt_obj, weights, goals)
+rcpp_convert_chebyshev_goal_method <- function(x, mopt_modelsense, mopt_obj, weights, goals) {
+    .Call(`_oppr_rcpp_convert_chebyshev_goal_method`, x, mopt_modelsense, mopt_obj, weights, goals)
 }
 
 rcpp_convert_pwlobj <- function(x) {

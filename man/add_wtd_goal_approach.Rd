@@ -30,7 +30,7 @@ A \code{\link[=multi_problem]{multi_problem()}} object with the approach added t
 }
 \description{
 Add a weighted goal achievement approach for multi-objective
-optimization to a project problem.
+optimization to a project problem (Jones and Tamiz 2010).
 }
 \details{
 The weighted goal achievement approach for multi-objective
@@ -111,10 +111,14 @@ s <- solve(p)
 print(s)
 }
 }
+\references{
+Jones D and Tamiz M (2010) \emph{Goal Programming Variants}.
+and Management Science, volume 141. Springer, Boston, MA.
+}
 \seealso{
 Other approaches: 
 \code{\link{add_abs_constraint_approach}()},
-\code{\link{add_chebyshev_approach}()},
+\code{\link{add_chebyshev_goal_approach}()},
 \code{\link{add_ref_point_approach}()}
 }
 \concept{approaches}

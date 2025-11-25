@@ -61,15 +61,15 @@ test_that("solve", {
   # solve problems
   s1 <-
     p %>%
-    add_chebyshev_approach(weights = c(1, 0), goals = c(200, 2)) %>%
+    add_chebyshev_goal_approach(weights = c(1, 0), goals = c(200, 2)) %>%
     solve()
   s2 <-
     p %>%
-    add_chebyshev_approach(weights = c(0, 1), goals = c(200, 2)) %>%
+    add_chebyshev_goal_approach(weights = c(0, 1), goals = c(200, 2)) %>%
     solve()
   s3 <-
     p %>%
-    add_chebyshev_approach(weights = c(0.5, 0.5), goals = c(200, 2)) %>%
+    add_chebyshev_goal_approach(weights = c(0.5, 0.5), goals = c(200, 2)) %>%
     solve()
   # run tests
   ## s1

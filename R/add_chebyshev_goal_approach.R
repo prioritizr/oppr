@@ -1,15 +1,15 @@
 #' @include internal.R MultiObjApproach-class.R
 NULL
 
-#' Add a Chebyshev approach
+#' Add a Chebyshev goal approach
 #'
-#' Add a Chebyshev approach for multi-objective
-#' optimization to a project problem.
+#' Add a Chebyshev goal approach for multi-objective
+#' optimization to a project problem (Jones and Tamiz 2010).
 #'
 #' @inheritParams add_ref_point_approach
 #'
 #' @details
-#' The Chebyshev approach for multi-objective
+#' The Chebyshev goal approach for multi-objective
 #' optimization involves
 #' creating a new objective that is calculated based on multiple objectives.
 #' In particular, the new objective uses weights to specify the relative
@@ -39,6 +39,11 @@ NULL
 #' @inherit add_ref_point_approach return seealso
 #'
 #' @family approaches
+#'
+#' @references
+#' Jones D and Tamiz M (2010) _Goal Programming Variants_.
+# 'In: Practical Goal Programming. International Series in Operations Research
+#' and Management Science, volume 141. Springer, Boston, MA.
 #'
 #' @examples
 #' \dontrun{
@@ -78,7 +83,7 @@ NULL
 #'      add_max_wtd_sum_objective(budget = 200) %>%
 #'      add_binary_decisions()
 #'  ) %>%
-#'  add_chebyshev_approach(weights = c(10, 11, 12), goals = c(3, 4, 5)) %>%
+#'  add_chebyshev_goal_approach(weights = c(10, 11, 12), goals = c(3, 4, 5)) %>%
 #'  add_default_solver()
 #'
 #' # print problem
@@ -91,7 +96,7 @@ NULL
 #' print(s)
 #' }
 #' @export
-add_chebyshev_approach <- function(x, weights, goals, verbose = TRUE) {
+add_chebyshev_goal_approach <- function(x, weights, goals, verbose = TRUE) {
   # assert arguments are valid
   assertthat::assert_that(
     inherits(x, "MultiObjProjectProblem"),
@@ -132,10 +137,10 @@ add_chebyshev_approach <- function(x, weights, goals, verbose = TRUE) {
   # add approach
   x$add_approach(
     R6::R6Class(
-      "ChebyshevApproach",
+      "ChebyshevGoalApproach",
       inherit = MultiObjApproach,
       public = list(
-        name = "Chebyshev approach",
+        name = "Chebyshev goal approach",
         data = list(weights = weights, goals = goals, verbose = verbose),
         run = function(x, solver) {
           ## initialization
@@ -154,7 +159,7 @@ add_chebyshev_approach <- function(x, weights, goals, verbose = TRUE) {
             ### copy optimization problem
             mo <- x$opt$copy()
             ### convert to formulation
-            rcpp_convert_chebyshev_method(
+            rcpp_convert_chebyshev_goal_method(
               mo$ptr, x$modelsense, x$obj,
               weights[i, ], goals[i, ]
             )

@@ -3,7 +3,7 @@
 #include "functions.h"
 
 // [[Rcpp::export]]
-bool rcpp_convert_chebyshev_method(
+bool rcpp_convert_chebyshev_goal_method(
   SEXP x,
   Rcpp::CharacterVector mopt_modelsense,
   Rcpp::NumericMatrix mopt_obj,

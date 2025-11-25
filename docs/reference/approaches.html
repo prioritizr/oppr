@@ -52,19 +52,30 @@ that specify the required objectives values.</p></dd>
 
 
 <dt><code><a href="add_wtd_goal_approach.html">add_wtd_goal_approach()</a></code></dt>
-<dd><p>Add an approach to generate solutions with the weighted goal method.</p></dd>
+<dd><p>Add an approach to generate solutions with the weighted goal method
+(Jones and Tamiz 2010).</p></dd>
 
 
-<dt><code><a href="add_chebyshev_approach.html">add_chebyshev_approach()</a></code></dt>
-<dd><p>Add an approach to generate solutions with the Chebyshev method.</p></dd>
+<dt><code><a href="add_chebyshev_goal_approach.html">add_chebyshev_goal_approach()</a></code></dt>
+<dd><p>Add an approach to generate solutions with the Chebyshev goal method.
+(Jones and Tamiz 2010).</p></dd>
 
 
 <dt><code><a href="add_ref_point_approach.html">add_ref_point_approach()</a></code></dt>
-<dd><p>Add an approach to generate solutions with the reference point method.</p></dd>
+<dd><p>Add an approach to generate solutions with the reference point method
+(Vanderpooten 1990)</p></dd>
 
 
 
 </dl></div>
+    <div class="section level2">
+    <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
+    <p>Jones D and Tamiz M (2010) <em>Goal Programming Variants</em>.
+and Management Science, volume 141. Springer, Boston, MA.</p>
+<p>Vanderpooten D (1990) <em>Multiobjective programming: Basic concepts and</em>
+<em>approaches</em>. In: Stochastic Versus Fuzzy Approaches to Multiobjective
+Mathematical Programming Under Uncertainty. Springer, Berlin.</p>
+    </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p>Other overviews:
@@ -134,7 +145,7 @@ that specify the required objectives values.</p></dd>
 <span class="r-in"><span><span class="co"># build another problem, with the Chebyshev method</span></span></span>
 <span class="r-in"><span><span class="va">p4</span> <span class="op">&lt;-</span></span></span>
 <span class="r-in"><span>  <span class="va">p1</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_chebyshev_approach.html">add_chebyshev_approach</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_chebyshev_goal_approach.html">add_chebyshev_goal_approach</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0.5</span>, <span class="fl">0.1</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    goals <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">0.2</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
@@ -219,7 +230,7 @@ that specify the required objectives values.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   MIR: 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Flow cover: 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Explored 167 nodes (630 simplex iterations) in 0.05 seconds (0.03 work units)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Explored 167 nodes (630 simplex iterations) in 0.06 seconds (0.03 work units)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Thread count was 1 (of 8 available processors)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Solution count 1: 0.711386 </span>
@@ -309,7 +320,7 @@ that specify the required objectives values.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Flow cover: 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   RLT: 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Explored 174 nodes (815 simplex iterations) in 0.09 seconds (0.05 work units)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Explored 174 nodes (815 simplex iterations) in 0.07 seconds (0.05 work units)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Thread count was 1 (of 8 available processors)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Solution count 1: 0.716991 </span>
@@ -374,7 +385,7 @@ that specify the required objectives values.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42292    0   15    0.42838    0.42292  1.27%     -    0s</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      0     0     cutoff    0         0.42838    0.42838  0.00%     -    0s</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Explored 1 nodes (282 simplex iterations) in 0.03 seconds (0.03 work units)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Explored 1 nodes (282 simplex iterations) in 0.02 seconds (0.03 work units)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Thread count was 1 (of 8 available processors)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Solution count 1: 0.428377 </span>
@@ -439,7 +450,7 @@ that specify the required objectives values.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42292    0   15    0.42838    0.42292  1.27%     -    0s</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      0     0     cutoff    0         0.42838    0.42838  0.00%     -    0s</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Explored 1 nodes (282 simplex iterations) in 0.03 seconds (0.03 work units)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Explored 1 nodes (282 simplex iterations) in 0.02 seconds (0.03 work units)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Thread count was 1 (of 8 available processors)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Solution count 1: 0.428377 </span>
@@ -526,7 +537,7 @@ that specify the required objectives values.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Flow cover: 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   RLT: 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Explored 200 nodes (841 simplex iterations) in 0.08 seconds (0.05 work units)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Explored 200 nodes (841 simplex iterations) in 0.06 seconds (0.05 work units)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Thread count was 1 (of 8 available processors)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Solution count 1: 0.716991 </span>
@@ -534,7 +545,7 @@ that specify the required objectives values.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimal solution found (tolerance 0.00e+00)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Best objective 7.169911970196e-01, best bound 7.169911970196e-01, gap 0.0000%</span>
-<span class="r-in"><span><span class="va">s</span><span class="op">$</span><span class="va">approach</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"abs epsilon"</span>, <span class="st">"wtd goal"</span>, <span class="st">"Chebyshev"</span>, <span class="st">"ref point"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">s</span><span class="op">$</span><span class="va">approach</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"abs epsilon"</span>, <span class="st">"wtd goal"</span>, <span class="st">"Chebyshev goal"</span>, <span class="st">"ref point"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># print solutions</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">s</span><span class="op">)</span><span class="op">)</span></span></span>
@@ -573,11 +584,11 @@ that specify the required objectives values.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.3814154 0.04832029 0.381568 0.1507689 0.3692636 0.6485493 0.06645404</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3 0.3814154 0.04832029 0.381568 0.5995262 0.3692636 0.3319902 0.06645404</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4 0.3814154 0.04832029 0.381568 0.1507689 0.3692636 0.6485493 0.06645404</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      approach</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 abs epsilon</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    wtd goal</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3   Chebyshev</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4   ref point</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         approach</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    abs epsilon</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2       wtd goal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 Chebyshev goal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4      ref point</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
