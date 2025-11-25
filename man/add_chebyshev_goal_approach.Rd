@@ -20,7 +20,8 @@ reference points. These points represent aspirational goals for each
 objective. To generate multiple solutions based on different values,
 \code{goals} can be a \code{numeric} matrix where
 each row corresponds to a different solution and each columns
-corresponds to a different objective.}
+corresponds to a different objective.
+Note that all values must be greater than zero.}
 
 \item{verbose}{\code{logical} should progress on generating solutions
 displayed? Defaults to \code{TRUE}.}

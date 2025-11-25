@@ -28,7 +28,11 @@ bool rcpp_convert_wtd_goal_method(
 
   // Define additional decision variables
   for (std::size_t i = 0; i < n; ++i) {
-    ptr->_ub.push_back(1.0);
+    if (mopt_modelsense[i] == "max") {
+      ptr->_ub.push_back(1.0);
+    } else {
+      ptr->_ub.push_back(std::numeric_limits<double>::infinity());
+    }
   }
   for (std::size_t i = 0; i < n; ++i) {
     ptr->_lb.push_back(0.0);
@@ -61,16 +65,28 @@ bool rcpp_convert_wtd_goal_method(
   for (std::size_t i =  0; i < n; ++i) {
     ptr->_A_i.push_back(A_nrow + i);
     ptr->_A_j.push_back(A_ncol + i);
-    ptr->_A_x.push_back(goals[i]);
+    if (mopt_modelsense[i] == "max") {
+      ptr->_A_x.push_back(goals[i]);
+    } else {
+      ptr->_A_x.push_back(-goals[i]);
+    }
   }
   for (std::size_t i = 0; i < n; ++i) {
     ptr->_rhs.push_back(goals[i]);
   }
   for (std::size_t i = 0; i < n; ++i) {
-    ptr->_sense.push_back(">=");
+    if (mopt_modelsense[i] == "max") {
+      ptr->_sense.push_back(">=");
+    } else {
+      ptr->_sense.push_back("<=");
+    }
   }
   for (std::size_t i = 0; i < n; ++i) {
-    ptr->_row_ids.push_back("sh");
+    if (mopt_modelsense[i] == "max") {
+      ptr->_row_ids.push_back("sh");
+    } else {
+      ptr->_row_ids.push_back("ovr");
+    }
   }
 
   // return success

@@ -23,22 +23,40 @@ bool rcpp_convert_chebyshev_goal_method(
   std::size_t A_ncol = ptr->ncol();
   std::size_t A_nrow = ptr->nrow();
 
+  // Check if all modelsenses are max
+  bool is_all_max = true;
+  for (std::size_t i = 0; i < n; ++i) {
+    if (mopt_modelsense[i] != "max") {
+      is_all_max = false;
+      break;
+    }
+  }
+
   // Set model sense
   ptr->_modelsense = "min";
 
   // Define additional decision variables for shortfall variables
   for (std::size_t i = 0; i < n; ++i) {
-    ptr->_ub.push_back(1.0);
     ptr->_lb.push_back(0.0);
     ptr->_vtype.push_back("C");
-    ptr->_col_ids.push_back("sh");
+    if (mopt_modelsense[i] == "max") {
+      ptr->_ub.push_back(1.0);
+      ptr->_col_ids.push_back("sh");
+    } else {
+      ptr->_ub.push_back(std::numeric_limits<double>::infinity());
+      ptr->_col_ids.push_back("ovr");
+    }
   }
 
   // Define additional decision variables for maximum value
   // compute upper bound
   double ub = Rcpp::sum(weights);
   // compute apply constraint
-  ptr->_ub.push_back(ub);
+  if (is_all_max) {
+    ptr->_ub.push_back(ub);
+  } else {
+    ptr->_ub.push_back(std::numeric_limits<double>::infinity());
+  }
   ptr->_lb.push_back(0.0);
   ptr->_vtype.push_back("C");
   ptr->_col_ids.push_back("mobj");
@@ -65,16 +83,28 @@ bool rcpp_convert_chebyshev_goal_method(
   for (std::size_t i = 0; i < n; ++i) {
     ptr->_A_i.push_back(A_nrow + i);
     ptr->_A_j.push_back(A_ncol + i);
-    ptr->_A_x.push_back(goals[i]);
+    if (mopt_modelsense[i] == "max") {
+      ptr->_A_x.push_back(goals[i]);
+    } else {
+      ptr->_A_x.push_back(-goals[i]);
+    }
   }
   for (std::size_t i = 0; i < n; ++i) {
     ptr->_rhs.push_back(goals[i]);
   }
   for (std::size_t i = 0; i < n; ++i) {
-    ptr->_sense.push_back(">=");
+    if (mopt_modelsense[i] == "max") {
+      ptr->_sense.push_back(">=");
+    } else {
+      ptr->_sense.push_back("<=");
+    }
   }
   for (std::size_t i = 0; i < n; ++i) {
-    ptr->_row_ids.push_back("sh");
+    if (mopt_modelsense[i] == "max") {
+      ptr->_row_ids.push_back("sh");
+    } else {
+      ptr->_row_ids.push_back("ovr");
+    }
   }
 
   // Add linear constraints for calculating the maximum of the shortfalls

@@ -101,7 +101,7 @@ NULL
 #'     goals = c(1, 3, 0.2)
 #'   )
 #'
-#' # build another problem, with the Chebyshev method
+#' # build another problem, with the Chebyshev goal method
 #' p4 <-
 #'   p1 %>%
 #'   add_chebyshev_goal_approach(

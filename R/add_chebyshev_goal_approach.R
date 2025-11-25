@@ -113,26 +113,15 @@ add_chebyshev_goal_approach <- function(x, weights, goals, verbose = TRUE) {
     is.matrix(weights),
     ncol(weights) == number_of_problems(x),
     nrow(weights) >= 1,
-    assertthat::noNA(c(weights))
+    assertthat::noNA(c(weights)),
+    all(weights >= 0)
   )
   assertthat::assert_that(
     is.matrix(goals),
     ncol(goals) == number_of_problems(x),
     nrow(goals) >= 1,
-    assertthat::noNA(c(goals))
-  )
-  assertthat::assert_that(
-    all(
-      vapply(
-        x$problems, FUN.VALUE = logical(1), function(y) {
-          startsWith(class(y$objective)[[1]], "Max")
-        }
-      )
-    ),
-    msg = paste(
-      "this approach is not compatible with problems that",
-      "have a minimization objective."
-    )
+    assertthat::noNA(c(goals)),
+    all(goals > 0)
   )
   # add approach
   x$add_approach(
