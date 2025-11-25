@@ -131,6 +131,8 @@ print(s)
 }
 }
 \seealso{
+See \link{approaches} for an overview of functions for adding approaches.
+
 Other approaches: 
 \code{\link{add_abs_epsilon_approach}()}
 }

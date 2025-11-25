@@ -208,8 +208,8 @@ print(p)
     ## objective:       maximum richness objective
     ## targets:         none specified
     ## weights:         feature weights
-    ## decisions        binary decision
     ## constraints:     none specified
+    ## decisions:       binary decision
     ## solver:          gurobi solver
 
 Next, we can solve this problem to obtain a solution. By default, we

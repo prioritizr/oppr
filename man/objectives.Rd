@@ -121,6 +121,7 @@ resources among threatened species: A project prioritization protocol.
 }
 \seealso{
 Other overviews: 
+\code{\link{approaches}},
 \code{\link{constraints}},
 \code{\link{solvers}},
 \code{\link{targets}},

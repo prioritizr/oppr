@@ -55,6 +55,7 @@ print(as.data.frame(s))
 }
 \seealso{
 Other overviews: 
+\code{\link{approaches}},
 \code{\link{constraints}},
 \code{\link{objectives}},
 \code{\link{solvers}},

@@ -117,6 +117,37 @@ have different names).</p>
 <span class="r-in"><span><span class="co"># print problem</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Multi-objective Project Prioritization Problem</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> objective:         obj1</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   projects:        F1_project, F2_project, F8_project, baseline_project_obj1 (4 projects)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   features:        F1, F2, F8 (3 features)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   project success: proportion values (between 0.832 and 1)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   objective:       maximum phylogenetic diversity objective</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   targets:         none specified</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   weights:         none specified</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   constraints:     none specified</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   decisions:       binary decision</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> objective:         obj2</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   projects:        F3_project, F4_project, baseline_project_obj2 (3 projects)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   features:        F3, F4 (2 features)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   project success: proportion values (between 0.85 and 1)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   objective:       maximum richness objective</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   targets:         none specified</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   weights:         none specified</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   constraints:     none specified</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   decisions:       binary decision</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> objective:         obj3</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   projects:        F5_project, F6_project, F7_project, ... (6 projects)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   features:        F5, F6, F7, ... (5 features)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   project success: proportion values (between 0.715 and 1)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   objective:       maximum weighted sum objective</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   targets:         none specified</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   weights:         none specified</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   constraints:     none specified</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   decisions:       binary decision</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> actions:           A1_action, A2_action, A3_action, ... (18 actions)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> action costs:      continuous values (between 0 and 103.226)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> approach:          none specified</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> solver:            gurobi solver</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># solve problem</span></span></span>
 <span class="r-in"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="fu"><a href="solve.html">solve</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span></span>
@@ -145,7 +176,7 @@ have different names).</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> PoolSearchMode  2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimize a model with 335 rows, 263 columns and 1122 nonzeros (Min)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Model fingerprint: 0x6890f037</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Model fingerprint: 0xbcf62e88</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model has 3 linear objective coefficients</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Variable types: 14 continuous, 150 integer (150 binary)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Semi-Variable types: 99 continuous, 0 integer</span>
@@ -158,25 +189,25 @@ have different names).</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Presolve time: 0.00s</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Presolved: 7 rows, 23 columns, 29 nonzeros</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Variable types: 4 continuous, 19 integer (19 binary)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Found heuristic solution: objective 2.5034250</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Found heuristic solution: objective 27.4067986</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation presolved: 7 rows, 22 columns, 29 nonzeros</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation: objective 2.413674e+00, 6 iterations, 0.00 seconds (0.00 work units)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation: objective 2.632978e+01, 6 iterations, 0.00 seconds (0.00 work units)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Nodes    |    Current Node    |     Objective Bounds      |     Work</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> *    0     0               0       2.4136736    2.41367  0.00%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> *    0     0               0      26.3297810   26.32978  0.00%     -    0s</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Explored 1 nodes (6 simplex iterations) in 0.00 seconds (0.00 work units)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Thread count was 1 (of 8 available processors)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Solution count 1: 2.41367 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> No other solutions better than 2.41367</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Solution count 1: 26.3298 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> No other solutions better than 26.3298</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimal solution found (tolerance 0.00e+00)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Best objective 2.413673578811e+00, best bound 2.413673578811e+00, gap 0.0000%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Best objective 2.632978104793e+01, best bound 2.632978104793e+01, gap 0.0000%</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># print solution</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">s</span><span class="op">)</span></span></span>

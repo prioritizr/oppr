@@ -94,10 +94,12 @@ be selected for funding (with a value of 1) or not (with a value of zero).</p></
 </dl></div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><a href="constraints.html">constraints</a>.</p>
-<p>Other constraints:
+    <div class="dont-index"><p>Other constraints:
 <code><a href="add_locked_in_action_constraints.html">add_locked_in_action_constraints</a>()</code>,
-<code><a href="add_locked_out_action_constraints.html">add_locked_out_action_constraints</a>()</code></p></div>
+<code><a href="add_locked_in_project_constraints.html">add_locked_in_project_constraints</a>()</code>,
+<code><a href="add_locked_out_action_constraints.html">add_locked_out_action_constraints</a>()</code>,
+<code><a href="add_locked_out_project_constraints.html">add_locked_out_project_constraints</a>()</code>,
+<code><a href="add_manual_locked_project_constraints.html">add_manual_locked_project_constraints</a>()</code></p></div>
     </div>
 
     <div class="section level2">
@@ -107,13 +109,13 @@ be selected for funding (with a value of 1) or not (with a value of zero).</p></
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">sim_projects</span>, <span class="va">sim_features</span>, <span class="va">sim_actions</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># create data frame with locked statuses</span></span></span>
-<span class="r-in"><span><span class="va">status</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span><span class="va">locked_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  action <span class="op">=</span> <span class="va">sim_actions</span><span class="op">$</span><span class="va">name</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>,</span></span>
 <span class="r-in"><span>  status <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># print locked statuses</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">status</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">locked_data</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      action status</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 F1_action      0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2 F2_action      1</span>
@@ -126,7 +128,7 @@ be selected for funding (with a value of 1) or not (with a value of zero).</p></
 <span class="r-in"><span>    <span class="st">"name"</span>, <span class="st">"success"</span>, <span class="st">"name"</span>, <span class="st">"cost"</span>, <span class="st">"name"</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_max_wtd_sum_objective.html">add_max_wtd_sum_objective</a></span><span class="op">(</span>budget <span class="op">=</span> <span class="fl">500</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu">add_manual_locked_action_constraints</span><span class="op">(</span><span class="va">status</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">add_manual_locked_action_constraints</span><span class="op">(</span><span class="va">locked_data</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_binary_decisions.html">add_binary_decisions</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># print problem</span></span></span>

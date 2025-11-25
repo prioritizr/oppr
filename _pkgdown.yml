@@ -66,6 +66,7 @@ reference:
   - title: Approaches
     desc: Functions for specifying multi-objective optimization approaches
     contents:
+      - approaches
       - has_concept("approaches")
   - title: Evaluate solutions
     desc: Functions for evaluating and visualizing solutions to a problem
@@ -96,7 +97,7 @@ reference:
   - title: Deprecated functions
     desc: Functions that are no longer distributed with the package
     contents:
-      - prioritizr-deprecated
+      - oppr-deprecated
   - title: Class definitions and methods
     desc: Internal data structures and functions
     contents:

@@ -101,6 +101,7 @@ print(s5[, sim_actions$name])
 }
 \seealso{
 Other overviews: 
+\code{\link{approaches}},
 \code{\link{objectives}},
 \code{\link{solvers}},
 \code{\link{targets}},

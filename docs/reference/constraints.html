@@ -60,11 +60,26 @@ funding.</p></dd>
 funding.</p></dd>
 
 
+<dt><code><a href="add_locked_in_project_constraints.html">add_locked_in_project_constraints()</a></code></dt>
+<dd><p>Add constraints to ensure that particular projects are selected for funding.</p></dd>
+
+
+<dt><code><a href="add_locked_out_project_constraints.html">add_locked_out_project_constraints()</a></code></dt>
+<dd><p>Add constraints to ensure that particular projects are not selected for
+funding.</p></dd>
+
+
+<dt><code><a href="add_manual_locked_project_constraints.html">add_manual_locked_project_constraints()</a></code></dt>
+<dd><p>Add constraints to ensure that particular projects are selected, or not, for
+funding.</p></dd>
+
+
 
 </dl></div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p>Other overviews:
+<code><a href="approaches.html">approaches</a></code>,
 <code><a href="objectives.html">objectives</a></code>,
 <code><a href="solvers.html">solvers</a></code>,
 <code><a href="targets.html">targets</a></code>,
@@ -123,6 +138,42 @@ funding.</p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># print problem</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">p3</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Project Prioritization Problem</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> actions:         F1_action, F2_action, F3_action, ... (6 actions)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> projects:        F1_project, F2_project, F3_project, ... (6 projects)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> features:        F1, F2, F3, ... (5 features)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> action costs:    continuous values (between 0 and 103.226)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> project success: proportion values (between 0.814 and 1)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> objective:       maximum weighted sum objective</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> targets:         none specified</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> weights:         none specified</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> constraints:     none specified</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> decisions:       binary decision</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> solver:          none specified</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># build another problem, and lock in the first project</span></span></span>
+<span class="r-in"><span><span class="va">p4</span> <span class="op">&lt;-</span> <span class="va">p1</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="add_locked_out_project_constraints.html">add_locked_out_project_constraints</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># print problem</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">p4</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Project Prioritization Problem</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> actions:         F1_action, F2_action, F3_action, ... (6 actions)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> projects:        F1_project, F2_project, F3_project, ... (6 projects)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> features:        F1, F2, F3, ... (5 features)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> action costs:    continuous values (between 0 and 103.226)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> project success: proportion values (between 0.814 and 1)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> objective:       maximum weighted sum objective</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> targets:         none specified</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> weights:         none specified</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> constraints:     none specified</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> decisions:       binary decision</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> solver:          none specified</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># build another problem, and lock out the second project</span></span></span>
+<span class="r-in"><span><span class="va">p5</span> <span class="op">&lt;-</span> <span class="va">p1</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="add_locked_out_project_constraints.html">add_locked_out_project_constraints</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># print problem</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">p5</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Project Prioritization Problem</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> actions:         F1_action, F2_action, F3_action, ... (6 actions)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> projects:        F1_project, F2_project, F3_project, ... (6 projects)</span>
@@ -300,8 +351,122 @@ funding.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimal solution found (tolerance 0.00e+00)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Best objective 1.575440809243e+00, best bound 1.575440809243e+00, gap 0.0000%</span>
+<span class="r-in"><span><span class="va">s4</span> <span class="op">&lt;-</span> <span class="fu"><a href="solve.html">solve</a></span><span class="op">(</span><span class="va">p4</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Username</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter LicenseID to value 2738655</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter TimeLimit to value 2147483647</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter MIPGap to value 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter NumericFocus to value 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Presolve to value 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Threads to value 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter PoolSolutions to value 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter PoolSearchMode to value 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Academic license - for non-commercial use only - expires 2026-11-14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Ubuntu 24.04.2 LTS")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CPU model: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Thread count: 4 physical cores, 8 logical processors, using up to 1 threads</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Non-default parameters:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TimeLimit  2147483647</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MIPGap  0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NumericFocus  2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Presolve  2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Threads  1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PoolSolutions  1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PoolSearchMode  2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Optimize a model with 27 rows, 27 columns and 62 nonzeros (Max)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Model fingerprint: 0x3a769447</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Model has 5 linear objective coefficients</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Variable types: 5 continuous, 22 integer (22 binary)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficient statistics:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Matrix range     [9e-02, 1e+02]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Objective range  [1e+00, 1e+00]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Bounds range     [5e-01, 1e+00]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   RHS range        [1e+00, 2e+02]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Found heuristic solution: objective 1.4456093</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Presolve removed 18 rows and 14 columns</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Presolve time: 0.00s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Presolved: 9 rows, 13 columns, 21 nonzeros</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Variable types: 0 continuous, 13 integer (13 binary)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation presolved: 9 rows, 13 columns, 21 nonzeros</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation: objective 1.680145e+00, 9 iterations, 0.00 seconds (0.00 work units)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Nodes    |    Current Node    |     Objective Bounds      |     Work</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> *    0     0               0       1.6801450    1.68015  0.00%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Explored 1 nodes (9 simplex iterations) in 0.00 seconds (0.00 work units)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Thread count was 1 (of 8 available processors)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Solution count 1: 1.68015 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> No other solutions better than 1.68015</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Optimal solution found (tolerance 0.00e+00)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Best objective 1.680145013696e+00, best bound 1.680145013696e+00, gap 0.0000%</span>
+<span class="r-in"><span><span class="va">s5</span> <span class="op">&lt;-</span> <span class="fu"><a href="solve.html">solve</a></span><span class="op">(</span><span class="va">p5</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Username</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter LicenseID to value 2738655</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter TimeLimit to value 2147483647</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter MIPGap to value 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter NumericFocus to value 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Presolve to value 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Threads to value 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter PoolSolutions to value 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter PoolSearchMode to value 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Academic license - for non-commercial use only - expires 2026-11-14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Ubuntu 24.04.2 LTS")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CPU model: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Thread count: 4 physical cores, 8 logical processors, using up to 1 threads</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Non-default parameters:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TimeLimit  2147483647</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MIPGap  0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NumericFocus  2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Presolve  2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Threads  1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PoolSolutions  1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PoolSearchMode  2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Optimize a model with 27 rows, 27 columns and 62 nonzeros (Max)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Model fingerprint: 0xfb20e0e5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Model has 5 linear objective coefficients</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Variable types: 5 continuous, 22 integer (22 binary)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficient statistics:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Matrix range     [9e-02, 1e+02]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Objective range  [1e+00, 1e+00]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Bounds range     [5e-01, 1e+00]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   RHS range        [1e+00, 2e+02]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Found heuristic solution: objective 1.4456093</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Presolve removed 18 rows and 14 columns</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Presolve time: 0.00s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Presolved: 9 rows, 13 columns, 21 nonzeros</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Variable types: 0 continuous, 13 integer (13 binary)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation presolved: 9 rows, 13 columns, 21 nonzeros</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation: objective 1.575441e+00, 9 iterations, 0.00 seconds (0.00 work units)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Nodes    |    Current Node    |     Objective Bounds      |     Work</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> *    0     0               0       1.5754408    1.57544  0.00%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Explored 1 nodes (9 simplex iterations) in 0.00 seconds (0.00 work units)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Thread count was 1 (of 8 available processors)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Solution count 1: 1.57544 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> No other solutions better than 1.57544</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Optimal solution found (tolerance 0.00e+00)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Best objective 1.575440809243e+00, best bound 1.575440809243e+00, gap 0.0000%</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># print the actions selected for funding in each of the solutions</span></span></span>
+<span class="r-in"><span><span class="co"># print the projects selected for funding in each of the solutions</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">s1</span><span class="op">[</span>, <span class="va">sim_actions</span><span class="op">$</span><span class="va">name</span><span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 6</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   F1_action F2_action F3_action F4_action F5_action baseline_action</span>
@@ -313,6 +478,16 @@ funding.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>         0         0         1         0         0               1</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">s3</span><span class="op">[</span>, <span class="va">sim_actions</span><span class="op">$</span><span class="va">name</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 6</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   F1_action F2_action F3_action F4_action F5_action baseline_action</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>         1         0         0         0         0               1</span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">s4</span><span class="op">[</span>, <span class="va">sim_actions</span><span class="op">$</span><span class="va">name</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 6</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   F1_action F2_action F3_action F4_action F5_action baseline_action</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>         0         1         0         0         0               1</span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">s5</span><span class="op">[</span>, <span class="va">sim_actions</span><span class="op">$</span><span class="va">name</span><span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 6</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   F1_action F2_action F3_action F4_action F5_action baseline_action</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>

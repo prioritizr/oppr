@@ -74,6 +74,9 @@ NULL
 #' @return
 #' A [multi_problem()] object with the approach added to it.
 #'
+#' @seealso
+#' See [approaches] for an overview of functions for adding approaches.
+#'
 #' @family approaches
 #'
 #' @examples

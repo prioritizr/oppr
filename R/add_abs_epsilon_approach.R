@@ -49,7 +49,7 @@ NULL
 #' Maximize V_1, Subject to V_o >= G_o, for all o in O
 #' }
 #'
-#' @inherit add_ref_point_approach return
+#' @inherit add_ref_point_approach return seealso
 #'
 #' @family approaches
 #'
