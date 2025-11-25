@@ -141,16 +141,24 @@ rcpp_convert_abs_constraint_approach <- function(x, mopt_modelsense, mopt_obj, g
     .Call(`_oppr_rcpp_convert_abs_constraint_approach`, x, mopt_modelsense, mopt_obj, goals)
 }
 
+rcpp_convert_chebyshev_method <- function(x, mopt_modelsense, mopt_obj, weights, goals) {
+    .Call(`_oppr_rcpp_convert_chebyshev_method`, x, mopt_modelsense, mopt_obj, weights, goals)
+}
+
 rcpp_convert_pwlobj <- function(x) {
     .Call(`_oppr_rcpp_convert_pwlobj`, x)
 }
 
-rcpp_convert_ref_point_max_method <- function(x, mopt_modelsense, mopt_obj, weights, goals) {
-    .Call(`_oppr_rcpp_convert_ref_point_max_method`, x, mopt_modelsense, mopt_obj, weights, goals)
+rcpp_convert_ref_point_method_step1 <- function(x, mopt_modelsense, mopt_obj, weights, goals) {
+    .Call(`_oppr_rcpp_convert_ref_point_method_step1`, x, mopt_modelsense, mopt_obj, weights, goals)
 }
 
-rcpp_convert_ref_point_sum_method <- function(x, mopt_modelsense, mopt_obj, weights, goals) {
-    .Call(`_oppr_rcpp_convert_ref_point_sum_method`, x, mopt_modelsense, mopt_obj, weights, goals)
+rcpp_convert_ref_point_method_step2 <- function(x, mopt_modelsense, mopt_obj, weights, goals, rhs) {
+    .Call(`_oppr_rcpp_convert_ref_point_method_step2`, x, mopt_modelsense, mopt_obj, weights, goals, rhs)
+}
+
+rcpp_convert_wtd_goal_method <- function(x, mopt_modelsense, mopt_obj, weights, goals) {
+    .Call(`_oppr_rcpp_convert_wtd_goal_method`, x, mopt_modelsense, mopt_obj, weights, goals)
 }
 
 rcpp_evaluate_max_phylo_div_objective <- function(costs, pa_matrix, pf_matrix, branch_matrix, branch_lengths, targets, weights, solutions) {

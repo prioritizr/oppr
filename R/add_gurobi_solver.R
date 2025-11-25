@@ -207,6 +207,11 @@ add_gurobi_solver <- function(x, gap = 0, number_solutions = 1,
           if (p$SolutionLimit == 0) {
             p$SolutionLimit <- NULL
           }
+          # if start solution is available, then use it
+          s <- self$get_data("start")
+          if (!is.null(s) && !is.Waiver(s) && is.numeric(s)) {
+            model$start <- s
+          }
           # solve problem
           rt <- system.time({
             x <- withr::with_locale(

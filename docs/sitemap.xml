@@ -17,9 +17,11 @@
 <url><loc>https://prioritizr.github.io/oppr/reference/Target-class.html</loc></url>
 <url><loc>https://prioritizr.github.io/oppr/reference/Weight-class.html</loc></url>
 <url><loc>https://prioritizr.github.io/oppr/reference/action_names.html</loc></url>
+<url><loc>https://prioritizr.github.io/oppr/reference/add_abs_constraint_approach.html</loc></url>
 <url><loc>https://prioritizr.github.io/oppr/reference/add_abs_epsilon_approach.html</loc></url>
 <url><loc>https://prioritizr.github.io/oppr/reference/add_absolute_targets.html</loc></url>
 <url><loc>https://prioritizr.github.io/oppr/reference/add_binary_decisions.html</loc></url>
+<url><loc>https://prioritizr.github.io/oppr/reference/add_chebyshev_approach.html</loc></url>
 <url><loc>https://prioritizr.github.io/oppr/reference/add_default_solver.html</loc></url>
 <url><loc>https://prioritizr.github.io/oppr/reference/add_default_weights.html</loc></url>
 <url><loc>https://prioritizr.github.io/oppr/reference/add_feature_weights.html</loc></url>
@@ -44,6 +46,7 @@
 <url><loc>https://prioritizr.github.io/oppr/reference/add_ref_point_approach.html</loc></url>
 <url><loc>https://prioritizr.github.io/oppr/reference/add_relative_targets.html</loc></url>
 <url><loc>https://prioritizr.github.io/oppr/reference/add_rsymphony_solver.html</loc></url>
+<url><loc>https://prioritizr.github.io/oppr/reference/add_wtd_goal_approach.html</loc></url>
 <url><loc>https://prioritizr.github.io/oppr/reference/approaches.html</loc></url>
 <url><loc>https://prioritizr.github.io/oppr/reference/as.list.html</loc></url>
 <url><loc>https://prioritizr.github.io/oppr/reference/branch_matrix.html</loc></url>

@@ -46,9 +46,17 @@ multi-objective optimization problems.</p>
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>The following approaches can be used to generate solutions for a
 multi-objective project prioritization problem.</p>
-<dl><dt><code><a href="add_abs_epsilon_approach.html">add_abs_epsilon_approach()</a></code></dt>
-<dd><p>Add an approach to generate solutions with the epsilon constraint
-method with objectives values expressed in absolute units.</p></dd>
+<dl><dt><code><a href="add_abs_constraint_approach.html">add_abs_constraint_approach()</a></code></dt>
+<dd><p>Add an approach to generate solutions based on constraints
+that specify the required objectives values.</p></dd>
+
+
+<dt><code><a href="add_wtd_goal_approach.html">add_wtd_goal_approach()</a></code></dt>
+<dd><p>Add an approach to generate solutions with the weighted goal method.</p></dd>
+
+
+<dt><code><a href="add_chebyshev_approach.html">add_chebyshev_approach()</a></code></dt>
+<dd><p>Add an approach to generate solutions with the Chebyshev method.</p></dd>
 
 
 <dt><code><a href="add_ref_point_approach.html">add_ref_point_approach()</a></code></dt>
@@ -108,25 +116,117 @@ method with objectives values expressed in absolute units.</p></dd>
 <span class="r-in"><span> <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span> <span class="fu"><a href="add_default_solver.html">add_default_solver</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># build another problem, with the reference point method</span></span></span>
+<span class="r-in"><span><span class="co"># build another problem, with the absolute constraint method</span></span></span>
 <span class="r-in"><span><span class="va">p2</span> <span class="op">&lt;-</span></span></span>
 <span class="r-in"><span>  <span class="va">p1</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_ref_point_approach.html">add_ref_point_approach</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0.5</span>, <span class="fl">0.1</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>    goals <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">0.2</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>    method <span class="op">=</span> <span class="st">"sum"</span></span></span>
-<span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># build another problem, with the absolute epsilon constraint method</span></span></span>
-<span class="r-in"><span><span class="va">p3</span> <span class="op">&lt;-</span></span></span>
-<span class="r-in"><span>  <span class="va">p1</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_abs_epsilon_approach.html">add_abs_epsilon_approach</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_abs_constraint_approach.html">add_abs_constraint_approach</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    goals <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fl">0.01</span>, <span class="fl">0.01</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># build another problem, with the weighted goal method</span></span></span>
+<span class="r-in"><span><span class="va">p3</span> <span class="op">&lt;-</span></span></span>
+<span class="r-in"><span>  <span class="va">p1</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_wtd_goal_approach.html">add_wtd_goal_approach</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0.5</span>, <span class="fl">0.1</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    goals <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">0.2</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># build another problem, with the Chebyshev method</span></span></span>
+<span class="r-in"><span><span class="va">p4</span> <span class="op">&lt;-</span></span></span>
+<span class="r-in"><span>  <span class="va">p1</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_chebyshev_approach.html">add_chebyshev_approach</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0.5</span>, <span class="fl">0.1</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    goals <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">0.2</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># build another problem, with the reference point method</span></span></span>
+<span class="r-in"><span><span class="va">p5</span> <span class="op">&lt;-</span></span></span>
+<span class="r-in"><span>  <span class="va">p1</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_ref_point_approach.html">add_ref_point_approach</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0.5</span>, <span class="fl">0.1</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    goals <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">0.2</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># generate solutions using each approach</span></span></span>
-<span class="r-in"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="fu"><a href="solve.html">solve</a></span><span class="op">(</span><span class="va">p2</span><span class="op">)</span>, <span class="fu"><a href="solve.html">solve</a></span><span class="op">(</span><span class="va">p3</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="fu"><a href="solve.html">solve</a></span><span class="op">(</span><span class="va">p2</span><span class="op">)</span>, <span class="fu"><a href="solve.html">solve</a></span><span class="op">(</span><span class="va">p3</span><span class="op">)</span>, <span class="fu"><a href="solve.html">solve</a></span><span class="op">(</span><span class="va">p4</span><span class="op">)</span>, <span class="fu"><a href="solve.html">solve</a></span><span class="op">(</span><span class="va">p5</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Username</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter LicenseID to value 2738655</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter TimeLimit to value 2147483647</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter MIPGap to value 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter NumericFocus to value 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Presolve to value 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Threads to value 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter PoolSolutions to value 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter PoolSearchMode to value 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Academic license - for non-commercial use only - expires 2026-11-14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Ubuntu 24.04.2 LTS")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CPU model: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Thread count: 4 physical cores, 8 logical processors, using up to 1 threads</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Non-default parameters:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TimeLimit  2147483647</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MIPGap  0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NumericFocus  2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Presolve  2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Threads  1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PoolSolutions  1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PoolSearchMode  2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Optimize a model with 334 rows, 260 columns and 918 nonzeros (Max)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Model fingerprint: 0x6755096a</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Model has 201 linear objective coefficients</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Variable types: 11 continuous, 150 integer (150 binary)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Semi-Variable types: 99 continuous, 0 integer</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficient statistics:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Matrix range     [5e-02, 1e+02]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Objective range  [2e-02, 5e-01]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Bounds range     [6e-01, 3e+00]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   RHS range        [1e-02, 1e+03]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Presolve removed 244 rows and 80 columns</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Presolve time: 0.00s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Presolved: 286 rows, 278 columns, 768 nonzeros</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Variable types: 98 continuous, 180 integer (180 binary)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Found heuristic solution: objective 0.3873963</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation presolved: 286 rows, 278 columns, 768 nonzeros</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation: objective 8.326604e-01, 71 iterations, 0.00 seconds (0.00 work units)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Nodes    |    Current Node    |     Objective Bounds      |     Work</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.83266    0   13    0.38740    0.83266   115%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.6823882    0.83266  22.0%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.81807    0   16    0.68239    0.81807  19.9%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.81807    0   12    0.68239    0.81807  19.9%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.81807    0   15    0.68239    0.81807  19.9%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.79417    0   19    0.68239    0.79417  16.4%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71938    0    3    0.68239    0.71938  5.42%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.7096175    0.71938  1.38%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71936    0    5    0.70962    0.71936  1.37%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71936    0    3    0.70962    0.71936  1.37%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71936    0    5    0.70962    0.71936  1.37%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71936    0    5    0.70962    0.71936  1.37%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71856    0    7    0.70962    0.71856  1.26%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.7113862    0.71849  1.00%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71849    0    7    0.71139    0.71849  1.00%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71849    0    7    0.71139    0.71849  1.00%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     2    0.71847    0    7    0.71139    0.71847  1.00%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Cutting planes:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Cover: 17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   MIR: 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Flow cover: 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Explored 167 nodes (630 simplex iterations) in 0.05 seconds (0.03 work units)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Thread count was 1 (of 8 available processors)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Solution count 1: 0.711386 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> No other solutions better than 0.711386</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Optimal solution found (tolerance 0.00e+00)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Best objective 7.113861930761e-01, best bound 7.113861930761e-01, gap 0.0000%</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Username</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter LicenseID to value 2738655</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter TimeLimit to value 2147483647</span>
@@ -209,7 +309,7 @@ method with objectives values expressed in absolute units.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Flow cover: 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   RLT: 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Explored 174 nodes (815 simplex iterations) in 0.08 seconds (0.05 work units)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Explored 174 nodes (815 simplex iterations) in 0.09 seconds (0.05 work units)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Thread count was 1 (of 8 available processors)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Solution count 1: 0.716991 </span>
@@ -241,88 +341,243 @@ method with objectives values expressed in absolute units.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> PoolSolutions  1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> PoolSearchMode  2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Optimize a model with 334 rows, 260 columns and 918 nonzeros (Max)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Model fingerprint: 0x6755096a</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Model has 201 linear objective coefficients</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Variable types: 11 continuous, 150 integer (150 binary)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Optimize a model with 338 rows, 264 columns and 1128 nonzeros (Min)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Model fingerprint: 0xbf6cf508</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Model has 1 linear objective coefficients</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Variable types: 15 continuous, 150 integer (150 binary)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Semi-Variable types: 99 continuous, 0 integer</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Coefficient statistics:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Matrix range     [5e-02, 1e+02]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Objective range  [2e-02, 5e-01]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Matrix range     [2e-02, 1e+02]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Objective range  [1e+00, 1e+00]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Bounds range     [6e-01, 3e+00]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   RHS range        [1e-02, 1e+03]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   RHS range        [2e-01, 1e+03]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Presolve removed 244 rows and 80 columns</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Presolve time: 0.00s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Presolved: 286 rows, 278 columns, 768 nonzeros</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Variable types: 98 continuous, 180 integer (180 binary)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Found heuristic solution: objective 0.3873963</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation presolved: 286 rows, 278 columns, 768 nonzeros</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Presolve time: 0.01s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Presolved: 290 rows, 282 columns, 928 nonzeros</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Variable types: 102 continuous, 180 integer (180 binary)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Found heuristic solution: objective 0.6126037</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation presolved: 290 rows, 282 columns, 928 nonzeros</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation: objective 8.326604e-01, 71 iterations, 0.00 seconds (0.00 work units)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation: objective 3.408968e-01, 130 iterations, 0.00 seconds (0.00 work units)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Nodes    |    Current Node    |     Objective Bounds      |     Work</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.83266    0   13    0.38740    0.83266   115%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.6823882    0.83266  22.0%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.81807    0   16    0.68239    0.81807  19.9%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.81807    0   12    0.68239    0.81807  19.9%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.81807    0   15    0.68239    0.81807  19.9%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.79417    0   19    0.68239    0.79417  16.4%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71938    0    3    0.68239    0.71938  5.42%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.7096175    0.71938  1.38%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71936    0    5    0.70962    0.71936  1.37%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71936    0    3    0.70962    0.71936  1.37%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71936    0    5    0.70962    0.71936  1.37%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71936    0    5    0.70962    0.71936  1.37%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71856    0    7    0.70962    0.71856  1.26%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.7113862    0.71849  1.00%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71849    0    7    0.71139    0.71849  1.00%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71849    0    7    0.71139    0.71849  1.00%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     2    0.71847    0    7    0.71139    0.71847  1.00%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.34090    0   23    0.61260    0.34090  44.4%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.34844    0   25    0.61260    0.34844  43.1%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.4283774    0.42292  1.27%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42292    0   26    0.42838    0.42292  1.27%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42292    0   21    0.42838    0.42292  1.27%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42292    0   14    0.42838    0.42292  1.27%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42292    0   20    0.42838    0.42292  1.27%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42292    0   15    0.42838    0.42292  1.27%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0     cutoff    0         0.42838    0.42838  0.00%     -    0s</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Cutting planes:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Cover: 17</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   MIR: 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Flow cover: 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Explored 167 nodes (630 simplex iterations) in 0.04 seconds (0.03 work units)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Explored 1 nodes (282 simplex iterations) in 0.03 seconds (0.03 work units)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Thread count was 1 (of 8 available processors)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Solution count 1: 0.711386 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> No other solutions better than 0.711386</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Solution count 1: 0.428377 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> No other solutions better than 0.428377</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimal solution found (tolerance 0.00e+00)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Best objective 7.113861930761e-01, best bound 7.113861930761e-01, gap 0.0000%</span>
-<span class="r-in"><span><span class="va">s</span><span class="op">$</span><span class="va">approach</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ref point"</span>, <span class="st">"abs epsilon"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Best objective 4.283773900957e-01, best bound 4.283773900957e-01, gap 0.0000%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Username</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter LicenseID to value 2738655</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter TimeLimit to value 2147483647</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter MIPGap to value 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter NumericFocus to value 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Presolve to value 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Threads to value 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter PoolSolutions to value 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter PoolSearchMode to value 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Academic license - for non-commercial use only - expires 2026-11-14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Ubuntu 24.04.2 LTS")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CPU model: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Thread count: 4 physical cores, 8 logical processors, using up to 1 threads</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Non-default parameters:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TimeLimit  2147483647</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MIPGap  0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NumericFocus  2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Presolve  2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Threads  1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PoolSolutions  1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PoolSearchMode  2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Optimize a model with 338 rows, 264 columns and 1128 nonzeros (Min)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Model fingerprint: 0xbf6cf508</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Model has 1 linear objective coefficients</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Variable types: 15 continuous, 150 integer (150 binary)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Semi-Variable types: 99 continuous, 0 integer</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficient statistics:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Matrix range     [2e-02, 1e+02]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Objective range  [1e+00, 1e+00]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Bounds range     [6e-01, 3e+00]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   RHS range        [2e-01, 1e+03]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Presolve removed 244 rows and 80 columns</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Presolve time: 0.01s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Presolved: 290 rows, 282 columns, 928 nonzeros</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Variable types: 102 continuous, 180 integer (180 binary)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Found heuristic solution: objective 0.6126037</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation presolved: 290 rows, 282 columns, 928 nonzeros</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation: objective 3.408968e-01, 130 iterations, 0.00 seconds (0.00 work units)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Nodes    |    Current Node    |     Objective Bounds      |     Work</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.34090    0   23    0.61260    0.34090  44.4%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.34844    0   25    0.61260    0.34844  43.1%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.4283774    0.42292  1.27%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42292    0   26    0.42838    0.42292  1.27%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42292    0   21    0.42838    0.42292  1.27%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42292    0   14    0.42838    0.42292  1.27%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42292    0   20    0.42838    0.42292  1.27%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42292    0   15    0.42838    0.42292  1.27%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0     cutoff    0         0.42838    0.42838  0.00%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Explored 1 nodes (282 simplex iterations) in 0.03 seconds (0.03 work units)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Thread count was 1 (of 8 available processors)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Solution count 1: 0.428377 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> No other solutions better than 0.428377</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Optimal solution found (tolerance 0.00e+00)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Best objective 4.283773900957e-01, best bound 4.283773900957e-01, gap 0.0000%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Username</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter LicenseID to value 2738655</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter TimeLimit to value 2147483647</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter MIPGap to value 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter NumericFocus to value 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Presolve to value 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Threads to value 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter PoolSolutions to value 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter PoolSearchMode to value 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Academic license - for non-commercial use only - expires 2026-11-14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Ubuntu 24.04.2 LTS")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CPU model: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Thread count: 4 physical cores, 8 logical processors, using up to 1 threads</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Non-default parameters:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TimeLimit  2147483647</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MIPGap  0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NumericFocus  2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Presolve  2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Threads  1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PoolSolutions  1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PoolSearchMode  2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Optimize a model with 339 rows, 264 columns and 1129 nonzeros (Min)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Model fingerprint: 0x5d6761e9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Model has 3 linear objective coefficients</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Variable types: 15 continuous, 150 integer (150 binary)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Semi-Variable types: 99 continuous, 0 integer</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficient statistics:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Matrix range     [2e-02, 1e+02]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Objective range  [1e-01, 1e+00]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Bounds range     [6e-01, 3e+00]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   RHS range        [2e-01, 1e+03]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Loaded user MIP start with objective 0.856755</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Presolve removed 245 rows and 80 columns</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Presolve time: 0.01s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Presolved: 290 rows, 282 columns, 928 nonzeros</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Variable types: 102 continuous, 180 integer (180 binary)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation presolved: 290 rows, 282 columns, 928 nonzeros</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation: objective 5.592195e-01, 146 iterations, 0.00 seconds (0.00 work units)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Nodes    |    Current Node    |     Objective Bounds      |     Work</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.55922    0   16    0.85675    0.55922  34.7%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.7459892    0.55922  25.0%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.59805    0   16    0.74599    0.59805  19.8%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.7413913    0.63860  13.9%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.63860    0   17    0.74139    0.63860  13.9%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.63860    0   15    0.74139    0.63860  13.9%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.63860    0   15    0.74139    0.63860  13.9%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.63860    0   16    0.74139    0.63860  13.9%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.63860    0   22    0.74139    0.63860  13.9%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.7371219    0.63860  13.4%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.7234457    0.63860  11.7%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70893    0   20    0.72345    0.70893  2.01%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70915    0    6    0.72345    0.70915  1.98%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70915    0    6    0.72345    0.70915  1.98%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.7178264    0.70920  1.20%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70921    0    3    0.71783    0.70921  1.20%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70921    0    5    0.71783    0.70921  1.20%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70924    0    7    0.71783    0.70924  1.20%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70993    0    6    0.71783    0.70993  1.10%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70997    0    9    0.71783    0.70997  1.09%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70997    0    9    0.71783    0.70997  1.09%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     2    0.71000    0    9    0.71783    0.71000  1.09%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> H  150    20                       0.7169912    0.71221  0.67%   2.5    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Cutting planes:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Cover: 13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   MIR: 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Flow cover: 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   RLT: 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Explored 200 nodes (841 simplex iterations) in 0.08 seconds (0.05 work units)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Thread count was 1 (of 8 available processors)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Solution count 1: 0.716991 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> No other solutions better than 0.716991</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Optimal solution found (tolerance 0.00e+00)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Best objective 7.169911970196e-01, best bound 7.169911970196e-01, gap 0.0000%</span>
+<span class="r-in"><span><span class="va">s</span><span class="op">$</span><span class="va">approach</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"abs epsilon"</span>, <span class="st">"wtd goal"</span>, <span class="st">"Chebyshev"</span>, <span class="st">"ref point"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># print solutions</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">s</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   solution  status     cost      obj1      obj2     obj3 A1_action A2_action</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1        1 OPTIMAL 884.8571 0.6701859 0.4297357 1.616604      TRUE     FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2        1 OPTIMAL 884.8571 0.6701859 0.4297357 1.616604      TRUE     FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3        1 OPTIMAL 969.5956 0.5989621 0.4297357 1.748802      TRUE      TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4        1 OPTIMAL 884.8571 0.6701859 0.4297357 1.616604      TRUE     FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   A3_action A4_action A5_action A6_action A7_action A8_action A9_action</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1      TRUE     FALSE      TRUE      TRUE      TRUE     FALSE     FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2      TRUE     FALSE      TRUE      TRUE      TRUE     FALSE     FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3      TRUE      TRUE      TRUE     FALSE     FALSE      TRUE     FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4      TRUE     FALSE      TRUE      TRUE      TRUE     FALSE     FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   A10_action A11_action A12_action A13_action A14_action A15_action B1_action</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1       TRUE       TRUE       TRUE      FALSE      FALSE       TRUE      TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2       TRUE       TRUE       TRUE      FALSE      FALSE       TRUE      TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3       TRUE       TRUE      FALSE       TRUE       TRUE      FALSE      TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4       TRUE       TRUE       TRUE      FALSE      FALSE       TRUE      TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   B2_action B3_action F1_project F2_project F8_project baseline_project_obj1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1      TRUE      TRUE       TRUE      FALSE      FALSE                  TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2      TRUE      TRUE       TRUE      FALSE      FALSE                  TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3      TRUE      TRUE      FALSE       TRUE      FALSE                  TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4      TRUE      TRUE       TRUE      FALSE      FALSE                  TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   F3_project F4_project baseline_project_obj2 F5_project F6_project F7_project</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1      FALSE      FALSE                  TRUE      FALSE      FALSE      FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2      FALSE      FALSE                  TRUE      FALSE      FALSE      FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3      FALSE      FALSE                  TRUE      FALSE       TRUE      FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4      FALSE      FALSE                  TRUE      FALSE      FALSE      FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   F9_project F10_project baseline_project_obj3        F1        F2        F8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1       TRUE       FALSE                  TRUE 0.7104848 0.3990748 0.2802669</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2       TRUE       FALSE                  TRUE 0.7104848 0.3990748 0.2802669</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3      FALSE       FALSE                  TRUE 0.1391247 0.7582101 0.2802669</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4       TRUE       FALSE                  TRUE 0.7104848 0.3990748 0.2802669</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          F3         F4       F5        F6        F7        F9        F10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.3814154 0.04832029 0.381568 0.1507689 0.3692636 0.6485493 0.06645404</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.3814154 0.04832029 0.381568 0.1507689 0.3692636 0.6485493 0.06645404</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 0.3814154 0.04832029 0.381568 0.5995262 0.3692636 0.3319902 0.06645404</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 0.3814154 0.04832029 0.381568 0.1507689 0.3692636 0.6485493 0.06645404</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      approach</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   ref point</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 abs epsilon</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 abs epsilon</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    wtd goal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   Chebyshev</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4   ref point</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>

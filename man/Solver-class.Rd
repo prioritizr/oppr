@@ -36,6 +36,8 @@ linear components in an objective function.}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
+\item \href{#method-Solver-set_start_solution}{\code{Solver$set_start_solution()}}
+\item \href{#method-Solver-remove_start_solution}{\code{Solver$remove_start_solution()}}
 \item \href{#method-Solver-solve}{\code{Solver$solve()}}
 \item \href{#method-Solver-clone}{\code{Solver$clone()}}
 }
@@ -55,6 +57,46 @@ linear components in an objective function.}
 </ul>
 </details>
 }}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Solver-set_start_solution"></a>}}
+\if{latex}{\out{\hypertarget{method-Solver-set_start_solution}{}}}
+\subsection{Method \code{set_start_solution()}}{
+Set start solution.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Solver$set_start_solution(x)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{x}}{\code{numeric} vector.}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+Invisible \code{TRUE}.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Solver-remove_start_solution"></a>}}
+\if{latex}{\out{\hypertarget{method-Solver-remove_start_solution}{}}}
+\subsection{Method \code{remove_start_solution()}}{
+Remove start solution.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Solver$remove_start_solution(x)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{x}}{\code{numeric} vector.}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+Invisible \code{TRUE}.
+}
+}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Solver-solve"></a>}}
 \if{latex}{\out{\hypertarget{method-Solver-solve}{}}}

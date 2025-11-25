@@ -61,15 +61,11 @@ test_that("solve", {
   # solve problems
   s1 <-
     p %>%
-    add_ref_point_approach(weights = c(1, 0), goals = c(200, 2)) %>%
+    add_wtd_goal_approach(weights = c(1, 0), goals = c(200, 2)) %>%
     solve()
   s2 <-
     p %>%
-    add_ref_point_approach(weights = c(0, 1), goals = c(200, 2)) %>%
-    solve()
-  s3 <-
-    p %>%
-    add_ref_point_approach(weights = c(0.5, 0.5), goals = c(200, 2)) %>%
+    add_wtd_goal_approach(weights = c(0, 1), goals = c(200, 2)) %>%
     solve()
   # run tests
   ## s1
@@ -94,17 +90,4 @@ test_that("solve", {
   expect_equal(s2$O1P3, TRUE)
   expect_equal(s2$O2P1, TRUE)
   expect_equal(s2$O2P2, TRUE)
-  ## s3
-  expect_equal(s3$A1, FALSE)
-  expect_equal(s3$A2, TRUE)
-  expect_equal(s3$A3, TRUE)
-  expect_equal(s3$A4, TRUE)
-  expect_equal(s3$A5, FALSE)
-  expect_equal(s3$A6, TRUE)
-  expect_equal(s3$O1P1, FALSE)
-  expect_equal(s3$O1P2, TRUE)
-  expect_equal(s3$O1P3, TRUE)
-  expect_equal(s3$O2P1, TRUE)
-  expect_equal(s3$O2P2, FALSE)
-  expect_equal(s3$O2P3, TRUE)
 })

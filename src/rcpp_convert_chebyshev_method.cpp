@@ -3,7 +3,7 @@
 #include "functions.h"
 
 // [[Rcpp::export]]
-bool rcpp_convert_ref_point_sum_method(
+bool rcpp_convert_chebyshev_method(
   SEXP x,
   Rcpp::CharacterVector mopt_modelsense,
   Rcpp::NumericMatrix mopt_obj,
@@ -26,39 +26,43 @@ bool rcpp_convert_ref_point_sum_method(
   // Set model sense
   ptr->_modelsense = "min";
 
-  // Define additional decision variables
+  // Define additional decision variables for shortfall variables
   for (std::size_t i = 0; i < n; ++i) {
     ptr->_ub.push_back(1.0);
-  }
-  for (std::size_t i = 0; i < n; ++i) {
     ptr->_lb.push_back(0.0);
-  }
-  for (std::size_t i = 0; i < n; ++i) {
     ptr->_vtype.push_back("C");
+    ptr->_col_ids.push_back("sh");
   }
-  for (std::size_t i = 0; i < n; ++i) {
-    ptr->_col_ids.push_back("mobj");
-  }
+
+  // Define additional decision variables for maximum value
+  // compute upper bound
+  double ub = Rcpp::sum(weights);
+  // compute apply constraint
+  ptr->_ub.push_back(ub);
+  ptr->_lb.push_back(0.0);
+  ptr->_vtype.push_back("C");
+  ptr->_col_ids.push_back("mobj");
 
   // Specify objective coefficients
   for (std::size_t i = 0; i < A_ncol; ++i) {
     ptr->_obj[i] = 0.0;
   }
   for (std::size_t i = 0; i < n; ++i) {
-    ptr->_obj.push_back(weights[i]);
+    ptr->_obj.push_back(0.0);
   }
+  ptr->_obj.push_back(1.0);
 
-  // Add linear constraints
+  // Add linear constraints for calculating shortfall of goals
   for (std::size_t j = 0; j < A_ncol; ++j) {
     for (std::size_t i = 0; i < n; ++i) {
-      if (mopt_obj(i, j) >= 1.0e-6) {
+      if (std::abs(mopt_obj(i, j) >= 1.0e-6)) {
         ptr->_A_i.push_back(A_nrow + i);
         ptr->_A_j.push_back(j);
         ptr->_A_x.push_back(mopt_obj(i, j));
       }
     }
   }
-  for (std::size_t i =  0; i < n; ++i) {
+  for (std::size_t i = 0; i < n; ++i) {
     ptr->_A_i.push_back(A_nrow + i);
     ptr->_A_j.push_back(A_ncol + i);
     ptr->_A_x.push_back(goals[i]);
@@ -71,6 +75,25 @@ bool rcpp_convert_ref_point_sum_method(
   }
   for (std::size_t i = 0; i < n; ++i) {
     ptr->_row_ids.push_back("sh");
+  }
+
+  // Add linear constraints for calculating the maximum of the shortfalls
+  for (std::size_t i = 0; i < n; ++i) {
+    ptr->_A_i.push_back(A_nrow + n + i);
+    ptr->_A_j.push_back(A_ncol + n);
+    ptr->_A_x.push_back(1.0);
+    ptr->_A_i.push_back(A_nrow + n + i);
+    ptr->_A_j.push_back(A_ncol + i);
+    ptr->_A_x.push_back(-1.0 * weights[i]);
+  }
+  for (std::size_t i = 0; i < n; ++i) {
+    ptr->_rhs.push_back(0.0);
+  }
+  for (std::size_t i = 0; i < n; ++i) {
+    ptr->_sense.push_back(">=");
+  }
+  for (std::size_t i = 0; i < n; ++i) {
+    ptr->_row_ids.push_back("max");
   }
 
   // return success

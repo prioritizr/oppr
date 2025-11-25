@@ -164,7 +164,7 @@ test_that("multiple solutions (multiple objectives)", {
         add_absolute_targets("target") %>%
         add_binary_decisions()
     ) %>%
-    add_ref_point_approach(weights = c(11, 12, 13), goals = c(4, 5, 6)) %>%
+    add_wtd_goal_approach(weights = c(11, 12, 13), goals = c(4, 5, 6)) %>%
     add_gurobi_solver(gap = 0.5, number_solutions = 3)
   # solve problem
   s <- solve(p)

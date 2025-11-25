@@ -3,7 +3,7 @@
 #include "functions.h"
 
 // [[Rcpp::export]]
-bool rcpp_convert_ref_point_max_method(
+bool rcpp_convert_ref_point_method_step1(
   SEXP x,
   Rcpp::CharacterVector mopt_modelsense,
   Rcpp::NumericMatrix mopt_obj,
@@ -35,7 +35,10 @@ bool rcpp_convert_ref_point_max_method(
   }
 
   // Define additional decision variables for maximum value
-  ptr->_ub.push_back(1.0);
+  // compute upper bound
+  double ub = Rcpp::sum(weights);
+  // compute apply constraint
+  ptr->_ub.push_back(ub);
   ptr->_lb.push_back(0.0);
   ptr->_vtype.push_back("C");
   ptr->_col_ids.push_back("mobj");
@@ -52,7 +55,7 @@ bool rcpp_convert_ref_point_max_method(
   // Add linear constraints for calculating shortfall of goals
   for (std::size_t j = 0; j < A_ncol; ++j) {
     for (std::size_t i = 0; i < n; ++i) {
-      if (mopt_obj(i, j) >= 1.0e-6) {
+      if (std::abs(mopt_obj(i, j) >= 1.0e-6)) {
         ptr->_A_i.push_back(A_nrow + i);
         ptr->_A_j.push_back(j);
         ptr->_A_x.push_back(mopt_obj(i, j));

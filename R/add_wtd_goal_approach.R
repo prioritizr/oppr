@@ -1,40 +1,23 @@
 #' @include internal.R MultiObjApproach-class.R
 NULL
 
-#' Add a reference point approach
+#' Add a weighted goal achievement approach
 #'
-#' Add a reference point approach for multi-objective optimization to a
-#' project problem.
+#' Add a weighted goal achievement approach for multi-objective
+#' optimization to a project problem.
 #'
-#' @param x [multi_problem()] object.
-#'
-#' @param weights `numeric` vector containing the weights for each
-#' objective. To generate multiple solutions based on different values,
-#' `weights` can be a `numeric` matrix where
-#' each row corresponds to a different solution and each columns
-#' corresponds to a different objective.
-#'
-#' @param goals `numeric` vector containing values that denote the
-#' reference points. These points represent aspirational goals for each
-#' objective. To generate multiple solutions based on different values,
-#' `goals` can be a `numeric` matrix where
-#' each row corresponds to a different solution and each columns
-#' corresponds to a different objective.
-#'
-#' @param verbose `logical` should progress on generating solutions
-#' displayed? Defaults to `TRUE`.
+#' @inheritParams add_ref_point_approach
 #'
 #' @details
-#' The reference point approach for multi-objective optimization involves
+#' The weighted goal achievement approach for multi-objective
+#' optimization involves
 #' creating a new objective that is calculated based on multiple objectives.
 #' In particular, the new objective uses weights to specify the relative
 #' importance of each individual objective, and goals to specify
 #' a threshold minimum level of performance for each objective
 #' (conceptually similar to target thresholds used in conservation planning).
-#' Given this, the reference point approach first involves
-#' minimizing the maximum goal shortfall (i.e., difference between
-#' goal and objective value, expressed as a percentage), and then
-#' subsequently minimizing the weighted sum of the goal shortfalls.
+#' It then calculates the new objectives based on the weighted sum
+#' of the percentage of each goal that is achieved for each objective.
 #'
 #' To describe this approach mathematically, we will define the
 #' following terminology.
@@ -48,17 +31,12 @@ NULL
 #' is formulated with the following equation.
 #'
 #' \deqn{
-#' \mathrm{Minimize} \space \max_{o = 0}^{O} W_o \times \frac{V_o}{W_o}, \\
 #' \mathrm{Minimize} \space \sum_{o = 0}^{O} W_o \times \frac{V_o}{W_o}
 #' }{
-#' Minimize max o^O W_o * (V_o / W_o), sum o^O W_o * (V_o / W_o)
+#' Minimize sum o^O W_o * (V_o / W_o)
 #' }
 #'
-#' @return
-#' A [multi_problem()] object with the approach added to it.
-#'
-#' @seealso
-#' See [approaches] for an overview of functions for adding approaches.
+#' @inherit add_ref_point_approach return seealso
 #'
 #' @family approaches
 #'
@@ -100,7 +78,7 @@ NULL
 #'      add_max_wtd_sum_objective(budget = 200) %>%
 #'      add_binary_decisions()
 #'  ) %>%
-#'  add_ref_point_approach(weights = c(10, 11, 12), goals = c(3, 4, 5)) %>%
+#'  add_wtd_goal_approach(weights = c(10, 11, 12), goals = c(3, 4, 5)) %>%
 #'  add_default_solver()
 #'
 #' # print problem
@@ -113,7 +91,7 @@ NULL
 #' print(s)
 #' }
 #' @export
-add_ref_point_approach <- function(x, weights, goals, verbose = TRUE) {
+add_wtd_goal_approach <- function(x, weights, goals, verbose = TRUE) {
   # assert arguments are valid
   assertthat::assert_that(
     inherits(x, "MultiObjProjectProblem"),
@@ -154,11 +132,11 @@ add_ref_point_approach <- function(x, weights, goals, verbose = TRUE) {
   # add approach
   x$add_approach(
     R6::R6Class(
-      "ReferencePointApproach",
+      "WeightedGoalApproach",
       inherit = MultiObjApproach,
       public = list(
-        name = "reference point approach",
-        data = list(weights = weights, goals = goals,verbose = verbose),
+        name = "weighted goal approach",
+        data = list(weights = weights, goals = goals, verbose = verbose),
         run = function(x, solver) {
           ## initialization
           weights <- self$get_data("weights")
@@ -175,32 +153,13 @@ add_ref_point_approach <- function(x, weights, goals, verbose = TRUE) {
           for (i in seq_len(nrow(weights))) {
             ### copy optimization problem
             mo <- x$opt$copy()
-            ### apply step 1 processing to minimize maximum
-            rcpp_convert_ref_point_method_step1(
+            ### convert to formulation
+            rcpp_convert_wtd_goal_method(
               mo$ptr, x$modelsense, x$obj,
               weights[i, ], goals[i, ]
             )
             ### solve problem
             sols[[i]] <- solver$solve(mo)
-            ### if solution found, then apply subsequent processing
-            if (
-              !is.null(sols[[i]]) &&
-              !is.null(sols[[i]][[1]]) &&
-              !is.null(sols[[i]][[1]]$x)
-            ) {
-              ### apply step 2 processing to minimize sum
-              rcpp_convert_ref_point_method_step2(
-                mo$ptr, x$modelsense, x$obj,
-                weights[i, ], goals[i, ],
-                sum(sols[[i]][[1]]$x * mo$obj())
-              )
-              ### set starting solution
-              solver$set_start_solution(sols[[i]][[1]]$x)
-              ### solve problem
-              sols[[i]] <- solver$solve(mo)
-              ## remove starting solution
-              solver$remove_start_solution()
-            }
             ## if needed, update progress bar
             if (isTRUE(verbose)) {
               cli::cli_progress_update(id = pb)

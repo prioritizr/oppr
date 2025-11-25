@@ -25,6 +25,24 @@ Solver <- R6::R6Class(
     has_pwlobj = FALSE,
 
     #' @description
+    #' Set start solution.
+    #' @param x `numeric` vector.
+    #' @return Invisible `TRUE`.
+    set_start_solution = function(x) {
+      self$set_data("start", x)
+      invisible(TRUE)
+    },
+
+    #' @description
+    #' Remove start solution.
+    #' @param x `numeric` vector.
+    #' @return Invisible `TRUE`.
+    remove_start_solution = function(x) {
+      self$set_data("start", new_waiver())
+      invisible(TRUE)
+    },
+
+    #' @description
     #' Solve an optimization problem.
     #' @param x [new_optimization_problem()] object.
     #' @param ... Additional arguments as needed.

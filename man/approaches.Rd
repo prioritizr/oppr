@@ -18,6 +18,14 @@ Add an approach to generate solutions based on constraints
 that specify the required objectives values.
 }
 
+\item{\code{\link[=add_wtd_goal_approach]{add_wtd_goal_approach()}}}{
+Add an approach to generate solutions with the weighted goal method.
+}
+
+\item{\code{\link[=add_chebyshev_approach]{add_chebyshev_approach()}}}{
+Add an approach to generate solutions with the Chebyshev method.
+}
+
 \item{\code{\link[=add_ref_point_approach]{add_ref_point_approach()}}}{
 Add an approach to generate solutions with the reference point method.
 }
@@ -64,26 +72,40 @@ p1 <-
  ) \%>\%
  add_default_solver()
 
-# build another problem, with the reference point method
-p2 <-
-  p1 \%>\%
-  add_ref_point_approach(
-    weights = c(1, 0.5, 0.1),
-    goals = c(1, 3, 0.2),
-    method = "sum"
-  )
-
 # build another problem, with the absolute constraint method
-p3 <-
+p2 <-
   p1 \%>\%
   add_abs_constraint_approach(
     goals = c(NA, 0.01, 0.01)
   )
 
+# build another problem, with the weighted goal method
+p3 <-
+  p1 \%>\%
+  add_wtd_goal_approach(
+    weights = c(1, 0.5, 0.1),
+    goals = c(1, 3, 0.2)
+  )
+
+# build another problem, with the Chebyshev method
+p4 <-
+  p1 \%>\%
+  add_chebyshev_approach(
+    weights = c(1, 0.5, 0.1),
+    goals = c(1, 3, 0.2)
+  )
+
+# build another problem, with the reference point method
+p5 <-
+  p1 \%>\%
+  add_ref_point_approach(
+    weights = c(1, 0.5, 0.1),
+    goals = c(1, 3, 0.2)
+  )
 
 # generate solutions using each approach
-s <- rbind(solve(p2), solve(p3))
-s$approach <- c("ref point", "abs epsilon")
+s <- rbind(solve(p2), solve(p3), solve(p4), solve(p5))
+s$approach <- c("abs epsilon", "wtd goal", "Chebyshev", "ref point")
 
 # print solutions
 print(as.data.frame(s))
