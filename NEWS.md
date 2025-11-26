@@ -8,11 +8,9 @@
   be useful when the expected outcome values for a feature reflect the
   total amount of land expected to be covered by an ecosystem, or the
   number of individuals present in a population.
-- New `add_ref_point_approach()` function for performing multi-objective
-  optimization following the reference point approach.
-- New `add_abs_epsilon_approach()` function for performing multi-objective
-  optimization based on the epsilon constraint approach with absolute
-  values for each objective.
+- New `add_ref_point_approach()`, `add_wtd_goal_approach()`,
+  `add_chebyshev_goal_appraoch()`, and `add_abs_constraint_approach()`
+  functions for multi-objective optimization.
 - New `add_locked_in_project_constraints()`,
   `add_locked_out_project_constraints()`, and
   `add_manual_locked_project_constraints()` functions for adding constraints
