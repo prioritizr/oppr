@@ -1,7 +1,7 @@
 # oppr 1.1.0
 
-- New `multi_problem()` and `add_ref_point_approach()` functions for multi-
-  objective optimization.
+- New `multi_problem()` function to build multi-objective project
+  prioritization problems.
 - New `add_max_wtd_sum_objective()` function that is designed for datasets when
   some (or all) of the features do not have probability values to describe their
   expected outcome when projects are completed. For example, this may
