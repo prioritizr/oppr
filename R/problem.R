@@ -287,7 +287,7 @@ problem <- function(projects, actions, features, project_name_column,
   if (is.null(baseline_project_name)) {
     # verify that features have finite persistence probabilities in baseline
     # project(s)
-    bp <- actions$name[actions[[action_cost_column]] == 0]
+    bp <- actions[[action_name_column]][actions[[action_cost_column]] == 0]
     assertthat::assert_that(
       length(bp) > 0,
       msg = "no baseline action detected (i.e., no projects have a zero cost)"
@@ -299,10 +299,10 @@ problem <- function(projects, actions, features, project_name_column,
         "because actions have zero costs."
       )
     )
-    pa <- as.matrix(projects[, actions$name])
+    pa <- as.matrix(projects[, actions[[action_name_column]]])
     bp <- which(
       vapply(seq_len(nrow(pa)), FUN.VALUE = logical(1), function(i) {
-        setequal(actions$name[pa[i, ]], bp)
+        setequal(actions[[action_name_column]][pa[i, ]], bp)
       })
     )
     assertthat::assert_that(
