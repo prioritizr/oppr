@@ -33,34 +33,27 @@ bool rcpp_convert_pwlobj(SEXP x) {
     pwc_n_pieces = pwc_x.size() - 1;
 
     // extract x start values
-    pwc_start.reserve(pwc_n_pieces);
-    pwc_start.shrink_to_fit();
+    pwc_start.resize(pwc_n_pieces);
     for (std::size_t j = 0; j < pwc_n_pieces; ++j) {
-      pwc_start.push_back(pwc_x[j]);
+      pwc_start[j] = pwc_x[j];
     }
 
     // extract x end values
-    pwc_end.reserve(pwc_n_pieces);
-    pwc_end.shrink_to_fit();
+    pwc_end.resize(pwc_n_pieces);
     for (std::size_t j = 0; j < pwc_n_pieces; ++j) {
-      pwc_end.push_back(pwc_x[j + 1]);
+      pwc_end[j] = pwc_x[j + 1];
     }
 
     // compute slope coefficients
-    pwc_delta.reserve(pwc_n_pieces);
-    pwc_delta.shrink_to_fit();
+    pwc_delta.resize(pwc_n_pieces);
     for (std::size_t j = 0; j < pwc_n_pieces; ++j) {
-      pwc_delta.push_back(
-        (pwc_y[j + 1] - pwc_y[j]) /
-        (pwc_x[j + 1] - pwc_x[j])
-      );
+      pwc_delta[j] = (pwc_y[j + 1] - pwc_y[j]) / (pwc_x[j + 1] - pwc_x[j]);
     }
 
     /// calculate intercept coefficients
+    pwc_zeta.resize(pwc_n_pieces);
     for (std::size_t j = 0; j < pwc_n_pieces; ++j) {
-      pwc_zeta.push_back(
-         pwc_y[j] - pwc_delta[j] * pwc_x[j]
-      );
+      pwc_zeta[j] = pwc_y[j] - pwc_delta[j] * pwc_x[j];
     }
 
     /// add intercept variables for approximation
