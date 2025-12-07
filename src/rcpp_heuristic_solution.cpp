@@ -266,7 +266,7 @@ Rcpp::LogicalMatrix rcpp_heuristic_solution(
         //// calculate cost of project using shared action costs
         //// e.g. if two projects share a $100 action, then each project
         //// incurs a $50 cost for the action
-        curr_project_costs[j] = 1.0e-5; // note we add a small value to avoid
+        curr_project_costs[j] = SMALL_TOL; // note we add a small value to avoid
                                         // divide by zero issues
         for (auto aitr = curr_pa_matrix.begin_row(j);
              aitr != curr_pa_matrix.end_row(j);

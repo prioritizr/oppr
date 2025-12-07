@@ -26,7 +26,7 @@ bool rcpp_convert_ref_point_method_step2(
   // this works because the current objective is to minimize the maximum
   // of the goal shortfall variables
   for (std::size_t i = 0; i < A_ncol; ++i) {
-    if (std::abs(ptr->_obj[i] >= 1.0e-6)) {
+    if (std::abs(ptr->_obj[i] >= SMALL_TOL)) {
       ptr->_A_i.push_back(A_nrow);
       ptr->_A_j.push_back(i);
       ptr->_A_x.push_back(ptr->_obj[i]);

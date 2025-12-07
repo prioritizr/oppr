@@ -31,7 +31,7 @@ bool rcpp_convert_abs_constraint_approach(
   for (std::size_t i = 0; i < n; ++i) {
     if (!NumericVector::is_na(goals[i])) {
       for (std::size_t j = 0; j < A_ncol; ++j) {
-        if (mopt_obj(i, j) >= 1.0e-6) {
+        if (mopt_obj(i, j) >= SMALL_TOL) {
           ptr->_A_i.push_back(curr_row);
           ptr->_A_j.push_back(j);
           ptr->_A_x.push_back(mopt_obj(i, j));

@@ -77,7 +77,7 @@ bool rcpp_add_raw_data(SEXP x, arma::sp_mat pa_matrix, arma::sp_mat pf_matrix,
   //// projects
   counter = 0;
   for (auto pitr = pf_matrix.begin(); pitr != pf_matrix.end(); ++pitr) {
-    if ((*pitr) > 1.0e-5) {
+    if ((*pitr) > SMALL_TOL) {
       r += 1;
       ptr->_A_i.push_back(r);
       ptr->_A_i.push_back(r);
@@ -101,7 +101,7 @@ bool rcpp_add_raw_data(SEXP x, arma::sp_mat pa_matrix, arma::sp_mat pf_matrix,
   counter = 0;
   ++r;
   for (auto pitr = pf_matrix.begin(); pitr != pf_matrix.end(); ++pitr) {
-    if ((*pitr) > 1.0e-5) {
+    if ((*pitr) > SMALL_TOL) {
       ptr->_A_i.push_back(r + pitr.col());
       ptr->_A_j.push_back(
         (ptr->_number_of_actions) +
@@ -125,7 +125,7 @@ bool rcpp_add_raw_data(SEXP x, arma::sp_mat pa_matrix, arma::sp_mat pf_matrix,
   counter = 0;
   ++r;
   for (auto pitr = pf_matrix.begin(); pitr != pf_matrix.end(); ++pitr) {
-    if ((*pitr) > 1.0e-5) {
+    if ((*pitr) > SMALL_TOL) {
       ptr->_A_i.push_back(r + pitr.col());
       ptr->_A_j.push_back(
         (ptr->_number_of_actions) +

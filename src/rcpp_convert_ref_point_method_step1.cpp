@@ -73,7 +73,7 @@ bool rcpp_convert_ref_point_method_step1(
   // Add linear constraints for calculating shortfall of goals
   for (std::size_t j = 0; j < A_ncol; ++j) {
     for (std::size_t i = 0; i < n; ++i) {
-      if (std::abs(mopt_obj(i, j) >= 1.0e-6)) {
+      if (std::abs(mopt_obj(i, j) >= SMALL_TOL)) {
         ptr->_A_i.push_back(A_nrow + i);
         ptr->_A_j.push_back(j);
         ptr->_A_x.push_back(mopt_obj(i, j));
