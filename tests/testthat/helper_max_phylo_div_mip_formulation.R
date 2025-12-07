@@ -196,8 +196,12 @@ max_phylo_div_mip_formulation <- function(project_data, action_data, tree,
       ### funded for each species
       curr_max_value <- sum(log(apply(curr_probs, 2, max, na.rm = TRUE)))
       ### compute absolute values
-      curr_abs_min_value <- min(abs(c(curr_min_value, curr_max_value))) * 0.99
-      curr_abs_max_value <- max(abs(c(curr_min_value, curr_max_value))) * 1.01
+      curr_abs_min_value <- min(abs(c(curr_min_value, curr_max_value)))
+      curr_abs_max_value <- max(abs(c(curr_min_value, curr_max_value)))
+      ### apply padding
+      curr_pad_value <- (curr_abs_max_value - curr_abs_min_value) * 0.01
+      curr_abs_min_value <- curr_abs_min_value - curr_pad_value
+      curr_abs_max_value <- curr_abs_max_value + curr_pad_value
       ### create piece-wise linear terms
       model$pwlobj[[curr_pwl]] <- list()
       model$pwlobj[[curr_pwl]]$var <- match(paste0("R_", b), variable_names)
