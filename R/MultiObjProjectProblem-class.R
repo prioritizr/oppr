@@ -240,7 +240,7 @@ MultiObjProjectProblem <- R6::R6Class(
           call. = FALSE, immediate. = TRUE
         )
       } else {
-        p$defaults$portfolio <- FALSE
+        p$defaults$approach <- FALSE
       }
       p$approach <- x
       p
