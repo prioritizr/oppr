@@ -32,7 +32,7 @@ test_that("maximum benefit obj", {
   # run calculations
   r <- replacement_costs(p, s)
   # run tests
-  expect_s3_class(r, "tbl_df")
+  expect_s3_class(r, "data.frame")
   expect_equal(nrow(r), 4)
   expect_equal(r$name, p$action_names())
   expect_equal(r$cost, c(0.25, NA_real_, 0.2, Inf))
@@ -91,7 +91,7 @@ test_that("minimum set obj", {
   # run calculations
   r <- replacement_costs(p, s)
   # run tests
-  expect_s3_class(r, "tbl_df")
+  expect_s3_class(r, "data.frame")
   expect_equal(nrow(r), 4)
   expect_equal(r$name, p$action_names())
   expect_equal(r$cost, c(0.15, NA_real_, 0.2, Inf))
@@ -121,7 +121,7 @@ test_that("invalid arguments", {
   # run tests
   ## verify that test data yields plot
   if (identical(Sys.getenv("NOT_CRAN"), "true")) {
-    expect_s3_class(replacement_costs(p, solution), "tbl_df")
+    expect_s3_class(replacement_costs(p, solution), "data.frame")
   }
   ## invalid problem
   expect_error({
