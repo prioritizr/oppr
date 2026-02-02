@@ -68,7 +68,7 @@ NULL
 #' cost of conservation areas: how does habitat loss influence priorities?
 #' *Biological Conservation*, **142**, 575--585.
 #'
-#' @seealso [solution_statistics()], [project_cost_effectiveness()].
+#' @family evaluation
 #'
 #' @examples
 #' \dontrun{

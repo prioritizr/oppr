@@ -58,7 +58,7 @@ NULL
 #' resources among threatened species: A project prioritization protocol.
 #' *Conservation Biology*, **23**, 328--338.
 #'
-#' @seealso [solution_statistics()], [replacement_costs()].
+#' @family evaluation
 #'
 #' @examples
 #' # load data

@@ -45,6 +45,8 @@ NULL
 #'
 #' }
 #'
+#' @family evaluation
+#'
 #' @examples
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
