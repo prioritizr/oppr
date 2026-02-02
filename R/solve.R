@@ -209,6 +209,11 @@ methods::setMethod(
   "solve",
   signature(a = "MultiObjProjectProblem", b = "missing"),
   function(a, b, ...) {
+    ## assertions
+    assertthat::assert_that(
+      !is.Waiver(a$approach),
+      msg = "`a` must have a specified approach."
+    )
     ## solve problem
     # assign solver
     if (inherits(a$solver, "Waiver")) {
