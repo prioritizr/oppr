@@ -142,17 +142,6 @@ wrangling.</p>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/" class="external-link">tibble</a></span><span class="op">)</span></span>
 <span><span class="co"># load tidyr package for reshaping tabular data</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a></span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode">
-<pre class="sourceCode"><code class="sourceCode"><span style="color: #949494;">#</span> 
-<span style="color: #949494;">#</span> Attaching package: 'tidyr'
-</code></pre>
-</div>
-<div class="sourceCode">
-<pre class="sourceCode"><code class="sourceCode"><span style="color: #949494;">#</span> The following object is masked from 'package:testthat':
-<span style="color: #949494;">#</span> 
-<span style="color: #949494;">#</span>     matches
-</code></pre>
-</div>
 </div>
 <div class="section level3">
 <h3 id="data-simulation">Data simulation<a class="anchor" aria-label="anchor" href="#data-simulation"></a>
@@ -458,7 +447,7 @@ projects.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># plot solution</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">s1</span><span class="op">)</span></span></code></pre></div>
-<p><img src="oppr_files/figure-html/unnamed-chunk-13-1.png" width="432" style="display: block; margin: auto;"></p>
+<p><img src="oppr_files/figure-html/unnamed-chunk-13-1.png" class="r-plt" alt="" width="432" style="display: block; margin: auto;"></p>
 <p>Overall, we can see that most species have a fairly decent chance at
 persisting into the future (approx. 77%). But when making this
 prioritization, we assumed that we valued the persistence of each
@@ -497,7 +486,7 @@ values.</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_x_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/comma.html" class="external-link">comma</a></span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">xlab</a></span><span class="op">(</span><span class="st">"Feature weight"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ylab</a></span><span class="op">(</span><span class="st">"Frequency"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="oppr_files/figure-html/unnamed-chunk-15-1.png" width="528" style="display: block; margin: auto;"></p>
+<p><img src="oppr_files/figure-html/unnamed-chunk-15-1.png" class="r-plt" alt="" width="528" style="display: block; margin: auto;"></p>
 <p>We can see that most features have a low weighting (less than 1,000),
 but a few features have very high weightings (greater than 500,000).
 Let’s make a new problem based on the original problem, add the feature
@@ -547,7 +536,7 @@ weights to the new problem, and then solve this new problem.</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># plot solution</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">p2</span>, <span class="va">s2</span><span class="op">)</span></span></code></pre></div>
-<p><img src="oppr_files/figure-html/unnamed-chunk-20-1.png" width="432" style="display: block; margin: auto;"></p>
+<p><img src="oppr_files/figure-html/unnamed-chunk-20-1.png" class="r-plt" alt="" width="432" style="display: block; margin: auto;"></p>
 <p>We can also examine how adding feature weights changed our
 solution.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
@@ -640,7 +629,7 @@ to specify a much larger number).</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">xlab</a></span><span class="op">(</span><span class="st">"Expected richness (objective function)"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ylab</a></span><span class="op">(</span><span class="st">"Frequency"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>plot.margin <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html" class="external-link">unit</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5.5</span>, <span class="fl">10.5</span>, <span class="fl">5.5</span>, <span class="fl">5.5</span><span class="op">)</span>, <span class="st">"pt"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="oppr_files/figure-html/unnamed-chunk-27-1.png" width="528" style="display: block; margin: auto;"></p>
+<p><img src="oppr_files/figure-html/unnamed-chunk-27-1.png" class="r-plt" alt="" width="528" style="display: block; margin: auto;"></p>
 <p>We can see that some of our solutions performed much better than
 other solutions. And we can also see that there are several solutions
 that perform nearly as well as the optimal solution.</p>
@@ -744,7 +733,7 @@ obtained previously (i.e. the <code>s3</code> object).</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html" class="external-link">coord_cartesian</a></span><span class="op">(</span>xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">100</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">xlab</a></span><span class="op">(</span><span class="st">"Selection frequency (%)"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ylab</a></span><span class="op">(</span><span class="st">"Frequency"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="oppr_files/figure-html/unnamed-chunk-28-1.png" width="528" style="display: block; margin: auto;"></p>
+<p><img src="oppr_files/figure-html/unnamed-chunk-28-1.png" class="r-plt" alt="" width="528" style="display: block; margin: auto;"></p>
 <p>Although selection frequency might seem like an appealing metric, it
 suffers from an assumption that is unrealistic for most large-scale
 problems. Specifically, it assumes that our portfolio of solutions is a
@@ -887,7 +876,7 @@ baseline project).</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_x_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/comma.html" class="external-link">comma</a></span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">xlab</a></span><span class="op">(</span><span class="st">"Replacement cost"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ylab</a></span><span class="op">(</span><span class="st">"Frequency"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="oppr_files/figure-html/unnamed-chunk-30-1.png" width="528" style="display: block; margin: auto;"></p>
+<p><img src="oppr_files/figure-html/unnamed-chunk-30-1.png" class="r-plt" alt="" width="528" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level3">
 <h3 id="complementarity-in-project-prioritizations">Complementarity in project prioritizations<a class="anchor" aria-label="anchor" href="#complementarity-in-project-prioritizations"></a>
@@ -968,7 +957,7 @@ before.</p>
 <code class="sourceCode R"><span></span>
 <span><span class="co"># plot solution</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">p4</span>, <span class="va">s4</span><span class="op">)</span></span></code></pre></div>
-<p><img src="oppr_files/figure-html/unnamed-chunk-33-1.png" width="432" style="display: block; margin: auto;"></p>
+<p><img src="oppr_files/figure-html/unnamed-chunk-33-1.png" class="r-plt" alt="" width="432" style="display: block; margin: auto;"></p>
 <p>But how would the number of features which meet the target change if
 we increased the budget? Or how would the number of features which meet
 the target change if we increased the target to 85%? These are common
@@ -1012,7 +1001,7 @@ budgets and plot the relationships.</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">xlab</a></span><span class="op">(</span><span class="st">"Solution cost ($)"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ylab</a></span><span class="op">(</span><span class="st">"Number of features with targets"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"Target"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="oppr_files/figure-html/unnamed-chunk-34-1.png" width="432" style="display: block; margin: auto;"></p>
+<p><img src="oppr_files/figure-html/unnamed-chunk-34-1.png" class="r-plt" alt="" width="432" style="display: block; margin: auto;"></p>
 <p>We might also be interested in understanding how exactly how much it
 would cost to implement a set of management actions that would result in
 all of the features meeting a specific target. Let’s see if we can find
@@ -1094,7 +1083,8 @@ probability of persistence.</p>
 </code></pre>
 </div>
 <div class="sourceCode">
-<pre class="sourceCode"><code class="sourceCode"><span style="color: #949494;">#</span><span style="color: #BB0000;"> Error in solve(p5): project prioritization problem is infeasible
+<pre class="sourceCode"><code class="sourceCode"><span style="color: #949494;">#</span><span style="color: #BB0000;"> </span><span style="color: #BBBB00; font-weight: bold;">Error</span><span style="color: #BB0000; font-weight: bold;"> in `solve()`:</span><span style="color: #BB0000;">
+</span><span style="color: #949494;">#</span><span style="color: #BB0000;"> </span><span style="color: #BBBB00;">!</span><span style="color: #BB0000;"> project prioritization problem is infeasible
 </span></code></pre>
 </div>
 <p>We received an error instead of a solution. If we read the error
@@ -1154,7 +1144,7 @@ every feature has a 60% chance of persistence.</p>
 <div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># plot solution</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">p6</span>, <span class="va">s6</span><span class="op">)</span></span></code></pre></div>
-<p><img src="oppr_files/figure-html/unnamed-chunk-41-1.png" width="432" style="display: block; margin: auto;"></p>
+<p><img src="oppr_files/figure-html/unnamed-chunk-41-1.png" class="r-plt" alt="" width="432" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level3">
 <h3 id="benchmarking-conventional-algorithms">Benchmarking conventional algorithms<a class="anchor" aria-label="anchor" href="#benchmarking-conventional-algorithms"></a>
@@ -1273,7 +1263,7 @@ random processes.</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">xlab</a></span><span class="op">(</span><span class="st">"Budget available ($)"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ylab</a></span><span class="op">(</span><span class="st">"Expected richness (objective function)"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>axis.text.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>angle <span class="op">=</span> <span class="fl">90</span>, vjust <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="oppr_files/figure-html/unnamed-chunk-44-1.png" width="432" style="display: block; margin: auto;"></p>
+<p><img src="oppr_files/figure-html/unnamed-chunk-44-1.png" class="r-plt" alt="" width="432" style="display: block; margin: auto;"></p>
 <p>Here, we can see the that heuristic algorithm generally performs
 better than funding conservation projects using random processes. We can
 also see that for some budgets, the heuristic algorithm returns a worse
@@ -1343,7 +1333,7 @@ represent the solutions generated using the exact algorithm solver.</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">xlab</a></span><span class="op">(</span><span class="st">"Budget available ($)"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ylab</a></span><span class="op">(</span><span class="st">"Expected richness (objective function)"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>axis.text.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>angle <span class="op">=</span> <span class="fl">90</span>, hjust <span class="op">=</span> <span class="fl">0.5</span>, vjust <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="oppr_files/figure-html/unnamed-chunk-46-1.png" width="432" style="display: block; margin: auto;"></p>
+<p><img src="oppr_files/figure-html/unnamed-chunk-46-1.png" class="r-plt" alt="" width="432" style="display: block; margin: auto;"></p>
 <p>So, we can see that the exact algorithm solver performs much better
 than heuristic algorithms—even if heuristic algorithms perform better
 than random on average.</p>
@@ -1385,7 +1375,7 @@ online coding repository (<a href="https://github.com/prioritizr/oppr/issues" cl
   Optimality in prioritizing conservation projects. Methods in Ecology
   &amp; Evolution, 10: 1655--1663.
 
-  Hanson JO, Schuster R, Strimas-Mackey M, Bennett J (2025) oppr:
+  Hanson JO, Schuster R, Strimas-Mackey M, Bennett J (2026) oppr:
   Optimal Project Prioritization R package version 1.1.0.
   https://CRAN.R-project.org/package=oppr
 
@@ -1515,7 +1505,7 @@ Conservation</em>, <em>55</em>, 235–254.
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer>

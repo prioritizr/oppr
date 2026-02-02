@@ -74,9 +74,7 @@ reference:
       - plot.ProjectProblem
       - plot_solution_barplot
       - plot_solution_phylogram
-      - solution_statistics
-      - replacement_costs
-      - project_cost_effectiveness
+      - has_concept("evaluation")
   - title: Problem manipulation functions
     desc: Functions for extracting information from problems
     contents:

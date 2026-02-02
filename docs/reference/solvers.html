@@ -99,7 +99,7 @@ funding.</p></dd>
 <code><a href="constraints.html">constraints</a></code>,
 <code><a href="objectives.html">objectives</a></code>,
 <code><a href="targets.html">targets</a></code>,
-<code><a href="weights.html">weights</a>()</code></p></div>
+<code><a href="weights.html">weights()</a></code></p></div>
     </div>
 
     <div class="section level2">
@@ -258,49 +258,51 @@ funding.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimal solution found (tolerance 0.00e+00)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Best objective 2.190380737245e+00, best bound 2.190380737245e+00, gap 0.0000%</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MIP  has 27 rows; 27 cols; 62 nonzeros; 22 integer variables (22 binary)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MIP has 27 rows; 27 cols; 62 nonzeros; 22 integer variables (22 binary)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Coefficient ranges:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Matrix [9e-02, 1e+02]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Matrix  [9e-02, 1e+02]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Cost   [1e+00, 1e+00]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Cost    [1e+00, 1e+00]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Bound  [5e-01, 1e+00]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Bound   [5e-01, 1e+00]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   RHS    [1e+00, 2e+02]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   RHS     [1e+00, 2e+02]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Presolving model</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17 rows, 16 cols, 36 nonzeros  0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17 rows, 10 cols, 20 nonzeros  0s</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6 rows, 10 cols, 15 nonzeros  0s</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 rows, 10 cols, 15 nonzeros  0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Presolve reductions: rows 6(-21); columns 10(-17); nonzeros 15(-47) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Solving MIP model with:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    6 rows</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    10 cols (10 binary, 0 integer, 0 implied int., 0 continuous)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    10 cols (10 binary, 0 integer, 0 implied int., 0 continuous, 0 domain fixed)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    15 nonzeros</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Src: B =&gt; Branching; C =&gt; Central rounding; F =&gt; Feasibility pump; H =&gt; Heuristic; L =&gt; Sub-MIP;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Src: B =&gt; Branching; C =&gt; Central rounding; F =&gt; Feasibility pump; H =&gt; Heuristic;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      P =&gt; Empty MIP; R =&gt; Randomized rounding; Z =&gt; ZI Round; I =&gt; Shifting; S =&gt; Solve LP;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      I =&gt; Shifting; J =&gt; Feasibility jump; L =&gt; Sub-MIP; P =&gt; Empty MIP; R =&gt; Randomized rounding;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      T =&gt; Evaluate node; U =&gt; Unbounded; z =&gt; Trivial zero; l =&gt; Trivial lower; u =&gt; Trivial upper; p =&gt; Trivial point; X =&gt; User solution</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      S =&gt; Solve LP; T =&gt; Evaluate node; U =&gt; Unbounded; X =&gt; User solution; Y =&gt; HiGHS solution;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      Z =&gt; ZI Round; l =&gt; Trivial lower; p =&gt; Trivial point; u =&gt; Trivial upper; z =&gt; Trivial zero</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         Nodes      |    B&amp;B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          0       0         0   0.00%   2.629589686     -inf                 inf        0      0      0         0     0.0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  J       0       0         0   0.00%   inf             1.680145014        Large        0      0      0         0     0.0s</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  R       0       0         0 100.00%   2.200512004     2.190380737        0.46%        0      0      0         1     0.0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  R       0       0         0 100.00%   2.200512004     2.190380737        0.46%        0      0      0         0     0.0s</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          1       0         1 100.00%   2.190380737     2.190380737        0.00%        0      0      0         1     0.0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          1       0         1 100.00%   2.190380737     2.190380737        0.00%        0      0      0         0     0.0s</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Solving report</span>
@@ -310,7 +312,7 @@ funding.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Dual bound        2.19038073725</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Gap               0%</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   P-D integral      5.95494808749e-08</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   P-D integral      0.000163468576509</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Solution status   feasible</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -319,18 +321,14 @@ funding.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                     0 (int. viol.)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                     0 (row viol.)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Timing            0.00 (total)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                     0.00 (presolve)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                     0.00 (solve)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                     0.00 (postsolve)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Timing            0.01</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Max sub-MIP depth 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Nodes             1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Repair LPs        0 (0 feasible; 0 iterations)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   LP iterations     1 (total)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                     0 (strong br.)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                     0 (separation)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                     0 (heuristics)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Repair LPs        0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   LP iterations     0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model name:  'project prioritization problem' - run #1    </span>
@@ -418,7 +416,7 @@ funding.</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

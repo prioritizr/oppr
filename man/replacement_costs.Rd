@@ -116,5 +116,9 @@ cost of conservation areas: how does habitat loss influence priorities?
 \emph{Biological Conservation}, \strong{142}, 575--585.
 }
 \seealso{
-\code{\link[=solution_statistics]{solution_statistics()}}, \code{\link[=project_cost_effectiveness]{project_cost_effectiveness()}}.
+Other functions for evaluating solutions:
+\code{\link{project_cost_effectiveness}()},
+\code{\link{rank_importance}()},
+\code{\link{solution_statistics}()}
 }
+\concept{evaluation}

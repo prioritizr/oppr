@@ -25,12 +25,14 @@ quicksite:
 	R --slave -e "pkgdown::build_site(run_dont_run = TRUE, lazy = TRUE)"
 	cp -Rf doc inst/
 	touch inst/doc/.gitkeep
+	rm -f docs/authors.md
 
 site:
 	R --slave -e "pkgdown::clean_site()"
 	R --slave -e "pkgdown::build_site(run_dont_run = TRUE, lazy = TRUE)"
 	cp -Rf doc inst/
 	touch inst/doc/.gitkeep
+	rm -f docs/authors.md
 
 test:
 	R --slave -e "devtools::test()" > test.log 2>&1

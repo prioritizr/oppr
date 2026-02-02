@@ -265,7 +265,7 @@ with an asterisk.
 plot(p, s)
 ```
 
-<img src="man/figures/README-readme-plot-1.png" style="display: block; margin: auto;" />
+<img src="man/figures/README-readme-plot-1.png" alt="" style="display: block; margin: auto;" />
 
 This has just been a taster of the *oppr R* package. For more
 information, see the [package

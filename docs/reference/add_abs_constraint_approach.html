@@ -106,9 +106,9 @@ $$</p>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p>Other approaches:
-<code><a href="add_chebyshev_goal_approach.html">add_chebyshev_goal_approach</a>()</code>,
-<code><a href="add_ref_point_approach.html">add_ref_point_approach</a>()</code>,
-<code><a href="add_wtd_goal_approach.html">add_wtd_goal_approach</a>()</code></p></div>
+<code><a href="add_chebyshev_goal_approach.html">add_chebyshev_goal_approach()</a></code>,
+<code><a href="add_ref_point_approach.html">add_ref_point_approach()</a></code>,
+<code><a href="add_wtd_goal_approach.html">add_wtd_goal_approach()</a></code></p></div>
     </div>
 
     <div class="section level2">
@@ -185,7 +185,7 @@ $$</p>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>   decisions:       binary decision</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> actions:           A1_action, A2_action, A3_action, ... (18 actions)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> action costs:      continuous values (between 0 and 103.226)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> approach:          none specified</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> approach:          absolute constraint approach</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> solver:            gurobi solver</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># solve problem</span></span></span>
@@ -215,7 +215,7 @@ $$</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> PoolSearchMode  2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimize a model with 334 rows, 260 columns and 918 nonzeros (Max)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Model fingerprint: 0x1f7faa67</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Model fingerprint: 0x52df500d</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model has 201 linear objective coefficients</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Variable types: 11 continuous, 150 integer (150 binary)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Semi-Variable types: 99 continuous, 0 integer</span>
@@ -228,16 +228,16 @@ $$</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Presolve time: 0.00s</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Presolved: 6 rows, 20 columns, 26 nonzeros</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Variable types: 1 continuous, 19 integer (19 binary)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Found heuristic solution: objective 0.3873963</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Found heuristic solution: objective 0.3884525</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Explored 0 nodes (0 simplex iterations) in 0.00 seconds (0.00 work units)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Thread count was 1 (of 8 available processors)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Solution count 1: 0.387396 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> No other solutions better than 0.387396</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Solution count 1: 0.388452 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> No other solutions better than 0.388452</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimal solution found (tolerance 0.00e+00)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Best objective 3.873962810140e-01, best bound 3.873962810140e-01, gap 0.0000%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Best objective 3.884524905915e-01, best bound 3.884524905915e-01, gap 0.0000%</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># print solution</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">s</span><span class="op">)</span></span></span>
@@ -264,7 +264,7 @@ $$</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

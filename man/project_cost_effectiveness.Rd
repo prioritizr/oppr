@@ -100,5 +100,9 @@ resources among threatened species: A project prioritization protocol.
 \emph{Conservation Biology}, \strong{23}, 328--338.
 }
 \seealso{
-\code{\link[=solution_statistics]{solution_statistics()}}, \code{\link[=replacement_costs]{replacement_costs()}}.
+Other functions for evaluating solutions:
+\code{\link{rank_importance}()},
+\code{\link{replacement_costs}()},
+\code{\link{solution_statistics}()}
 }
+\concept{evaluation}

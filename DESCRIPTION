@@ -147,6 +147,7 @@ Collate:
     'project_cost_effectiveness.R'
     'project_names.R'
     'rake_phylogeny.R'
+    'rank_importance.R'
     'reexports.R'
     'replacement_costs.R'
     'repr.R'
