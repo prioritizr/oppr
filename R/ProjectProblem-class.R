@@ -88,7 +88,7 @@ ProjectProblem <- R6::R6Class(
         decisions_msg <- self$decisions$repr()
       }
       constraints_msg <- "none specified"
-      if (!isTRUE(self$defaults$constraints)) {
+      if (length(self$constraints) > 0) {
         constraints_msg <- paste(
           vapply(self$constraints, function(x) x$repr(), character(1)),
           collapse = ", "
