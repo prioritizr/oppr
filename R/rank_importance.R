@@ -272,6 +272,7 @@ rank_importance.MultiObjProjectProblem <- function(x, solution, n = 1,
     curr_sol <<- curr_sol
     all_project_names <<- all_project_names
     curr_project_names <<- curr_project_names
+    stop()
 
     ## lock in selected projects for next iteration
     for (i in seq_along(x2$problems)) {
