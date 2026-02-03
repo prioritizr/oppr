@@ -269,7 +269,7 @@ rank_importance.MultiObjProjectProblem <- function(x, solution, n = 1,
     ## lock in selected projects for next iteration
     for (i in seq_along(x2$problems)) {
       curr_locked_in <-
-        x2$problems[[i]]$project_names() %in% curr_project_names[[i]]
+        x2$problems[[i]]$project_names() %in% curr_project_names
       if (any(curr_locked_in)) {
         x2$problems[[i]] <- add_locked_in_project_constraints(
           x2$problems[[i]],
