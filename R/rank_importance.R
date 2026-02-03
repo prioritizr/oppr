@@ -166,10 +166,10 @@ rank_importance.ProjectProblem <- function(x, solution, n = 1, ranks = 10,
     ## update the result with rank values
     out$rank[is.na(out$rank) & (out$project %in% curr_project_names)] <- i
     ## lock in selected projects for next iteration
-    x2 <- add_locked_in_project_constraints(
-      x2,
-      locked_in = x2$project_names() %in% curr_project_names
-    )
+    curr_locked_in <- x2$project_names() %in% curr_project_names
+    if (any(curr_locked_in)) {
+      x2 <- add_locked_in_project_constraints(x2, locked_in = curr_locked_in)
+    }
   }
   # calculate scores
   out$score <- rescale(out$rank, from = c(1, length(budgets)), to = c(1, 0))
@@ -268,11 +268,14 @@ rank_importance.MultiObjProjectProblem <- function(x, solution, n = 1,
     out$rank[is.na(out$rank) & out$project %in% curr_project_names] <- i
     ## lock in selected projects for next iteration
     for (i in seq_along(x2$problems)) {
-      x2$problems[[i]] <- add_locked_in_project_constraints(
-        x2$problems[[i]],
-        locked_in =
-          x2$problems[[i]]$project_names() %in% curr_project_names[[i]]
-      )
+      curr_locked_in <-
+        x2$problems[[i]]$project_names() %in% curr_project_names[[i]]
+      if (any(curr_locked_in)) {
+        x2$problems[[i]] <- add_locked_in_project_constraints(
+          x2$problems[[i]],
+          locked_in = curr_locked_in
+        )
+      }
     }
   }
   # calculate scores
