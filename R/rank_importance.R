@@ -266,6 +266,13 @@ rank_importance.MultiObjProjectProblem <- function(x, solution, n = 1,
     curr_project_names <- all_project_names[curr_project_names]
     ## update the result with rank values
     out$rank[is.na(out$rank) & out$project %in% curr_project_names] <- i
+
+
+    x2 <<- x2
+    curr_sol <<- curr_sol
+    all_project_names <<- all_project_names
+    curr_project_names <<- curr_project_names
+
     ## lock in selected projects for next iteration
     for (i in seq_along(x2$problems)) {
       curr_locked_in <-
