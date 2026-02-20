@@ -58,6 +58,12 @@ NULL
 #' relaxed solution, and is therefore often reasonably close to optimality.
 #' Defaults to `FALSE`.
 #'
+#' @param numeric_focus `logical` should extra attention be paid to verifying
+#' the accuracy of numerical calculations? This may be useful when dealing with
+#' problems that may suffer from numerical instability issues. Beware that it
+#' will likely substantially increase run time (sets the Gurobi NumericFocus
+#' parameter to 3). Defaults to TRUE.
+#'
 #' @param verbose `logical` should information be printed during optimization?
 #' Defaults to `TRUE`.
 #'
@@ -134,7 +140,7 @@ add_gurobi_solver <- function(x, gap = 0, number_solutions = 1,
                               solution_pool_method = 2,
                               time_limit = .Machine$integer.max,
                               presolve = 2, threads = 1, first_feasible = FALSE,
-                              verbose = TRUE) {
+                              numeric_focus = TRUE, verbose = TRUE) {
   # assert that arguments are valid
   assertthat::assert_that(
     inherits(x, c("ProjectProblem", "MultiObjProjectProblem")),
@@ -154,6 +160,9 @@ add_gurobi_solver <- function(x, gap = 0, number_solutions = 1,
     assertthat::is.count(threads),
     isTRUE(threads <= parallel::detectCores(TRUE)),
     assertthat::is.flag(first_feasible),
+    assertthat::noNA(first_feasible),
+    assertthat::is.flag(numeric_focus),
+    assertthat::noNA(numeric_focus),
     assertthat::is.flag(verbose),
     requireNamespace("gurobi", quietly = TRUE),
     utils::packageVersion("gurobi") >= package_version("13.0.0")
@@ -171,8 +180,10 @@ add_gurobi_solver <- function(x, gap = 0, number_solutions = 1,
           number_solutions = number_solutions,
           solution_pool_method = solution_pool_method,
           time_limit = time_limit,
-          presolve = presolve, threads = threads,
+          presolve = presolve,
+          threads = threads,
           first_feasible = first_feasible,
+          numeric_focus = numeric_focus,
           verbose = verbose
         ),
         solve = function(x, ...) {
@@ -199,7 +210,7 @@ add_gurobi_solver <- function(x, gap = 0, number_solutions = 1,
             TimeLimit = self$get_data("time_limit"),
             Threads = self$get_data("threads"),
             LogFile = "",
-            NumericFocus = 2,
+            NumericFocus = self$get_data("numeric_focus") * 3,
             SolutionLimit = as.numeric(self$get_data("first_feasible")),
             PoolSolutions = self$get_data("number_solutions"),
             PoolSearchMode = self$get_data("solution_pool_method")
