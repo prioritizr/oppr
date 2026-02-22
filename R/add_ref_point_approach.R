@@ -177,6 +177,11 @@ add_ref_point_approach <- function(x, weights, goals, verbose = TRUE) {
             )
             ### solve problem
             sols[[i]] <- solver$solve(mo)
+
+            o1 <<- sols[[i]]
+            o2 <<- mo
+            stop()
+
             ### if solution found, then apply subsequent processing
             if (
               !is.null(sols[[i]]) &&
