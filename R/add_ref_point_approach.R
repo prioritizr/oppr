@@ -40,8 +40,8 @@ NULL
 #' To describe this approach mathematically, we will define the
 #' following terminology.
 #' Let \eqn{O} denote the set of objectives (indexed by \eqn{o}).
-#' For each objective, let \eqn{W_o}{W_o} denote the weight goal each objective
-#' \eqn{o \in O}{o in O}, \eqn{G_o}{G_o} denote the goal each objective
+#' For each objective, let \eqn{W_o}{W_o} denote the weight for each objective
+#' \eqn{o \in O}{o in O}, \eqn{G_o}{G_o} denote the goal for each objective
 #' \eqn{o \in O}{o in O}, and \eqn{V_o}{V_o} denote the objective value
 #' for a candidate solution as measured based on each objective
 #' \eqn{o \in O}{o in O}.
@@ -177,11 +177,6 @@ add_ref_point_approach <- function(x, weights, goals, verbose = TRUE) {
             )
             ### solve problem
             sols[[i]] <- solver$solve(mo)
-
-            o1 <<- sols[[i]]
-            o2 <<- mo
-            stop()
-
             ### if solution found, then apply subsequent processing
             if (
               !is.null(sols[[i]]) &&
