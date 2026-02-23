@@ -48,8 +48,8 @@ subsequently minimizing the weighted sum of the goal shortfalls.
 To describe this approach mathematically, we will define the
 following terminology.
 Let \eqn{O} denote the set of objectives (indexed by \eqn{o}).
-For each objective, let \eqn{W_o}{W_o} denote the weight goal each objective
-\eqn{o \in O}{o in O}, \eqn{G_o}{G_o} denote the goal each objective
+For each objective, let \eqn{W_o}{W_o} denote the weight for each objective
+\eqn{o \in O}{o in O}, \eqn{G_o}{G_o} denote the goal for each objective
 \eqn{o \in O}{o in O}, and \eqn{V_o}{V_o} denote the objective value
 for a candidate solution as measured based on each objective
 \eqn{o \in O}{o in O}.

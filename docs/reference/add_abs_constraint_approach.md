@@ -50,8 +50,8 @@ this approach.
 
 To describe this approach mathematically, we will define the following
 terminology. Let \\O\\ denote the set of objectives (indexed by \\o\\).
-For each objective, \\G_o\\ denote the goal each objective \\o \in O\\,
-and \\V_o\\ denote the objective value for a candidate solution as
+For each objective, \\G_o\\ denote the goal for each objective \\o \in
+O\\, and \\V_o\\ denote the objective value for a candidate solution as
 measured based on each objective \\o \in O\\. Also, let \\V_1\\ denote
 the objective value for the first objective. Although we assume that all
 objectives here should be maximized (for brevity), this approach is
@@ -149,16 +149,18 @@ print(p)
 # solve problem
 s <- solve(p)
 #> Set parameter Username
-#> Set parameter LicenseID to value 2738655
+#> Set parameter LicenseID to value 2774703
 #> Set parameter TimeLimit to value 2147483647
 #> Set parameter MIPGap to value 0
-#> Set parameter NumericFocus to value 2
+#> Set parameter ScaleFlag to value 2
+#> Set parameter NumericFocus to value 3
 #> Set parameter Presolve to value 2
 #> Set parameter Threads to value 1
 #> Set parameter PoolSolutions to value 1
 #> Set parameter PoolSearchMode to value 2
-#> Academic license - for non-commercial use only - expires 2026-11-14
-#> Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Ubuntu 24.04.2 LTS")
+#> Academic license - for non-commercial use only - expires 2027-02-03
+#> Warning: Gurobi version mismatch between R 13.0.0 and C library 13.0.1
+#> Gurobi Optimizer version 13.0.1 build v13.0.1rc0 (linux64 - "Ubuntu 24.04.2 LTS")
 #> 
 #> CPU model: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]
 #> Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
@@ -166,7 +168,8 @@ s <- solve(p)
 #> Non-default parameters:
 #> TimeLimit  2147483647
 #> MIPGap  0
-#> NumericFocus  2
+#> ScaleFlag  2
+#> NumericFocus  3
 #> Presolve  2
 #> Threads  1
 #> PoolSolutions  1
@@ -182,6 +185,7 @@ s <- solve(p)
 #>   Objective range  [2e-02, 5e-01]
 #>   Bounds range     [6e-01, 3e+00]
 #>   RHS range        [1e-02, 2e+02]
+#> 
 #> Presolve removed 328 rows and 240 columns
 #> Presolve time: 0.00s
 #> Presolved: 6 rows, 20 columns, 26 nonzeros

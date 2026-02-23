@@ -41,7 +41,7 @@ Below we provide the mathematical details for this approach.
 To describe this approach mathematically, we will define the
 following terminology.
 Let \eqn{O} denote the set of objectives (indexed by \eqn{o}).
-For each objective, \eqn{G_o}{G_o} denote the goal each objective
+For each objective, \eqn{G_o}{G_o} denote the goal for each objective
 \eqn{o \in O}{o in O}, and \eqn{V_o}{V_o} denote the objective value
 for a candidate solution as measured based on each objective
 \eqn{o \in O}{o in O}. Also, let \eqn{V_1} denote the
