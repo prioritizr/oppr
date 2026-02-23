@@ -22,8 +22,8 @@ NULL
 #' To describe this approach mathematically, we will define the
 #' following terminology.
 #' Let \eqn{O} denote the set of objectives (indexed by \eqn{o}).
-#' For each objective, let \eqn{W_o}{W_o} denote the weight goal each objective
-#' \eqn{o \in O}{o in O}, \eqn{G_o}{G_o} denote the goal each objective
+#' For each objective, let \eqn{W_o}{W_o} denote the weight for each objective
+#' \eqn{o \in O}{o in O}, \eqn{G_o}{G_o} denote the goal for each objective
 #' \eqn{o \in O}{o in O}, and \eqn{V_o}{V_o} denote the objective value
 #' for a candidate solution as measured based on each objective
 #' \eqn{o \in O}{o in O}.
@@ -31,9 +31,9 @@ NULL
 #' is formulated with the following equation.
 #'
 #' \deqn{
-#' \mathrm{Minimize} \space \max_{o = 0}^{O} W_o \times \frac{V_o}{W_o}
+#' \mathrm{Minimize} \space \max_{o = 0}^{O} W_o \times \frac{V_o}{G_o}
 #' }{
-#' Minimize max o^O W_o * (V_o / W_o)
+#' Minimize max o^O W_o * (V_o / G_o)
 #' }
 #'
 #' @inherit add_ref_point_approach return seealso
