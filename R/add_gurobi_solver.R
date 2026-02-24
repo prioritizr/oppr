@@ -58,11 +58,13 @@ NULL
 #' relaxed solution, and is therefore often reasonably close to optimality.
 #' Defaults to `FALSE`.
 #'
-#' @param numeric_focus `logical` should extra attention be paid to verifying
-#' the accuracy of numerical calculations? This may be useful when dealing with
-#' problems that may suffer from numerical instability issues. Beware that it
-#' will likely substantially increase run time (sets the Gurobi NumericFocus
-#' parameter to 3). Defaults to TRUE.
+#' @param numeric_focus `integer` value denoting how much extra attention be
+#' paid to verifying the accuracy of numerical calculations?
+#' Acceptable values include 0, 1, 2, or 3.
+#' This may be useful when dealing with
+#' problems that may suffer from numerical instability issues.
+#' Beware that setting greater values will likely increase run time.
+#' Defaults to 0.
 #'
 #' @param verbose `logical` should information be printed during optimization?
 #' Defaults to `TRUE`.
@@ -140,7 +142,7 @@ add_gurobi_solver <- function(x, gap = 0, number_solutions = 1,
                               solution_pool_method = 2,
                               time_limit = .Machine$integer.max,
                               presolve = 2, threads = 1, first_feasible = FALSE,
-                              numeric_focus = TRUE, verbose = TRUE) {
+                              numeric_focus = 0, verbose = TRUE) {
   # assert that arguments are valid
   assertthat::assert_that(
     inherits(x, c("ProjectProblem", "MultiObjProjectProblem")),
@@ -161,8 +163,9 @@ add_gurobi_solver <- function(x, gap = 0, number_solutions = 1,
     isTRUE(threads <= parallel::detectCores(TRUE)),
     assertthat::is.flag(first_feasible),
     assertthat::noNA(first_feasible),
-    assertthat::is.flag(numeric_focus),
+    assertthat::is.number(numeric_focus),
     assertthat::noNA(numeric_focus),
+    numeric_focus %in% c(0, 1, 2, 3),
     assertthat::is.flag(verbose),
     requireNamespace("gurobi", quietly = TRUE),
     utils::packageVersion("gurobi") >= package_version("13.0.0")
@@ -211,7 +214,7 @@ add_gurobi_solver <- function(x, gap = 0, number_solutions = 1,
             Threads = self$get_data("threads"),
             LogFile = "",
             ScaleFlag = 2,
-            NumericFocus = self$get_data("numeric_focus") * 3,
+            NumericFocus = self$get_data("numeric_focus"),
             SolutionLimit = as.numeric(self$get_data("first_feasible")),
             PoolSolutions = self$get_data("number_solutions"),
             PoolSearchMode = self$get_data("solution_pool_method")

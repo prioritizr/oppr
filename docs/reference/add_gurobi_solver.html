@@ -58,7 +58,7 @@ See below for details on installation requirements.</p>
 <span>  presolve <span class="op">=</span> <span class="fl">2</span>,</span>
 <span>  threads <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  first_feasible <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  numeric_focus <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  numeric_focus <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -134,11 +134,13 @@ Defaults to <code>FALSE</code>.</p></dd>
 
 
 <dt id="arg-numeric-focus">numeric_focus<a class="anchor" aria-label="anchor" href="#arg-numeric-focus"></a></dt>
-<dd><p><code>logical</code> should extra attention be paid to verifying
-the accuracy of numerical calculations? This may be useful when dealing with
-problems that may suffer from numerical instability issues. Beware that it
-will likely substantially increase run time (sets the Gurobi NumericFocus
-parameter to 3). Defaults to TRUE.</p></dd>
+<dd><p><code>integer</code> value denoting how much extra attention be
+paid to verifying the accuracy of numerical calculations?
+Acceptable values include 0, 1, 2, or 3.
+This may be useful when dealing with
+problems that may suffer from numerical instability issues.
+Beware that setting greater values will likely increase run time.
+Defaults to 0.</p></dd>
 
 
 <dt id="arg-verbose">verbose<a class="anchor" aria-label="anchor" href="#arg-verbose"></a></dt>
@@ -191,12 +193,12 @@ package can then be installed (see <a href="https://support.gurobi.com/hc/en-us/
 <span class="r-in"><span>  <span class="fu"><a href="problem.html">problem</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    <span class="va">sim_projects</span>, <span class="va">sim_actions</span>, <span class="va">sim_features</span>,</span></span>
 <span class="r-in"><span>    <span class="st">"name"</span>, <span class="st">"success"</span>, <span class="st">"name"</span>, <span class="st">"cost"</span>, <span class="st">"name"</span></span></span>
-<span class="r-in"><span>  <span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_max_wtd_sum_objective.html">add_max_wtd_sum_objective</a></span><span class="op">(</span>budget <span class="op">=</span> <span class="fl">200</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_max_wtd_sum_objective.html">add_max_wtd_sum_objective</a></span><span class="op">(</span>budget <span class="op">=</span> <span class="fl">200</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_binary_decisions.html">add_binary_decisions</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># build another problem, and specify the Gurobi solver</span></span></span>
-<span class="r-in"><span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="va">p1</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">add_gurobi_solver</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="va">p1</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">add_gurobi_solver</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># print problem</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">p2</span><span class="op">)</span></span></span>
@@ -219,7 +221,7 @@ package can then be installed (see <a href="https://support.gurobi.com/hc/en-us/
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter LicenseID to value 2774703</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter TimeLimit to value 2147483647</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter MIPGap to value 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter NumericFocus to value 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter ScaleFlag to value 2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Presolve to value 2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Threads to value 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter PoolSolutions to value 1</span>
@@ -234,7 +236,7 @@ package can then be installed (see <a href="https://support.gurobi.com/hc/en-us/
 <span class="r-out co"><span class="r-pr">#&gt;</span> Non-default parameters:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> TimeLimit  2147483647</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> MIPGap  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NumericFocus  3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ScaleFlag  2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Presolve  2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Threads  1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> PoolSolutions  1</span>
@@ -258,15 +260,14 @@ package can then be installed (see <a href="https://support.gurobi.com/hc/en-us/
 <span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation presolved: 11 rows, 15 columns, 25 nonzeros</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation: objective 2.190381e+00, 11 iterations, 0.01 seconds (0.00 work units)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation: objective 2.190381e+00, 12 iterations, 0.00 seconds (0.00 work units)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Nodes    |    Current Node    |     Objective Bounds      |     Work</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> *    0     0               0       2.1903807    2.19038  0.00%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0          -    0         2.19038    2.19038  0.00%     -    0s</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Explored 1 nodes (11 simplex iterations) in 0.01 seconds (0.00 work units)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Explored 1 nodes (12 simplex iterations) in 0.00 seconds (0.00 work units)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Thread count was 1 (of 8 available processors)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Solution count 1: 2.19038 </span>
@@ -292,7 +293,7 @@ package can then be installed (see <a href="https://support.gurobi.com/hc/en-us/
 <span class="r-in"><span><span class="co"># build another problem and obtain multiple solutions</span></span></span>
 <span class="r-in"><span><span class="co"># note that this problem doesn't have 100 unique solutions so</span></span></span>
 <span class="r-in"><span><span class="co"># the solver won't return 100 solutions</span></span></span>
-<span class="r-in"><span><span class="va">p3</span> <span class="op">&lt;-</span> <span class="va">p1</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">add_gurobi_solver</span><span class="op">(</span>number_solutions <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p3</span> <span class="op">&lt;-</span> <span class="va">p1</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">add_gurobi_solver</span><span class="op">(</span>number_solutions <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># print problem</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">p3</span><span class="op">)</span></span></span>
@@ -315,7 +316,7 @@ package can then be installed (see <a href="https://support.gurobi.com/hc/en-us/
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter LicenseID to value 2774703</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter TimeLimit to value 2147483647</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter MIPGap to value 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter NumericFocus to value 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter ScaleFlag to value 2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Presolve to value 2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Threads to value 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter PoolSolutions to value 100</span>
@@ -330,7 +331,7 @@ package can then be installed (see <a href="https://support.gurobi.com/hc/en-us/
 <span class="r-out co"><span class="r-pr">#&gt;</span> Non-default parameters:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> TimeLimit  2147483647</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> MIPGap  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NumericFocus  3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ScaleFlag  2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Presolve  2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Threads  1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> PoolSolutions  100</span>
@@ -355,13 +356,12 @@ package can then be installed (see <a href="https://support.gurobi.com/hc/en-us/
 <span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation presolved: 11 rows, 15 columns, 25 nonzeros</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation: objective 2.190381e+00, 11 iterations, 0.00 seconds (0.00 work units)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation: objective 2.190381e+00, 12 iterations, 0.00 seconds (0.00 work units)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Nodes    |    Current Node    |     Objective Bounds      |     Work</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> *    0     0               0       2.1903807    2.19038  0.00%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0          -    0         2.19038    2.19038  0.00%     -    0s</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimal solution found at node 0 - now completing solution pool...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -370,9 +370,11 @@ package can then be installed (see <a href="https://support.gurobi.com/hc/en-us/
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      0     0          -    0               -    2.19038      -     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0          -    0               -    2.19038      -     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0          -    0               -    2.19038      -     -    0s</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      0     2          -    0               -    2.19038      -     -    0s</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Explored 121 nodes (95 simplex iterations) in 0.00 seconds (0.00 work units)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Explored 121 nodes (82 simplex iterations) in 0.00 seconds (0.00 work units)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Thread count was 1 (of 8 available processors)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Solution count 61: 2.19038 2.01465 1.98593 ... 1.06521</span>

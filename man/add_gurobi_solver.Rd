@@ -13,7 +13,7 @@ add_gurobi_solver(
   presolve = 2,
   threads = 1,
   first_feasible = FALSE,
-  numeric_focus = TRUE,
+  numeric_focus = 0,
   verbose = TRUE
 )
 }
@@ -68,11 +68,13 @@ solution is not an arbitrary solution, rather it is derived from the
 relaxed solution, and is therefore often reasonably close to optimality.
 Defaults to \code{FALSE}.}
 
-\item{numeric_focus}{\code{logical} should extra attention be paid to verifying
-the accuracy of numerical calculations? This may be useful when dealing with
-problems that may suffer from numerical instability issues. Beware that it
-will likely substantially increase run time (sets the Gurobi NumericFocus
-parameter to 3). Defaults to TRUE.}
+\item{numeric_focus}{\code{integer} value denoting how much extra attention be
+paid to verifying the accuracy of numerical calculations?
+Acceptable values include 0, 1, 2, or 3.
+This may be useful when dealing with
+problems that may suffer from numerical instability issues.
+Beware that setting greater values will likely increase run time.
+Defaults to 0.}
 
 \item{verbose}{\code{logical} should information be printed during optimization?
 Defaults to \code{TRUE}.}
