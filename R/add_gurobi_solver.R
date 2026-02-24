@@ -64,7 +64,7 @@ NULL
 #' This may be useful when dealing with
 #' problems that may suffer from numerical instability issues.
 #' Beware that setting greater values will likely increase run time.
-#' Defaults to 0.
+#' Defaults to 1.
 #'
 #' @param verbose `logical` should information be printed during optimization?
 #' Defaults to `TRUE`.
@@ -142,7 +142,7 @@ add_gurobi_solver <- function(x, gap = 0, number_solutions = 1,
                               solution_pool_method = 2,
                               time_limit = .Machine$integer.max,
                               presolve = 2, threads = 1, first_feasible = FALSE,
-                              numeric_focus = 0, verbose = TRUE) {
+                              numeric_focus = 1, verbose = TRUE) {
   # assert that arguments are valid
   assertthat::assert_that(
     inherits(x, c("ProjectProblem", "MultiObjProjectProblem")),

@@ -13,7 +13,7 @@ add_gurobi_solver(
   presolve = 2,
   threads = 1,
   first_feasible = FALSE,
-  numeric_focus = 0,
+  numeric_focus = 1,
   verbose = TRUE
 )
 }
@@ -74,7 +74,7 @@ Acceptable values include 0, 1, 2, or 3.
 This may be useful when dealing with
 problems that may suffer from numerical instability issues.
 Beware that setting greater values will likely increase run time.
-Defaults to 0.}
+Defaults to 1.}
 
 \item{verbose}{\code{logical} should information be printed during optimization?
 Defaults to \code{TRUE}.}

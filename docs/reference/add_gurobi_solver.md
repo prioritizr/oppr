@@ -17,7 +17,7 @@ add_gurobi_solver(
   presolve = 2,
   threads = 1,
   first_feasible = FALSE,
-  numeric_focus = 0,
+  numeric_focus = 1,
   verbose = TRUE
 )
 ```
@@ -97,7 +97,7 @@ add_gurobi_solver(
   the accuracy of numerical calculations? Acceptable values include 0,
   1, 2, or 3. This may be useful when dealing with problems that may
   suffer from numerical instability issues. Beware that setting greater
-  values will likely increase run time. Defaults to 0.
+  values will likely increase run time. Defaults to 1.
 
 - verbose:
 
@@ -185,6 +185,7 @@ s2 <- solve(p2)
 #> Set parameter TimeLimit to value 2147483647
 #> Set parameter MIPGap to value 0
 #> Set parameter ScaleFlag to value 2
+#> Set parameter NumericFocus to value 1
 #> Set parameter Presolve to value 2
 #> Set parameter Threads to value 1
 #> Set parameter PoolSolutions to value 1
@@ -200,6 +201,7 @@ s2 <- solve(p2)
 #> TimeLimit  2147483647
 #> MIPGap  0
 #> ScaleFlag  2
+#> NumericFocus  1
 #> Presolve  2
 #> Threads  1
 #> PoolSolutions  1
@@ -280,6 +282,7 @@ s3 <- solve(p3)
 #> Set parameter TimeLimit to value 2147483647
 #> Set parameter MIPGap to value 0
 #> Set parameter ScaleFlag to value 2
+#> Set parameter NumericFocus to value 1
 #> Set parameter Presolve to value 2
 #> Set parameter Threads to value 1
 #> Set parameter PoolSolutions to value 100
@@ -295,6 +298,7 @@ s3 <- solve(p3)
 #> TimeLimit  2147483647
 #> MIPGap  0
 #> ScaleFlag  2
+#> NumericFocus  1
 #> Presolve  2
 #> Threads  1
 #> PoolSolutions  100
