@@ -9,7 +9,7 @@ with lower values.
 ## Usage
 
 ``` r
-rank_importance(x, solution, n = 1, ranks = 10, budgets = NULL)
+rank_importance(x, solution, n = 1, ranks = 10, budgets = NULL, ...)
 ```
 
 ## Arguments
@@ -51,6 +51,11 @@ rank_importance(x, solution, n = 1, ranks = 10, budgets = NULL)
   increment. This parameter can be used instead of `ranks` to specify
   the number of incremental ranks and also the budget values that should
   be considered for each rank. Defaults to `NULL`.
+
+- ...:
+
+  Arguments passed to
+  [`solve()`](https://prioritizr.github.io/oppr/reference/solve.md).
 
 ## Value
 

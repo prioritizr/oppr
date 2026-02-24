@@ -4,7 +4,7 @@
 \alias{rank_importance}
 \title{Rank importance}
 \usage{
-rank_importance(x, solution, n = 1, ranks = 10, budgets = NULL)
+rank_importance(x, solution, n = 1, ranks = 10, budgets = NULL, ...)
 }
 \arguments{
 \item{x}{\code{\link[=problem]{problem()}} or \code{\link[=multi_problem]{multi_problem()}} object.}
@@ -31,6 +31,8 @@ prioritizations at each increment. This parameter can be used instead
 of \code{ranks} to specify the number of incremental ranks and also
 the budget values that should be considered for each rank.
 Defaults to \code{NULL}.}
+
+\item{...}{Arguments passed to \code{\link[=solve]{solve()}}.}
 }
 \value{
 A \code{\link[tibble:tibble]{tibble::tibble()}} table containing the following columns.

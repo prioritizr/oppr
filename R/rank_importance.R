@@ -19,6 +19,8 @@ NULL
 #'   the budget values that should be considered for each rank.
 #'   Defaults to `NULL`.
 #'
+#' @param ... Arguments passed to [solve()].
+#'
 #' @details
 #' This method involves generating a series of incremental prioritizations,
 #' that start with relatively few projects selected and then iteratively
@@ -83,13 +85,14 @@ NULL
 #' print(r)
 #' }
 #' @export
-rank_importance <- function(x, solution, n = 1, ranks = 10, budgets = NULL) {
+rank_importance <- function(x, solution, n = 1, ranks = 10,
+                            budgets = NULL, ...) {
   UseMethod("rank_importance")
 }
 
 #' @export
 rank_importance.ProjectProblem <- function(x, solution, n = 1, ranks = 10,
-                                           budgets = NULL) {
+                                           budgets = NULL, ...) {
   # assert arguments are valid
   assertthat::assert_that(
     inherits(x, "ProjectProblem"),
@@ -158,7 +161,7 @@ rank_importance.ProjectProblem <- function(x, solution, n = 1, ranks = 10,
     ## update the problem to override the budgetary constraint
     x2$objective$data$budget <- budgets[[i]]
     ## generate solution
-    curr_sol <- solve(x2)
+    curr_sol <- solve(x2, ...)
     ## identify projects selected in the solution
     curr_project_names <-
       which(c(as.matrix(curr_sol[1, all_project_names])) > 0.5)
@@ -259,7 +262,7 @@ rank_importance.MultiObjProjectProblem <- function(x, solution, n = 1,
     idx <- which(is_budget_obj)[[1]]
     x2$problems[[idx]]$objective$data$budget <- budgets[[i]]
     ## generate solution
-    curr_sol <- solve(x2)
+    curr_sol <- solve(x2, ...)
     ## identify projects selected in the solution
     curr_project_names <-
       which(c(as.matrix(curr_sol[1, all_project_names])) > 0.5)

@@ -49,7 +49,7 @@ need to be implemented sooner than those with lower values.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">rank_importance</span><span class="op">(</span><span class="va">x</span>, <span class="va">solution</span>, n <span class="op">=</span> <span class="fl">1</span>, ranks <span class="op">=</span> <span class="fl">10</span>, budgets <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">rank_importance</span><span class="op">(</span><span class="va">x</span>, <span class="va">solution</span>, n <span class="op">=</span> <span class="fl">1</span>, ranks <span class="op">=</span> <span class="fl">10</span>, budgets <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -89,6 +89,10 @@ prioritizations at each increment. This parameter can be used instead
 of <code>ranks</code> to specify the number of incremental ranks and also
 the budget values that should be considered for each rank.
 Defaults to <code>NULL</code>.</p></dd>
+
+
+<dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
+<dd><p>Arguments passed to <code><a href="solve.html">solve()</a></code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
