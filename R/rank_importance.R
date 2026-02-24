@@ -182,7 +182,7 @@ rank_importance.ProjectProblem <- function(x, solution, n = 1, ranks = 10,
 
 #' @export
 rank_importance.MultiObjProjectProblem <- function(x, solution, n = 1,
-                                                   ranks = 10, budgets = NULL
+                                                   ranks = 10, budgets = NULL,
                                                    ...) {
   # assert arguments are valid
   assertthat::assert_that(
