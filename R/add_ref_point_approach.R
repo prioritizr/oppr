@@ -153,12 +153,13 @@ add_ref_point_approach <- function(x, weights, goals, verbose = TRUE) {
       inherit = MultiObjApproach,
       public = list(
         name = "reference point approach",
-        data = list(weights = weights, goals = goals,verbose = verbose),
+        data = list(weights = weights, goals = goals, verbose = verbose),
         run = function(x, solver) {
           ## initialization
           weights <- self$get_data("weights")
           goals <- self$get_data("goals")
           verbose <- self$get_data("verbose")
+          n_actions <- x$opt$number_of_actions()
           sols <- vector(mode = "list", length = nrow(weights))
           ## if needed, set up progress bar
           if (isTRUE(verbose)) {
@@ -189,8 +190,15 @@ add_ref_point_approach <- function(x, weights, goals, verbose = TRUE) {
                 weights[i, ], goals[i, ],
                 sum(sols[[i]][[1]]$x * mo$obj())
               )
+              ### prepare starting solution for next optimization run
+              ### here we will only consider the actions variables for the
+              ### starting solutions to avoid issues with numerical precision
+              curr_sol <- c(
+                sols[[i]][[1]]$x[seq_len(n_actions)],
+                rep(NA_real_, length(sols[[i]][[1]]$x) - n_actions)
+              )
               ### set starting solution
-              solver$set_start_solution(sols[[i]][[1]]$x)
+              solver$set_start_solution(curr_sol)
               ### solve problem
               sols[[i]] <- solver$solve(mo)
               ## remove starting solution
