@@ -230,6 +230,18 @@ add_max_phylo_div_objective <- function(x, budget, tree) {
       "must be a probability value for all features."
     )
   )
+  # verify no zero probabilities
+  bp <- apply(
+    x$eof_matrix()[x$data$baseline_project_name, , drop = FALSE],
+    2, max, na.rm = TRUE
+  )
+  assertthat::assert_that(
+    all(bp > 1e-11),
+    msg = paste(
+      "`x` must have non-zero probabilities of persistence for baseline",
+      "project(s) for this objective."
+    )
+  )
   # add edge lengths if missing
   if (is.null(tree$edge.length)) {
     tree$edge.length <- rep(1, nrow(tree$edge))

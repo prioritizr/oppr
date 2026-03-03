@@ -309,6 +309,7 @@ problem <- function(projects, actions, features, project_name_column,
       length(bp) > 0,
       msg = "no baseline projects detected"
     )
+    baseline_project_name <- projects[[project_name_column]][bp]
   } else {
     bp <- which(projects[[project_name_column]] == baseline_project_name)
   }
@@ -328,23 +329,6 @@ problem <- function(projects, actions, features, project_name_column,
       "."
     )
   )
-  bpp <- colSums(
-    as.matrix(projects[bp, features[[feature_name_column]]]),
-    na.rm = TRUE
-  )
-  assertthat::assert_that(
-    all(bpp > 1e-11),
-    msg = paste(
-      "feature(s) has a zero probability of persistence under",
-      "the baseline project, please replace these zeros with",
-      "a small number (e.g., 1e-10) for:",
-      paste(
-        features[[feature_name_column]][bpp <= 1e-11],
-        collapse = ", "
-      ),
-      "."
-    )
-  )
 
   # create ProjectProblem object
   p <- ProjectProblem$new(
@@ -356,7 +340,8 @@ problem <- function(projects, actions, features, project_name_column,
       action_name_column = action_name_column,
       action_cost_column = action_cost_column,
       feature_name_column = feature_name_column,
-      adjust_for_baseline = adjust_for_baseline
+      adjust_for_baseline = adjust_for_baseline,
+      baseline_project_name = baseline_project_name
     )
   )
 
