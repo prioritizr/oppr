@@ -114,11 +114,26 @@ compile.ProjectProblem <- function(x, n_approx = 100, ...) {
   fp <- x$feature_phylogeny()
   bm <- branch_matrix(fp, FALSE)
   bo <- rcpp_branch_order(bm)
+  # prepare expected outcome matrix
+  eof <- x$eof_matrix()[, fp$tip.label, drop = FALSE]
+  if (
+    !is.null(x$data$baseline_project_name) &&
+    is.character(x$data$baseline_project_name) &&
+    (length(x$data$baseline_project_name) > 0)
+  ) {
+    ## update eof matrix to replace zeros with magic numbers for
+    ## baseline projects to ensure that features can be allocated to them
+    ## when there are zeros
+    idx <- which(rownames(eof) %in% x$data$baseline_project_name)
+    v <- eof[idx, ]
+    v[v < 1e-300] <- Inf
+    eof[idx, ] <- v
+  }
   # add raw data to optimization problem
   rcpp_add_raw_data(
     op$ptr,
     x$pa_matrix(),
-    x$eof_matrix()[, fp$tip.label, drop = FALSE],
+    eof,
     bm[, bo, drop = FALSE],
     fp$edge.length[bo],
     n_approx

@@ -346,8 +346,10 @@ ProjectProblem <- R6::R6Class(
         m <- as_Matrix(m, "dgCMatrix")
         m <- Matrix::drop0(m)
       }
+      # set attribute names
       rownames(m) <- self$project_names()
       colnames(m) <- self$feature_names()
+      # return result
       m
     },
 

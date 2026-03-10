@@ -154,6 +154,53 @@ test_that("solve (single solution)", {
   expect_equal(s2$F3, 10 * 1)
 })
 
+test_that("solve (zeros)", {
+  # define skips
+  skip_on_cran()
+  skip_if_not(any_solvers_installed())
+  # create data
+  projects <- tibble::tibble(
+    name = c("P1", "P2", "P3", "P4"),
+    success = c(0.95, 0.96, 0.94, 1.00),
+    F1 = c(91, 0.00, 80, 0),
+    F2 = c(0.00, 92, 80, 0),
+    F3 = c(0.00, 0.00, 32.00, 0),
+    A1 = c(TRUE, FALSE, FALSE, FALSE),
+    A2 = c(FALSE, TRUE, FALSE, FALSE),
+    A3 = c(FALSE, FALSE, TRUE, FALSE),
+    A4 = c(FALSE, FALSE, FALSE, TRUE)
+  )
+  actions <- tibble::tibble(
+    name = c("A1", "A2", "A3", "A4"),
+    cost = c(0.10, 0.10, 0.15, 0)
+  )
+  features <- tibble::tibble(name = c("F1", "F2", "F3"))
+  # build problems
+  p <-
+    problem(
+      projects, actions, features, "name", "success", "name", "cost",
+      "name", FALSE
+    ) %>%
+    add_max_wtd_sum_objective(budget = 0) %>%
+    add_binary_decisions()
+  # solve problem
+  s <- solve(p)
+  # run tests
+  expect_s3_class(s, "tbl_df")
+  expect_equal(nrow(s), 1L)
+  expect_equal(s$solution, 1L)
+  expect_true(is_optimal_solver_status(s$status))
+  expect_equal(s$obj, 0)
+  expect_equal(s$cost, 0)
+  expect_equal(s$A1, 0)
+  expect_equal(s$A2, 0)
+  expect_equal(s$A3, 0)
+  expect_equal(s$A4, 1)
+  expect_equal(s$F1, 0)
+  expect_equal(s$F2, 0)
+  expect_equal(s$F3, 0)
+})
+
 test_that("invalid arguments", {
   # load data
   data(sim_projects, sim_actions, sim_features)

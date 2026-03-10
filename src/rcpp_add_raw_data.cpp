@@ -132,7 +132,9 @@ bool rcpp_add_raw_data(SEXP x, arma::sp_mat pa_matrix, arma::sp_mat pf_matrix,
         (ptr->_number_of_projects) +
         counter
       );
-      ptr->_A_x.push_back(*pitr);
+      // note infinite pf_matrix values are used to encode projects
+      // that should have a zero outcome
+      ptr->_A_x.push_back((std::isfinite(*pitr) ? *pitr : 0.0));
       ++counter;
     }
   }
