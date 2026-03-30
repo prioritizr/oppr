@@ -54,8 +54,8 @@ test_that("linear objective", {
   # solve problem
   s <- solve(p)
   # run tests
-  expect_equal(s$A1, 0)
-  expect_equal(s$A2, 0)
-  expect_equal(s$A3, 1)
-  expect_equal(s$A4, 1)
+  expect_equal(s$A1, FALSE)
+  expect_equal(s$A2, FALSE)
+  expect_equal(s$A3, TRUE)
+  expect_equal(s$A4, TRUE)
 })

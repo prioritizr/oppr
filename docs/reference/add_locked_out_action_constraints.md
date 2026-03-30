@@ -146,16 +146,18 @@ print(p4)
 # solve problems
 s1 <- solve(p1)
 #> Set parameter Username
-#> Set parameter LicenseID to value 2738655
+#> Set parameter LicenseID to value 2774703
 #> Set parameter TimeLimit to value 2147483647
 #> Set parameter MIPGap to value 0
-#> Set parameter NumericFocus to value 2
+#> Set parameter ScaleFlag to value 2
+#> Set parameter NumericFocus to value 1
 #> Set parameter Presolve to value 2
 #> Set parameter Threads to value 1
 #> Set parameter PoolSolutions to value 1
 #> Set parameter PoolSearchMode to value 2
-#> Academic license - for non-commercial use only - expires 2026-11-14
-#> Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Ubuntu 24.04.2 LTS")
+#> Academic license - for non-commercial use only - expires 2027-02-03
+#> Warning: Gurobi version mismatch between R 13.0.0 and C library 13.0.1
+#> Gurobi Optimizer version 13.0.1 build v13.0.1rc0 (linux64 - "Ubuntu 24.04.2 LTS")
 #> 
 #> CPU model: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]
 #> Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
@@ -163,7 +165,8 @@ s1 <- solve(p1)
 #> Non-default parameters:
 #> TimeLimit  2147483647
 #> MIPGap  0
-#> NumericFocus  2
+#> ScaleFlag  2
+#> NumericFocus  1
 #> Presolve  2
 #> Threads  1
 #> PoolSolutions  1
@@ -178,6 +181,7 @@ s1 <- solve(p1)
 #>   Objective range  [1e+00, 1e+00]
 #>   Bounds range     [5e-01, 1e+00]
 #>   RHS range        [1e+00, 2e+02]
+#> 
 #> Found heuristic solution: objective 1.4456093
 #> Presolve removed 16 rows and 12 columns
 #> Presolve time: 0.00s
@@ -203,16 +207,18 @@ s1 <- solve(p1)
 #> Best objective 1.680145013696e+00, best bound 1.680145013696e+00, gap 0.0000%
 s2 <- solve(p2)
 #> Set parameter Username
-#> Set parameter LicenseID to value 2738655
+#> Set parameter LicenseID to value 2774703
 #> Set parameter TimeLimit to value 2147483647
 #> Set parameter MIPGap to value 0
-#> Set parameter NumericFocus to value 2
+#> Set parameter ScaleFlag to value 2
+#> Set parameter NumericFocus to value 1
 #> Set parameter Presolve to value 2
 #> Set parameter Threads to value 1
 #> Set parameter PoolSolutions to value 1
 #> Set parameter PoolSearchMode to value 2
-#> Academic license - for non-commercial use only - expires 2026-11-14
-#> Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Ubuntu 24.04.2 LTS")
+#> Academic license - for non-commercial use only - expires 2027-02-03
+#> Warning: Gurobi version mismatch between R 13.0.0 and C library 13.0.1
+#> Gurobi Optimizer version 13.0.1 build v13.0.1rc0 (linux64 - "Ubuntu 24.04.2 LTS")
 #> 
 #> CPU model: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]
 #> Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
@@ -220,7 +226,8 @@ s2 <- solve(p2)
 #> Non-default parameters:
 #> TimeLimit  2147483647
 #> MIPGap  0
-#> NumericFocus  2
+#> ScaleFlag  2
+#> NumericFocus  1
 #> Presolve  2
 #> Threads  1
 #> PoolSolutions  1
@@ -235,6 +242,7 @@ s2 <- solve(p2)
 #>   Objective range  [1e+00, 1e+00]
 #>   Bounds range     [5e-01, 1e+00]
 #>   RHS range        [1e+00, 2e+02]
+#> 
 #> Found heuristic solution: objective 1.4456093
 #> Presolve removed 18 rows and 15 columns
 #> Presolve time: 0.00s
@@ -260,16 +268,18 @@ s2 <- solve(p2)
 #> Best objective 1.575440809243e+00, best bound 1.575440809243e+00, gap 0.0000%
 s3 <- solve(p3)
 #> Set parameter Username
-#> Set parameter LicenseID to value 2738655
+#> Set parameter LicenseID to value 2774703
 #> Set parameter TimeLimit to value 2147483647
 #> Set parameter MIPGap to value 0
-#> Set parameter NumericFocus to value 2
+#> Set parameter ScaleFlag to value 2
+#> Set parameter NumericFocus to value 1
 #> Set parameter Presolve to value 2
 #> Set parameter Threads to value 1
 #> Set parameter PoolSolutions to value 1
 #> Set parameter PoolSearchMode to value 2
-#> Academic license - for non-commercial use only - expires 2026-11-14
-#> Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Ubuntu 24.04.2 LTS")
+#> Academic license - for non-commercial use only - expires 2027-02-03
+#> Warning: Gurobi version mismatch between R 13.0.0 and C library 13.0.1
+#> Gurobi Optimizer version 13.0.1 build v13.0.1rc0 (linux64 - "Ubuntu 24.04.2 LTS")
 #> 
 #> CPU model: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]
 #> Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
@@ -277,7 +287,8 @@ s3 <- solve(p3)
 #> Non-default parameters:
 #> TimeLimit  2147483647
 #> MIPGap  0
-#> NumericFocus  2
+#> ScaleFlag  2
+#> NumericFocus  1
 #> Presolve  2
 #> Threads  1
 #> PoolSolutions  1
@@ -292,6 +303,7 @@ s3 <- solve(p3)
 #>   Objective range  [1e+00, 1e+00]
 #>   Bounds range     [5e-01, 1e+00]
 #>   RHS range        [1e+00, 2e+02]
+#> 
 #> Found heuristic solution: objective 1.4456093
 #> Presolve removed 18 rows and 15 columns
 #> Presolve time: 0.00s
@@ -317,16 +329,18 @@ s3 <- solve(p3)
 #> Best objective 1.575440809243e+00, best bound 1.575440809243e+00, gap 0.0000%
 s4 <- solve(p4)
 #> Set parameter Username
-#> Set parameter LicenseID to value 2738655
+#> Set parameter LicenseID to value 2774703
 #> Set parameter TimeLimit to value 2147483647
 #> Set parameter MIPGap to value 0
-#> Set parameter NumericFocus to value 2
+#> Set parameter ScaleFlag to value 2
+#> Set parameter NumericFocus to value 1
 #> Set parameter Presolve to value 2
 #> Set parameter Threads to value 1
 #> Set parameter PoolSolutions to value 1
 #> Set parameter PoolSearchMode to value 2
-#> Academic license - for non-commercial use only - expires 2026-11-14
-#> Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Ubuntu 24.04.2 LTS")
+#> Academic license - for non-commercial use only - expires 2027-02-03
+#> Warning: Gurobi version mismatch between R 13.0.0 and C library 13.0.1
+#> Gurobi Optimizer version 13.0.1 build v13.0.1rc0 (linux64 - "Ubuntu 24.04.2 LTS")
 #> 
 #> CPU model: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]
 #> Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
@@ -334,7 +348,8 @@ s4 <- solve(p4)
 #> Non-default parameters:
 #> TimeLimit  2147483647
 #> MIPGap  0
-#> NumericFocus  2
+#> ScaleFlag  2
+#> NumericFocus  1
 #> Presolve  2
 #> Threads  1
 #> PoolSolutions  1
@@ -349,6 +364,7 @@ s4 <- solve(p4)
 #>   Objective range  [1e+00, 1e+00]
 #>   Bounds range     [5e-01, 1e+00]
 #>   RHS range        [1e+00, 2e+02]
+#> 
 #> Found heuristic solution: objective 1.4456093
 #> Presolve removed 18 rows and 15 columns
 #> Presolve time: 0.00s
@@ -377,22 +393,22 @@ s4 <- solve(p4)
 print(s1[, sim_actions$name])
 #> # A tibble: 1 × 6
 #>   F1_action F2_action F3_action F4_action F5_action baseline_action
-#>       <dbl>     <dbl>     <dbl>     <dbl>     <dbl>           <dbl>
-#> 1         0         1         0         0         0               1
+#>   <lgl>     <lgl>     <lgl>     <lgl>     <lgl>     <lgl>          
+#> 1 FALSE     TRUE      FALSE     FALSE     FALSE     TRUE           
 print(s2[, sim_actions$name])
 #> # A tibble: 1 × 6
 #>   F1_action F2_action F3_action F4_action F5_action baseline_action
-#>       <dbl>     <dbl>     <dbl>     <dbl>     <dbl>           <dbl>
-#> 1         1         0         0         0         0               1
+#>   <lgl>     <lgl>     <lgl>     <lgl>     <lgl>     <lgl>          
+#> 1 TRUE      FALSE     FALSE     FALSE     FALSE     TRUE           
 print(s3[, sim_actions$name])
 #> # A tibble: 1 × 6
 #>   F1_action F2_action F3_action F4_action F5_action baseline_action
-#>       <dbl>     <dbl>     <dbl>     <dbl>     <dbl>           <dbl>
-#> 1         1         0         0         0         0               1
+#>   <lgl>     <lgl>     <lgl>     <lgl>     <lgl>     <lgl>          
+#> 1 TRUE      FALSE     FALSE     FALSE     FALSE     TRUE           
 print(s4[, sim_actions$name])
 #> # A tibble: 1 × 6
 #>   F1_action F2_action F3_action F4_action F5_action baseline_action
-#>       <dbl>     <dbl>     <dbl>     <dbl>     <dbl>           <dbl>
-#> 1         1         0         0         0         0               1
+#>   <lgl>     <lgl>     <lgl>     <lgl>     <lgl>     <lgl>          
+#> 1 TRUE      FALSE     FALSE     FALSE     FALSE     TRUE           
 # }
 ```

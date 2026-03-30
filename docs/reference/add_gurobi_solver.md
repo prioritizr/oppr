@@ -245,9 +245,9 @@ s2 <- solve(p2)
 print(s2)
 #> # A tibble: 1 × 21
 #>   solution status   cost   obj F1_action F2_action F3_action F4_action F5_action
-#>      <int> <chr>   <dbl> <dbl>     <dbl>     <dbl>     <dbl>     <dbl>     <dbl>
-#> 1        1 OPTIMAL  195.  2.19         1         1         0         0         0
-#> # ℹ 12 more variables: baseline_action <dbl>, F1_project <lgl>,
+#>      <int> <chr>   <dbl> <dbl> <lgl>     <lgl>     <lgl>     <lgl>     <lgl>    
+#> 1        1 OPTIMAL  195.  2.19 TRUE      TRUE      FALSE     FALSE     FALSE    
+#> # ℹ 12 more variables: baseline_action <lgl>, F1_project <lgl>,
 #> #   F2_project <lgl>, F3_project <lgl>, F4_project <lgl>, F5_project <lgl>,
 #> #   baseline_project <lgl>, F1 <dbl>, F2 <dbl>, F3 <dbl>, F4 <dbl>, F5 <dbl>
 
@@ -354,19 +354,19 @@ s3 <- solve(p3)
 print(s3)
 #> # A tibble: 11 × 21
 #>    solution status  cost   obj F1_action F2_action F3_action F4_action F5_action
-#>       <int> <chr>  <dbl> <dbl>     <dbl>     <dbl>     <dbl>     <dbl>     <dbl>
-#>  1        1 OPTIM… 195.   2.19         1         1         0         0         0
-#>  2        2 SUBOP… 194.   2.01         1         0         0         1         0
-#>  3        3 SUBOP… 194.   1.99         1         0         0         0         1
-#>  4        4 SUBOP… 198.   1.96         1         0         1         0         0
-#>  5        5 SUBOP… 199.   1.91         0         0         0         1         1
-#>  6        6 SUBOP… 101.   1.68         0         1         0         0         0
-#>  7        7 SUBOP…  94.4  1.58         1         0         0         0         0
-#>  8        8 SUBOP…  99.2  1.50         0         0         0         1         0
-#>  9        9 SUBOP…  99.9  1.48         0         0         0         0         1
-#> 10       10 SUBOP… 103.   1.45         0         0         1         0         0
-#> 11       11 SUBOP…   0    1.07         0         0         0         0         0
-#> # ℹ 12 more variables: baseline_action <dbl>, F1_project <lgl>,
+#>       <int> <chr>  <dbl> <dbl> <lgl>     <lgl>     <lgl>     <lgl>     <lgl>    
+#>  1        1 OPTIM… 195.   2.19 TRUE      TRUE      FALSE     FALSE     FALSE    
+#>  2        2 SUBOP… 194.   2.01 TRUE      FALSE     FALSE     TRUE      FALSE    
+#>  3        3 SUBOP… 194.   1.99 TRUE      FALSE     FALSE     FALSE     TRUE     
+#>  4        4 SUBOP… 198.   1.96 TRUE      FALSE     TRUE      FALSE     FALSE    
+#>  5        5 SUBOP… 199.   1.91 FALSE     FALSE     FALSE     TRUE      TRUE     
+#>  6        6 SUBOP… 101.   1.68 FALSE     TRUE      FALSE     FALSE     FALSE    
+#>  7        7 SUBOP…  94.4  1.58 TRUE      FALSE     FALSE     FALSE     FALSE    
+#>  8        8 SUBOP…  99.2  1.50 FALSE     FALSE     FALSE     TRUE      FALSE    
+#>  9        9 SUBOP…  99.9  1.48 FALSE     FALSE     FALSE     FALSE     TRUE     
+#> 10       10 SUBOP… 103.   1.45 FALSE     FALSE     TRUE      FALSE     FALSE    
+#> 11       11 SUBOP…   0    1.07 FALSE     FALSE     FALSE     FALSE     FALSE    
+#> # ℹ 12 more variables: baseline_action <lgl>, F1_project <lgl>,
 #> #   F2_project <lgl>, F3_project <lgl>, F4_project <lgl>, F5_project <lgl>,
 #> #   baseline_project <lgl>, F1 <dbl>, F2 <dbl>, F3 <dbl>, F4 <dbl>, F5 <dbl>
 # }

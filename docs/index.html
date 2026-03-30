@@ -172,11 +172,11 @@
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">s</span>, width <span class="op">=</span> <span class="cn">Inf</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb14"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="do">## # A tibble: 1 × 21</span></span>
 <span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="do">##   solution status   cost   obj F1_action F2_action F3_action F4_action F5_action</span></span>
-<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a><span class="do">##      &lt;int&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;</span></span>
-<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a><span class="do">## 1        1 OPTIMAL  395.  1.75         1         1         0         1         1</span></span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a><span class="do">##      &lt;int&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;lgl&gt;     &lt;lgl&gt;     &lt;lgl&gt;     &lt;lgl&gt;     &lt;lgl&gt;    </span></span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a><span class="do">## 1        1 OPTIMAL  395.  1.75 TRUE      TRUE      FALSE     TRUE      TRUE     </span></span>
 <span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a><span class="do">##   baseline_action F1_project F2_project F3_project F4_project F5_project</span></span>
-<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a><span class="do">##             &lt;dbl&gt; &lt;lgl&gt;      &lt;lgl&gt;      &lt;lgl&gt;      &lt;lgl&gt;      &lt;lgl&gt;     </span></span>
-<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a><span class="do">## 1               1 TRUE       TRUE       FALSE      TRUE       TRUE      </span></span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a><span class="do">##   &lt;lgl&gt;           &lt;lgl&gt;      &lt;lgl&gt;      &lt;lgl&gt;      &lt;lgl&gt;      &lt;lgl&gt;     </span></span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a><span class="do">## 1 TRUE            TRUE       TRUE       FALSE      TRUE       TRUE      </span></span>
 <span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a><span class="do">##   baseline_project    F1    F2     F3    F4    F5</span></span>
 <span id="cb14-9"><a href="#cb14-9" tabindex="-1"></a><span class="do">##   &lt;lgl&gt;            &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
 <span id="cb14-10"><a href="#cb14-10" tabindex="-1"></a><span class="do">## 1 TRUE             0.808 0.865 0.0865 0.688 0.592</span></span></code></pre></div>

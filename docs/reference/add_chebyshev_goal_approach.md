@@ -162,7 +162,7 @@ s <- solve(p)
 #> Set parameter TimeLimit to value 2147483647
 #> Set parameter MIPGap to value 0
 #> Set parameter ScaleFlag to value 2
-#> Set parameter NumericFocus to value 3
+#> Set parameter NumericFocus to value 1
 #> Set parameter Presolve to value 2
 #> Set parameter Threads to value 1
 #> Set parameter PoolSolutions to value 1
@@ -178,7 +178,7 @@ s <- solve(p)
 #> TimeLimit  2147483647
 #> MIPGap  0
 #> ScaleFlag  2
-#> NumericFocus  3
+#> NumericFocus  1
 #> Presolve  2
 #> Threads  1
 #> PoolSolutions  1

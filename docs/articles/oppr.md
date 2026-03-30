@@ -241,15 +241,15 @@ print(s1)
 
     # # A tibble: 1 × 146
     #   solution status   cost   obj action_1 action_2 action_3 action_4 action_5
-    #      <int> <chr>   <dbl> <dbl>    <dbl>    <dbl>    <dbl>    <dbl>    <dbl>
-    # 1        1 OPTIMAL  993.  31.0        1        1        0        0        0
-    # # ℹ 137 more variables: action_6 <dbl>, action_7 <dbl>, action_8 <dbl>,
-    # #   action_9 <dbl>, action_10 <dbl>, action_11 <dbl>, action_12 <dbl>,
-    # #   action_13 <dbl>, action_14 <dbl>, action_15 <dbl>, action_16 <dbl>,
-    # #   action_17 <dbl>, action_18 <dbl>, action_19 <dbl>, action_20 <dbl>,
-    # #   action_21 <dbl>, action_22 <dbl>, action_23 <dbl>, action_24 <dbl>,
-    # #   action_25 <dbl>, action_26 <dbl>, action_27 <dbl>, action_28 <dbl>,
-    # #   action_29 <dbl>, action_30 <dbl>, baseline_action <dbl>, project_1 <lgl>, …
+    #      <int> <chr>   <dbl> <dbl> <lgl>    <lgl>    <lgl>    <lgl>    <lgl>   
+    # 1        1 OPTIMAL  993.  31.0 TRUE     TRUE     FALSE    FALSE    FALSE   
+    # # ℹ 137 more variables: action_6 <lgl>, action_7 <lgl>, action_8 <lgl>,
+    # #   action_9 <lgl>, action_10 <lgl>, action_11 <lgl>, action_12 <lgl>,
+    # #   action_13 <lgl>, action_14 <lgl>, action_15 <lgl>, action_16 <lgl>,
+    # #   action_17 <lgl>, action_18 <lgl>, action_19 <lgl>, action_20 <lgl>,
+    # #   action_21 <lgl>, action_22 <lgl>, action_23 <lgl>, action_24 <lgl>,
+    # #   action_25 <lgl>, action_26 <lgl>, action_27 <lgl>, action_28 <lgl>,
+    # #   action_29 <lgl>, action_30 <lgl>, baseline_action <lgl>, project_1 <lgl>, …
 
 The `s1` table contains the solution (i.e. a prioritization) and also
 various statistics associated with the solution. Here, each row
@@ -475,15 +475,15 @@ print(s2)
 
     # # A tibble: 1 × 146
     #   solution status   cost      obj action_1 action_2 action_3 action_4 action_5
-    #      <int> <chr>   <dbl>    <dbl>    <dbl>    <dbl>    <dbl>    <dbl>    <dbl>
-    # 1        1 OPTIMAL  977. 6290606.        0        1        1        0        0
-    # # ℹ 137 more variables: action_6 <dbl>, action_7 <dbl>, action_8 <dbl>,
-    # #   action_9 <dbl>, action_10 <dbl>, action_11 <dbl>, action_12 <dbl>,
-    # #   action_13 <dbl>, action_14 <dbl>, action_15 <dbl>, action_16 <dbl>,
-    # #   action_17 <dbl>, action_18 <dbl>, action_19 <dbl>, action_20 <dbl>,
-    # #   action_21 <dbl>, action_22 <dbl>, action_23 <dbl>, action_24 <dbl>,
-    # #   action_25 <dbl>, action_26 <dbl>, action_27 <dbl>, action_28 <dbl>,
-    # #   action_29 <dbl>, action_30 <dbl>, baseline_action <dbl>, project_1 <lgl>, …
+    #      <int> <chr>   <dbl>    <dbl> <lgl>    <lgl>    <lgl>    <lgl>    <lgl>   
+    # 1        1 OPTIMAL  977. 6290606. FALSE    TRUE     TRUE     FALSE    FALSE   
+    # # ℹ 137 more variables: action_6 <lgl>, action_7 <lgl>, action_8 <lgl>,
+    # #   action_9 <lgl>, action_10 <lgl>, action_11 <lgl>, action_12 <lgl>,
+    # #   action_13 <lgl>, action_14 <lgl>, action_15 <lgl>, action_16 <lgl>,
+    # #   action_17 <lgl>, action_18 <lgl>, action_19 <lgl>, action_20 <lgl>,
+    # #   action_21 <lgl>, action_22 <lgl>, action_23 <lgl>, action_24 <lgl>,
+    # #   action_25 <lgl>, action_26 <lgl>, action_27 <lgl>, action_28 <lgl>,
+    # #   action_29 <lgl>, action_30 <lgl>, baseline_action <lgl>, project_1 <lgl>, …
 
 ``` r
 # plot solution
@@ -558,28 +558,28 @@ s3 <- solve(p3)
 print(s3)
 ```
 
-    # # A tibble: 28 × 146
+    # # A tibble: 49 × 146
     #    solution status   cost      obj action_1 action_2 action_3 action_4 action_5
-    #       <int> <chr>   <dbl>    <dbl>    <dbl>    <dbl>    <dbl>    <dbl>    <dbl>
-    #  1        1 OPTIMAL  977. 6290606.        0        1        1        0        0
-    #  2        2 OPTIMAL  974. 6290606.        0        1        1        0        0
-    #  3        3 OPTIMAL  967. 6290606.        0        1        1        0        0
-    #  4        4 OPTIMAL  977. 6290606.        0        1        1        1        0
-    #  5        5 OPTIMAL  977. 6290606.        0        1        1        0        0
-    #  6        6 OPTIMAL  874. 6290606.        0        1        1        0        0
-    #  7        7 OPTIMAL  970. 6290606.        0        1        1        0        1
-    #  8        8 OPTIMAL  971. 6290606.        0        1        1        0        0
-    #  9        9 OPTIMAL  969. 6290606.        0        1        1        0        0
-    # 10       10 OPTIMAL  980. 6290606.        0        1        1        0        0
-    # # ℹ 18 more rows
-    # # ℹ 137 more variables: action_6 <dbl>, action_7 <dbl>, action_8 <dbl>,
-    # #   action_9 <dbl>, action_10 <dbl>, action_11 <dbl>, action_12 <dbl>,
-    # #   action_13 <dbl>, action_14 <dbl>, action_15 <dbl>, action_16 <dbl>,
-    # #   action_17 <dbl>, action_18 <dbl>, action_19 <dbl>, action_20 <dbl>,
-    # #   action_21 <dbl>, action_22 <dbl>, action_23 <dbl>, action_24 <dbl>,
-    # #   action_25 <dbl>, action_26 <dbl>, action_27 <dbl>, action_28 <dbl>, …
+    #       <int> <chr>   <dbl>    <dbl> <lgl>    <lgl>    <lgl>    <lgl>    <lgl>   
+    #  1        1 OPTIMAL  874. 6290606. FALSE    TRUE     TRUE     FALSE    FALSE   
+    #  2        2 OPTIMAL  980. 6290606. FALSE    TRUE     TRUE     FALSE    FALSE   
+    #  3        3 OPTIMAL  967. 6290606. FALSE    TRUE     TRUE     FALSE    FALSE   
+    #  4        4 OPTIMAL  977. 6290606. FALSE    TRUE     TRUE     FALSE    FALSE   
+    #  5        5 OPTIMAL  971. 6290606. FALSE    TRUE     TRUE     FALSE    FALSE   
+    #  6        6 OPTIMAL  977. 6290606. FALSE    TRUE     TRUE     FALSE    FALSE   
+    #  7        7 OPTIMAL  977. 6290606. FALSE    TRUE     TRUE     TRUE     FALSE   
+    #  8        8 OPTIMAL  974. 6290606. FALSE    TRUE     TRUE     FALSE    FALSE   
+    #  9        9 OPTIMAL  970. 6290606. FALSE    TRUE     TRUE     FALSE    TRUE    
+    # 10       10 OPTIMAL  969. 6290606. FALSE    TRUE     TRUE     FALSE    FALSE   
+    # # ℹ 39 more rows
+    # # ℹ 137 more variables: action_6 <lgl>, action_7 <lgl>, action_8 <lgl>,
+    # #   action_9 <lgl>, action_10 <lgl>, action_11 <lgl>, action_12 <lgl>,
+    # #   action_13 <lgl>, action_14 <lgl>, action_15 <lgl>, action_16 <lgl>,
+    # #   action_17 <lgl>, action_18 <lgl>, action_19 <lgl>, action_20 <lgl>,
+    # #   action_21 <lgl>, action_22 <lgl>, action_23 <lgl>, action_24 <lgl>,
+    # #   action_25 <lgl>, action_26 <lgl>, action_27 <lgl>, action_28 <lgl>, …
 
-We obtained 28 solutions. Let’s briefly explore them.
+We obtained 49 solutions. Let’s briefly explore them.
 
 ``` r
 # plot histogram of objective values, and add red dashed line to indicate the
@@ -624,26 +624,26 @@ solutions we obtained previously (i.e. the `s3` object).
 print(s3)
 ```
 
-    # # A tibble: 28 × 146
+    # # A tibble: 49 × 146
     #    solution status   cost      obj action_1 action_2 action_3 action_4 action_5
-    #       <int> <chr>   <dbl>    <dbl>    <dbl>    <dbl>    <dbl>    <dbl>    <dbl>
-    #  1        1 OPTIMAL  977. 6290606.        0        1        1        0        0
-    #  2        2 OPTIMAL  974. 6290606.        0        1        1        0        0
-    #  3        3 OPTIMAL  967. 6290606.        0        1        1        0        0
-    #  4        4 OPTIMAL  977. 6290606.        0        1        1        1        0
-    #  5        5 OPTIMAL  977. 6290606.        0        1        1        0        0
-    #  6        6 OPTIMAL  874. 6290606.        0        1        1        0        0
-    #  7        7 OPTIMAL  970. 6290606.        0        1        1        0        1
-    #  8        8 OPTIMAL  971. 6290606.        0        1        1        0        0
-    #  9        9 OPTIMAL  969. 6290606.        0        1        1        0        0
-    # 10       10 OPTIMAL  980. 6290606.        0        1        1        0        0
-    # # ℹ 18 more rows
-    # # ℹ 137 more variables: action_6 <dbl>, action_7 <dbl>, action_8 <dbl>,
-    # #   action_9 <dbl>, action_10 <dbl>, action_11 <dbl>, action_12 <dbl>,
-    # #   action_13 <dbl>, action_14 <dbl>, action_15 <dbl>, action_16 <dbl>,
-    # #   action_17 <dbl>, action_18 <dbl>, action_19 <dbl>, action_20 <dbl>,
-    # #   action_21 <dbl>, action_22 <dbl>, action_23 <dbl>, action_24 <dbl>,
-    # #   action_25 <dbl>, action_26 <dbl>, action_27 <dbl>, action_28 <dbl>, …
+    #       <int> <chr>   <dbl>    <dbl> <lgl>    <lgl>    <lgl>    <lgl>    <lgl>   
+    #  1        1 OPTIMAL  874. 6290606. FALSE    TRUE     TRUE     FALSE    FALSE   
+    #  2        2 OPTIMAL  980. 6290606. FALSE    TRUE     TRUE     FALSE    FALSE   
+    #  3        3 OPTIMAL  967. 6290606. FALSE    TRUE     TRUE     FALSE    FALSE   
+    #  4        4 OPTIMAL  977. 6290606. FALSE    TRUE     TRUE     FALSE    FALSE   
+    #  5        5 OPTIMAL  971. 6290606. FALSE    TRUE     TRUE     FALSE    FALSE   
+    #  6        6 OPTIMAL  977. 6290606. FALSE    TRUE     TRUE     FALSE    FALSE   
+    #  7        7 OPTIMAL  977. 6290606. FALSE    TRUE     TRUE     TRUE     FALSE   
+    #  8        8 OPTIMAL  974. 6290606. FALSE    TRUE     TRUE     FALSE    FALSE   
+    #  9        9 OPTIMAL  970. 6290606. FALSE    TRUE     TRUE     FALSE    TRUE    
+    # 10       10 OPTIMAL  969. 6290606. FALSE    TRUE     TRUE     FALSE    FALSE   
+    # # ℹ 39 more rows
+    # # ℹ 137 more variables: action_6 <lgl>, action_7 <lgl>, action_8 <lgl>,
+    # #   action_9 <lgl>, action_10 <lgl>, action_11 <lgl>, action_12 <lgl>,
+    # #   action_13 <lgl>, action_14 <lgl>, action_15 <lgl>, action_16 <lgl>,
+    # #   action_17 <lgl>, action_18 <lgl>, action_19 <lgl>, action_20 <lgl>,
+    # #   action_21 <lgl>, action_22 <lgl>, action_23 <lgl>, action_24 <lgl>,
+    # #   action_25 <lgl>, action_26 <lgl>, action_27 <lgl>, action_28 <lgl>, …
 
 ``` r
 
@@ -658,16 +658,16 @@ print(actions)
     # # A tibble: 31 × 5
     #    name       cost locked_in locked_out sel_freq
     #    <chr>     <dbl> <lgl>     <lgl>         <dbl>
-    #  1 action_1   97.8 FALSE     FALSE         21.4 
-    #  2 action_2   94.0 FALSE     FALSE         71.4 
-    #  3 action_3  100.  FALSE     FALSE         64.3 
-    #  4 action_4  103.  FALSE     FALSE          7.14
-    #  5 action_5   96.1 FALSE     FALSE          7.14
+    #  1 action_1   97.8 FALSE     FALSE         14.3 
+    #  2 action_2   94.0 FALSE     FALSE         49.0 
+    #  3 action_3  100.  FALSE     FALSE         81.6 
+    #  4 action_4  103.  FALSE     FALSE         28.6 
+    #  5 action_5   96.1 FALSE     FALSE          4.08
     #  6 action_6   98.1 FALSE     FALSE          0   
-    #  7 action_7   97.6 FALSE     FALSE         10.7 
-    #  8 action_8  104.  FALSE     FALSE          7.14
-    #  9 action_9   99.9 FALSE     FALSE          3.57
-    # 10 action_10  93.1 FALSE     FALSE         35.7 
+    #  7 action_7   97.6 FALSE     FALSE         18.4 
+    #  8 action_8  104.  FALSE     FALSE         10.2 
+    #  9 action_9   99.9 FALSE     FALSE          8.16
+    # 10 action_10  93.1 FALSE     FALSE         32.7 
     # # ℹ 21 more rows
 
 ``` r
@@ -679,16 +679,16 @@ head(actions[order(actions$sel_freq, decreasing = TRUE), ], n = 10)
     # # A tibble: 10 × 5
     #    name             cost locked_in locked_out sel_freq
     #    <chr>           <dbl> <lgl>     <lgl>         <dbl>
-    #  1 action_14        99.4 FALSE     FALSE          96.4
-    #  2 baseline_action   0   FALSE     FALSE          96.4
-    #  3 action_28       102.  FALSE     FALSE          89.3
-    #  4 action_22        93.9 FALSE     FALSE          78.6
-    #  5 action_27        91.1 FALSE     FALSE          78.6
-    #  6 action_19        89.8 FALSE     FALSE          75  
-    #  7 action_2         94.0 FALSE     FALSE          71.4
-    #  8 action_29       103.  FALSE     FALSE          71.4
-    #  9 action_17       101.  FALSE     FALSE          67.9
-    # 10 action_3        100.  FALSE     FALSE          64.3
+    #  1 action_28       102.  FALSE     FALSE         100  
+    #  2 action_14        99.4 FALSE     FALSE          95.9
+    #  3 action_27        91.1 FALSE     FALSE          95.9
+    #  4 baseline_action   0   FALSE     FALSE          95.9
+    #  5 action_19        89.8 FALSE     FALSE          85.7
+    #  6 action_29       103.  FALSE     FALSE          83.7
+    #  7 action_3        100.  FALSE     FALSE          81.6
+    #  8 action_17       101.  FALSE     FALSE          81.6
+    #  9 action_2         94.0 FALSE     FALSE          49.0
+    # 10 action_22        93.9 FALSE     FALSE          44.9
 
 ``` r
 
@@ -744,15 +744,15 @@ print(s2)
 
     # # A tibble: 1 × 146
     #   solution status   cost      obj action_1 action_2 action_3 action_4 action_5
-    #      <int> <chr>   <dbl>    <dbl>    <dbl>    <dbl>    <dbl>    <dbl>    <dbl>
-    # 1        1 OPTIMAL  977. 6290606.        0        1        1        0        0
-    # # ℹ 137 more variables: action_6 <dbl>, action_7 <dbl>, action_8 <dbl>,
-    # #   action_9 <dbl>, action_10 <dbl>, action_11 <dbl>, action_12 <dbl>,
-    # #   action_13 <dbl>, action_14 <dbl>, action_15 <dbl>, action_16 <dbl>,
-    # #   action_17 <dbl>, action_18 <dbl>, action_19 <dbl>, action_20 <dbl>,
-    # #   action_21 <dbl>, action_22 <dbl>, action_23 <dbl>, action_24 <dbl>,
-    # #   action_25 <dbl>, action_26 <dbl>, action_27 <dbl>, action_28 <dbl>,
-    # #   action_29 <dbl>, action_30 <dbl>, baseline_action <dbl>, project_1 <lgl>, …
+    #      <int> <chr>   <dbl>    <dbl> <lgl>    <lgl>    <lgl>    <lgl>    <lgl>   
+    # 1        1 OPTIMAL  977. 6290606. FALSE    TRUE     TRUE     FALSE    FALSE   
+    # # ℹ 137 more variables: action_6 <lgl>, action_7 <lgl>, action_8 <lgl>,
+    # #   action_9 <lgl>, action_10 <lgl>, action_11 <lgl>, action_12 <lgl>,
+    # #   action_13 <lgl>, action_14 <lgl>, action_15 <lgl>, action_16 <lgl>,
+    # #   action_17 <lgl>, action_18 <lgl>, action_19 <lgl>, action_20 <lgl>,
+    # #   action_21 <lgl>, action_22 <lgl>, action_23 <lgl>, action_24 <lgl>,
+    # #   action_25 <lgl>, action_26 <lgl>, action_27 <lgl>, action_28 <lgl>,
+    # #   action_29 <lgl>, action_30 <lgl>, baseline_action <lgl>, project_1 <lgl>, …
 
 ``` r
 
@@ -806,16 +806,16 @@ print(actions[order(actions$rep_cost, decreasing = TRUE), ])
     # # A tibble: 31 × 6
     #    name             cost locked_in locked_out sel_freq rep_cost
     #    <chr>           <dbl> <lgl>     <lgl>         <dbl>    <dbl>
-    #  1 action_14        99.4 FALSE     FALSE          96.4  345636.
-    #  2 action_2         94.0 FALSE     FALSE          71.4  187698.
-    #  3 action_22        93.9 FALSE     FALSE          78.6  187698.
-    #  4 action_3        100.  FALSE     FALSE          64.3  167620.
-    #  5 action_17       101.  FALSE     FALSE          67.9  167620.
-    #  6 action_19        89.8 FALSE     FALSE          75    167620.
-    #  7 action_27        91.1 FALSE     FALSE          78.6  167620.
-    #  8 action_28       102.  FALSE     FALSE          89.3  167620.
-    #  9 action_29       103.  FALSE     FALSE          71.4  167620.
-    # 10 baseline_action   0   FALSE     FALSE          96.4  167620.
+    #  1 action_14        99.4 FALSE     FALSE          95.9  345636.
+    #  2 action_2         94.0 FALSE     FALSE          49.0  187698.
+    #  3 action_22        93.9 FALSE     FALSE          44.9  187698.
+    #  4 action_3        100.  FALSE     FALSE          81.6  167620.
+    #  5 action_17       101.  FALSE     FALSE          81.6  167620.
+    #  6 action_19        89.8 FALSE     FALSE          85.7  167620.
+    #  7 action_27        91.1 FALSE     FALSE          95.9  167620.
+    #  8 action_28       102.  FALSE     FALSE         100    167620.
+    #  9 action_29       103.  FALSE     FALSE          83.7  167620.
+    # 10 baseline_action   0   FALSE     FALSE          95.9  167620.
     # # ℹ 21 more rows
 
 ``` r
@@ -828,13 +828,13 @@ cor.test(x = actions$sel_freq, y = actions$rep_cost, method = "pearson")
     #  Pearson's product-moment correlation
     # 
     # data:  actions$sel_freq and actions$rep_cost
-    # t = 4.2029, df = 9, p-value = 0.002297
+    # t = 2.3255, df = 9, p-value = 0.04508
     # alternative hypothesis: true correlation is not equal to 0
     # 95 percent confidence interval:
-    #  0.4182619 0.9499714
+    #  0.02019318 0.88666303
     # sample estimates:
-    #       cor 
-    # 0.8139204
+    #      cor 
+    # 0.612647
 
 ``` r
 
@@ -914,15 +914,15 @@ print(s4)
 
     # # A tibble: 1 × 146
     #   solution status   cost   obj action_1 action_2 action_3 action_4 action_5
-    #      <int> <chr>   <dbl> <dbl>    <dbl>    <dbl>    <dbl>    <dbl>    <dbl>
-    # 1        1 OPTIMAL  993.    36        1        1        0        0        0
-    # # ℹ 137 more variables: action_6 <dbl>, action_7 <dbl>, action_8 <dbl>,
-    # #   action_9 <dbl>, action_10 <dbl>, action_11 <dbl>, action_12 <dbl>,
-    # #   action_13 <dbl>, action_14 <dbl>, action_15 <dbl>, action_16 <dbl>,
-    # #   action_17 <dbl>, action_18 <dbl>, action_19 <dbl>, action_20 <dbl>,
-    # #   action_21 <dbl>, action_22 <dbl>, action_23 <dbl>, action_24 <dbl>,
-    # #   action_25 <dbl>, action_26 <dbl>, action_27 <dbl>, action_28 <dbl>,
-    # #   action_29 <dbl>, action_30 <dbl>, baseline_action <dbl>, project_1 <lgl>, …
+    #      <int> <chr>   <dbl> <dbl> <lgl>    <lgl>    <lgl>    <lgl>    <lgl>   
+    # 1        1 OPTIMAL  993.    36 TRUE     TRUE     FALSE    FALSE    FALSE   
+    # # ℹ 137 more variables: action_6 <lgl>, action_7 <lgl>, action_8 <lgl>,
+    # #   action_9 <lgl>, action_10 <lgl>, action_11 <lgl>, action_12 <lgl>,
+    # #   action_13 <lgl>, action_14 <lgl>, action_15 <lgl>, action_16 <lgl>,
+    # #   action_17 <lgl>, action_18 <lgl>, action_19 <lgl>, action_20 <lgl>,
+    # #   action_21 <lgl>, action_22 <lgl>, action_23 <lgl>, action_24 <lgl>,
+    # #   action_25 <lgl>, action_26 <lgl>, action_27 <lgl>, action_28 <lgl>,
+    # #   action_29 <lgl>, action_30 <lgl>, baseline_action <lgl>, project_1 <lgl>, …
 
 ``` r
 
@@ -1019,16 +1019,18 @@ s5 <- solve(p5)
 ```
 
     # Set parameter Username
-    # Set parameter LicenseID to value 2738655
+    # Set parameter LicenseID to value 2774703
     # Set parameter TimeLimit to value 2147483647
     # Set parameter MIPGap to value 0
-    # Set parameter NumericFocus to value 2
+    # Set parameter ScaleFlag to value 2
+    # Set parameter NumericFocus to value 1
     # Set parameter Presolve to value 2
     # Set parameter Threads to value 1
     # Set parameter PoolSolutions to value 1
     # Set parameter PoolSearchMode to value 2
-    # Academic license - for non-commercial use only - expires 2026-11-14
-    # Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Ubuntu 24.04.2 LTS")
+    # Academic license - for non-commercial use only - expires 2027-02-03
+    # Warning: Gurobi version mismatch between R 13.0.0 and C library 13.0.1
+    # Gurobi Optimizer version 13.0.1 build v13.0.1rc0 (linux64 - "Ubuntu 24.04.2 LTS")
     # 
     # CPU model: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]
     # Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
@@ -1036,7 +1038,8 @@ s5 <- solve(p5)
     # Non-default parameters:
     # TimeLimit  2147483647
     # MIPGap  0
-    # NumericFocus  2
+    # ScaleFlag  2
+    # NumericFocus  1
     # Presolve  2
     # Threads  1
     # PoolSolutions  1
@@ -1051,6 +1054,7 @@ s5 <- solve(p5)
     #   Objective range  [9e+01, 1e+02]
     #   Bounds range     [1e+00, 1e+00]
     #   RHS range        [1e+00, 1e+00]
+    # 
     # Presolve time: 0.00s
     # 
     # Explored 0 nodes (0 simplex iterations) in 0.00 seconds (0.00 work units)
@@ -1111,15 +1115,15 @@ print(s6)
 
     # # A tibble: 1 × 146
     #   solution status   cost   obj action_1 action_2 action_3 action_4 action_5
-    #      <int> <chr>   <dbl> <dbl>    <dbl>    <dbl>    <dbl>    <dbl>    <dbl>
-    # 1        1 OPTIMAL  972.  972.        0        1        0        0        0
-    # # ℹ 137 more variables: action_6 <dbl>, action_7 <dbl>, action_8 <dbl>,
-    # #   action_9 <dbl>, action_10 <dbl>, action_11 <dbl>, action_12 <dbl>,
-    # #   action_13 <dbl>, action_14 <dbl>, action_15 <dbl>, action_16 <dbl>,
-    # #   action_17 <dbl>, action_18 <dbl>, action_19 <dbl>, action_20 <dbl>,
-    # #   action_21 <dbl>, action_22 <dbl>, action_23 <dbl>, action_24 <dbl>,
-    # #   action_25 <dbl>, action_26 <dbl>, action_27 <dbl>, action_28 <dbl>,
-    # #   action_29 <dbl>, action_30 <dbl>, baseline_action <dbl>, project_1 <lgl>, …
+    #      <int> <chr>   <dbl> <dbl> <lgl>    <lgl>    <lgl>    <lgl>    <lgl>   
+    # 1        1 OPTIMAL  972.  972. FALSE    TRUE     FALSE    FALSE    FALSE   
+    # # ℹ 137 more variables: action_6 <lgl>, action_7 <lgl>, action_8 <lgl>,
+    # #   action_9 <lgl>, action_10 <lgl>, action_11 <lgl>, action_12 <lgl>,
+    # #   action_13 <lgl>, action_14 <lgl>, action_15 <lgl>, action_16 <lgl>,
+    # #   action_17 <lgl>, action_18 <lgl>, action_19 <lgl>, action_20 <lgl>,
+    # #   action_21 <lgl>, action_22 <lgl>, action_23 <lgl>, action_24 <lgl>,
+    # #   action_25 <lgl>, action_26 <lgl>, action_27 <lgl>, action_28 <lgl>,
+    # #   action_29 <lgl>, action_30 <lgl>, baseline_action <lgl>, project_1 <lgl>, …
 
 ``` r
 # plot solution
@@ -1167,24 +1171,24 @@ print(s7)
 
     # # A tibble: 100 × 147
     #    solution status  cost      obj action_1 action_2 action_3 action_4 action_5
-    #       <int> <chr>  <dbl>    <dbl>    <dbl>    <dbl>    <dbl>    <dbl>    <dbl>
-    #  1        1 NA       0   2284593.        0        0        0        0        0
-    #  2        1 NA       0   2284593.        0        0        0        0        0
-    #  3        1 NA       0   2284593.        0        0        0        0        0
-    #  4        1 NA       0   2284593.        0        0        0        0        0
-    #  5        1 NA      99.4 4513353.        0        0        0        0        0
-    #  6        1 NA      99.4 4513353.        0        0        0        0        0
-    #  7        1 NA      99.4 4513353.        0        0        0        0        0
-    #  8        1 NA      99.4 4513353.        0        0        0        0        0
-    #  9        1 NA      99.4 4513353.        0        0        0        0        0
-    # 10        1 NA      99.4 4513353.        0        0        0        0        0
+    #       <int> <chr>  <dbl>    <dbl> <lgl>    <lgl>    <lgl>    <lgl>    <lgl>   
+    #  1        1 NA       0   2284593. FALSE    FALSE    FALSE    FALSE    FALSE   
+    #  2        1 NA       0   2284593. FALSE    FALSE    FALSE    FALSE    FALSE   
+    #  3        1 NA       0   2284593. FALSE    FALSE    FALSE    FALSE    FALSE   
+    #  4        1 NA       0   2284593. FALSE    FALSE    FALSE    FALSE    FALSE   
+    #  5        1 NA      99.4 4513353. FALSE    FALSE    FALSE    FALSE    FALSE   
+    #  6        1 NA      99.4 4513353. FALSE    FALSE    FALSE    FALSE    FALSE   
+    #  7        1 NA      99.4 4513353. FALSE    FALSE    FALSE    FALSE    FALSE   
+    #  8        1 NA      99.4 4513353. FALSE    FALSE    FALSE    FALSE    FALSE   
+    #  9        1 NA      99.4 4513353. FALSE    FALSE    FALSE    FALSE    FALSE   
+    # 10        1 NA      99.4 4513353. FALSE    FALSE    FALSE    FALSE    FALSE   
     # # ℹ 90 more rows
-    # # ℹ 138 more variables: action_6 <dbl>, action_7 <dbl>, action_8 <dbl>,
-    # #   action_9 <dbl>, action_10 <dbl>, action_11 <dbl>, action_12 <dbl>,
-    # #   action_13 <dbl>, action_14 <dbl>, action_15 <dbl>, action_16 <dbl>,
-    # #   action_17 <dbl>, action_18 <dbl>, action_19 <dbl>, action_20 <dbl>,
-    # #   action_21 <dbl>, action_22 <dbl>, action_23 <dbl>, action_24 <dbl>,
-    # #   action_25 <dbl>, action_26 <dbl>, action_27 <dbl>, action_28 <dbl>, …
+    # # ℹ 138 more variables: action_6 <lgl>, action_7 <lgl>, action_8 <lgl>,
+    # #   action_9 <lgl>, action_10 <lgl>, action_11 <lgl>, action_12 <lgl>,
+    # #   action_13 <lgl>, action_14 <lgl>, action_15 <lgl>, action_16 <lgl>,
+    # #   action_17 <lgl>, action_18 <lgl>, action_19 <lgl>, action_20 <lgl>,
+    # #   action_21 <lgl>, action_22 <lgl>, action_23 <lgl>, action_24 <lgl>,
+    # #   action_25 <lgl>, action_26 <lgl>, action_27 <lgl>, action_28 <lgl>, …
 
 Now let’s generate a portfolio of solutions using random processes.
 
@@ -1282,24 +1286,24 @@ print(s9)
 
     # # A tibble: 100 × 147
     #    solution status   cost      obj action_1 action_2 action_3 action_4 action_5
-    #       <int> <chr>   <dbl>    <dbl>    <dbl>    <dbl>    <dbl>    <dbl>    <dbl>
-    #  1        1 OPTIMAL   0   2284593.        0        0        0        0        0
-    #  2        1 OPTIMAL   0   2284593.        0        0        0        0        0
-    #  3        1 OPTIMAL   0   2284593.        0        0        0        0        0
-    #  4        1 OPTIMAL   0   2284593.        0        0        0        0        0
-    #  5        1 OPTIMAL  99.4 4513353.        0        0        0        0        0
-    #  6        1 OPTIMAL  99.4 4513353.        0        0        0        0        0
-    #  7        1 OPTIMAL  99.4 4513353.        0        0        0        0        0
-    #  8        1 OPTIMAL  99.4 4513353.        0        0        0        0        0
-    #  9        1 OPTIMAL  99.4 4513353.        0        0        0        0        0
-    # 10        1 OPTIMAL  99.4 4513353.        0        0        0        0        0
+    #       <int> <chr>   <dbl>    <dbl> <lgl>    <lgl>    <lgl>    <lgl>    <lgl>   
+    #  1        1 OPTIMAL   0   2284593. FALSE    FALSE    FALSE    FALSE    FALSE   
+    #  2        1 OPTIMAL   0   2284593. FALSE    FALSE    FALSE    FALSE    FALSE   
+    #  3        1 OPTIMAL   0   2284593. FALSE    FALSE    FALSE    FALSE    FALSE   
+    #  4        1 OPTIMAL   0   2284593. FALSE    FALSE    FALSE    FALSE    FALSE   
+    #  5        1 OPTIMAL  99.4 4513353. FALSE    FALSE    FALSE    FALSE    FALSE   
+    #  6        1 OPTIMAL  99.4 4513353. FALSE    FALSE    FALSE    FALSE    FALSE   
+    #  7        1 OPTIMAL  99.4 4513353. FALSE    FALSE    FALSE    FALSE    FALSE   
+    #  8        1 OPTIMAL  99.4 4513353. FALSE    FALSE    FALSE    FALSE    FALSE   
+    #  9        1 OPTIMAL  99.4 4513353. FALSE    FALSE    FALSE    FALSE    FALSE   
+    # 10        1 OPTIMAL  99.4 4513353. FALSE    FALSE    FALSE    FALSE    FALSE   
     # # ℹ 90 more rows
-    # # ℹ 138 more variables: action_6 <dbl>, action_7 <dbl>, action_8 <dbl>,
-    # #   action_9 <dbl>, action_10 <dbl>, action_11 <dbl>, action_12 <dbl>,
-    # #   action_13 <dbl>, action_14 <dbl>, action_15 <dbl>, action_16 <dbl>,
-    # #   action_17 <dbl>, action_18 <dbl>, action_19 <dbl>, action_20 <dbl>,
-    # #   action_21 <dbl>, action_22 <dbl>, action_23 <dbl>, action_24 <dbl>,
-    # #   action_25 <dbl>, action_26 <dbl>, action_27 <dbl>, action_28 <dbl>, …
+    # # ℹ 138 more variables: action_6 <lgl>, action_7 <lgl>, action_8 <lgl>,
+    # #   action_9 <lgl>, action_10 <lgl>, action_11 <lgl>, action_12 <lgl>,
+    # #   action_13 <lgl>, action_14 <lgl>, action_15 <lgl>, action_16 <lgl>,
+    # #   action_17 <lgl>, action_18 <lgl>, action_19 <lgl>, action_20 <lgl>,
+    # #   action_21 <lgl>, action_22 <lgl>, action_23 <lgl>, action_24 <lgl>,
+    # #   action_25 <lgl>, action_26 <lgl>, action_27 <lgl>, action_28 <lgl>, …
 
 Now let’s redraw the previous graph and add a red line to the plot to
 represent the solutions generated using the exact algorithm solver.

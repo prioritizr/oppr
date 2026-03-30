@@ -106,16 +106,18 @@ s <- rbind(
   solve(p8), solve(p9)
 )
 #> Set parameter Username
-#> Set parameter LicenseID to value 2738655
+#> Set parameter LicenseID to value 2774703
 #> Set parameter TimeLimit to value 2147483647
 #> Set parameter MIPGap to value 0
-#> Set parameter NumericFocus to value 2
+#> Set parameter ScaleFlag to value 2
+#> Set parameter NumericFocus to value 1
 #> Set parameter Presolve to value 2
 #> Set parameter Threads to value 1
 #> Set parameter PoolSolutions to value 1
 #> Set parameter PoolSearchMode to value 2
-#> Academic license - for non-commercial use only - expires 2026-11-14
-#> Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Ubuntu 24.04.2 LTS")
+#> Academic license - for non-commercial use only - expires 2027-02-03
+#> Warning: Gurobi version mismatch between R 13.0.0 and C library 13.0.1
+#> Gurobi Optimizer version 13.0.1 build v13.0.1rc0 (linux64 - "Ubuntu 24.04.2 LTS")
 #> 
 #> CPU model: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]
 #> Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
@@ -123,7 +125,8 @@ s <- rbind(
 #> Non-default parameters:
 #> TimeLimit  2147483647
 #> MIPGap  0
-#> NumericFocus  2
+#> ScaleFlag  2
+#> NumericFocus  1
 #> Presolve  2
 #> Threads  1
 #> PoolSolutions  1
@@ -138,6 +141,7 @@ s <- rbind(
 #>   Objective range  [1e+00, 1e+00]
 #>   Bounds range     [5e-01, 1e+00]
 #>   RHS range        [1e+00, 2e+02]
+#> 
 #> Found heuristic solution: objective 1.4456093
 #> Presolve removed 16 rows and 12 columns
 #> Presolve time: 0.00s
@@ -146,14 +150,14 @@ s <- rbind(
 #> Root relaxation presolved: 11 rows, 15 columns, 25 nonzeros
 #> 
 #> 
-#> Root relaxation: objective 2.190381e+00, 11 iterations, 0.00 seconds (0.00 work units)
+#> Root relaxation: objective 2.190381e+00, 12 iterations, 0.00 seconds (0.00 work units)
 #> 
 #>     Nodes    |    Current Node    |     Objective Bounds      |     Work
 #>  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #> 
 #> *    0     0               0       2.1903807    2.19038  0.00%     -    0s
 #> 
-#> Explored 1 nodes (11 simplex iterations) in 0.00 seconds (0.00 work units)
+#> Explored 1 nodes (12 simplex iterations) in 0.00 seconds (0.00 work units)
 #> Thread count was 1 (of 8 available processors)
 #> 
 #> Solution count 1: 2.19038 
@@ -162,16 +166,18 @@ s <- rbind(
 #> Optimal solution found (tolerance 0.00e+00)
 #> Best objective 2.190380737245e+00, best bound 2.190380737245e+00, gap 0.0000%
 #> Set parameter Username
-#> Set parameter LicenseID to value 2738655
+#> Set parameter LicenseID to value 2774703
 #> Set parameter TimeLimit to value 2147483647
 #> Set parameter MIPGap to value 0
-#> Set parameter NumericFocus to value 2
+#> Set parameter ScaleFlag to value 2
+#> Set parameter NumericFocus to value 1
 #> Set parameter Presolve to value 2
 #> Set parameter Threads to value 1
 #> Set parameter PoolSolutions to value 1
 #> Set parameter PoolSearchMode to value 2
-#> Academic license - for non-commercial use only - expires 2026-11-14
-#> Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Ubuntu 24.04.2 LTS")
+#> Academic license - for non-commercial use only - expires 2027-02-03
+#> Warning: Gurobi version mismatch between R 13.0.0 and C library 13.0.1
+#> Gurobi Optimizer version 13.0.1 build v13.0.1rc0 (linux64 - "Ubuntu 24.04.2 LTS")
 #> 
 #> CPU model: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]
 #> Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
@@ -179,7 +185,8 @@ s <- rbind(
 #> Non-default parameters:
 #> TimeLimit  2147483647
 #> MIPGap  0
-#> NumericFocus  2
+#> ScaleFlag  2
+#> NumericFocus  1
 #> Presolve  2
 #> Threads  1
 #> PoolSolutions  1
@@ -194,6 +201,7 @@ s <- rbind(
 #>   Objective range  [1e+00, 1e+00]
 #>   Bounds range     [5e-01, 1e+00]
 #>   RHS range        [1e+00, 2e+02]
+#> 
 #> Found heuristic solution: objective 1.4456093
 #> Presolve removed 16 rows and 12 columns
 #> Presolve time: 0.00s
@@ -202,14 +210,14 @@ s <- rbind(
 #> Root relaxation presolved: 11 rows, 15 columns, 25 nonzeros
 #> 
 #> 
-#> Root relaxation: objective 2.190381e+00, 11 iterations, 0.00 seconds (0.00 work units)
+#> Root relaxation: objective 2.190381e+00, 12 iterations, 0.00 seconds (0.00 work units)
 #> 
 #>     Nodes    |    Current Node    |     Objective Bounds      |     Work
 #>  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #> 
 #> *    0     0               0       2.1903807    2.19038  0.00%     -    0s
 #> 
-#> Explored 1 nodes (11 simplex iterations) in 0.00 seconds (0.00 work units)
+#> Explored 1 nodes (12 simplex iterations) in 0.00 seconds (0.00 work units)
 #> Thread count was 1 (of 8 available processors)
 #> 
 #> Solution count 1: 2.19038 
@@ -271,7 +279,7 @@ s <- rbind(
 #>   Dual bound        2.19038073725
 #>   Gap               0%
 #> 
-#>   P-D integral      0.000163468576509
+#>   P-D integral      0.000152575298962
 #> 
 #>   Solution status   feasible
 #> 
@@ -328,23 +336,23 @@ s$solver <- c(
 # print solutions
 print(as.data.frame(s))
 #>   solution                    status     cost      obj F1_action F2_action
-#> 1        1                   OPTIMAL 195.3907 2.190381         1         1
-#> 2        1                   OPTIMAL 195.3907 2.190381         1         1
-#> 3        1                   Optimal 195.3907 2.190381         1         1
-#> 4        1 TM_OPTIMAL_SOLUTION_FOUND 195.3907 2.190381         1         1
-#> 5        1 TM_OPTIMAL_SOLUTION_FOUND 195.3907 2.190381         1         1
-#> 6        1    optimal solution found 195.3907 2.190381         1         1
-#> 7        1                      <NA> 195.3907 2.190381         1         1
-#> 8        1                      <NA> 193.6420 2.014650         1         0
+#> 1        1                   OPTIMAL 195.3907 2.190381      TRUE      TRUE
+#> 2        1                   OPTIMAL 195.3907 2.190381      TRUE      TRUE
+#> 3        1                   Optimal 195.3907 2.190381      TRUE      TRUE
+#> 4        1 TM_OPTIMAL_SOLUTION_FOUND 195.3907 2.190381      TRUE      TRUE
+#> 5        1 TM_OPTIMAL_SOLUTION_FOUND 195.3907 2.190381      TRUE      TRUE
+#> 6        1    optimal solution found 195.3907 2.190381      TRUE      TRUE
+#> 7        1                      <NA> 195.3907 2.190381      TRUE      TRUE
+#> 8        1                      <NA> 193.6420 2.014650      TRUE     FALSE
 #>   F3_action F4_action F5_action baseline_action F1_project F2_project
-#> 1         0         0         0               1       TRUE       TRUE
-#> 2         0         0         0               1       TRUE       TRUE
-#> 3         0         0         0               1       TRUE       TRUE
-#> 4         0         0         0               1       TRUE       TRUE
-#> 5         0         0         0               1       TRUE       TRUE
-#> 6         0         0         0               1       TRUE       TRUE
-#> 7         0         0         0               1       TRUE       TRUE
-#> 8         0         1         0               1       TRUE      FALSE
+#> 1     FALSE     FALSE     FALSE            TRUE       TRUE       TRUE
+#> 2     FALSE     FALSE     FALSE            TRUE       TRUE       TRUE
+#> 3     FALSE     FALSE     FALSE            TRUE       TRUE       TRUE
+#> 4     FALSE     FALSE     FALSE            TRUE       TRUE       TRUE
+#> 5     FALSE     FALSE     FALSE            TRUE       TRUE       TRUE
+#> 6     FALSE     FALSE     FALSE            TRUE       TRUE       TRUE
+#> 7     FALSE     FALSE     FALSE            TRUE       TRUE       TRUE
+#> 8     FALSE      TRUE     FALSE            TRUE       TRUE      FALSE
 #>   F3_project F4_project F5_project baseline_project        F1        F2
 #> 1      FALSE      FALSE      FALSE             TRUE 0.8080322 0.8649623
 #> 2      FALSE      FALSE      FALSE             TRUE 0.8080322 0.8649623

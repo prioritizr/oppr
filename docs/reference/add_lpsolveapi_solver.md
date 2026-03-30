@@ -137,9 +137,9 @@ s <- solve(p)
 print(s)
 #> # A tibble: 1 × 21
 #>   solution status   cost   obj F1_action F2_action F3_action F4_action F5_action
-#>      <int> <chr>   <dbl> <dbl>     <dbl>     <dbl>     <dbl>     <dbl>     <dbl>
-#> 1        1 optima…  195.  2.19         1         1         0         0         0
-#> # ℹ 12 more variables: baseline_action <dbl>, F1_project <lgl>,
+#>      <int> <chr>   <dbl> <dbl> <lgl>     <lgl>     <lgl>     <lgl>     <lgl>    
+#> 1        1 optima…  195.  2.19 TRUE      TRUE      FALSE     FALSE     FALSE    
+#> # ℹ 12 more variables: baseline_action <lgl>, F1_project <lgl>,
 #> #   F2_project <lgl>, F3_project <lgl>, F4_project <lgl>, F5_project <lgl>,
 #> #   baseline_project <lgl>, F1 <dbl>, F2 <dbl>, F3 <dbl>, F4 <dbl>, F5 <dbl>
 

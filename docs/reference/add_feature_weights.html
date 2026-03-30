@@ -193,16 +193,18 @@ have <code>numeric</code> values, and these used to weight the features.</p></dd
 <span class="r-in"><span><span class="co"># solve the problems</span></span></span>
 <span class="r-in"><span><span class="va">s1</span> <span class="op">&lt;-</span> <span class="fu"><a href="solve.html">solve</a></span><span class="op">(</span><span class="va">p1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Username</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter LicenseID to value 2738655</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter LicenseID to value 2774703</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter TimeLimit to value 2147483647</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter MIPGap to value 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter NumericFocus to value 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter ScaleFlag to value 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter NumericFocus to value 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Presolve to value 2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Threads to value 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter PoolSolutions to value 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter PoolSearchMode to value 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Academic license - for non-commercial use only - expires 2026-11-14</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Ubuntu 24.04.2 LTS")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Academic license - for non-commercial use only - expires 2027-02-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Warning: Gurobi version mismatch between R 13.0.0 and C library 13.0.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Gurobi Optimizer version 13.0.1 build v13.0.1rc0 (linux64 - "Ubuntu 24.04.2 LTS")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> CPU model: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Thread count: 4 physical cores, 8 logical processors, using up to 1 threads</span>
@@ -210,7 +212,8 @@ have <code>numeric</code> values, and these used to weight the features.</p></dd
 <span class="r-out co"><span class="r-pr">#&gt;</span> Non-default parameters:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> TimeLimit  2147483647</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> MIPGap  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NumericFocus  2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ScaleFlag  2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NumericFocus  1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Presolve  2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Threads  1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> PoolSolutions  1</span>
@@ -225,6 +228,7 @@ have <code>numeric</code> values, and these used to weight the features.</p></dd
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Objective range  [1e+00, 1e+00]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Bounds range     [5e-01, 1e+00]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   RHS range        [1e+00, 2e+02]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Found heuristic solution: objective 1.4456093</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Presolve removed 16 rows and 12 columns</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Presolve time: 0.00s</span>
@@ -233,14 +237,14 @@ have <code>numeric</code> values, and these used to weight the features.</p></dd
 <span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation presolved: 11 rows, 15 columns, 25 nonzeros</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation: objective 2.190381e+00, 11 iterations, 0.00 seconds (0.00 work units)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation: objective 2.190381e+00, 12 iterations, 0.00 seconds (0.00 work units)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Nodes    |    Current Node    |     Objective Bounds      |     Work</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> *    0     0               0       2.1903807    2.19038  0.00%     -    0s</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Explored 1 nodes (11 simplex iterations) in 0.00 seconds (0.00 work units)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Explored 1 nodes (12 simplex iterations) in 0.00 seconds (0.00 work units)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Thread count was 1 (of 8 available processors)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Solution count 1: 2.19038 </span>
@@ -250,16 +254,18 @@ have <code>numeric</code> values, and these used to weight the features.</p></dd
 <span class="r-out co"><span class="r-pr">#&gt;</span> Best objective 2.190380737245e+00, best bound 2.190380737245e+00, gap 0.0000%</span>
 <span class="r-in"><span><span class="va">s2</span> <span class="op">&lt;-</span> <span class="fu"><a href="solve.html">solve</a></span><span class="op">(</span><span class="va">p2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Username</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter LicenseID to value 2738655</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter LicenseID to value 2774703</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter TimeLimit to value 2147483647</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter MIPGap to value 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter NumericFocus to value 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter ScaleFlag to value 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter NumericFocus to value 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Presolve to value 2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Threads to value 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter PoolSolutions to value 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter PoolSearchMode to value 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Academic license - for non-commercial use only - expires 2026-11-14</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Ubuntu 24.04.2 LTS")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Academic license - for non-commercial use only - expires 2027-02-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Warning: Gurobi version mismatch between R 13.0.0 and C library 13.0.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Gurobi Optimizer version 13.0.1 build v13.0.1rc0 (linux64 - "Ubuntu 24.04.2 LTS")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> CPU model: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Thread count: 4 physical cores, 8 logical processors, using up to 1 threads</span>
@@ -267,7 +273,8 @@ have <code>numeric</code> values, and these used to weight the features.</p></dd
 <span class="r-out co"><span class="r-pr">#&gt;</span> Non-default parameters:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> TimeLimit  2147483647</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> MIPGap  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NumericFocus  2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ScaleFlag  2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NumericFocus  1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Presolve  2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Threads  1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> PoolSolutions  1</span>
@@ -282,6 +289,7 @@ have <code>numeric</code> values, and these used to weight the features.</p></dd
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Objective range  [2e-01, 2e+00]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Bounds range     [5e-01, 1e+00]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   RHS range        [1e+00, 2e+02]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Found heuristic solution: objective 0.6654645</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Presolve removed 16 rows and 12 columns</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Presolve time: 0.00s</span>
@@ -307,16 +315,18 @@ have <code>numeric</code> values, and these used to weight the features.</p></dd
 <span class="r-out co"><span class="r-pr">#&gt;</span> Best objective 1.511229665304e+00, best bound 1.511229665304e+00, gap 0.0000%</span>
 <span class="r-in"><span><span class="va">s3</span> <span class="op">&lt;-</span> <span class="fu"><a href="solve.html">solve</a></span><span class="op">(</span><span class="va">p3</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Username</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter LicenseID to value 2738655</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter LicenseID to value 2774703</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter TimeLimit to value 2147483647</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter MIPGap to value 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter NumericFocus to value 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter ScaleFlag to value 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter NumericFocus to value 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Presolve to value 2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Threads to value 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter PoolSolutions to value 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter PoolSearchMode to value 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Academic license - for non-commercial use only - expires 2026-11-14</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Ubuntu 24.04.2 LTS")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Academic license - for non-commercial use only - expires 2027-02-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Warning: Gurobi version mismatch between R 13.0.0 and C library 13.0.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Gurobi Optimizer version 13.0.1 build v13.0.1rc0 (linux64 - "Ubuntu 24.04.2 LTS")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> CPU model: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Thread count: 4 physical cores, 8 logical processors, using up to 1 threads</span>
@@ -324,7 +334,8 @@ have <code>numeric</code> values, and these used to weight the features.</p></dd
 <span class="r-out co"><span class="r-pr">#&gt;</span> Non-default parameters:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> TimeLimit  2147483647</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> MIPGap  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NumericFocus  2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ScaleFlag  2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NumericFocus  1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Presolve  2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Threads  1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> PoolSolutions  1</span>
@@ -339,6 +350,7 @@ have <code>numeric</code> values, and these used to weight the features.</p></dd
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Objective range  [2e-01, 2e+00]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Bounds range     [5e-01, 1e+00]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   RHS range        [1e+00, 2e+02]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Found heuristic solution: objective 0.6654645</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Presolve removed 16 rows and 12 columns</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Presolve time: 0.00s</span>
@@ -367,25 +379,25 @@ have <code>numeric</code> values, and these used to weight the features.</p></dd
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">s1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 21</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   solution status   cost   obj F1_action F2_action F3_action F4_action F5_action</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>        1 OPTIMAL  195.  2.19         1         1         0         0         0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 12 more variables: baseline_action &lt;dbl&gt;, F1_project &lt;lgl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>        1 OPTIMAL  195.  2.19 TRUE      TRUE      FALSE     FALSE     FALSE    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 12 more variables: baseline_action &lt;lgl&gt;, F1_project &lt;lgl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   F2_project &lt;lgl&gt;, F3_project &lt;lgl&gt;, F4_project &lt;lgl&gt;, F5_project &lt;lgl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   baseline_project &lt;lgl&gt;, F1 &lt;dbl&gt;, F2 &lt;dbl&gt;, F3 &lt;dbl&gt;, F4 &lt;dbl&gt;, F5 &lt;dbl&gt;</span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">s2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 21</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   solution status   cost   obj F1_action F2_action F3_action F4_action F5_action</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>        1 OPTIMAL  199.  1.51         0         0         0         1         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 12 more variables: baseline_action &lt;dbl&gt;, F1_project &lt;lgl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>        1 OPTIMAL  199.  1.51 FALSE     FALSE     FALSE     TRUE      TRUE     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 12 more variables: baseline_action &lt;lgl&gt;, F1_project &lt;lgl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   F2_project &lt;lgl&gt;, F3_project &lt;lgl&gt;, F4_project &lt;lgl&gt;, F5_project &lt;lgl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   baseline_project &lt;lgl&gt;, F1 &lt;dbl&gt;, F2 &lt;dbl&gt;, F3 &lt;dbl&gt;, F4 &lt;dbl&gt;, F5 &lt;dbl&gt;</span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">s3</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 21</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   solution status   cost   obj F1_action F2_action F3_action F4_action F5_action</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>        1 OPTIMAL  199.  1.51         0         0         0         1         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 12 more variables: baseline_action &lt;dbl&gt;, F1_project &lt;lgl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>        1 OPTIMAL  199.  1.51 FALSE     FALSE     FALSE     TRUE      TRUE     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 12 more variables: baseline_action &lt;lgl&gt;, F1_project &lt;lgl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   F2_project &lt;lgl&gt;, F3_project &lt;lgl&gt;, F4_project &lt;lgl&gt;, F5_project &lt;lgl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   baseline_project &lt;lgl&gt;, F1 &lt;dbl&gt;, F2 &lt;dbl&gt;, F3 &lt;dbl&gt;, F4 &lt;dbl&gt;, F5 &lt;dbl&gt;</span></span>
 <span class="r-in"><span></span></span>

@@ -118,16 +118,18 @@ print(p)
 # solve problem
 s <- solve(p)
 #> Set parameter Username
-#> Set parameter LicenseID to value 2738655
+#> Set parameter LicenseID to value 2774703
 #> Set parameter TimeLimit to value 2147483647
 #> Set parameter MIPGap to value 0
-#> Set parameter NumericFocus to value 2
+#> Set parameter ScaleFlag to value 2
+#> Set parameter NumericFocus to value 1
 #> Set parameter Presolve to value 2
 #> Set parameter Threads to value 1
 #> Set parameter PoolSolutions to value 1
 #> Set parameter PoolSearchMode to value 2
-#> Academic license - for non-commercial use only - expires 2026-11-14
-#> Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Ubuntu 24.04.2 LTS")
+#> Academic license - for non-commercial use only - expires 2027-02-03
+#> Warning: Gurobi version mismatch between R 13.0.0 and C library 13.0.1
+#> Gurobi Optimizer version 13.0.1 build v13.0.1rc0 (linux64 - "Ubuntu 24.04.2 LTS")
 #> 
 #> CPU model: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]
 #> Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
@@ -135,7 +137,8 @@ s <- solve(p)
 #> Non-default parameters:
 #> TimeLimit  2147483647
 #> MIPGap  0
-#> NumericFocus  2
+#> ScaleFlag  2
+#> NumericFocus  1
 #> Presolve  2
 #> Threads  1
 #> PoolSolutions  1
@@ -151,6 +154,7 @@ s <- solve(p)
 #>   Objective range  [1e+00, 1e+00]
 #>   Bounds range     [6e-01, 3e+01]
 #>   RHS range        [1e+00, 2e+02]
+#> 
 #> Presolve removed 328 rows and 240 columns
 #> Presolve time: 0.00s
 #> Presolved: 10 rows, 24 columns, 35 nonzeros
@@ -166,16 +170,18 @@ s <- solve(p)
 #> Optimal solution found (tolerance 0.00e+00)
 #> Best objective 9.818226936578e+00, best bound 9.818226936578e+00, gap 0.0000%
 #> Set parameter Username
-#> Set parameter LicenseID to value 2738655
+#> Set parameter LicenseID to value 2774703
 #> Set parameter TimeLimit to value 2147483647
 #> Set parameter MIPGap to value 0
-#> Set parameter NumericFocus to value 2
+#> Set parameter ScaleFlag to value 2
+#> Set parameter NumericFocus to value 1
 #> Set parameter Presolve to value 2
 #> Set parameter Threads to value 1
 #> Set parameter PoolSolutions to value 1
 #> Set parameter PoolSearchMode to value 2
-#> Academic license - for non-commercial use only - expires 2026-11-14
-#> Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Ubuntu 24.04.2 LTS")
+#> Academic license - for non-commercial use only - expires 2027-02-03
+#> Warning: Gurobi version mismatch between R 13.0.0 and C library 13.0.1
+#> Gurobi Optimizer version 13.0.1 build v13.0.1rc0 (linux64 - "Ubuntu 24.04.2 LTS")
 #> 
 #> CPU model: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]
 #> Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
@@ -183,14 +189,15 @@ s <- solve(p)
 #> Non-default parameters:
 #> TimeLimit  2147483647
 #> MIPGap  0
-#> NumericFocus  2
+#> ScaleFlag  2
+#> NumericFocus  1
 #> Presolve  2
 #> Threads  1
 #> PoolSolutions  1
 #> PoolSearchMode  2
 #> 
 #> Optimize a model with 339 rows, 264 columns and 1129 nonzeros (Min)
-#> Model fingerprint: 0x27b85b27
+#> Model fingerprint: 0x1eae4833
 #> Model has 3 linear objective coefficients
 #> Variable types: 15 continuous, 150 integer (150 binary)
 #> Semi-Variable types: 99 continuous, 0 integer
@@ -200,6 +207,8 @@ s <- solve(p)
 #>   Bounds range     [6e-01, 3e+01]
 #>   RHS range        [1e+00, 2e+02]
 #> 
+#> User MIP start produced solution with objective 27.4033 (0.00s)
+#> User MIP start produced solution with objective 27.4033 (0.00s)
 #> Loaded user MIP start with objective 27.4033
 #> 
 #> Presolve removed 332 rows and 242 columns

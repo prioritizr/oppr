@@ -108,7 +108,7 @@ replacement_costs <- function(x, solution, n = 1) {
     inherits(x, "ProjectProblem"),
     inherits(solution, "data.frame"),
     all(assertthat::has_name(solution, x$action_names())),
-    is.numeric(c(as.matrix(solution[, x$action_names()]))),
+    is.logical(c(as.matrix(solution[, x$action_names()]))),
     assertthat::noNA(c(as.matrix(solution[, x$action_names()]))),
     assertthat::is.count(n),
     is.finite(n),

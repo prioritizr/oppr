@@ -168,7 +168,7 @@ methods::setMethod(
     # extract actions
     action_status <- lapply(
       sol,
-      function(x) matrix(x[[1]][seq_len(a$number_of_actions())], nrow = 1)
+      function(x) matrix(x[[1]][seq_len(a$number_of_actions())] > 0.5, nrow = 1)
     )
     if (length(action_status) == 1) {
       action_status <- action_status[[1]]

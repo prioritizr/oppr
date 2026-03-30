@@ -170,7 +170,7 @@ s <- solve(p)
 #> Set parameter TimeLimit to value 2147483647
 #> Set parameter MIPGap to value 0
 #> Set parameter ScaleFlag to value 2
-#> Set parameter NumericFocus to value 3
+#> Set parameter NumericFocus to value 1
 #> Set parameter Presolve to value 2
 #> Set parameter Threads to value 1
 #> Set parameter PoolSolutions to value 1
@@ -186,7 +186,7 @@ s <- solve(p)
 #> TimeLimit  2147483647
 #> MIPGap  0
 #> ScaleFlag  2
-#> NumericFocus  3
+#> NumericFocus  1
 #> Presolve  2
 #> Threads  1
 #> PoolSolutions  1
@@ -222,7 +222,7 @@ s <- solve(p)
 #> Set parameter TimeLimit to value 2147483647
 #> Set parameter MIPGap to value 0
 #> Set parameter ScaleFlag to value 2
-#> Set parameter NumericFocus to value 3
+#> Set parameter NumericFocus to value 1
 #> Set parameter Presolve to value 2
 #> Set parameter Threads to value 1
 #> Set parameter PoolSolutions to value 1
@@ -238,14 +238,14 @@ s <- solve(p)
 #> TimeLimit  2147483647
 #> MIPGap  0
 #> ScaleFlag  2
-#> NumericFocus  3
+#> NumericFocus  1
 #> Presolve  2
 #> Threads  1
 #> PoolSolutions  1
 #> PoolSearchMode  2
 #> 
 #> Optimize a model with 339 rows, 264 columns and 1129 nonzeros (Min)
-#> Model fingerprint: 0x27b7e6c8
+#> Model fingerprint: 0x1eae4833
 #> Model has 3 linear objective coefficients
 #> Variable types: 15 continuous, 150 integer (150 binary)
 #> Semi-Variable types: 99 continuous, 0 integer
@@ -255,6 +255,8 @@ s <- solve(p)
 #>   Bounds range     [6e-01, 3e+01]
 #>   RHS range        [1e+00, 2e+02]
 #> 
+#> User MIP start produced solution with objective 27.4033 (0.00s)
+#> User MIP start produced solution with objective 27.4033 (0.00s)
 #> Loaded user MIP start with objective 27.4033
 #> 
 #> Presolve removed 332 rows and 242 columns
@@ -270,7 +272,6 @@ s <- solve(p)
 #>  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #> 
 #> *    0     0               0      26.3262603   26.32626  0.00%     -    0s
-#>      0     0          -    0        26.32626   26.32626  0.00%     -    0s
 #> 
 #> Explored 1 nodes (6 simplex iterations) in 0.00 seconds (0.00 work units)
 #> Thread count was 1 (of 8 available processors)

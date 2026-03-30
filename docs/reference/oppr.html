@@ -203,16 +203,18 @@ prioritizing conservation projects. <em>Methods in Ecology &amp; Evolution</em>,
 <span class="r-in"><span><span class="co"># solve problem</span></span></span>
 <span class="r-in"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="fu"><a href="solve.html">solve</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Username</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter LicenseID to value 2738655</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter LicenseID to value 2774703</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter TimeLimit to value 2147483647</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter MIPGap to value 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter NumericFocus to value 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter ScaleFlag to value 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter NumericFocus to value 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Presolve to value 2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Threads to value 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter PoolSolutions to value 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter PoolSearchMode to value 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Academic license - for non-commercial use only - expires 2026-11-14</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Ubuntu 24.04.2 LTS")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Academic license - for non-commercial use only - expires 2027-02-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Warning: Gurobi version mismatch between R 13.0.0 and C library 13.0.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Gurobi Optimizer version 13.0.1 build v13.0.1rc0 (linux64 - "Ubuntu 24.04.2 LTS")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> CPU model: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Thread count: 4 physical cores, 8 logical processors, using up to 1 threads</span>
@@ -220,7 +222,8 @@ prioritizing conservation projects. <em>Methods in Ecology &amp; Evolution</em>,
 <span class="r-out co"><span class="r-pr">#&gt;</span> Non-default parameters:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> TimeLimit  2147483647</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> MIPGap  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NumericFocus  2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ScaleFlag  2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NumericFocus  1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Presolve  2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Threads  1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> PoolSolutions  1</span>
@@ -235,6 +238,7 @@ prioritizing conservation projects. <em>Methods in Ecology &amp; Evolution</em>,
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Objective range  [2e-01, 2e+00]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Bounds range     [5e-01, 1e+00]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   RHS range        [1e+00, 4e+02]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Found heuristic solution: objective 0.6654645</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Presolve removed 16 rows and 12 columns</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Presolve time: 0.00s</span>
@@ -263,9 +267,9 @@ prioritizing conservation projects. <em>Methods in Ecology &amp; Evolution</em>,
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">s</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 21</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   solution status   cost   obj F1_action F2_action F3_action F4_action F5_action</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>        1 OPTIMAL  395.  1.75         1         1         0         1         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 12 more variables: baseline_action &lt;dbl&gt;, F1_project &lt;lgl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>        1 OPTIMAL  395.  1.75 TRUE      TRUE      FALSE     TRUE      TRUE     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 12 more variables: baseline_action &lt;lgl&gt;, F1_project &lt;lgl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   F2_project &lt;lgl&gt;, F3_project &lt;lgl&gt;, F4_project &lt;lgl&gt;, F5_project &lt;lgl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   baseline_project &lt;lgl&gt;, F1 &lt;dbl&gt;, F2 &lt;dbl&gt;, F3 &lt;dbl&gt;, F4 &lt;dbl&gt;, F5 &lt;dbl&gt;</span></span>
 <span class="r-in"><span></span></span>
@@ -273,8 +277,8 @@ prioritizing conservation projects. <em>Methods in Ecology &amp; Evolution</em>,
 <span class="r-in"><span><span class="va">s</span><span class="op">[</span>, <span class="va">sim_actions</span><span class="op">$</span><span class="va">name</span>, drop <span class="op">=</span> <span class="cn">FALSE</span><span class="op">]</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 6</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   F1_action F2_action F3_action F4_action F5_action baseline_action</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>         1         1         0         1         1               1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> TRUE      TRUE      FALSE     TRUE      TRUE      TRUE           </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># print the expected probability of persistence for each feature</span></span></span>
 <span class="r-in"><span><span class="co"># if the solution were implemented</span></span></span>

@@ -187,14 +187,14 @@ solution_statistics.MultiObjProjectProblem <- function(x, solution) {
   ## (note this includes adding a cost column)
   out <- solution_statistics(x$problems[[1]], solution)
   ## rename the objective column based on the name of the first problem
-  names(out)[[2]]  <- names(x$problems)[[1]]
+  names(out)[[2]] <- names(x$problems)[[1]]
   # calculate solution statistics for remaining problems and add them to output
   ## (note this does not add duplicate cost columns)
   for (i in seq_along(x$problems)[-1]) {
     curr_stats <- solution_statistics(
       x$problems[[i]], solution
     )[, -1, drop = FALSE]
-    names(curr_stats)[[1]]  <- names(x$problems)[[i]]
+    names(curr_stats)[[1]] <- names(x$problems)[[i]]
     out <- tibble::as_tibble(cbind(out, curr_stats))
   }
   # reorder columns

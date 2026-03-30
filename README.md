@@ -229,11 +229,11 @@ print(s, width = Inf)
 
     ## # A tibble: 1 × 21
     ##   solution status   cost   obj F1_action F2_action F3_action F4_action F5_action
-    ##      <int> <chr>   <dbl> <dbl>     <dbl>     <dbl>     <dbl>     <dbl>     <dbl>
-    ## 1        1 OPTIMAL  395.  1.75         1         1         0         1         1
+    ##      <int> <chr>   <dbl> <dbl> <lgl>     <lgl>     <lgl>     <lgl>     <lgl>    
+    ## 1        1 OPTIMAL  395.  1.75 TRUE      TRUE      FALSE     TRUE      TRUE     
     ##   baseline_action F1_project F2_project F3_project F4_project F5_project
-    ##             <dbl> <lgl>      <lgl>      <lgl>      <lgl>      <lgl>     
-    ## 1               1 TRUE       TRUE       FALSE      TRUE       TRUE      
+    ##   <lgl>           <lgl>      <lgl>      <lgl>      <lgl>      <lgl>     
+    ## 1 TRUE            TRUE       TRUE       FALSE      TRUE       TRUE      
     ##   baseline_project    F1    F2     F3    F4    F5
     ##   <lgl>            <dbl> <dbl>  <dbl> <dbl> <dbl>
     ## 1 TRUE             0.808 0.865 0.0865 0.688 0.592

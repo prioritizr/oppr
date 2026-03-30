@@ -36,7 +36,7 @@ test_that("integer (solve)", {
   s <- solve(p)
   # run tests
   for (i in sim_actions$name[sim_actions$locked_out]) {
-    expect_equal(s[[i]], 0)
+    expect_equal(s[[i]], FALSE)
   }
 })
 
@@ -125,7 +125,7 @@ test_that("logical (solve)", {
   s <- solve(p)
   # run tests
   for (i in sim_actions$name[sim_actions$locked_out]) {
-    expect_equal(s[[i]], 0)
+    expect_equal(s[[i]], FALSE)
   }
 })
 
@@ -189,6 +189,6 @@ test_that("character (solve)", {
   s <- solve(p)
   # run tests
   for (i in sim_actions$name[sim_actions$locked_out]) {
-    expect_equal(s[[i]], 0)
+    expect_equal(s[[i]], FALSE)
   }
 })

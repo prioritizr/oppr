@@ -62,9 +62,9 @@ test_that("solve", {
   s <- solve(p)
   # run tests
   for (i in sim_actions$name[sim_actions$locked_in]) {
-    expect_equal(s[[i]], 1)
+    expect_equal(s[[i]], TRUE)
   }
   for (i in sim_actions$name[sim_actions$locked_out]) {
-    expect_equal(s[[i]], 0)
+    expect_equal(s[[i]], FALSE)
   }
 })

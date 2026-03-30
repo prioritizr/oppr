@@ -162,7 +162,7 @@ s <- solve(p)
 #> Set parameter TimeLimit to value 2147483647
 #> Set parameter MIPGap to value 0
 #> Set parameter ScaleFlag to value 2
-#> Set parameter NumericFocus to value 3
+#> Set parameter NumericFocus to value 1
 #> Set parameter Presolve to value 2
 #> Set parameter Threads to value 1
 #> Set parameter PoolSolutions to value 1
@@ -178,7 +178,7 @@ s <- solve(p)
 #> TimeLimit  2147483647
 #> MIPGap  0
 #> ScaleFlag  2
-#> NumericFocus  3
+#> NumericFocus  1
 #> Presolve  2
 #> Threads  1
 #> PoolSolutions  1
@@ -209,7 +209,6 @@ s <- solve(p)
 #>  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #> 
 #> *    0     0               0      26.3262603   26.32626  0.00%     -    0s
-#>      0     0          -    0        26.32626   26.32626  0.00%     -    0s
 #> 
 #> Explored 1 nodes (6 simplex iterations) in 0.00 seconds (0.00 work units)
 #> Thread count was 1 (of 8 available processors)

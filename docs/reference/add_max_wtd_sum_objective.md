@@ -150,16 +150,18 @@ p1 <-
 # solve problem
 s1 <- solve(p1)
 #> Set parameter Username
-#> Set parameter LicenseID to value 2738655
+#> Set parameter LicenseID to value 2774703
 #> Set parameter TimeLimit to value 2147483647
 #> Set parameter MIPGap to value 0
-#> Set parameter NumericFocus to value 2
+#> Set parameter ScaleFlag to value 2
+#> Set parameter NumericFocus to value 1
 #> Set parameter Presolve to value 2
 #> Set parameter Threads to value 1
 #> Set parameter PoolSolutions to value 1
 #> Set parameter PoolSearchMode to value 2
-#> Academic license - for non-commercial use only - expires 2026-11-14
-#> Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Ubuntu 24.04.2 LTS")
+#> Academic license - for non-commercial use only - expires 2027-02-03
+#> Warning: Gurobi version mismatch between R 13.0.0 and C library 13.0.1
+#> Gurobi Optimizer version 13.0.1 build v13.0.1rc0 (linux64 - "Ubuntu 24.04.2 LTS")
 #> 
 #> CPU model: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]
 #> Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
@@ -167,7 +169,8 @@ s1 <- solve(p1)
 #> Non-default parameters:
 #> TimeLimit  2147483647
 #> MIPGap  0
-#> NumericFocus  2
+#> ScaleFlag  2
+#> NumericFocus  1
 #> Presolve  2
 #> Threads  1
 #> PoolSolutions  1
@@ -182,6 +185,7 @@ s1 <- solve(p1)
 #>   Objective range  [1e+00, 1e+00]
 #>   Bounds range     [5e-01, 1e+00]
 #>   RHS range        [1e+00, 2e+02]
+#> 
 #> Found heuristic solution: objective 1.4456093
 #> Presolve removed 16 rows and 12 columns
 #> Presolve time: 0.00s
@@ -190,14 +194,14 @@ s1 <- solve(p1)
 #> Root relaxation presolved: 11 rows, 15 columns, 25 nonzeros
 #> 
 #> 
-#> Root relaxation: objective 2.190381e+00, 11 iterations, 0.00 seconds (0.00 work units)
+#> Root relaxation: objective 2.190381e+00, 12 iterations, 0.00 seconds (0.00 work units)
 #> 
 #>     Nodes    |    Current Node    |     Objective Bounds      |     Work
 #>  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #> 
 #> *    0     0               0       2.1903807    2.19038  0.00%     -    0s
 #> 
-#> Explored 1 nodes (11 simplex iterations) in 0.00 seconds (0.00 work units)
+#> Explored 1 nodes (12 simplex iterations) in 0.00 seconds (0.00 work units)
 #> Thread count was 1 (of 8 available processors)
 #> 
 #> Solution count 1: 2.19038 
@@ -210,9 +214,9 @@ s1 <- solve(p1)
 print(s1)
 #> # A tibble: 1 × 21
 #>   solution status   cost   obj F1_action F2_action F3_action F4_action F5_action
-#>      <int> <chr>   <dbl> <dbl>     <dbl>     <dbl>     <dbl>     <dbl>     <dbl>
-#> 1        1 OPTIMAL  195.  2.19         1         1         0         0         0
-#> # ℹ 12 more variables: baseline_action <dbl>, F1_project <lgl>,
+#>      <int> <chr>   <dbl> <dbl> <lgl>     <lgl>     <lgl>     <lgl>     <lgl>    
+#> 1        1 OPTIMAL  195.  2.19 TRUE      TRUE      FALSE     FALSE     FALSE    
+#> # ℹ 12 more variables: baseline_action <lgl>, F1_project <lgl>,
 #> #   F2_project <lgl>, F3_project <lgl>, F4_project <lgl>, F5_project <lgl>,
 #> #   baseline_project <lgl>, F1 <dbl>, F2 <dbl>, F3 <dbl>, F4 <dbl>, F5 <dbl>
 
@@ -228,16 +232,18 @@ p2 <- p1 %>% add_feature_weights("weight")
 # solve problem with feature weights
 s2 <- solve(p2)
 #> Set parameter Username
-#> Set parameter LicenseID to value 2738655
+#> Set parameter LicenseID to value 2774703
 #> Set parameter TimeLimit to value 2147483647
 #> Set parameter MIPGap to value 0
-#> Set parameter NumericFocus to value 2
+#> Set parameter ScaleFlag to value 2
+#> Set parameter NumericFocus to value 1
 #> Set parameter Presolve to value 2
 #> Set parameter Threads to value 1
 #> Set parameter PoolSolutions to value 1
 #> Set parameter PoolSearchMode to value 2
-#> Academic license - for non-commercial use only - expires 2026-11-14
-#> Gurobi Optimizer version 13.0.0 build v13.0.0rc1 (linux64 - "Ubuntu 24.04.2 LTS")
+#> Academic license - for non-commercial use only - expires 2027-02-03
+#> Warning: Gurobi version mismatch between R 13.0.0 and C library 13.0.1
+#> Gurobi Optimizer version 13.0.1 build v13.0.1rc0 (linux64 - "Ubuntu 24.04.2 LTS")
 #> 
 #> CPU model: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]
 #> Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
@@ -245,7 +251,8 @@ s2 <- solve(p2)
 #> Non-default parameters:
 #> TimeLimit  2147483647
 #> MIPGap  0
-#> NumericFocus  2
+#> ScaleFlag  2
+#> NumericFocus  1
 #> Presolve  2
 #> Threads  1
 #> PoolSolutions  1
@@ -260,6 +267,7 @@ s2 <- solve(p2)
 #>   Objective range  [2e-01, 2e+00]
 #>   Bounds range     [5e-01, 1e+00]
 #>   RHS range        [1e+00, 2e+02]
+#> 
 #> Found heuristic solution: objective 0.6654645
 #> Presolve removed 16 rows and 12 columns
 #> Presolve time: 0.00s
@@ -288,9 +296,9 @@ s2 <- solve(p2)
 print(s2)
 #> # A tibble: 1 × 21
 #>   solution status   cost   obj F1_action F2_action F3_action F4_action F5_action
-#>      <int> <chr>   <dbl> <dbl>     <dbl>     <dbl>     <dbl>     <dbl>     <dbl>
-#> 1        1 OPTIMAL  199.  1.51         0         0         0         1         1
-#> # ℹ 12 more variables: baseline_action <dbl>, F1_project <lgl>,
+#>      <int> <chr>   <dbl> <dbl> <lgl>     <lgl>     <lgl>     <lgl>     <lgl>    
+#> 1        1 OPTIMAL  199.  1.51 FALSE     FALSE     FALSE     TRUE      TRUE     
+#> # ℹ 12 more variables: baseline_action <lgl>, F1_project <lgl>,
 #> #   F2_project <lgl>, F3_project <lgl>, F4_project <lgl>, F5_project <lgl>,
 #> #   baseline_project <lgl>, F1 <dbl>, F2 <dbl>, F3 <dbl>, F4 <dbl>, F5 <dbl>
 

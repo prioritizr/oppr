@@ -79,7 +79,15 @@ examples:
 	R --slave -e "devtools::run_examples(run_donttest = TRUE, run_dontrun = TRUE);warnings()" > examples.log 2>&1
 	rm -f Rplots.pdf
 
+purl_vigns:
+	R --slave -e "lapply(dir('vignettes', '^.*\\\\.Rmd$$'), function(x) knitr::purl(file.path('vignettes', x), gsub('.Rmd', '.R', x, fixed = TRUE)))"
+	rm -f Rplots.pdf
+
+purl_readme:
+	R --slave -e "knitr::purl('README.Rmd', 'README.R')"
+	rm -f Rplots.pdf
+
 install:
 	R --slave -e "devtools::install_local('.', force = TRUE, upgrade = 'never')"
 
-.PHONY: initc data docs readme site test check checkwb build install man
+.PHONY: initc data docs readme site test check checkwb build install man purl_vigns purl_readme
