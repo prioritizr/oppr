@@ -21,6 +21,7 @@ prioritization problem.
 \details{
 The solvers that can be used are as follows (ordered best to worst):
 \pkg{gurobi}, (\code{\link[=add_gurobi_solver]{add_gurobi_solver()}}),
+\pkg{rcbc}, (\code{\link[=add_cbc_solver]{add_cbc_solver()}}),
 \pkg{highs}, (\code{\link[=add_highs_solver]{add_highs_solver()}}),
 \pkg{Rsymphony} (\code{\link[=add_rsymphony_solver]{add_rsymphony_solver()}}),
 \pkg{lpsymphony} (\code{\link[=add_lpsymphony_solver]{add_lpsymphony_solver()}}), and \pkg{lpSolveAPI}
@@ -60,6 +61,7 @@ plot(p, s)
 }
 \seealso{
 Other solvers: 
+\code{\link{add_cbc_solver}()},
 \code{\link{add_gurobi_solver}()},
 \code{\link{add_heuristic_solver}()},
 \code{\link{add_highs_solver}()},

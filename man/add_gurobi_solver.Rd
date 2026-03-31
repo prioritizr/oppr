@@ -154,6 +154,7 @@ print(s3)
 See \link{solvers} for an overview of functions for adding solvers.
 
 Other solvers: 
+\code{\link{add_cbc_solver}()},
 \code{\link{add_default_solver}()},
 \code{\link{add_heuristic_solver}()},
 \code{\link{add_highs_solver}()},

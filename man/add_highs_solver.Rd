@@ -57,10 +57,6 @@ with the \href{https://highs.dev/}{\emph{HiGHS}} software (Huangfu and Hall 2018
 This function can also be used to customize the behavior of the solver.
 It requires the \pkg{highs} package to be installed.
 }
-\details{
-\href{https://highs.dev/}{\emph{HiGHS}} is an open source optimization software.
-This solver is recommended if the \code{\link[=add_gurobi_solver]{add_gurobi_solver()}} cannot be used.
-}
 \examples{
 \dontrun{
 # load data
@@ -95,6 +91,7 @@ method. \emph{Mathematical Programming Computation}, 10: 119-142.
 }
 \seealso{
 Other solvers: 
+\code{\link{add_cbc_solver}()},
 \code{\link{add_default_solver}()},
 \code{\link{add_gurobi_solver}()},
 \code{\link{add_heuristic_solver}()},

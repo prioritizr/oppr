@@ -55,6 +55,7 @@ Suggests:
     ggtree (>= 2.4.2),
     lpsymphony (>= 1.10.0),
     lpSolveAPI (>= 5.5.2.0.17),
+    rcbc (>= 0.1.0.9004),
     fansi (>= 1.0.6)
 Depends:
     R(>= 3.5.0)
@@ -91,6 +92,7 @@ Collate:
     'add_abs_constraint_approach.R'
     'add_absolute_targets.R'
     'add_binary_decisions.R'
+    'add_cbc_solver.R'
     'add_chebyshev_goal_approach.R'
     'add_default_solver.R'
     'add_default_weights.R'
@@ -166,4 +168,5 @@ Config/testthat/edition: 3
 Config/Needs/website:
     tidyr (>= 0.8.2)
 Remotes:
-  bioc::ggtree
+  bioc::ggtree,
+  dirkschumacher/rcbc@semi-vars

@@ -86,6 +86,7 @@ plot(p, s)
 }
 \seealso{
 Other solvers: 
+\code{\link{add_cbc_solver}()},
 \code{\link{add_default_solver}()},
 \code{\link{add_gurobi_solver}()},
 \code{\link{add_heuristic_solver}()},
