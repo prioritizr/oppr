@@ -136,21 +136,39 @@ rank_importance.ProjectProblem <- function(x, solution, n = 1, ranks = 10,
   all_project_names <- x$project_names()
   sel_project_names <- which(c(as.matrix(solution[n, all_project_names])) > 0.5)
   sel_project_names <- all_project_names[sel_project_names]
+  # identify actions that were selected
+  all_action_names <- x$action_names()
+  sel_action_names <- which(c(as.matrix(solution[n, all_action_names])) > 0.5)
+  sel_action_names <- all_action_names[sel_action_names]
   # copy the problem and apply locked out constraints
   x2 <- x$clone(deep = TRUE)
-  ## identify projects with zero cost values
-  project_zero_cost <- x$project_costs()
-  project_zero_cost <- project_zero_cost[project_zero_cost < 1e-6]
-  project_zero_cost <- names(project_zero_cost)
+  ## identify projects and actions with zero cost values
+  zero_cost_projects <- x$project_names()[x$project_costs() < 1e-6]
+  zero_cost_actions <- x$action_names()[x$action_costs() < 1e-6]
   ## identify projects to lock out
-  project_locked <- all_project_names
-  project_locked <- project_locked[!project_locked %in% sel_project_names]
-  project_locked <- project_locked[!project_locked %in% project_zero_cost]
-  ## apply locked out constraints and compile problem
-  if (length(project_locked) > 0) {
+  locked_projects <- x$project_names()
+  locked_projects <- locked_projects[
+    (!locked_projects %in% sel_project_names) &
+    (!locked_projects %in% zero_cost_projects)
+  ]
+  ## identify actions to lock out
+  locked_actions <- x$action_names()
+  locked_actions <- locked_actions[
+    (!locked_actions %in% sel_action_names) &
+    (!locked_actions %in% zero_cost_actions)
+  ]
+  ## apply project locked out constraints
+  if (length(locked_projects) > 0) {
     x2 <- add_locked_out_project_constraints(
       x2,
-      locked_out = x$project_names() %in% project_locked
+      locked_out = x$project_names() %in% locked_projects
+    )
+  }
+  ## apply action locked out constraints
+  if (length(locked_projects) > 0) {
+    x2 <- add_locked_out_action_constraints(
+      x2,
+      locked_out = x$action_names() %in% locked_actions
     )
   }
   # perform incremental rank procedure
@@ -166,12 +184,25 @@ rank_importance.ProjectProblem <- function(x, solution, n = 1, ranks = 10,
     curr_project_names <-
       which(c(as.matrix(curr_sol[1, all_project_names])) > 0.5)
     curr_project_names <- all_project_names[curr_project_names]
+    ## identify actions selected in the solution
+    curr_action_names <-
+      which(c(as.matrix(curr_sol[1, all_action_names])) > 0.5)
+    curr_action_names <- all_action_names[curr_action_names]
     ## update the result with rank values
     out$rank[is.na(out$rank) & (out$project %in% curr_project_names)] <- i
     ## lock in selected projects for next iteration
-    curr_locked_in <- x2$project_names() %in% curr_project_names
-    if (any(curr_locked_in)) {
-      x2 <- add_locked_in_project_constraints(x2, locked_in = curr_locked_in)
+    curr_locked_in_projects <- x2$project_names() %in% curr_project_names
+    if (any(curr_locked_in_projects)) {
+      x2 <- add_locked_in_project_constraints(
+        x2, locked_in = curr_locked_in_projects
+      )
+    }
+    ## lock in selected actions for next iteration
+    curr_locked_in_actions <- x2$action_names() %in% curr_action_names
+    if (any(curr_locked_in_actions)) {
+      x2 <- add_locked_in_action_constraints(
+        x2, locked_in = curr_locked_in_actions
+      )
     }
   }
   # calculate scores
@@ -236,21 +267,44 @@ rank_importance.MultiObjProjectProblem <- function(x, solution, n = 1,
   )
   sel_project_names <- which(c(as.matrix(solution[n, all_project_names])) > 0.5)
   sel_project_names <- all_project_names[sel_project_names]
+  # identify actions that were selected
+  all_action_names <- x$action_names()
+  sel_action_names <- which(c(as.matrix(solution[n, all_action_names])) > 0.5)
+  sel_action_names <- all_action_names[sel_action_names]
   # copy the problem and apply locked out constraints
   x2 <- x$clone(deep = TRUE)
   for (i in seq_along(x2$problems)) {
-    ## identify projects with zero cost values
-    curr_zero_cost <- x$problems[[i]]$project_costs() < 1e-6
-    curr_zero_cost <- x$problems[[i]]$project_names()[curr_zero_cost]
+    ## identify projects and actions with zero cost values
+    curr_zero_cost_projects <- x$problems[[i]]$project_names()[
+      x$problems[[i]]$project_costs() < 1e-6
+    ]
+    curr_zero_cost_actions <- x$problems[[i]]$action_names()[
+      x$problems[[i]]$action_costs() < 1e-6
+    ]
     ## identify projects to lock out
-    curr_locked <- x$project_names()[[i]]
-    curr_locked <- curr_locked[!curr_locked %in% sel_project_names]
-    curr_locked <- curr_locked[!curr_locked %in% curr_zero_cost]
-    ## apply locked out constraints
-    if (length(curr_locked) > 0) {
+    curr_locked_projects <- x$project_names()[[i]]
+    curr_locked_projects <- curr_locked_projects[
+      (!curr_locked_projects %in% sel_project_names) &
+      (!curr_locked_projects %in% curr_zero_cost_projects)
+    ]
+    ## identify actions to lock out
+    curr_locked_actions <- x$action_names()[[i]]
+    curr_locked_actions <- curr_locked_actions[
+      (!curr_locked_actions %in% sel_action_names) &
+      (!curr_locked_actions %in% curr_zero_cost_actions)
+    ]
+    ## apply project locked out constraints
+    if (length(curr_locked_projects) > 0) {
       x2$problems[[i]] <- add_locked_out_project_constraints(
         x2$problems[[i]],
-        locked_out = x2$problems[[i]]$project_names() %in% curr_locked
+        locked_out = x2$problems[[i]]$project_names() %in% curr_locked_projects
+      )
+    }
+    ## apply action locked out constraints
+    if (length(curr_locked_actions) > 0) {
+      x2$problems[[i]] <- add_locked_out_action_constraints(
+        x2$problems[[i]],
+        locked_out = x2$problems[[i]]$action_names() %in% curr_locked_actions
       )
     }
   }
@@ -268,16 +322,30 @@ rank_importance.MultiObjProjectProblem <- function(x, solution, n = 1,
     curr_project_names <-
       which(c(as.matrix(curr_sol[1, all_project_names])) > 0.5)
     curr_project_names <- all_project_names[curr_project_names]
+    ## identify actions selected in the solution
+    curr_action_names <-
+      which(c(as.matrix(curr_sol[1, all_action_names])) > 0.5)
+    curr_action_names <- all_action_names[curr_action_names]
     ## update the result with rank values
     out$rank[is.na(out$rank) & out$project %in% curr_project_names] <- i
-    ## lock in selected projects for next iteration
+    ## update problem for next iteration
     for (i in seq_along(x2$problems)) {
-      curr_locked_in <-
+      ## lock in selected projects
+      curr_locked_in_projects <-
         x2$problems[[i]]$project_names() %in% curr_project_names
-      if (any(curr_locked_in)) {
+      if (any(curr_locked_in_projects)) {
         x2$problems[[i]] <- add_locked_in_project_constraints(
           x2$problems[[i]],
-          locked_in = curr_locked_in
+          locked_in = curr_locked_in_projects
+        )
+      }
+      ## lock in selected actions
+      curr_locked_in_actions <-
+        x2$action_names() %in% curr_action_names
+      if (any(curr_locked_in_actions)) {
+        x2$problems[[i]] <- add_locked_in_action_constraints(
+          x2$problems[[i]],
+          locked_in = curr_locked_in_actions
         )
       }
     }
