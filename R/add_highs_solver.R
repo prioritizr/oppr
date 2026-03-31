@@ -17,10 +17,6 @@ NULL
 #'  See the [online documentation](https://ergo-code.github.io/HiGHS/dev/options/definitions/)
 #'  for information on the parameters.
 #'
-#' @details
-#' [*HiGHS*](https://highs.dev/) is an open source optimization software.
-#' This solver is recommended if the [add_gurobi_solver()] cannot be used.
-#'
 #' @inherit add_gurobi_solver return seealso
 #'
 #' @family solvers
