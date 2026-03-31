@@ -263,10 +263,8 @@ bool rcpp_add_raw_data(SEXP x, arma::sp_mat pa_matrix, arma::sp_mat pf_matrix,
 
         // slightly expand the range to ensure that they full encompass
         // the range of values that should be interpolated
-        curr_pad_value =
-          std::abs(curr_abs_max_value - curr_abs_min_value) * 0.01;
-        curr_abs_min_value -= curr_pad_value;
-        curr_abs_max_value += curr_pad_value;
+        curr_abs_min_value *= 0.99;
+        curr_abs_max_value *= 1.01;
 
         /// pre-allocate vectors for xy pwl data
         model_pwl_x[p].reserve(n_approx_points);
