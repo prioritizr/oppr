@@ -9,7 +9,8 @@ is_optimal_solver_status <- function(x) {
     "OPTIMAL", # gurobi
     "TM_OPTIMAL_SOLUTION_FOUND", # SYMPHONY
     "optimal solution found", # lpsolveapi
-    "Optimal" # highs
+    "Optimal", # highs
+    "optimal" # cbc
   )
   # check if x is an optimal solver status
   isTRUE(x %in% status)
