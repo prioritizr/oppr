@@ -406,6 +406,11 @@ Functions for specifying how a problem should be solved
 - [`solvers`](https://prioritizr.github.io/oppr/reference/solvers.md) :
   Solvers
 
+- [`add_cbc_solver()`](https://prioritizr.github.io/oppr/reference/add_cbc_solver.md)
+  :
+
+  Add a *CBC* solver
+
 - [`add_default_solver()`](https://prioritizr.github.io/oppr/reference/add_default_solver.md)
   : Add a default solver
 

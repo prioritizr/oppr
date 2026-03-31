@@ -168,7 +168,6 @@ s <- solve(p)
 #> Set parameter PoolSolutions to value 1
 #> Set parameter PoolSearchMode to value 2
 #> Academic license - for non-commercial use only - expires 2027-02-03
-#> Warning: Gurobi version mismatch between R 13.0.0 and C library 13.0.1
 #> Gurobi Optimizer version 13.0.1 build v13.0.1rc0 (linux64 - "Ubuntu 24.04.2 LTS")
 #> 
 #> CPU model: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]
@@ -185,7 +184,7 @@ s <- solve(p)
 #> PoolSearchMode  2
 #> 
 #> Optimize a model with 335 rows, 263 columns and 1122 nonzeros (Min)
-#> Model fingerprint: 0xaeecfafd
+#> Model fingerprint: 0xbcf62e88
 #> Model has 3 linear objective coefficients
 #> Variable types: 14 continuous, 150 integer (150 binary)
 #> Semi-Variable types: 99 continuous, 0 integer
@@ -199,25 +198,25 @@ s <- solve(p)
 #> Presolve time: 0.00s
 #> Presolved: 7 rows, 23 columns, 29 nonzeros
 #> Variable types: 4 continuous, 19 integer (19 binary)
-#> Found heuristic solution: objective 27.4032779
+#> Found heuristic solution: objective 27.4067986
 #> Root relaxation presolved: 7 rows, 22 columns, 29 nonzeros
 #> 
 #> 
-#> Root relaxation: objective 2.632626e+01, 6 iterations, 0.00 seconds (0.00 work units)
+#> Root relaxation: objective 2.632978e+01, 6 iterations, 0.00 seconds (0.00 work units)
 #> 
 #>     Nodes    |    Current Node    |     Objective Bounds      |     Work
 #>  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #> 
-#> *    0     0               0      26.3262603   26.32626  0.00%     -    0s
+#> *    0     0               0      26.3297810   26.32978  0.00%     -    0s
 #> 
 #> Explored 1 nodes (6 simplex iterations) in 0.00 seconds (0.00 work units)
 #> Thread count was 1 (of 8 available processors)
 #> 
-#> Solution count 1: 26.3263 
-#> No other solutions better than 26.3263
+#> Solution count 1: 26.3298 
+#> No other solutions better than 26.3298
 #> 
 #> Optimal solution found (tolerance 0.00e+00)
-#> Best objective 2.632626034934e+01, best bound 2.632626034934e+01, gap 0.0000%
+#> Best objective 2.632978104793e+01, best bound 2.632978104793e+01, gap 0.0000%
 
 # print solution
 print(s)

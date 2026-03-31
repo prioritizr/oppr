@@ -205,7 +205,6 @@ s1 <- solve(p1)
 #> Set parameter PoolSolutions to value 1
 #> Set parameter PoolSearchMode to value 2
 #> Academic license - for non-commercial use only - expires 2027-02-03
-#> Warning: Gurobi version mismatch between R 13.0.0 and C library 13.0.1
 #> Gurobi Optimizer version 13.0.1 build v13.0.1rc0 (linux64 - "Ubuntu 24.04.2 LTS")
 #> 
 #> CPU model: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]
@@ -222,7 +221,7 @@ s1 <- solve(p1)
 #> PoolSearchMode  2
 #> 
 #> Optimize a model with 30 rows, 30 columns and 83 nonzeros (Max)
-#> Model fingerprint: 0x5edd1d39
+#> Model fingerprint: 0xdabbf6ac
 #> Model has 5 linear objective coefficients
 #> Model has 3 piecewise-linear objective terms
 #> Variable types: 8 continuous, 22 integer (22 binary)
@@ -231,40 +230,39 @@ s1 <- solve(p1)
 #>   Objective range  [2e-01, 2e+00]
 #>   Bounds range     [1e+00, 1e+00]
 #>   RHS range        [1e+00, 2e+02]
-#>   PWLObj x range   [6e-01, 5e+00]
+#>   PWLObj x range   [7e-01, 5e+00]
 #>   PWLObj obj range [5e-03, 1e+00]
 #> 
-#> Found heuristic solution: objective 1.7229965
+#> Found heuristic solution: objective 1.7230322
 #> Presolve removed 16 rows and 12 columns
 #> Presolve time: 0.00s
-#> Presolved: 17 rows, 268 columns, 290 nonzeros
-#> Variable types: 253 continuous, 15 integer (15 binary)
-#> Root relaxation presolved: 14 rows, 265 columns, 284 nonzeros
+#> Presolved: 17 rows, 267 columns, 289 nonzeros
+#> Variable types: 252 continuous, 15 integer (15 binary)
+#> Root relaxation presolved: 14 rows, 264 columns, 283 nonzeros
 #> 
 #> 
-#> Root relaxation: objective 2.638320e+00, 22 iterations, 0.00 seconds (0.00 work units)
+#> Root relaxation: objective 2.638343e+00, 22 iterations, 0.00 seconds (0.00 work units)
 #> 
 #>     Nodes    |    Current Node    |     Objective Bounds      |     Work
 #>  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #> 
-#>      0     0    2.63832    0    6    1.72300    2.63832  53.1%     -    0s
-#> H    0     0                       1.9903437    2.63832  32.6%     -    0s
-#> H    0     0                       2.1724129    2.63832  21.4%     -    0s
-#> H    0     0                       2.5726400    2.63832  2.55%     -    0s
-#>      0     0    2.59314    0    6    2.57264    2.59314  0.80%     -    0s
-#>      0     0     cutoff    0         2.57264    2.57264  0.00%     -    0s
+#>      0     0    2.63834    0    6    1.72303    2.63834  53.1%     -    0s
+#> H    0     0                       1.9914575    2.63834  32.5%     -    0s
+#> H    0     0                       2.5726522    2.63834  2.55%     -    0s
+#>      0     0    2.59298    0    6    2.57265    2.59298  0.79%     -    0s
+#>      0     0     cutoff    0         2.57265    2.57265  0.00%     -    0s
 #> 
 #> Cutting planes:
 #>   MIR: 1
 #> 
-#> Explored 1 nodes (30 simplex iterations) in 0.00 seconds (0.00 work units)
+#> Explored 1 nodes (32 simplex iterations) in 0.00 seconds (0.00 work units)
 #> Thread count was 1 (of 8 available processors)
 #> 
-#> Solution count 1: 2.57264 
-#> No other solutions better than 2.57264
+#> Solution count 1: 2.57265 
+#> No other solutions better than 2.57265
 #> 
 #> Optimal solution found (tolerance 0.00e+00)
-#> Best objective 2.572640035634e+00, best bound 2.572640035634e+00, gap 0.0000%
+#> Best objective 2.572652172528e+00, best bound 2.572652172528e+00, gap 0.0000%
 
 # print solution
 print(s1)
@@ -296,7 +294,6 @@ s2 <- solve(p2)
 #> Set parameter PoolSolutions to value 1
 #> Set parameter PoolSearchMode to value 2
 #> Academic license - for non-commercial use only - expires 2027-02-03
-#> Warning: Gurobi version mismatch between R 13.0.0 and C library 13.0.1
 #> Gurobi Optimizer version 13.0.1 build v13.0.1rc0 (linux64 - "Ubuntu 24.04.2 LTS")
 #> 
 #> CPU model: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]
@@ -313,7 +310,7 @@ s2 <- solve(p2)
 #> PoolSearchMode  2
 #> 
 #> Optimize a model with 30 rows, 30 columns and 83 nonzeros (Max)
-#> Model fingerprint: 0x71be7a4e
+#> Model fingerprint: 0xe08768e1
 #> Model has 5 linear objective coefficients
 #> Model has 3 piecewise-linear objective terms
 #> Variable types: 8 continuous, 22 integer (22 binary)
@@ -322,35 +319,35 @@ s2 <- solve(p2)
 #>   Objective range  [4e-01, 3e+00]
 #>   Bounds range     [1e+00, 1e+00]
 #>   RHS range        [1e+00, 2e+02]
-#>   PWLObj x range   [6e-01, 5e+00]
+#>   PWLObj x range   [7e-01, 5e+00]
 #>   PWLObj obj range [5e-03, 1e+00]
 #> 
-#> Found heuristic solution: objective 2.3884610
+#> Found heuristic solution: objective 2.3884967
 #> Presolve removed 16 rows and 12 columns
 #> Presolve time: 0.00s
-#> Presolved: 17 rows, 268 columns, 290 nonzeros
-#> Variable types: 253 continuous, 15 integer (15 binary)
-#> Root relaxation presolved: 14 rows, 265 columns, 284 nonzeros
+#> Presolved: 17 rows, 267 columns, 289 nonzeros
+#> Variable types: 252 continuous, 15 integer (15 binary)
+#> Root relaxation presolved: 14 rows, 264 columns, 283 nonzeros
 #> 
 #> 
-#> Root relaxation: objective 4.074385e+00, 21 iterations, 0.00 seconds (0.00 work units)
+#> Root relaxation: objective 4.074391e+00, 21 iterations, 0.00 seconds (0.00 work units)
 #> 
 #>     Nodes    |    Current Node    |     Objective Bounds      |     Work
 #>  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #> 
-#>      0     0    4.07438    0    6    2.38846    4.07438  70.6%     -    0s
-#> H    0     0                       2.7497080    4.07438  48.2%     -    0s
-#> H    0     0                       4.0564295    4.07438  0.44%     -    0s
-#> *    0     0               0       4.0567148    4.05671  0.00%     -    0s
+#>      0     0    4.07439    0    6    2.38850    4.07439  70.6%     -    0s
+#> H    0     0                       2.7428747    4.07439  48.5%     -    0s
+#> H    0     0                       4.0495963    4.07439  0.61%     -    0s
+#> *    0     0               0       4.0566881    4.05669  0.00%     -    0s
 #> 
 #> Explored 1 nodes (22 simplex iterations) in 0.00 seconds (0.00 work units)
 #> Thread count was 1 (of 8 available processors)
 #> 
-#> Solution count 1: 4.05671 
-#> No other solutions better than 4.05671
+#> Solution count 1: 4.05669 
+#> No other solutions better than 4.05669
 #> 
 #> Optimal solution found (tolerance 0.00e+00)
-#> Best objective 4.056714846278e+00, best bound 4.056714846278e+00, gap 0.0000%
+#> Best objective 4.056688068272e+00, best bound 4.056688068272e+00, gap 0.0000%
 
 # print solution based on feature weights
 print(s2)

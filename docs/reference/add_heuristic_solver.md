@@ -174,6 +174,7 @@ Prioritisation Protocol (PPP). Formerly available at
 ## See also
 
 Other solvers:
+[`add_cbc_solver()`](https://prioritizr.github.io/oppr/reference/add_cbc_solver.md),
 [`add_default_solver()`](https://prioritizr.github.io/oppr/reference/add_default_solver.md),
 [`add_gurobi_solver()`](https://prioritizr.github.io/oppr/reference/add_gurobi_solver.md),
 [`add_highs_solver()`](https://prioritizr.github.io/oppr/reference/add_highs_solver.md),

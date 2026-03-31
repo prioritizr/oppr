@@ -159,7 +159,6 @@ s <- solve(p)
 #> Set parameter PoolSolutions to value 1
 #> Set parameter PoolSearchMode to value 2
 #> Academic license - for non-commercial use only - expires 2027-02-03
-#> Warning: Gurobi version mismatch between R 13.0.0 and C library 13.0.1
 #> Gurobi Optimizer version 13.0.1 build v13.0.1rc0 (linux64 - "Ubuntu 24.04.2 LTS")
 #> 
 #> CPU model: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]
@@ -176,7 +175,7 @@ s <- solve(p)
 #> PoolSearchMode  2
 #> 
 #> Optimize a model with 334 rows, 260 columns and 918 nonzeros (Max)
-#> Model fingerprint: 0x52df500d
+#> Model fingerprint: 0x1f7faa67
 #> Model has 201 linear objective coefficients
 #> Variable types: 11 continuous, 150 integer (150 binary)
 #> Semi-Variable types: 99 continuous, 0 integer
@@ -190,16 +189,16 @@ s <- solve(p)
 #> Presolve time: 0.00s
 #> Presolved: 6 rows, 20 columns, 26 nonzeros
 #> Variable types: 1 continuous, 19 integer (19 binary)
-#> Found heuristic solution: objective 0.3884525
+#> Found heuristic solution: objective 0.3873963
 #> 
 #> Explored 0 nodes (0 simplex iterations) in 0.00 seconds (0.00 work units)
 #> Thread count was 1 (of 8 available processors)
 #> 
-#> Solution count 1: 0.388452 
-#> No other solutions better than 0.388452
+#> Solution count 1: 0.387396 
+#> No other solutions better than 0.387396
 #> 
 #> Optimal solution found (tolerance 0.00e+00)
-#> Best objective 3.884524905915e-01, best bound 3.884524905915e-01, gap 0.0000%
+#> Best objective 3.873962810140e-01, best bound 3.873962810140e-01, gap 0.0000%
 
 # print solution
 print(s)

@@ -120,7 +120,6 @@ s1 <- solve(p1)
 #> Set parameter PoolSolutions to value 1
 #> Set parameter PoolSearchMode to value 2
 #> Academic license - for non-commercial use only - expires 2027-02-03
-#> Warning: Gurobi version mismatch between R 13.0.0 and C library 13.0.1
 #> Gurobi Optimizer version 13.0.1 build v13.0.1rc0 (linux64 - "Ubuntu 24.04.2 LTS")
 #> 
 #> CPU model: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]
@@ -198,7 +197,6 @@ s2 <- solve(p2)
 #> Set parameter PoolSolutions to value 1
 #> Set parameter PoolSearchMode to value 2
 #> Academic license - for non-commercial use only - expires 2027-02-03
-#> Warning: Gurobi version mismatch between R 13.0.0 and C library 13.0.1
 #> Gurobi Optimizer version 13.0.1 build v13.0.1rc0 (linux64 - "Ubuntu 24.04.2 LTS")
 #> 
 #> CPU model: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]
@@ -215,7 +213,7 @@ s2 <- solve(p2)
 #> PoolSearchMode  2
 #> 
 #> Optimize a model with 30 rows, 30 columns and 83 nonzeros (Max)
-#> Model fingerprint: 0xbc64238a
+#> Model fingerprint: 0x6415d334
 #> Model has 5 linear objective coefficients
 #> Model has 3 piecewise-linear objective terms
 #> Variable types: 8 continuous, 22 integer (22 binary)
@@ -224,32 +222,32 @@ s2 <- solve(p2)
 #>   Objective range  [2e-01, 2e+00]
 #>   Bounds range     [1e+00, 1e+00]
 #>   RHS range        [1e+00, 4e+02]
-#>   PWLObj x range   [6e-01, 5e+00]
+#>   PWLObj x range   [7e-01, 5e+00]
 #>   PWLObj obj range [5e-03, 1e+00]
 #> 
-#> Found heuristic solution: objective 1.7229965
+#> Found heuristic solution: objective 1.7230322
 #> Presolve removed 16 rows and 12 columns
 #> Presolve time: 0.00s
-#> Presolved: 17 rows, 315 columns, 336 nonzeros
-#> Variable types: 300 continuous, 15 integer (15 binary)
-#> Root relaxation presolved: 14 rows, 312 columns, 330 nonzeros
+#> Presolved: 17 rows, 312 columns, 333 nonzeros
+#> Variable types: 297 continuous, 15 integer (15 binary)
+#> Root relaxation presolved: 14 rows, 309 columns, 327 nonzeros
 #> 
 #> 
-#> Root relaxation: objective 3.112322e+00, 13 iterations, 0.00 seconds (0.00 work units)
+#> Root relaxation: objective 3.112324e+00, 13 iterations, 0.00 seconds (0.00 work units)
 #> 
 #>     Nodes    |    Current Node    |     Objective Bounds      |     Work
 #>  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #> 
-#> *    0     0               0       3.1123216    3.11232  0.00%     -    0s
+#> *    0     0               0       3.1123237    3.11232  0.00%     -    0s
 #> 
-#> Explored 1 nodes (13 simplex iterations) in 0.01 seconds (0.00 work units)
+#> Explored 1 nodes (13 simplex iterations) in 0.00 seconds (0.00 work units)
 #> Thread count was 1 (of 8 available processors)
 #> 
 #> Solution count 1: 3.11232 
 #> No other solutions better than 3.11232
 #> 
 #> Optimal solution found (tolerance 0.00e+00)
-#> Best objective 3.112321626758e+00, best bound 3.112321626758e+00, gap 0.0000%
+#> Best objective 3.112323732332e+00, best bound 3.112323732332e+00, gap 0.0000%
 
 # visualize solution with phylogenetic data
 plot(p2, s2)

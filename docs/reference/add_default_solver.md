@@ -32,6 +32,8 @@ object with the solver added to it.
 The solvers that can be used are as follows (ordered best to worst):
 gurobi,
 ([`add_gurobi_solver()`](https://prioritizr.github.io/oppr/reference/add_gurobi_solver.md)),
+rcbc,
+([`add_cbc_solver()`](https://prioritizr.github.io/oppr/reference/add_cbc_solver.md)),
 highs,
 ([`add_highs_solver()`](https://prioritizr.github.io/oppr/reference/add_highs_solver.md)),
 Rsymphony
@@ -50,6 +52,7 @@ because they cannot provide any guarantees on solution quality.
 ## See also
 
 Other solvers:
+[`add_cbc_solver()`](https://prioritizr.github.io/oppr/reference/add_cbc_solver.md),
 [`add_gurobi_solver()`](https://prioritizr.github.io/oppr/reference/add_gurobi_solver.md),
 [`add_heuristic_solver()`](https://prioritizr.github.io/oppr/reference/add_heuristic_solver.md),
 [`add_highs_solver()`](https://prioritizr.github.io/oppr/reference/add_highs_solver.md),
@@ -103,7 +106,6 @@ s <- solve(p)
 #> Set parameter PoolSolutions to value 1
 #> Set parameter PoolSearchMode to value 2
 #> Academic license - for non-commercial use only - expires 2027-02-03
-#> Warning: Gurobi version mismatch between R 13.0.0 and C library 13.0.1
 #> Gurobi Optimizer version 13.0.1 build v13.0.1rc0 (linux64 - "Ubuntu 24.04.2 LTS")
 #> 
 #> CPU model: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]

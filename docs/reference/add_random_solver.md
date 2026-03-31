@@ -78,6 +78,7 @@ to biodiversity constraints (i.e.,
 ## See also
 
 Other solvers:
+[`add_cbc_solver()`](https://prioritizr.github.io/oppr/reference/add_cbc_solver.md),
 [`add_default_solver()`](https://prioritizr.github.io/oppr/reference/add_default_solver.md),
 [`add_gurobi_solver()`](https://prioritizr.github.io/oppr/reference/add_gurobi_solver.md),
 [`add_heuristic_solver()`](https://prioritizr.github.io/oppr/reference/add_heuristic_solver.md),
@@ -126,14 +127,14 @@ print(s1)
 #> # A tibble: 100 × 21
 #>    solution status  cost   obj F1_action F2_action F3_action F4_action F5_action
 #>       <int> <chr>  <dbl> <dbl> <lgl>     <lgl>     <lgl>     <lgl>     <lgl>    
-#>  1        1 NA      194.  2.01 TRUE      FALSE     FALSE     TRUE      FALSE    
-#>  2        2 NA      198.  1.96 TRUE      FALSE     TRUE      FALSE     FALSE    
-#>  3        3 NA      195.  2.19 TRUE      TRUE      FALSE     FALSE     FALSE    
-#>  4        4 NA      198.  1.96 TRUE      FALSE     TRUE      FALSE     FALSE    
-#>  5        5 NA      194.  1.99 TRUE      FALSE     FALSE     FALSE     TRUE     
+#>  1        1 NA      198.  1.96 TRUE      FALSE     TRUE      FALSE     FALSE    
+#>  2        2 NA      195.  2.19 TRUE      TRUE      FALSE     FALSE     FALSE    
+#>  3        3 NA      198.  1.96 TRUE      FALSE     TRUE      FALSE     FALSE    
+#>  4        4 NA      194.  1.99 TRUE      FALSE     FALSE     FALSE     TRUE     
+#>  5        5 NA      198.  1.96 TRUE      FALSE     TRUE      FALSE     FALSE    
 #>  6        6 NA      198.  1.96 TRUE      FALSE     TRUE      FALSE     FALSE    
-#>  7        7 NA      198.  1.96 TRUE      FALSE     TRUE      FALSE     FALSE    
-#>  8        8 NA      199.  1.91 FALSE     FALSE     FALSE     TRUE      TRUE     
+#>  7        7 NA      199.  1.91 FALSE     FALSE     FALSE     TRUE      TRUE     
+#>  8        8 NA      198.  1.96 TRUE      FALSE     TRUE      FALSE     FALSE    
 #>  9        9 NA      198.  1.96 TRUE      FALSE     TRUE      FALSE     FALSE    
 #> 10       10 NA      198.  1.96 TRUE      FALSE     TRUE      FALSE     FALSE    
 #> # ℹ 90 more rows
@@ -174,7 +175,6 @@ s2 <- p1 %>%
 #> Set parameter PoolSolutions to value 1
 #> Set parameter PoolSearchMode to value 2
 #> Academic license - for non-commercial use only - expires 2027-02-03
-#> Warning: Gurobi version mismatch between R 13.0.0 and C library 13.0.1
 #> Gurobi Optimizer version 13.0.1 build v13.0.1rc0 (linux64 - "Ubuntu 24.04.2 LTS")
 #> 
 #> CPU model: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]

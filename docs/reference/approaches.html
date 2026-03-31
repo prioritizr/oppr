@@ -171,7 +171,6 @@ Mathematical Programming Under Uncertainty. Springer, Berlin.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter PoolSolutions to value 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter PoolSearchMode to value 2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Academic license - for non-commercial use only - expires 2027-02-03</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Warning: Gurobi version mismatch between R 13.0.0 and C library 13.0.1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Gurobi Optimizer version 13.0.1 build v13.0.1rc0 (linux64 - "Ubuntu 24.04.2 LTS")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> CPU model: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]</span>
@@ -188,7 +187,7 @@ Mathematical Programming Under Uncertainty. Springer, Berlin.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> PoolSearchMode  2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimize a model with 334 rows, 260 columns and 918 nonzeros (Max)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Model fingerprint: 0xbfe6d015</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Model fingerprint: 0x6755096a</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model has 201 linear objective coefficients</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Variable types: 11 continuous, 150 integer (150 binary)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Semi-Variable types: 99 continuous, 0 integer</span>
@@ -198,75 +197,64 @@ Mathematical Programming Under Uncertainty. Springer, Berlin.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Bounds range     [6e-01, 3e+00]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   RHS range        [1e-02, 1e+03]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Presolve removed 243 rows and 79 columns</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Presolve removed 244 rows and 80 columns</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Presolve time: 0.00s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Presolved: 289 rows, 280 columns, 825 nonzeros</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Variable types: 99 continuous, 181 integer (181 binary)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Found heuristic solution: objective 0.3884525</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation presolved: 289 rows, 280 columns, 825 nonzeros</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Presolved: 286 rows, 278 columns, 768 nonzeros</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Variable types: 98 continuous, 180 integer (180 binary)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Found heuristic solution: objective 0.3873963</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation presolved: 286 rows, 278 columns, 768 nonzeros</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation: objective 8.350724e-01, 72 iterations, 0.00 seconds (0.00 work units)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation: objective 8.326604e-01, 71 iterations, 0.00 seconds (0.00 work units)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Nodes    |    Current Node    |     Objective Bounds      |     Work</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.83507    0   13    0.38845    0.83507   115%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.6812445    0.83507  22.6%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.72112    0    3    0.68124    0.72112  5.85%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.72112    0    3    0.68124    0.72112  5.85%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.72047    0    6    0.68124    0.72047  5.76%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71955    0    9    0.68124    0.71955  5.62%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.7103971    0.71946  1.28%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71946    0    9    0.71040    0.71946  1.28%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71946    0    8    0.71040    0.71946  1.28%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.7120817    0.71937  1.02%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71937    0   11    0.71208    0.71937  1.02%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71937    0    9    0.71208    0.71937  1.02%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71928    0    9    0.71208    0.71928  1.01%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71928    0   11    0.71208    0.71928  1.01%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71928    0   13    0.71208    0.71928  1.01%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71928    0   15    0.71208    0.71928  1.01%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71915    0    9    0.71208    0.71915  0.99%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71902    0    9    0.71208    0.71902  0.97%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71902    0   11    0.71208    0.71902  0.97%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71902    0   13    0.71208    0.71902  0.97%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71902    0    7    0.71208    0.71902  0.97%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71902    0    9    0.71208    0.71902  0.97%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71901    0   13    0.71208    0.71901  0.97%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71899    0    9    0.71208    0.71899  0.97%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71896    0   11    0.71208    0.71896  0.97%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71895    0   15    0.71208    0.71895  0.96%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71894    0   17    0.71208    0.71894  0.96%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71891    0   11    0.71208    0.71891  0.96%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71891    0   15    0.71208    0.71891  0.96%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71890    0   13    0.71208    0.71890  0.96%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71890    0   17    0.71208    0.71890  0.96%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71885    0   19    0.71208    0.71885  0.95%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71880    0   19    0.71208    0.71880  0.94%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71869    0   11    0.71208    0.71869  0.93%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71867    0   19    0.71208    0.71867  0.93%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71864    0   13    0.71208    0.71864  0.92%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71863    0   19    0.71208    0.71863  0.92%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71863    0   17    0.71208    0.71863  0.92%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71863    0   17    0.71208    0.71863  0.92%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71863    0   17    0.71208    0.71863  0.92%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     2    0.71856    0   17    0.71208    0.71856  0.91%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.83266    0   13    0.38740    0.83266   115%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.6823882    0.83266  22.0%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71947    0    3    0.68239    0.71947  5.43%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71947    0    3    0.68239    0.71947  5.43%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71874    0    6    0.68239    0.71874  5.33%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71789    0    9    0.68239    0.71789  5.20%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.7096175    0.71780  1.15%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71780    0    9    0.70962    0.71780  1.15%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71780    0    9    0.70962    0.71780  1.15%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.7105510    0.71775  1.01%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.7113862    0.71775  0.89%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71775    0   11    0.71139    0.71775  0.89%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71775    0    9    0.71139    0.71775  0.89%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71771    0   11    0.71139    0.71771  0.89%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71766    0   11    0.71139    0.71766  0.88%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71766    0    9    0.71139    0.71766  0.88%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71765    0   15    0.71139    0.71765  0.88%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71756    0    9    0.71139    0.71756  0.87%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71745    0   11    0.71139    0.71745  0.85%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71745    0   11    0.71139    0.71745  0.85%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71745    0   13    0.71139    0.71745  0.85%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71745    0   15    0.71139    0.71745  0.85%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71743    0   11    0.71139    0.71743  0.85%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71739    0   11    0.71139    0.71739  0.84%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71737    0   13    0.71139    0.71737  0.84%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71736    0   15    0.71139    0.71736  0.84%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71736    0   11    0.71139    0.71736  0.84%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71735    0   17    0.71139    0.71735  0.84%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71735    0   17    0.71139    0.71735  0.84%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     2    0.71709    0   17    0.71139    0.71709  0.80%     -    0s</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Cutting planes:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Gomory: 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Cover: 14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Cover: 13</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Implied bound: 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   MIR: 18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   MIR: 24</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Explored 134 nodes (782 simplex iterations) in 0.08 seconds (0.05 work units)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Explored 123 nodes (552 simplex iterations) in 0.07 seconds (0.05 work units)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Thread count was 1 (of 8 available processors)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Solution count 1: 0.712082 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> No other solutions better than 0.712082</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Solution count 1: 0.711386 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> No other solutions better than 0.711386</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimal solution found (tolerance 0.00e+00)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Best objective 7.120816581805e-01, best bound 7.120816581805e-01, gap 0.0000%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Best objective 7.113861930761e-01, best bound 7.113861930761e-01, gap 0.0000%</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Username</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter LicenseID to value 2774703</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter TimeLimit to value 2147483647</span>
@@ -278,7 +266,6 @@ Mathematical Programming Under Uncertainty. Springer, Berlin.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter PoolSolutions to value 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter PoolSearchMode to value 2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Academic license - for non-commercial use only - expires 2027-02-03</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Warning: Gurobi version mismatch between R 13.0.0 and C library 13.0.1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Gurobi Optimizer version 13.0.1 build v13.0.1rc0 (linux64 - "Ubuntu 24.04.2 LTS")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> CPU model: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]</span>
@@ -295,7 +282,7 @@ Mathematical Programming Under Uncertainty. Springer, Berlin.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> PoolSearchMode  2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimize a model with 335 rows, 263 columns and 1122 nonzeros (Min)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Model fingerprint: 0x0aa66dd2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Model fingerprint: 0x712f3a04</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model has 3 linear objective coefficients</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Variable types: 14 continuous, 150 integer (150 binary)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Semi-Variable types: 99 continuous, 0 integer</span>
@@ -305,203 +292,291 @@ Mathematical Programming Under Uncertainty. Springer, Berlin.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Bounds range     [6e-01, 3e+00]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   RHS range        [2e-01, 1e+03]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Presolve removed 242 rows and 79 columns</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Presolve removed 243 rows and 80 columns</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Presolve time: 0.01s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Presolved: 288 rows, 281 columns, 923 nonzeros</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Variable types: 101 continuous, 180 integer (180 binary)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Found heuristic solution: objective 1.0409811</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Found heuristic solution: objective 0.9421745</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation presolved: 288 rows, 281 columns, 923 nonzeros</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation: objective 5.592195e-01, 151 iterations, 0.00 seconds (0.00 work units)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Nodes    |    Current Node    |     Objective Bounds      |     Work</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.55922    0   16    0.94217    0.55922  40.6%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.7459892    0.55922  25.0%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.62914    0   19    0.74599    0.62914  15.7%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.7413913    0.63606  14.2%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.69489    0   24    0.74139    0.69489  6.27%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.69489    0   13    0.74139    0.69489  6.27%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.69489    0    8    0.74139    0.69489  6.27%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.69517    0   19    0.74139    0.69517  6.23%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70907    0    9    0.74139    0.70907  4.36%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70923    0    5    0.74139    0.70923  4.34%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70931    0    7    0.74139    0.70931  4.33%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70934    0    5    0.74139    0.70934  4.32%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70940    0    7    0.74139    0.70940  4.32%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70948    0    9    0.74139    0.70948  4.30%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70950    0    9    0.74139    0.70950  4.30%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.7331862    0.70950  3.23%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.7331862    0.70950  3.23%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70953    0    3    0.73319    0.70953  3.23%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70980    0    2    0.73319    0.70980  3.19%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.7169912    0.70980  1.00%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70989    0    5    0.71699    0.70989  0.99%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71582    0    4    0.71699    0.71582  0.16%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71589    0    7    0.71699    0.71589  0.15%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71646    0    7    0.71699    0.71646  0.07%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71657    0    9    0.71699    0.71657  0.06%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Explored 1 nodes (599 simplex iterations) in 0.06 seconds (0.04 work units)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Thread count was 1 (of 8 available processors)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Solution count 1: 0.716991 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> No other solutions better than 0.716991</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Optimal solution found (tolerance 0.00e+00)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Best objective 7.169911970195e-01, best bound 7.169911970195e-01, gap 0.0000%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Username</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter LicenseID to value 2774703</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter TimeLimit to value 2147483647</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter MIPGap to value 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter ScaleFlag to value 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter NumericFocus to value 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Presolve to value 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Threads to value 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter PoolSolutions to value 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter PoolSearchMode to value 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Academic license - for non-commercial use only - expires 2027-02-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Gurobi Optimizer version 13.0.1 build v13.0.1rc0 (linux64 - "Ubuntu 24.04.2 LTS")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CPU model: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Thread count: 4 physical cores, 8 logical processors, using up to 1 threads</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Non-default parameters:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TimeLimit  2147483647</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MIPGap  0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ScaleFlag  2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NumericFocus  1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Presolve  2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Threads  1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PoolSolutions  1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PoolSearchMode  2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Optimize a model with 338 rows, 264 columns and 1128 nonzeros (Min)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Model fingerprint: 0xbf6cf508</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Model has 1 linear objective coefficients</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Variable types: 15 continuous, 150 integer (150 binary)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Semi-Variable types: 99 continuous, 0 integer</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficient statistics:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Matrix range     [2e-02, 1e+02]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Objective range  [1e+00, 1e+00]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Bounds range     [6e-01, 3e+00]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   RHS range        [2e-01, 1e+03]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Presolve removed 244 rows and 80 columns</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Presolve time: 0.01s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Presolved: 290 rows, 282 columns, 927 nonzeros</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Variable types: 102 continuous, 180 integer (180 binary)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Found heuristic solution: objective 0.6126037</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation presolved: 290 rows, 282 columns, 927 nonzeros</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation: objective 3.408968e-01, 151 iterations, 0.00 seconds (0.00 work units)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Nodes    |    Current Node    |     Objective Bounds      |     Work</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.34090    0   23    0.61260    0.34090  44.4%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.34844    0   25    0.61260    0.34844  43.1%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.4283774    0.42292  1.27%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42652    0   14    0.42838    0.42652  0.43%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42652    0   14    0.42838    0.42652  0.43%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42652    0   14    0.42838    0.42652  0.43%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42652    0   14    0.42838    0.42652  0.43%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42652    0   14    0.42838    0.42652  0.43%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42653    0   14    0.42838    0.42653  0.43%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42653    0   14    0.42838    0.42653  0.43%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42653    0   14    0.42838    0.42653  0.43%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42653    0   14    0.42838    0.42653  0.43%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42653    0   14    0.42838    0.42653  0.43%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42653    0   14    0.42838    0.42653  0.43%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42676    0   21    0.42838    0.42676  0.38%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42677    0   21    0.42838    0.42677  0.38%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42677    0   21    0.42838    0.42677  0.38%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42678    0   23    0.42838    0.42678  0.37%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42678    0   23    0.42838    0.42678  0.37%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42679    0   23    0.42838    0.42679  0.37%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42680    0   23    0.42838    0.42680  0.37%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42681    0   23    0.42838    0.42681  0.37%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42681    0   23    0.42838    0.42681  0.37%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42682    0   23    0.42838    0.42682  0.36%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42683    0   23    0.42838    0.42683  0.36%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42688    0   22    0.42838    0.42688  0.35%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42688    0   22    0.42838    0.42688  0.35%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42688    0   22    0.42838    0.42688  0.35%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42688    0   22    0.42838    0.42688  0.35%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42688    0   22    0.42838    0.42688  0.35%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42688    0   22    0.42838    0.42688  0.35%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42688    0   22    0.42838    0.42688  0.35%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42688    0   22    0.42838    0.42688  0.35%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42688    0   22    0.42838    0.42688  0.35%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42688    0   22    0.42838    0.42688  0.35%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42688    0   22    0.42838    0.42688  0.35%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42690    0   23    0.42838    0.42690  0.34%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42691    0   23    0.42838    0.42691  0.34%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42691    0   23    0.42838    0.42691  0.34%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42692    0   23    0.42838    0.42692  0.34%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42692    0   23    0.42838    0.42692  0.34%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42693    0   23    0.42838    0.42693  0.34%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42693    0   23    0.42838    0.42693  0.34%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42694    0   23    0.42838    0.42694  0.34%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42694    0   23    0.42838    0.42694  0.34%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42695    0   23    0.42838    0.42695  0.33%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42697    0   23    0.42838    0.42697  0.33%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42698    0   25    0.42838    0.42698  0.33%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42698    0   18    0.42838    0.42698  0.33%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42698    0   12    0.42838    0.42698  0.33%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42698    0   12    0.42838    0.42698  0.33%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42698    0   12    0.42838    0.42698  0.33%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42698    0   12    0.42838    0.42698  0.33%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42698    0   12    0.42838    0.42698  0.33%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42698    0   12    0.42838    0.42698  0.33%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42698    0   12    0.42838    0.42698  0.33%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42698    0   12    0.42838    0.42698  0.33%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42698    0   12    0.42838    0.42698  0.33%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Cutting planes:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Gomory: 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Cover: 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   RLT: 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Explored 1 nodes (651 simplex iterations) in 0.04 seconds (0.04 work units)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Thread count was 1 (of 8 available processors)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Solution count 1: 0.428377 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> No other solutions better than 0.428377</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Optimal solution found (tolerance 0.00e+00)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Best objective 4.283773900957e-01, best bound 4.283773900957e-01, gap 0.0000%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Username</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter LicenseID to value 2774703</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter TimeLimit to value 2147483647</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter MIPGap to value 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter ScaleFlag to value 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter NumericFocus to value 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Presolve to value 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Threads to value 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter PoolSolutions to value 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter PoolSearchMode to value 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Academic license - for non-commercial use only - expires 2027-02-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Gurobi Optimizer version 13.0.1 build v13.0.1rc0 (linux64 - "Ubuntu 24.04.2 LTS")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CPU model: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Thread count: 4 physical cores, 8 logical processors, using up to 1 threads</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Non-default parameters:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TimeLimit  2147483647</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MIPGap  0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ScaleFlag  2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NumericFocus  1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Presolve  2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Threads  1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PoolSolutions  1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> PoolSearchMode  2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Optimize a model with 338 rows, 264 columns and 1128 nonzeros (Min)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Model fingerprint: 0xbf6cf508</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Model has 1 linear objective coefficients</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Variable types: 15 continuous, 150 integer (150 binary)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Semi-Variable types: 99 continuous, 0 integer</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficient statistics:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Matrix range     [2e-02, 1e+02]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Objective range  [1e+00, 1e+00]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Bounds range     [6e-01, 3e+00]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   RHS range        [2e-01, 1e+03]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Presolve removed 244 rows and 80 columns</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Presolve time: 0.00s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Presolved: 291 rows, 283 columns, 981 nonzeros</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Variable types: 102 continuous, 181 integer (181 binary)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Found heuristic solution: objective 1.0399249</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Found heuristic solution: objective 0.9411183</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation presolved: 291 rows, 283 columns, 981 nonzeros</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Presolved: 290 rows, 282 columns, 927 nonzeros</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Variable types: 102 continuous, 180 integer (180 binary)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Found heuristic solution: objective 0.6126037</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation presolved: 290 rows, 282 columns, 927 nonzeros</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation: objective 5.569304e-01, 139 iterations, 0.00 seconds (0.00 work units)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Nodes    |    Current Node    |     Objective Bounds      |     Work</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.55693    0   16    0.94112    0.55693  40.8%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.7471329    0.55693  25.5%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.61876    0   25    0.74713    0.61876  17.2%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.62504    0   22    0.74713    0.62504  16.3%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.7424145    0.63090  15.0%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.69778    0   21    0.74241    0.69778  6.01%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.69778    0   13    0.74241    0.69778  6.01%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.69778    0   19    0.74241    0.69778  6.01%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70734    0    4    0.74241    0.70734  4.72%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70742    0    7    0.74241    0.70742  4.71%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70759    0    5    0.74241    0.70759  4.69%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70768    0    7    0.74241    0.70768  4.68%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70772    0    5    0.74241    0.70772  4.67%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70780    0    7    0.74241    0.70780  4.66%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70780    0    7    0.74241    0.70780  4.66%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.7401789    0.70780  4.37%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.7359574    0.70780  3.83%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70784    0    3    0.73596    0.70784  3.82%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70784    0    1    0.73596    0.70784  3.82%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70784    0    5    0.73596    0.70784  3.82%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70822    0    1    0.73596    0.70822  3.77%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70829    0    5    0.73596    0.70829  3.76%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70838    0    7    0.73596    0.70838  3.75%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.7162957    0.70841  1.10%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70849    0    7    0.71630    0.70849  1.09%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70860    0    9    0.71630    0.70860  1.07%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70862    0   12    0.71630    0.70862  1.07%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70865    0    7    0.71630    0.70865  1.07%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70872    0    5    0.71630    0.70872  1.06%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70873    0   11    0.71630    0.70873  1.06%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70885    0    9    0.71630    0.70885  1.04%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70886    0   11    0.71630    0.70886  1.04%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70891    0    7    0.71630    0.70891  1.03%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70892    0   13    0.71630    0.70892  1.03%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70894    0   13    0.71630    0.70894  1.03%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70894    0   13    0.71630    0.70894  1.03%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70896    0   17    0.71630    0.70896  1.02%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70901    0    5    0.71630    0.70901  1.02%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70902    0    9    0.71630    0.70902  1.02%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70911    0    7    0.71630    0.70911  1.00%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70911    0    9    0.71630    0.70911  1.00%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70911    0    9    0.71630    0.70911  1.00%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70914    0   13    0.71630    0.70914  1.00%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70917    0   11    0.71630    0.70917  1.00%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70917    0   17    0.71630    0.70917  0.99%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70918    0    7    0.71630    0.70918  0.99%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70918    0    9    0.71630    0.70918  0.99%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70924    0   15    0.71630    0.70924  0.99%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70925    0   17    0.71630    0.70925  0.98%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70935    0    9    0.71630    0.70935  0.97%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70935    0   13    0.71630    0.70935  0.97%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70936    0   15    0.71630    0.70936  0.97%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70939    0   11    0.71630    0.70939  0.96%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70939    0   11    0.71630    0.70939  0.96%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70940    0   13    0.71630    0.70940  0.96%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70942    0   15    0.71630    0.70942  0.96%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70942    0   17    0.71630    0.70942  0.96%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70942    0   15    0.71630    0.70942  0.96%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70944    0   17    0.71630    0.70944  0.96%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70944    0   18    0.71630    0.70944  0.96%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70944    0   16    0.71630    0.70944  0.96%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70944    0   20    0.71630    0.70944  0.96%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70946    0   19    0.71630    0.70946  0.95%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70946    0   19    0.71630    0.70946  0.95%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70956    0   17    0.71630    0.70956  0.94%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70958    0   19    0.71630    0.70958  0.94%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70961    0   17    0.71630    0.70961  0.93%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70962    0   19    0.71630    0.70962  0.93%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70964    0   19    0.71630    0.70964  0.93%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70967    0   21    0.71630    0.70967  0.93%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70970    0   25    0.71630    0.70970  0.92%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70976    0   21    0.71630    0.70976  0.91%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70977    0   21    0.71630    0.70977  0.91%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70979    0   21    0.71630    0.70979  0.91%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     2    0.70982    0   21    0.71630    0.70982  0.90%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Cutting planes:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Cover: 9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   MIR: 21</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Inf proof: 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Explored 82 nodes (1231 simplex iterations) in 0.13 seconds (0.09 work units)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Thread count was 1 (of 8 available processors)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Solution count 1: 0.716296 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> No other solutions better than 0.716296</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Optimal solution found (tolerance 0.00e+00)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Best objective 7.162957319151e-01, best bound 7.162957319151e-01, gap 0.0000%</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Username</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter LicenseID to value 2774703</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter TimeLimit to value 2147483647</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter MIPGap to value 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter ScaleFlag to value 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter NumericFocus to value 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Presolve to value 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Threads to value 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter PoolSolutions to value 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter PoolSearchMode to value 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Academic license - for non-commercial use only - expires 2027-02-03</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Warning: Gurobi version mismatch between R 13.0.0 and C library 13.0.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Gurobi Optimizer version 13.0.1 build v13.0.1rc0 (linux64 - "Ubuntu 24.04.2 LTS")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CPU model: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Thread count: 4 physical cores, 8 logical processors, using up to 1 threads</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Non-default parameters:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> TimeLimit  2147483647</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MIPGap  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ScaleFlag  2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NumericFocus  1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Presolve  2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Threads  1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PoolSolutions  1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PoolSearchMode  2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Optimize a model with 338 rows, 264 columns and 1128 nonzeros (Min)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Model fingerprint: 0x0d6d14cc</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Model has 1 linear objective coefficients</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Variable types: 15 continuous, 150 integer (150 binary)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Semi-Variable types: 99 continuous, 0 integer</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficient statistics:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Matrix range     [2e-02, 1e+02]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Objective range  [1e+00, 1e+00]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Bounds range     [6e-01, 3e+00]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   RHS range        [2e-01, 1e+03]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Presolve removed 243 rows and 79 columns</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Presolve time: 0.01s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Presolved: 293 rows, 284 columns, 985 nonzeros</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Variable types: 103 continuous, 181 integer (181 binary)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Found heuristic solution: objective 0.6115475</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation presolved: 293 rows, 284 columns, 985 nonzeros</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation: objective 3.403610e-01, 129 iterations, 0.00 seconds (0.00 work units)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation: objective 3.408968e-01, 151 iterations, 0.00 seconds (0.00 work units)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Nodes    |    Current Node    |     Objective Bounds      |     Work</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.34036    0   24    0.61155    0.34036  44.3%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.34775    0   26    0.61155    0.34775  43.1%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.4283774    0.41249  3.71%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42646    0   14    0.42838    0.42646  0.45%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42672    0   23    0.42838    0.42672  0.39%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42672    0   23    0.42838    0.42672  0.39%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42672    0   23    0.42838    0.42672  0.39%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42672    0   23    0.42838    0.42672  0.39%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42672    0   23    0.42838    0.42672  0.39%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42672    0   23    0.42838    0.42672  0.39%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42673    0   23    0.42838    0.42673  0.39%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42673    0   23    0.42838    0.42673  0.38%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42673    0   23    0.42838    0.42673  0.38%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42673    0   23    0.42838    0.42673  0.38%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42674    0   23    0.42838    0.42674  0.38%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42681    0   22    0.42838    0.42681  0.37%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42681    0   22    0.42838    0.42681  0.37%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42681    0   22    0.42838    0.42681  0.37%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42681    0   22    0.42838    0.42681  0.37%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42681    0   22    0.42838    0.42681  0.37%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42681    0   22    0.42838    0.42681  0.37%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42681    0   22    0.42838    0.42681  0.37%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42681    0   22    0.42838    0.42681  0.37%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42681    0   22    0.42838    0.42681  0.37%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42681    0   22    0.42838    0.42681  0.37%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42681    0   22    0.42838    0.42681  0.37%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42687    0   24    0.42838    0.42687  0.35%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42687    0   20    0.42838    0.42687  0.35%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42687    0   12    0.42838    0.42687  0.35%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42687    0   12    0.42838    0.42687  0.35%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42687    0   12    0.42838    0.42687  0.35%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42687    0   12    0.42838    0.42687  0.35%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42687    0   12    0.42838    0.42687  0.35%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42687    0   12    0.42838    0.42687  0.35%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42687    0   12    0.42838    0.42687  0.35%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42687    0   12    0.42838    0.42687  0.35%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.34090    0   23    0.61260    0.34090  44.4%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.34844    0   25    0.61260    0.34844  43.1%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.4283774    0.42292  1.27%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42652    0   14    0.42838    0.42652  0.43%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42652    0   14    0.42838    0.42652  0.43%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42652    0   14    0.42838    0.42652  0.43%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42652    0   14    0.42838    0.42652  0.43%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42652    0   14    0.42838    0.42652  0.43%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42653    0   14    0.42838    0.42653  0.43%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42653    0   14    0.42838    0.42653  0.43%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42653    0   14    0.42838    0.42653  0.43%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42653    0   14    0.42838    0.42653  0.43%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42653    0   14    0.42838    0.42653  0.43%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42653    0   14    0.42838    0.42653  0.43%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42676    0   21    0.42838    0.42676  0.38%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42677    0   21    0.42838    0.42677  0.38%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42677    0   21    0.42838    0.42677  0.38%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42678    0   23    0.42838    0.42678  0.37%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42678    0   23    0.42838    0.42678  0.37%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42679    0   23    0.42838    0.42679  0.37%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42680    0   23    0.42838    0.42680  0.37%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42681    0   23    0.42838    0.42681  0.37%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42681    0   23    0.42838    0.42681  0.37%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42682    0   23    0.42838    0.42682  0.36%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42683    0   23    0.42838    0.42683  0.36%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42688    0   22    0.42838    0.42688  0.35%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42688    0   22    0.42838    0.42688  0.35%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42688    0   22    0.42838    0.42688  0.35%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42688    0   22    0.42838    0.42688  0.35%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42688    0   22    0.42838    0.42688  0.35%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42688    0   22    0.42838    0.42688  0.35%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42688    0   22    0.42838    0.42688  0.35%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42688    0   22    0.42838    0.42688  0.35%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42688    0   22    0.42838    0.42688  0.35%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42688    0   22    0.42838    0.42688  0.35%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42688    0   22    0.42838    0.42688  0.35%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42690    0   23    0.42838    0.42690  0.34%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42691    0   23    0.42838    0.42691  0.34%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42691    0   23    0.42838    0.42691  0.34%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42692    0   23    0.42838    0.42692  0.34%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42692    0   23    0.42838    0.42692  0.34%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42693    0   23    0.42838    0.42693  0.34%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42693    0   23    0.42838    0.42693  0.34%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42694    0   23    0.42838    0.42694  0.34%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42694    0   23    0.42838    0.42694  0.34%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42695    0   23    0.42838    0.42695  0.33%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42697    0   23    0.42838    0.42697  0.33%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42698    0   25    0.42838    0.42698  0.33%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42698    0   18    0.42838    0.42698  0.33%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42698    0   12    0.42838    0.42698  0.33%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42698    0   12    0.42838    0.42698  0.33%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42698    0   12    0.42838    0.42698  0.33%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42698    0   12    0.42838    0.42698  0.33%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42698    0   12    0.42838    0.42698  0.33%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42698    0   12    0.42838    0.42698  0.33%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42698    0   12    0.42838    0.42698  0.33%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42698    0   12    0.42838    0.42698  0.33%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42698    0   12    0.42838    0.42698  0.33%     -    0s</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Cutting planes:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Gomory: 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Cover: 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   RLT: 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Explored 1 nodes (675 simplex iterations) in 0.04 seconds (0.04 work units)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Explored 1 nodes (651 simplex iterations) in 0.04 seconds (0.04 work units)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Thread count was 1 (of 8 available processors)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Solution count 1: 0.428377 </span>
@@ -520,108 +595,6 @@ Mathematical Programming Under Uncertainty. Springer, Berlin.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter PoolSolutions to value 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter PoolSearchMode to value 2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Academic license - for non-commercial use only - expires 2027-02-03</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Warning: Gurobi version mismatch between R 13.0.0 and C library 13.0.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Gurobi Optimizer version 13.0.1 build v13.0.1rc0 (linux64 - "Ubuntu 24.04.2 LTS")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CPU model: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Thread count: 4 physical cores, 8 logical processors, using up to 1 threads</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Non-default parameters:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> TimeLimit  2147483647</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MIPGap  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ScaleFlag  2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NumericFocus  1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Presolve  2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Threads  1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PoolSolutions  1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> PoolSearchMode  2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Optimize a model with 338 rows, 264 columns and 1128 nonzeros (Min)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Model fingerprint: 0x0d6d14cc</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Model has 1 linear objective coefficients</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Variable types: 15 continuous, 150 integer (150 binary)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Semi-Variable types: 99 continuous, 0 integer</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficient statistics:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Matrix range     [2e-02, 1e+02]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Objective range  [1e+00, 1e+00]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Bounds range     [6e-01, 3e+00]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   RHS range        [2e-01, 1e+03]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Presolve removed 243 rows and 79 columns</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Presolve time: 0.01s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Presolved: 293 rows, 284 columns, 985 nonzeros</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Variable types: 103 continuous, 181 integer (181 binary)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Found heuristic solution: objective 0.6115475</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation presolved: 293 rows, 284 columns, 985 nonzeros</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation: objective 3.403610e-01, 129 iterations, 0.00 seconds (0.00 work units)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Nodes    |    Current Node    |     Objective Bounds      |     Work</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.34036    0   24    0.61155    0.34036  44.3%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.34775    0   26    0.61155    0.34775  43.1%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.4283774    0.41249  3.71%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42646    0   14    0.42838    0.42646  0.45%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42672    0   23    0.42838    0.42672  0.39%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42672    0   23    0.42838    0.42672  0.39%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42672    0   23    0.42838    0.42672  0.39%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42672    0   23    0.42838    0.42672  0.39%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42672    0   23    0.42838    0.42672  0.39%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42672    0   23    0.42838    0.42672  0.39%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42673    0   23    0.42838    0.42673  0.39%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42673    0   23    0.42838    0.42673  0.38%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42673    0   23    0.42838    0.42673  0.38%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42673    0   23    0.42838    0.42673  0.38%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42674    0   23    0.42838    0.42674  0.38%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42681    0   22    0.42838    0.42681  0.37%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42681    0   22    0.42838    0.42681  0.37%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42681    0   22    0.42838    0.42681  0.37%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42681    0   22    0.42838    0.42681  0.37%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42681    0   22    0.42838    0.42681  0.37%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42681    0   22    0.42838    0.42681  0.37%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42681    0   22    0.42838    0.42681  0.37%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42681    0   22    0.42838    0.42681  0.37%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42681    0   22    0.42838    0.42681  0.37%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42681    0   22    0.42838    0.42681  0.37%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42681    0   22    0.42838    0.42681  0.37%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42687    0   24    0.42838    0.42687  0.35%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42687    0   20    0.42838    0.42687  0.35%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42687    0   12    0.42838    0.42687  0.35%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42687    0   12    0.42838    0.42687  0.35%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42687    0   12    0.42838    0.42687  0.35%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42687    0   12    0.42838    0.42687  0.35%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42687    0   12    0.42838    0.42687  0.35%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42687    0   12    0.42838    0.42687  0.35%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42687    0   12    0.42838    0.42687  0.35%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.42687    0   12    0.42838    0.42687  0.35%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Cutting planes:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Gomory: 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Cover: 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   RLT: 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Explored 1 nodes (675 simplex iterations) in 0.04 seconds (0.04 work units)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Thread count was 1 (of 8 available processors)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Solution count 1: 0.428377 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> No other solutions better than 0.428377</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Optimal solution found (tolerance 0.00e+00)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Best objective 4.283773900957e-01, best bound 4.283773900957e-01, gap 0.0000%</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Username</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter LicenseID to value 2774703</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter TimeLimit to value 2147483647</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter MIPGap to value 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter ScaleFlag to value 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter NumericFocus to value 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Presolve to value 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter Threads to value 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter PoolSolutions to value 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Set parameter PoolSearchMode to value 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Academic license - for non-commercial use only - expires 2027-02-03</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Warning: Gurobi version mismatch between R 13.0.0 and C library 13.0.1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Gurobi Optimizer version 13.0.1 build v13.0.1rc0 (linux64 - "Ubuntu 24.04.2 LTS")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> CPU model: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]</span>
@@ -638,7 +611,7 @@ Mathematical Programming Under Uncertainty. Springer, Berlin.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> PoolSearchMode  2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimize a model with 339 rows, 264 columns and 1129 nonzeros (Min)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Model fingerprint: 0x7f7f6d7b</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Model fingerprint: 0x9a894ee0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model has 3 linear objective coefficients</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Variable types: 15 continuous, 150 integer (150 binary)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Semi-Variable types: 99 continuous, 0 integer</span>
@@ -648,60 +621,68 @@ Mathematical Programming Under Uncertainty. Springer, Berlin.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Bounds range     [6e-01, 3e+00]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   RHS range        [2e-01, 1e+03]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> User MIP start produced solution with objective 0.850986 (0.00s)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> User MIP start produced solution with objective 0.848736 (0.00s)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> User MIP start produced solution with objective 0.795255 (0.01s)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> User MIP start produced solution with objective 0.795255 (0.01s)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Loaded user MIP start with objective 0.795255</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> User MIP start produced solution with objective 0.848832 (0.00s)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> User MIP start produced solution with objective 0.847037 (0.00s)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> User MIP start produced solution with objective 0.802451 (0.01s)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> User MIP start produced solution with objective 0.799374 (0.02s)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> User MIP start produced solution with objective 0.795528 (0.02s)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Loaded user MIP start with objective 0.795528</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Presolve removed 244 rows and 79 columns</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Presolve time: 0.00s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Presolved: 293 rows, 284 columns, 985 nonzeros</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Variable types: 103 continuous, 181 integer (181 binary)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation presolved: 293 rows, 284 columns, 985 nonzeros</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Presolve removed 245 rows and 80 columns</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Presolve time: 0.01s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Presolved: 290 rows, 282 columns, 927 nonzeros</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Variable types: 102 continuous, 180 integer (180 binary)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation presolved: 290 rows, 282 columns, 927 nonzeros</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation: objective 5.569304e-01, 123 iterations, 0.00 seconds (0.00 work units)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Root relaxation: objective 5.592195e-01, 137 iterations, 0.00 seconds (0.00 work units)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Nodes    |    Current Node    |     Objective Bounds      |     Work</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.55693    0   16    0.79525    0.55693  30.0%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.7471329    0.55693  25.5%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.61876    0   25    0.74713    0.61876  17.2%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.62504    0   22    0.74713    0.62504  16.3%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.7424145    0.63090  15.0%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.69778    0   21    0.74241    0.69778  6.01%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.69778    0   18    0.74241    0.69778  6.01%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.7424145    0.69778  6.01%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70742    0    7    0.74241    0.70742  4.71%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70759    0    5    0.74241    0.70759  4.69%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70768    0    7    0.74241    0.70768  4.68%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70779    0    5    0.74241    0.70779  4.66%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70780    0    7    0.74241    0.70780  4.66%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70780    0    7    0.74241    0.70780  4.66%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.7401789    0.70780  4.37%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.7359574    0.70780  3.83%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70793    0    3    0.73596    0.70793  3.81%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70820    0    2    0.73596    0.70820  3.77%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.7162957    0.70820  1.13%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71537    0    2    0.71630    0.71537  0.13%     -    0s</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71593    0    6    0.71630    0.71593  0.05%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.55922    0   16    0.79553    0.55922  29.7%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.7459892    0.55922  25.0%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.62723    0   22    0.74599    0.62723  15.9%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.7413913    0.63288  14.6%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.63288    0   24    0.74139    0.63288  14.6%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.69953    0   23    0.74139    0.69953  5.65%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.69953    0   18    0.74139    0.69953  5.65%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70902    0    4    0.74139    0.70902  4.37%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70948    0    9    0.74139    0.70948  4.30%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70953    0   11    0.74139    0.70953  4.30%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70955    0   11    0.74139    0.70955  4.30%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70961    0   13    0.74139    0.70961  4.29%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70961    0   13    0.74139    0.70961  4.29%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70961    0   13    0.74139    0.70961  4.29%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.7392152    0.70961  4.01%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.70963    0    3    0.73922    0.70963  4.00%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71012    0    6    0.73922    0.71012  3.94%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.7331862    0.71016  3.14%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.7331862    0.71016  3.14%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71582    0    4    0.73319    0.71582  2.37%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71589    0    7    0.73319    0.71589  2.36%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.7197900    0.71595  0.53%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.7187599    0.71595  0.39%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71595    0    9    0.71876    0.71595  0.39%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.7169912    0.71595  0.15%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71598    0   11    0.71699    0.71598  0.14%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> H    0     0                       0.7169912    0.71598  0.14%     -    0s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0     0    0.71604    0   13    0.71699    0.71604  0.13%     -    0s</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Explored 1 nodes (512 simplex iterations) in 0.06 seconds (0.05 work units)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Explored 1 nodes (580 simplex iterations) in 0.09 seconds (0.06 work units)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Thread count was 1 (of 8 available processors)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Solution count 1: 0.716296 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> No other solutions better than 0.716296</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Solution count 1: 0.716991 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> No other solutions better than 0.716991</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimal solution found (tolerance 0.00e+00)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Best objective 7.162957317435e-01, best bound 7.162957317435e-01, gap 0.0000%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Best objective 7.169911968478e-01, best bound 7.169911968478e-01, gap 0.0000%</span>
 <span class="r-in"><span><span class="va">s</span><span class="op">$</span><span class="va">approach</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"abs epsilon"</span>, <span class="st">"wtd goal"</span>, <span class="st">"Chebyshev goal"</span>, <span class="st">"ref point"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># print solutions</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">s</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   solution  status     cost      obj1      obj2     obj3 A1_action A2_action</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1        1 OPTIMAL 983.3707 0.6701859 0.4297357 1.616604      TRUE     FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1        1 OPTIMAL 884.8571 0.6701859 0.4297357 1.616604      TRUE     FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2        1 OPTIMAL 884.8571 0.6701859 0.4297357 1.616604      TRUE     FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3        1 OPTIMAL 969.5956 0.5989621 0.4297357 1.748802      TRUE      TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4        1 OPTIMAL 884.8571 0.6701859 0.4297357 1.616604      TRUE     FALSE</span>
@@ -711,7 +692,7 @@ Mathematical Programming Under Uncertainty. Springer, Berlin.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3      TRUE      TRUE      TRUE     FALSE     FALSE      TRUE     FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4      TRUE     FALSE      TRUE      TRUE      TRUE     FALSE     FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   A10_action A11_action A12_action A13_action A14_action A15_action B1_action</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1       TRUE       TRUE       TRUE      FALSE       TRUE       TRUE      TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1       TRUE       TRUE       TRUE      FALSE      FALSE       TRUE      TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2       TRUE       TRUE       TRUE      FALSE      FALSE       TRUE      TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3       TRUE       TRUE      FALSE       TRUE       TRUE      FALSE      TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4       TRUE       TRUE       TRUE      FALSE      FALSE       TRUE      TRUE</span>

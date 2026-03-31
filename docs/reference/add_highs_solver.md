@@ -72,13 +72,6 @@ add_highs_solver(
 A [`problem()`](https://prioritizr.github.io/oppr/reference/problem.md)
 object with the solver added to it.
 
-## Details
-
-[*HiGHS*](https://highs.dev/) is an open source optimization software.
-This solver is recommended if the
-[`add_gurobi_solver()`](https://prioritizr.github.io/oppr/reference/add_gurobi_solver.md)
-cannot be used.
-
 ## References
 
 Huangfu Q and Hall JAJ (2018). Parallelizing the dual revised simplex
@@ -87,6 +80,7 @@ method. *Mathematical Programming Computation*, 10: 119-142.
 ## See also
 
 Other solvers:
+[`add_cbc_solver()`](https://prioritizr.github.io/oppr/reference/add_cbc_solver.md),
 [`add_default_solver()`](https://prioritizr.github.io/oppr/reference/add_default_solver.md),
 [`add_gurobi_solver()`](https://prioritizr.github.io/oppr/reference/add_gurobi_solver.md),
 [`add_heuristic_solver()`](https://prioritizr.github.io/oppr/reference/add_heuristic_solver.md),
@@ -183,7 +177,7 @@ s <- solve(p)
 #>   Dual bound        2.19038073725
 #>   Gap               0%
 #> 
-#>   P-D integral      0.000144688243547
+#>   P-D integral      0.000118301590428
 #> 
 #>   Solution status   feasible
 #> 
@@ -192,7 +186,7 @@ s <- solve(p)
 #>                     0 (int. viol.)
 #>                     0 (row viol.)
 #> 
-#>   Timing            0.01
+#>   Timing            0.00
 #> 
 #>   Max sub-MIP depth 0
 #>   Nodes             1

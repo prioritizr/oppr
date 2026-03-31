@@ -116,11 +116,6 @@ for information on the parameters.</p></dd>
     <p>A <code><a href="problem.html">problem()</a></code> object with the solver added to it.</p>
     </div>
     <div class="section level2">
-    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p><a href="https://highs.dev/" class="external-link"><em>HiGHS</em></a> is an open source optimization software.
-This solver is recommended if the <code><a href="add_gurobi_solver.html">add_gurobi_solver()</a></code> cannot be used.</p>
-    </div>
-    <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
     <p>Huangfu Q and Hall JAJ (2018). Parallelizing the dual revised simplex
 method. <em>Mathematical Programming Computation</em>, 10: 119-142.</p>
@@ -128,6 +123,7 @@ method. <em>Mathematical Programming Computation</em>, 10: 119-142.</p>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p>Other solvers:
+<code><a href="add_cbc_solver.html">add_cbc_solver()</a></code>,
 <code><a href="add_default_solver.html">add_default_solver()</a></code>,
 <code><a href="add_gurobi_solver.html">add_gurobi_solver()</a></code>,
 <code><a href="add_heuristic_solver.html">add_heuristic_solver()</a></code>,
@@ -224,7 +220,7 @@ method. <em>Mathematical Programming Computation</em>, 10: 119-142.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Dual bound        2.19038073725</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Gap               0%</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   P-D integral      0.000144688243547</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   P-D integral      0.000118301590428</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Solution status   feasible</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -233,7 +229,7 @@ method. <em>Mathematical Programming Computation</em>, 10: 119-142.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                     0 (int. viol.)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                     0 (row viol.)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Timing            0.01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Timing            0.00</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Max sub-MIP depth 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Nodes             1</span>
