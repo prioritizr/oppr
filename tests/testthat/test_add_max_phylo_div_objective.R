@@ -159,7 +159,7 @@ test_that("solve (random order)", {
   # define skips
   skip_on_cran()
   skip_if_not_installed("gurobi", "8.0.0")
-  # create dataks
+  # create data
   projects <- tibble::tibble(
     name = letters[1:4],
     success = c(0.95, 0.96, 0.94, 1.00),
@@ -186,7 +186,7 @@ test_that("solve (random order)", {
     ) %>%
     add_max_phylo_div_objective(0.16, tree) %>%
     add_binary_decisions() %>%
-    add_gurobi_solver(verbose = FALSE)
+    add_default_solver(verbose = FALSE)
   # solve problem
   s <- solve(p)
   # solve problem
@@ -244,7 +244,7 @@ test_that("solve (weights)", {
     add_max_phylo_div_objective(0.16, tree) %>%
     add_feature_weights(c(4, 1000, 2, 4)) %>%
     add_binary_decisions() %>%
-    add_gurobi_solver(verbose = FALSE)
+    add_default_solver(verbose = FALSE)
   # solve problem
   s <- solve(p)
   # solve problem
