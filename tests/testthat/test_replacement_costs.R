@@ -28,7 +28,7 @@ test_that("maximum benefit obj", {
     add_max_wtd_sum_objective(budget = 0.26) %>%
     add_binary_decisions()
   # define solution
-  s <- data.frame(A1 = 1, A2 = 0, A3 = 1, A4 = 1)
+  s <- data.frame(A1 = TRUE, A2 = FALSE, A3 = TRUE, A4 = TRUE)
   # run calculations
   r <- replacement_costs(p, s)
   # run tests
@@ -87,7 +87,7 @@ test_that("minimum set obj", {
     add_absolute_targets("target") %>%
     add_binary_decisions()
   # create solution
-  s <- data.frame(A1 = 1, A2 = 0, A3 = 1, A4 = 1)
+  s <- data.frame(A1 = TRUE, A2 = FALSE, A3 = TRUE, A4 = TRUE)
   # run calculations
   r <- replacement_costs(p, s)
   # run tests
@@ -113,7 +113,7 @@ test_that("invalid arguments", {
   # create solution
   solution <- as.data.frame(
     matrix(
-      rep(1, p$number_of_actions()),
+      rep(TRUE, p$number_of_actions()),
       nrow = 1,
       dimnames = list(NULL, p$action_names())
     )

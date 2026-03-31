@@ -18,7 +18,7 @@ test_that("some projects funded", {
     locked_out = FALSE
   )
   features <- tibble::tibble(name = c("F1", "F2", "F3"))
-  solution <- tibble::tibble(A1 = 1, A2 = 1, A3 = 0, A4 = 1)
+  solution <- tibble::tibble(A1 = TRUE, A2 = TRUE, A3 = FALSE, A4 = TRUE)
   # build problem
   p <-
     problem(
@@ -61,7 +61,7 @@ test_that("all projects funded", {
     locked_out = FALSE
   )
   features <- tibble::tibble(name = c("F1", "F2", "F3"))
-  solution <- tibble::tibble(A1 = 1, A2 = 1, A3 = 1, A4 = 1)
+  solution <- tibble::tibble(A1 = TRUE, A2 = TRUE, A3 = TRUE, A4 = TRUE)
   # build problem
   p <-
     problem(
@@ -104,7 +104,7 @@ test_that("no projects funded", {
     locked_out = FALSE
   )
   features <- tibble::tibble(name = c("F1", "F2", "F3"))
-  solution <- tibble::tibble(A1 = 0, A2 = 0, A3 = 0, A4 = 0)
+  solution <- tibble::tibble(A1 = FALSE, A2 = FALSE, A3 = FALSE, A4 = FALSE)
   # build problem
   p <-
     problem(
@@ -147,7 +147,7 @@ test_that("non-probability outcome values for a feature", {
     locked_out = FALSE
   )
   features <- tibble::tibble(name = c("F1", "F2", "F3"))
-  solution <- tibble::tibble(A1 = 1, A2 = 1, A3 = 0, A4 = 1)
+  solution <- tibble::tibble(A1 = TRUE, A2 = TRUE, A3 = FALSE, A4 = TRUE)
   # build problem
   p <-
     problem(
@@ -184,7 +184,7 @@ test_that("invalid arguments", {
   # create solution
   solution <- as.data.frame(
     matrix(
-      rep(1, p$number_of_actions()),
+      rep(TRUE, p$number_of_actions()),
       nrow = 1,
       dimnames = list(NULL, p$action_names())
     )

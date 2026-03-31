@@ -18,7 +18,7 @@ test_that("no phylogenetic data", {
     locked_out = FALSE
   )
   features <- tibble::tibble(name = c("F1", "F2", "F3"))
-  solution <- tibble::tibble(A1 = 1, A2 = 1, A3 = 0, A4 = 1)
+  solution <- tibble::tibble(A1 = TRUE, A2 = TRUE, A3 = FALSE, A4 = TRUE)
   # build problem
   p <-
     problem(
@@ -68,7 +68,7 @@ test_that("phylogenetic data", {
   features <- tibble::tibble(name = c("F1", "F2", "F3"))
   tree <- ape::read.tree(text = "((F1,F2),F3);")
   tree$edge.length <- c(100, 5, 5, 5)
-  solution <- tibble::tibble(A1 = 1, A2 = 1, A3 = 0, A4 = 1)
+  solution <- tibble::tibble(A1 = TRUE, A2 = TRUE, A3 = FALSE, A4 = TRUE)
   # build problem
   p <-
     problem(
@@ -107,7 +107,7 @@ test_that("invalid arguments", {
   # create solution
   solution <- as.data.frame(
     matrix(
-      rep(1, p$number_of_actions()),
+      rep(TRUE, p$number_of_actions()),
       nrow = 1,
       dimnames = list(NULL, p$action_names())
     )
