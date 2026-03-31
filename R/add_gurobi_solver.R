@@ -225,7 +225,7 @@ add_gurobi_solver <- function(x, gap = 0, number_solutions = 1,
           # if start solution is available, then use it
           s <- self$get_data("start")
           if (!is.null(s) && !is.Waiver(s) && is.numeric(s)) {
-            model$start <- s
+            model$start <- c(s, rep(NA_real_, length(model$obj) - length(s)))
           }
           # solve problem
           rt <- system.time({
