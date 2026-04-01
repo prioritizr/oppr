@@ -59,38 +59,29 @@ NULL
 #' @examples
 #' \dontrun{
 #' # load data
-#' sim_pu_raster <- get_sim_pu_raster()
-#' sim_features <- get_sim_features()
+#' data(sim_projects, sim_features, sim_actions)
 #'
-#' # create problem
-#' p1 <-
-#'   problem(sim_pu_raster, sim_features) %>%
-#'   add_min_set_objective() %>%
-#'   add_relative_targets(0.1) %>%
+#' # build problem with highs solver
+#' p <-
+#'   problem(
+#'     sim_projects, sim_actions, sim_features,
+#'     "name", "success", "name", "cost", "name"
+#'   ) %>%
+#'   add_max_wtd_sum_objective(budget = 200) %>%
 #'   add_binary_decisions() %>%
-#'   add_cbc_solver(gap = 0, verbose = FALSE)
+#'   add_cbc_solver()
 #'
-#' # generate solution %>%
-#' s1 <- solve(p1)
+#' # print problem
+#' print(p)
+#'
+#' # solve problem
+#' s <- solve(p)
+#'
+#' # print solution
+#' print(s)
 #'
 #' # plot solution
-#' plot(s1, main = "solution", axes = FALSE)
-#'
-#' # create a similar problem with boundary length penalties and
-#' # specify the solution from the previous run as a starting solution
-#' p2 <-
-#'   problem(sim_pu_raster, sim_features) %>%
-#'   add_min_set_objective() %>%
-#'   add_relative_targets(0.1) %>%
-#'   add_boundary_penalties(10) %>%
-#'   add_binary_decisions() %>%
-#'   add_cbc_solver(gap = 0, start_solution = s1, verbose = FALSE)
-#'
-#' # generate solution
-#' s2 <- solve(p2)
-#'
-#' # plot solution
-#' plot(s2, main = "solution with boundary penalties", axes = FALSE)
+#' plot(p, s)
 #' }
 #' @name add_cbc_solver
 NULL
