@@ -18,6 +18,7 @@ add_cbc_solver(
   presolve = 2,
   threads = 1,
   first_feasible = FALSE,
+  start = NULL,
   verbose = TRUE
 )
 ```
@@ -66,6 +67,16 @@ add_cbc_solver(
   arbitrary solution, rather it is derived from the relaxed solution,
   and is therefore often reasonably close to optimality. Defaults to
   `FALSE`.
+
+- start:
+
+  `logical` vector with (`TRUE`/`FALSE`) values for each action
+  indicating if they should be selected by the starting solution. These
+  values should be in the same order of the actions in `x` (i.e., per
+  `action_names(x)`). Missing (`NA`) values can be used to indicate that
+  the solver should automatically calculate starting values for
+  particular actions. Defaults to `NULL` such that starting values are
+  automatically determined by the solver for all actions.
 
 - verbose:
 
@@ -130,45 +141,48 @@ Other solvers:
 ``` r
 # \dontrun{
 # load data
-sim_pu_raster <- get_sim_pu_raster()
-#> Error in get_sim_pu_raster(): could not find function "get_sim_pu_raster"
-sim_features <- get_sim_features()
-#> Error in get_sim_features(): could not find function "get_sim_features"
+data(sim_projects, sim_features, sim_actions)
 
-# create problem
-p1 <-
-  problem(sim_pu_raster, sim_features) %>%
-  add_min_set_objective() %>%
-  add_relative_targets(0.1) %>%
+# build problem with highs solver
+p <-
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) %>%
+  add_max_wtd_sum_objective(budget = 200) %>%
   add_binary_decisions() %>%
-  add_cbc_solver(gap = 0, verbose = FALSE)
-#> Error in h(simpleError(msg, call)): error in evaluating the argument 'x' in selecting a method for function 'add_relative_targets': object 'sim_pu_raster' not found
+  add_cbc_solver()
 
-# generate solution %>%
-s1 <- solve(p1)
-#> Error in h(simpleError(msg, call)): error in evaluating the argument 'a' in selecting a method for function 'solve': object 'p1' not found
+# print problem
+print(p)
+#> Project Prioritization Problem
+#> actions:         F1_action, F2_action, F3_action, ... (6 actions)
+#> projects:        F1_project, F2_project, F3_project, ... (6 projects)
+#> features:        F1, F2, F3, ... (5 features)
+#> action costs:    continuous values (between 0 and 103.226)
+#> project success: proportion values (between 0.814 and 1)
+#> objective:       maximum weighted sum objective
+#> targets:         none specified
+#> weights:         none specified
+#> constraints:     none specified
+#> decisions:       binary decision
+#> solver:          cbc solver
+
+# solve problem
+s <- solve(p)
+
+# print solution
+print(s)
+#> # A tibble: 1 × 21
+#>   solution status   cost   obj F1_action F2_action F3_action F4_action F5_action
+#>      <int> <chr>   <dbl> <dbl> <lgl>     <lgl>     <lgl>     <lgl>     <lgl>    
+#> 1        1 optimal  195.  2.19 TRUE      TRUE      FALSE     FALSE     FALSE    
+#> # ℹ 12 more variables: baseline_action <lgl>, F1_project <lgl>,
+#> #   F2_project <lgl>, F3_project <lgl>, F4_project <lgl>, F5_project <lgl>,
+#> #   baseline_project <lgl>, F1 <dbl>, F2 <dbl>, F3 <dbl>, F4 <dbl>, F5 <dbl>
 
 # plot solution
-plot(s1, main = "solution", axes = FALSE)
-#> Error: object 's1' not found
+plot(p, s)
 
-# create a similar problem with boundary length penalties and
-# specify the solution from the previous run as a starting solution
-p2 <-
-  problem(sim_pu_raster, sim_features) %>%
-  add_min_set_objective() %>%
-  add_relative_targets(0.1) %>%
-  add_boundary_penalties(10) %>%
-  add_binary_decisions() %>%
-  add_cbc_solver(gap = 0, start_solution = s1, verbose = FALSE)
-#> Error in add_cbc_solver(., gap = 0, start_solution = s1, verbose = FALSE): unused argument (start_solution = s1)
-
-# generate solution
-s2 <- solve(p2)
-#> Error in h(simpleError(msg, call)): error in evaluating the argument 'a' in selecting a method for function 'solve': object 'p2' not found
-
-# plot solution
-plot(s2, main = "solution with boundary penalties", axes = FALSE)
-#> Error: object 's2' not found
 # }
 ```

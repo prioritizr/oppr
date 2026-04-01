@@ -59,6 +59,7 @@ See below for details on installation requirements.</p>
 <span>  threads <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  first_feasible <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  numeric_focus <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  start <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -141,6 +142,17 @@ This may be useful when dealing with
 problems that may suffer from numerical instability issues.
 Beware that setting greater values will likely increase run time.
 Defaults to 1.</p></dd>
+
+
+<dt id="arg-start">start<a class="anchor" aria-label="anchor" href="#arg-start"></a></dt>
+<dd><p><code>logical</code> vector with (<code>TRUE</code>/<code>FALSE</code>) values for each action
+indicating if they should be selected by the starting solution.
+These values should be in the same order of the actions in <code>x</code>
+(i.e., per <code>action_names(x)</code>).
+Missing (<code>NA</code>) values can be used to indicate that the solver
+should automatically calculate starting values for particular actions.
+Defaults to <code>NULL</code> such that starting values are automatically
+determined by the solver for all actions.</p></dd>
 
 
 <dt id="arg-verbose">verbose<a class="anchor" aria-label="anchor" href="#arg-verbose"></a></dt>

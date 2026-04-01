@@ -55,6 +55,7 @@ It requires the <span class="pkg">highs</span> package to be installed.</p>
 <span>  time_limit <span class="op">=</span> <span class="va">.Machine</span><span class="op">$</span><span class="va">integer.max</span>,</span>
 <span>  presolve <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  threads <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  start <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  verbose <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  control <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -95,6 +96,17 @@ trying to simplify the problem.</p></dd>
 <dd><p><code>integer</code> number of threads to use for the
 optimization algorithm. The default value of 1 will result in only
 one thread being used.</p></dd>
+
+
+<dt id="arg-start">start<a class="anchor" aria-label="anchor" href="#arg-start"></a></dt>
+<dd><p><code>logical</code> vector with (<code>TRUE</code>/<code>FALSE</code>) values for each action
+indicating if they should be selected by the starting solution.
+These values should be in the same order of the actions in <code>x</code>
+(i.e., per <code>action_names(x)</code>).
+Missing (<code>NA</code>) values can be used to indicate that the solver
+should automatically calculate starting values for particular actions.
+Defaults to <code>NULL</code> such that starting values are automatically
+determined by the solver for all actions.</p></dd>
 
 
 <dt id="arg-verbose">verbose<a class="anchor" aria-label="anchor" href="#arg-verbose"></a></dt>
@@ -220,7 +232,7 @@ method. <em>Mathematical Programming Computation</em>, 10: 119-142.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Dual bound        2.19038073725</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Gap               0%</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   P-D integral      0.000118301590428</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   P-D integral      0.000153661957832</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Solution status   feasible</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -229,7 +241,7 @@ method. <em>Mathematical Programming Computation</em>, 10: 119-142.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                     0 (int. viol.)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                     0 (row viol.)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Timing            0.00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Timing            0.01</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Max sub-MIP depth 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Nodes             1</span>

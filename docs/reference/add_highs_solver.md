@@ -14,6 +14,7 @@ add_highs_solver(
   time_limit = .Machine$integer.max,
   presolve = TRUE,
   threads = 1,
+  start = NULL,
   verbose = TRUE,
   control = list()
 )
@@ -53,6 +54,16 @@ add_highs_solver(
 
   `integer` number of threads to use for the optimization algorithm. The
   default value of 1 will result in only one thread being used.
+
+- start:
+
+  `logical` vector with (`TRUE`/`FALSE`) values for each action
+  indicating if they should be selected by the starting solution. These
+  values should be in the same order of the actions in `x` (i.e., per
+  `action_names(x)`). Missing (`NA`) values can be used to indicate that
+  the solver should automatically calculate starting values for
+  particular actions. Defaults to `NULL` such that starting values are
+  automatically determined by the solver for all actions.
 
 - verbose:
 
@@ -177,7 +188,7 @@ s <- solve(p)
 #>   Dual bound        2.19038073725
 #>   Gap               0%
 #> 
-#>   P-D integral      0.000118301590428
+#>   P-D integral      0.000153661957832
 #> 
 #>   Solution status   feasible
 #> 
@@ -186,7 +197,7 @@ s <- solve(p)
 #>                     0 (int. viol.)
 #>                     0 (row viol.)
 #> 
-#>   Timing            0.00
+#>   Timing            0.01
 #> 
 #>   Max sub-MIP depth 0
 #>   Nodes             1

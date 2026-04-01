@@ -10,6 +10,7 @@ add_highs_solver(
   time_limit = .Machine$integer.max,
   presolve = TRUE,
   threads = 1,
+  start = NULL,
   verbose = TRUE,
   control = list()
 )
@@ -37,6 +38,15 @@ trying to simplify the problem.}
 \item{threads}{\code{integer} number of threads to use for the
 optimization algorithm. The default value of 1 will result in only
 one thread being used.}
+
+\item{start}{\code{logical} vector with (\code{TRUE}/\code{FALSE}) values for each action
+indicating if they should be selected by the starting solution.
+These values should be in the same order of the actions in \code{x}
+(i.e., per \code{action_names(x)}).
+Missing (\code{NA}) values can be used to indicate that the solver
+should automatically calculate starting values for particular actions.
+Defaults to \code{NULL} such that starting values are automatically
+determined by the solver for all actions.}
 
 \item{verbose}{\code{logical} should information be printed during optimization?
 Defaults to \code{TRUE}.}

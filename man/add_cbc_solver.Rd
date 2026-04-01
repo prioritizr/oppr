@@ -11,6 +11,7 @@ add_cbc_solver(
   presolve = 2,
   threads = 1,
   first_feasible = FALSE,
+  start = NULL,
   verbose = TRUE
 )
 }
@@ -46,6 +47,15 @@ constraints, regardless of solution quality. Note that the first feasible
 solution is not an arbitrary solution, rather it is derived from the
 relaxed solution, and is therefore often reasonably close to optimality.
 Defaults to \code{FALSE}.}
+
+\item{start}{\code{logical} vector with (\code{TRUE}/\code{FALSE}) values for each action
+indicating if they should be selected by the starting solution.
+These values should be in the same order of the actions in \code{x}
+(i.e., per \code{action_names(x)}).
+Missing (\code{NA}) values can be used to indicate that the solver
+should automatically calculate starting values for particular actions.
+Defaults to \code{NULL} such that starting values are automatically
+determined by the solver for all actions.}
 
 \item{verbose}{\code{logical} should information be printed during optimization?
 Defaults to \code{TRUE}.}

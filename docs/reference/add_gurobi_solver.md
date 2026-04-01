@@ -18,6 +18,7 @@ add_gurobi_solver(
   threads = 1,
   first_feasible = FALSE,
   numeric_focus = 1,
+  start = NULL,
   verbose = TRUE
 )
 ```
@@ -98,6 +99,16 @@ add_gurobi_solver(
   1, 2, or 3. This may be useful when dealing with problems that may
   suffer from numerical instability issues. Beware that setting greater
   values will likely increase run time. Defaults to 1.
+
+- start:
+
+  `logical` vector with (`TRUE`/`FALSE`) values for each action
+  indicating if they should be selected by the starting solution. These
+  values should be in the same order of the actions in `x` (i.e., per
+  `action_names(x)`). Missing (`NA`) values can be used to indicate that
+  the solver should automatically calculate starting values for
+  particular actions. Defaults to `NULL` such that starting values are
+  automatically determined by the solver for all actions.
 
 - verbose:
 

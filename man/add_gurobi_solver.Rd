@@ -14,6 +14,7 @@ add_gurobi_solver(
   threads = 1,
   first_feasible = FALSE,
   numeric_focus = 1,
+  start = NULL,
   verbose = TRUE
 )
 }
@@ -75,6 +76,15 @@ This may be useful when dealing with
 problems that may suffer from numerical instability issues.
 Beware that setting greater values will likely increase run time.
 Defaults to 1.}
+
+\item{start}{\code{logical} vector with (\code{TRUE}/\code{FALSE}) values for each action
+indicating if they should be selected by the starting solution.
+These values should be in the same order of the actions in \code{x}
+(i.e., per \code{action_names(x)}).
+Missing (\code{NA}) values can be used to indicate that the solver
+should automatically calculate starting values for particular actions.
+Defaults to \code{NULL} such that starting values are automatically
+determined by the solver for all actions.}
 
 \item{verbose}{\code{logical} should information be printed during optimization?
 Defaults to \code{TRUE}.}
