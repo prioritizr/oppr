@@ -59,6 +59,7 @@ NULL
 #' @export
 add_highs_solver <- function(x, gap = 0, time_limit = .Machine$integer.max,
                              presolve = TRUE, threads = 1,
+                             start = NULL,
                              verbose = TRUE,
                              control = list()) {
   # assert that arguments are valid
@@ -77,6 +78,13 @@ add_highs_solver <- function(x, gap = 0, time_limit = .Machine$integer.max,
     is.list(control),
     requireNamespace("highs", quietly = TRUE)
   )
+  if (!is.null(start)) {
+    assertthat::assert_that(
+      is.logical(start),
+      length(start) == x$number_of_actions()
+    )
+    start <- as.numeric(start)
+  }
   # additional checks for control
   if (length(control) > 0) {
     assertthat::assert_that(
@@ -97,6 +105,7 @@ add_highs_solver <- function(x, gap = 0, time_limit = .Machine$integer.max,
           time_limit = time_limit,
           presolve = presolve,
           threads = threads,
+          start = start,
           verbose = verbose,
           control = control
         ),
@@ -142,6 +151,16 @@ add_highs_solver <- function(x, gap = 0, time_limit = .Machine$integer.max,
           ## binary type not supported, convert to integer gurobi)
           model$types[model$types == "B"] <- "I"
           model$types[model$types == "S"] <- "SC"
+          # set starting solution
+          ## note this functionality is only supported by developmental
+          ## versions of highs
+          if ("start" %in% names(formals(highs::highs_solve))) {
+            start <- self$get_data("start")
+            if (!is.null(start) && !is.Waiver(start) && is.numeric(start)) {
+              n_extra <- max(length(model$L) - length(start), 0)
+              model$start <- c(c(start), rep(NA_real_, n_extra))
+            }
+          }
           # create parameters
           p <- list(
             log_to_console = self$get_data("verbose"),

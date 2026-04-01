@@ -94,6 +94,7 @@ add_cbc_solver <- function(x,
                            presolve = 2,
                            threads = 1,
                            first_feasible = FALSE,
+                           start = NULL,
                            verbose = TRUE) {
   # provide backwards compatibility for presolve
   if (isTRUE(presolve)) {
@@ -122,6 +123,13 @@ add_cbc_solver <- function(x,
     assertthat::is.flag(verbose),
     requireNamespace("rcbc", quietly = TRUE)
   )
+  if (!is.null(start)) {
+    assertthat::assert_that(
+      is.logical(start),
+      length(start) == x$number_of_actions()
+    )
+    start <- as.numeric(start)
+  }
   # add solver
   x$add_solver(
     R6::R6Class(
@@ -135,6 +143,7 @@ add_cbc_solver <- function(x,
           presolve = presolve,
           threads = threads,
           first_feasible = first_feasible,
+          start = start,
           verbose = verbose
         ),
         solve = function(x, ...) {
@@ -203,8 +212,8 @@ add_cbc_solver <- function(x,
             p$maxso <- "1"
           }
           # add starting solution if specified
-          start <- self$get_data("start_solution")
-          if (!is.null(start) && !is.Waiver(start)) {
+          start <- self$get_data("start")
+          if (!is.null(start) && !is.Waiver(start) && is.numeric(start)) {
             n_extra <- max(length(model$obj) - length(start), 0)
             model$initial_solution <- c(c(start), rep(NA_real_, n_extra))
           }

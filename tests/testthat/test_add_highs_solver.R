@@ -51,7 +51,7 @@ test_that("linear objective", {
     ) %>%
     add_max_wtd_sum_objective(budget = 0.16) %>%
     add_binary_decisions() %>%
-    add_highs_solver()
+    add_highs_solver(start = c(FALSE, NA, NA, NA))
   # solve problem
   s <- solve(p)
   # run tests

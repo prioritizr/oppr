@@ -66,6 +66,15 @@ NULL
 #' Beware that setting greater values will likely increase run time.
 #' Defaults to 1.
 #'
+#' @param start `logical` vector with (`TRUE`/`FALSE`) values for each action
+#' indicating if they should be selected by the starting solution.
+#' These values should be in the same order of the actions in `x`
+#' (i.e., per `action_names(x)`).
+#' Missing (`NA`) values can be used to indicate that the solver
+#' should automatically calculate starting values for particular actions.
+#' Defaults to `NULL` such that starting values are automatically
+#' determined by the solver for all actions.
+#'
 #' @param verbose `logical` should information be printed during optimization?
 #' Defaults to `TRUE`.
 #'
@@ -142,7 +151,7 @@ add_gurobi_solver <- function(x, gap = 0, number_solutions = 1,
                               solution_pool_method = 2,
                               time_limit = .Machine$integer.max,
                               presolve = 2, threads = 1, first_feasible = FALSE,
-                              numeric_focus = 1, verbose = TRUE) {
+                              numeric_focus = 1, start = NULL, verbose = TRUE) {
   # assert that arguments are valid
   assertthat::assert_that(
     inherits(x, c("ProjectProblem", "MultiObjProjectProblem")),
@@ -170,6 +179,13 @@ add_gurobi_solver <- function(x, gap = 0, number_solutions = 1,
     requireNamespace("gurobi", quietly = TRUE),
     utils::packageVersion("gurobi") >= package_version("13.0.0")
   )
+  if (!is.null(start)) {
+    assertthat::assert_that(
+      is.logical(start),
+      length(start) == x$number_of_actions()
+    )
+    start <- as.numeric(start)
+  }
   # add solver
   x$add_solver(
     R6::R6Class(
@@ -187,6 +203,7 @@ add_gurobi_solver <- function(x, gap = 0, number_solutions = 1,
           threads = threads,
           first_feasible = first_feasible,
           numeric_focus = numeric_focus,
+          start = start,
           verbose = verbose
         ),
         solve = function(x, ...) {
