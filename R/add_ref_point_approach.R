@@ -194,7 +194,7 @@ add_ref_point_approach <- function(x, weights, goals, verbose = TRUE) {
               ### here we will only consider the actions variables for the
               ### starting solutions to avoid issues with numerical precision
               curr_sol <- rep(NA_real_, length(sols[[i]][[1]]$x))
-              sol_idx <- mo$col_ids() %in% c("i", "j", "ij", "sh")
+              sol_idx <- mo$col_ids() %in% c("i", "j", "ij")
               curr_sol[sol_idx] <- sols[[i]][[1]]$x[sol_idx]
               ### set starting solution
               solver$set_start_solution(curr_sol)
