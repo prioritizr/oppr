@@ -176,9 +176,6 @@ add_ref_point_approach <- function(x, weights, goals, verbose = TRUE) {
               mo$ptr, x$modelsense, x$obj,
               weights[i, ], goals[i, ]
             )
-            print("step1")
-            print(mo$col_ids())
-
             ### solve problem
             sols[[i]] <- solver$solve(mo)
             ### if solution found, then apply subsequent processing
