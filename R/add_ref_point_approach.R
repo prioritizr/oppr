@@ -188,7 +188,7 @@ add_ref_point_approach <- function(x, weights, goals, verbose = TRUE) {
               rcpp_convert_ref_point_method_step2(
                 mo$ptr, x$modelsense, x$obj,
                 weights[i, ], goals[i, ],
-                round(sum(sols[[i]][[1]]$x * mo$obj()), 5)
+                round(sum(sols[[i]][[1]]$x * mo$obj()), 4)
               )
               ### prepare starting solution for next optimization run
               ### here we will only consider the actions variables for the
