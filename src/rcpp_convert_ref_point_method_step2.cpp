@@ -22,19 +22,29 @@ bool rcpp_convert_ref_point_method_step2(
   /// compute shortfall variable starting index
   std::size_t shortfall_idx = A_ncol - 1 - n;
 
-  // Add a linear constraint based on the current objective,
-  // this works because the current objective is to minimize the maximum
-  // of the goal shortfall variables
-  for (std::size_t i = 0; i < A_ncol; ++i) {
-    if (std::abs(ptr->_obj[i] >= SMALL_TOL)) {
-      ptr->_A_i.push_back(A_nrow);
-      ptr->_A_j.push_back(i);
-      ptr->_A_x.push_back(ptr->_obj[i]);
-    }
+  // Remove linear constraints for step 1
+  for (std::size_t i = 0; i < n; ++i) {
+    ptr->_A_i.pop_back();
+    ptr->_A_i.pop_back();
+    ptr->_A_j.pop_back();
+    ptr->_A_j.pop_back();
+    ptr->_A_x.pop_back();
+    ptr->_A_x.pop_back();
+    ptr->_rhs.pop_back();
+    ptr->_sense.pop_back();
+    ptr->_row_ids.pop_back();
   }
-  ptr->_rhs.push_back(rhs);
-  ptr->_sense.push_back("<=");
-  ptr->_row_ids.push_back("max");
+
+  // Add a linear constraint for each shortfall variable
+  A_nrow = ptr->nrow();
+  for (std::size_t i = 0; i < n; ++i) {
+    ptr->_A_i.push_back(A_nrow + i);
+    ptr->_A_j.push_back(shortfall_idx + i);
+    ptr->_A_x.push_back(1.0);
+    ptr->_rhs.push_back(rhs);
+    ptr->_sense.push_back("<=");
+    ptr->_row_ids.push_back("max");
+  }
 
   // Reset objective
   for (std::size_t i = 0; i < A_ncol; ++i) {

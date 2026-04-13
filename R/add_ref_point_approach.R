@@ -185,10 +185,12 @@ add_ref_point_approach <- function(x, weights, goals, verbose = TRUE) {
               !is.null(sols[[i]][[1]]$x)
             ) {
               ### apply step 2 processing to minimize sum
+              sh_idx <-
+                length(mo$obj()) - 1L - ncol(goals) + seq_len(ncol(goals))
               rcpp_convert_ref_point_method_step2(
                 mo$ptr, x$modelsense, x$obj,
                 weights[i, ], goals[i, ],
-                sum(sols[[i]][[1]]$x * mo$obj())
+                max(sols[[i]][[1]]$x[sh_idx])
               )
               ### prepare starting solution for next optimization run
               ### here we will only consider the actions variables for the
