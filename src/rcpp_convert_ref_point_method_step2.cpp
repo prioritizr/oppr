@@ -57,6 +57,11 @@ bool rcpp_convert_ref_point_method_step2(
     ptr->_obj[shortfall_idx + i] = weights[i];
   }
 
+  // Update upper bounds for shortfall variables
+  for (std::size_t i = 0; i < n; ++i) {
+    ptr->_ub[shortfall_idx + i] = rhs;
+  }
+
   // return success
   return true;
 }
