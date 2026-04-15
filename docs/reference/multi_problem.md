@@ -118,7 +118,7 @@ print(p)
 # solve problem
 s <- solve(p)
 #> Set parameter Username
-#> Set parameter LicenseID to value 2774703
+#> Set parameter LicenseID to value 2806834
 #> Set parameter TimeLimit to value 2147483647
 #> Set parameter MIPGap to value 0
 #> Set parameter ScaleFlag to value 2
@@ -127,7 +127,7 @@ s <- solve(p)
 #> Set parameter Threads to value 1
 #> Set parameter PoolSolutions to value 1
 #> Set parameter PoolSearchMode to value 2
-#> Academic license - for non-commercial use only - expires 2027-02-03
+#> Academic license - for non-commercial use only - expires 2027-04-14
 #> Gurobi Optimizer version 13.0.1 build v13.0.1rc0 (linux64 - "Ubuntu 24.04.2 LTS")
 #> 
 #> CPU model: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]
@@ -144,106 +144,30 @@ s <- solve(p)
 #> PoolSearchMode  2
 #> 
 #> Optimize a model with 338 rows, 264 columns and 1128 nonzeros (Min)
-#> Model fingerprint: 0xad6d8cdb
+#> Model fingerprint: 0x826e74be
 #> Model has 1 linear objective coefficients
 #> Variable types: 15 continuous, 150 integer (150 binary)
 #> Semi-Variable types: 99 continuous, 0 integer
 #> Coefficient statistics:
 #>   Matrix range     [2e-02, 1e+02]
 #>   Objective range  [1e+00, 1e+00]
-#>   Bounds range     [6e-01, 3e+01]
+#>   Bounds range     [6e-01, 1e+01]
 #>   RHS range        [1e+00, 2e+02]
 #> 
-#> Presolve removed 328 rows and 240 columns
+#> Presolve removed 329 rows and 241 columns
 #> Presolve time: 0.00s
-#> Presolved: 10 rows, 24 columns, 35 nonzeros
-#> Variable types: 5 continuous, 19 integer (19 binary)
-#> Found heuristic solution: objective 9.8182269
 #> 
 #> Explored 0 nodes (0 simplex iterations) in 0.00 seconds (0.00 work units)
 #> Thread count was 1 (of 8 available processors)
 #> 
-#> Solution count 1: 9.81823 
-#> No other solutions better than 9.81823
+#> Solution count 0
 #> 
-#> Optimal solution found (tolerance 0.00e+00)
-#> Best objective 9.818226936578e+00, best bound 9.818226936578e+00, gap 0.0000%
-#> Set parameter Username
-#> Set parameter LicenseID to value 2774703
-#> Set parameter TimeLimit to value 2147483647
-#> Set parameter MIPGap to value 0
-#> Set parameter ScaleFlag to value 2
-#> Set parameter NumericFocus to value 1
-#> Set parameter Presolve to value 2
-#> Set parameter Threads to value 1
-#> Set parameter PoolSolutions to value 1
-#> Set parameter PoolSearchMode to value 2
-#> Academic license - for non-commercial use only - expires 2027-02-03
-#> Gurobi Optimizer version 13.0.1 build v13.0.1rc0 (linux64 - "Ubuntu 24.04.2 LTS")
-#> 
-#> CPU model: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]
-#> Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
-#> 
-#> Non-default parameters:
-#> TimeLimit  2147483647
-#> MIPGap  0
-#> ScaleFlag  2
-#> NumericFocus  1
-#> Presolve  2
-#> Threads  1
-#> PoolSolutions  1
-#> PoolSearchMode  2
-#> 
-#> Optimize a model with 339 rows, 264 columns and 1129 nonzeros (Min)
-#> Model fingerprint: 0x7485bf27
-#> Model has 3 linear objective coefficients
-#> Variable types: 15 continuous, 150 integer (150 binary)
-#> Semi-Variable types: 99 continuous, 0 integer
-#> Coefficient statistics:
-#>   Matrix range     [2e-02, 1e+02]
-#>   Objective range  [1e+01, 1e+01]
-#>   Bounds range     [6e-01, 3e+01]
-#>   RHS range        [1e+00, 2e+02]
-#> 
-#> User MIP start produced solution with objective 27.4068 (0.00s)
-#> User MIP start produced solution with objective 27.4068 (0.00s)
-#> Loaded user MIP start with objective 27.4068
-#> 
-#> Presolve removed 332 rows and 242 columns
-#> Presolve time: 0.00s
-#> Presolved: 7 rows, 22 columns, 29 nonzeros
-#> Variable types: 3 continuous, 19 integer (19 binary)
-#> Root relaxation presolved: 7 rows, 21 columns, 29 nonzeros
-#> 
-#> 
-#> Root relaxation: objective 2.632978e+01, 6 iterations, 0.00 seconds (0.00 work units)
-#> 
-#>     Nodes    |    Current Node    |     Objective Bounds      |     Work
-#>  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
-#> 
-#> *    0     0               0      26.3297810   26.32978  0.00%     -    0s
-#> 
-#> Explored 1 nodes (6 simplex iterations) in 0.00 seconds (0.00 work units)
-#> Thread count was 1 (of 8 available processors)
-#> 
-#> Solution count 1: 26.3298 
-#> No other solutions better than 26.3298
-#> 
-#> Optimal solution found (tolerance 0.00e+00)
-#> Best objective 2.632978104793e+01, best bound 2.632978104793e+01, gap 0.0000%
+#> Model is infeasible
+#> Best objective -, best bound -, gap -
+#> Error in solve(p): project prioritization problem is infeasible
 
 # print solution
 print(s)
-#> # A tibble: 1 × 47
-#>   solution status   cost  obj1  obj2  obj3 A1_action A2_action A3_action
-#>      <int> <chr>   <dbl> <dbl> <dbl> <dbl> <lgl>     <lgl>     <lgl>    
-#> 1        1 OPTIMAL  198. 0.420 0.430  1.75 FALSE     FALSE     FALSE    
-#> # ℹ 38 more variables: A4_action <lgl>, A5_action <lgl>, A6_action <lgl>,
-#> #   A7_action <lgl>, A8_action <lgl>, A9_action <lgl>, A10_action <lgl>,
-#> #   A11_action <lgl>, A12_action <lgl>, A13_action <lgl>, A14_action <lgl>,
-#> #   A15_action <lgl>, B1_action <lgl>, B2_action <lgl>, B3_action <lgl>,
-#> #   F1_project <lgl>, F2_project <lgl>, F8_project <lgl>,
-#> #   baseline_project_obj1 <lgl>, F3_project <lgl>, F4_project <lgl>,
-#> #   baseline_project_obj2 <lgl>, F5_project <lgl>, F6_project <lgl>, …
+#> Error in h(simpleError(msg, call)): error in evaluating the argument 'x' in selecting a method for function 'print': object 's' not found
 # }
 ```

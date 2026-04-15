@@ -28,6 +28,7 @@ Other classes:
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
+\item \href{#method-MultiObjApproach-calculate}{\code{MultiObjApproach$calculate()}}
 \item \href{#method-MultiObjApproach-run}{\code{MultiObjApproach$run()}}
 \item \href{#method-MultiObjApproach-clone}{\code{MultiObjApproach$clone()}}
 }
@@ -36,7 +37,6 @@ Other classes:
 <details><summary>Inherited methods</summary>
 <ul>
 <li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="apply"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-apply'><code>oppr::ProjectModifier$apply()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="calculate"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-calculate'><code>oppr::ProjectModifier$calculate()</code></a></span></li>
 <li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="get_data"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-get_data'><code>oppr::ProjectModifier$get_data()</code></a></span></li>
 <li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="get_internal"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-get_internal'><code>oppr::ProjectModifier$get_internal()</code></a></span></li>
 <li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="print"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-print'><code>oppr::ProjectModifier$print()</code></a></span></li>
@@ -47,6 +47,30 @@ Other classes:
 </ul>
 </details>
 }}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultiObjApproach-calculate"></a>}}
+\if{latex}{\out{\hypertarget{method-MultiObjApproach-calculate}{}}}
+\subsection{Method \code{calculate()}}{
+Perform computations that need to be completed before applying
+the object.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{MultiObjApproach$calculate(x, y)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{x}}{\code{list} containing a compiled multi-objective optimization
+problem (e.g., generated with internal function \code{multi_compile()}).}
+
+\item{\code{y}}{\code{\link[=multi_problem]{multi_problem()}} object.}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+Invisible \code{TRUE}.
+}
+}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-MultiObjApproach-run"></a>}}
 \if{latex}{\out{\hypertarget{method-MultiObjApproach-run}{}}}

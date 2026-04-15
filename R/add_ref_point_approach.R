@@ -4,7 +4,8 @@ NULL
 #' Add a reference point approach
 #'
 #' Add a reference point approach for multi-objective optimization to a
-#' project problem (Vanderpooten 1990).
+#' project problem (Vanderpooten 1990). Note that this function
+#' can only be applied when all objectives should be maximized.
 #'
 #' @param x [multi_problem()] object.
 #'
@@ -21,6 +22,14 @@ NULL
 #' each row corresponds to a different solution and each columns
 #' corresponds to a different objective.
 #' Note that all values must be greater than zero.
+#'
+#' @param worst `numeric` vector containing values that denote
+#' the worst possible performance for each objective. If `NULL`,
+#' then these values are computed automatically.
+#'
+#' @param best `numeric` vector containing values that denote
+#' the worst possible performance for each objective. If `NULL`,
+#' then these values are computed automatically.
 #'
 #' @param verbose `logical` should progress on generating solutions
 #' displayed? Defaults to `TRUE`.
@@ -42,17 +51,20 @@ NULL
 #' Let \eqn{O} denote the set of objectives (indexed by \eqn{o}).
 #' For each objective, let \eqn{W_o}{W_o} denote the weight for each objective
 #' \eqn{o \in O}{o in O}, \eqn{G_o}{G_o} denote the goal for each objective
-#' \eqn{o \in O}{o in O}, and \eqn{V_o}{V_o} denote the objective value
+#' \eqn{o \in O}{o in O}, \eqn{A_o}{A_o} denote the best objective value
+#' for each objective, \eqn{B_o}{B_o} denote the worst objective value
+#' for each objective, and \eqn{V_o}{V_o} denote the objective value
 #' for a candidate solution as measured based on each objective
 #' \eqn{o \in O}{o in O}.
 #' After defining these terms, the approach
 #' is formulated with the following equation.
 #'
 #' \deqn{
-#' \mathrm{Minimize} \space \max_{o = 0}^{O} W_o \times \frac{V_o}{W_o}, \\
-#' \mathrm{Minimize} \space \sum_{o = 0}^{O} W_o \times \frac{V_o}{W_o}
+#' \mathrm{Minimize} \space \max_{o = 0}^{O} W_o \times \frac{1}{B_o - W_o} \times \max(G_o - V_o, 0), \\
+#' \mathrm{Minimize} \space \sum_{o = 0}^{O} W_o \times \frac{1}{B_o - W_o} \times \max(G_o - V_o, 0)
 #' }{
-#' Minimize max o^O W_o * (V_o / W_o), sum o^O W_o * (V_o / W_o)
+#' Minimize max o^O W_o * (1/(B_o - W_o)) * max(G_o - V_o, 0)
+#' Minimize sum o^O W_o * (1/(B_o - W_o)) * max(G_o - V_o, 0)
 #' }
 #'
 #' @return
@@ -119,12 +131,23 @@ NULL
 #' print(s)
 #' }
 #' @export
-add_ref_point_approach <- function(x, weights, goals, verbose = TRUE) {
+add_ref_point_approach <- function(x, weights, goals, best = NULL, worst = NULL,
+                                   verbose = TRUE) {
   # assert arguments are valid
   assertthat::assert_that(
     inherits(x, "MultiObjProjectProblem"),
     assertthat::is.flag(verbose),
     assertthat::noNA(verbose)
+  )
+  assertthat::assert_that(
+    all(
+      vapply(
+        x$problems,
+        function(z) isTRUE(startsWith(z$objective$name, "max")),
+        logical(1)
+      )
+    ),
+    msg = "All problems in `x` must have maximization objectives."
   )
   if (is.numeric(weights) && !is.matrix(weights)) {
     weights <- matrix(weights, nrow = 1)
@@ -146,6 +169,20 @@ add_ref_point_approach <- function(x, weights, goals, verbose = TRUE) {
     assertthat::noNA(c(goals)),
     all(goals > 0)
   )
+  if (!is.null(best)) {
+    assertthat::assert_that(
+      is.numeric(best),
+      assertthat::noNA(best),
+      ncol(goals) == ncol(best)
+    )
+  }
+  if (!is.null(worst)) {
+    assertthat::assert_that(
+      is.numeric(best),
+      assertthat::noNA(best),
+      ncol(goals) == ncol(best)
+    )
+  }
   # add approach
   x$add_approach(
     R6::R6Class(
@@ -153,14 +190,65 @@ add_ref_point_approach <- function(x, weights, goals, verbose = TRUE) {
       inherit = MultiObjApproach,
       public = list(
         name = "reference point approach",
-        data = list(weights = weights, goals = goals, verbose = verbose),
+        data = list(
+          weights = weights, goals = goals,
+          worst = worst, best = best,
+          verbose = verbose
+        ),
+        calculate = function(x, y) {
+          ## assert valid arguments
+          assertthat::assert_that(
+           inherits(x, "list"),
+           inherits(y, "MultiObjProjectProblem")
+          )
+          ## initialization
+          goals <- self$get_data("goals")
+          worst <- self$get_data("worst")
+          best <- self$get_data("best")
+          ## if needed, calculate worst objective value
+          if (is.null(worst)) {
+            worst <- vapply(
+              seq_len(ncol(goals)), FUN.VALUE = numeric(1),
+              function(i) {
+                ## generate solution with only zero cost actions selected
+                worst_sol <- matrix(0, nrow = 1, ncol = y$number_of_actions())
+                worst_sol[y$problems[[1]]$action_costs() < 1e-15] <- 1
+                colnames(worst_sol) <- y$problems[[1]]$action_names()
+                worst_sol <- tibble::as_tibble(as.data.frame(worst_sol))
+                ## calculate objective value
+                y$problems[[i]]$objective$evaluate(y$problems[[i]], worst_sol)
+              }
+            )
+          }
+          ## if needed, calculate best objective value
+          if (is.null(best)) {
+            best <- vapply(
+              seq_len(ncol(goals)), FUN.VALUE = numeric(1),
+              function(i) {
+                ## generate solution with only zero cost actions selected
+                worst_sol <- matrix(1, nrow = 1, ncol = y$number_of_actions())
+                colnames(worst_sol) <- y$problems[[1]]$action_names()
+                worst_sol <- tibble::as_tibble(as.data.frame(worst_sol))
+                ## calculate objective value
+                y$problems[[i]]$objective$evaluate(y$problems[[i]], worst_sol)
+              }
+            )
+          }
+          ## store values
+          self$set_data("worst", worst)
+          self$set_data("best", best)
+        },
         run = function(x, solver) {
           ## initialization
           weights <- self$get_data("weights")
+          best <- self$get_data("best")
+          worst <- self$get_data("worst")
           goals <- self$get_data("goals")
           verbose <- self$get_data("verbose")
           n_actions <- x$opt$number_of_actions()
           sols <- vector(mode = "list", length = nrow(weights))
+          ## ensure that goals are between bounds
+          goals[] <- pmax(pmin(goals, best), worst)
           ## if needed, set up progress bar
           if (isTRUE(verbose)) {
             pb <- cli::cli_progress_bar(
@@ -171,11 +259,18 @@ add_ref_point_approach <- function(x, weights, goals, verbose = TRUE) {
           for (i in seq_len(nrow(weights))) {
             ### copy optimization problem
             mo <- x$opt$copy()
+            ## calculate lambda weight values
+            lambda <- weights[i, ] * (1 / abs(best - worst))
+            lambda[!is.finite(lambda)] <- 0
             ### apply step 1 processing to minimize maximum
             rcpp_convert_ref_point_method_step1(
               mo$ptr, x$modelsense, x$obj,
-              weights[i, ], goals[i, ]
+              lambda, goals[i, ],
+              best, worst
             )
+
+            assign("mo", mo, .GlobalEnv)
+
             ### solve problem
             sols[[i]] <- solver$solve(mo)
             ### if solution found, then apply subsequent processing
@@ -185,12 +280,10 @@ add_ref_point_approach <- function(x, weights, goals, verbose = TRUE) {
               !is.null(sols[[i]][[1]]$x)
             ) {
               ### apply step 2 processing to minimize sum
-              sh_idx <-
-                length(mo$obj()) - 1L - ncol(goals) + seq_len(ncol(goals))
               rcpp_convert_ref_point_method_step2(
                 mo$ptr, x$modelsense, x$obj,
-                weights[i, ], goals[i, ],
-                max(sols[[i]][[1]]$x[sh_idx])
+                lambda, goals[i, ],
+                sum(sols[[i]][[1]]$x * mo$obj())
               )
               ### prepare starting solution for next optimization run
               ### here we will only consider the actions variables for the

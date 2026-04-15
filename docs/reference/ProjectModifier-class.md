@@ -218,18 +218,18 @@ object.
 
 #### Usage
 
-    ProjectModifier$calculate(y)
+    ProjectModifier$calculate(x, y)
 
 #### Arguments
-
-- `y`:
-
-  [`problem()`](https://prioritizr.github.io/oppr/reference/problem.md)
-  object.
 
 - `x`:
 
   [`new_optimization_problem()`](https://prioritizr.github.io/oppr/reference/new_optimization_problem.md)
+  object.
+
+- `y`:
+
+  [`problem()`](https://prioritizr.github.io/oppr/reference/problem.md)
   object.
 
 #### Returns

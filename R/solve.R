@@ -226,6 +226,7 @@ methods::setMethod(
     }
     opt <- multi_compile(opt)
     # generate solution using approach
+    a$approach$calculate(opt, a)
     sol <- a$approach$run(opt, a$solver)
     ## format solutions
     # identify feasible solutions

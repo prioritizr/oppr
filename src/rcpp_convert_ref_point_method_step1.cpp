@@ -8,7 +8,9 @@ bool rcpp_convert_ref_point_method_step1(
   Rcpp::CharacterVector mopt_modelsense,
   Rcpp::NumericMatrix mopt_obj,
   Rcpp::NumericVector weights,
-  Rcpp::NumericVector goals
+  Rcpp::NumericVector goals,
+  Rcpp::NumericVector best,
+  Rcpp::NumericVector worst
 ) {
   // Note that this function assumes that all modelsense values
   // are equal to "max" and so it only works for when all objectives
@@ -23,40 +25,28 @@ bool rcpp_convert_ref_point_method_step1(
   std::size_t A_ncol = ptr->ncol();
   std::size_t A_nrow = ptr->nrow();
 
-  // Check if all modelsenses are max
-  bool is_all_max = true;
-  for (std::size_t i = 0; i < n; ++i) {
-    if (mopt_modelsense[i] != "max") {
-      is_all_max = false;
-      break;
-    }
-  }
-
   // Set model sense
   ptr->_modelsense = "min";
 
   // Define additional decision variables for shortfall variables
   for (std::size_t i = 0; i < n; ++i) {
     ptr->_lb.push_back(0.0);
+    ptr->_ub.push_back(std::max(best[i] - worst[i], 0.0));
     ptr->_vtype.push_back("C");
-    if (mopt_modelsense[i] == "max") {
-      ptr->_ub.push_back(1.0);
-      ptr->_col_ids.push_back("sh");
-    } else {
-      ptr->_ub.push_back(std::numeric_limits<double>::infinity());
-      ptr->_col_ids.push_back("ovr");
-    }
+    ptr->_col_ids.push_back("sh");
   }
 
   // Define additional decision variables for maximum value
   // compute upper bound
-  double ub = Rcpp::sum(weights);
-  // compute apply constraint
-  if (is_all_max) {
-    ptr->_ub.push_back(ub);
-  } else {
-    ptr->_ub.push_back(std::numeric_limits<double>::infinity());
+  double ub = 0.0;
+  for (std::size_t i = 0; i < n; ++i) {
+    ub = std::max(
+      ub,
+      weights[i] * (best[i] - worst[i])
+    );
   }
+  // compute apply constraint
+  ptr->_ub.push_back(ub);
   ptr->_lb.push_back(0.0);
   ptr->_vtype.push_back("C");
   ptr->_col_ids.push_back("mobj");
@@ -83,31 +73,19 @@ bool rcpp_convert_ref_point_method_step1(
   for (std::size_t i = 0; i < n; ++i) {
     ptr->_A_i.push_back(A_nrow + i);
     ptr->_A_j.push_back(A_ncol + i);
-    if (mopt_modelsense[i] == "max") {
-      ptr->_A_x.push_back(goals[i]);
-    } else {
-      ptr->_A_x.push_back(-goals[i]);
-    }
+    ptr->_A_x.push_back(1.0);
   }
   for (std::size_t i = 0; i < n; ++i) {
     ptr->_rhs.push_back(goals[i]);
   }
   for (std::size_t i = 0; i < n; ++i) {
-    if (mopt_modelsense[i] == "max") {
-      ptr->_sense.push_back(">=");
-    } else {
-      ptr->_sense.push_back("<=");
-    }
+    ptr->_sense.push_back(">=");
   }
   for (std::size_t i = 0; i < n; ++i) {
-    if (mopt_modelsense[i] == "max") {
-      ptr->_row_ids.push_back("sh");
-    } else {
-      ptr->_row_ids.push_back("ovr");
-    }
+    ptr->_row_ids.push_back("sh");
   }
 
-  // Add linear constraints for calculating the maximum of the shortfalls
+  // Add linear constraints for calculating the maximum of weighted shortfalls
   for (std::size_t i = 0; i < n; ++i) {
     ptr->_A_i.push_back(A_nrow + n + i);
     ptr->_A_j.push_back(A_ncol + n);

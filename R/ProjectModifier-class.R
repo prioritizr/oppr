@@ -109,7 +109,7 @@ ProjectModifier <- R6::R6Class(
     #' @param x [new_optimization_problem()] object.
     #' @param y [problem()] object.
     #' @return Invisible `TRUE`.
-    calculate = function(y) {
+    calculate = function(x, y) {
       invisible(TRUE)
     },
 

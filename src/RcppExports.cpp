@@ -452,8 +452,8 @@ BEGIN_RCPP
 END_RCPP
 }
 // rcpp_convert_ref_point_method_step1
-bool rcpp_convert_ref_point_method_step1(SEXP x, Rcpp::CharacterVector mopt_modelsense, Rcpp::NumericMatrix mopt_obj, Rcpp::NumericVector weights, Rcpp::NumericVector goals);
-RcppExport SEXP _oppr_rcpp_convert_ref_point_method_step1(SEXP xSEXP, SEXP mopt_modelsenseSEXP, SEXP mopt_objSEXP, SEXP weightsSEXP, SEXP goalsSEXP) {
+bool rcpp_convert_ref_point_method_step1(SEXP x, Rcpp::CharacterVector mopt_modelsense, Rcpp::NumericMatrix mopt_obj, Rcpp::NumericVector weights, Rcpp::NumericVector goals, Rcpp::NumericVector best, Rcpp::NumericVector worst);
+RcppExport SEXP _oppr_rcpp_convert_ref_point_method_step1(SEXP xSEXP, SEXP mopt_modelsenseSEXP, SEXP mopt_objSEXP, SEXP weightsSEXP, SEXP goalsSEXP, SEXP bestSEXP, SEXP worstSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -462,7 +462,9 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< Rcpp::NumericMatrix >::type mopt_obj(mopt_objSEXP);
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type weights(weightsSEXP);
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type goals(goalsSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_convert_ref_point_method_step1(x, mopt_modelsense, mopt_obj, weights, goals));
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type best(bestSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type worst(worstSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_convert_ref_point_method_step1(x, mopt_modelsense, mopt_obj, weights, goals, best, worst));
     return rcpp_result_gen;
 END_RCPP
 }

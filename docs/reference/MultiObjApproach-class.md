@@ -27,6 +27,8 @@ Other classes:
 
 ### Public methods
 
+- [`MultiObjApproach$calculate()`](#method-MultiObjApproach-calculate)
+
 - [`MultiObjApproach$run()`](#method-MultiObjApproach-run)
 
 - [`MultiObjApproach$clone()`](#method-MultiObjApproach-clone)
@@ -34,7 +36,6 @@ Other classes:
 Inherited methods
 
 - [`oppr::ProjectModifier$apply()`](https://prioritizr.github.io/oppr/reference/ProjectModifier.html#method-apply)
-- [`oppr::ProjectModifier$calculate()`](https://prioritizr.github.io/oppr/reference/ProjectModifier.html#method-calculate)
 - [`oppr::ProjectModifier$get_data()`](https://prioritizr.github.io/oppr/reference/ProjectModifier.html#method-get_data)
 - [`oppr::ProjectModifier$get_internal()`](https://prioritizr.github.io/oppr/reference/ProjectModifier.html#method-get_internal)
 - [`oppr::ProjectModifier$print()`](https://prioritizr.github.io/oppr/reference/ProjectModifier.html#method-print)
@@ -42,6 +43,33 @@ Inherited methods
 - [`oppr::ProjectModifier$set_data()`](https://prioritizr.github.io/oppr/reference/ProjectModifier.html#method-set_data)
 - [`oppr::ProjectModifier$set_internal()`](https://prioritizr.github.io/oppr/reference/ProjectModifier.html#method-set_internal)
 - [`oppr::ProjectModifier$show()`](https://prioritizr.github.io/oppr/reference/ProjectModifier.html#method-show)
+
+------------------------------------------------------------------------
+
+### Method `calculate()`
+
+Perform computations that need to be completed before applying the
+object.
+
+#### Usage
+
+    MultiObjApproach$calculate(x, y)
+
+#### Arguments
+
+- `x`:
+
+  `list` containing a compiled multi-objective optimization problem
+  (e.g., generated with internal function `multi_compile()`).
+
+- `y`:
+
+  [`multi_problem()`](https://prioritizr.github.io/oppr/reference/multi_problem.md)
+  object.
+
+#### Returns
+
+Invisible `TRUE`.
 
 ------------------------------------------------------------------------
 

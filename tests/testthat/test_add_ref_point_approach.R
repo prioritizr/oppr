@@ -109,10 +109,7 @@ test_that("max modelsense", {
   expect_equal(s3$O2P3, TRUE)
 })
 
-test_that("mixed modelsense", {
-  # define skips
-  skip_on_cran()
-  skip_if_not(any_solvers_installed())
+test_that("invalid inputs", {
   # create data
   projects <- list(
     tibble::tibble(
@@ -175,39 +172,9 @@ test_that("mixed modelsense", {
       add_binary_decisions()
     ) %>%
     add_default_solver(gap = 0)
-  # solve problems
-  s1 <-
-    p %>%
-    add_ref_point_approach(weights = c(1, 0), goals = c(200, 0.01)) %>%
-    solve()
-  s2 <-
-    p %>%
-    add_ref_point_approach(weights = c(0, 1), goals = c(200, 0.01)) %>%
-    solve()
   # run tests
-  ## s1
-  expect_equal(s1$A1, FALSE)
-  expect_equal(s1$A2, TRUE)
-  expect_equal(s1$A3, TRUE)
-  expect_equal(s1$A4, TRUE)
-  expect_equal(s1$A5, FALSE)
-  expect_equal(s1$A6, TRUE)
-  expect_equal(s1$O1P1, FALSE)
-  expect_equal(s1$O1P2, TRUE)
-  expect_equal(s1$O2P1, TRUE)
-  expect_equal(s1$O2P2, FALSE)
-  expect_equal(s1$O2P3, TRUE)
-  ## s2
-  expect_equal(s2$A1, FALSE)
-  expect_equal(s2$A2, FALSE)
-  expect_equal(s2$A3, TRUE)
-  expect_equal(s2$A4, TRUE)
-  expect_equal(s2$A5, FALSE)
-  expect_equal(s2$A6, TRUE)
-  expect_equal(s2$O1P1, FALSE)
-  expect_equal(s2$O1P2, FALSE)
-  expect_equal(s2$O1P3, TRUE)
-  expect_equal(s2$O2P1, TRUE)
-  expect_equal(s2$O2P2, FALSE)
-  expect_equal(s2$O2P3, TRUE)
+  expect_error(
+    p %>% add_ref_point_approach(weights = c(0.5, 0.5), goals = c(200, 2)),
+    "max"
+  )
 })

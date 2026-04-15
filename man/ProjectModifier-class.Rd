@@ -195,15 +195,15 @@ returned.
 Perform computations that need to be completed before applying
 the object.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ProjectModifier$calculate(y)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{ProjectModifier$calculate(x, y)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{y}}{\code{\link[=problem]{problem()}} object.}
-
 \item{\code{x}}{\code{\link[=new_optimization_problem]{new_optimization_problem()}} object.}
+
+\item{\code{y}}{\code{\link[=problem]{problem()}} object.}
 }
 \if{html}{\out{</div>}}
 }

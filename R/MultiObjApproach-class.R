@@ -21,6 +21,17 @@ MultiObjApproach <- R6::R6Class(
   inherit = ProjectModifier,
   public = list(
     #' @description
+    #' Perform computations that need to be completed before applying
+    #' the object.
+    #' @param x `list` containing a compiled multi-objective optimization
+    #' problem (e.g., generated with internal function `multi_compile()`).
+    #' @param y [multi_problem()] object.
+    #' @return Invisible `TRUE`.
+    calculate = function(x, y) {
+      invisible(TRUE)
+    },
+
+    #' @description
     #' Solve a multi-objective optimization problem to generate a solution.
     #' @param x `list` containing a compiled multi-objective optimization
     #' problem (e.g., generated with internal function `multi_compile()`).

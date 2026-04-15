@@ -4,7 +4,14 @@
 \alias{add_ref_point_approach}
 \title{Add a reference point approach}
 \usage{
-add_ref_point_approach(x, weights, goals, verbose = TRUE)
+add_ref_point_approach(
+  x,
+  weights,
+  goals,
+  best = NULL,
+  worst = NULL,
+  verbose = TRUE
+)
 }
 \arguments{
 \item{x}{\code{\link[=multi_problem]{multi_problem()}} object.}
@@ -23,6 +30,14 @@ each row corresponds to a different solution and each columns
 corresponds to a different objective.
 Note that all values must be greater than zero.}
 
+\item{best}{\code{numeric} vector containing values that denote
+the worst possible performance for each objective. If \code{NULL},
+then these values are computed automatically.}
+
+\item{worst}{\code{numeric} vector containing values that denote
+the worst possible performance for each objective. If \code{NULL},
+then these values are computed automatically.}
+
 \item{verbose}{\code{logical} should progress on generating solutions
 displayed? Defaults to \code{TRUE}.}
 }
@@ -31,7 +46,8 @@ A \code{\link[=multi_problem]{multi_problem()}} object with the approach added t
 }
 \description{
 Add a reference point approach for multi-objective optimization to a
-project problem (Vanderpooten 1990).
+project problem (Vanderpooten 1990). Note that this function
+can only be applied when all objectives should be maximized.
 }
 \details{
 The reference point approach for multi-objective optimization involves
@@ -50,17 +66,20 @@ following terminology.
 Let \eqn{O} denote the set of objectives (indexed by \eqn{o}).
 For each objective, let \eqn{W_o}{W_o} denote the weight for each objective
 \eqn{o \in O}{o in O}, \eqn{G_o}{G_o} denote the goal for each objective
-\eqn{o \in O}{o in O}, and \eqn{V_o}{V_o} denote the objective value
+\eqn{o \in O}{o in O}, \eqn{A_o}{A_o} denote the best objective value
+for each objective, \eqn{B_o}{B_o} denote the worst objective value
+for each objective, and \eqn{V_o}{V_o} denote the objective value
 for a candidate solution as measured based on each objective
 \eqn{o \in O}{o in O}.
 After defining these terms, the approach
 is formulated with the following equation.
 
 \deqn{
-\mathrm{Minimize} \space \max_{o = 0}^{O} W_o \times \frac{V_o}{W_o}, \\
-\mathrm{Minimize} \space \sum_{o = 0}^{O} W_o \times \frac{V_o}{W_o}
+\mathrm{Minimize} \space \max_{o = 0}^{O} W_o \times \frac{1}{B_o - W_o} \times \max(G_o - V_o, 0), \\
+\mathrm{Minimize} \space \sum_{o = 0}^{O} W_o \times \frac{1}{B_o - W_o} \times \max(G_o - V_o, 0)
 }{
-Minimize max o^O W_o * (V_o / W_o), sum o^O W_o * (V_o / W_o)
+Minimize max o^O W_o * (1/(B_o - W_o)) * max(G_o - V_o, 0)
+Minimize sum o^O W_o * (1/(B_o - W_o)) * max(G_o - V_o, 0)
 }
 }
 \examples{

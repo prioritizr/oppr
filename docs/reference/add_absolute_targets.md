@@ -160,7 +160,7 @@ print(p3)
 # solve problems
 s1 <- solve(p1)
 #> Set parameter Username
-#> Set parameter LicenseID to value 2774703
+#> Set parameter LicenseID to value 2806834
 #> Set parameter TimeLimit to value 2147483647
 #> Set parameter MIPGap to value 0
 #> Set parameter ScaleFlag to value 2
@@ -169,7 +169,7 @@ s1 <- solve(p1)
 #> Set parameter Threads to value 1
 #> Set parameter PoolSolutions to value 1
 #> Set parameter PoolSearchMode to value 2
-#> Academic license - for non-commercial use only - expires 2027-02-03
+#> Academic license - for non-commercial use only - expires 2027-04-14
 #> Gurobi Optimizer version 13.0.1 build v13.0.1rc0 (linux64 - "Ubuntu 24.04.2 LTS")
 #> 
 #> CPU model: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]
@@ -211,7 +211,7 @@ s1 <- solve(p1)
 #> Best objective 4.977671458279e+02, best bound 4.977671458279e+02, gap 0.0000%
 s2 <- solve(p2)
 #> Set parameter Username
-#> Set parameter LicenseID to value 2774703
+#> Set parameter LicenseID to value 2806834
 #> Set parameter TimeLimit to value 2147483647
 #> Set parameter MIPGap to value 0
 #> Set parameter ScaleFlag to value 2
@@ -220,7 +220,7 @@ s2 <- solve(p2)
 #> Set parameter Threads to value 1
 #> Set parameter PoolSolutions to value 1
 #> Set parameter PoolSearchMode to value 2
-#> Academic license - for non-commercial use only - expires 2027-02-03
+#> Academic license - for non-commercial use only - expires 2027-04-14
 #> Gurobi Optimizer version 13.0.1 build v13.0.1rc0 (linux64 - "Ubuntu 24.04.2 LTS")
 #> 
 #> CPU model: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]
@@ -271,7 +271,7 @@ s2 <- solve(p2)
 #> Best objective 3.023764827378e+02, best bound 3.023764827378e+02, gap 0.0000%
 s3 <- solve(p3)
 #> Set parameter Username
-#> Set parameter LicenseID to value 2774703
+#> Set parameter LicenseID to value 2806834
 #> Set parameter TimeLimit to value 2147483647
 #> Set parameter MIPGap to value 0
 #> Set parameter ScaleFlag to value 2
@@ -280,7 +280,7 @@ s3 <- solve(p3)
 #> Set parameter Threads to value 1
 #> Set parameter PoolSolutions to value 1
 #> Set parameter PoolSearchMode to value 2
-#> Academic license - for non-commercial use only - expires 2027-02-03
+#> Academic license - for non-commercial use only - expires 2027-04-14
 #> Gurobi Optimizer version 13.0.1 build v13.0.1rc0 (linux64 - "Ubuntu 24.04.2 LTS")
 #> 
 #> CPU model: 11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]

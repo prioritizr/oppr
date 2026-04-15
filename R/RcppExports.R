@@ -149,8 +149,8 @@ rcpp_convert_pwlobj <- function(x) {
     .Call(`_oppr_rcpp_convert_pwlobj`, x)
 }
 
-rcpp_convert_ref_point_method_step1 <- function(x, mopt_modelsense, mopt_obj, weights, goals) {
-    .Call(`_oppr_rcpp_convert_ref_point_method_step1`, x, mopt_modelsense, mopt_obj, weights, goals)
+rcpp_convert_ref_point_method_step1 <- function(x, mopt_modelsense, mopt_obj, weights, goals, best, worst) {
+    .Call(`_oppr_rcpp_convert_ref_point_method_step1`, x, mopt_modelsense, mopt_obj, weights, goals, best, worst)
 }
 
 rcpp_convert_ref_point_method_step2 <- function(x, mopt_modelsense, mopt_obj, weights, goals, rhs) {
