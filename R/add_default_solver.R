@@ -13,8 +13,8 @@ NULL
 #' @details
 #' The solvers that can be used are as follows (ordered best to worst):
 #' \pkg{gurobi}, ([add_gurobi_solver()]),
-#' \pkg{rcbc}, ([add_cbc_solver()]),
 #' \pkg{highs}, ([add_highs_solver()]),
+#' \pkg{rcbc}, ([add_cbc_solver()]),
 #' \pkg{Rsymphony} ([add_rsymphony_solver()]),
 #' \pkg{lpsymphony} ([add_lpsymphony_solver()]), and \pkg{lpSolveAPI}
 #' ([add_lpsolveapi_solver()]). This function does not consider
@@ -22,7 +22,6 @@ NULL
 #' [add_heuristic_solver()]) or random processes
 #' (i.e., [add_random_solver()]) because they cannot provide
 #' any guarantees on solution quality.
-#'
 #'
 #' @inherit add_gurobi_solver return seealso
 #'
@@ -60,10 +59,10 @@ add_default_solver <- function(x, ...) {
   ds <- default_solver_name()
   if (identical(ds, "gurobi")) {
     return(add_gurobi_solver(x, ...))
-  } else if (identical(ds, "rcbc")) {
-    return(add_cbc_solver(x, ...))
   } else if (identical(ds, "highs")) {
     return(add_highs_solver(x, ...))
+  } else if (identical(ds, "rcbc")) {
+    return(add_cbc_solver(x, ...))
   } else if (identical(ds, "Rsymphony")) {
     return(add_rsymphony_solver(x, ...))
   } else if (identical(ds, "lpsymphony")) {
@@ -109,10 +108,10 @@ add_default_solver <- function(x, ...) {
 default_solver_name <- function() {
   if (requireNamespace("gurobi", quietly = TRUE)) {
     return("gurobi")
-  } else if (requireNamespace("rcbc", quietly = TRUE)) {
-    return("rcbc")
   } else if (requireNamespace("highs", quietly = TRUE)) {
     return("highs")
+  } else if (requireNamespace("rcbc", quietly = TRUE)) {
+    return("rcbc")
   } else if (requireNamespace("Rsymphony", quietly = TRUE)) {
     return("Rsymphony")
   } else if (requireNamespace("lpsymphony", quietly = TRUE)) {
