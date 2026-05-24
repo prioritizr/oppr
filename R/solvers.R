@@ -27,6 +27,11 @@ NULL
 #' [*HiGHS*](https://highs.dev/) software via the \pkg{highs} package.
 #' }
 #'
+#' \item{[add_cbc_solver()]}{
+#' Add a solver to generate solutions with the
+#' [*CBC*](https://github.com/coin-or/Cbc) software via the \pkg{rcbc} package.
+#' }
+#'
 #' \item{[add_rsymphony_solver()]}{
 #' Add a solver to generate solutions with the
 #' [*SYMPHONY*](https://github.com/coin-or/SYMPHONY) software via the
@@ -83,29 +88,32 @@ NULL
 #' # build another problem, with the highs solver
 #' p4 <- p1 %>% add_highs_solver()
 #'
+#' # build another problem, with the cbc solver
+#' p5 <- p1 %>% add_cbc_solver()
+#'
 #' # build another problem, with the Rsymphony solver
-#' p5 <- p1 %>% add_rsymphony_solver()
+#' p6 <- p1 %>% add_rsymphony_solver()
 #'
 #' # build another problem, with the lpsymphony solver
-#' p6 <- p1 %>% add_lpsymphony_solver()
+#' p7 <- p1 %>% add_lpsymphony_solver()
 #'
 #' # build another problem, with the lpSolveAPI solver
-#' p7 <- p1 %>% add_lpsolveapi_solver()
+#' p8 <- p1 %>% add_lpsolveapi_solver()
 #'
 #' # build another problem, with the heuristic solver
-#' p8 <- p1 %>% add_heuristic_solver()
+#' p9 <- p1 %>% add_heuristic_solver()
 #'
 #' # build another problem, with the random solver
-#' p9 <- p1 %>% add_random_solver()
+#' p10 <- p1 %>% add_random_solver()
 #'
 #' # generate solutions using each of the solvers
 #' s <- rbind(
 #'   solve(p2), solve(p3), solve(p4), solve(p5), solve(p6), solve(p7),
-#'   solve(p8), solve(p9)
+#'   solve(p8), solve(p9), solve(p10)
 #' )
 #' s$solver <- c(
-#'   "default", "gurobi", "highs", "Rsymphony", "lpsymphony", "lpSolveAPI",
-#'   "heuristic", "random"
+#'   "default", "gurobi", "highs", "cbc", "Rsymphony", "lpsymphony",
+#'   "lpSolveAPI", "heuristic", "random"
 #' )
 #'
 #' # print solutions
