@@ -48,7 +48,7 @@ jobs:
 
       - name: Install system dependencies
         run: |
-          sudo apt-get install libxml2 coinor-libsymphony-dev
+          sudo apt-get install libxml2 coinor-libsymphony-dev coinor-libcbc-dev
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
