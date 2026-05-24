@@ -20,7 +20,7 @@ Other classes:
 
 ## Super class
 
-[`oppr::ProjectModifier`](https://prioritizr.github.io/oppr/reference/ProjectModifier-class.md)
+[`ProjectModifier`](https://prioritizr.github.io/oppr/reference/ProjectModifier-class.md)
 -\> `MultiObjApproach`
 
 ## Methods
@@ -35,18 +35,18 @@ Other classes:
 
 Inherited methods
 
-- [`oppr::ProjectModifier$apply()`](https://prioritizr.github.io/oppr/reference/ProjectModifier.html#method-apply)
-- [`oppr::ProjectModifier$get_data()`](https://prioritizr.github.io/oppr/reference/ProjectModifier.html#method-get_data)
-- [`oppr::ProjectModifier$get_internal()`](https://prioritizr.github.io/oppr/reference/ProjectModifier.html#method-get_internal)
-- [`oppr::ProjectModifier$print()`](https://prioritizr.github.io/oppr/reference/ProjectModifier.html#method-print)
-- [`oppr::ProjectModifier$repr()`](https://prioritizr.github.io/oppr/reference/ProjectModifier.html#method-repr)
-- [`oppr::ProjectModifier$set_data()`](https://prioritizr.github.io/oppr/reference/ProjectModifier.html#method-set_data)
-- [`oppr::ProjectModifier$set_internal()`](https://prioritizr.github.io/oppr/reference/ProjectModifier.html#method-set_internal)
-- [`oppr::ProjectModifier$show()`](https://prioritizr.github.io/oppr/reference/ProjectModifier.html#method-show)
+- [`ProjectModifier$apply()`](https://prioritizr.github.io/oppr/reference/ProjectModifier.html#method-apply)
+- [`ProjectModifier$get_data()`](https://prioritizr.github.io/oppr/reference/ProjectModifier.html#method-get_data)
+- [`ProjectModifier$get_internal()`](https://prioritizr.github.io/oppr/reference/ProjectModifier.html#method-get_internal)
+- [`ProjectModifier$print()`](https://prioritizr.github.io/oppr/reference/ProjectModifier.html#method-print)
+- [`ProjectModifier$repr()`](https://prioritizr.github.io/oppr/reference/ProjectModifier.html#method-repr)
+- [`ProjectModifier$set_data()`](https://prioritizr.github.io/oppr/reference/ProjectModifier.html#method-set_data)
+- [`ProjectModifier$set_internal()`](https://prioritizr.github.io/oppr/reference/ProjectModifier.html#method-set_internal)
+- [`ProjectModifier$show()`](https://prioritizr.github.io/oppr/reference/ProjectModifier.html#method-show)
 
 ------------------------------------------------------------------------
 
-### Method `calculate()`
+### `MultiObjApproach$calculate()`
 
 Perform computations that need to be completed before applying the
 object.
@@ -73,7 +73,7 @@ Invisible `TRUE`.
 
 ------------------------------------------------------------------------
 
-### Method `run()`
+### `MultiObjApproach$run()`
 
 Solve a multi-objective optimization problem to generate a solution.
 
@@ -94,7 +94,7 @@ Solve a multi-objective optimization problem to generate a solution.
 
 ------------------------------------------------------------------------
 
-### Method `clone()`
+### `MultiObjApproach$clone()`
 
 The objects of this class are cloneable with this method.
 

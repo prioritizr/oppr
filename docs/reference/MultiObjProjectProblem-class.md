@@ -50,7 +50,7 @@ Other classes:
 
 ### Public methods
 
-- [`MultiObjProjectProblem$new()`](#method-MultiObjProjectProblem-new)
+- [`MultiObjProjectProblem$new()`](#method-MultiObjProjectProblem-initialize)
 
 - [`MultiObjProjectProblem$print()`](#method-MultiObjProjectProblem-print)
 
@@ -82,7 +82,7 @@ Other classes:
 
 ------------------------------------------------------------------------
 
-### Method `new()`
+### `MultiObjProjectProblem$new()`
 
 Create a new multi-objective conservation problem object.
 
@@ -104,7 +104,7 @@ A new `MultiObjProjectProblem` object.
 
 ------------------------------------------------------------------------
 
-### Method [`print()`](https://rdrr.io/r/base/print.html)
+### `MultiObjProjectProblem$print()`
 
 Print concise information about the object.
 
@@ -118,7 +118,7 @@ Invisible `TRUE`.
 
 ------------------------------------------------------------------------
 
-### Method [`show()`](https://prioritizr.github.io/oppr/reference/show.md)
+### `MultiObjProjectProblem$show()`
 
 Display concise information about the object.
 
@@ -132,7 +132,7 @@ Invisible `TRUE`.
 
 ------------------------------------------------------------------------
 
-### Method `repr()`
+### `MultiObjProjectProblem$repr()`
 
 Generate a character representation of the object.
 
@@ -146,7 +146,7 @@ A `character` value.
 
 ------------------------------------------------------------------------
 
-### Method [`number_of_problems()`](https://prioritizr.github.io/oppr/reference/number_of_problems.md)
+### `MultiObjProjectProblem$number_of_problems()`
 
 Obtain the number of problems.
 
@@ -160,7 +160,7 @@ An `integer` value.
 
 ------------------------------------------------------------------------
 
-### Method [`number_of_features()`](https://prioritizr.github.io/oppr/reference/number_of_features.md)
+### `MultiObjProjectProblem$number_of_features()`
 
 Obtain the number of features.
 
@@ -174,7 +174,7 @@ An `integer` value.
 
 ------------------------------------------------------------------------
 
-### Method [`number_of_actions()`](https://prioritizr.github.io/oppr/reference/number_of_actions.md)
+### `MultiObjProjectProblem$number_of_actions()`
 
 Obtain the number of actions.
 
@@ -188,7 +188,7 @@ An `integer` value.
 
 ------------------------------------------------------------------------
 
-### Method [`number_of_projects()`](https://prioritizr.github.io/oppr/reference/number_of_projects.md)
+### `MultiObjProjectProblem$number_of_projects()`
 
 Obtain the number of projects.
 
@@ -202,7 +202,7 @@ An `integer` value.
 
 ------------------------------------------------------------------------
 
-### Method [`problem_names()`](https://prioritizr.github.io/oppr/reference/problem_names.md)
+### `MultiObjProjectProblem$problem_names()`
 
 Obtain the names of the problems.
 
@@ -216,7 +216,7 @@ An `character` value.
 
 ------------------------------------------------------------------------
 
-### Method [`feature_names()`](https://prioritizr.github.io/oppr/reference/feature_names.md)
+### `MultiObjProjectProblem$feature_names()`
 
 Obtain the names of the features.
 
@@ -230,7 +230,7 @@ A `list` of `character` vectors.
 
 ------------------------------------------------------------------------
 
-### Method [`action_names()`](https://prioritizr.github.io/oppr/reference/action_names.md)
+### `MultiObjProjectProblem$action_names()`
 
 Obtain the names of the actions.
 
@@ -244,7 +244,7 @@ A `character` vector.
 
 ------------------------------------------------------------------------
 
-### Method [`project_names()`](https://prioritizr.github.io/oppr/reference/project_names.md)
+### `MultiObjProjectProblem$project_names()`
 
 Obtain the names of the projects.
 
@@ -258,7 +258,7 @@ A `list` of `character` vectors.
 
 ------------------------------------------------------------------------
 
-### Method `add_approach()`
+### `MultiObjProjectProblem$add_approach()`
 
 Create a new object with an approach added to the problem formulation.
 
@@ -279,7 +279,7 @@ An updated `MultiObjProjectProblem` object.
 
 ------------------------------------------------------------------------
 
-### Method `add_solver()`
+### `MultiObjProjectProblem$add_solver()`
 
 Create a new object with a solver added to the problem formulation.
 
@@ -300,7 +300,7 @@ An updated `MultiObjProjectProblem` object.
 
 ------------------------------------------------------------------------
 
-### Method `clone()`
+### `MultiObjProjectProblem$clone()`
 
 The objects of this class are cloneable with this method.
 

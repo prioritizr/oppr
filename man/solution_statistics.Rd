@@ -97,8 +97,8 @@ solution_statistics(p, solutions)
 }
 \seealso{
 Other functions for evaluating solutions:
-\code{\link{project_cost_effectiveness}()},
-\code{\link{rank_importance}()},
-\code{\link{replacement_costs}()}
+\code{\link[=project_cost_effectiveness]{project_cost_effectiveness()}},
+\code{\link[=rank_importance]{rank_importance()}},
+\code{\link[=replacement_costs]{replacement_costs()}}
 }
 \concept{evaluation}

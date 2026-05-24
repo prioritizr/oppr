@@ -271,21 +271,21 @@ print(s)
 #> $projects
 #> $projects$projects_obj1
 #> # A tibble: 3 × 12
-#>   name  success     F1      F2 A1_action A2_action A3_action A4_action A5_action
-#>   <chr>   <dbl>  <dbl>   <dbl> <lgl>     <lgl>     <lgl>     <lgl>     <lgl>    
-#> 1 F1_p…   0.769  0.593 NA      TRUE      FALSE     FALSE     TRUE      FALSE    
-#> 2 F2_p…   0.769 NA      0.896  TRUE      TRUE      TRUE      TRUE      TRUE     
-#> 3 base…   1      0.192  0.0370 FALSE     FALSE     FALSE     FALSE     FALSE    
+#>   name  success      F1     F2 A1_action A2_action A3_action A4_action A5_action
+#>   <chr>   <dbl>   <dbl>  <dbl> <lgl>     <lgl>     <lgl>     <lgl>     <lgl>    
+#> 1 F1_p…   0.939  0.872  NA     TRUE      TRUE      TRUE      TRUE      TRUE     
+#> 2 F2_p…   0.712 NA       0.518 FALSE     TRUE      TRUE      TRUE      TRUE     
+#> 3 base…   1      0.0859  0.174 FALSE     FALSE     FALSE     FALSE     FALSE    
 #> # ℹ 3 more variables: B1_action <lgl>, B2_action <lgl>, B3_action <lgl>
 #> 
 #> $projects$projects_obj2
 #> # A tibble: 4 × 13
-#>   name    success      F3      F4     F7 A1_action A2_action A3_action A4_action
-#>   <chr>     <dbl>   <dbl>   <dbl>  <dbl> <lgl>     <lgl>     <lgl>     <lgl>    
-#> 1 F3_pro…   0.813  0.580  NA      NA     FALSE     FALSE     FALSE     TRUE     
-#> 2 F4_pro…   0.768 NA       0.635  NA     FALSE     TRUE      TRUE      FALSE    
-#> 3 F7_pro…   0.750 NA      NA       0.533 TRUE      FALSE     FALSE     TRUE     
-#> 4 baseli…   1      0.0324  0.0143  0.349 FALSE     FALSE     FALSE     FALSE    
+#>   name     success     F3      F4     F7 A1_action A2_action A3_action A4_action
+#>   <chr>      <dbl>  <dbl>   <dbl>  <dbl> <lgl>     <lgl>     <lgl>     <lgl>    
+#> 1 F3_proj…   0.720  0.532 NA      NA     TRUE      TRUE      TRUE      TRUE     
+#> 2 F4_proj…   0.756 NA      0.825  NA     FALSE     FALSE     FALSE     TRUE     
+#> 3 F7_proj…   0.889 NA     NA       0.886 FALSE     TRUE      TRUE      FALSE    
+#> 4 baselin…   1      0.291  0.0205  0.311 FALSE     FALSE     FALSE     FALSE    
 #> # ℹ 4 more variables: A5_action <lgl>, B1_action <lgl>, B2_action <lgl>,
 #> #   B3_action <lgl>
 #> 
@@ -293,9 +293,9 @@ print(s)
 #> # A tibble: 3 × 12
 #>   name   success     F5     F6 A1_action A2_action A3_action A4_action A5_action
 #>   <chr>    <dbl>  <dbl>  <dbl> <lgl>     <lgl>     <lgl>     <lgl>     <lgl>    
-#> 1 F5_pr…   0.899  0.765 NA     FALSE     FALSE     FALSE     FALSE     TRUE     
-#> 2 F6_pr…   0.867 NA      0.743 TRUE      TRUE      FALSE     TRUE      TRUE     
-#> 3 basel…   1      0.323  0.141 FALSE     FALSE     FALSE     FALSE     FALSE    
+#> 1 F5_pr…   0.840  0.819 NA     TRUE      TRUE      FALSE     TRUE      TRUE     
+#> 2 F6_pr…   0.954 NA      0.774 TRUE      TRUE      TRUE      TRUE      TRUE     
+#> 3 basel…   1      0.234  0.269 FALSE     FALSE     FALSE     FALSE     FALSE    
 #> # ℹ 3 more variables: B1_action <lgl>, B2_action <lgl>, B3_action <lgl>
 #> 
 #> 
@@ -303,37 +303,37 @@ print(s)
 #> # A tibble: 8 × 4
 #>   name       cost locked_in locked_out
 #>   <chr>     <dbl> <lgl>     <lgl>     
-#> 1 A1_action 101.  TRUE      FALSE     
-#> 2 A2_action  92.9 FALSE     FALSE     
-#> 3 A3_action  91.1 FALSE     FALSE     
-#> 4 A4_action  96.9 FALSE     FALSE     
-#> 5 A5_action 103.  FALSE     FALSE     
-#> 6 B1_action   0   FALSE     FALSE     
-#> 7 B2_action   0   FALSE     TRUE      
-#> 8 B3_action   0   FALSE     FALSE     
+#> 1 A1_action  105. FALSE     FALSE     
+#> 2 A2_action  110. TRUE      FALSE     
+#> 3 A3_action  104. FALSE     FALSE     
+#> 4 A4_action  100. FALSE     FALSE     
+#> 5 A5_action  105. FALSE     TRUE      
+#> 6 B1_action    0  FALSE     FALSE     
+#> 7 B2_action    0  FALSE     FALSE     
+#> 8 B3_action    0  FALSE     FALSE     
 #> 
 #> $features
 #> $features[[1]]
 #> # A tibble: 2 × 2
 #>   name  weight
 #>   <chr>  <dbl>
-#> 1 F1      3.08
-#> 2 F2      3.08
+#> 1 F1    0.0798
+#> 2 F2    0.0798
 #> 
 #> $features[[2]]
 #> # A tibble: 3 × 2
 #>   name  weight
 #>   <chr>  <dbl>
-#> 1 F3     0.648
-#> 2 F4     0.648
-#> 3 F7     2.03 
+#> 1 F3     0.130
+#> 2 F4     0.130
+#> 3 F7     0.157
 #> 
 #> $features[[3]]
 #> # A tibble: 2 × 2
 #>   name  weight
 #>   <chr>  <dbl>
-#> 1 F5     0.178
-#> 2 F6     0.178
+#> 1 F5      2.65
+#> 2 F6      2.65
 #> 
 #> 
 #> $tree

@@ -128,8 +128,8 @@ plot(p3, s3)
 }
 }
 \seealso{
-Other targets: 
-\code{\link{add_manual_targets}()},
-\code{\link{add_relative_targets}()}
+Other targets:
+\code{\link[=add_manual_targets]{add_manual_targets()}},
+\code{\link[=add_relative_targets]{add_relative_targets()}}
 }
 \concept{targets}

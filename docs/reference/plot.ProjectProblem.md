@@ -240,7 +240,7 @@ s2 <- solve(p2)
 #> 
 #> *    0     0               0       3.1123237    3.11232  0.00%     -    0s
 #> 
-#> Explored 1 nodes (13 simplex iterations) in 0.01 seconds (0.00 work units)
+#> Explored 1 nodes (13 simplex iterations) in 0.00 seconds (0.00 work units)
 #> Thread count was 1 (of 8 available processors)
 #> 
 #> Solution count 1: 3.11232 

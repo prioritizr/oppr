@@ -39,7 +39,7 @@ Other overviews:
 [`objectives`](https://prioritizr.github.io/oppr/reference/objectives.md),
 [`solvers`](https://prioritizr.github.io/oppr/reference/solvers.md),
 [`targets`](https://prioritizr.github.io/oppr/reference/targets.md),
-[`weights()`](https://prioritizr.github.io/oppr/reference/weights.md)
+[`weights`](https://prioritizr.github.io/oppr/reference/weights.md)
 
 ## Examples
 
@@ -195,7 +195,7 @@ s <- rbind(solve(p2), solve(p3), solve(p4))
 #>   Implied bound: 2
 #>   MIR: 24
 #> 
-#> Explored 123 nodes (552 simplex iterations) in 0.08 seconds (0.05 work units)
+#> Explored 123 nodes (552 simplex iterations) in 0.07 seconds (0.05 work units)
 #> Thread count was 1 (of 8 available processors)
 #> 
 #> Solution count 1: 0.711386 
@@ -315,7 +315,7 @@ s <- rbind(solve(p2), solve(p3), solve(p4))
 #> PoolSearchMode  2
 #> 
 #> Optimize a model with 338 rows, 264 columns and 1128 nonzeros (Min)
-#> Model fingerprint: 0xbf008ffe
+#> Model fingerprint: 0x5649e39d
 #> Model has 1 linear objective coefficients
 #> Variable types: 15 continuous, 150 integer (150 binary)
 #> Semi-Variable types: 99 continuous, 0 integer
@@ -326,10 +326,10 @@ s <- rbind(solve(p2), solve(p3), solve(p4))
 #>   RHS range        [1e+00, 1e+03]
 #> 
 #> Presolve removed 244 rows and 80 columns
-#> Presolve time: 0.01s
+#> Presolve time: 0.00s
 #> Presolved: 290 rows, 282 columns, 927 nonzeros
 #> Variable types: 102 continuous, 180 integer (180 binary)
-#> Found heuristic solution: objective 0.8692610
+#> Found heuristic solution: objective 1.0478287
 #> Root relaxation presolved: 290 rows, 282 columns, 927 nonzeros
 #> 
 #> 
@@ -338,29 +338,21 @@ s <- rbind(solve(p2), solve(p3), solve(p4))
 #>     Nodes    |    Current Node    |     Objective Bounds      |     Work
 #>  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #> 
-#>      0     0    0.32947    0   23    0.86926    0.32947  62.1%     -    0s
-#>      0     0    0.32994    0   22    0.86926    0.32994  62.0%     -    0s
-#> H    0     0                       0.6523857    0.32994  49.4%     -    0s
-#> H    0     0                       0.5432595    0.32994  39.3%     -    0s
-#>      0     0    0.47629    0   23    0.54326    0.47629  12.3%     -    0s
+#>      0     0    0.32947    0   23    1.04783    0.32947  68.6%     -    0s
+#> H    0     0                       0.6523857    0.32947  49.5%     -    0s
+#> H    0     0                       0.5432595    0.32947  39.4%     -    0s
+#>      0     0    0.46380    0   23    0.54326    0.46380  14.6%     -    0s
 #>      0     0    0.50000    0   10    0.54326    0.50000  7.96%     -    0s
 #>      0     0    0.50000    0    5    0.54326    0.50000  7.96%     -    0s
-#> H    0     0                       0.5316729    0.50000  5.96%     -    0s
-#> H    0     0                       0.5024569    0.50000  0.49%     -    0s
-#>      0     0    0.50000    0    5    0.50246    0.50000  0.49%     -    0s
-#>      0     0    0.50000    0    5    0.50246    0.50000  0.49%     -    0s
-#>      0     0    0.50000    0    8    0.50246    0.50000  0.49%     -    0s
-#>      0     0    0.50000    0    8    0.50246    0.50000  0.49%     -    0s
+#> H    0     0                       0.5392574    0.50000  7.28%     -    0s
 #> H    0     0                       0.5000000    0.50000  0.00%     -    0s
-#>      0     0    0.50000    0    8    0.50000    0.50000  0.00%     -    0s
+#>      0     0    0.50000    0    5    0.50000    0.50000  0.00%     -    0s
 #> 
 #> Cutting planes:
 #>   Gomory: 1
-#>   Cover: 4
 #>   MIR: 1
-#>   Relax-and-lift: 2
 #> 
-#> Explored 1 nodes (457 simplex iterations) in 0.03 seconds (0.03 work units)
+#> Explored 1 nodes (432 simplex iterations) in 0.02 seconds (0.02 work units)
 #> Thread count was 1 (of 8 available processors)
 #> 
 #> Solution count 1: 0.5 
@@ -395,7 +387,7 @@ s <- rbind(solve(p2), solve(p3), solve(p4))
 #> PoolSearchMode  2
 #> 
 #> Optimize a model with 339 rows, 264 columns and 1129 nonzeros (Min)
-#> Model fingerprint: 0xd9e4d0a5
+#> Model fingerprint: 0x2c743a6d
 #> Model has 3 linear objective coefficients
 #> Variable types: 15 continuous, 150 integer (150 binary)
 #> Semi-Variable types: 99 continuous, 0 integer
@@ -405,11 +397,10 @@ s <- rbind(solve(p2), solve(p3), solve(p4))
 #>   Bounds range     [6e-01, 3e+00]
 #>   RHS range        [5e-01, 1e+03]
 #> 
-#> User MIP start produced solution with objective 0.996685 (0.06s)
+#> User MIP start produced solution with objective 0.996685 (0.05s)
 #> User MIP start produced solution with objective 0.995088 (0.07s)
-#> User MIP start produced solution with objective 0.995088 (0.08s)
-#> User MIP start produced solution with objective 0.99366 (0.10s)
-#> User MIP start produced solution with objective 0.99366 (0.10s)
+#> User MIP start produced solution with objective 0.99366 (0.08s)
+#> User MIP start produced solution with objective 0.99366 (0.09s)
 #> Loaded user MIP start with objective 0.99366
 #> 
 #> Presolve removed 245 rows and 80 columns
@@ -425,48 +416,34 @@ s <- rbind(solve(p2), solve(p3), solve(p4))
 #>  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #> 
 #>      0     0    0.65873    0   16    0.99366    0.65873  33.7%     -    0s
-#>      0     0    0.76266    0   23    0.99366    0.76266  23.2%     -    0s
-#>      0     0    0.77119    0   27    0.99366    0.77119  22.4%     -    0s
-#>      0     0    0.81948    0   16    0.99366    0.81948  17.5%     -    0s
-#>      0     0    0.81948    0   14    0.99366    0.81948  17.5%     -    0s
-#>      0     0    0.82366    0   15    0.99366    0.82366  17.1%     -    0s
-#>      0     0    0.86987    0   12    0.99366    0.86987  12.5%     -    0s
-#>      0     0    0.98028    0    6    0.99366    0.98028  1.35%     -    0s
-#>      0     0    0.98238    0    5    0.99366    0.98238  1.14%     -    0s
-#>      0     0    0.98238    0    3    0.99366    0.98238  1.14%     -    0s
-#>      0     0    0.98238    0    1    0.99366    0.98238  1.14%     -    0s
-#>      0     0    0.98238    0    5    0.99366    0.98238  1.14%     -    0s
-#>      0     0    0.98325    0    7    0.99366    0.98325  1.05%     -    0s
-#>      0     0    0.98345    0    7    0.99366    0.98345  1.03%     -    0s
-#>      0     0    0.98355    0    7    0.99366    0.98355  1.02%     -    0s
-#>      0     0    0.98358    0   11    0.99366    0.98358  1.01%     -    0s
-#>      0     0    0.98373    0    7    0.99366    0.98373  1.00%     -    0s
-#>      0     0    0.98373    0    7    0.99366    0.98373  1.00%     -    0s
-#>      0     0    0.98380    0   11    0.99366    0.98380  0.99%     -    0s
-#>      0     0    0.98389    0    9    0.99366    0.98389  0.98%     -    0s
-#>      0     0    0.98389    0   11    0.99366    0.98389  0.98%     -    0s
-#>      0     0    0.98395    0    7    0.99366    0.98395  0.98%     -    0s
-#>      0     0    0.98399    0   13    0.99366    0.98399  0.97%     -    0s
-#>      0     0    0.98399    0   11    0.99366    0.98399  0.97%     -    0s
-#>      0     0    0.98400    0    9    0.99366    0.98400  0.97%     -    0s
-#>      0     0    0.98400    0   17    0.99366    0.98400  0.97%     -    0s
-#>      0     0    0.98402    0    7    0.99366    0.98402  0.97%     -    0s
-#>      0     0    0.98414    0    9    0.99366    0.98414  0.96%     -    0s
-#>      0     0    0.98414    0    9    0.99366    0.98414  0.96%     -    0s
-#>      0     0    0.98415    0   11    0.99366    0.98415  0.96%     -    0s
-#>      0     0    0.98424    0   11    0.99366    0.98424  0.95%     -    0s
-#>      0     0    0.98427    0    9    0.99366    0.98427  0.95%     -    0s
-#>      0     0    0.98428    0   13    0.99366    0.98428  0.94%     -    0s
-#>      0     0    0.98431    0   13    0.99366    0.98431  0.94%     -    0s
-#>      0     0    0.98431    0   13    0.99366    0.98431  0.94%     -    0s
-#>      0     2    0.98435    0   13    0.99366    0.98435  0.94%     -    0s
+#>      0     0    0.74101    0   16    0.99366    0.74101  25.4%     -    0s
+#>      0     0    0.84153    0   25    0.99366    0.84153  15.3%     -    0s
+#>      0     0    0.84153    0   18    0.99366    0.84153  15.3%     -    0s
+#>      0     0    0.84153    0   14    0.99366    0.84153  15.3%     -    0s
+#>      0     0    0.84153    0   17    0.99366    0.84153  15.3%     -    0s
+#>      0     0    0.84153    0   17    0.99366    0.84153  15.3%     -    0s
+#>      0     0    0.84153    0   25    0.99366    0.84153  15.3%     -    0s
+#>      0     0    0.84997    0   25    0.99366    0.84997  14.5%     -    0s
+#>      0     0    0.96213    0   22    0.99366    0.96213  3.17%     -    0s
+#>      0     0    0.98110    0    7    0.99366    0.98110  1.26%     -    0s
+#>      0     0    0.98110    0    3    0.99366    0.98110  1.26%     -    0s
+#>      0     0    0.98110    0    7    0.99366    0.98110  1.26%     -    0s
+#>      0     0    0.98110    0    7    0.99366    0.98110  1.26%     -    0s
+#>      0     0    0.98201    0    7    0.99366    0.98201  1.17%     -    0s
+#>      0     0    0.98220    0    7    0.99366    0.98220  1.15%     -    0s
+#>      0     0    0.98229    0    5    0.99366    0.98229  1.14%     -    0s
+#>      0     0    0.98232    0    9    0.99366    0.98232  1.14%     -    0s
+#>      0     0    0.98233    0   11    0.99366    0.98233  1.14%     -    0s
+#>      0     0    0.98260    0    9    0.99366    0.98260  1.11%     -    0s
+#>      0     0    0.98263    0    9    0.99366    0.98263  1.11%     -    0s
+#>      0     2    0.98291    0    9    0.99366    0.98291  1.08%     -    0s
 #> 
 #> Cutting planes:
-#>   Cover: 8
-#>   MIR: 4
-#>   GUB cover: 1
+#>   Cover: 10
+#>   MIR: 7
+#>   Flow cover: 1
 #> 
-#> Explored 68 nodes (745 simplex iterations) in 0.18 seconds (0.12 work units)
+#> Explored 95 nodes (797 simplex iterations) in 0.14 seconds (0.11 work units)
 #> Thread count was 1 (of 8 available processors)
 #> 
 #> Solution count 1: 0.99366 
@@ -481,7 +458,7 @@ print(as.data.frame(s))
 #>   solution  status     cost      obj1      obj2     obj3 A1_action A2_action
 #> 1        1 OPTIMAL 884.8571 0.6701859 0.4297357 1.616604      TRUE     FALSE
 #> 2        1 OPTIMAL 884.8571 0.6701859 0.4297357 1.616604      TRUE     FALSE
-#> 3        1 OPTIMAL 884.8571 0.6701859 0.4297357 1.616604      TRUE     FALSE
+#> 3        1 OPTIMAL 973.6193 0.6701859 0.4297357 1.616604      TRUE     FALSE
 #>   A3_action A4_action A5_action A6_action A7_action A8_action A9_action
 #> 1      TRUE     FALSE      TRUE      TRUE      TRUE     FALSE     FALSE
 #> 2      TRUE     FALSE      TRUE      TRUE      TRUE     FALSE     FALSE
@@ -489,7 +466,7 @@ print(as.data.frame(s))
 #>   A10_action A11_action A12_action A13_action A14_action A15_action B1_action
 #> 1       TRUE       TRUE       TRUE      FALSE      FALSE       TRUE      TRUE
 #> 2       TRUE       TRUE       TRUE      FALSE      FALSE       TRUE      TRUE
-#> 3       TRUE       TRUE       TRUE      FALSE      FALSE       TRUE      TRUE
+#> 3       TRUE       TRUE       TRUE       TRUE      FALSE       TRUE      TRUE
 #>   B2_action B3_action F1_project F2_project F8_project baseline_project_obj1
 #> 1      TRUE      TRUE       TRUE      FALSE      FALSE                  TRUE
 #> 2      TRUE      TRUE       TRUE      FALSE      FALSE                  TRUE

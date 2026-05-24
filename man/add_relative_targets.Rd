@@ -130,8 +130,8 @@ plot(p3, s3)
 }
 }
 \seealso{
-Other targets: 
-\code{\link{add_absolute_targets}()},
-\code{\link{add_manual_targets}()}
+Other targets:
+\code{\link[=add_absolute_targets]{add_absolute_targets()}},
+\code{\link[=add_manual_targets]{add_manual_targets()}}
 }
 \concept{targets}

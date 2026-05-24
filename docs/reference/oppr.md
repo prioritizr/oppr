@@ -60,7 +60,7 @@ in prioritizing conservation projects. *Methods in Ecology & Evolution*,
 
 Useful links:
 
-- Package website (<https://prioritizr.github.io/oppr>)
+- Package website (<https://prioritizr.github.io/oppr/>)
 
 - Source code repository (<https://github.com/prioritizr/oppr>)
 

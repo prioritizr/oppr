@@ -101,8 +101,8 @@ print(s)
 \seealso{
 See \link{targets} for an overview for functions for adding targets.
 
-Other targets: 
-\code{\link{add_absolute_targets}()},
-\code{\link{add_relative_targets}()}
+Other targets:
+\code{\link[=add_absolute_targets]{add_absolute_targets()}},
+\code{\link[=add_relative_targets]{add_relative_targets()}}
 }
 \concept{targets}

@@ -38,7 +38,7 @@ Other classes:
 
 ### Public methods
 
-- [`OptimizationProblem$new()`](#method-OptimizationProblem-new)
+- [`OptimizationProblem$new()`](#method-OptimizationProblem-initialize)
 
 - [`OptimizationProblem$get_data()`](#method-OptimizationProblem-get_data)
 
@@ -92,7 +92,7 @@ Other classes:
 
 ------------------------------------------------------------------------
 
-### Method `new()`
+### `OptimizationProblem$new()`
 
 #### Usage
 
@@ -114,7 +114,7 @@ A new `OptimizationProblem` object.
 
 ------------------------------------------------------------------------
 
-### Method `get_data()`
+### `OptimizationProblem$get_data()`
 
 Obtain the supplemental data.
 
@@ -128,7 +128,7 @@ A `list` object.
 
 ------------------------------------------------------------------------
 
-### Method [`print()`](https://rdrr.io/r/base/print.html)
+### `OptimizationProblem$print()`
 
 Print concise information about the object.
 
@@ -142,7 +142,7 @@ Invisible `TRUE`.
 
 ------------------------------------------------------------------------
 
-### Method [`show()`](https://prioritizr.github.io/oppr/reference/show.md)
+### `OptimizationProblem$show()`
 
 Print concise information about the object.
 
@@ -156,7 +156,7 @@ Invisible `TRUE`.
 
 ------------------------------------------------------------------------
 
-### Method [`ncol()`](https://prioritizr.github.io/oppr/reference/tibble-methods.md)
+### `OptimizationProblem$ncol()`
 
 Obtain the number of columns in the problem formulation.
 
@@ -170,7 +170,7 @@ A `numeric` value.
 
 ------------------------------------------------------------------------
 
-### Method [`nrow()`](https://prioritizr.github.io/oppr/reference/tibble-methods.md)
+### `OptimizationProblem$nrow()`
 
 Obtain the number of rows in the problem formulation.
 
@@ -184,7 +184,7 @@ A `numeric` value.
 
 ------------------------------------------------------------------------
 
-### Method `ncell()`
+### `OptimizationProblem$ncell()`
 
 Obtain the number of cells in the problem formulation.
 
@@ -198,7 +198,7 @@ A `numeric` value.
 
 ------------------------------------------------------------------------
 
-### Method `modelsense()`
+### `OptimizationProblem$modelsense()`
 
 Obtain the model sense.
 
@@ -212,7 +212,7 @@ A `character` value.
 
 ------------------------------------------------------------------------
 
-### Method `vtype()`
+### `OptimizationProblem$vtype()`
 
 Obtain the decision variable types.
 
@@ -226,7 +226,7 @@ A `character` vector.
 
 ------------------------------------------------------------------------
 
-### Method `obj()`
+### `OptimizationProblem$obj()`
 
 Obtain the objective function.
 
@@ -240,7 +240,7 @@ A `numeric` vector.
 
 ------------------------------------------------------------------------
 
-### Method `pwlobj()`
+### `OptimizationProblem$pwlobj()`
 
 Obtain the piecewise linear components of the objective function.
 
@@ -254,7 +254,7 @@ A `list` object.
 
 ------------------------------------------------------------------------
 
-### Method `A()`
+### `OptimizationProblem$A()`
 
 Obtain the constraint matrix.
 
@@ -270,7 +270,7 @@ object.
 
 ------------------------------------------------------------------------
 
-### Method `rhs()`
+### `OptimizationProblem$rhs()`
 
 Obtain the right-hand-side constraint values.
 
@@ -284,7 +284,7 @@ A `numeric` vector.
 
 ------------------------------------------------------------------------
 
-### Method `sense()`
+### `OptimizationProblem$sense()`
 
 Obtain the constraint senses.
 
@@ -298,7 +298,7 @@ A `character` vector.
 
 ------------------------------------------------------------------------
 
-### Method `lb()`
+### `OptimizationProblem$lb()`
 
 Obtain the lower bounds for the decision variables.
 
@@ -312,7 +312,7 @@ A `numeric` vector.
 
 ------------------------------------------------------------------------
 
-### Method `ub()`
+### `OptimizationProblem$ub()`
 
 Obtain the upper bounds for the decision variables.
 
@@ -326,7 +326,7 @@ A `numeric` vector.
 
 ------------------------------------------------------------------------
 
-### Method [`number_of_features()`](https://prioritizr.github.io/oppr/reference/number_of_features.md)
+### `OptimizationProblem$number_of_features()`
 
 Obtain the number of features.
 
@@ -340,7 +340,7 @@ A `numeric` value.
 
 ------------------------------------------------------------------------
 
-### Method `number_of_branches()`
+### `OptimizationProblem$number_of_branches()`
 
 Obtain the number of phylogenetic branches.
 
@@ -354,7 +354,7 @@ A `numeric` value.
 
 ------------------------------------------------------------------------
 
-### Method `number_of_allocations()`
+### `OptimizationProblem$number_of_allocations()`
 
 Obtain the number of allocation variables. This number represents the
 total number of decision variables used to identify if each project is
@@ -370,7 +370,7 @@ A `numeric` value.
 
 ------------------------------------------------------------------------
 
-### Method [`number_of_actions()`](https://prioritizr.github.io/oppr/reference/number_of_actions.md)
+### `OptimizationProblem$number_of_actions()`
 
 Obtain the number of actions
 
@@ -384,7 +384,7 @@ A `numeric` value.
 
 ------------------------------------------------------------------------
 
-### Method [`number_of_projects()`](https://prioritizr.github.io/oppr/reference/number_of_projects.md)
+### `OptimizationProblem$number_of_projects()`
 
 Obtain the number of projects.
 
@@ -398,7 +398,7 @@ A `numeric` value.
 
 ------------------------------------------------------------------------
 
-### Method `col_ids()`
+### `OptimizationProblem$col_ids()`
 
 Obtain the identifiers for the columns.
 
@@ -412,7 +412,7 @@ A `character` value.
 
 ------------------------------------------------------------------------
 
-### Method `row_ids()`
+### `OptimizationProblem$row_ids()`
 
 Obtain the identifiers for the rows.
 
@@ -426,7 +426,7 @@ A `character` value.
 
 ------------------------------------------------------------------------
 
-### Method `copy()`
+### `OptimizationProblem$copy()`
 
 Copy the object.
 
@@ -440,7 +440,7 @@ An `OptimizationProblem` object.
 
 ------------------------------------------------------------------------
 
-### Method `convert_pwlobj()`
+### `OptimizationProblem$convert_pwlobj()`
 
 Convert the piece-wise linear components of the objective function into
 linear objective components and constraints.
@@ -455,7 +455,7 @@ An invisible `TRUE`.
 
 ------------------------------------------------------------------------
 
-### Method `clone()`
+### `OptimizationProblem$clone()`
 
 The objects of this class are cloneable with this method.
 

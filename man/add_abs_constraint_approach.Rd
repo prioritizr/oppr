@@ -78,7 +78,7 @@ p <-
         baseline_project_name = "baseline_project_obj1"
       ) \%>\%
       add_max_phylo_div_objective(
-       budget = 1000, tree = sim_multi_tree[[1]]
+        budget = 1000, tree = sim_multi_tree[[1]]
       ) \%>\%
       add_binary_decisions(),
    obj2 =
@@ -112,8 +112,8 @@ print(s)
 }
 }
 \seealso{
-Other approaches: 
-\code{\link{add_ref_point_approach}()},
-\code{\link{add_wtd_goal_approach}()}
+Other approaches:
+\code{\link[=add_ref_point_approach]{add_ref_point_approach()}},
+\code{\link[=add_wtd_goal_approach]{add_wtd_goal_approach()}}
 }
 \concept{approaches}

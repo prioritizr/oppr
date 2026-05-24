@@ -141,8 +141,8 @@ Mathematical Programming Under Uncertainty. Springer, Berlin.
 \seealso{
 See \link{approaches} for an overview of functions for adding approaches.
 
-Other approaches: 
-\code{\link{add_abs_constraint_approach}()},
-\code{\link{add_wtd_goal_approach}()}
+Other approaches:
+\code{\link[=add_abs_constraint_approach]{add_abs_constraint_approach()}},
+\code{\link[=add_wtd_goal_approach]{add_wtd_goal_approach()}}
 }
 \concept{approaches}

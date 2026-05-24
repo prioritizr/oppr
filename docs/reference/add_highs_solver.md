@@ -188,7 +188,7 @@ s <- solve(p)
 #>   Dual bound        2.19038073725
 #>   Gap               0%
 #> 
-#>   P-D integral      0.000153118628397
+#>   P-D integral      0.000153037346024
 #> 
 #>   Solution status   feasible
 #> 

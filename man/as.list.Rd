@@ -7,7 +7,7 @@
 \method{as.list}{OptimizationProblem}(x, ...)
 }
 \arguments{
-\item{x}{\linkS4class{OptimizationProblem} object.}
+\item{x}{\link[=OptimizationProblem-class]{OptimizationProblem} object.}
 
 \item{...}{not used.}
 }

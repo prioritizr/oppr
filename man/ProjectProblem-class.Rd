@@ -6,8 +6,6 @@
 \title{Project problem class}
 \description{
 Project problem class
-
-Project problem class
 }
 \section{Description}{
 
@@ -16,7 +14,7 @@ This class is used to represent project prioritization problems.
 }
 
 \seealso{
-Other classes: 
+Other classes:
 \code{\link{Constraint-class}},
 \code{\link{Decision-class}},
 \code{\link{MultiObjApproach-class}},
@@ -30,502 +28,557 @@ Other classes:
 }
 \concept{classes}
 \section{Public fields}{
-\if{html}{\out{<div class="r6-fields">}}
-\describe{
-\item{\code{data}}{\code{list} containing data (e.g., projects, features).}
+  \if{html}{\out{<div class="r6-fields">}}
+  \describe{
+    \item{\code{data}}{\code{list} containing data (e.g., projects, features).}
 
-\item{\code{defaults}}{\code{list} indicating if other fields contain defaults.}
+    \item{\code{defaults}}{\code{list} indicating if other fields contain defaults.}
 
-\item{\code{objective}}{\linkS4class{Objective} object used to specify the objective
+    \item{\code{objective}}{\link[=Objective-class]{Objective} object used to specify the objective
 function.}
 
-\item{\code{weights}}{\linkS4class{Weight} object used to specify the objective
+    \item{\code{weights}}{\link[=Weight-class]{Weight} object used to specify the objective
 function.}
 
-\item{\code{decisions}}{\linkS4class{Decision} object used to represent the type of
+    \item{\code{decisions}}{\link[=Decision-class]{Decision} object used to represent the type of
 decision made on planning units.}
 
-\item{\code{targets}}{\linkS4class{Target} object used to represent representation
+    \item{\code{targets}}{\link[=Target-class]{Target} object used to represent representation
 targets for features.}
 
-\item{\code{constraints}}{\code{list} object used to store \linkS4class{Constraint}
+    \item{\code{constraints}}{\code{list} object used to store \link[=Constraint-class]{Constraint}
 objects for the problem.}
 
-\item{\code{solver}}{\linkS4class{Solver} object used to specify the process for
+    \item{\code{solver}}{\link[=Solver-class]{Solver} object used to specify the process for
 generating a solution.}
-}
-\if{html}{\out{</div>}}
+  }
+  \if{html}{\out{</div>}}
 }
 \section{Methods}{
 \subsection{Public methods}{
-\itemize{
-\item \href{#method-ProjectProblem-new}{\code{ProjectProblem$new()}}
-\item \href{#method-ProjectProblem-print}{\code{ProjectProblem$print()}}
-\item \href{#method-ProjectProblem-show}{\code{ProjectProblem$show()}}
-\item \href{#method-ProjectProblem-repr}{\code{ProjectProblem$repr()}}
-\item \href{#method-ProjectProblem-get_data}{\code{ProjectProblem$get_data()}}
-\item \href{#method-ProjectProblem-set_data}{\code{ProjectProblem$set_data()}}
-\item \href{#method-ProjectProblem-number_of_actions}{\code{ProjectProblem$number_of_actions()}}
-\item \href{#method-ProjectProblem-number_of_projects}{\code{ProjectProblem$number_of_projects()}}
-\item \href{#method-ProjectProblem-number_of_features}{\code{ProjectProblem$number_of_features()}}
-\item \href{#method-ProjectProblem-action_names}{\code{ProjectProblem$action_names()}}
-\item \href{#method-ProjectProblem-project_names}{\code{ProjectProblem$project_names()}}
-\item \href{#method-ProjectProblem-feature_names}{\code{ProjectProblem$feature_names()}}
-\item \href{#method-ProjectProblem-feature_weights}{\code{ProjectProblem$feature_weights()}}
-\item \href{#method-ProjectProblem-feature_targets}{\code{ProjectProblem$feature_targets()}}
-\item \href{#method-ProjectProblem-feature_phylogeny}{\code{ProjectProblem$feature_phylogeny()}}
-\item \href{#method-ProjectProblem-action_costs}{\code{ProjectProblem$action_costs()}}
-\item \href{#method-ProjectProblem-project_costs}{\code{ProjectProblem$project_costs()}}
-\item \href{#method-ProjectProblem-project_success_probabilities}{\code{ProjectProblem$project_success_probabilities()}}
-\item \href{#method-ProjectProblem-of_matrix}{\code{ProjectProblem$of_matrix()}}
-\item \href{#method-ProjectProblem-pa_matrix}{\code{ProjectProblem$pa_matrix()}}
-\item \href{#method-ProjectProblem-eof_matrix}{\code{ProjectProblem$eof_matrix()}}
-\item \href{#method-ProjectProblem-add_solver}{\code{ProjectProblem$add_solver()}}
-\item \href{#method-ProjectProblem-add_targets}{\code{ProjectProblem$add_targets()}}
-\item \href{#method-ProjectProblem-add_weights}{\code{ProjectProblem$add_weights()}}
-\item \href{#method-ProjectProblem-add_objective}{\code{ProjectProblem$add_objective()}}
-\item \href{#method-ProjectProblem-add_decisions}{\code{ProjectProblem$add_decisions()}}
-\item \href{#method-ProjectProblem-add_constraint}{\code{ProjectProblem$add_constraint()}}
-\item \href{#method-ProjectProblem-clone}{\code{ProjectProblem$clone()}}
-}
+  \itemize{
+    \item \href{#method-ProjectProblem-initialize}{\code{ProjectProblem$new()}}
+    \item \href{#method-ProjectProblem-print}{\code{ProjectProblem$print()}}
+    \item \href{#method-ProjectProblem-show}{\code{ProjectProblem$show()}}
+    \item \href{#method-ProjectProblem-repr}{\code{ProjectProblem$repr()}}
+    \item \href{#method-ProjectProblem-get_data}{\code{ProjectProblem$get_data()}}
+    \item \href{#method-ProjectProblem-set_data}{\code{ProjectProblem$set_data()}}
+    \item \href{#method-ProjectProblem-number_of_actions}{\code{ProjectProblem$number_of_actions()}}
+    \item \href{#method-ProjectProblem-number_of_projects}{\code{ProjectProblem$number_of_projects()}}
+    \item \href{#method-ProjectProblem-number_of_features}{\code{ProjectProblem$number_of_features()}}
+    \item \href{#method-ProjectProblem-action_names}{\code{ProjectProblem$action_names()}}
+    \item \href{#method-ProjectProblem-project_names}{\code{ProjectProblem$project_names()}}
+    \item \href{#method-ProjectProblem-feature_names}{\code{ProjectProblem$feature_names()}}
+    \item \href{#method-ProjectProblem-feature_weights}{\code{ProjectProblem$feature_weights()}}
+    \item \href{#method-ProjectProblem-feature_targets}{\code{ProjectProblem$feature_targets()}}
+    \item \href{#method-ProjectProblem-feature_phylogeny}{\code{ProjectProblem$feature_phylogeny()}}
+    \item \href{#method-ProjectProblem-action_costs}{\code{ProjectProblem$action_costs()}}
+    \item \href{#method-ProjectProblem-project_costs}{\code{ProjectProblem$project_costs()}}
+    \item \href{#method-ProjectProblem-project_success_probabilities}{\code{ProjectProblem$project_success_probabilities()}}
+    \item \href{#method-ProjectProblem-of_matrix}{\code{ProjectProblem$of_matrix()}}
+    \item \href{#method-ProjectProblem-pa_matrix}{\code{ProjectProblem$pa_matrix()}}
+    \item \href{#method-ProjectProblem-eof_matrix}{\code{ProjectProblem$eof_matrix()}}
+    \item \href{#method-ProjectProblem-add_solver}{\code{ProjectProblem$add_solver()}}
+    \item \href{#method-ProjectProblem-add_targets}{\code{ProjectProblem$add_targets()}}
+    \item \href{#method-ProjectProblem-add_weights}{\code{ProjectProblem$add_weights()}}
+    \item \href{#method-ProjectProblem-add_objective}{\code{ProjectProblem$add_objective()}}
+    \item \href{#method-ProjectProblem-add_decisions}{\code{ProjectProblem$add_decisions()}}
+    \item \href{#method-ProjectProblem-add_constraint}{\code{ProjectProblem$add_constraint()}}
+    \item \href{#method-ProjectProblem-clone}{\code{ProjectProblem$clone()}}
+  }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-ProjectProblem-new"></a>}}
-\if{latex}{\out{\hypertarget{method-ProjectProblem-new}{}}}
-\subsection{Method \code{new()}}{
-Create a new conservation problem object.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ProjectProblem$new(data = list())}\if{html}{\out{</div>}}
+\if{html}{\out{<a id="method-ProjectProblem-initialize"></a>}}
+\if{latex}{\out{\hypertarget{method-ProjectProblem-initialize}{}}}
+\subsection{\code{ProjectProblem$new()}}{
+  Create a new conservation problem object.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{ProjectProblem$new(data = list())}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{data}}{\code{list} containing data}
+    }
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    A new \code{ProjectProblem} object.
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{data}}{\code{list} containing data}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-A new \code{ProjectProblem} object.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-ProjectProblem-print"></a>}}
 \if{latex}{\out{\hypertarget{method-ProjectProblem-print}{}}}
-\subsection{Method \code{print()}}{
-Print concise information about the object.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ProjectProblem$print()}\if{html}{\out{</div>}}
+\subsection{\code{ProjectProblem$print()}}{
+  Print concise information about the object.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{ProjectProblem$print()}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    Invisible \code{TRUE}.
+  }
 }
 
-\subsection{Returns}{
-Invisible \code{TRUE}.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-ProjectProblem-show"></a>}}
 \if{latex}{\out{\hypertarget{method-ProjectProblem-show}{}}}
-\subsection{Method \code{show()}}{
-Display concise information about the object.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ProjectProblem$show()}\if{html}{\out{</div>}}
+\subsection{\code{ProjectProblem$show()}}{
+  Display concise information about the object.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{ProjectProblem$show()}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    Invisible \code{TRUE}.
+  }
 }
 
-\subsection{Returns}{
-Invisible \code{TRUE}.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-ProjectProblem-repr"></a>}}
 \if{latex}{\out{\hypertarget{method-ProjectProblem-repr}{}}}
-\subsection{Method \code{repr()}}{
-Generate a character representation of the object.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ProjectProblem$repr()}\if{html}{\out{</div>}}
+\subsection{\code{ProjectProblem$repr()}}{
+  Generate a character representation of the object.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{ProjectProblem$repr()}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    A \code{character} value.
+  }
 }
 
-\subsection{Returns}{
-A \code{character} value.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-ProjectProblem-get_data"></a>}}
 \if{latex}{\out{\hypertarget{method-ProjectProblem-get_data}{}}}
-\subsection{Method \code{get_data()}}{
-Get values stored in the \code{data} field.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ProjectProblem$get_data(x)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{x}}{\code{character} name of data.}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-An object. If the \code{data} field does not contain an object
+\subsection{\code{ProjectProblem$get_data()}}{
+  Get values stored in the \code{data} field.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{ProjectProblem$get_data(x)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{x}}{\code{character} name of data.}
+    }
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    An object. If the \code{data} field does not contain an object
 associated with the argument to \code{x}, then a \code{\link[=new_waiver]{new_waiver()}} object is
 returned.
+  }
 }
-}
+
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-ProjectProblem-set_data"></a>}}
 \if{latex}{\out{\hypertarget{method-ProjectProblem-set_data}{}}}
-\subsection{Method \code{set_data()}}{
-Set values stored in the \code{data} field. Note that this method will
+\subsection{\code{ProjectProblem$set_data()}}{
+  Set values stored in the \code{data} field. Note that this method will
 overwrite existing data.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ProjectProblem$set_data(x, value)}\if{html}{\out{</div>}}
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{ProjectProblem$set_data(x, value)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{x}}{\code{character} name of data.}
+      \item{\code{value}}{Object to store.}
+    }
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    Invisible \code{TRUE}.
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{x}}{\code{character} name of data.}
-
-\item{\code{value}}{Object to store.}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-Invisible \code{TRUE}.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-ProjectProblem-number_of_actions"></a>}}
 \if{latex}{\out{\hypertarget{method-ProjectProblem-number_of_actions}{}}}
-\subsection{Method \code{number_of_actions()}}{
-Obtain the number of actions.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ProjectProblem$number_of_actions()}\if{html}{\out{</div>}}
+\subsection{\code{ProjectProblem$number_of_actions()}}{
+  Obtain the number of actions.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{ProjectProblem$number_of_actions()}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    An \code{integer} value.
+  }
 }
 
-\subsection{Returns}{
-An \code{integer} value.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-ProjectProblem-number_of_projects"></a>}}
 \if{latex}{\out{\hypertarget{method-ProjectProblem-number_of_projects}{}}}
-\subsection{Method \code{number_of_projects()}}{
-Obtain the number of projects.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ProjectProblem$number_of_projects()}\if{html}{\out{</div>}}
+\subsection{\code{ProjectProblem$number_of_projects()}}{
+  Obtain the number of projects.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{ProjectProblem$number_of_projects()}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    An \code{integer} value.
+  }
 }
 
-\subsection{Returns}{
-An \code{integer} value.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-ProjectProblem-number_of_features"></a>}}
 \if{latex}{\out{\hypertarget{method-ProjectProblem-number_of_features}{}}}
-\subsection{Method \code{number_of_features()}}{
-Obtain the number of features.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ProjectProblem$number_of_features()}\if{html}{\out{</div>}}
+\subsection{\code{ProjectProblem$number_of_features()}}{
+  Obtain the number of features.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{ProjectProblem$number_of_features()}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    An \code{integer} value.
+  }
 }
 
-\subsection{Returns}{
-An \code{integer} value.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-ProjectProblem-action_names"></a>}}
 \if{latex}{\out{\hypertarget{method-ProjectProblem-action_names}{}}}
-\subsection{Method \code{action_names()}}{
-Obtain the names of the actions.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ProjectProblem$action_names()}\if{html}{\out{</div>}}
+\subsection{\code{ProjectProblem$action_names()}}{
+  Obtain the names of the actions.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{ProjectProblem$action_names()}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    A \code{character} vector.
+  }
 }
 
-\subsection{Returns}{
-A \code{character} vector.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-ProjectProblem-project_names"></a>}}
 \if{latex}{\out{\hypertarget{method-ProjectProblem-project_names}{}}}
-\subsection{Method \code{project_names()}}{
-Obtain the names of the projects.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ProjectProblem$project_names()}\if{html}{\out{</div>}}
+\subsection{\code{ProjectProblem$project_names()}}{
+  Obtain the names of the projects.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{ProjectProblem$project_names()}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    A \code{character} vector.
+  }
 }
 
-\subsection{Returns}{
-A \code{character} vector.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-ProjectProblem-feature_names"></a>}}
 \if{latex}{\out{\hypertarget{method-ProjectProblem-feature_names}{}}}
-\subsection{Method \code{feature_names()}}{
-Obtain the names of the features.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ProjectProblem$feature_names()}\if{html}{\out{</div>}}
+\subsection{\code{ProjectProblem$feature_names()}}{
+  Obtain the names of the features.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{ProjectProblem$feature_names()}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    A \code{character} vector.
+  }
 }
 
-\subsection{Returns}{
-A \code{character} vector.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-ProjectProblem-feature_weights"></a>}}
 \if{latex}{\out{\hypertarget{method-ProjectProblem-feature_weights}{}}}
-\subsection{Method \code{feature_weights()}}{
-Obtain the feature weights.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ProjectProblem$feature_weights()}\if{html}{\out{</div>}}
+\subsection{\code{ProjectProblem$feature_weights()}}{
+  Obtain the feature weights.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{ProjectProblem$feature_weights()}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    A named \code{numeric} vector.
+  }
 }
 
-\subsection{Returns}{
-A named \code{numeric} vector.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-ProjectProblem-feature_targets"></a>}}
 \if{latex}{\out{\hypertarget{method-ProjectProblem-feature_targets}{}}}
-\subsection{Method \code{feature_targets()}}{
-Obtain the feature targets.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ProjectProblem$feature_targets()}\if{html}{\out{</div>}}
+\subsection{\code{ProjectProblem$feature_targets()}}{
+  Obtain the feature targets.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{ProjectProblem$feature_targets()}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    A \code{\link[tibble:tibble]{tibble::tibble()}} object.
+  }
 }
 
-\subsection{Returns}{
-A \code{\link[tibble:tibble]{tibble::tibble()}} object.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-ProjectProblem-feature_phylogeny"></a>}}
 \if{latex}{\out{\hypertarget{method-ProjectProblem-feature_phylogeny}{}}}
-\subsection{Method \code{feature_phylogeny()}}{
-Obtain the feature phylogeny.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ProjectProblem$feature_phylogeny()}\if{html}{\out{</div>}}
+\subsection{\code{ProjectProblem$feature_phylogeny()}}{
+  Obtain the feature phylogeny.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{ProjectProblem$feature_phylogeny()}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    A \code{\link[ape:phylo]{ape::phylo()}} phylogenetic tree object.
+  }
 }
 
-\subsection{Returns}{
-A \code{\link[ape:read.tree]{ape::phylo()}} phylogenetic tree object.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-ProjectProblem-action_costs"></a>}}
 \if{latex}{\out{\hypertarget{method-ProjectProblem-action_costs}{}}}
-\subsection{Method \code{action_costs()}}{
-Obtain the action costs.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ProjectProblem$action_costs()}\if{html}{\out{</div>}}
+\subsection{\code{ProjectProblem$action_costs()}}{
+  Obtain the action costs.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{ProjectProblem$action_costs()}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    A \code{numeric} vector.
+  }
 }
 
-\subsection{Returns}{
-A \code{numeric} vector.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-ProjectProblem-project_costs"></a>}}
 \if{latex}{\out{\hypertarget{method-ProjectProblem-project_costs}{}}}
-\subsection{Method \code{project_costs()}}{
-Obtain the project costs.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ProjectProblem$project_costs()}\if{html}{\out{</div>}}
+\subsection{\code{ProjectProblem$project_costs()}}{
+  Obtain the project costs.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{ProjectProblem$project_costs()}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    A \code{numeric} vector.
+  }
 }
 
-\subsection{Returns}{
-A \code{numeric} vector.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-ProjectProblem-project_success_probabilities"></a>}}
 \if{latex}{\out{\hypertarget{method-ProjectProblem-project_success_probabilities}{}}}
-\subsection{Method \code{project_success_probabilities()}}{
-Obtain the probability that each project will succeed if funded.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ProjectProblem$project_success_probabilities()}\if{html}{\out{</div>}}
+\subsection{\code{ProjectProblem$project_success_probabilities()}}{
+  Obtain the probability that each project will succeed if funded.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{ProjectProblem$project_success_probabilities()}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    A \code{numeric} vector.
+  }
 }
 
-\subsection{Returns}{
-A \code{numeric} vector.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-ProjectProblem-of_matrix"></a>}}
 \if{latex}{\out{\hypertarget{method-ProjectProblem-of_matrix}{}}}
-\subsection{Method \code{of_matrix()}}{
-Obtain information on the outcome for each feature that would be
+\subsection{\code{ProjectProblem$of_matrix()}}{
+  Obtain information on the outcome for each feature that would be
 expected if each project funded and is successfully completed.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ProjectProblem$of_matrix()}\if{html}{\out{</div>}}
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{ProjectProblem$of_matrix()}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    A \link[Matrix:dgCMatrix-class]{Matrix::dgCMatrix} object.
+  }
 }
 
-\subsection{Returns}{
-A \link[Matrix:dgCMatrix-class]{Matrix::dgCMatrix} object.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-ProjectProblem-pa_matrix"></a>}}
 \if{latex}{\out{\hypertarget{method-ProjectProblem-pa_matrix}{}}}
-\subsection{Method \code{pa_matrix()}}{
-Obtain information on which actions are associated with each project.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ProjectProblem$pa_matrix()}\if{html}{\out{</div>}}
+\subsection{\code{ProjectProblem$pa_matrix()}}{
+  Obtain information on which actions are associated with each project.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{ProjectProblem$pa_matrix()}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    A \link[Matrix:dgCMatrix-class]{Matrix::dgCMatrix} object.
+  }
 }
 
-\subsection{Returns}{
-A \link[Matrix:dgCMatrix-class]{Matrix::dgCMatrix} object.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-ProjectProblem-eof_matrix"></a>}}
 \if{latex}{\out{\hypertarget{method-ProjectProblem-eof_matrix}{}}}
-\subsection{Method \code{eof_matrix()}}{
-Calculate the expected outcome for each feature assuming that each
+\subsection{\code{ProjectProblem$eof_matrix()}}{
+  Calculate the expected outcome for each feature assuming that each
 project is funded and accounting for the possibility that
 funded projects may fail to be successfully completed.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ProjectProblem$eof_matrix()}\if{html}{\out{</div>}}
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{ProjectProblem$eof_matrix()}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    A \link[Matrix:dgCMatrix-class]{Matrix::dgCMatrix} object.
+  }
 }
 
-\subsection{Returns}{
-A \link[Matrix:dgCMatrix-class]{Matrix::dgCMatrix} object.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-ProjectProblem-add_solver"></a>}}
 \if{latex}{\out{\hypertarget{method-ProjectProblem-add_solver}{}}}
-\subsection{Method \code{add_solver()}}{
-Create a new object with a solver added to the problem formulation.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ProjectProblem$add_solver(x)}\if{html}{\out{</div>}}
+\subsection{\code{ProjectProblem$add_solver()}}{
+  Create a new object with a solver added to the problem formulation.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{ProjectProblem$add_solver(x)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{x}}{\link[=Solver-class]{Solver} object.}
+    }
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    An updated \code{ProjectProblem} object.
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{x}}{\linkS4class{Solver} object.}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-An updated \code{ProjectProblem} object.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-ProjectProblem-add_targets"></a>}}
 \if{latex}{\out{\hypertarget{method-ProjectProblem-add_targets}{}}}
-\subsection{Method \code{add_targets()}}{
-Create a new object with targets added to the problem formulation.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ProjectProblem$add_targets(x)}\if{html}{\out{</div>}}
+\subsection{\code{ProjectProblem$add_targets()}}{
+  Create a new object with targets added to the problem formulation.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{ProjectProblem$add_targets(x)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{x}}{\link[=Target-class]{Target} object.}
+    }
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    An updated \code{ProjectProblem} object.
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{x}}{\linkS4class{Target} object.}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-An updated \code{ProjectProblem} object.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-ProjectProblem-add_weights"></a>}}
 \if{latex}{\out{\hypertarget{method-ProjectProblem-add_weights}{}}}
-\subsection{Method \code{add_weights()}}{
-Create a new object with weights added to the problem formulation.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ProjectProblem$add_weights(x)}\if{html}{\out{</div>}}
+\subsection{\code{ProjectProblem$add_weights()}}{
+  Create a new object with weights added to the problem formulation.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{ProjectProblem$add_weights(x)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{x}}{\link[=Weight-class]{Weight} object.}
+    }
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    An updated \code{ProjectProblem} object.
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{x}}{\linkS4class{Weight} object.}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-An updated \code{ProjectProblem} object.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-ProjectProblem-add_objective"></a>}}
 \if{latex}{\out{\hypertarget{method-ProjectProblem-add_objective}{}}}
-\subsection{Method \code{add_objective()}}{
-Create a new object with the objective added to the problem formulation.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ProjectProblem$add_objective(x)}\if{html}{\out{</div>}}
+\subsection{\code{ProjectProblem$add_objective()}}{
+  Create a new object with the objective added to the problem formulation.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{ProjectProblem$add_objective(x)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{x}}{\link[=Objective-class]{Objective} object.}
+    }
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    An updated \code{ProjectProblem} object.
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{x}}{\linkS4class{Objective} object.}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-An updated \code{ProjectProblem} object.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-ProjectProblem-add_decisions"></a>}}
 \if{latex}{\out{\hypertarget{method-ProjectProblem-add_decisions}{}}}
-\subsection{Method \code{add_decisions()}}{
-Create a new object with the decisions added to the problem formulation.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ProjectProblem$add_decisions(x)}\if{html}{\out{</div>}}
+\subsection{\code{ProjectProblem$add_decisions()}}{
+  Create a new object with the decisions added to the problem formulation.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{ProjectProblem$add_decisions(x)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{x}}{\link[=Objective-class]{Objective} object.}
+    }
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    An updated \code{ProjectProblem} object.
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{x}}{\linkS4class{Objective} object.}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-An updated \code{ProjectProblem} object.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-ProjectProblem-add_constraint"></a>}}
 \if{latex}{\out{\hypertarget{method-ProjectProblem-add_constraint}{}}}
-\subsection{Method \code{add_constraint()}}{
-Create a new object with the constraint added to the problem formulation.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ProjectProblem$add_constraint(x)}\if{html}{\out{</div>}}
+\subsection{\code{ProjectProblem$add_constraint()}}{
+  Create a new object with the constraint added to the problem formulation.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{ProjectProblem$add_constraint(x)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{x}}{\link[=Constraint-class]{Constraint} object.}
+    }
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    An updated \code{ProjectProblem} object.
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{x}}{\linkS4class{Constraint} object.}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-An updated \code{ProjectProblem} object.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-ProjectProblem-clone"></a>}}
 \if{latex}{\out{\hypertarget{method-ProjectProblem-clone}{}}}
-\subsection{Method \code{clone()}}{
-The objects of this class are cloneable with this method.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ProjectProblem$clone(deep = FALSE)}\if{html}{\out{</div>}}
+\subsection{\code{ProjectProblem$clone()}}{
+  The objects of this class are cloneable with this method.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{ProjectProblem$clone(deep = FALSE)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{deep}}{Whether to make a deep clone.}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{deep}}{Whether to make a deep clone.}
-}
-\if{html}{\out{</div>}}
-}
-}
 }

@@ -5,20 +5,15 @@
 \alias{ProjectModifier}
 \title{Conservation problem modifier class}
 \description{
-Conservation problem modifier class
-
-Conservation problem modifier class
-}
-\details{
 This super-class is used to represent prototypes that in turn are used to
-modify a \linkS4class{ProjectProblem} object. Specifically, the
-\linkS4class{Constraint}, \linkS4class{Decision},
-\linkS4class{Objective}, and \linkS4class{Target} prototypes
+modify a \link[=ProjectProblem-class]{ProjectProblem} object. Specifically, the
+\link[=Constraint-class]{Constraint}, \link[=Decision-class]{Decision},
+\link[=Objective-class]{Objective}, and \link[=Target-class]{Target} prototypes
 inherit from this class.
 \strong{Only experts should use the fields and methods for this class directly.}
 }
 \seealso{
-Other classes: 
+Other classes:
 \code{\link{Constraint-class}},
 \code{\link{Decision-class}},
 \code{\link{MultiObjApproach-class}},
@@ -32,220 +27,237 @@ Other classes:
 }
 \concept{classes}
 \section{Public fields}{
-\if{html}{\out{<div class="r6-fields">}}
-\describe{
-\item{\code{name}}{\code{character} value.}
+  \if{html}{\out{<div class="r6-fields">}}
+  \describe{
+    \item{\code{name}}{\code{character} value.}
 
-\item{\code{data}}{\code{list} containing data.}
+    \item{\code{data}}{\code{list} containing data.}
 
-\item{\code{internal}}{\code{list} containing internal computed values.}
-}
-\if{html}{\out{</div>}}
+    \item{\code{internal}}{\code{list} containing internal computed values.}
+  }
+  \if{html}{\out{</div>}}
 }
 \section{Methods}{
 \subsection{Public methods}{
-\itemize{
-\item \href{#method-ProjectModifier-print}{\code{ProjectModifier$print()}}
-\item \href{#method-ProjectModifier-show}{\code{ProjectModifier$show()}}
-\item \href{#method-ProjectModifier-repr}{\code{ProjectModifier$repr()}}
-\item \href{#method-ProjectModifier-get_data}{\code{ProjectModifier$get_data()}}
-\item \href{#method-ProjectModifier-set_data}{\code{ProjectModifier$set_data()}}
-\item \href{#method-ProjectModifier-get_internal}{\code{ProjectModifier$get_internal()}}
-\item \href{#method-ProjectModifier-set_internal}{\code{ProjectModifier$set_internal()}}
-\item \href{#method-ProjectModifier-calculate}{\code{ProjectModifier$calculate()}}
-\item \href{#method-ProjectModifier-apply}{\code{ProjectModifier$apply()}}
-\item \href{#method-ProjectModifier-clone}{\code{ProjectModifier$clone()}}
-}
+  \itemize{
+    \item \href{#method-ProjectModifier-print}{\code{ProjectModifier$print()}}
+    \item \href{#method-ProjectModifier-show}{\code{ProjectModifier$show()}}
+    \item \href{#method-ProjectModifier-repr}{\code{ProjectModifier$repr()}}
+    \item \href{#method-ProjectModifier-get_data}{\code{ProjectModifier$get_data()}}
+    \item \href{#method-ProjectModifier-set_data}{\code{ProjectModifier$set_data()}}
+    \item \href{#method-ProjectModifier-get_internal}{\code{ProjectModifier$get_internal()}}
+    \item \href{#method-ProjectModifier-set_internal}{\code{ProjectModifier$set_internal()}}
+    \item \href{#method-ProjectModifier-calculate}{\code{ProjectModifier$calculate()}}
+    \item \href{#method-ProjectModifier-apply}{\code{ProjectModifier$apply()}}
+    \item \href{#method-ProjectModifier-clone}{\code{ProjectModifier$clone()}}
+  }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-ProjectModifier-print"></a>}}
 \if{latex}{\out{\hypertarget{method-ProjectModifier-print}{}}}
-\subsection{Method \code{print()}}{
-Print information about the object.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ProjectModifier$print()}\if{html}{\out{</div>}}
+\subsection{\code{ProjectModifier$print()}}{
+  Print information about the object.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{ProjectModifier$print()}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    None.
+  }
 }
 
-\subsection{Returns}{
-None.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-ProjectModifier-show"></a>}}
 \if{latex}{\out{\hypertarget{method-ProjectModifier-show}{}}}
-\subsection{Method \code{show()}}{
-Print information about the object.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ProjectModifier$show()}\if{html}{\out{</div>}}
+\subsection{\code{ProjectModifier$show()}}{
+  Print information about the object.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{ProjectModifier$show()}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    None.
+  }
 }
 
-\subsection{Returns}{
-None.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-ProjectModifier-repr"></a>}}
 \if{latex}{\out{\hypertarget{method-ProjectModifier-repr}{}}}
-\subsection{Method \code{repr()}}{
-Generate a character representation of the object.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ProjectModifier$repr()}\if{html}{\out{</div>}}
+\subsection{\code{ProjectModifier$repr()}}{
+  Generate a character representation of the object.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{ProjectModifier$repr()}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    A \code{character} value.
+  }
 }
 
-\subsection{Returns}{
-A \code{character} value.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-ProjectModifier-get_data"></a>}}
 \if{latex}{\out{\hypertarget{method-ProjectModifier-get_data}{}}}
-\subsection{Method \code{get_data()}}{
-Get values stored in the \code{data} field.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ProjectModifier$get_data(x)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{x}}{\code{character} name of data.}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-An object. If the \code{data} field does not contain an object
+\subsection{\code{ProjectModifier$get_data()}}{
+  Get values stored in the \code{data} field.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{ProjectModifier$get_data(x)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{x}}{\code{character} name of data.}
+    }
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    An object. If the \code{data} field does not contain an object
 associated with the argument to \code{x}, then a \code{\link[=new_waiver]{new_waiver()}} object is
 returned.
 Set values stored in the \code{data} field. Note that this method will
 overwrite existing data.
+  }
 }
-}
+
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-ProjectModifier-set_data"></a>}}
 \if{latex}{\out{\hypertarget{method-ProjectModifier-set_data}{}}}
-\subsection{Method \code{set_data()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ProjectModifier$set_data(x, value)}\if{html}{\out{</div>}}
+\subsection{\code{ProjectModifier$set_data()}}{
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{ProjectModifier$set_data(x, value)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{x}}{\code{character} name of data.}
+      \item{\code{value}}{Object to store.}
+    }
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    Invisible \code{TRUE}.
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{x}}{\code{character} name of data.}
-
-\item{\code{value}}{Object to store.}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-Invisible \code{TRUE}.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-ProjectModifier-get_internal"></a>}}
 \if{latex}{\out{\hypertarget{method-ProjectModifier-get_internal}{}}}
-\subsection{Method \code{get_internal()}}{
-Get values stored in the \code{internal} field.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ProjectModifier$get_internal(x)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{x}}{\code{character} name of data.}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-An object. If the \code{internal} field does not contain an object
+\subsection{\code{ProjectModifier$get_internal()}}{
+  Get values stored in the \code{internal} field.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{ProjectModifier$get_internal(x)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{x}}{\code{character} name of data.}
+    }
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    An object. If the \code{internal} field does not contain an object
 associated with the argument to \code{x}, then a \code{\link[=new_waiver]{new_waiver()}} object is
 returned.
+  }
 }
-}
+
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-ProjectModifier-set_internal"></a>}}
 \if{latex}{\out{\hypertarget{method-ProjectModifier-set_internal}{}}}
-\subsection{Method \code{set_internal()}}{
-Set values stored in the \code{internal} field. Note that this method will
+\subsection{\code{ProjectModifier$set_internal()}}{
+  Set values stored in the \code{internal} field. Note that this method will
 overwrite existing data.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ProjectModifier$set_internal(x, value)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{x}}{\code{character} name of data.}
-
-\item{\code{value}}{Object to store.}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-An object. If the \code{internal} field does not contain an object
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{ProjectModifier$set_internal(x, value)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{x}}{\code{character} name of data.}
+      \item{\code{value}}{Object to store.}
+    }
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    An object. If the \code{internal} field does not contain an object
 associated with the argument to \code{x}, then a \code{\link[=new_waiver]{new_waiver()}} object is
 returned.
+  }
 }
-}
+
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-ProjectModifier-calculate"></a>}}
 \if{latex}{\out{\hypertarget{method-ProjectModifier-calculate}{}}}
-\subsection{Method \code{calculate()}}{
-Perform computations that need to be completed before applying
+\subsection{\code{ProjectModifier$calculate()}}{
+  Perform computations that need to be completed before applying
 the object.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ProjectModifier$calculate(x, y)}\if{html}{\out{</div>}}
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{ProjectModifier$calculate(x, y)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{x}}{\code{\link[=new_optimization_problem]{new_optimization_problem()}} object.}
+      \item{\code{y}}{\code{\link[=problem]{problem()}} object.}
+    }
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    Invisible \code{TRUE}.
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{x}}{\code{\link[=new_optimization_problem]{new_optimization_problem()}} object.}
-
-\item{\code{y}}{\code{\link[=problem]{problem()}} object.}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-Invisible \code{TRUE}.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-ProjectModifier-apply"></a>}}
 \if{latex}{\out{\hypertarget{method-ProjectModifier-apply}{}}}
-\subsection{Method \code{apply()}}{
-Update an optimization problem formulation.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ProjectModifier$apply(x)}\if{html}{\out{</div>}}
+\subsection{\code{ProjectModifier$apply()}}{
+  Update an optimization problem formulation.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{ProjectModifier$apply(x)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{x}}{\code{\link[=new_optimization_problem]{new_optimization_problem()}} object.}
+    }
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    Invisible \code{TRUE}.
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{x}}{\code{\link[=new_optimization_problem]{new_optimization_problem()}} object.}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-Invisible \code{TRUE}.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-ProjectModifier-clone"></a>}}
 \if{latex}{\out{\hypertarget{method-ProjectModifier-clone}{}}}
-\subsection{Method \code{clone()}}{
-The objects of this class are cloneable with this method.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ProjectModifier$clone(deep = FALSE)}\if{html}{\out{</div>}}
+\subsection{\code{ProjectModifier$clone()}}{
+  The objects of this class are cloneable with this method.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{ProjectModifier$clone(deep = FALSE)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{deep}}{Whether to make a deep clone.}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{deep}}{Whether to make a deep clone.}
-}
-\if{html}{\out{</div>}}
-}
-}
 }

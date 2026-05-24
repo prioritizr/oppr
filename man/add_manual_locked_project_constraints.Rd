@@ -79,11 +79,11 @@ print(s)
 
 }
 \seealso{
-Other constraints: 
-\code{\link{add_locked_in_action_constraints}()},
-\code{\link{add_locked_in_project_constraints}()},
-\code{\link{add_locked_out_action_constraints}()},
-\code{\link{add_locked_out_project_constraints}()},
-\code{\link{add_manual_locked_action_constraints}()}
+Other constraints:
+\code{\link[=add_locked_in_action_constraints]{add_locked_in_action_constraints()}},
+\code{\link[=add_locked_in_project_constraints]{add_locked_in_project_constraints()}},
+\code{\link[=add_locked_out_action_constraints]{add_locked_out_action_constraints()}},
+\code{\link[=add_locked_out_project_constraints]{add_locked_out_project_constraints()}},
+\code{\link[=add_manual_locked_action_constraints]{add_manual_locked_action_constraints()}}
 }
 \concept{constraints}

@@ -79,7 +79,7 @@ p <-
         baseline_project_name = "baseline_project_obj1"
       ) \%>\%
       add_max_phylo_div_objective(
-       budget = 1000, tree = sim_multi_tree[[1]]
+        budget = 1000, tree = sim_multi_tree[[1]]
       ) \%>\%
       add_binary_decisions(),
    obj2 =
@@ -117,8 +117,8 @@ Jones D and Tamiz M (2010) \emph{Goal Programming Variants}.
 and Management Science, volume 141. Springer, Boston, MA.
 }
 \seealso{
-Other approaches: 
-\code{\link{add_abs_constraint_approach}()},
-\code{\link{add_ref_point_approach}()}
+Other approaches:
+\code{\link[=add_abs_constraint_approach]{add_abs_constraint_approach()}},
+\code{\link[=add_ref_point_approach]{add_ref_point_approach()}}
 }
 \concept{approaches}

@@ -9,7 +9,7 @@ This class is used to represent solvers for optimization.
 \strong{Only experts should use the fields and methods for this class directly.}
 }
 \seealso{
-Other classes: 
+Other classes:
 \code{\link{Constraint-class}},
 \code{\link{Decision-class}},
 \code{\link{MultiObjApproach-class}},
@@ -23,117 +23,122 @@ Other classes:
 }
 \concept{classes}
 \section{Super class}{
-\code{\link[oppr:ProjectModifier]{oppr::ProjectModifier}} -> \code{Solver}
+\code{\link[oppr:ProjectModifier]{ProjectModifier}} -> \code{Solver}
 }
 \section{Public fields}{
-\if{html}{\out{<div class="r6-fields">}}
-\describe{
-\item{\code{has_pwlobj}}{\code{logical} indicating if solver supports piece-wise
+  \if{html}{\out{<div class="r6-fields">}}
+  \describe{
+    \item{\code{has_pwlobj}}{\code{logical} indicating if solver supports piece-wise
 linear components in an objective function.}
-}
-\if{html}{\out{</div>}}
+  }
+  \if{html}{\out{</div>}}
 }
 \section{Methods}{
 \subsection{Public methods}{
-\itemize{
-\item \href{#method-Solver-set_start_solution}{\code{Solver$set_start_solution()}}
-\item \href{#method-Solver-remove_start_solution}{\code{Solver$remove_start_solution()}}
-\item \href{#method-Solver-solve}{\code{Solver$solve()}}
-\item \href{#method-Solver-clone}{\code{Solver$clone()}}
+  \itemize{
+    \item \href{#method-Solver-set_start_solution}{\code{Solver$set_start_solution()}}
+    \item \href{#method-Solver-remove_start_solution}{\code{Solver$remove_start_solution()}}
+    \item \href{#method-Solver-solve}{\code{Solver$solve()}}
+    \item \href{#method-Solver-clone}{\code{Solver$clone()}}
+  }
 }
-}
-\if{html}{\out{
-<details><summary>Inherited methods</summary>
+\if{html}{\out{<details><summary>Inherited methods</summary>
 <ul>
-<li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="apply"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-apply'><code>oppr::ProjectModifier$apply()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="calculate"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-calculate'><code>oppr::ProjectModifier$calculate()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="get_data"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-get_data'><code>oppr::ProjectModifier$get_data()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="get_internal"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-get_internal'><code>oppr::ProjectModifier$get_internal()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="print"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-print'><code>oppr::ProjectModifier$print()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="repr"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-repr'><code>oppr::ProjectModifier$repr()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="set_data"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-set_data'><code>oppr::ProjectModifier$set_data()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="set_internal"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-set_internal'><code>oppr::ProjectModifier$set_internal()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="show"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-show'><code>oppr::ProjectModifier$show()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="apply"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-apply'><code>ProjectModifier$apply()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="calculate"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-calculate'><code>ProjectModifier$calculate()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="get_data"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-get_data'><code>ProjectModifier$get_data()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="get_internal"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-get_internal'><code>ProjectModifier$get_internal()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="print"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-print'><code>ProjectModifier$print()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="repr"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-repr'><code>ProjectModifier$repr()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="set_data"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-set_data'><code>ProjectModifier$set_data()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="set_internal"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-set_internal'><code>ProjectModifier$set_internal()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="show"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-show'><code>ProjectModifier$show()</code></a></span></li>
 </ul>
-</details>
-}}
+</details>}}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Solver-set_start_solution"></a>}}
 \if{latex}{\out{\hypertarget{method-Solver-set_start_solution}{}}}
-\subsection{Method \code{set_start_solution()}}{
-Set start solution.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Solver$set_start_solution(x)}\if{html}{\out{</div>}}
+\subsection{\code{Solver$set_start_solution()}}{
+  Set start solution.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{Solver$set_start_solution(x)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{x}}{\code{numeric} vector.}
+    }
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    Invisible \code{TRUE}.
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{x}}{\code{numeric} vector.}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-Invisible \code{TRUE}.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Solver-remove_start_solution"></a>}}
 \if{latex}{\out{\hypertarget{method-Solver-remove_start_solution}{}}}
-\subsection{Method \code{remove_start_solution()}}{
-Remove start solution.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Solver$remove_start_solution(x)}\if{html}{\out{</div>}}
+\subsection{\code{Solver$remove_start_solution()}}{
+  Remove start solution.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{Solver$remove_start_solution(x)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{x}}{\code{numeric} vector.}
+    }
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    Invisible \code{TRUE}.
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{x}}{\code{numeric} vector.}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-Invisible \code{TRUE}.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Solver-solve"></a>}}
 \if{latex}{\out{\hypertarget{method-Solver-solve}{}}}
-\subsection{Method \code{solve()}}{
-Solve an optimization problem.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Solver$solve(x, ...)}\if{html}{\out{</div>}}
+\subsection{\code{Solver$solve()}}{
+  Solve an optimization problem.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{Solver$solve(x, ...)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{x}}{\code{\link[=new_optimization_problem]{new_optimization_problem()}} object.}
+      \item{\code{...}}{Additional arguments as needed.}
+    }
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    Invisible \code{TRUE}.
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{x}}{\code{\link[=new_optimization_problem]{new_optimization_problem()}} object.}
-
-\item{\code{...}}{Additional arguments as needed.}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-Invisible \code{TRUE}.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Solver-clone"></a>}}
 \if{latex}{\out{\hypertarget{method-Solver-clone}{}}}
-\subsection{Method \code{clone()}}{
-The objects of this class are cloneable with this method.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Solver$clone(deep = FALSE)}\if{html}{\out{</div>}}
+\subsection{\code{Solver$clone()}}{
+  The objects of this class are cloneable with this method.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{Solver$clone(deep = FALSE)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{deep}}{Whether to make a deep clone.}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{deep}}{Whether to make a deep clone.}
-}
-\if{html}{\out{</div>}}
-}
-}
 }

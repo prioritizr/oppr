@@ -172,10 +172,10 @@ resources among threatened species: A project prioritization protocol.
 \emph{Conservation Biology}, \strong{23}, 328--338.
 }
 \seealso{
-Other objectives: 
-\code{\link{add_max_phylo_div_objective}()},
-\code{\link{add_max_targets_met_objective}()},
-\code{\link{add_max_wtd_sum_objective}()},
-\code{\link{add_min_set_objective}()}
+Other objectives:
+\code{\link[=add_max_phylo_div_objective]{add_max_phylo_div_objective()}},
+\code{\link[=add_max_targets_met_objective]{add_max_targets_met_objective()}},
+\code{\link[=add_max_wtd_sum_objective]{add_max_wtd_sum_objective()}},
+\code{\link[=add_min_set_objective]{add_min_set_objective()}}
 }
 \concept{objectives}

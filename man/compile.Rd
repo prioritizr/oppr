@@ -16,7 +16,7 @@ compile(x, ...)
 \method{multi_compile}{list}(x, ...)
 }
 \arguments{
-\item{x}{\linkS4class{ProjectProblem} object.}
+\item{x}{\link[=ProjectProblem-class]{ProjectProblem} object.}
 
 \item{...}{not used.}
 
@@ -25,7 +25,7 @@ linear approximations of non-linear terms.
 Defaults to 100.}
 }
 \value{
-An \linkS4class{OptimizationProblem} object.
+An \link[=OptimizationProblem-class]{OptimizationProblem} object.
 }
 \description{
 Compile a project prioritization \code{\link[=problem]{problem()}} into a general

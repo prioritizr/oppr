@@ -100,11 +100,11 @@ print(s5[, sim_actions$name])
 }
 }
 \seealso{
-Other overviews: 
+Other overviews:
 \code{\link{approaches}},
 \code{\link{objectives}},
 \code{\link{solvers}},
 \code{\link{targets}},
-\code{\link{weights}()}
+\code{\link{weights}}
 }
 \concept{overviews}

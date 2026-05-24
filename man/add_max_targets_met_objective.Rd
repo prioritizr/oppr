@@ -198,10 +198,10 @@ Carwardine J (2015) Benefits of integrating complementarity into priority
 threat management. \emph{Conservation Biology}, \strong{29}, 525--536.
 }
 \seealso{
-Other objectives: 
-\code{\link{add_max_phylo_div_objective}()},
-\code{\link{add_max_richness_objective}()},
-\code{\link{add_max_wtd_sum_objective}()},
-\code{\link{add_min_set_objective}()}
+Other objectives:
+\code{\link[=add_max_phylo_div_objective]{add_max_phylo_div_objective()}},
+\code{\link[=add_max_richness_objective]{add_max_richness_objective()}},
+\code{\link[=add_max_wtd_sum_objective]{add_max_wtd_sum_objective()}},
+\code{\link[=add_min_set_objective]{add_min_set_objective()}}
 }
 \concept{objectives}

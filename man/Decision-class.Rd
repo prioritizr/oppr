@@ -9,7 +9,7 @@ This class is used to represent the decision variables used in optimization.
 \strong{Only experts should use the fields and methods for this class directly.}
 }
 \seealso{
-Other classes: 
+Other classes:
 \code{\link{Constraint-class}},
 \code{\link{MultiObjApproach-class}},
 \code{\link{MultiObjProjectProblem-class}},
@@ -23,44 +23,44 @@ Other classes:
 }
 \concept{classes}
 \section{Super class}{
-\code{\link[oppr:ProjectModifier]{oppr::ProjectModifier}} -> \code{Decision}
+\code{\link[oppr:ProjectModifier]{ProjectModifier}} -> \code{Decision}
 }
 \section{Methods}{
 \subsection{Public methods}{
-\itemize{
-\item \href{#method-Decision-clone}{\code{Decision$clone()}}
+  \itemize{
+    \item \href{#method-Decision-clone}{\code{Decision$clone()}}
+  }
 }
-}
-\if{html}{\out{
-<details><summary>Inherited methods</summary>
+\if{html}{\out{<details><summary>Inherited methods</summary>
 <ul>
-<li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="apply"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-apply'><code>oppr::ProjectModifier$apply()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="calculate"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-calculate'><code>oppr::ProjectModifier$calculate()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="get_data"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-get_data'><code>oppr::ProjectModifier$get_data()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="get_internal"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-get_internal'><code>oppr::ProjectModifier$get_internal()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="print"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-print'><code>oppr::ProjectModifier$print()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="repr"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-repr'><code>oppr::ProjectModifier$repr()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="set_data"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-set_data'><code>oppr::ProjectModifier$set_data()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="set_internal"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-set_internal'><code>oppr::ProjectModifier$set_internal()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="show"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-show'><code>oppr::ProjectModifier$show()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="apply"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-apply'><code>ProjectModifier$apply()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="calculate"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-calculate'><code>ProjectModifier$calculate()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="get_data"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-get_data'><code>ProjectModifier$get_data()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="get_internal"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-get_internal'><code>ProjectModifier$get_internal()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="print"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-print'><code>ProjectModifier$print()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="repr"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-repr'><code>ProjectModifier$repr()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="set_data"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-set_data'><code>ProjectModifier$set_data()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="set_internal"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-set_internal'><code>ProjectModifier$set_internal()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="show"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-show'><code>ProjectModifier$show()</code></a></span></li>
 </ul>
-</details>
-}}
+</details>}}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Decision-clone"></a>}}
 \if{latex}{\out{\hypertarget{method-Decision-clone}{}}}
-\subsection{Method \code{clone()}}{
-The objects of this class are cloneable with this method.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Decision$clone(deep = FALSE)}\if{html}{\out{</div>}}
+\subsection{\code{Decision$clone()}}{
+  The objects of this class are cloneable with this method.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{Decision$clone(deep = FALSE)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{deep}}{Whether to make a deep clone.}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{deep}}{Whether to make a deep clone.}
-}
-\if{html}{\out{</div>}}
-}
-}
 }

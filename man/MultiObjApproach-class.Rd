@@ -9,7 +9,7 @@ This class is used to represent approaches for multi-objective optimization.
 \strong{Only experts should use the fields and methods for this class directly.}
 }
 \seealso{
-Other classes: 
+Other classes:
 \code{\link{Constraint-class}},
 \code{\link{Decision-class}},
 \code{\link{MultiObjProjectProblem-class}},
@@ -23,90 +23,93 @@ Other classes:
 }
 \concept{classes}
 \section{Super class}{
-\code{\link[oppr:ProjectModifier]{oppr::ProjectModifier}} -> \code{MultiObjApproach}
+\code{\link[oppr:ProjectModifier]{ProjectModifier}} -> \code{MultiObjApproach}
 }
 \section{Methods}{
 \subsection{Public methods}{
-\itemize{
-\item \href{#method-MultiObjApproach-calculate}{\code{MultiObjApproach$calculate()}}
-\item \href{#method-MultiObjApproach-run}{\code{MultiObjApproach$run()}}
-\item \href{#method-MultiObjApproach-clone}{\code{MultiObjApproach$clone()}}
+  \itemize{
+    \item \href{#method-MultiObjApproach-calculate}{\code{MultiObjApproach$calculate()}}
+    \item \href{#method-MultiObjApproach-run}{\code{MultiObjApproach$run()}}
+    \item \href{#method-MultiObjApproach-clone}{\code{MultiObjApproach$clone()}}
+  }
 }
-}
-\if{html}{\out{
-<details><summary>Inherited methods</summary>
+\if{html}{\out{<details><summary>Inherited methods</summary>
 <ul>
-<li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="apply"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-apply'><code>oppr::ProjectModifier$apply()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="get_data"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-get_data'><code>oppr::ProjectModifier$get_data()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="get_internal"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-get_internal'><code>oppr::ProjectModifier$get_internal()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="print"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-print'><code>oppr::ProjectModifier$print()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="repr"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-repr'><code>oppr::ProjectModifier$repr()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="set_data"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-set_data'><code>oppr::ProjectModifier$set_data()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="set_internal"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-set_internal'><code>oppr::ProjectModifier$set_internal()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="show"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-show'><code>oppr::ProjectModifier$show()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="apply"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-apply'><code>ProjectModifier$apply()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="get_data"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-get_data'><code>ProjectModifier$get_data()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="get_internal"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-get_internal'><code>ProjectModifier$get_internal()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="print"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-print'><code>ProjectModifier$print()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="repr"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-repr'><code>ProjectModifier$repr()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="set_data"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-set_data'><code>ProjectModifier$set_data()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="set_internal"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-set_internal'><code>ProjectModifier$set_internal()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="show"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-show'><code>ProjectModifier$show()</code></a></span></li>
 </ul>
-</details>
-}}
+</details>}}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-MultiObjApproach-calculate"></a>}}
 \if{latex}{\out{\hypertarget{method-MultiObjApproach-calculate}{}}}
-\subsection{Method \code{calculate()}}{
-Perform computations that need to be completed before applying
+\subsection{\code{MultiObjApproach$calculate()}}{
+  Perform computations that need to be completed before applying
 the object.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{MultiObjApproach$calculate(x, y)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{x}}{\code{list} containing a compiled multi-objective optimization
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{MultiObjApproach$calculate(x, y)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{x}}{\code{list} containing a compiled multi-objective optimization
 problem (e.g., generated with internal function \code{multi_compile()}).}
+      \item{\code{y}}{\code{\link[=multi_problem]{multi_problem()}} object.}
+    }
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    Invisible \code{TRUE}.
+  }
+}
 
-\item{\code{y}}{\code{\link[=multi_problem]{multi_problem()}} object.}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-Invisible \code{TRUE}.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-MultiObjApproach-run"></a>}}
 \if{latex}{\out{\hypertarget{method-MultiObjApproach-run}{}}}
-\subsection{Method \code{run()}}{
-Solve a multi-objective optimization problem to generate a solution.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{MultiObjApproach$run(x)}\if{html}{\out{</div>}}
+\subsection{\code{MultiObjApproach$run()}}{
+  Solve a multi-objective optimization problem to generate a solution.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{MultiObjApproach$run(x)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{x}}{\code{list} containing a compiled multi-objective optimization
+problem (e.g., generated with internal function \code{multi_compile()}).}
+    }
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    \code{list} of solutions.
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{x}}{\code{list} containing a compiled multi-objective optimization
-problem (e.g., generated with internal function \code{multi_compile()}).}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-\code{list} of solutions.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-MultiObjApproach-clone"></a>}}
 \if{latex}{\out{\hypertarget{method-MultiObjApproach-clone}{}}}
-\subsection{Method \code{clone()}}{
-The objects of this class are cloneable with this method.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{MultiObjApproach$clone(deep = FALSE)}\if{html}{\out{</div>}}
+\subsection{\code{MultiObjApproach$clone()}}{
+  The objects of this class are cloneable with this method.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{MultiObjApproach$clone(deep = FALSE)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{deep}}{Whether to make a deep clone.}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{deep}}{Whether to make a deep clone.}
-}
-\if{html}{\out{</div>}}
-}
-}
 }

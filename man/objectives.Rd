@@ -120,11 +120,11 @@ resources among threatened species: A project prioritization protocol.
 \emph{Conservation Biology}, \strong{23}, 328--338.
 }
 \seealso{
-Other overviews: 
+Other overviews:
 \code{\link{approaches}},
 \code{\link{constraints}},
 \code{\link{solvers}},
 \code{\link{targets}},
-\code{\link{weights}()}
+\code{\link{weights}}
 }
 \concept{overviews}

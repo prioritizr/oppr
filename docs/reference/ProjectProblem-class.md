@@ -2,8 +2,6 @@
 
 Project problem class
 
-Project problem class
-
 ## Description
 
 This class is used to represent project prioritization problems. **Only
@@ -68,7 +66,7 @@ Other classes:
 
 ### Public methods
 
-- [`ProjectProblem$new()`](#method-ProjectProblem-new)
+- [`ProjectProblem$new()`](#method-ProjectProblem-initialize)
 
 - [`ProjectProblem$print()`](#method-ProjectProblem-print)
 
@@ -126,7 +124,7 @@ Other classes:
 
 ------------------------------------------------------------------------
 
-### Method `new()`
+### `ProjectProblem$new()`
 
 Create a new conservation problem object.
 
@@ -146,7 +144,7 @@ A new `ProjectProblem` object.
 
 ------------------------------------------------------------------------
 
-### Method [`print()`](https://rdrr.io/r/base/print.html)
+### `ProjectProblem$print()`
 
 Print concise information about the object.
 
@@ -160,7 +158,7 @@ Invisible `TRUE`.
 
 ------------------------------------------------------------------------
 
-### Method [`show()`](https://prioritizr.github.io/oppr/reference/show.md)
+### `ProjectProblem$show()`
 
 Display concise information about the object.
 
@@ -174,7 +172,7 @@ Invisible `TRUE`.
 
 ------------------------------------------------------------------------
 
-### Method `repr()`
+### `ProjectProblem$repr()`
 
 Generate a character representation of the object.
 
@@ -188,7 +186,7 @@ A `character` value.
 
 ------------------------------------------------------------------------
 
-### Method `get_data()`
+### `ProjectProblem$get_data()`
 
 Get values stored in the `data` field.
 
@@ -211,7 +209,7 @@ object is returned.
 
 ------------------------------------------------------------------------
 
-### Method `set_data()`
+### `ProjectProblem$set_data()`
 
 Set values stored in the `data` field. Note that this method will
 overwrite existing data.
@@ -236,7 +234,7 @@ Invisible `TRUE`.
 
 ------------------------------------------------------------------------
 
-### Method [`number_of_actions()`](https://prioritizr.github.io/oppr/reference/number_of_actions.md)
+### `ProjectProblem$number_of_actions()`
 
 Obtain the number of actions.
 
@@ -250,7 +248,7 @@ An `integer` value.
 
 ------------------------------------------------------------------------
 
-### Method [`number_of_projects()`](https://prioritizr.github.io/oppr/reference/number_of_projects.md)
+### `ProjectProblem$number_of_projects()`
 
 Obtain the number of projects.
 
@@ -264,7 +262,7 @@ An `integer` value.
 
 ------------------------------------------------------------------------
 
-### Method [`number_of_features()`](https://prioritizr.github.io/oppr/reference/number_of_features.md)
+### `ProjectProblem$number_of_features()`
 
 Obtain the number of features.
 
@@ -278,7 +276,7 @@ An `integer` value.
 
 ------------------------------------------------------------------------
 
-### Method [`action_names()`](https://prioritizr.github.io/oppr/reference/action_names.md)
+### `ProjectProblem$action_names()`
 
 Obtain the names of the actions.
 
@@ -292,7 +290,7 @@ A `character` vector.
 
 ------------------------------------------------------------------------
 
-### Method [`project_names()`](https://prioritizr.github.io/oppr/reference/project_names.md)
+### `ProjectProblem$project_names()`
 
 Obtain the names of the projects.
 
@@ -306,7 +304,7 @@ A `character` vector.
 
 ------------------------------------------------------------------------
 
-### Method [`feature_names()`](https://prioritizr.github.io/oppr/reference/feature_names.md)
+### `ProjectProblem$feature_names()`
 
 Obtain the names of the features.
 
@@ -320,7 +318,7 @@ A `character` vector.
 
 ------------------------------------------------------------------------
 
-### Method `feature_weights()`
+### `ProjectProblem$feature_weights()`
 
 Obtain the feature weights.
 
@@ -334,7 +332,7 @@ A named `numeric` vector.
 
 ------------------------------------------------------------------------
 
-### Method `feature_targets()`
+### `ProjectProblem$feature_targets()`
 
 Obtain the feature targets.
 
@@ -350,7 +348,7 @@ object.
 
 ------------------------------------------------------------------------
 
-### Method `feature_phylogeny()`
+### `ProjectProblem$feature_phylogeny()`
 
 Obtain the feature phylogeny.
 
@@ -365,7 +363,7 @@ phylogenetic tree object.
 
 ------------------------------------------------------------------------
 
-### Method `action_costs()`
+### `ProjectProblem$action_costs()`
 
 Obtain the action costs.
 
@@ -379,7 +377,7 @@ A `numeric` vector.
 
 ------------------------------------------------------------------------
 
-### Method `project_costs()`
+### `ProjectProblem$project_costs()`
 
 Obtain the project costs.
 
@@ -393,7 +391,7 @@ A `numeric` vector.
 
 ------------------------------------------------------------------------
 
-### Method `project_success_probabilities()`
+### `ProjectProblem$project_success_probabilities()`
 
 Obtain the probability that each project will succeed if funded.
 
@@ -407,7 +405,7 @@ A `numeric` vector.
 
 ------------------------------------------------------------------------
 
-### Method `of_matrix()`
+### `ProjectProblem$of_matrix()`
 
 Obtain information on the outcome for each feature that would be
 expected if each project funded and is successfully completed.
@@ -424,7 +422,7 @@ object.
 
 ------------------------------------------------------------------------
 
-### Method `pa_matrix()`
+### `ProjectProblem$pa_matrix()`
 
 Obtain information on which actions are associated with each project.
 
@@ -440,7 +438,7 @@ object.
 
 ------------------------------------------------------------------------
 
-### Method `eof_matrix()`
+### `ProjectProblem$eof_matrix()`
 
 Calculate the expected outcome for each feature assuming that each
 project is funded and accounting for the possibility that funded
@@ -458,7 +456,7 @@ object.
 
 ------------------------------------------------------------------------
 
-### Method `add_solver()`
+### `ProjectProblem$add_solver()`
 
 Create a new object with a solver added to the problem formulation.
 
@@ -479,7 +477,7 @@ An updated `ProjectProblem` object.
 
 ------------------------------------------------------------------------
 
-### Method `add_targets()`
+### `ProjectProblem$add_targets()`
 
 Create a new object with targets added to the problem formulation.
 
@@ -500,7 +498,7 @@ An updated `ProjectProblem` object.
 
 ------------------------------------------------------------------------
 
-### Method `add_weights()`
+### `ProjectProblem$add_weights()`
 
 Create a new object with weights added to the problem formulation.
 
@@ -521,7 +519,7 @@ An updated `ProjectProblem` object.
 
 ------------------------------------------------------------------------
 
-### Method `add_objective()`
+### `ProjectProblem$add_objective()`
 
 Create a new object with the objective added to the problem formulation.
 
@@ -542,7 +540,7 @@ An updated `ProjectProblem` object.
 
 ------------------------------------------------------------------------
 
-### Method `add_decisions()`
+### `ProjectProblem$add_decisions()`
 
 Create a new object with the decisions added to the problem formulation.
 
@@ -563,7 +561,7 @@ An updated `ProjectProblem` object.
 
 ------------------------------------------------------------------------
 
-### Method `add_constraint()`
+### `ProjectProblem$add_constraint()`
 
 Create a new object with the constraint added to the problem
 formulation.
@@ -585,7 +583,7 @@ An updated `ProjectProblem` object.
 
 ------------------------------------------------------------------------
 
-### Method `clone()`
+### `ProjectProblem$clone()`
 
 The objects of this class are cloneable with this method.
 

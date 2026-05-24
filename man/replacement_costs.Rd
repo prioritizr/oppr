@@ -117,8 +117,8 @@ cost of conservation areas: how does habitat loss influence priorities?
 }
 \seealso{
 Other functions for evaluating solutions:
-\code{\link{project_cost_effectiveness}()},
-\code{\link{rank_importance}()},
-\code{\link{solution_statistics}()}
+\code{\link[=project_cost_effectiveness]{project_cost_effectiveness()}},
+\code{\link[=rank_importance]{rank_importance()}},
+\code{\link[=solution_statistics]{solution_statistics()}}
 }
 \concept{evaluation}

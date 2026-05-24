@@ -1,11 +1,5 @@
 # Conservation problem modifier class
 
-Conservation problem modifier class
-
-Conservation problem modifier class
-
-## Details
-
 This super-class is used to represent prototypes that in turn are used
 to modify a
 [ProjectProblem](https://prioritizr.github.io/oppr/reference/ProjectProblem-class.md)
@@ -72,7 +66,7 @@ Other classes:
 
 ------------------------------------------------------------------------
 
-### Method [`print()`](https://rdrr.io/r/base/print.html)
+### `ProjectModifier$print()`
 
 Print information about the object.
 
@@ -86,7 +80,7 @@ None.
 
 ------------------------------------------------------------------------
 
-### Method [`show()`](https://prioritizr.github.io/oppr/reference/show.md)
+### `ProjectModifier$show()`
 
 Print information about the object.
 
@@ -100,7 +94,7 @@ None.
 
 ------------------------------------------------------------------------
 
-### Method `repr()`
+### `ProjectModifier$repr()`
 
 Generate a character representation of the object.
 
@@ -114,7 +108,7 @@ A `character` value.
 
 ------------------------------------------------------------------------
 
-### Method `get_data()`
+### `ProjectModifier$get_data()`
 
 Get values stored in the `data` field.
 
@@ -138,7 +132,7 @@ this method will overwrite existing data.
 
 ------------------------------------------------------------------------
 
-### Method `set_data()`
+### `ProjectModifier$set_data()`
 
 #### Usage
 
@@ -160,7 +154,7 @@ Invisible `TRUE`.
 
 ------------------------------------------------------------------------
 
-### Method `get_internal()`
+### `ProjectModifier$get_internal()`
 
 Get values stored in the `internal` field.
 
@@ -183,7 +177,7 @@ object is returned.
 
 ------------------------------------------------------------------------
 
-### Method `set_internal()`
+### `ProjectModifier$set_internal()`
 
 Set values stored in the `internal` field. Note that this method will
 overwrite existing data.
@@ -211,7 +205,7 @@ object is returned.
 
 ------------------------------------------------------------------------
 
-### Method `calculate()`
+### `ProjectModifier$calculate()`
 
 Perform computations that need to be completed before applying the
 object.
@@ -238,7 +232,7 @@ Invisible `TRUE`.
 
 ------------------------------------------------------------------------
 
-### Method [`apply()`](https://rdrr.io/r/base/apply.html)
+### `ProjectModifier$apply()`
 
 Update an optimization problem formulation.
 
@@ -259,7 +253,7 @@ Invisible `TRUE`.
 
 ------------------------------------------------------------------------
 
-### Method `clone()`
+### `ProjectModifier$clone()`
 
 The objects of this class are cloneable with this method.
 

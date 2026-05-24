@@ -175,10 +175,10 @@ resources among threatened species: A project prioritization protocol.
 \seealso{
 See \link{objectives} for an overview of functions for adding objectives.
 
-Other objectives: 
-\code{\link{add_max_phylo_div_objective}()},
-\code{\link{add_max_richness_objective}()},
-\code{\link{add_max_targets_met_objective}()},
-\code{\link{add_min_set_objective}()}
+Other objectives:
+\code{\link[=add_max_phylo_div_objective]{add_max_phylo_div_objective()}},
+\code{\link[=add_max_richness_objective]{add_max_richness_objective()}},
+\code{\link[=add_max_targets_met_objective]{add_max_targets_met_objective()}},
+\code{\link[=add_min_set_objective]{add_min_set_objective()}}
 }
 \concept{objectives}

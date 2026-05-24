@@ -74,7 +74,7 @@ Other overviews:
 [`constraints`](https://prioritizr.github.io/oppr/reference/constraints.md),
 [`solvers`](https://prioritizr.github.io/oppr/reference/solvers.md),
 [`targets`](https://prioritizr.github.io/oppr/reference/targets.md),
-[`weights()`](https://prioritizr.github.io/oppr/reference/weights.md)
+[`weights`](https://prioritizr.github.io/oppr/reference/weights.md)
 
 ## Examples
 

@@ -127,16 +127,16 @@ print(s1)
 #> # A tibble: 100 × 21
 #>    solution status  cost   obj F1_action F2_action F3_action F4_action F5_action
 #>       <int> <chr>  <dbl> <dbl> <lgl>     <lgl>     <lgl>     <lgl>     <lgl>    
-#>  1        1 NA      198.  1.96 TRUE      FALSE     TRUE      FALSE     FALSE    
-#>  2        2 NA      195.  2.19 TRUE      TRUE      FALSE     FALSE     FALSE    
+#>  1        1 NA      194.  1.99 TRUE      FALSE     FALSE     FALSE     TRUE     
+#>  2        2 NA      194.  2.01 TRUE      FALSE     FALSE     TRUE      FALSE    
 #>  3        3 NA      198.  1.96 TRUE      FALSE     TRUE      FALSE     FALSE    
-#>  4        4 NA      194.  1.99 TRUE      FALSE     FALSE     FALSE     TRUE     
-#>  5        5 NA      198.  1.96 TRUE      FALSE     TRUE      FALSE     FALSE    
-#>  6        6 NA      198.  1.96 TRUE      FALSE     TRUE      FALSE     FALSE    
-#>  7        7 NA      199.  1.91 FALSE     FALSE     FALSE     TRUE      TRUE     
+#>  4        4 NA      198.  1.96 TRUE      FALSE     TRUE      FALSE     FALSE    
+#>  5        5 NA      199.  1.91 FALSE     FALSE     FALSE     TRUE      TRUE     
+#>  6        6 NA      194.  1.99 TRUE      FALSE     FALSE     FALSE     TRUE     
+#>  7        7 NA      198.  1.96 TRUE      FALSE     TRUE      FALSE     FALSE    
 #>  8        8 NA      198.  1.96 TRUE      FALSE     TRUE      FALSE     FALSE    
 #>  9        9 NA      198.  1.96 TRUE      FALSE     TRUE      FALSE     FALSE    
-#> 10       10 NA      198.  1.96 TRUE      FALSE     TRUE      FALSE     FALSE    
+#> 10       10 NA      195.  2.19 TRUE      TRUE      FALSE     FALSE     FALSE    
 #> # ℹ 90 more rows
 #> # ℹ 12 more variables: baseline_action <lgl>, F1_project <lgl>,
 #> #   F2_project <lgl>, F3_project <lgl>, F4_project <lgl>, F5_project <lgl>,

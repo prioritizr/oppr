@@ -85,14 +85,14 @@ plot(p, s)
 }
 }
 \seealso{
-Other solvers: 
-\code{\link{add_cbc_solver}()},
-\code{\link{add_default_solver}()},
-\code{\link{add_gurobi_solver}()},
-\code{\link{add_heuristic_solver}()},
-\code{\link{add_highs_solver}()},
-\code{\link{add_lpsolveapi_solver}()},
-\code{\link{add_lpsymphony_solver}()},
-\code{\link{add_random_solver}()}
+Other solvers:
+\code{\link[=add_cbc_solver]{add_cbc_solver()}},
+\code{\link[=add_default_solver]{add_default_solver()}},
+\code{\link[=add_gurobi_solver]{add_gurobi_solver()}},
+\code{\link[=add_heuristic_solver]{add_heuristic_solver()}},
+\code{\link[=add_highs_solver]{add_highs_solver()}},
+\code{\link[=add_lpsolveapi_solver]{add_lpsolveapi_solver()}},
+\code{\link[=add_lpsymphony_solver]{add_lpsymphony_solver()}},
+\code{\link[=add_random_solver]{add_random_solver()}}
 }
 \concept{solvers}

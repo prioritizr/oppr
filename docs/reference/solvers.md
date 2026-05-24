@@ -23,6 +23,11 @@ prioritization problem.
   Add a solver to generate solutions with the
   [*HiGHS*](https://highs.dev/) software via the highs package.
 
+- [`add_cbc_solver()`](https://prioritizr.github.io/oppr/reference/add_cbc_solver.md):
+
+  Add a solver to generate solutions with the
+  [*CBC*](https://github.com/coin-or/Cbc) software via the rcbc package.
+
 - [`add_rsymphony_solver()`](https://prioritizr.github.io/oppr/reference/add_rsymphony_solver.md):
 
   Add a solver to generate solutions with the
@@ -58,7 +63,7 @@ Other overviews:
 [`constraints`](https://prioritizr.github.io/oppr/reference/constraints.md),
 [`objectives`](https://prioritizr.github.io/oppr/reference/objectives.md),
 [`targets`](https://prioritizr.github.io/oppr/reference/targets.md),
-[`weights()`](https://prioritizr.github.io/oppr/reference/weights.md)
+[`weights`](https://prioritizr.github.io/oppr/reference/weights.md)
 
 ## Examples
 
@@ -85,25 +90,28 @@ p3 <- p1 %>% add_gurobi_solver()
 # build another problem, with the highs solver
 p4 <- p1 %>% add_highs_solver()
 
+# build another problem, with the cbc solver
+p5 <- p1 %>% add_cbc_solver()
+
 # build another problem, with the Rsymphony solver
-p5 <- p1 %>% add_rsymphony_solver()
+p6 <- p1 %>% add_rsymphony_solver()
 
 # build another problem, with the lpsymphony solver
-p6 <- p1 %>% add_lpsymphony_solver()
+p7 <- p1 %>% add_lpsymphony_solver()
 
 # build another problem, with the lpSolveAPI solver
-p7 <- p1 %>% add_lpsolveapi_solver()
+p8 <- p1 %>% add_lpsolveapi_solver()
 
 # build another problem, with the heuristic solver
-p8 <- p1 %>% add_heuristic_solver()
+p9 <- p1 %>% add_heuristic_solver()
 
 # build another problem, with the random solver
-p9 <- p1 %>% add_random_solver()
+p10 <- p1 %>% add_random_solver()
 
 # generate solutions using each of the solvers
 s <- rbind(
   solve(p2), solve(p3), solve(p4), solve(p5), solve(p6), solve(p7),
-  solve(p8), solve(p9)
+  solve(p8), solve(p9), solve(p10)
 )
 #> Set parameter Username
 #> Set parameter LicenseID to value 2806834
@@ -277,7 +285,7 @@ s <- rbind(
 #>   Dual bound        2.19038073725
 #>   Gap               0%
 #> 
-#>   P-D integral      0.000160894905638
+#>   P-D integral      0.000162522161071
 #> 
 #>   Solution status   feasible
 #> 
@@ -324,11 +332,11 @@ s <- rbind(
 #>       The largest [LUSOL v2.2.1.0] fact(B) had 64 NZ entries, 1.0x largest basis.
 #>       The maximum B&B level was 6, 0.1x MIP order, 4 at the optimal solution.
 #>       The constraint matrix inf-norm is 103.226, with a dynamic range of 1193.9.
-#>       Time to load data was 0.000 seconds, presolve used 0.000 seconds,
-#>        ... 0.000 seconds in simplex solver, in total 0.000 seconds.
+#>       Time to load data was 1.000 seconds, presolve used 0.000 seconds,
+#>        ... 0.000 seconds in simplex solver, in total 1.000 seconds.
 s$solver <- c(
-  "default", "gurobi", "highs", "Rsymphony", "lpsymphony", "lpSolveAPI",
-  "heuristic", "random"
+  "default", "gurobi", "highs", "cbc", "Rsymphony", "lpsymphony",
+  "lpSolveAPI", "heuristic", "random"
 )
 
 # print solutions
@@ -337,11 +345,12 @@ print(as.data.frame(s))
 #> 1        1                   OPTIMAL 195.3907 2.190381      TRUE      TRUE
 #> 2        1                   OPTIMAL 195.3907 2.190381      TRUE      TRUE
 #> 3        1                   Optimal 195.3907 2.190381      TRUE      TRUE
-#> 4        1 TM_OPTIMAL_SOLUTION_FOUND 195.3907 2.190381      TRUE      TRUE
+#> 4        1                   optimal 195.3907 2.190381      TRUE      TRUE
 #> 5        1 TM_OPTIMAL_SOLUTION_FOUND 195.3907 2.190381      TRUE      TRUE
-#> 6        1    optimal solution found 195.3907 2.190381      TRUE      TRUE
-#> 7        1                      <NA> 195.3907 2.190381      TRUE      TRUE
-#> 8        1                      <NA> 193.6420 2.014650      TRUE     FALSE
+#> 6        1 TM_OPTIMAL_SOLUTION_FOUND 195.3907 2.190381      TRUE      TRUE
+#> 7        1    optimal solution found 195.3907 2.190381      TRUE      TRUE
+#> 8        1                      <NA> 195.3907 2.190381      TRUE      TRUE
+#> 9        1                      <NA> 194.3072 1.985928      TRUE     FALSE
 #>   F3_action F4_action F5_action baseline_action F1_project F2_project
 #> 1     FALSE     FALSE     FALSE            TRUE       TRUE       TRUE
 #> 2     FALSE     FALSE     FALSE            TRUE       TRUE       TRUE
@@ -350,7 +359,8 @@ print(as.data.frame(s))
 #> 5     FALSE     FALSE     FALSE            TRUE       TRUE       TRUE
 #> 6     FALSE     FALSE     FALSE            TRUE       TRUE       TRUE
 #> 7     FALSE     FALSE     FALSE            TRUE       TRUE       TRUE
-#> 8     FALSE      TRUE     FALSE            TRUE       TRUE      FALSE
+#> 8     FALSE     FALSE     FALSE            TRUE       TRUE       TRUE
+#> 9     FALSE     FALSE      TRUE            TRUE       TRUE      FALSE
 #>   F3_project F4_project F5_project baseline_project        F1        F2
 #> 1      FALSE      FALSE      FALSE             TRUE 0.8080322 0.8649623
 #> 2      FALSE      FALSE      FALSE             TRUE 0.8080322 0.8649623
@@ -359,15 +369,17 @@ print(as.data.frame(s))
 #> 5      FALSE      FALSE      FALSE             TRUE 0.8080322 0.8649623
 #> 6      FALSE      FALSE      FALSE             TRUE 0.8080322 0.8649623
 #> 7      FALSE      FALSE      FALSE             TRUE 0.8080322 0.8649623
-#> 8      FALSE       TRUE      FALSE             TRUE 0.8080322 0.2500224
+#> 8      FALSE      FALSE      FALSE             TRUE 0.8080322 0.8649623
+#> 9      FALSE      FALSE       TRUE             TRUE 0.8080322 0.2500224
 #>          F3        F4        F5     solver
 #> 1 0.0864612 0.2489246 0.1820005    default
 #> 2 0.0864612 0.2489246 0.1820005     gurobi
 #> 3 0.0864612 0.2489246 0.1820005      highs
-#> 4 0.0864612 0.2489246 0.1820005  Rsymphony
-#> 5 0.0864612 0.2489246 0.1820005 lpsymphony
-#> 6 0.0864612 0.2489246 0.1820005 lpSolveAPI
-#> 7 0.0864612 0.2489246 0.1820005  heuristic
-#> 8 0.0864612 0.6881335 0.1820005     random
+#> 4 0.0864612 0.2489246 0.1820005        cbc
+#> 5 0.0864612 0.2489246 0.1820005  Rsymphony
+#> 6 0.0864612 0.2489246 0.1820005 lpsymphony
+#> 7 0.0864612 0.2489246 0.1820005 lpSolveAPI
+#> 8 0.0864612 0.2489246 0.1820005  heuristic
+#> 9 0.0864612 0.2489246 0.5924880     random
 # }
 ```

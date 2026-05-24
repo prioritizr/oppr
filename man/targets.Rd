@@ -86,11 +86,11 @@ plot(p2, s2)
 }
 }
 \seealso{
-Other overviews: 
+Other overviews:
 \code{\link{approaches}},
 \code{\link{constraints}},
 \code{\link{objectives}},
 \code{\link{solvers}},
-\code{\link{weights}()}
+\code{\link{weights}}
 }
 \concept{overviews}

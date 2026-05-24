@@ -114,11 +114,11 @@ print(s4[, sim_actions$name])
 \seealso{
 See \link{constraints} for an overview of functions for adding constraints.
 
-Other constraints: 
-\code{\link{add_locked_in_project_constraints}()},
-\code{\link{add_locked_out_action_constraints}()},
-\code{\link{add_locked_out_project_constraints}()},
-\code{\link{add_manual_locked_action_constraints}()},
-\code{\link{add_manual_locked_project_constraints}()}
+Other constraints:
+\code{\link[=add_locked_in_project_constraints]{add_locked_in_project_constraints()}},
+\code{\link[=add_locked_out_action_constraints]{add_locked_out_action_constraints()}},
+\code{\link[=add_locked_out_project_constraints]{add_locked_out_project_constraints()}},
+\code{\link[=add_manual_locked_action_constraints]{add_manual_locked_action_constraints()}},
+\code{\link[=add_manual_locked_project_constraints]{add_manual_locked_project_constraints()}}
 }
 \concept{constraints}

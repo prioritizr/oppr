@@ -159,10 +159,10 @@ threat management. Conservation Biology \strong{29}: 525--536.
 \seealso{
 See \link{targets} for an overview of functions for adding targets.
 
-Other objectives: 
-\code{\link{add_max_phylo_div_objective}()},
-\code{\link{add_max_richness_objective}()},
-\code{\link{add_max_targets_met_objective}()},
-\code{\link{add_max_wtd_sum_objective}()}
+Other objectives:
+\code{\link[=add_max_phylo_div_objective]{add_max_phylo_div_objective()}},
+\code{\link[=add_max_richness_objective]{add_max_richness_objective()}},
+\code{\link[=add_max_targets_met_objective]{add_max_targets_met_objective()}},
+\code{\link[=add_max_wtd_sum_objective]{add_max_wtd_sum_objective()}}
 }
 \concept{objectives}

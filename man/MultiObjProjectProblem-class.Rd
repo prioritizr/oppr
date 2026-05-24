@@ -16,7 +16,7 @@ with them.
 \strong{Only experts should use the fields and methods for this class directly.}
 }
 \seealso{
-Other classes: 
+Other classes:
 \code{\link{Constraint-class}},
 \code{\link{Decision-class}},
 \code{\link{MultiObjApproach-class}},
@@ -30,258 +30,288 @@ Other classes:
 }
 \concept{classes}
 \section{Public fields}{
-\if{html}{\out{<div class="r6-fields">}}
-\describe{
-\item{\code{problems}}{\code{list} containing \code{\linkS4class{ProjectProblem}} objects.}
+  \if{html}{\out{<div class="r6-fields">}}
+  \describe{
+    \item{\code{problems}}{\code{list} containing \code{\link[=ProjectProblem-class]{ProjectProblem}} objects.}
 
-\item{\code{defaults}}{\code{list} indicating if other fields contain defaults.}
+    \item{\code{defaults}}{\code{list} indicating if other fields contain defaults.}
 
-\item{\code{approach}}{\code{\linkS4class{MultiObjApproach}} object
+    \item{\code{approach}}{\code{\link[=MultiObjApproach-class]{MultiObjApproach}} object
 for specifying the multi-objective optimization approach.}
 
-\item{\code{solver}}{\code{\linkS4class{Solver}} object specifying the solver for
+    \item{\code{solver}}{\code{\link[=Solver-class]{Solver}} object specifying the solver for
 generating solutions.}
-}
-\if{html}{\out{</div>}}
+  }
+  \if{html}{\out{</div>}}
 }
 \section{Methods}{
 \subsection{Public methods}{
-\itemize{
-\item \href{#method-MultiObjProjectProblem-new}{\code{MultiObjProjectProblem$new()}}
-\item \href{#method-MultiObjProjectProblem-print}{\code{MultiObjProjectProblem$print()}}
-\item \href{#method-MultiObjProjectProblem-show}{\code{MultiObjProjectProblem$show()}}
-\item \href{#method-MultiObjProjectProblem-repr}{\code{MultiObjProjectProblem$repr()}}
-\item \href{#method-MultiObjProjectProblem-number_of_problems}{\code{MultiObjProjectProblem$number_of_problems()}}
-\item \href{#method-MultiObjProjectProblem-number_of_features}{\code{MultiObjProjectProblem$number_of_features()}}
-\item \href{#method-MultiObjProjectProblem-number_of_actions}{\code{MultiObjProjectProblem$number_of_actions()}}
-\item \href{#method-MultiObjProjectProblem-number_of_projects}{\code{MultiObjProjectProblem$number_of_projects()}}
-\item \href{#method-MultiObjProjectProblem-problem_names}{\code{MultiObjProjectProblem$problem_names()}}
-\item \href{#method-MultiObjProjectProblem-feature_names}{\code{MultiObjProjectProblem$feature_names()}}
-\item \href{#method-MultiObjProjectProblem-action_names}{\code{MultiObjProjectProblem$action_names()}}
-\item \href{#method-MultiObjProjectProblem-project_names}{\code{MultiObjProjectProblem$project_names()}}
-\item \href{#method-MultiObjProjectProblem-add_approach}{\code{MultiObjProjectProblem$add_approach()}}
-\item \href{#method-MultiObjProjectProblem-add_solver}{\code{MultiObjProjectProblem$add_solver()}}
-\item \href{#method-MultiObjProjectProblem-clone}{\code{MultiObjProjectProblem$clone()}}
-}
+  \itemize{
+    \item \href{#method-MultiObjProjectProblem-initialize}{\code{MultiObjProjectProblem$new()}}
+    \item \href{#method-MultiObjProjectProblem-print}{\code{MultiObjProjectProblem$print()}}
+    \item \href{#method-MultiObjProjectProblem-show}{\code{MultiObjProjectProblem$show()}}
+    \item \href{#method-MultiObjProjectProblem-repr}{\code{MultiObjProjectProblem$repr()}}
+    \item \href{#method-MultiObjProjectProblem-number_of_problems}{\code{MultiObjProjectProblem$number_of_problems()}}
+    \item \href{#method-MultiObjProjectProblem-number_of_features}{\code{MultiObjProjectProblem$number_of_features()}}
+    \item \href{#method-MultiObjProjectProblem-number_of_actions}{\code{MultiObjProjectProblem$number_of_actions()}}
+    \item \href{#method-MultiObjProjectProblem-number_of_projects}{\code{MultiObjProjectProblem$number_of_projects()}}
+    \item \href{#method-MultiObjProjectProblem-problem_names}{\code{MultiObjProjectProblem$problem_names()}}
+    \item \href{#method-MultiObjProjectProblem-feature_names}{\code{MultiObjProjectProblem$feature_names()}}
+    \item \href{#method-MultiObjProjectProblem-action_names}{\code{MultiObjProjectProblem$action_names()}}
+    \item \href{#method-MultiObjProjectProblem-project_names}{\code{MultiObjProjectProblem$project_names()}}
+    \item \href{#method-MultiObjProjectProblem-add_approach}{\code{MultiObjProjectProblem$add_approach()}}
+    \item \href{#method-MultiObjProjectProblem-add_solver}{\code{MultiObjProjectProblem$add_solver()}}
+    \item \href{#method-MultiObjProjectProblem-clone}{\code{MultiObjProjectProblem$clone()}}
+  }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-MultiObjProjectProblem-new"></a>}}
-\if{latex}{\out{\hypertarget{method-MultiObjProjectProblem-new}{}}}
-\subsection{Method \code{new()}}{
-Create a new multi-objective conservation problem object.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{MultiObjProjectProblem$new(problems)}\if{html}{\out{</div>}}
+\if{html}{\out{<a id="method-MultiObjProjectProblem-initialize"></a>}}
+\if{latex}{\out{\hypertarget{method-MultiObjProjectProblem-initialize}{}}}
+\subsection{\code{MultiObjProjectProblem$new()}}{
+  Create a new multi-objective conservation problem object.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{MultiObjProjectProblem$new(problems)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{problems}}{\code{list} containing \code{\link[=ProjectProblem-class]{ProjectProblem}} objects.}
+    }
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    A new \code{MultiObjProjectProblem} object.
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{problems}}{\code{list} containing \code{\linkS4class{ProjectProblem}} objects.}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-A new \code{MultiObjProjectProblem} object.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-MultiObjProjectProblem-print"></a>}}
 \if{latex}{\out{\hypertarget{method-MultiObjProjectProblem-print}{}}}
-\subsection{Method \code{print()}}{
-Print concise information about the object.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{MultiObjProjectProblem$print()}\if{html}{\out{</div>}}
+\subsection{\code{MultiObjProjectProblem$print()}}{
+  Print concise information about the object.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{MultiObjProjectProblem$print()}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    Invisible \code{TRUE}.
+  }
 }
 
-\subsection{Returns}{
-Invisible \code{TRUE}.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-MultiObjProjectProblem-show"></a>}}
 \if{latex}{\out{\hypertarget{method-MultiObjProjectProblem-show}{}}}
-\subsection{Method \code{show()}}{
-Display concise information about the object.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{MultiObjProjectProblem$show()}\if{html}{\out{</div>}}
+\subsection{\code{MultiObjProjectProblem$show()}}{
+  Display concise information about the object.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{MultiObjProjectProblem$show()}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    Invisible \code{TRUE}.
+  }
 }
 
-\subsection{Returns}{
-Invisible \code{TRUE}.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-MultiObjProjectProblem-repr"></a>}}
 \if{latex}{\out{\hypertarget{method-MultiObjProjectProblem-repr}{}}}
-\subsection{Method \code{repr()}}{
-Generate a character representation of the object.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{MultiObjProjectProblem$repr()}\if{html}{\out{</div>}}
+\subsection{\code{MultiObjProjectProblem$repr()}}{
+  Generate a character representation of the object.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{MultiObjProjectProblem$repr()}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    A \code{character} value.
+  }
 }
 
-\subsection{Returns}{
-A \code{character} value.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-MultiObjProjectProblem-number_of_problems"></a>}}
 \if{latex}{\out{\hypertarget{method-MultiObjProjectProblem-number_of_problems}{}}}
-\subsection{Method \code{number_of_problems()}}{
-Obtain the number of problems.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{MultiObjProjectProblem$number_of_problems()}\if{html}{\out{</div>}}
+\subsection{\code{MultiObjProjectProblem$number_of_problems()}}{
+  Obtain the number of problems.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{MultiObjProjectProblem$number_of_problems()}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    An \code{integer} value.
+  }
 }
 
-\subsection{Returns}{
-An \code{integer} value.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-MultiObjProjectProblem-number_of_features"></a>}}
 \if{latex}{\out{\hypertarget{method-MultiObjProjectProblem-number_of_features}{}}}
-\subsection{Method \code{number_of_features()}}{
-Obtain the number of features.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{MultiObjProjectProblem$number_of_features()}\if{html}{\out{</div>}}
+\subsection{\code{MultiObjProjectProblem$number_of_features()}}{
+  Obtain the number of features.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{MultiObjProjectProblem$number_of_features()}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    An \code{integer} value.
+  }
 }
 
-\subsection{Returns}{
-An \code{integer} value.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-MultiObjProjectProblem-number_of_actions"></a>}}
 \if{latex}{\out{\hypertarget{method-MultiObjProjectProblem-number_of_actions}{}}}
-\subsection{Method \code{number_of_actions()}}{
-Obtain the number of actions.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{MultiObjProjectProblem$number_of_actions()}\if{html}{\out{</div>}}
+\subsection{\code{MultiObjProjectProblem$number_of_actions()}}{
+  Obtain the number of actions.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{MultiObjProjectProblem$number_of_actions()}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    An \code{integer} value.
+  }
 }
 
-\subsection{Returns}{
-An \code{integer} value.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-MultiObjProjectProblem-number_of_projects"></a>}}
 \if{latex}{\out{\hypertarget{method-MultiObjProjectProblem-number_of_projects}{}}}
-\subsection{Method \code{number_of_projects()}}{
-Obtain the number of projects.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{MultiObjProjectProblem$number_of_projects()}\if{html}{\out{</div>}}
+\subsection{\code{MultiObjProjectProblem$number_of_projects()}}{
+  Obtain the number of projects.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{MultiObjProjectProblem$number_of_projects()}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    An \code{integer} value.
+  }
 }
 
-\subsection{Returns}{
-An \code{integer} value.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-MultiObjProjectProblem-problem_names"></a>}}
 \if{latex}{\out{\hypertarget{method-MultiObjProjectProblem-problem_names}{}}}
-\subsection{Method \code{problem_names()}}{
-Obtain the names of the problems.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{MultiObjProjectProblem$problem_names()}\if{html}{\out{</div>}}
+\subsection{\code{MultiObjProjectProblem$problem_names()}}{
+  Obtain the names of the problems.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{MultiObjProjectProblem$problem_names()}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    An \code{character} value.
+  }
 }
 
-\subsection{Returns}{
-An \code{character} value.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-MultiObjProjectProblem-feature_names"></a>}}
 \if{latex}{\out{\hypertarget{method-MultiObjProjectProblem-feature_names}{}}}
-\subsection{Method \code{feature_names()}}{
-Obtain the names of the features.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{MultiObjProjectProblem$feature_names()}\if{html}{\out{</div>}}
+\subsection{\code{MultiObjProjectProblem$feature_names()}}{
+  Obtain the names of the features.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{MultiObjProjectProblem$feature_names()}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    A \code{list} of \code{character} vectors.
+  }
 }
 
-\subsection{Returns}{
-A \code{list} of \code{character} vectors.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-MultiObjProjectProblem-action_names"></a>}}
 \if{latex}{\out{\hypertarget{method-MultiObjProjectProblem-action_names}{}}}
-\subsection{Method \code{action_names()}}{
-Obtain the names of the actions.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{MultiObjProjectProblem$action_names()}\if{html}{\out{</div>}}
+\subsection{\code{MultiObjProjectProblem$action_names()}}{
+  Obtain the names of the actions.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{MultiObjProjectProblem$action_names()}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    A \code{character} vector.
+  }
 }
 
-\subsection{Returns}{
-A \code{character} vector.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-MultiObjProjectProblem-project_names"></a>}}
 \if{latex}{\out{\hypertarget{method-MultiObjProjectProblem-project_names}{}}}
-\subsection{Method \code{project_names()}}{
-Obtain the names of the projects.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{MultiObjProjectProblem$project_names()}\if{html}{\out{</div>}}
+\subsection{\code{MultiObjProjectProblem$project_names()}}{
+  Obtain the names of the projects.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{MultiObjProjectProblem$project_names()}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    A \code{list} of \code{character} vectors.
+  }
 }
 
-\subsection{Returns}{
-A \code{list} of \code{character} vectors.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-MultiObjProjectProblem-add_approach"></a>}}
 \if{latex}{\out{\hypertarget{method-MultiObjProjectProblem-add_approach}{}}}
-\subsection{Method \code{add_approach()}}{
-Create a new object with an approach added to the problem formulation.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{MultiObjProjectProblem$add_approach(x)}\if{html}{\out{</div>}}
+\subsection{\code{MultiObjProjectProblem$add_approach()}}{
+  Create a new object with an approach added to the problem formulation.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{MultiObjProjectProblem$add_approach(x)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{x}}{\link[=MultiObjApproach-class]{MultiObjApproach} object.}
+    }
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    An updated \code{MultiObjProjectProblem} object.
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{x}}{\linkS4class{MultiObjApproach} object.}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-An updated \code{MultiObjProjectProblem} object.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-MultiObjProjectProblem-add_solver"></a>}}
 \if{latex}{\out{\hypertarget{method-MultiObjProjectProblem-add_solver}{}}}
-\subsection{Method \code{add_solver()}}{
-Create a new object with a solver added to the problem formulation.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{MultiObjProjectProblem$add_solver(x)}\if{html}{\out{</div>}}
+\subsection{\code{MultiObjProjectProblem$add_solver()}}{
+  Create a new object with a solver added to the problem formulation.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{MultiObjProjectProblem$add_solver(x)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{x}}{\link[=Solver-class]{Solver} object.}
+    }
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    An updated \code{MultiObjProjectProblem} object.
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{x}}{\linkS4class{Solver} object.}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-An updated \code{MultiObjProjectProblem} object.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-MultiObjProjectProblem-clone"></a>}}
 \if{latex}{\out{\hypertarget{method-MultiObjProjectProblem-clone}{}}}
-\subsection{Method \code{clone()}}{
-The objects of this class are cloneable with this method.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{MultiObjProjectProblem$clone(deep = FALSE)}\if{html}{\out{</div>}}
+\subsection{\code{MultiObjProjectProblem$clone()}}{
+  The objects of this class are cloneable with this method.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{MultiObjProjectProblem$clone(deep = FALSE)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{deep}}{Whether to make a deep clone.}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{deep}}{Whether to make a deep clone.}
-}
-\if{html}{\out{</div>}}
-}
-}
 }

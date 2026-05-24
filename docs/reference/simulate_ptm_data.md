@@ -274,25 +274,25 @@ print(s)
 #> # A tibble: 9 × 4
 #>   name             cost locked_in locked_out
 #>   <chr>           <dbl> <lgl>     <lgl>     
-#> 1 action_1        101.  TRUE      FALSE     
-#> 2 action_2        102.  FALSE     FALSE     
-#> 3 action_3         96.9 FALSE     TRUE      
-#> 4 action_4        110.  FALSE     FALSE     
-#> 5 action_5        103.  FALSE     FALSE     
-#> 6 action_6         98.1 FALSE     FALSE     
-#> 7 action_7         99.3 FALSE     FALSE     
-#> 8 action_8        103.  FALSE     FALSE     
+#> 1 action_1         87.9 FALSE     FALSE     
+#> 2 action_2        101.  FALSE     FALSE     
+#> 3 action_3        102.  FALSE     FALSE     
+#> 4 action_4         96.9 TRUE      FALSE     
+#> 5 action_5        110.  FALSE     FALSE     
+#> 6 action_6        103.  FALSE     FALSE     
+#> 7 action_7         98.1 FALSE     TRUE      
+#> 8 action_8         99.3 FALSE     FALSE     
 #> 9 baseline_action   0   FALSE     FALSE     
 #> 
 #> $features
 #> # A tibble: 5 × 2
 #>   name  weight
 #>   <chr>  <dbl>
-#> 1 F1    0.0996
-#> 2 F2    0.0996
-#> 3 F3    0.175 
-#> 4 F4    1.19  
-#> 5 F5    1.19  
+#> 1 F1    0.207 
+#> 2 F2    0.207 
+#> 3 F3    0.357 
+#> 4 F4    0.0808
+#> 5 F5    0.0808
 #> 
 #> $tree
 #> 

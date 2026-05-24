@@ -127,7 +127,7 @@ p <-
         baseline_project_name = "baseline_project_obj1"
       ) %>%
       add_max_phylo_div_objective(
-       budget = 200, tree = sim_multi_tree[[1]]
+        budget = 1000, tree = sim_multi_tree[[1]]
       ) %>%
       add_binary_decisions(),
    obj2 =
@@ -136,7 +136,7 @@ p <-
        "name", "success", "name", "cost", "name",
        baseline_project_name = "baseline_project_obj2"
      ) %>%
-     add_max_richness_objective(budget = 200) %>%
+     add_max_richness_objective(budget = 1000) %>%
      add_binary_decisions(),
    obj3 =
      problem(
@@ -144,7 +144,7 @@ p <-
        "name", "success", "name", "cost", "name",
        baseline_project_name = "baseline_project_obj3"
      ) %>%
-     add_max_wtd_sum_objective(budget = 200) %>%
+     add_max_wtd_sum_objective(budget = 1000) %>%
      add_binary_decisions()
  ) %>%
  add_ref_point_approach(weights = c(10, 11, 12), goals = c(3, 4, 5)) %>%
@@ -214,7 +214,7 @@ s <- solve(p)
 #> PoolSearchMode  2
 #> 
 #> Optimize a model with 338 rows, 264 columns and 1128 nonzeros (Min)
-#> Model fingerprint: 0x32e1c470
+#> Model fingerprint: 0x2acee6fd
 #> Model has 1 linear objective coefficients
 #> Variable types: 15 continuous, 150 integer (150 binary)
 #> Semi-Variable types: 99 continuous, 0 integer
@@ -222,31 +222,51 @@ s <- solve(p)
 #>   Matrix range     [2e-02, 1e+02]
 #>   Objective range  [1e+00, 1e+00]
 #>   Bounds range     [6e-01, 2e+01]
-#>   RHS range        [1e+00, 2e+02]
+#>   RHS range        [1e+00, 1e+03]
 #> 
-#> Presolve removed 328 rows and 240 columns
+#> Presolve removed 242 rows and 80 columns
 #> Presolve time: 0.00s
-#> Presolved: 10 rows, 24 columns, 35 nonzeros
-#> Variable types: 5 continuous, 19 integer (19 binary)
-#> Found heuristic solution: objective 12.0000000
-#> Root relaxation presolved: 10 rows, 23 columns, 35 nonzeros
+#> Presolved: 292 rows, 282 columns, 934 nonzeros
+#> Variable types: 102 continuous, 180 integer (180 binary)
+#> Found heuristic solution: objective 11.0000000
+#> Root relaxation presolved: 292 rows, 282 columns, 934 nonzeros
 #> 
 #> 
-#> Root relaxation: objective 1.100000e+01, 7 iterations, 0.00 seconds (0.00 work units)
+#> Root relaxation: objective 7.676893e+00, 73 iterations, 0.00 seconds (0.00 work units)
 #> 
 #>     Nodes    |    Current Node    |     Objective Bounds      |     Work
 #>  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #> 
-#> *    0     0               0      11.0000000   11.00000  0.00%     -    0s
+#>      0     0    7.67689    0    8   11.00000    7.67689  30.2%     -    0s
+#>      0     0    7.67689    0    8   11.00000    7.67689  30.2%     -    0s
+#>      0     0    7.67689    0    8   11.00000    7.67689  30.2%     -    0s
+#>      0     0    7.67689    0    8   11.00000    7.67689  30.2%     -    0s
+#>      0     0    7.67689    0    8   11.00000    7.67689  30.2%     -    0s
+#>      0     0    7.67689    0    8   11.00000    7.67689  30.2%     -    0s
+#>      0     0    7.67689    0    8   11.00000    7.67689  30.2%     -    0s
+#>      0     0    7.67689    0    8   11.00000    7.67689  30.2%     -    0s
+#>      0     0    7.67689    0    8   11.00000    7.67689  30.2%     -    0s
+#>      0     0    7.67689    0    8   11.00000    7.67689  30.2%     -    0s
+#>      0     0    7.67689    0    8   11.00000    7.67689  30.2%     -    0s
+#> H    0     0                      10.5645813    7.67689  27.3%     -    0s
+#>      0     0     cutoff    0        10.56458   10.56458  0.00%     -    0s
 #> 
-#> Explored 1 nodes (7 simplex iterations) in 0.00 seconds (0.00 work units)
+#> Cutting planes:
+#>   Learned: 1
+#>   Gomory: 1
+#>   Cover: 2
+#>   Clique: 1
+#>   MIR: 1
+#>   Network: 3
+#> 
+#> Explored 1 nodes (382 simplex iterations) in 0.01 seconds (0.02 work units)
 #> Thread count was 1 (of 8 available processors)
 #> 
-#> Solution count 1: 11 
-#> No other solutions better than 11
+#> Solution count 1: 10.5646 
+#> No other solutions better than 10.5646
 #> 
 #> Optimal solution found (tolerance 0.00e+00)
-#> Best objective 1.100000000000e+01, best bound 1.100000000000e+01, gap 0.0000%
+#> Best objective 1.056458125531e+01, best bound 1.056458125531e+01, gap 0.0000%
 #> Set parameter Username
 #> Set parameter LicenseID to value 2806834
 #> Set parameter TimeLimit to value 2147483647
@@ -274,7 +294,7 @@ s <- solve(p)
 #> PoolSearchMode  2
 #> 
 #> Optimize a model with 339 rows, 264 columns and 1129 nonzeros (Min)
-#> Model fingerprint: 0xbab54723
+#> Model fingerprint: 0xec73f4c8
 #> Model has 3 linear objective coefficients
 #> Variable types: 15 continuous, 150 integer (150 binary)
 #> Semi-Variable types: 99 continuous, 0 integer
@@ -282,31 +302,31 @@ s <- solve(p)
 #>   Matrix range     [2e-02, 1e+02]
 #>   Objective range  [6e+00, 2e+01]
 #>   Bounds range     [6e-01, 2e+01]
-#>   RHS range        [1e+00, 2e+02]
+#>   RHS range        [1e+00, 1e+03]
 #> 
-#> User MIP start produced solution with objective 31.0296 (0.00s)
-#> Loaded user MIP start with objective 31.0296
+#> User MIP start produced solution with objective 24.8884 (0.00s)
+#> Loaded user MIP start with objective 24.8884
 #> 
-#> Presolve removed 335 rows and 248 columns
+#> Presolve removed 338 rows and 260 columns
 #> Presolve time: 0.00s
-#> Presolved: 4 rows, 16 columns, 19 nonzeros
-#> Variable types: 3 continuous, 13 integer (13 binary)
+#> Presolved: 1 rows, 4 columns, 2 nonzeros
+#> Variable types: 3 continuous, 1 integer (1 binary)
 #> 
 #> Explored 0 nodes (0 simplex iterations) in 0.00 seconds (0.00 work units)
 #> Thread count was 1 (of 8 available processors)
 #> 
-#> Solution count 1: 31.0296 
-#> No other solutions better than 31.0296
+#> Solution count 1: 24.8884 
+#> No other solutions better than 24.8884
 #> 
 #> Optimal solution found (tolerance 0.00e+00)
-#> Best objective 3.102964834021e+01, best bound 3.102964834021e+01, gap 0.0000%
+#> Best objective 2.488835598266e+01, best bound 2.488835598266e+01, gap 0.0000%
 
 # print solution
 print(s)
 #> # A tibble: 1 × 47
 #>   solution status   cost  obj1  obj2  obj3 A1_action A2_action A3_action
 #>      <int> <chr>   <dbl> <dbl> <dbl> <dbl> <lgl>     <lgl>     <lgl>    
-#> 1        1 OPTIMAL  198. 0.420 0.430  1.75 FALSE     FALSE     FALSE    
+#> 1        1 OPTIMAL  971. 0.420  1.02  1.75 TRUE      FALSE     TRUE     
 #> # ℹ 38 more variables: A4_action <lgl>, A5_action <lgl>, A6_action <lgl>,
 #> #   A7_action <lgl>, A8_action <lgl>, A9_action <lgl>, A10_action <lgl>,
 #> #   A11_action <lgl>, A12_action <lgl>, A13_action <lgl>, A14_action <lgl>,

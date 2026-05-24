@@ -13,7 +13,7 @@
 \item{sim_multi_projects}{\code{list} of \code{\link[tibble:tibble]{tibble::tibble()}} objects.}
 \item{sim_multi_actions}{\code{\link[tibble:tibble]{tibble::tibble()}} object.}
 \item{sim_multi_features}{\code{list} of \code{\link[tibble:tibble]{tibble::tibble()}} objects.}
-\item{sim_multi_tree}{\code{list} of \code{\link[ape:read.tree]{ape::phylo()}} objects.}
+\item{sim_multi_tree}{\code{list} of \code{\link[ape:phylo]{ape::phylo()}} objects.}
 }
 }
 \usage{
@@ -126,7 +126,7 @@ These columns contain \code{numeric} values denoting weight for each feature.
 }
 
 \item{sim_multi_trees}{
-A \code{list} of \code{\link[ape:read.tree]{ape::phylo()}} phylogenetic tree objects for the features
+A \code{list} of \code{\link[ape:phylo]{ape::phylo()}} phylogenetic tree objects for the features
 associated with each of the three objective.
 }
 

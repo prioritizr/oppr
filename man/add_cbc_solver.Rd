@@ -137,14 +137,14 @@ Methods, and Applications (pp. 257--277). INFORMS, Catonsville, MD.
 \doi{10.1287/educ.1053.0020}.
 }
 \seealso{
-Other solvers: 
-\code{\link{add_default_solver}()},
-\code{\link{add_gurobi_solver}()},
-\code{\link{add_heuristic_solver}()},
-\code{\link{add_highs_solver}()},
-\code{\link{add_lpsolveapi_solver}()},
-\code{\link{add_lpsymphony_solver}()},
-\code{\link{add_random_solver}()},
-\code{\link{add_rsymphony_solver}()}
+Other solvers:
+\code{\link[=add_default_solver]{add_default_solver()}},
+\code{\link[=add_gurobi_solver]{add_gurobi_solver()}},
+\code{\link[=add_heuristic_solver]{add_heuristic_solver()}},
+\code{\link[=add_highs_solver]{add_highs_solver()}},
+\code{\link[=add_lpsolveapi_solver]{add_lpsolveapi_solver()}},
+\code{\link[=add_lpsymphony_solver]{add_lpsymphony_solver()}},
+\code{\link[=add_random_solver]{add_random_solver()}},
+\code{\link[=add_rsymphony_solver]{add_rsymphony_solver()}}
 }
 \concept{solvers}

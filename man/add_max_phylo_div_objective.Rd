@@ -12,7 +12,7 @@ add_max_phylo_div_objective(x, budget, tree)
 \item{budget}{\code{numeric} value representing the maximum amount of total
 expenditure for funding actions.}
 
-\item{tree}{\code{\link[ape:read.tree]{ape::phylo()}} phylogenetic tree describing the
+\item{tree}{\code{\link[ape:phylo]{ape::phylo()}} phylogenetic tree describing the
 evolutionary relationships between the features. Note that \code{tree} must
 contain every feature, and only the features, present in \code{x}.}
 }
@@ -215,10 +215,10 @@ Hillier FS & Price CC (2005) \emph{International series in operations
 research & management science}. Springer.
 }
 \seealso{
-Other objectives: 
-\code{\link{add_max_richness_objective}()},
-\code{\link{add_max_targets_met_objective}()},
-\code{\link{add_max_wtd_sum_objective}()},
-\code{\link{add_min_set_objective}()}
+Other objectives:
+\code{\link[=add_max_richness_objective]{add_max_richness_objective()}},
+\code{\link[=add_max_targets_met_objective]{add_max_targets_met_objective()}},
+\code{\link[=add_max_wtd_sum_objective]{add_max_wtd_sum_objective()}},
+\code{\link[=add_min_set_objective]{add_min_set_objective()}}
 }
 \concept{objectives}

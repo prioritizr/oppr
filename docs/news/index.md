@@ -14,9 +14,15 @@
   amount of land expected to be covered by an ecosystem, or the number
   of individuals present in a population.
 - New
+  [`add_cbc_solver()`](https://prioritizr.github.io/oppr/reference/add_cbc_solver.md)
+  and
+  [`add_highs_solver()`](https://prioritizr.github.io/oppr/reference/add_highs_solver.md)
+  to generate solutions with the *CBC* and *HiGHS* optimization
+  software.
+- New
   [`add_ref_point_approach()`](https://prioritizr.github.io/oppr/reference/add_ref_point_approach.md),
   [`add_wtd_goal_approach()`](https://prioritizr.github.io/oppr/reference/add_wtd_goal_approach.md),
-  `add_chebyshev_goal_appraoch()`, and
+  and
   [`add_abs_constraint_approach()`](https://prioritizr.github.io/oppr/reference/add_abs_constraint_approach.md)
   functions for multi-objective optimization.
 - New

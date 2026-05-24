@@ -159,7 +159,7 @@ of evolutionary history that each feature has experienced.
 }
 
 \item{\code{"tree_obj1"}, ..., \code{"tree_objN"}}{
-A \code{list} of \code{\link[ape:read.tree]{ape::phylo()}} phylogenetic tree objects for the features
+A \code{list} of \code{\link[ape:phylo]{ape::phylo()}} phylogenetic tree objects for the features
 associated with each objective (separately).
 }
 
@@ -224,7 +224,7 @@ and \code{baseline_max_persistence_probability} arguments.
 
 \item A phylogenetic tree is simulated for the features that belong
 to each objective (separately) using
-\code{\link[ape:rtree]{ape::rcoal()}}.
+\code{\link[ape:rcoal]{ape::rcoal()}}.
 
 \item Feature data are created from the phylogenetic tree. The
 weights are calculated as the amount of evolutionary history

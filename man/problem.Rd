@@ -113,7 +113,7 @@ inferred based on which action has a zero cost. Note that if multiple
 actions have zero costs, then \code{baseline_project_name} must be specified.}
 }
 \value{
-A new \linkS4class{ProjectProblem} object.
+A new \link[=ProjectProblem-class]{ProjectProblem} object.
 }
 \description{
 Create a project prioritization problem. This function is used to

@@ -118,7 +118,7 @@ plot(p3, s3)
 \seealso{
 See \link{weights} for an overview of functions for adding weights.
 
-Other weights: 
-\code{\link{add_default_weights}()}
+Other weights:
+\code{\link[=add_default_weights]{add_default_weights()}}
 }
 \concept{weights}

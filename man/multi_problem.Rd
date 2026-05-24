@@ -14,7 +14,7 @@ in \code{...}. Defaults to \code{NULL}, such that the problem names are defined
 automatically.}
 }
 \value{
-A \linkS4class{MultiObjProjectProblem} object.
+A \link[=MultiObjProjectProblem-class]{MultiObjProjectProblem} object.
 }
 \description{
 Create a multi-objective systematic project prioritization problem.

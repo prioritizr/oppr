@@ -9,7 +9,7 @@ This class is used to represent the objective function used in optimization.
 \strong{Only experts should use the fields and methods for this class directly.}
 }
 \seealso{
-Other classes: 
+Other classes:
 \code{\link{Constraint-class}},
 \code{\link{Decision-class}},
 \code{\link{MultiObjApproach-class}},
@@ -23,121 +23,128 @@ Other classes:
 }
 \concept{classes}
 \section{Super class}{
-\code{\link[oppr:ProjectModifier]{oppr::ProjectModifier}} -> \code{Objective}
+\code{\link[oppr:ProjectModifier]{ProjectModifier}} -> \code{Objective}
 }
 \section{Public fields}{
-\if{html}{\out{<div class="r6-fields">}}
-\describe{
-\item{\code{has_targets}}{\code{logical} value indicating if the objective uses
+  \if{html}{\out{<div class="r6-fields">}}
+  \describe{
+    \item{\code{has_targets}}{\code{logical} value indicating if the objective uses
 targets.}
 
-\item{\code{has_weights}}{\code{logical} value indicating if the objective uses
+    \item{\code{has_weights}}{\code{logical} value indicating if the objective uses
 weights.}
-}
-\if{html}{\out{</div>}}
+  }
+  \if{html}{\out{</div>}}
 }
 \section{Methods}{
 \subsection{Public methods}{
-\itemize{
-\item \href{#method-Objective-feature_phylogeny}{\code{Objective$feature_phylogeny()}}
-\item \href{#method-Objective-default_feature_weights}{\code{Objective$default_feature_weights()}}
-\item \href{#method-Objective-replace_feature_weights}{\code{Objective$replace_feature_weights()}}
-\item \href{#method-Objective-evaluate}{\code{Objective$evaluate()}}
-\item \href{#method-Objective-clone}{\code{Objective$clone()}}
+  \itemize{
+    \item \href{#method-Objective-feature_phylogeny}{\code{Objective$feature_phylogeny()}}
+    \item \href{#method-Objective-default_feature_weights}{\code{Objective$default_feature_weights()}}
+    \item \href{#method-Objective-replace_feature_weights}{\code{Objective$replace_feature_weights()}}
+    \item \href{#method-Objective-evaluate}{\code{Objective$evaluate()}}
+    \item \href{#method-Objective-clone}{\code{Objective$clone()}}
+  }
 }
-}
-\if{html}{\out{
-<details><summary>Inherited methods</summary>
+\if{html}{\out{<details><summary>Inherited methods</summary>
 <ul>
-<li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="apply"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-apply'><code>oppr::ProjectModifier$apply()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="calculate"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-calculate'><code>oppr::ProjectModifier$calculate()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="get_data"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-get_data'><code>oppr::ProjectModifier$get_data()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="get_internal"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-get_internal'><code>oppr::ProjectModifier$get_internal()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="print"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-print'><code>oppr::ProjectModifier$print()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="repr"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-repr'><code>oppr::ProjectModifier$repr()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="set_data"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-set_data'><code>oppr::ProjectModifier$set_data()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="set_internal"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-set_internal'><code>oppr::ProjectModifier$set_internal()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="show"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-show'><code>oppr::ProjectModifier$show()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="apply"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-apply'><code>ProjectModifier$apply()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="calculate"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-calculate'><code>ProjectModifier$calculate()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="get_data"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-get_data'><code>ProjectModifier$get_data()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="get_internal"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-get_internal'><code>ProjectModifier$get_internal()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="print"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-print'><code>ProjectModifier$print()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="repr"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-repr'><code>ProjectModifier$repr()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="set_data"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-set_data'><code>ProjectModifier$set_data()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="set_internal"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-set_internal'><code>ProjectModifier$set_internal()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="oppr" data-topic="ProjectModifier" data-id="show"><a href='../../oppr/html/ProjectModifier.html#method-ProjectModifier-show'><code>ProjectModifier$show()</code></a></span></li>
 </ul>
-</details>
-}}
+</details>}}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Objective-feature_phylogeny"></a>}}
 \if{latex}{\out{\hypertarget{method-Objective-feature_phylogeny}{}}}
-\subsection{Method \code{feature_phylogeny()}}{
-Obtain the feature phylogeny.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Objective$feature_phylogeny()}\if{html}{\out{</div>}}
+\subsection{\code{Objective$feature_phylogeny()}}{
+  Obtain the feature phylogeny.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{Objective$feature_phylogeny()}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    A \code{\link[ape:phylo]{ape::phylo()}} phylogenetic tree object.
+  }
 }
 
-\subsection{Returns}{
-A \code{\link[ape:read.tree]{ape::phylo()}} phylogenetic tree object.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Objective-default_feature_weights"></a>}}
 \if{latex}{\out{\hypertarget{method-Objective-default_feature_weights}{}}}
-\subsection{Method \code{default_feature_weights()}}{
-Obtain default feature weights.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Objective$default_feature_weights()}\if{html}{\out{</div>}}
+\subsection{\code{Objective$default_feature_weights()}}{
+  Obtain default feature weights.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{Objective$default_feature_weights()}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    A \code{numeric} vector with the default feature weights.
+  }
 }
 
-\subsection{Returns}{
-A \code{numeric} vector with the default feature weights.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Objective-replace_feature_weights"></a>}}
 \if{latex}{\out{\hypertarget{method-Objective-replace_feature_weights}{}}}
-\subsection{Method \code{replace_feature_weights()}}{
-Should default feature weights be replaced or multiplied by
+\subsection{\code{Objective$replace_feature_weights()}}{
+  Should default feature weights be replaced or multiplied by
 the new weights?
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Objective$replace_feature_weights()}\if{html}{\out{</div>}}
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{Objective$replace_feature_weights()}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    A \code{logical} value.ks
+  }
 }
 
-\subsection{Returns}{
-A \code{logical} value.ks
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Objective-evaluate"></a>}}
 \if{latex}{\out{\hypertarget{method-Objective-evaluate}{}}}
-\subsection{Method \code{evaluate()}}{
-Calculate the objective value for a solution.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Objective$evaluate(y, solution)}\if{html}{\out{</div>}}
+\subsection{\code{Objective$evaluate()}}{
+  Calculate the objective value for a solution.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{Objective$evaluate(y, solution)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{y}}{\link[=ProjectProblem-class]{ProjectProblem} object.}
+      \item{\code{solution}}{\code{\link[tibble:tibble]{tibble::tibble()}} object with solution.}
+    }
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Returns}{
+    A \code{numeric} value.
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{y}}{\linkS4class{ProjectProblem} object.}
-
-\item{\code{solution}}{\code{\link[tibble:tibble]{tibble::tibble()}} object with solution.}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-A \code{numeric} value.
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-Objective-clone"></a>}}
 \if{latex}{\out{\hypertarget{method-Objective-clone}{}}}
-\subsection{Method \code{clone()}}{
-The objects of this class are cloneable with this method.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Objective$clone(deep = FALSE)}\if{html}{\out{</div>}}
+\subsection{\code{Objective$clone()}}{
+  The objects of this class are cloneable with this method.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{Objective$clone(deep = FALSE)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{deep}}{Whether to make a deep clone.}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{deep}}{Whether to make a deep clone.}
-}
-\if{html}{\out{</div>}}
-}
-}
 }

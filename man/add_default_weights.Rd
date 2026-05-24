@@ -45,7 +45,7 @@ plot(p, s)
 }
 }
 \seealso{
-Other weights: 
-\code{\link{add_feature_weights}()}
+Other weights:
+\code{\link[=add_feature_weights]{add_feature_weights()}}
 }
 \concept{weights}

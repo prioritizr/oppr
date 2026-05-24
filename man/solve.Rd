@@ -14,18 +14,18 @@
 \S4method{solve}{MultiObjProjectProblem,missing}(a, b, ...)
 }
 \arguments{
-\item{a}{\code{\link[=problem]{problem()}}, \code{\link[=multi_problem]{multi_problem()}}, or \linkS4class{OptimizationProblem}
+\item{a}{\code{\link[=problem]{problem()}}, \code{\link[=multi_problem]{multi_problem()}}, or \link[=OptimizationProblem-class]{OptimizationProblem}
 object.}
 
-\item{b}{\linkS4class{Solver} object. Note that this parameter is only used
-if \code{a} is an \linkS4class{OptimizationProblem} object.}
+\item{b}{\link[=Solver-class]{Solver} object. Note that this parameter is only used
+if \code{a} is an \link[=OptimizationProblem-class]{OptimizationProblem} object.}
 
 \item{...}{arguments passed to \code{\link[=compile]{compile()}}.}
 }
 \value{
 The type of object returned from this function depends on the
 argument to \code{a}. If the argument to \code{a} is an
-\linkS4class{OptimizationProblem} object, then the
+\link[=OptimizationProblem-class]{OptimizationProblem} object, then the
 solution is returned as a \code{list} containing the prioritization and
 additional information (e.g., run time, solver status). On the other hand,
 if the argument to \code{a} is a \code{\link[=problem]{problem()}} or \code{\link[=multi_problem]{multi_problem()}} object,

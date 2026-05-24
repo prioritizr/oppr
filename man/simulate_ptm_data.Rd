@@ -161,7 +161,7 @@ of evolutionary history that each feature has experienced.
 }
 
 \item{"tree"}{
-An \code{\link[ape:read.tree]{ape::phylo()}} phylogenetic tree for the features.
+An \code{\link[ape:phylo]{ape::phylo()}} phylogenetic tree for the features.
 }
 
 }
@@ -212,7 +212,7 @@ set as the \code{baseline_min_persistence_probability}
 and \code{baseline_max_persistence_probability} arguments.
 
 \item A phylogenetic tree is simulated for the features using
-\code{\link[ape:rtree]{ape::rcoal()}}.
+\code{\link[ape:rcoal]{ape::rcoal()}}.
 
 \item Feature data are created from the phylogenetic tree. The
 weights are calculated as the amount of evolutionary history

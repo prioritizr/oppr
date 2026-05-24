@@ -104,7 +104,7 @@ plot(p, s)
 \seealso{
 Useful links:
 \itemize{
-\item Package website (\url{https://prioritizr.github.io/oppr})
+\item Package website (\url{https://prioritizr.github.io/oppr/})
 \item Source code repository (\url{https://github.com/prioritizr/oppr})
 \item Report bugs (\url{https://github.com/prioritizr/oppr/issues})
 }

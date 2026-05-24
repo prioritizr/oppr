@@ -110,11 +110,11 @@ Vanderpooten D (1990) \emph{Multiobjective programming: Basic concepts and}
 Mathematical Programming Under Uncertainty. Springer, Berlin.
 }
 \seealso{
-Other overviews: 
+Other overviews:
 \code{\link{constraints}},
 \code{\link{objectives}},
 \code{\link{solvers}},
 \code{\link{targets}},
-\code{\link{weights}()}
+\code{\link{weights}}
 }
 \concept{overviews}

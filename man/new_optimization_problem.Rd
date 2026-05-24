@@ -7,10 +7,10 @@
 new_optimization_problem()
 }
 \value{
-An \linkS4class{OptimizationProblem} object.
+An \link[=OptimizationProblem-class]{OptimizationProblem} object.
 }
 \description{
-Generate a new empty \linkS4class{OptimizationProblem} object.
+Generate a new empty \link[=OptimizationProblem-class]{OptimizationProblem} object.
 }
 \examples{
 # create empty OptimizationProblem object

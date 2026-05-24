@@ -87,7 +87,7 @@ p <-
         baseline_project_name = "baseline_project_obj1"
       ) %>%
       add_max_phylo_div_objective(
-       budget = 200, tree = sim_multi_tree[[1]]
+        budget = 1000, tree = sim_multi_tree[[1]]
       ) %>%
       add_binary_decisions(),
    obj2 =
@@ -96,7 +96,7 @@ p <-
        "name", "success", "name", "cost", "name",
        baseline_project_name = "baseline_project_obj2"
      ) %>%
-     add_max_richness_objective(budget = 200) %>%
+     add_max_richness_objective(budget = 1000) %>%
      add_binary_decisions(),
    obj3 =
      problem(
@@ -104,7 +104,7 @@ p <-
        "name", "success", "name", "cost", "name",
        baseline_project_name = "baseline_project_obj3"
      ) %>%
-     add_max_wtd_sum_objective(budget = 200) %>%
+     add_max_wtd_sum_objective(budget = 1000) %>%
      add_binary_decisions()
  ) %>%
  add_abs_constraint_approach(goals = c(NA, 0.01, 0.01)) %>%
@@ -174,7 +174,7 @@ s <- solve(p)
 #> PoolSearchMode  2
 #> 
 #> Optimize a model with 334 rows, 260 columns and 918 nonzeros (Max)
-#> Model fingerprint: 0x1f7faa67
+#> Model fingerprint: 0x6755096a
 #> Model has 201 linear objective coefficients
 #> Variable types: 11 continuous, 150 integer (150 binary)
 #> Semi-Variable types: 99 continuous, 0 integer
@@ -182,29 +182,73 @@ s <- solve(p)
 #>   Matrix range     [5e-02, 1e+02]
 #>   Objective range  [2e-02, 5e-01]
 #>   Bounds range     [6e-01, 3e+00]
-#>   RHS range        [1e-02, 2e+02]
+#>   RHS range        [1e-02, 1e+03]
 #> 
-#> Presolve removed 328 rows and 240 columns
+#> Presolve removed 244 rows and 80 columns
 #> Presolve time: 0.00s
-#> Presolved: 6 rows, 20 columns, 26 nonzeros
-#> Variable types: 1 continuous, 19 integer (19 binary)
+#> Presolved: 286 rows, 278 columns, 768 nonzeros
+#> Variable types: 98 continuous, 180 integer (180 binary)
 #> Found heuristic solution: objective 0.3873963
+#> Root relaxation presolved: 286 rows, 278 columns, 768 nonzeros
 #> 
-#> Explored 0 nodes (0 simplex iterations) in 0.00 seconds (0.00 work units)
+#> 
+#> Root relaxation: objective 8.326604e-01, 71 iterations, 0.00 seconds (0.00 work units)
+#> 
+#>     Nodes    |    Current Node    |     Objective Bounds      |     Work
+#>  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+#> 
+#>      0     0    0.83266    0   13    0.38740    0.83266   115%     -    0s
+#> H    0     0                       0.6823882    0.83266  22.0%     -    0s
+#>      0     0    0.71947    0    3    0.68239    0.71947  5.43%     -    0s
+#>      0     0    0.71947    0    3    0.68239    0.71947  5.43%     -    0s
+#>      0     0    0.71874    0    6    0.68239    0.71874  5.33%     -    0s
+#>      0     0    0.71789    0    9    0.68239    0.71789  5.20%     -    0s
+#> H    0     0                       0.7096175    0.71780  1.15%     -    0s
+#>      0     0    0.71780    0    9    0.70962    0.71780  1.15%     -    0s
+#>      0     0    0.71780    0    9    0.70962    0.71780  1.15%     -    0s
+#> H    0     0                       0.7105510    0.71775  1.01%     -    0s
+#> H    0     0                       0.7113862    0.71775  0.89%     -    0s
+#>      0     0    0.71775    0   11    0.71139    0.71775  0.89%     -    0s
+#>      0     0    0.71775    0    9    0.71139    0.71775  0.89%     -    0s
+#>      0     0    0.71771    0   11    0.71139    0.71771  0.89%     -    0s
+#>      0     0    0.71766    0   11    0.71139    0.71766  0.88%     -    0s
+#>      0     0    0.71766    0    9    0.71139    0.71766  0.88%     -    0s
+#>      0     0    0.71765    0   15    0.71139    0.71765  0.88%     -    0s
+#>      0     0    0.71756    0    9    0.71139    0.71756  0.87%     -    0s
+#>      0     0    0.71745    0   11    0.71139    0.71745  0.85%     -    0s
+#>      0     0    0.71745    0   11    0.71139    0.71745  0.85%     -    0s
+#>      0     0    0.71745    0   13    0.71139    0.71745  0.85%     -    0s
+#>      0     0    0.71745    0   15    0.71139    0.71745  0.85%     -    0s
+#>      0     0    0.71743    0   11    0.71139    0.71743  0.85%     -    0s
+#>      0     0    0.71739    0   11    0.71139    0.71739  0.84%     -    0s
+#>      0     0    0.71737    0   13    0.71139    0.71737  0.84%     -    0s
+#>      0     0    0.71736    0   15    0.71139    0.71736  0.84%     -    0s
+#>      0     0    0.71736    0   11    0.71139    0.71736  0.84%     -    0s
+#>      0     0    0.71735    0   17    0.71139    0.71735  0.84%     -    0s
+#>      0     0    0.71735    0   17    0.71139    0.71735  0.84%     -    0s
+#>      0     2    0.71709    0   17    0.71139    0.71709  0.80%     -    0s
+#> 
+#> Cutting planes:
+#>   Gomory: 1
+#>   Cover: 13
+#>   Implied bound: 2
+#>   MIR: 24
+#> 
+#> Explored 123 nodes (552 simplex iterations) in 0.07 seconds (0.05 work units)
 #> Thread count was 1 (of 8 available processors)
 #> 
-#> Solution count 1: 0.387396 
-#> No other solutions better than 0.387396
+#> Solution count 1: 0.711386 
+#> No other solutions better than 0.711386
 #> 
 #> Optimal solution found (tolerance 0.00e+00)
-#> Best objective 3.873962810140e-01, best bound 3.873962810140e-01, gap 0.0000%
+#> Best objective 7.113861930761e-01, best bound 7.113861930761e-01, gap 0.0000%
 
 # print solution
 print(s)
 #> # A tibble: 1 × 47
 #>   solution status   cost  obj1  obj2  obj3 A1_action A2_action A3_action
 #>      <int> <chr>   <dbl> <dbl> <dbl> <dbl> <lgl>     <lgl>     <lgl>    
-#> 1        1 OPTIMAL     0 0.420 0.430  1.30 FALSE     FALSE     FALSE    
+#> 1        1 OPTIMAL  885. 0.670 0.430  1.62 TRUE      FALSE     TRUE     
 #> # ℹ 38 more variables: A4_action <lgl>, A5_action <lgl>, A6_action <lgl>,
 #> #   A7_action <lgl>, A8_action <lgl>, A9_action <lgl>, A10_action <lgl>,
 #> #   A11_action <lgl>, A12_action <lgl>, A13_action <lgl>, A14_action <lgl>,

@@ -101,8 +101,8 @@ resources among threatened species: A project prioritization protocol.
 }
 \seealso{
 Other functions for evaluating solutions:
-\code{\link{rank_importance}()},
-\code{\link{replacement_costs}()},
-\code{\link{solution_statistics}()}
+\code{\link[=rank_importance]{rank_importance()}},
+\code{\link[=replacement_costs]{replacement_costs()}},
+\code{\link[=solution_statistics]{solution_statistics()}}
 }
 \concept{evaluation}

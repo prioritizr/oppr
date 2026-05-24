@@ -131,8 +131,8 @@ s <- solve(p)
 #>       The largest [LUSOL v2.2.1.0] fact(B) had 64 NZ entries, 1.0x largest basis.
 #>       The maximum B&B level was 6, 0.1x MIP order, 4 at the optimal solution.
 #>       The constraint matrix inf-norm is 103.226, with a dynamic range of 1193.9.
-#>       Time to load data was 0.000 seconds, presolve used 0.000 seconds,
-#>        ... 0.000 seconds in simplex solver, in total 0.000 seconds.
+#>       Time to load data was 1.000 seconds, presolve used 0.000 seconds,
+#>        ... 0.000 seconds in simplex solver, in total 1.000 seconds.
 
 # print solution
 print(s)

@@ -32,10 +32,10 @@ object with the solver added to it.
 The solvers that can be used are as follows (ordered best to worst):
 gurobi,
 ([`add_gurobi_solver()`](https://prioritizr.github.io/oppr/reference/add_gurobi_solver.md)),
-rcbc,
-([`add_cbc_solver()`](https://prioritizr.github.io/oppr/reference/add_cbc_solver.md)),
 highs,
 ([`add_highs_solver()`](https://prioritizr.github.io/oppr/reference/add_highs_solver.md)),
+rcbc,
+([`add_cbc_solver()`](https://prioritizr.github.io/oppr/reference/add_cbc_solver.md)),
 Rsymphony
 ([`add_rsymphony_solver()`](https://prioritizr.github.io/oppr/reference/add_rsymphony_solver.md)),
 lpsymphony

@@ -20,7 +20,7 @@ Other classes:
 
 ## Super class
 
-[`oppr::ProjectModifier`](https://prioritizr.github.io/oppr/reference/ProjectModifier-class.md)
+[`ProjectModifier`](https://prioritizr.github.io/oppr/reference/ProjectModifier-class.md)
 -\> `Objective`
 
 ## Public fields
@@ -49,19 +49,19 @@ Other classes:
 
 Inherited methods
 
-- [`oppr::ProjectModifier$apply()`](https://prioritizr.github.io/oppr/reference/ProjectModifier.html#method-apply)
-- [`oppr::ProjectModifier$calculate()`](https://prioritizr.github.io/oppr/reference/ProjectModifier.html#method-calculate)
-- [`oppr::ProjectModifier$get_data()`](https://prioritizr.github.io/oppr/reference/ProjectModifier.html#method-get_data)
-- [`oppr::ProjectModifier$get_internal()`](https://prioritizr.github.io/oppr/reference/ProjectModifier.html#method-get_internal)
-- [`oppr::ProjectModifier$print()`](https://prioritizr.github.io/oppr/reference/ProjectModifier.html#method-print)
-- [`oppr::ProjectModifier$repr()`](https://prioritizr.github.io/oppr/reference/ProjectModifier.html#method-repr)
-- [`oppr::ProjectModifier$set_data()`](https://prioritizr.github.io/oppr/reference/ProjectModifier.html#method-set_data)
-- [`oppr::ProjectModifier$set_internal()`](https://prioritizr.github.io/oppr/reference/ProjectModifier.html#method-set_internal)
-- [`oppr::ProjectModifier$show()`](https://prioritizr.github.io/oppr/reference/ProjectModifier.html#method-show)
+- [`ProjectModifier$apply()`](https://prioritizr.github.io/oppr/reference/ProjectModifier.html#method-apply)
+- [`ProjectModifier$calculate()`](https://prioritizr.github.io/oppr/reference/ProjectModifier.html#method-calculate)
+- [`ProjectModifier$get_data()`](https://prioritizr.github.io/oppr/reference/ProjectModifier.html#method-get_data)
+- [`ProjectModifier$get_internal()`](https://prioritizr.github.io/oppr/reference/ProjectModifier.html#method-get_internal)
+- [`ProjectModifier$print()`](https://prioritizr.github.io/oppr/reference/ProjectModifier.html#method-print)
+- [`ProjectModifier$repr()`](https://prioritizr.github.io/oppr/reference/ProjectModifier.html#method-repr)
+- [`ProjectModifier$set_data()`](https://prioritizr.github.io/oppr/reference/ProjectModifier.html#method-set_data)
+- [`ProjectModifier$set_internal()`](https://prioritizr.github.io/oppr/reference/ProjectModifier.html#method-set_internal)
+- [`ProjectModifier$show()`](https://prioritizr.github.io/oppr/reference/ProjectModifier.html#method-show)
 
 ------------------------------------------------------------------------
 
-### Method `feature_phylogeny()`
+### `Objective$feature_phylogeny()`
 
 Obtain the feature phylogeny.
 
@@ -76,7 +76,7 @@ phylogenetic tree object.
 
 ------------------------------------------------------------------------
 
-### Method `default_feature_weights()`
+### `Objective$default_feature_weights()`
 
 Obtain default feature weights.
 
@@ -90,7 +90,7 @@ A `numeric` vector with the default feature weights.
 
 ------------------------------------------------------------------------
 
-### Method `replace_feature_weights()`
+### `Objective$replace_feature_weights()`
 
 Should default feature weights be replaced or multiplied by the new
 weights?
@@ -105,7 +105,7 @@ A `logical` value.ks
 
 ------------------------------------------------------------------------
 
-### Method `evaluate()`
+### `Objective$evaluate()`
 
 Calculate the objective value for a solution.
 
@@ -131,7 +131,7 @@ A `numeric` value.
 
 ------------------------------------------------------------------------
 
-### Method `clone()`
+### `Objective$clone()`
 
 The objects of this class are cloneable with this method.
 
