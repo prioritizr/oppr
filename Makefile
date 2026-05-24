@@ -90,4 +90,7 @@ purl_readme:
 install:
 	R --slave -e "devtools::install_local('.', force = TRUE, upgrade = 'never')"
 
-.PHONY: initc data docs readme site test check checkwb build install man purl_vigns purl_readme
+search_errors:
+	@grep -rRnF --exclude="*.md" --exclude="*.R" --exclude=".Rd" --exclude="Makefile" --exclude="*.yaml" --exclude="*.js" --exclude="*.map" --exclude="*.json" --exclude="*.o" --exclude="*.so" --exclude-dir=".git" "Error"
+
+.PHONY: initc data docs readme site test check checkwb build install man purl_vigns purl_readme search_errors
