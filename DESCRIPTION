@@ -55,7 +55,7 @@ Suggests:
     ggtree (>= 2.4.2),
     lpsymphony (>= 1.10.0),
     lpSolveAPI (>= 5.5.2.0.17),
-    rcbc (>= 0.1.0.9004),
+    rcbc (>= 0.1.0.9003),
     fansi (>= 1.0.6)
 Depends:
     R(>= 3.5.0)
