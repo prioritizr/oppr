@@ -93,7 +93,6 @@ Collate:
     'add_absolute_targets.R'
     'add_binary_decisions.R'
     'add_cbc_solver.R'
-    'add_chebyshev_goal_approach.R'
     'add_default_solver.R'
     'add_default_weights.R'
     'add_feature_weights.R'
