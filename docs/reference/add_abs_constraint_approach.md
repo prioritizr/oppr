@@ -64,7 +64,6 @@ these terms, the approach is formulated with the following equation.
 ## See also
 
 Other approaches:
-[`add_chebyshev_goal_approach()`](https://prioritizr.github.io/oppr/reference/add_chebyshev_goal_approach.md),
 [`add_ref_point_approach()`](https://prioritizr.github.io/oppr/reference/add_ref_point_approach.md),
 [`add_wtd_goal_approach()`](https://prioritizr.github.io/oppr/reference/add_wtd_goal_approach.md)
 

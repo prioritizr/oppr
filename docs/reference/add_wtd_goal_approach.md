@@ -74,7 +74,6 @@ Science, volume 141. Springer, Boston, MA.
 
 Other approaches:
 [`add_abs_constraint_approach()`](https://prioritizr.github.io/oppr/reference/add_abs_constraint_approach.md),
-[`add_chebyshev_goal_approach()`](https://prioritizr.github.io/oppr/reference/add_chebyshev_goal_approach.md),
 [`add_ref_point_approach()`](https://prioritizr.github.io/oppr/reference/add_ref_point_approach.md)
 
 ## Examples

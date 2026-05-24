@@ -22,11 +22,6 @@ NULL
 #' (Jones and Tamiz 2010).
 #' }
 #'
-#' \item{[add_chebyshev_goal_approach()]}{
-#' Add an approach to generate solutions with the Chebyshev goal method.
-#' (Jones and Tamiz 2010).
-#' }
-#'
 #' \item{[add_ref_point_approach()]}{
 #' Add an approach to generate solutions with the reference point method
 #' (Vanderpooten 1990)
@@ -101,16 +96,8 @@ NULL
 #'     goals = c(1, 3, 0.2)
 #'   )
 #'
-#' # build another problem, with the Chebyshev goal method
-#' p4 <-
-#'   p1 %>%
-#'   add_chebyshev_goal_approach(
-#'     weights = c(1, 0.5, 0.1),
-#'     goals = c(1, 3, 0.2)
-#'   )
-#'
 #' # build another problem, with the reference point method
-#' p5 <-
+#' p4 <-
 #'   p1 %>%
 #'   add_ref_point_approach(
 #'     weights = c(1, 0.5, 0.1),
@@ -118,8 +105,8 @@ NULL
 #'   )
 #'
 #' # generate solutions using each approach
-#' s <- rbind(solve(p2), solve(p3), solve(p4), solve(p5))
-#' s$approach <- c("abs epsilon", "wtd goal", "Chebyshev goal", "ref point")
+#' s <- rbind(solve(p2), solve(p3), solve(p4))
+#' s$approach <- c("abs epsilon", "wtd goal", "ref point")
 #'
 #' # print solutions
 #' print(as.data.frame(s))
