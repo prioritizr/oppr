@@ -71,7 +71,7 @@ NULL
 #'         baseline_project_name = "baseline_project_obj1"
 #'       ) %>%
 #'       add_max_phylo_div_objective(
-#'        budget = 200, tree = sim_multi_tree[[1]]
+#'         budget = 1000, tree = sim_multi_tree[[1]]
 #'       ) %>%
 #'       add_binary_decisions(),
 #'    obj2 =
@@ -80,7 +80,7 @@ NULL
 #'        "name", "success", "name", "cost", "name",
 #'        baseline_project_name = "baseline_project_obj2"
 #'      ) %>%
-#'      add_max_richness_objective(budget = 200) %>%
+#'      add_max_richness_objective(budget = 1000) %>%
 #'      add_binary_decisions(),
 #'    obj3 =
 #'      problem(
@@ -88,7 +88,7 @@ NULL
 #'        "name", "success", "name", "cost", "name",
 #'        baseline_project_name = "baseline_project_obj3"
 #'      ) %>%
-#'      add_max_wtd_sum_objective(budget = 200) %>%
+#'      add_max_wtd_sum_objective(budget = 1000) %>%
 #'      add_binary_decisions()
 #'  ) %>%
 #'  add_abs_constraint_approach(goals = c(NA, 0.01, 0.01)) %>%
