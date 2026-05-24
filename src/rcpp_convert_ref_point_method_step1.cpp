@@ -31,7 +31,8 @@ bool rcpp_convert_ref_point_method_step1(
   // Define additional decision variables for shortfall variables
   for (std::size_t i = 0; i < n; ++i) {
     ptr->_lb.push_back(0.0);
-    ptr->_ub.push_back(std::max(best[i] - worst[i], 0.0));
+    // note that we inflate shortfall to account for precision loss due to pwl
+    ptr->_ub.push_back(std::max(best[i] - worst[i], 0.0) * 1.5);
     ptr->_vtype.push_back("C");
     ptr->_col_ids.push_back("sh");
   }
@@ -42,9 +43,11 @@ bool rcpp_convert_ref_point_method_step1(
   for (std::size_t i = 0; i < n; ++i) {
     ub = std::max(
       ub,
-      weights[i] * (best[i] - worst[i])
+      // note that we inflate shortfall to account for precision loss due to pwl
+      weights[i] * std::max(best[i] - worst[i], 0.0) * 1.5
     );
   }
+
   // compute apply constraint
   ptr->_ub.push_back(ub);
   ptr->_lb.push_back(0.0);
