@@ -69,7 +69,6 @@ LazyData: true
 URL: https://prioritizr.github.io/oppr/
 BugReports: https://github.com/prioritizr/oppr/issues
 VignetteBuilder: knitr, rmarkdown
-RoxygenNote: 7.3.3
 Encoding: UTF-8
 Language: en-US
 Collate:
@@ -168,4 +167,5 @@ Config/Needs/website:
     tidyr (>= 0.8.2)
 Remotes:
   bioc::ggtree,
-  dirkschumacher/rcbc@semi-vars
+  dirkschumacher/rcbc
+Config/roxygen2/version: 8.0.0
