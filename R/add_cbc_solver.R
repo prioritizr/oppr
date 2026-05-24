@@ -147,21 +147,6 @@ add_cbc_solver <- function(x,
           verbose = verbose
         ),
         solve = function(x, ...) {
-          # ensure support for semi-continuous variables
-          # nocov start
-          if (
-            (utils::packageVersion("rcbc") < package_version("0.1.0.9004")) &&
-            any(x$vtype() == "S")
-          ) {
-            stop(
-              paste(
-                "Installed version of rcbc does not support",
-                "semi-continuous variables. Use highs solver instead."
-              ),
-              call. = FALSE
-            )
-          }
-          # nocov end
           # prepare constraints
           ## extract info
           rhs <- x$rhs()
@@ -186,7 +171,6 @@ add_cbc_solver <- function(x,
             max = identical(x$modelsense(), "max"),
             obj = x$obj(),
             is_integer = x$vtype() == "B",
-            is_semi = x$vtype() == "S",
             mat = as_Matrix(x$A(), "dgTMatrix"),
             col_lb = x$lb(),
             col_ub = x$ub(),
@@ -195,8 +179,18 @@ add_cbc_solver <- function(x,
           )
           # if new version of rcbc, then add is_semi
           # nocov start
-          if (utils::packageVersion("rcbc") >= package_version("0.1.0.9004")) {
+          if (isTRUE("is_semi" %in% names(formals(rcbc::cbc_solve)))) {
             model$is_semi <- x$vtype() == "S"
+          } else {
+            if (any(x$vtype() == "S")) {
+              stop(
+                paste(
+                  "Installed version of rcbc does not support",
+                  "semi-continuous variables. Use highs solver instead."
+                ),
+                call. = FALSE
+              )
+            }
           }
           # nocov end
           # if needed, insert dummy row to ensure non-zero value in last cell
