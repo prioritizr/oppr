@@ -226,11 +226,11 @@ add_ref_point_approach <- function(x, weights, goals, best = NULL, worst = NULL,
               seq_len(ncol(goals)), FUN.VALUE = numeric(1),
               function(i) {
                 ## generate solution with only zero cost actions selected
-                worst_sol <- matrix(1, nrow = 1, ncol = y$number_of_actions())
-                colnames(worst_sol) <- y$problems[[1]]$action_names()
-                worst_sol <- tibble::as_tibble(as.data.frame(worst_sol))
+                best_sol <- matrix(1, nrow = 1, ncol = y$number_of_actions())
+                colnames(best_sol) <- y$problems[[1]]$action_names()
+                best_sol <- tibble::as_tibble(as.data.frame(best_sol))
                 ## calculate objective value
-                y$problems[[i]]$objective$evaluate(y$problems[[i]], worst_sol)
+                y$problems[[i]]$objective$evaluate(y$problems[[i]], best_sol)
               }
             )
           }
@@ -268,9 +268,6 @@ add_ref_point_approach <- function(x, weights, goals, best = NULL, worst = NULL,
               lambda, goals[i, ],
               best, worst
             )
-
-            assign("mo", mo, .GlobalEnv)
-
             ### solve problem
             sols[[i]] <- solver$solve(mo)
             ### if solution found, then apply subsequent processing
