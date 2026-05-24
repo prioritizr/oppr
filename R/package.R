@@ -54,7 +54,7 @@ NULL
 #'
 #' @seealso
 #' Useful links:
-#' * Package website (<https://prioritizr.github.io/oppr>)
+#' * Package website (<https://prioritizr.github.io/oppr/>)
 #' * Source code repository (<https://github.com/prioritizr/oppr>)
 #' * Report bugs (<https://github.com/prioritizr/oppr/issues>)
 #'
