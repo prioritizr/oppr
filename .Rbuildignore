@@ -1,5 +1,5 @@
-^doc$
 ^Meta$
+^doc$
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^\.travis\.yml$
@@ -9,6 +9,7 @@
 ^appveyor\.yml$
 .gitkeep
 ^Makefile$
+^data-raw$
 cran-comments.md
 CRAN-RELEASE
 _pkgdown.yml
@@ -18,11 +19,12 @@ gp.log
 spell.log
 examples.log
 README.Rmd
-inst/extdata/dictionary.txt
+inst/WORDLIST
+inst/URLLIST
 ^_pkgdown\.yml$
 ^CONTRIBUTING\.md$
 ^CONTRIBUTING\.Rmd$
-^CRAN-RELEASE$
+pkgdown
+.covrignore
 ^\.github$
-inst/WORDLIST
 codecov.yml
