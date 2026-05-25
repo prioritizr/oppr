@@ -63,6 +63,7 @@ compile.ProjectProblem <- function(x, n_approx = 100, ...) {
     stop("problem has an objective that requires targets.")
   }
   if (!isTRUE(x$defaults$targets) && !isTRUE(x$objective$has_targets)) {
+    # nocov start
     warning(
       paste(
         "targets will be ignored because they are not used by the",
@@ -70,8 +71,10 @@ compile.ProjectProblem <- function(x, n_approx = 100, ...) {
       ),
       call. = FALSE, immediate. = TRUE
     )
+    # nocov end
   }
   if (!isTRUE(x$defaults$weights) && !isTRUE(x$objective$has_weights)) {
+    # nocov start
     warning(
       paste(
         "weights will be ignored because they are not used by the",
@@ -79,6 +82,7 @@ compile.ProjectProblem <- function(x, n_approx = 100, ...) {
       ),
       call. = FALSE, immediate. = TRUE
     )
+    # nocov end
   }
   # replace waivers with defaults
   if (isTRUE(x$defaults$objective)) {
@@ -156,17 +160,21 @@ compile.ProjectProblem <- function(x, n_approx = 100, ...) {
   }
   # check that all actions have not been locked in
   if (all(op$lb()[seq_len(x$number_of_actions())] == 1)) {
+    # nocov start
     warning(
       "all planning units are locked in.",
       call. = FALSE, immediate. = TRUE
     )
+    # nocov end
   }
   # check that all actions have not been locked out
   if (all(op$ub()[seq_len(x$number_of_actions())] == 0)) {
+    # nocov start
     warning(
       "all planning units are locked out.",
       call. = FALSE, immediate. = TRUE
     )
+    # nocov end
   }
   # add data to optimization problem object
   op$data <- x
@@ -174,6 +182,7 @@ compile.ProjectProblem <- function(x, n_approx = 100, ...) {
   # see: http://files.gurobi.com/Numerics.pdf
   r <- range(op$A()@x)
   if ((r[2] / r[1]) > 1e8) {
+    # nocov start
     warning(
       paste(
         "massive difference between minimum and maximum values in",
@@ -182,6 +191,7 @@ compile.ProjectProblem <- function(x, n_approx = 100, ...) {
       ),
       call. = FALSE, immediate. = TRUE
     )
+    # nocov end
   }
   # return optimization problem object
   op

@@ -98,10 +98,10 @@ add_cbc_solver <- function(x,
                            verbose = TRUE) {
   # provide backwards compatibility for presolve
   if (isTRUE(presolve)) {
-    presolve <- 1
+    presolve <- 1 # nocov
   }
   if (identical(presolve, FALSE)) {
-    presolve <- 0
+    presolve <- 0 # nocov
   }
   # assert valid arguments
   assertthat::assert_that(

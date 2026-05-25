@@ -130,7 +130,7 @@ add_rsymphony_solver <- function(x, gap = 0, time_limit = .Machine$integer.max,
             is.null(x$solution) ||
               (x$status %in% c("TM_NO_SOLUTION", "PREP_NO_SOLUTION"))
           ) {
-            return(NULL)
+            return(NULL) # nocov
           }
           # return solution
           list(

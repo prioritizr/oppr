@@ -152,7 +152,7 @@ methods::setMethod(
     ## solve problem
     # assign solver
     if (inherits(a$solver, "Waiver")) {
-      a <- add_default_solver(a)
+      a <- add_default_solver(a) # nocov
     }
     # compile and solve optimisation problem
     opt <- compile.ProjectProblem(a, ...)

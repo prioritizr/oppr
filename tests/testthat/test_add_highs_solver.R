@@ -13,7 +13,7 @@ test_that("format", {
     add_min_set_objective() %>%
     add_relative_targets(0.5) %>%
     add_binary_decisions() %>%
-    add_highs_solver()
+    add_highs_solver(control = list(threads = 1L))
   # solve problem
   s <- solve(p)
   # run tests
