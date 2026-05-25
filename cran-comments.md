@@ -10,12 +10,12 @@ Jeff
 
 # Test environments
 
-* [Ubuntu 22.04, R-release](https://github.com/prioritizr/oppr/actions?query=workflow%3AUbuntu)
-* [Ubuntu 22.04, R-devel](https://github.com/prioritizr/oppr/actions?query=workflow%3AUbuntu)
-* [Mac OSX 10.15, R-release](https://github.com/prioritizr/oppr/actions?query=workflow%3A%22Mac+OSX%22)
-* [Windows Server 2019, R-release](https://github.com/prioritizr/oppr/actions?query=workflow%3AWindows)
-* [Windows Server 2019, R-devel](https://github.com/prioritizr/oppr/actions?query=workflow%3AWindows)
-* Windows Server 2008 (x64), R-devel (win-builder)
+* [Ubuntu 24.04, R-release](https://github.com/prioritizr/oppr/actions?query=workflow%3AUbuntu)
+* [Ubuntu 24.04, R-devel](https://github.com/prioritizr/oppr/actions?query=workflow%3AUbuntu)
+* [Mac OSX 15.7.4, R-release](https://github.com/prioritizr/oppr/actions?query=workflow%3A%22Mac+OSX%22)
+* [Windows Server 2025, R-release](https://github.com/prioritizr/oppr/actions?query=workflow%3AWindows)
+* [Windows Server 2025, R-devel](https://github.com/prioritizr/oppr/actions?query=workflow%3AWindows)
+* Windows Server 2022 (x64), R-devel (win-builder)
 
 # R CMD check results
 
