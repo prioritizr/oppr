@@ -173,14 +173,14 @@ add_ref_point_approach <- function(x, weights, goals, best = NULL, worst = NULL,
     assertthat::assert_that(
       is.numeric(best),
       assertthat::noNA(best),
-      ncol(goals) == ncol(best)
+      identical(ncol(goals), length(best))
     )
   }
   if (!is.null(worst)) {
     assertthat::assert_that(
-      is.numeric(best),
-      assertthat::noNA(best),
-      ncol(goals) == ncol(best)
+      is.numeric(worst),
+      assertthat::noNA(worst),
+      identical(ncol(goals), length(worst))
     )
   }
   # add approach
