@@ -55,7 +55,7 @@ bool rcpp_convert_wtd_goal_method(
   // Add linear constraints
   for (std::size_t j = 0; j < A_ncol; ++j) {
     for (std::size_t i = 0; i < n; ++i) {
-      if (std::abs(mopt_obj(i, j) >= SMALL_TOL)) {
+      if (std::abs(mopt_obj(i, j)) >= SMALL_TOL) {
         ptr->_A_i.push_back(A_nrow + i);
         ptr->_A_j.push_back(j);
         ptr->_A_x.push_back(mopt_obj(i, j));

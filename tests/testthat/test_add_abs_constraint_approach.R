@@ -152,7 +152,7 @@ test_that("some feasible solutions", {
     add_abs_constraint_approach(
       goals = matrix(c(NA, 9999, NA, 0.8), ncol = 2, byrow = TRUE)
     ) %>%
-    add_cbc_solver(gap = 0)
+    add_default_solver(gap = 0)
   # solve problem
   s <- solve(p)
   # run tests

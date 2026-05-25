@@ -26,7 +26,7 @@ bool rcpp_convert_ref_point_method_step2(
   // which currentlyu corresponds to the min-max component of the
   // reference point method
   for (std::size_t i = 0; i < A_ncol; ++i) {
-    if (std::abs(ptr->_obj[i] >= SMALL_TOL)) {
+    if (std::abs(ptr->_obj[i]) >= SMALL_TOL) {
       ptr->_A_i.push_back(A_nrow);
       ptr->_A_j.push_back(i);
       ptr->_A_x.push_back(ptr->_obj[i]);
