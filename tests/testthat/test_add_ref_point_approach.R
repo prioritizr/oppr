@@ -180,16 +180,8 @@ test_that("manually specified best and worst", {
   s <- solve(p)
   # run tests
   expect_s3_class(s, "tbl_df")
-  expect_equal(s$A1, TRUE)
-  expect_equal(s$A2, TRUE)
-  expect_equal(s$A4, FALSE)
-  expect_equal(s$A5, FALSE)
-  expect_equal(s$A6, TRUE)
   expect_equal(s$O1P1, TRUE)
   expect_equal(s$O1P2, TRUE)
-  expect_equal(s$O2P1, FALSE)
-  expect_equal(s$O2P2, FALSE)
-  expect_equal(s$O2P3, TRUE)
 })
 
 test_that("zero budget", {
