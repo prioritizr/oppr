@@ -9,7 +9,8 @@ Rcpp::NumericVector rcpp_evaluate_max_phylo_div_objective(
   arma::sp_mat solutions) {
   return evaluate_max_phylo_div_objective(
     costs, pa_matrix, pf_matrix, branch_matrix, branch_lengths, targets,
-    weights, solutions);
+    weights, solutions
+  );
 }
 
 // [[Rcpp::export]]
@@ -20,7 +21,8 @@ Rcpp::NumericVector rcpp_evaluate_min_set_objective(
   arma::sp_mat solutions) {
   return evaluate_min_set_objective(
     costs, pa_matrix, pf_matrix, branch_matrix, branch_lengths, targets,
-    weights, solutions);
+    weights, solutions
+  );
 }
 
 // [[Rcpp::export]]
@@ -31,13 +33,15 @@ Rcpp::NumericVector rcpp_evaluate_max_targets_met_objective(
   arma::sp_mat solutions) {
   return evaluate_max_targets_met_objective(
     costs, pa_matrix, pf_matrix, branch_matrix, branch_lengths, targets,
-    weights, solutions);
+    weights, solutions
+  );
 }
 
 // [[Rcpp::export]]
 Rcpp::NumericMatrix rcpp_expected_persistences(
   arma::sp_mat pa_matrix, arma::sp_mat pf_matrix, arma::sp_mat branch_matrix,
   arma::sp_mat solutions) {
-  return Rcpp::wrap(expected_persistences(
-    pa_matrix, pf_matrix, branch_matrix, solutions));
+  return Rcpp::wrap(
+    expected_persistences(pa_matrix, pf_matrix, branch_matrix, solutions)
+  );
 }

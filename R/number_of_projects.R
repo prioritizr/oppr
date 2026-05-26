@@ -1,29 +1,31 @@
-#' @include internal.R
+#' @include internal.R ProjectProblem-class.R MultiObjProjectProblem-class.R
 NULL
 
 #' Number of projects
 #'
-#' Extract the number of projects in an object.
+#' Get the number of projects in an object.
 #'
-#' @param x [ProjectProblem-class] or
-#'   [OptimizationProblem-class] object.
+#' @inheritParams number_of_actions
 #'
-#' @return `integer` number of projects.
+#' @return An `integer` value.
 #'
 #' @name number_of_projects
 #'
-#' @aliases number_of_projects,ProjectProblem-method number_of_projects,OptimizationProblem-method
+#' @aliases number_of_projects,ProjectProblem-method number_of_projects,MultiObjProjectProblem-method
 #'
 #' @examples
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
-#' # build problem with default solver
-#' p <- problem(sim_projects, sim_actions, sim_features,
-#'              "name", "success", "name", "cost", "name") %>%
-#'      add_max_richness_objective(budget = 200) %>%
-#'      add_binary_decisions() %>%
-#'      add_default_solver()
+#' # build problem
+#' p <-
+#'   problem(
+#'     sim_projects, sim_actions, sim_features,
+#'     "name", "success", "name", "cost", "name"
+#'   ) %>%
+#'   add_max_wtd_sum_objective(budget = 200) %>%
+#'   add_binary_decisions() %>%
+#'   add_default_solver()
 #'
 #' # print problem
 #' print(p)
@@ -39,24 +41,27 @@ NULL
 #' @exportMethod number_of_projects
 #'
 #' @usage number_of_projects(x)
-#'
-methods::setGeneric("number_of_projects",
-  function(x) standardGeneric("number_of_projects"))
+methods::setGeneric(
+  "number_of_projects",
+  function(x) standardGeneric("number_of_projects")
+)
 
 #' @name number_of_projects
 #'
 #' @rdname number_of_projects
 #'
 #' @usage \S4method{number_of_projects}{ProjectProblem}(x)
-#'
-methods::setMethod("number_of_projects", "ProjectProblem",
-  function(x) x$number_of_projects())
+methods::setMethod(
+  "number_of_projects", "ProjectProblem",
+  function(x) x$number_of_projects()
+)
 
 #' @name number_of_projects
 #'
 #' @rdname number_of_projects
 #'
-#' @usage \S4method{number_of_projects}{OptimizationProblem}(x)
-#'
-methods::setMethod("number_of_projects", "OptimizationProblem",
-  function(x) x$number_of_projects())
+#' @usage \S4method{number_of_projects}{MultiObjProjectProblem}(x)
+methods::setMethod(
+  "number_of_projects", "MultiObjProjectProblem",
+  function(x) x$number_of_projects()
+)

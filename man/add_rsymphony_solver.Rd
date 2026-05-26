@@ -2,7 +2,7 @@
 % Please edit documentation in R/add_rsymphony_solver.R
 \name{add_rsymphony_solver}
 \alias{add_rsymphony_solver}
-\title{Add a SYMPHONY solver with \pkg{Rsymphony}}
+\title{Add a \emph{SYMPHONY} solver with \emph{Rsymphony}}
 \usage{
 add_rsymphony_solver(
   x,
@@ -13,7 +13,7 @@ add_rsymphony_solver(
 )
 }
 \arguments{
-\item{x}{\linkS4class{ProjectProblem} object.}
+\item{x}{\code{\link[=problem]{problem()}} or \code{\link[=multi_problem]{multi_problem()}} object.}
 
 \item{gap}{\code{numeric} gap to optimality. This gap is relative
 and expresses the acceptable deviance from the optimal objective.
@@ -21,7 +21,7 @@ For example, a value of 0.01 will result in the solver stopping when
 it has found a solution within 1\% of optimality.
 Additionally, a value of 0 will result in the solver stopping
 when it has found an optimal solution.
-The default value is 0.1 (i.e. 10\% from optimality).}
+The default value is 0 (i.e., 0\% from optimality).}
 
 \item{time_limit}{\code{numeric} time limit in seconds to run the optimizer.
 The solver will return the current best solution when this time limit is
@@ -35,18 +35,17 @@ solution is not an arbitrary solution, rather it is derived from the
 relaxed solution, and is therefore often reasonably close to optimality.
 Defaults to \code{FALSE}.}
 
-\item{verbose}{\code{logical} should information be printed while solving
-optimization problems?}
+\item{verbose}{\code{logical} should information be printed during optimization?
+Defaults to \code{TRUE}.}
 }
 \value{
-\linkS4class{ProjectProblem} object with the solver added
-to it.
+A \code{\link[=problem]{problem()}} object with the solver added to it.
 }
 \description{
-Specify that the \emph{SYMPHONY} software should be used to solve a
-project prioritization \code{\link[=problem]{problem()}} using the \pkg{Rsymphony}
-package. This function can also be used to customize the behavior of the
-solver. It requires the \pkg{Rsymphony} package.
+Add a solver to generate solutions to a project prioritization problem
+with the \emph{SYMPHONY} software via the \pkg{Rsymphony} package.
+This function can also be used to customize the behavior of the
+solver. It requires the \pkg{Rsymphony} package to be installed.
 }
 \details{
 \href{https://github.com/coin-or/SYMPHONY}{\emph{SYMPHONY}} is an
@@ -58,16 +57,19 @@ provides an interface to COIN-OR and is available on \emph{CRAN}.
 This solver uses the \pkg{Rsymphony} package to solve problems.
 }
 \examples{
-\dontrun{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load data
 data(sim_projects, sim_features, sim_actions)
 
 # build problem with Rsymphony solver
-p <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-     add_max_richness_objective(budget = 200) \%>\%
-     add_binary_decisions() \%>\%
-     add_rsymphony_solver()
+p <-
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) \%>\%
+  add_max_wtd_sum_objective(budget = 200) \%>\%
+  add_binary_decisions() \%>\%
+  add_rsymphony_solver()
 
 # print problem
 print(p)
@@ -80,8 +82,17 @@ print(s)
 
 # plot solution
 plot(p, s)
-}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
-\link{solvers}.
+Other solvers:
+\code{\link[=add_cbc_solver]{add_cbc_solver()}},
+\code{\link[=add_default_solver]{add_default_solver()}},
+\code{\link[=add_gurobi_solver]{add_gurobi_solver()}},
+\code{\link[=add_heuristic_solver]{add_heuristic_solver()}},
+\code{\link[=add_highs_solver]{add_highs_solver()}},
+\code{\link[=add_lpsolveapi_solver]{add_lpsolveapi_solver()}},
+\code{\link[=add_lpsymphony_solver]{add_lpsymphony_solver()}},
+\code{\link[=add_random_solver]{add_random_solver()}}
 }
+\concept{solvers}

@@ -2,12 +2,12 @@
 % Please edit documentation in R/add_lpsolveapi_solver.R
 \name{add_lpsolveapi_solver}
 \alias{add_lpsolveapi_solver}
-\title{Add a lp_solve solver with \pkg{lpSolveAPI}}
+\title{Add a \emph{lp_solve} solver with \emph{lpSolveAPI}}
 \usage{
 add_lpsolveapi_solver(x, gap = 0, presolve = FALSE, verbose = TRUE)
 }
 \arguments{
-\item{x}{\linkS4class{ProjectProblem} object.}
+\item{x}{\code{\link[=problem]{problem()}} or \code{\link[=multi_problem]{multi_problem()}} object.}
 
 \item{gap}{\code{numeric} gap to optimality. This gap is relative
 and expresses the acceptable deviance from the optimal objective.
@@ -15,24 +15,23 @@ For example, a value of 0.01 will result in the solver stopping when
 it has found a solution within 1\% of optimality.
 Additionally, a value of 0 will result in the solver stopping
 when it has found an optimal solution.
-The default value is 0.1 (i.e. 10\% from optimality).}
+The default value is 0 (i.e., 0\% from optimality).}
 
 \item{presolve}{\code{logical} indicating if attempts to should be made
 to simplify the optimization problem (\code{TRUE}) or not (\code{FALSE}).
 Defaults to \code{TRUE}.}
 
-\item{verbose}{\code{logical} should information be printed while solving
-optimization problems?}
+\item{verbose}{\code{logical} should information be printed during optimization?
+Defaults to \code{TRUE}.}
 }
 \value{
-\linkS4class{ProjectProblem} object with the solver added
-to it.
+A \code{\link[=problem]{problem()}} object with the solver added to it.
 }
 \description{
-Specify that the \emph{lp_solve} software should be used to solve a
-project prioritization \code{\link[=problem]{problem()}} using the \pkg{lpSolveAPI}
-package. This function can also be used to customize the behavior of the
-solver. It requires the \pkg{lpSolveAPI} package.
+Add a solver to generate solutions to a project prioritization problem
+with the \emph{lp_solve} software.
+This function can also be used to customize the behavior of the
+solver. It requires the \pkg{lpSolveAPI} package to be installed.
 }
 \details{
 \href{https://lpsolve.sourceforge.net/5.5/}{\emph{lp_solve}} is an
@@ -40,22 +39,25 @@ open-source integer programming solver.
 Although this solver is the slowest currently supported solver,
 it is also the only exact algorithm solver that can be installed on all
 operating systems without any manual installation steps. This solver is
-provided so that
-users can try solving small project prioritization problems, without
-needing to install additional software. When solve moderate or large
-project prioritization problems, consider using
+provided so that users can try solving small project prioritization
+problems, without needing to install additional software. When solve
+moderate or large project prioritization problems, consider using
 \code{\link[=add_gurobi_solver]{add_gurobi_solver()}}.
 }
 \examples{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load data
 data(sim_projects, sim_features, sim_actions)
 
 # build problem with lpSolveAPI solver
-p <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-     add_max_richness_objective(budget = 200) \%>\%
-     add_binary_decisions() \%>\%
-     add_lpsolveapi_solver()
+p <-
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) \%>\%
+  add_max_wtd_sum_objective(budget = 200) \%>\%
+  add_binary_decisions() \%>\%
+  add_lpsolveapi_solver()
 
 # print problem
 print(p)
@@ -68,7 +70,17 @@ print(s)
 
 # plot solution
 plot(p, s)
+\dontshow{\}) # examplesIf}
 }
 \seealso{
-\link{solvers}.
+Other solvers:
+\code{\link[=add_cbc_solver]{add_cbc_solver()}},
+\code{\link[=add_default_solver]{add_default_solver()}},
+\code{\link[=add_gurobi_solver]{add_gurobi_solver()}},
+\code{\link[=add_heuristic_solver]{add_heuristic_solver()}},
+\code{\link[=add_highs_solver]{add_highs_solver()}},
+\code{\link[=add_lpsymphony_solver]{add_lpsymphony_solver()}},
+\code{\link[=add_random_solver]{add_random_solver()}},
+\code{\link[=add_rsymphony_solver]{add_rsymphony_solver()}}
 }
+\concept{solvers}

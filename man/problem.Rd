@@ -13,29 +13,33 @@ problem(
   action_name_column,
   action_cost_column,
   feature_name_column,
-  adjust_for_baseline = TRUE
+  adjust_for_baseline = TRUE,
+  baseline_project_name = NULL
 )
 }
 \arguments{
-\item{projects}{\code{\link[base:data.frame]{base::data.frame()}} or
-\code{\link[tibble:tibble]{tibble::tibble()}} table containing project data. Here, each row
+\item{projects}{\code{\link[base:data.frame]{base::data.frame()}} or \code{\link[tibble:tibble]{tibble::tibble()}} table
+containing project data. Here, each row
 should correspond to a different project and columns should contain data
-that correspond to each project. This object should contain data that
+that correspond to each project. It should contain data that
 denote (i)
 the name of each project (specified in the argument to
 \code{project_name_column}), (ii) the
 probability that each project will succeed if all of its actions are funded
 (specified in the argument to \code{project_success_column}), (iii)
-the enhanced probability that each feature will persist if it
-is funded (using a column for each feature),
+the outcome (e.g., probability of species' persistence,
+amount of land covered by an ecosystem) that would be
+expected for each feature assuming that the project
+if successfully completed (using a column for each feature),
 and (iv) and which actions are associated with which projects
-(using a column for each action). This object
-must have a baseline project, with a zero cost value, that represents the
-probability that each feature will persist if no other conservation
-project is funded.
-Since each feature is assigned the greatest probability of persistence
-given the funded projects in a solution, the combined benefits of multiple
-projects can be encoded by creating additional projects that represent
+(using a column for each action). Additionally,
+\code{projects} must have a baseline project (with a zero cost value) that
+represents the outcome that would be expected if no other project
+is successfully completed for each feature.
+Since each feature is assigned the greatest outcome value
+based on the projects selected for funding in a solution, the combined
+benefits of multiple
+projects can be specified by creating additional projects that represent
 "combined projects". For instance, a habitat restoration project might
 cost $100 and mean that a feature has a 40\% chance of persisting, and
 a pest eradication project might cost $50 and mean that a feature has a
@@ -53,8 +57,8 @@ the name of each action (specified in the argument to
 \code{action_name_column}), (ii) the cost of each action (specified in the
 argument to \code{action_cost_column}). Optionally, it may also contain
 data that indicate actions should be (iii) locked in or (iv) locked
-out (see \code{\link[=add_locked_in_constraints]{add_locked_in_constraints()}} and
-\code{\link[=add_locked_out_constraints]{add_locked_out_constraints()}}). It should also contain a
+out (see \code{\link[=add_locked_in_action_constraints]{add_locked_in_action_constraints()}} and
+\code{\link[=add_locked_out_action_constraints]{add_locked_out_action_constraints()}}). It should also contain a
 zero-cost baseline action that is associated with the baseline project.}
 
 \item{features}{\code{\link[base:data.frame]{base::data.frame()}} or
@@ -93,22 +97,29 @@ the name for each feature. This argument corresponds to the
 \code{feature} table. Note that the feature names must not contain any
 duplicates or missing values.}
 
-\item{adjust_for_baseline}{\code{logical} should the probability of
-features persisting when projects are funded be adjusted to account for the
-probability of features persisting under the baseline "do nothing"
-scenario in the event that the funded projects fail to succeed?
-This should always be \code{TRUE}, except when funding a project
-means that the baseline "do nothing" scenario does not apply if a funded
-project fails. Defaults to \code{TRUE}.}
+\item{adjust_for_baseline}{\code{logical} should the expected outcome
+associated with a particular project be adjusted to account for
+the outcome associated with the baseline project in the event
+that the particular project is not successfully competed?
+This should almost always be set to \code{TRUE} to ensure that
+the calculations do not assume that failing to successfully
+complete a funded project will result in an outcome with a value of zero
+(which is often worse than the baseline project).
+Defaults to \code{TRUE}.}
+
+\item{baseline_project_name}{\code{character} name of the baseline project.
+Defaults to \code{NULL} such that the baseline project name is automatically
+inferred based on which action has a zero cost. Note that if multiple
+actions have zero costs, then \code{baseline_project_name} must be specified.}
 }
 \value{
-A new \linkS4class{ProjectProblem} object.
+A new \link[=ProjectProblem-class]{ProjectProblem} object.
 }
 \description{
 Create a project prioritization problem. This function is used to
 specify the underlying data used in a prioritization problem: the projects,
 the management actions, and the features that need
-to be conserved (e.g. species, ecosystems). After constructing this
+to be conserved (e.g., species, ecosystems). After constructing this
 \code{ProjectProblem-class} object,
 it can be customized using \link{objectives}, \link{targets},
 \link{weights}, \link{constraints}, \link{decisions} and
@@ -118,9 +129,9 @@ it can be customized using \link{objectives}, \link{targets},
 \details{
 A project prioritization problem has actions, projects,
 and features. Features are the biological entities that need to
-be conserved (e.g. species, populations, ecosystems). Actions are
+be conserved (e.g., species, populations, ecosystems). Actions are
 real-world management actions that can be implemented to enhance
-biodiversity (e.g. habitat restoration, monitoring, pest eradication). Each
+biodiversity (e.g., habitat restoration, monitoring, pest eradication). Each
 action should have a known cost, and this usually means that each
 action should have a defined spatial extent and time period (though this
 is not necessary). Conservation projects are groups of management actions
@@ -138,20 +149,21 @@ The goal of a project prioritization exercise is then to identify which
 management actions---and as a consequence which conservation
 projects---should be funded. Broadly speaking, the goal
 of an optimization problem is to minimize (or maximize) an objective
-function given a set of control variables and decision variables that are
+unction given a set of control variables and decision variables that are
 subject to a series of constraints. In the context of project
 prioritization problems, the
-objective is usually some measure of utility (e.g. the net
+objective is usually some measure of utility (e.g., the net
 probability of each feature persisting into the future), the
 control variables determine which actions should be funded or not,
 the decision variables contain additional information needed to
-ensure correct calculations,  and the
+ensure correct calculations, and the
 constraints impose limits such as the total budget available for funding
 management actions. For more information on the mathematical
 formulations used in this package, please refer to the manual entries for
 the available objectives (listed in \link{objectives}).
 }
 \examples{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load data
 data(sim_projects, sim_features, sim_actions)
 
@@ -165,16 +177,18 @@ print(sim_features)
 print(sim_actions)
 
 # build problem
-p <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-     add_max_richness_objective(budget = 400) \%>\%
-     add_feature_weights("weight") \%>\%
-     add_binary_decisions()
+p <-
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) \%>\%
+  add_max_wtd_sum_objective(budget = 400) \%>\%
+  add_feature_weights("weight") \%>\%
+  add_binary_decisions()
 
 # print problem
 print(p)
 
-\dontrun{
 # solve problem
 s <- solve(p)
 
@@ -190,7 +204,7 @@ s[, sim_features$name, drop = FALSE]
 
 # visualize solution
 plot(p, s)
-}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \link{constraints}, \link{decisions},

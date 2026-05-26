@@ -7,24 +7,25 @@
 add_max_phylo_div_objective(x, budget, tree)
 }
 \arguments{
-\item{x}{\linkS4class{ProjectProblem} object.}
+\item{x}{\code{\link[=problem]{problem()}} object.}
 
-\item{budget}{\code{numeric} budget for funding actions.}
+\item{budget}{\code{numeric} value representing the maximum amount of total
+expenditure for funding actions.}
 
-\item{tree}{\code{\link[ape:read.tree]{ape::phylo()}} phylogenetic tree describing the
-evolutionary relationships between the features. Note that the
-argument to \code{tree} must contain every feature, and only the
-features, present in the argument to \code{x}.}
+\item{tree}{\code{\link[ape:phylo]{ape::phylo()}} phylogenetic tree describing the
+evolutionary relationships between the features. Note that \code{tree} must
+contain every feature, and only the features, present in \code{x}.}
 }
 \value{
-\linkS4class{ProjectProblem} object with the objective
-added to it.
+A \code{\link[=problem]{problem()}} with the objective added to it.
 }
 \description{
-Set the objective of a project prioritization \code{\link[=problem]{problem()}} to
-maximize the phylogenetic diversity that is expected to persist into the
-future, whilst ensuring that the cost of the solution is within a
-pre-specified budget (Bennett \emph{et al.} 2014, Faith 2008).
+Add an objective to a project prioritization problem based on
+maximizing phylogenetic diversity, whilst ensuring that the cost of the
+solution is within a pre-specified budget
+(Bennett \emph{et al.} 2014, Faith 2008).
+Note that this objective requires that the outcome data in the
+\code{\link[=problem]{problem()}} reflect probabilities of persistence.
 }
 \details{
 A problem objective is used to specify the overall goal of the
@@ -32,10 +33,10 @@ project prioritization problem.
 Here, the maximum phylogenetic diversity objective seeks to find the set
 of actions that maximizes the expected amount of evolutionary history
 that is expected to persist into the future given the evolutionary
-relationships between the features (e.g. populations, species).
+relationships between the features (e.g., populations, species).
 Let \eqn{I} represent the set of conservation actions (indexed by
 \eqn{i}). Let \eqn{C_i} denote the cost for funding action \eqn{i}, and
-let \eqn{m} denote the maximum expenditure (i.e. the budget). Also,
+let \eqn{m} denote the maximum expenditure (i.e., the budget). Also,
 let \eqn{F} represent each feature (indexed by \eqn{f}), \eqn{W_f}
 represent the weight for each feature \eqn{f} (defaults to zero for
 each feature unless specified otherwise), and \eqn{E_f}
@@ -51,7 +52,7 @@ mathematical notation by letting \eqn{B} represent the branches (indexed by
 features \eqn{f \in F}{f in F} are associated with which phylogenetic
 branches \eqn{b \in B}{b in B} using zeros and ones. Ideally, the set of
 features \eqn{F} would contain all of the species in the study
-area---including non-threatened species---to fully account for the benefits
+area -- including non-threatened species -- to fully account for the benefits
 for funding different actions.
 
 To guide the prioritization, the conservation actions are organized into
@@ -71,8 +72,8 @@ is expected to persist if the project is funded. If the argument
 to \code{adjust_for_baseline} in the \code{problem} function was set to
 \code{TRUE}, and this is the default behavior, then
 \eqn{Q_{fj} = (P_{j} \times B_{fj}) + \bigg(\big(1 - (P_{j} B_{fj})\big)
-  \times (P_{n} \times B_{fn})\bigg)}{Q_{fj} = (P_j B_{fj}) + ((1 - (P_j
-  B_{fj})) * (P_n \times B_{fn}))}, where \code{n} corresponds to the
+\times (P_{n} \times B_{fn})\bigg)}{Q_{fj} = (P_j B_{fj}) + ((1 - (P_j
+B_{fj})) * (P_n \times B_{fn}))}, where \code{n} corresponds to the
 baseline "do nothing" project. This means that the probability
 of a feature persisting if a project is allocated to a feature
 depends on (i) the probability of the project succeeding, (ii) the
@@ -88,14 +89,14 @@ and \eqn{R_b} variables.
 Specifically, the binary \eqn{Y_{j}} variables indicate if project \eqn{j}
 is funded or not based on which actions are funded; the binary
 \eqn{Z_{fj}} variables indicate if project \eqn{j} is used to manage
-feature \eqn{f} or not; the semi-continuous \eqn{E_f} variables
+feature \eqn{f} or not; the continuous \eqn{E_f} variables
 denote the probability that feature \eqn{f} will go extinct; and
-the semi-continuous \eqn{R_b} variables denote the probability that
+the continuous \eqn{R_b} variables denote the probability that
 phylogenetic branch \eqn{b} will remain in the future.
 
 Now that we have defined all the data and variables, we can formulate
 the problem. For convenience, let the symbol used to denote each set also
-represent its cardinality (e.g. if there are ten features, let \eqn{F}
+represent its cardinality (e.g., if there are ten features, let \eqn{F}
 represent the set of ten features and also the number ten).
 
 \deqn{
@@ -115,9 +116,9 @@ represent the set of ten features and also the number ten).
   \mathrm{(eqn \space 1g)} \\
   E_{f}, R_{b} \geq 0, E_{f}, R_{b} \leq 1 \space \forall \space b \in B
    \space f \in F \space \mathrm{(eqn \space 1h)} \\
-  X_{i}, Y_{j}, Z_{fj} \in [0, 1] \space \forall \space i \in I, j \in J, f
+  X_{i}, Y_{j}, Z_{fj} \in \{0, 1\} \space \forall \space i \in I, j \in J, f
   \in F \space \mathrm{(eqn \space 1i)}
-  }{
+}{
   Maximize (sum_b^B L_b R_b) (eqn 1a);
   Subject to:
   sum_i^I C_i X_i <= m for all f in F (eqn 1b),
@@ -127,8 +128,8 @@ represent the set of ten features and also the number ten).
   sum_j^J Z_{fj} * ceil(Q_{fj}) = 1 for all f in F (eqn 1f),
   A_{ij} Y_{j} <= X_{i} for all i I, j in J (eqn 1g),
   E_f, R_b >= 0, E_f, R_b <= 1 for all b in B, f in F (eqn 1h),
-  X_i, Y_j, Z_{fj} in [0, 1] for all i in I, j in J, f in F (eqn 1i)
-  }
+  X_i, Y_j, Z_{fj} in \{0, 1\} for all i in I, j in J, f in F (eqn 1i)
+}
 
 The objective (eqn 1a) is to maximize the expected phylogenetic diversity
 (Faith 2008) plus the probability each feature will remain multiplied
@@ -159,6 +160,7 @@ probabilities and using piecewise linear approximations (described in
 Hillier & Price 2005 pp. 390--392) to approximate the exponent of this term.
 }
 \examples{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load data
 data(sim_projects, sim_features, sim_actions, sim_tree)
 
@@ -166,12 +168,14 @@ data(sim_projects, sim_features, sim_actions, sim_tree)
 plot(sim_tree)
 
 # build problem with maximum phylogenetic diversity objective and $200 budget
-p1 <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-      add_max_phylo_div_objective(budget = 200, tree = sim_tree) \%>\%
-      add_binary_decisions()
+p1 <-
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) \%>\%
+  add_max_phylo_div_objective(budget = 200, tree = sim_tree) \%>\%
+  add_binary_decisions()
 
-\dontrun{
 # solve problem
 s1 <- solve(p1)
 
@@ -182,8 +186,7 @@ print(s1)
 plot(p1, s1)
 
 # build another problem that includes feature weights
-p2 <- p1 \%>\%
-      add_feature_weights("weight")
+p2 <- p1 \%>\% add_feature_weights("weight")
 
 # solve problem with feature weights
 s2 <- solve(p2)
@@ -193,7 +196,7 @@ print(s2)
 
 # plot solution based on feature weights
 plot(p2, s2)
-}
+\dontshow{\}) # examplesIf}
 }
 \references{
 Bennett JR, Elliott G, Mellish B, Joseph LN, Tulloch AI,
@@ -212,5 +215,10 @@ Hillier FS & Price CC (2005) \emph{International series in operations
 research & management science}. Springer.
 }
 \seealso{
-\link{objectives}.
+Other objectives:
+\code{\link[=add_max_richness_objective]{add_max_richness_objective()}},
+\code{\link[=add_max_targets_met_objective]{add_max_targets_met_objective()}},
+\code{\link[=add_max_wtd_sum_objective]{add_max_wtd_sum_objective()}},
+\code{\link[=add_min_set_objective]{add_min_set_objective()}}
 }
+\concept{objectives}

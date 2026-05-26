@@ -1,28 +1,31 @@
-#' @include internal.R
+#' @include internal.R ProjectProblem-class.R MultiObjProjectProblem-class.R
 NULL
 
 #' Project names
 #'
-#' Extract the names of the projects in an object.
+#' Get the names of the projects in an object.
 #'
-#' @param x [ProjectProblem-class].
+#' @inheritParams action_names
 #'
-#' @return `character` project names.
+#' @return A `character` vector or `list` of `character` vectors.
 #'
 #' @name project_names
 #'
-#' @aliases project_names,ProjectProblem-method
+#' @aliases project_names,ProjectProblem-method project_names,MultiObjProjectProblem-method
 #'
 #' @examples
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
-#' # build problem with default solver
-#' p <- problem(sim_projects, sim_actions, sim_features,
-#'              "name", "success", "name", "cost", "name") %>%
-#'      add_max_richness_objective(budget = 200) %>%
-#'      add_binary_decisions() %>%
-#'      add_default_solver()
+#' # build problem
+#' p <-
+#'   problem(
+#'     sim_projects, sim_actions, sim_features,
+#'     "name", "success", "name", "cost", "name"
+#'   ) %>%
+#'   add_max_wtd_sum_objective(budget = 200) %>%
+#'   add_binary_decisions() %>%
+#'   add_default_solver()
 #'
 #' # print problem
 #' print(p)
@@ -38,15 +41,27 @@ NULL
 #' @exportMethod project_names
 #'
 #' @usage project_names(x)
-#'
-methods::setGeneric("project_names",
-                    function(x) standardGeneric("project_names"))
+methods::setGeneric(
+  "project_names",
+  function(x) standardGeneric("project_names")
+)
 
 #' @name project_names
 #'
 #' @rdname project_names
 #'
 #' @usage \S4method{project_names}{ProjectProblem}(x)
+methods::setMethod(
+  "project_names", "ProjectProblem",
+  function(x) x$project_names()
+)
+
+#' @name project_names
 #'
-methods::setMethod("project_names", "ProjectProblem",
-  function(x) x$project_names())
+#' @rdname project_names
+#'
+#' @usage \S4method{project_names}{MultiObjProjectProblem}(x)
+methods::setMethod(
+  "project_names", "MultiObjProjectProblem",
+  function(x) x$project_names()
+)

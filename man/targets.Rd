@@ -4,15 +4,16 @@
 \alias{targets}
 \title{Targets}
 \description{
-Targets are used to specify the minimum probability of persistence required
-for each feature. Please note that only some objectives require
+Targets are used to specify a threshold minimum outcome for each feature
+in a project prioritization problem.
+Please note that only some objectives require
 targets, and attempting to solve a problem that requires targets will throw
 an error if targets are not supplied, and attempting to solve a problem that
 does not require targets will throw a warning if targets are supplied.
 }
 \details{
 The following functions can be used to specify targets for a
-project prioritization \code{\link[=problem]{problem()}}:
+project prioritization problem.
 
 \describe{
 
@@ -20,14 +21,16 @@ project prioritization \code{\link[=problem]{problem()}}:
 Set targets as a proportion (between 0 and 1) of the maximum probability
 of persistence associated with the best project for each feature. For
 instance, if the best project for a feature has an 80\% probability of
-persisting, setting a 50\% (i.e. \code{0.5}) relative target will
-correspond to a 40\% threshold probability of persisting.}
+persisting, setting a 50\% (i.e., \code{0.5}) relative target will
+correspond to a 40\% threshold probability of persisting.
+}
 
 \item{\code{\link[=add_absolute_targets]{add_absolute_targets()}}}{
 Set targets by specifying exactly what probability of persistence is
 required for each feature. For instance, setting an absolute target of
-10\% (i.e. \code{0.1}) corresponds to a threshold 10\% probability of
-persisting.}
+10\% (i.e., \code{0.1}) corresponds to a threshold 10\% probability of
+persisting.
+}
 
 \item{\code{\link[=add_manual_targets]{add_manual_targets()}}}{
 Set targets by manually specifying all the required information for each
@@ -36,16 +39,20 @@ target.}
 }
 }
 \examples{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load data
 data(sim_projects, sim_features, sim_actions)
 
 # build problem with minimum set objective and targets that require each
 # feature to have a 30\% chance of persisting into the future
-p1 <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-      add_min_set_objective() \%>\%
-      add_absolute_targets(0.3) \%>\%
-      add_binary_decisions()
+p1 <-
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) \%>\%
+  add_min_set_objective() \%>\%
+  add_absolute_targets(0.3) \%>\%
+  add_binary_decisions()
 
 # print problem
 print(p1)
@@ -53,16 +60,18 @@ print(p1)
 # build problem with minimum set objective and targets that require each
 # feature to have a level of persistence that is greater than or equal to
 # 30\% of the best project for conserving it
-p2 <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-      add_min_set_objective() \%>\%
-      add_relative_targets(0.3) \%>\%
-      add_binary_decisions()
+p2 <-
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) \%>\%
+  add_min_set_objective() \%>\%
+  add_relative_targets(0.3) \%>\%
+  add_binary_decisions()
 
 # print problem
 print(p2)
 
-\dontrun{
 # solve problems
 s1 <- solve(p1)
 s2 <- solve(p2)
@@ -74,10 +83,14 @@ print(s2)
 # plot solutions
 plot(p1, s1)
 plot(p2, s2)
-}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
-\link{constraints}, \link{decisions},
-\link{objectives}, \code{\link[=problem]{problem()}},
-\link{solvers}.
+Other overviews:
+\code{\link{approaches}},
+\code{\link{constraints}},
+\code{\link{objectives}},
+\code{\link{solvers}},
+\code{\link{weights}}
 }
+\concept{overviews}

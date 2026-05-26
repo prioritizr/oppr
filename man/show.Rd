@@ -5,22 +5,19 @@
 \alias{show,ProjectProblem-method}
 \alias{show,ProjectModifier-method}
 \alias{show,OptimizationProblem-method}
-\alias{show,Id-method}
-\alias{show,Parameter-method}
-\alias{show,Solver-method}
+\alias{show,MultiObjProjectProblem-method}
+\alias{show,MultiObjApproach-method}
 \title{Show}
 \usage{
 \S4method{show}{ProjectModifier}(x)
 
 \S4method{show}{ProjectProblem}(x)
 
-\S4method{show}{Id}(x)
-
 \S4method{show}{OptimizationProblem}(x)
 
-\S4method{show}{Parameter}(x)
+\S4method{show}{MultiObjProjectProblem}(x)
 
-\S4method{show}{Solver}(x)
+\S4method{show}{MultiObjApproach}(x)
 }
 \arguments{
 \item{x}{Any object.}

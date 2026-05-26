@@ -1,44 +1,47 @@
-#' @include Solver-proto.R
+#' @include Solver-class.R
 NULL
 
-#' Add a lp_solve solver with \pkg{lpSolveAPI}
+#' Add a *lp_solve* solver with *lpSolveAPI*
 #'
-#' Specify that the *lp_solve* software should be used to solve a
-#' project prioritization [problem()] using the \pkg{lpSolveAPI}
-#' package. This function can also be used to customize the behavior of the
-#' solver. It requires the \pkg{lpSolveAPI} package.
+#' Add a solver to generate solutions to a project prioritization problem
+#' with the *lp_solve* software.
+#' This function can also be used to customize the behavior of the
+#' solver. It requires the \pkg{lpSolveAPI} package to be installed.
 #'
 #' @param presolve `logical` indicating if attempts to should be made
-#'   to simplify the optimization problem (`TRUE`) or not (`FALSE`).
-#'   Defaults to `TRUE`.
+#' to simplify the optimization problem (`TRUE`) or not (`FALSE`).
+#' Defaults to `TRUE`.
 #'
 #' @inheritParams add_gurobi_solver
 #'
-#' @details [*lp_solve*](https://lpsolve.sourceforge.net/5.5/) is an
-#'   open-source integer programming solver.
-#'   Although this solver is the slowest currently supported solver,
-#'   it is also the only exact algorithm solver that can be installed on all
-#'   operating systems without any manual installation steps. This solver is
-#'   provided so that
-#'   users can try solving small project prioritization problems, without
-#'   needing to install additional software. When solve moderate or large
-#'   project prioritization problems, consider using
-#'   [add_gurobi_solver()].
+#' @details
+#' [*lp_solve*](https://lpsolve.sourceforge.net/5.5/) is an
+#' open-source integer programming solver.
+#' Although this solver is the slowest currently supported solver,
+#' it is also the only exact algorithm solver that can be installed on all
+#' operating systems without any manual installation steps. This solver is
+#' provided so that users can try solving small project prioritization
+#' problems, without needing to install additional software. When solve
+#' moderate or large project prioritization problems, consider using
+#' [add_gurobi_solver()].
 #'
-#' @inherit add_gurobi_solver seealso return
+#' @inherit add_gurobi_solver seealso return seealso
 #'
-#' @seealso [solvers].
+#' @family solvers
 #'
-#' @examples
+#' @examplesIf oppr::run_example()
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
 #' # build problem with lpSolveAPI solver
-#' p <- problem(sim_projects, sim_actions, sim_features,
-#'              "name", "success", "name", "cost", "name") %>%
-#'      add_max_richness_objective(budget = 200) %>%
-#'      add_binary_decisions() %>%
-#'      add_lpsolveapi_solver()
+#' p <-
+#'   problem(
+#'     sim_projects, sim_actions, sim_features,
+#'     "name", "success", "name", "cost", "name"
+#'   ) %>%
+#'   add_max_wtd_sum_objective(budget = 200) %>%
+#'   add_binary_decisions() %>%
+#'   add_lpsolveapi_solver()
 #'
 #' # print problem
 #' print(p)
@@ -51,100 +54,132 @@ NULL
 #'
 #' # plot solution
 #' plot(p, s)
-#' @name add_lpsolveapi_solver
-NULL
-
-#' @export
-#' @rdname Solver-class
-methods::setClass("LpsolveapiSolver", contains = "Solver")
-
-#' @rdname add_lpsolveapi_solver
 #' @export
 add_lpsolveapi_solver <- function(x, gap = 0, presolve = FALSE,
                                   verbose = TRUE) {
   # assert that arguments are valid
-  assertthat::assert_that(inherits(x, "ProjectProblem"),
-                          isTRUE(all(is.finite(gap))),
-                          assertthat::is.number(gap),
-                          isTRUE(gap >= 0),
-                          assertthat::is.flag(presolve),
-                          assertthat::is.flag(verbose),
-                          requireNamespace("lpSolveAPI", quietly = TRUE))
+  assertthat::assert_that(
+    inherits(x, c("ProjectProblem", "MultiObjProjectProblem")),
+    isTRUE(all(is.finite(gap))),
+    assertthat::is.number(gap),
+    isTRUE(gap >= 0),
+    assertthat::is.flag(presolve),
+    assertthat::is.flag(verbose),
+    requireNamespace("lpSolveAPI", quietly = TRUE)
+  )
   # add solver
-  x$add_solver(pproto(
-    "LpsolveapiSolver",
-    Solver,
-    name = "lpSolveAPI",
-    parameters = parameters(
-      numeric_parameter("gap", gap, lower_limit = 0),
-      binary_parameter("presolve", presolve),
-      binary_parameter("verbose", verbose)),
-    solve = function(self, x) {
-      assertthat::assert_that(identical(x$pwlobj(), list()),
-        msg = "gurobi solver is required to solve problems with this objective")
-      # extract parameters
-      p <- as.list(self$parameters)
-      # extract constraints
-      m <- as_Matrix(x$A(), "dgTMatrix")
-      mrhs <- x$rhs()
-      msense <- x$sense()
-      # manually add in locked constraints
-      locked_in <- which(x$lb() > 0.5)
-      locked_out <- which(x$ub() < 0.5)
-      n_locked <- length(locked_in) + length(locked_out)
-      if (n_locked > 0) {
-        mrhs <- c(mrhs, rep(1, length(locked_in) ), rep(0, length(locked_out)))
-        msense <- c(msense, rep("=", length(n_locked)))
-        m2 <- Matrix::sparseMatrix(i = seq_len(n_locked),
-                                   j = c(locked_in, locked_out),
-                                   x = rep(1, n_locked),
-                                   dims = c(n_locked, ncol(m)))
-        m <- rbind(m, m2)
-      }
-      # prepare inputs
-      l <- lpSolveAPI::make.lp(nrow(m), ncol(m),
-                               ifelse(as.logical(p$verbose), "normal",
-                                      "neutral"))
-      lpSolveAPI::name.lp(l, "project prioritization problem")
-      for (i in seq_len(ncol(m)))
-        lpSolveAPI::set.column(l, i, m[, i])
-      lpSolveAPI::set.objfn(l, x$obj())
-      lpSolveAPI::set.rhs(l, mrhs)
-      lpSolveAPI::set.constr.type(l, msense, seq_len(nrow(m)))
-      lpSolveAPI::set.bounds(l, lower = x$lb(), upper = x$ub())
-      v <- x$vtype()
-      s <- which(v == "S")
-      v[v == "B"] <- "binary"
-      v[v == "C"] <- "real"
-      v[v == "S"] <- "real"
-      v[v == "I"] <- "integer"
-      for (i in unique(v))
-        lpSolveAPI::set.type(l, which(v == i), i)
-      if (length(s) > 0)
-        lpSolveAPI::set.semicont(l, s)
-      # set parameters
-      if (isTRUE(p$presolve)) {
-        presolve <- c("rows", "cols", "lindep", "knapsack", "impliedfree",
-                      "probreduce", "rowdominate", "coldominate", "mergerows",
-                      "impliedslk", "colfixdual", "duals", "sensduals")
-      } else {
-        presolve <- "none"
-      }
-      lpSolveAPI::lp.control(l, mip.gap = p$gap, presolve = presolve,
-                             sense = x$modelsense())
-      # solve problem
-      rt <- system.time({
-        o <- lpSolveAPI::solve.lpExtPtr(l)
-      })[[3]]
-      # status code
-      status <- lp_solve_status(o)
-      # check if no solution found
-      if (!o %in% c(0, 1, 9, 12))
-        return(NULL)
-      # return solution
-      list(list(x = lpSolveAPI::get.variables(l),
-                objective = lpSolveAPI::get.objective(l),
-                status = status,
-                runtime = rt))
-    }))
+  x$add_solver(
+    R6::R6Class(
+      "LpsolveapiSolver",
+      inherit = Solver,
+      public = list(
+        name = "lpSolveAPI solver",
+        data = list(gap = gap, presolve = presolve, verbose = verbose),
+        solve = function(x, ...) {
+          # assert valid argument
+          assertthat::assert_that(
+            identical(length(x$pwlobj()), 0L),
+            msg = "failed to pre-processs piecewise-linear terms."
+          )
+          # extract parameters
+          p <- as.list(self$data)
+          # extract constraints
+          m <- as_Matrix(x$A(), "dgTMatrix")
+          mrhs <- x$rhs()
+          msense <- x$sense()
+          # prepare inputs
+          l <- lpSolveAPI::make.lp(
+            nrow(m), ncol(m),
+            ifelse(as.logical(p$verbose), "normal", "neutral")
+          )
+          lpSolveAPI::name.lp(l, "project prioritization problem")
+          for (i in seq_len(ncol(m))) {
+            lpSolveAPI::set.column(l, i, m[, i])
+          }
+          lpSolveAPI::set.objfn(l, x$obj())
+          lpSolveAPI::set.rhs(l, mrhs)
+          lpSolveAPI::set.constr.type(l, msense, seq_len(nrow(m)))
+          lpSolveAPI::set.bounds(l, lower = x$lb(), upper = x$ub())
+          v <- x$vtype()
+          v[v == "B"] <- "binary"
+          v[v == "C"] <- "real"
+          v[v == "S"] <- "real"
+          v[v == "I"] <- "integer"
+          for (i in unique(v)) {
+            lpSolveAPI::set.type(l, which(v == i), i)
+          }
+          s <- which(v == "S")
+          if (length(s) > 0) {
+            lpSolveAPI::set.semicont(l, s)
+          }
+          # set parameters
+          if (isTRUE(p$presolve)) {
+            presolve <- c(
+              "rows", "cols", "lindep", "knapsack", "impliedfree",
+              "probreduce", "rowdominate", "coldominate", "mergerows",
+              "impliedslk", "colfixdual", "duals", "sensduals"
+            )
+          } else {
+            presolve <- "none"
+          }
+          lpSolveAPI::lp.control(
+            l,
+            mip.gap = p$gap, presolve = presolve, sense = x$modelsense()
+          )
+          # solve problem
+          rt <- system.time({
+            o <- lpSolveAPI::solve.lpExtPtr(l)
+          })[[3]]
+          # status code
+          status <- lp_solve_status(o)
+          # check if no solution found
+          if (!o %in% c(0, 1, 9, 12)) {
+            return(NULL)
+          }
+          # return solution
+          list(
+            list(
+              x = lpSolveAPI::get.variables(l),
+              objective = lpSolveAPI::get.objective(l),
+              status = status,
+              runtime = rt
+            )
+          )
+        }
+      )
+    )$new()
+  )
+}
+
+#' lp_solve status
+#'
+#' Find a description of the solver status returned from lp_solve.
+#'
+#' @param x `numeric` status code.
+#'
+#' @return `character` status description.
+#'
+#' @noRd
+lp_solve_status <- function(x) {
+  assertthat::assert_that(is.numeric(x))
+  codes <- c(
+    "0" = "optimal solution found",
+    "1" = "the model is sub-optimal",
+    "3" = "the model is unbounded",
+    "2" = "the model is infeasible",
+    "4" = "the model is degenerate",
+    "5" = "numerical failure encountered",
+    "6" = "process aborted",
+    "7" = "timeout",
+    "9" = "the model was solved by presolve",
+    "10" = "the branch and bound routine failed",
+    "11" = "the branch and bound was stopped because of a break-at-first or break-at-value",
+    "12" = "a feasible branch and bound solution was found",
+    "13" = "no feasible branch and bound solution was found"
+  )
+  x <- codes[as.character(x)]
+  if (is.na(x)) {
+    warning("solver returned unrecognized code")
+  }
+  as.character(x)
 }

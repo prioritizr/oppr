@@ -7,16 +7,16 @@
 replacement_costs(x, solution, n = 1)
 }
 \arguments{
-\item{x}{project prioritization \code{\link[=problem]{problem()}}.}
+\item{x}{\code{\link[=problem]{problem()}} or \code{\link[=multi_problem]{multi_problem()}} object.}
 
 \item{solution}{\code{\link[base:data.frame]{base::data.frame()}} or
-\code{\link[tibble:tibble]{tibble::tibble()}} table containing the solutions. Here,
+\code{\link[tibble:tibble]{tibble::tibble()}} containing the solutions. Here,
 rows correspond to different solutions and columns correspond to
 different actions. Each column in the argument to \code{solution} should
 be named according to a different action in \code{x}.
 Cell values indicate if an action is funded in a given solution or not,
 and should be either zero or one. Arguments to \code{solution} can
-contain additional columns, and they will be ignored.}
+contain additional columns, though they will be ignored.}
 
 \item{n}{\code{integer} solution number to calculate replacement cost values.
 Since each row in the argument to \code{solutions} corresponds to a
@@ -24,27 +24,33 @@ different solution, this argument should correspond to a row in
 the argument to \code{solutions}. Defaults to 1.}
 }
 \value{
-A \code{\link[tibble:tibble]{tibble::tibble()}} table containing the following
-columns:
+A \code{\link[tibble:tibble]{tibble::tibble()}} table containing the following columns.
 
 \describe{
 
-\item{\code{"action"}}{\code{character} name of each action.}
+\item{\code{"action"}}{
+\code{character} name of each action.
+}
 
-\item{\code{"cost"}}{\code{numeric} cost of each solution when each
-action is locked out.}
+\item{\code{"cost"}}{
+\code{numeric} cost of each solution when each action is locked out.
+}
 
-\item{\code{"obj"}}{\code{numeric} objective value of each solution when
-each action is locked out. This is calculated using the objective
-function defined for the argument to \code{x}.}
+\item{\code{"obj"}}{
+\code{numeric} objective value of each solution when each action is locked out.
+This is calculated using the objective function defined for the argument to
+\code{x}.
+}
 
-\item{\code{"rep_cost"}}{\code{numeric} replacement cost for each
+\item{\code{"rep_cost"}}{
+\code{numeric} replacement cost for each
 action. Greater values indicate greater irreplaceability. Missing
 (\code{NA}) values are assigned to actions which are not selected for
 funding in the specified solution, infinite (\code{Inf}) values are
 assigned to to actions which are required to meet feasibility
 constraints, and negative values mean that superior solutions than
-the specified solution exist.}
+the specified solution exist.
+}
 
 }
 }
@@ -73,16 +79,19 @@ for large problems since it involves re-solving the problem for every
 action selected for funding.
 }
 \examples{
-\dontrun{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load data
 data(sim_projects, sim_features, sim_actions)
 
-# build problem with maximum richness objective and $400 budget
-p <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-     add_max_richness_objective(budget = 400) \%>\%
-     add_feature_weights("weight") \%>\%
-     add_binary_decisions()
+# build problem with maximum weighted sum objective and $400 budget
+p <-
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) \%>\%
+  add_max_wtd_sum_objective(budget = 400) \%>\%
+  add_feature_weights("weight") \%>\%
+  add_binary_decisions()
 
 # solve problem
 s <- solve(p)
@@ -99,7 +108,7 @@ print(r)
 # plot histogram of replacement costs,
 # with this objective, greater values indicate greater irreplaceability
 hist(r$rep_cost, xlab = "Replacement cost", main = "")
-}
+\dontshow{\}) # examplesIf}
 }
 \references{
 Moilanen A, Arponen A, Stokland JN & Cabeza M (2009) Assessing replacement
@@ -107,6 +116,9 @@ cost of conservation areas: how does habitat loss influence priorities?
 \emph{Biological Conservation}, \strong{142}, 575--585.
 }
 \seealso{
-\code{\link[=solution_statistics]{solution_statistics()}},
-\code{\link[=project_cost_effectiveness]{project_cost_effectiveness()}}.
+Other functions for evaluating solutions:
+\code{\link[=project_cost_effectiveness]{project_cost_effectiveness()}},
+\code{\link[=rank_importance]{rank_importance()}},
+\code{\link[=solution_statistics]{solution_statistics()}}
 }
+\concept{evaluation}

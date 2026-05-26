@@ -2,7 +2,7 @@
 % Please edit documentation in R/add_gurobi_solver.R
 \name{add_gurobi_solver}
 \alias{add_gurobi_solver}
-\title{Add a \pkg{Gurobi} solver}
+\title{Add a \emph{Gurobi} solver}
 \usage{
 add_gurobi_solver(
   x,
@@ -13,11 +13,13 @@ add_gurobi_solver(
   presolve = 2,
   threads = 1,
   first_feasible = FALSE,
+  numeric_focus = 1,
+  start = NULL,
   verbose = TRUE
 )
 }
 \arguments{
-\item{x}{\linkS4class{ProjectProblem} object.}
+\item{x}{\code{\link[=problem]{problem()}} or \code{\link[=multi_problem]{multi_problem()}} object.}
 
 \item{gap}{\code{numeric} gap to optimality. This gap is relative
 and expresses the acceptable deviance from the optimal objective.
@@ -25,7 +27,7 @@ For example, a value of 0.01 will result in the solver stopping when
 it has found a solution within 1\% of optimality.
 Additionally, a value of 0 will result in the solver stopping
 when it has found an optimal solution.
-The default value is 0.1 (i.e. 10\% from optimality).}
+The default value is 0 (i.e., 0\% from optimality).}
 
 \item{number_solutions}{\code{integer} number of solutions desired.
 Defaults to 1. Note that the number of returned solutions can sometimes
@@ -43,7 +45,8 @@ one solution within the optimality gap and a number of additional
 solutions that are of any level of quality (such that the total number of
 solutions is equal to \code{number_solutions}), and \code{2} finding a
 specified number of solutions that are nearest to optimality. For more
-information, see the \emph{Gurobi} manual (i.e. \url{https://docs.gurobi.com/projects/optimizer/en/current/reference/parameters.html#poolsearchmode}). Defaults to 2.}
+information, see the \emph{Gurobi} manual (i.e., \url{https://docs.gurobi.com/projects/optimizer/en/current/reference/parameters.html#poolsearchmode}).
+Defaults to 2.}
 
 \item{time_limit}{\code{numeric} time limit in seconds to run the optimizer.
 The solver will return the current best solution when this time limit is
@@ -66,19 +69,34 @@ solution is not an arbitrary solution, rather it is derived from the
 relaxed solution, and is therefore often reasonably close to optimality.
 Defaults to \code{FALSE}.}
 
-\item{verbose}{\code{logical} should information be printed while solving
-optimization problems?}
+\item{numeric_focus}{\code{integer} value denoting how much extra attention be
+paid to verifying the accuracy of numerical calculations?
+Acceptable values include 0, 1, 2, or 3.
+This may be useful when dealing with
+problems that may suffer from numerical instability issues.
+Beware that setting greater values will likely increase run time.
+Defaults to 1.}
+
+\item{start}{\code{logical} vector with (\code{TRUE}/\code{FALSE}) values for each action
+indicating if they should be selected by the starting solution.
+These values should be in the same order of the actions in \code{x}
+(i.e., per \code{action_names(x)}).
+Missing (\code{NA}) values can be used to indicate that the solver
+should automatically calculate starting values for particular actions.
+Defaults to \code{NULL} such that starting values are automatically
+determined by the solver for all actions.}
+
+\item{verbose}{\code{logical} should information be printed during optimization?
+Defaults to \code{TRUE}.}
 }
 \value{
-\linkS4class{ProjectProblem} object with the solver added
-to it.
+A \code{\link[=problem]{problem()}} object with the solver added to it.
 }
 \description{
-Specify that the \emph{Gurobi} software should be used to solve a
-project prioritization \code{\link[=problem]{problem()}}. This function can also be
-used to customize the behavior of the solver. In addition to the
-\emph{Gurobi} software suite, it also requires the \pkg{gurobi} package to
-be installed.
+Add a solver to generate solutions to a project prioritization problem
+with the \href{https://www.gurobi.com}{\emph{Gurobi}} software.
+This function can also be used to customize the behavior of the solver.
+See below for details on installation requirements.
 }
 \details{
 \href{https://www.gurobi.com}{\emph{Gurobi}} is a
@@ -93,25 +111,26 @@ To install the \pkg{gurobi} package, the
 \href{https://www.gurobi.com}{Gurobi} optimization suite will first need to
 be installed (see \url{https://support.gurobi.com/hc/en-us/articles/4534161999889-How-do-I-install-Gurobi-Optimizer} for instructions). Although
 \href{https://www.gurobi.com}{Gurobi} is a commercial software, academics
-can obtain a
-\href{https://www.gurobi.com/downloads/end-user-license-agreement-academic/}{special license for no cost}. After installing the
+can obtain a \href{https://www.gurobi.com/downloads/end-user-license-agreement-academic/}{special license for no cost}. After installing the
 \href{https://www.gurobi.com}{Gurobi} optimization suite, the \pkg{gurobi}
 package can then be installed (see \url{https://support.gurobi.com/hc/en-us/articles/14462206790033-How-do-I-install-Gurobi-for-R} for instructions).
 }
 \examples{
-\dontrun{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load data
 data(sim_projects, sim_features, sim_actions)
 
 # build problem
-p1 <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-     add_max_richness_objective(budget = 200) \%>\%
-     add_binary_decisions()
+p1 <-
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) \%>\%
+  add_max_wtd_sum_objective(budget = 200) \%>\%
+  add_binary_decisions()
 
 # build another problem, and specify the Gurobi solver
-p2 <- p1 \%>\%
-      add_gurobi_solver()
+p2 <- p1 \%>\% add_gurobi_solver()
 
 # print problem
 print(p2)
@@ -128,8 +147,7 @@ plot(p2, s2)
 # build another problem and obtain multiple solutions
 # note that this problem doesn't have 100 unique solutions so
 # the solver won't return 100 solutions
-p3 <- p1 \%>\%
-      add_gurobi_solver(number_solutions = 100)
+p3 <- p1 \%>\% add_gurobi_solver(number_solutions = 100)
 
 # print problem
 print(p3)
@@ -139,8 +157,19 @@ s3 <- solve(p3)
 
 # print solutions
 print(s3)
-}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
-\link{solvers}.
+See \link{solvers} for an overview of functions for adding solvers.
+
+Other solvers:
+\code{\link[=add_cbc_solver]{add_cbc_solver()}},
+\code{\link[=add_default_solver]{add_default_solver()}},
+\code{\link[=add_heuristic_solver]{add_heuristic_solver()}},
+\code{\link[=add_highs_solver]{add_highs_solver()}},
+\code{\link[=add_lpsolveapi_solver]{add_lpsolveapi_solver()}},
+\code{\link[=add_lpsymphony_solver]{add_lpsymphony_solver()}},
+\code{\link[=add_random_solver]{add_random_solver()}},
+\code{\link[=add_rsymphony_solver]{add_rsymphony_solver()}}
 }
+\concept{solvers}

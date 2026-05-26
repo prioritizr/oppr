@@ -1,41 +1,41 @@
-#' @include internal.R Parameters-proto.R Decision-proto.R
+#' @include internal.R Decision-class.R
 NULL
 
 #' Add binary decisions
 #'
-#' Add a binary decision to a project prioritization [problem()].
-#' This is the conventional decision of either prioritizing funding
-#' for a management action or not.
+#' Add binary decisions to a project prioritization problem.
+#' This means that the optimization process aims to determine if
+#' each action should be selected for funding or not.
 #'
-#' @param x [ProjectProblem-class] object.
+#' @param x [problem()] object.
 #'
 #' @details
-#'   Project prioritization problems involve making decisions about
-#'   how funding will be allocated to management actions.
-#'   Only a single decision should be added to a `ProjectProblem` object.
-#'   If no decision is added to a problem then this decision type will
-#'   be used by default. Currently, this is the only supported decision type.
+#' Project prioritization problems involve making decisions about
+#' how funding will be allocated to management actions.
+#' If no decision is added to a problem then this decision type will
+#' be used by default. Currently, this is the only supported decision type.
 #'
-#' @return [ProjectProblem-class] object with the decisions
-#'   added to it.
+#' @return A [problem()] object with the decisions added to it.
 #'
-#' @seealso [decisions].
+#' @family decisions
 #'
-#' @examples
+#' @examplesIf oppr::run_example()
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
-#' # build problem with maximum richness objective, $200 budget, and
+#' # build problem with maximum weighted sum objective, $200 budget, and
 #' # binary decisions
-#' p <- problem(sim_projects, sim_actions, sim_features,
-#'              "name", "success", "name", "cost", "name") %>%
-#'      add_max_richness_objective(budget = 200) %>%
-#'      add_binary_decisions()
+#' p <-
+#'   problem(
+#'     sim_projects, sim_actions, sim_features,
+#'     "name", "success", "name", "cost", "name"
+#'   ) %>%
+#'   add_max_wtd_sum_objective(budget = 200) %>%
+#'   add_binary_decisions()
 #'
 #' # print problem
 #' print(p)
 #'
-#' \dontrun{
 #' # solve problem
 #' s <- solve(p)
 #'
@@ -44,7 +44,6 @@ NULL
 #'
 #' # plot solution
 #' plot(p, s)
-#' }
 #' @name add_binary_decisions
 NULL
 
@@ -55,12 +54,19 @@ add_binary_decisions <- function(x) {
   assertthat::assert_that(inherits(x, "ProjectProblem"))
   # add decision
   x$add_decisions(
-    pproto("BinaryDecision",
-           Decision,
-           name = "Binary decision",
-           apply = function(self, x) {
-             assertthat::assert_that(inherits(x,
-                                     "OptimizationProblem"))
-             invisible(rcpp_apply_decisions(x$ptr, "B", 0, 1))
-           }))
+    R6::R6Class(
+      "BinaryDecision",
+      inherit = Decision,
+      public = list(
+        name = "binary decision",
+        apply = function(x, y) {
+          assertthat::assert_that(
+            inherits(x, "OptimizationProblem"),
+            inherits(y, "ProjectProblem")
+          )
+          invisible(rcpp_apply_decisions(x$ptr, "B", 0, 1))
+        }
+      )
+    )$new()
+  )
 }

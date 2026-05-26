@@ -37,8 +37,9 @@ Rcpp::LogicalMatrix rcpp_random_solution(
   double initial_cost = 0.0;
 
   // throw error if all actions locked out
-  if (static_cast<std::size_t>(locked_out.size()) == n_actions)
+  if (static_cast<std::size_t>(locked_out.size()) == n_actions) {
     Rcpp::stop("problem infeasible: all actions locked out");
+  }
 
   /// initialize solutions matrix
   Rcpp::LogicalMatrix out(number_solutions, n_actions);
@@ -77,8 +78,11 @@ Rcpp::LogicalMatrix rcpp_random_solution(
   if (obj_name == "MinimumSetObjective") {
     curr_feature_shortfalls = expected_persistences_shortfalls(
       pa_matrix, pf_matrix, targets, initial_remaining_actions);
-    if (curr_feature_shortfalls.max() > 1.0e-10)
-      Rcpp::stop("problem infeasible: targets cannot be met given locked out actions");
+    if (curr_feature_shortfalls.max() > 1.0e-10) {
+      Rcpp::stop(
+        "problem infeasible: targets cannot be met given locked out actions"
+      );
+    }
   }
 
   /// initialize remaining projects matrix

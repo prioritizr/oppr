@@ -12,7 +12,7 @@ add_heuristic_solver(
 )
 }
 \arguments{
-\item{x}{\linkS4class{ProjectProblem} object.}
+\item{x}{\code{\link[=problem]{problem()}} or \code{\link[=multi_problem]{multi_problem()}} object.}
 
 \item{number_solutions}{\code{integer} number of solutions desired.
 Defaults to 1. Note that the number of returned solutions can sometimes
@@ -26,23 +26,23 @@ actions which exceed the budget should be automatically excluded
 prior to running the backwards heuristic. This step prevents
 projects which exceed the budget, and so would never be selected in
 the final solution, from biasing the cost-sharing calculations.
-However, previous algorithms for project prioritization have not
-used this step (e.g. Probert \emph{et al.} 2016).
+Although this step can improve solution quality, previous algorithms for
+project prioritization have not used it (e.g., Probert \emph{et al.} 2016).
 Defaults to \code{TRUE}.}
 
-\item{verbose}{\code{logical} should information be printed while solving
-optimization problems?}
+\item{verbose}{\code{logical} should information be printed during optimization?
+Defaults to \code{TRUE}.}
 }
 \value{
-\linkS4class{ProjectProblem} object with the solver added
-to it.
+A \code{\link[=problem]{problem()}} object with the solver added to it.
 }
 \description{
-Specify that solutions should be generated using a backwards step-wise
-heuristic algorithm (inspired by Cabeza \emph{et al.} 2004,
+Add a solver to a project prioritization problem to generate solutions
+using a backwards step-wise heuristic algorithm
+(inspired by Cabeza \emph{et al.} 2004,
 Korte & Vygen 2000, Probert \emph{et al.} 2016). Ideally,
-solutions should be generated using exact algorithm solvers (e.g.
-\code{\link[=add_rsymphony_solver]{add_rsymphony_solver()}} or \code{\link[=add_gurobi_solver]{add_gurobi_solver()}})
+solutions should be generated using exact algorithm solvers (e.g.,
+\code{\link[=add_highs_solver]{add_highs_solver()}} or \code{\link[=add_gurobi_solver]{add_gurobi_solver()}})
 because they are guaranteed to identify optimal solutions (Rodrigues & Gaston
 2002).
 }
@@ -70,7 +70,7 @@ and (iii) actions which are not associated with any project (excepting
 locked in actions) are also deselected.
 
 \item If the objective function is to maximize biodiversity subject
-to budgetary constraints (e.g. \code{\link[=add_max_richness_objective]{add_max_richness_objective()}})
+to budgetary constraints (e.g., \code{\link[=add_max_wtd_sum_objective]{add_max_wtd_sum_objective()}})
 then go to step 5. Otherwise, if the objective is to minimize cost
 subject to biodiversity constraints (i.e.
 \code{\link[=add_min_set_objective]{add_min_set_objective()}}) then go to step 7.
@@ -86,9 +86,13 @@ solution decreases when the project is deselected for funding, relative to
 the cost of the project not shared by other remaining projects. This can
 be expressed mathematically as:
 
-\deqn{B_j = \frac{V(J) - V(J - j)}{C_j}}{B_j = (V(J) - V(J - j)) / C_j}
+\deqn{
+B_j = \frac{V(J) - V(J - j)}{C_j}
+}{
+B_j = (V(J) - V(J - j)) / C_j
+}
 
-Where \eqn{J} is the set of remaining projects currently
+Here \eqn{J} is the set of remaining projects currently
 selected for funding (indexed by \eqn{j}), \eqn{B_j} is the benefit
 associated with funding project \eqn{j}, \eqn{V(J)} is the objective
 value associated with the solution where all remaining projects are
@@ -97,11 +101,11 @@ solution where all remaining projects except for project \eqn{j} are
 funded, and \eqn{C_j} is the sum cost of all of the actions
 associated with project \eqn{j}---excluding locked in actions---with the
 cost of each action divided by the total number of remaining
-projects that share the action (e.g. if two projects both share a $100
+projects that share the action (e.g., if two projects both share a $100
 action, then this action contributes $50 to the overall cost of each
 project).
 
-The project with the smallest benefit (i.e. \eqn{B_j} value) is then
+The project with the smallest benefit (i.e., \eqn{B_j} value) is then
 deselected for funding. In cases where multiple projects have
 the same benefit (\eqn{B_j}) value, the project with the greatest overall
 cost (including actions which are shared among multiple remaining
@@ -119,16 +123,19 @@ solution decreases when the project is deselected for funding, relative to
 the cost of the project not shared by other remaining projects. This can
 be expressed mathematically as:
 
-\deqn{B_j = \frac{\big(\sum_{f}^{F} P_f(J) - T_f \big) -
-   \big( \sum_{f}^{F} P_f(J - j) - T_f \big)}{C_j}}{
-   B_j = ((sum_f^F P_f(J) - T_f) - (sum_f^F P_f(J - j) - T_f)) / C_j}
+\deqn{
+  B_j = \frac{\big(\sum_{f}^{F} P_f(J) - T_f \big) -
+  \big( \sum_{f}^{F} P_f(J - j) - T_f \big)}{C_j}
+}{
+  B_j = ((sum_f^F P_f(J) - T_f) - (sum_f^F P_f(J - j) - T_f)) / C_j
+}
 
-Where \eqn{F} is the set of features (indexed by \eqn{f}),
+Here \eqn{F} is the set of features (indexed by \eqn{f}),
 \eqn{T_f} is the target for feature \eqn{f}, \eqn{P} is the set of
 remaining projects that are selected for funding (indexed by \eqn{j}),
 \eqn{C_j} is the cost of all of the actions
 associated with project \eqn{j}---excluding locked in actions---and
-accounting for shared costs among remaining projects (e.g. if two
+accounting for shared costs among remaining projects (e.g., if two
 projects both share a $100 action, then this action contributes $50 to
 the overall cost of each project), \eqn{B_p} is the benefit
 associated with funding project \eqn{p}, \eqn{P(J)} is probability
@@ -137,7 +144,7 @@ that each feature is expected to persist when the remaining projects
 each feature is expected to persist when all the remaining projects except
 for action \eqn{j} are funded.
 
-The project with the smallest benefit (i.e. \eqn{B_j} value) is then
+The project with the smallest benefit (i.e., \eqn{B_j} value) is then
 deselected for funding. In cases where multiple projects have
 the same \eqn{B_j} value, the project with the greatest overall cost
 (including actions which are shared among multiple remaining projects)
@@ -146,6 +153,7 @@ is deselected.
 }
 }
 \examples{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load ggplot2 package for making plots
 library(ggplot2)
 
@@ -153,16 +161,18 @@ library(ggplot2)
 data(sim_projects, sim_features, sim_actions)
 
 # build problem with heuristic solver and $200
-p1 <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-     add_max_richness_objective(budget = 200) \%>\%
-     add_binary_decisions() \%>\%
-     add_heuristic_solver()
+p1 <-
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) \%>\%
+  add_max_wtd_sum_objective(budget = 200) \%>\%
+  add_binary_decisions() \%>\%
+  add_heuristic_solver()
 
 # print problem
 print(p1)
 
-\dontrun{
 # solve problem
 s1 <- solve(p1)
 
@@ -171,7 +181,7 @@ print(s1)
 
 # plot solution
 plot(p1, s1)
-}
+\dontshow{\}) # examplesIf}
 }
 \references{
 Rodrigues AS & Gaston KJ (2002) Optimisation in reserve selection
@@ -192,5 +202,14 @@ Formerly available at \url{https://github.com/p-robot}
 (copy available at \url{https://github.com/jeffreyhanson/ppp}).
 }
 \seealso{
-\link{solvers}.
+Other solvers:
+\code{\link[=add_cbc_solver]{add_cbc_solver()}},
+\code{\link[=add_default_solver]{add_default_solver()}},
+\code{\link[=add_gurobi_solver]{add_gurobi_solver()}},
+\code{\link[=add_highs_solver]{add_highs_solver()}},
+\code{\link[=add_lpsolveapi_solver]{add_lpsolveapi_solver()}},
+\code{\link[=add_lpsymphony_solver]{add_lpsymphony_solver()}},
+\code{\link[=add_random_solver]{add_random_solver()}},
+\code{\link[=add_rsymphony_solver]{add_rsymphony_solver()}}
 }
+\concept{solvers}

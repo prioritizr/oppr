@@ -7,32 +7,36 @@
 add_max_richness_objective(x, budget)
 }
 \arguments{
-\item{x}{\linkS4class{ProjectProblem} object.}
+\item{x}{\code{\link[=problem]{problem()}} object.}
 
-\item{budget}{\code{numeric} budget for funding actions.}
+\item{budget}{\code{numeric} value representing the maximum amount of total
+expenditure for funding actions.}
 }
 \value{
-\linkS4class{ProjectProblem} object with the objective
-added to it.
+A \code{\link[=problem]{problem()}} with the objective added to it.
 }
 \description{
-Set the objective of a project prioritization \code{\link[=problem]{problem()}} to
-maximize the total number of features that are expected to persist, whilst
-ensuring that the cost of the solution is within a pre-specified budget
-(Joseph, Maloney & Possingham 2009). This objective is conceptually similar
-to maximizing species richness in a study area. Furthermore, weights can
-also be used to specify the relative importance of conserving specific
+Add an objective to a project prioritization problem based on
+maximizing the number of features likely to persist, whilst ensuring that
+the  cost of the solution is within a pre-specified budget
+(Joseph, Maloney & Possingham 2009).
+Weights can be used to specify the relative importance of conserving specific
 features (see \code{\link[=add_feature_weights]{add_feature_weights()}}).
+Although this objective is conceptually
+similar to maximizing the weighted sum of expected outcomes for the
+features (\code{\link[=add_max_richness_objective]{add_max_richness_objective()}}
+it is designed to work for features that are associated with
+probabilistic outcomes.
 }
 \details{
 A problem objective is used to specify the overall goal of the
 project prioritization problem.
 Here, the maximum richness objective seeks to find the set of actions that
-maximizes the total number of features  (e.g. populations, species,
-ecosystems) that is expected to persist within a pre-specified budget.
+maximizes the total number of features  (e.g., populations, species,
+ecosystems) that are expected to persist within a pre-specified budget.
 Let \eqn{I} represent the set of conservation actions (indexed by
 \eqn{i}). Let \eqn{C_i} denote the cost for funding action \eqn{i}, and
-let \eqn{m} denote the maximum expenditure (i.e. the budget). Also,
+let \eqn{m} denote the maximum expenditure (i.e., the budget). Also,
 let \eqn{F} represent each feature (indexed by \eqn{f}), \eqn{W_f}
 represent the weight for each feature \eqn{f} (defaults to one for
 each feature unless specified otherwise), and \eqn{E_f} denote the
@@ -55,8 +59,8 @@ is expected to persist if the project is funded. If the argument
 to \code{adjust_for_baseline} in the \code{problem} function was set to
 \code{TRUE}, and this is the default behavior, then
 \eqn{Q_{fj} = (P_{j} \times B_{fj}) + \bigg(\big(1 - (P_{j} B_{fj})\big)
-  \times (P_{n} \times B_{fn})\bigg)}{Q_{fj} = (P_j B_{fj}) + ((1 - (P_j
-  B_{fj})) * (P_n \times B_{fn}))}, where \code{n} corresponds to the
+\times (P_{n} \times B_{fn})\bigg)}{Q_{fj} = (P_j B_{fj}) + ((1 - (P_j
+B_{fj})) * (P_n \times B_{fn}))}, where \code{n} corresponds to the
 baseline "do nothing" project. This means that the probability
 of a feature persisting if a project is allocated to a feature
 depends on (i) the probability of the project succeeding, (ii) the
@@ -72,20 +76,20 @@ variables.
 Specifically, the binary \eqn{Y_{j}} variables indicate if project \eqn{j}
 is funded or not based on which actions are funded; the binary
 \eqn{Z_{fj}} variables indicate if project \eqn{j} is used to manage
-feature \eqn{f} or not; and the semi-continuous \eqn{E_f} variables
-denote the probability that feature \eqn{f} will go extinct.
+feature \eqn{f} or not; and the continuous \eqn{E_f} variables
+denote the probability that feature \eqn{f} will persist.
 
 Now that we have defined all the data and variables, we can formulate
 the problem. For convenience, let the symbol used to denote each set also
-represent its cardinality (e.g. if there are ten features, let \eqn{F}
+represent its cardinality (e.g., if there are ten features, let \eqn{F}
 represent the set of ten features and also the number ten).
 
 \deqn{
-  \mathrm{Maximize} \space \sum_{f = 0}^{F} (1 - E_f) W_f \space
+  \mathrm{Maximize} \space \sum_{f = 0}^{F} E_f W_f \space
   \mathrm{(eqn \space 1a)} \\
   \mathrm{Subject \space to} \sum_{i = 0}^{I} C_i \leq m \space
   \mathrm{(eqn \space 1b)} \\
-  E_f = 1 - \sum_{j = 0}^{J} Z_{fj} Q_{fj} \space \forall \space f \in F
+  E_f = \sum_{j = 0}^{J} Z_{fj} Q_{fj} \space \forall \space f \in F
   \space \mathrm{(eqn \space 1c)} \\
   Z_{fj} \leq Y_{j} \space \forall \space j \in J \space \mathrm{(eqn \space
   1d)} \\
@@ -93,24 +97,25 @@ represent the set of ten features and also the number ten).
   \space f \in F \space \mathrm{(eqn \space 1e)} \\
   A_{ij} Y_{j} \leq X_{i} \space \forall \space i \in I, j \in J \space
   \mathrm{(eqn \space 1f)} \\
-  E_{f} \geq 0, E_{f} \leq 1 \space \forall \space b \in B \space
+  E_{f} \geq 0, E_{f} \leq 1 \space \forall \space f \in F \space
   \mathrm{(eqn \space 1g)} \\
-  X_{i}, Y_{j}, Z_{fj} \in [0, 1] \space \forall \space i \in I, j \in J, f
+  X_{i}, Y_{j}, Z_{fj} \in \{0, 1\} \space \forall \space i \in I, j \in J, f
   \in F \space \mathrm{(eqn \space 1h)}
-  }{
-  Maximize sum_f^F (1 - E_f) W_f (eqn 1a);
+}{
+  Maximize sum_f^F E_f W_f (eqn 1a);
   Subject to:
   sum_i^I C_i X_i <= m for all f in F (eqn 1b),
-  E_f = 1 - sum_j^J Y_{fj} Q_{fj} for all f in F (eqn 1c),
+  E_f = sum_j^J Y_{fj} Q_{fj} for all f in F (eqn 1c),
   Z_{fj} <= Y_j for all j in J (eqn 1d),
   sum_j^J Z_{fj} * ceil(Q_{fj}) = 1 for all f in F (eqn 1e),
   A_{ij} Y_{j} <= X_{i} for all i I, j in J (eqn 1f),
   E_f >= 0, E_f <= 1 for all f in F (eqn 1g),
-  X_i, Y_j, Z_{fj} in [0, 1] for all i in I, j in J, f in F (eqn 1h)
-  }
+  X_i, Y_j, Z_{fj} in \{0, 1\f] for all i in I, j in J, f in F (eqn 1h)
+}
 
-The objective (eqn 1a) is to maximize the weighted persistence of all the
-species. Constraint (eqn 1b) limits the maximum expenditure (i.e. ensures
+The objective (eqn 1a) is to maximize the weighted number of features
+that are expected to persist. Constraint (eqn 1b) limits the maximum
+expenditure (i.e., ensures
 that the cost of the funded actions do not exceed the budget).
 Constraints (eqn 1c) calculate the probability that each feature
 will go extinct according to their allocated project.
@@ -124,16 +129,19 @@ that the action funding (\eqn{X_i}), project funding (\eqn{Y_j}), and project
 allocation (\eqn{Z_{fj}}) variables are binary.
 }
 \examples{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load data
 data(sim_projects, sim_features, sim_actions)
 
 # build problem with maximum richness objective and $300 budget
-p1 <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-     add_max_richness_objective(budget = 200) \%>\%
-     add_binary_decisions()
+p1 <-
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) \%>\%
+  add_max_richness_objective(budget = 200) \%>\%
+  add_binary_decisions()
 
-\dontrun{
 # solve problem
 s1 <- solve(p1)
 
@@ -142,13 +150,10 @@ print(s1)
 
 # plot solution
 plot(p1, s1)
-}
 
 # build another problem that includes feature weights
-p2 <- p1 \%>\%
-     add_feature_weights("weight")
+p2 <- p1 \%>\% add_feature_weights("weight")
 
-\dontrun{
 # solve problem with feature weights
 s2 <- solve(p2)
 
@@ -157,7 +162,7 @@ print(s2)
 
 # plot solution based on feature weights
 plot(p2, s2)
-}
+\dontshow{\}) # examplesIf}
 }
 \references{
 Joseph LN, Maloney RF & Possingham HP (2009) Optimal allocation of
@@ -165,5 +170,10 @@ resources among threatened species: A project prioritization protocol.
 \emph{Conservation Biology}, \strong{23}, 328--338.
 }
 \seealso{
-\link{objectives}.
+Other objectives:
+\code{\link[=add_max_phylo_div_objective]{add_max_phylo_div_objective()}},
+\code{\link[=add_max_targets_met_objective]{add_max_targets_met_objective()}},
+\code{\link[=add_max_wtd_sum_objective]{add_max_wtd_sum_objective()}},
+\code{\link[=add_min_set_objective]{add_min_set_objective()}}
 }
+\concept{objectives}

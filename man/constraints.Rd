@@ -13,55 +13,98 @@ The following constraints can be added to a project prioritization
 
 \describe{
 
-\item{\code{\link[=add_locked_in_constraints]{add_locked_in_constraints()}}}{Add constraints to ensure
-that certain actions are prioritized for funding.}
+\item{\code{\link[=add_locked_in_action_constraints]{add_locked_in_action_constraints()}}}{
+Add constraints to ensure that particular actions are selected for funding.
+}
 
-\item{\code{\link[=add_locked_out_constraints]{add_locked_out_constraints()}}}{Add constraints to ensure
-that certain actions are not prioritized for funding.}
+\item{\code{\link[=add_locked_out_action_constraints]{add_locked_out_action_constraints()}}}{
+Add constraints to ensure that particular actions are not selected for
+funding.
+}
+
+\item{\code{\link[=add_manual_locked_action_constraints]{add_manual_locked_action_constraints()}}}{
+Add constraints to ensure that particular actions are selected, or not, for
+funding.
+}
+
+\item{\code{\link[=add_locked_in_project_constraints]{add_locked_in_project_constraints()}}}{
+Add constraints to ensure that particular projects are selected for funding.
+}
+
+\item{\code{\link[=add_locked_out_project_constraints]{add_locked_out_project_constraints()}}}{
+Add constraints to ensure that particular projects are not selected for
+funding.
+}
+
+\item{\code{\link[=add_manual_locked_project_constraints]{add_manual_locked_project_constraints()}}}{
+Add constraints to ensure that particular projects are selected, or not, for
+funding.
+}
 
 }
 }
 \examples{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load data
 data(sim_projects, sim_features, sim_actions)
 
-# build problem with maximum richness objective and $150 budget
-p1 <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-     add_max_richness_objective(budget = 150) \%>\%
-     add_binary_decisions()
+# build problem with maximum weighted sum objective and $150 budget
+p1 <-
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) \%>\%
+  add_max_wtd_sum_objective(budget = 150) \%>\%
+  add_binary_decisions()
 
 # print problem
 print(p1)
 
 # build another problem, and lock in the third action
-p2 <- p1 \%>\%
-      add_locked_in_constraints(c(3))
+p2 <- p1 \%>\% add_locked_in_action_constraints(c(3))
 
 # print problem
 print(p2)
 
 # build another problem, and lock out the second action
-p3 <- p1 \%>\%
-      add_locked_out_constraints(c(2))
+p3 <- p1 \%>\% add_locked_out_action_constraints(c(2))
 
 # print problem
 print(p3)
 
-\dontrun{
+# build another problem, and lock in the first project
+p4 <- p1 \%>\% add_locked_out_project_constraints(c(1))
+
+# print problem
+print(p4)
+
+# build another problem, and lock out the second project
+p5 <- p1 \%>\% add_locked_out_project_constraints(c(2))
+
+# print problem
+print(p5)
+
 # solve problems
 s1 <- solve(p1)
 s2 <- solve(p2)
 s3 <- solve(p3)
+s4 <- solve(p4)
+s5 <- solve(p5)
 
-# print the actions selected for funding in each of the solutions
+# print the projects selected for funding in each of the solutions
 print(s1[, sim_actions$name])
 print(s2[, sim_actions$name])
 print(s3[, sim_actions$name])
-}
+print(s4[, sim_actions$name])
+print(s5[, sim_actions$name])
+\dontshow{\}) # examplesIf}
 }
 \seealso{
-\link{decisions}, \link{objectives},
-\code{\link[=problem]{problem()}}, \link{solvers}, \link{targets},
-\link{weights}.
+Other overviews:
+\code{\link{approaches}},
+\code{\link{objectives}},
+\code{\link{solvers}},
+\code{\link{targets}},
+\code{\link{weights}}
 }
+\concept{overviews}

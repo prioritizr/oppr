@@ -21,6 +21,8 @@ SEXP rcpp_predefined_optimization_problem(Rcpp::List l) {
     Rcpp::as<std::size_t>(l["number_of_features"]);
   std::size_t number_of_branches =
     Rcpp::as<std::size_t>(l["number_of_branches"]);
+  std::size_t number_of_allocations =
+    Rcpp::as<std::size_t>(l["number_of_allocations"]);
   std::vector<std::size_t> A_i = Rcpp::as<std::vector<std::size_t>>(l["A_i"]);
   std::vector<std::size_t> A_j = Rcpp::as<std::vector<std::size_t>>(l["A_j"]);
   std::vector<double> A_x = Rcpp::as<std::vector<double>>(l["A_x"]);
@@ -39,7 +41,8 @@ SEXP rcpp_predefined_optimization_problem(Rcpp::List l) {
     Rcpp::as<std::vector<std::string>>(l["col_ids"]);
   OPTIMIZATIONPROBLEM* x = new OPTIMIZATIONPROBLEM(modelsense,
    number_of_projects, number_of_actions, number_of_features,
-   number_of_branches, A_i, A_j, A_x, obj, pwlobj, lb, ub, rhs, sense, vtype,
+   number_of_branches, number_of_allocations,
+   A_i, A_j, A_x, obj, pwlobj, lb, ub, rhs, sense, vtype,
    row_ids, col_ids);
   Rcpp::XPtr<OPTIMIZATIONPROBLEM> ptr =
     Rcpp::XPtr<OPTIMIZATIONPROBLEM>(x, true);
@@ -58,10 +61,13 @@ Rcpp::List rcpp_optimization_problem_as_list(SEXP x) {
     Rcpp::Named("number_of_actions") = ptr->_number_of_actions,
     Rcpp::Named("number_of_features") = ptr->_number_of_features,
     Rcpp::Named("number_of_branches") = ptr->_number_of_branches,
-    Rcpp::Named("A_i") = Rcpp::IntegerVector(ptr->_A_i.begin(),
-                                             ptr->_A_i.end()),
-    Rcpp::Named("A_j") = Rcpp::IntegerVector(ptr->_A_j.begin(),
-                                             ptr->_A_j.end()),
+    Rcpp::Named("number_of_allocations") = ptr->_number_of_allocations,
+    Rcpp::Named("A_i") = Rcpp::IntegerVector(
+      ptr->_A_i.begin(), ptr->_A_i.end()
+    ),
+    Rcpp::Named("A_j") = Rcpp::IntegerVector(
+      ptr->_A_j.begin(), ptr->_A_j.end()
+    ),
     Rcpp::Named("A_x") = ptr->_A_x,
     Rcpp::Named("obj") = ptr->_obj,
     Rcpp::Named("pwlobj") = ptr->_pwlobj,
@@ -120,6 +126,11 @@ std::size_t rcpp_get_optimization_problem_number_of_branches(SEXP x) {
 }
 
 // [[Rcpp::export]]
+std::size_t rcpp_get_optimization_problem_number_of_allocations(SEXP x) {
+  return(Rcpp::as<Rcpp::XPtr<OPTIMIZATIONPROBLEM>>(x)->_number_of_allocations);
+}
+
+// [[Rcpp::export]]
 std::vector<std::string> rcpp_get_optimization_problem_vtype(SEXP x) {
   return(Rcpp::as<Rcpp::XPtr<OPTIMIZATIONPROBLEM>>(x)->_vtype);
 }
@@ -162,4 +173,35 @@ std::vector<std::string> rcpp_get_optimization_problem_col_ids(SEXP x) {
 // [[Rcpp::export]]
 std::vector<std::string> rcpp_get_optimization_problem_row_ids(SEXP x) {
   return(Rcpp::as<Rcpp::XPtr<OPTIMIZATIONPROBLEM>>(x)->_row_ids);
+}
+
+// [[Rcpp::export]]
+SEXP rcpp_copy_optimization_problem(SEXP x) {
+  // import ptr
+  Rcpp::XPtr<OPTIMIZATIONPROBLEM> ptr = Rcpp::as<Rcpp::XPtr<OPTIMIZATIONPROBLEM>>(x);
+  // create new problem
+  OPTIMIZATIONPROBLEM* y = new OPTIMIZATIONPROBLEM(0, 0, 0);
+  // copy objects
+  y->_modelsense = ptr->_modelsense;
+  y->_number_of_projects = ptr->_number_of_projects;
+  y->_number_of_actions = ptr->_number_of_actions;
+  y->_number_of_features = ptr->_number_of_features;
+  y->_number_of_branches = ptr->_number_of_branches;
+  y->_number_of_allocations = ptr->_number_of_allocations;
+  y->_A_i = ptr->_A_i;
+  y->_A_j = ptr->_A_j;
+  y->_A_x = ptr->_A_x;
+  y->_obj = ptr->_obj;
+  y->_pwlobj = Rcpp::clone(ptr->_pwlobj);
+  y->_lb = ptr->_lb;
+  y->_ub = ptr->_ub;
+  y->_rhs = ptr->_rhs;
+  y->_sense = ptr->_sense;
+  y->_vtype = ptr->_vtype;
+  y->_row_ids = ptr->_row_ids;
+  y->_col_ids = ptr->_col_ids;
+  // return pointer
+  Rcpp::XPtr<OPTIMIZATIONPROBLEM> out =
+    Rcpp::XPtr<OPTIMIZATIONPROBLEM>(y, true);
+  return(out);
 }

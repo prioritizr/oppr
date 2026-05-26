@@ -13,16 +13,16 @@ branch_matrix(x, ...)
 \method{branch_matrix}{phylo}(x, assert_validity = TRUE, ...)
 }
 \arguments{
-\item{x}{\code{\link[ape:read.tree]{ape::phylo()}} tree object.}
+\item{x}{\code{\link[ape:phylo]{ape::phylo()}} tree object.}
 
 \item{...}{not used.}
 
-\item{assert_validity}{\code{logical} value (i.e. \code{TRUE} or \code{FALSE}
+\item{assert_validity}{\code{logical} value (i.e., \code{TRUE} or \code{FALSE}
 indicating if the argument to \code{x} should be checked for validity.
 Defaults to \code{TRUE}.}
 }
 \value{
-\link[Matrix:dgCMatrix-class]{Matrix::dgCMatrix} sparse matrix object. Each row
+A \link[Matrix:dgCMatrix-class]{Matrix::dgCMatrix} sparse matrix object. Each row
 corresponds to a different species. Each column corresponds to a different
 branch. Species that inherit from a given branch are indicated with a one.
 }
@@ -47,7 +47,7 @@ data(sim_tree)
 m <- branch_matrix(sim_tree)
 
 # plot data
-par(mfrow = c(1,2))
+par(mfrow = c(1, 2))
 plot(sim_tree, main = "phylogeny")
 image(m, main = "branch matrix")
 

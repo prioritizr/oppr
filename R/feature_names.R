@@ -1,28 +1,31 @@
-#' @include internal.R
+#' @include internal.R ProjectProblem-class.R MultiObjProjectProblem-class.R
 NULL
 
 #' Feature names
 #'
-#' Extract the names of the features in an object.
+#' Get the names of the features in an object.
 #'
-#' @param x [ProjectProblem-class].
+#' @inheritParams action_names
 #'
-#' @return `character` feature names.
+#' @return A `character` vector or `list` of `character` vectors.
 #'
 #' @name feature_names
 #'
-#' @aliases feature_names,ProjectProblem-method
+#' @aliases feature_names,ProjectProblem-method feature_names,MultiObjProjectProblem-method
 #'
 #' @examples
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
-#' # build problem with default solver
-#' p <- problem(sim_projects, sim_actions, sim_features,
-#'              "name", "success", "name", "cost", "name") %>%
-#'      add_max_richness_objective(budget = 200) %>%
-#'      add_binary_decisions() %>%
-#'      add_default_solver()
+#' # build problem
+#' p <-
+#'   problem(
+#'     sim_projects, sim_actions, sim_features,
+#'     "name", "success", "name", "cost", "name"
+#'   ) %>%
+#'   add_max_wtd_sum_objective(budget = 200) %>%
+#'   add_binary_decisions() %>%
+#'   add_default_solver()
 #'
 #' # print problem
 #' print(p)
@@ -38,15 +41,27 @@ NULL
 #' @exportMethod feature_names
 #'
 #' @usage feature_names(x)
-#'
-methods::setGeneric("feature_names",
-                    function(x) standardGeneric("feature_names"))
+methods::setGeneric(
+  "feature_names",
+  function(x) standardGeneric("feature_names")
+)
 
 #' @name feature_names
 #'
 #' @rdname feature_names
 #'
 #' @usage \S4method{feature_names}{ProjectProblem}(x)
+methods::setMethod(
+  "feature_names", "ProjectProblem",
+  function(x) x$feature_names()
+)
+
+#' @name feature_names
 #'
-methods::setMethod("feature_names", "ProjectProblem",
-  function(x) x$feature_names())
+#' @rdname feature_names
+#'
+#' @usage \S4method{feature_names}{MultiObjProjectProblem}(x)
+methods::setMethod(
+  "feature_names", "MultiObjProjectProblem",
+  function(x) x$feature_names()
+)

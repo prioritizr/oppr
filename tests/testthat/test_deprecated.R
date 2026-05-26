@@ -1,0 +1,22 @@
+test_that("defunct functions", {
+  expect_error(
+    plot_phylo_persistence(),
+    "plot_solution_phylogram"
+  )
+  expect_error(
+    plot_feature_persistence(),
+    "plot_solution_barplot"
+  )
+  expect_error(
+    add_locked_in_constraints(),
+    "add_locked_in_action_constraints"
+  )
+  expect_error(
+    add_locked_out_constraints(),
+    "add_locked_out_action_constraints"
+  )
+  expect_error(
+    add_manual_locked_constraints(),
+    "add_manual_locked_action_constraints"
+  )
+})

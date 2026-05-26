@@ -1,13 +1,11 @@
- #' @include internal.R OptimizationProblem-proto.R
+#' @include internal.R OptimizationProblem-class.R
 NULL
 
 #' Optimization problem
 #'
 #' Generate a new empty [OptimizationProblem-class] object.
 #'
-#' @return [OptimizationProblem-class] object.
-#'
-#' @seealso [OptimizationProblem-methods()]
+#' @return An [OptimizationProblem-class] object.
 #'
 #' @examples
 #' # create empty OptimizationProblem object
@@ -17,5 +15,5 @@ NULL
 #' print(x)
 #' @export
 new_optimization_problem <- function() {
-  pproto(NULL, OptimizationProblem, ptr = rcpp_new_optimization_problem())
+  OptimizationProblem$new(ptr = rcpp_new_optimization_problem())
 }

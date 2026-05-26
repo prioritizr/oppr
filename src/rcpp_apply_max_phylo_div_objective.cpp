@@ -5,28 +5,30 @@
 bool rcpp_apply_max_phylo_div_objective(SEXP x,
                                         Rcpp::NumericVector costs,
                                         double budget,
-                                        Rcpp::NumericVector feature_weights) {
+                                        Rcpp::NumericVector feature_weights,
+                                        Rcpp::NumericVector feature_ub) {
   // initialization
   Rcpp::XPtr<OPTIMIZATIONPROBLEM> ptr = Rcpp::as<Rcpp::XPtr<OPTIMIZATIONPROBLEM>>(x);
-   Rcpp::List curr_pwl_list;
-   Rcpp::NumericVector curr_pwl_x;
-   Rcpp::NumericVector curr_pwl_y;
+  Rcpp::List curr_pwl_list;
+  Rcpp::NumericVector curr_pwl_x;
+  Rcpp::NumericVector curr_pwl_y;
 
   // calculate number of non-tip branches
-  std::size_t n_nontip_branches = ptr->_number_of_branches -
-                                  ptr->_number_of_features;
+  std::size_t n_nontip_branches =
+    ptr->_number_of_branches - ptr->_number_of_features;
 
   // create a logical vector to determine which pwlobj's should be kept,
   // but also avoid creating one with a size of zeros, in case this causes
   // problems
-  Rcpp::LogicalVector keep_pwl(std::max(n_nontip_branches,
-                                        static_cast<std::size_t>(1)));
+  Rcpp::LogicalVector keep_pwl(
+    std::max(n_nontip_branches, static_cast<std::size_t>(1))
+  );
 
   // add objective function
-  for (std::size_t i = 0;
-       i < (ptr->_number_of_actions) +
-           (ptr->_number_of_projects) +
-           ((ptr->_number_of_projects) * (ptr->_number_of_features)); ++i) {
+  for (
+    std::size_t i = 0;
+    i < (ptr->_number_of_actions + ptr->_number_of_projects +
+      ptr->_number_of_allocations); ++i) {
     ptr->_obj.push_back(0.0);
   }
   for (std::size_t i = 0; i < (ptr->_number_of_features); ++i)
@@ -39,11 +41,12 @@ bool rcpp_apply_max_phylo_div_objective(SEXP x,
   for (std::size_t f = 0; f < (ptr->_number_of_features); ++f) {
     ++r;
     ptr->_A_i.push_back(r);
-    ptr->_A_j.push_back((ptr->_number_of_actions) +
-                       (ptr->_number_of_projects) +
-                       ((ptr->_number_of_features) *
-                        (ptr->_number_of_projects)) +
-                       f);
+    ptr->_A_j.push_back(
+      (ptr->_number_of_actions) +
+      (ptr->_number_of_projects) +
+      (ptr->_number_of_allocations) +
+      f
+    );
     ptr->_A_x.push_back(-1.0);
     ptr->_sense.push_back("=");
     ptr->_rhs.push_back(0.0);
@@ -57,15 +60,17 @@ bool rcpp_apply_max_phylo_div_objective(SEXP x,
   for (std::size_t f = 0; f < (ptr->_number_of_features); ++f)
     ptr->_lb.push_back(0.0);
   for (std::size_t f = 0; f < (ptr->_number_of_features); ++f)
-    ptr->_ub.push_back(1.0);
+    ptr->_ub.push_back(feature_ub[f]);
 
   // add variable types for new feature variables
   for (std::size_t f = 0; f < (ptr->_number_of_features); ++f)
-    ptr->_vtype.push_back("S");
+    ptr->_vtype.push_back("C");
 
   /// find row to start adding constraints
-  r = std::find(ptr->_row_ids.begin(), ptr->_row_ids.end(),
-                "c5") - (ptr->_row_ids.begin());
+  r = std::find(
+    ptr->_row_ids.begin(), ptr->_row_ids.end(), "c5") -
+    (ptr->_row_ids.begin()
+  );
   --r;
 
   // add variables and constraints for non-tip branches if they exist
@@ -91,7 +96,7 @@ bool rcpp_apply_max_phylo_div_objective(SEXP x,
         ptr->_obj.push_back(0.0);
 
         /// add bounds for the new branch variables
-        ptr->_lb.push_back(-std::numeric_limits<double>::infinity());
+        ptr->_lb.push_back(0.0);
         ptr->_ub.push_back(std::numeric_limits<double>::infinity());
 
         /// add types for the new branch variables
@@ -103,11 +108,13 @@ bool rcpp_apply_max_phylo_div_objective(SEXP x,
         /// add extra constraints for the piece-wise linear function
         ++r;
         ptr->_A_i.push_back(r);
-        ptr->_A_j.push_back((ptr->_number_of_actions) +
-                            (ptr->_number_of_projects) +
-                            (ptr->_number_of_features *
-                             ptr->_number_of_projects) +
-                            (ptr->_number_of_features) + b);
+        ptr->_A_j.push_back(
+          (ptr->_number_of_actions) +
+          (ptr->_number_of_projects) +
+          ptr->_number_of_allocations +
+          (ptr->_number_of_features) +
+          b
+        );
         ptr->_A_x.push_back(-1.0);
         ptr->_sense.push_back("=");
         ptr->_rhs.push_back(0.0);

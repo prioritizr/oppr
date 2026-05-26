@@ -3,31 +3,37 @@
 \name{feature_names}
 \alias{feature_names}
 \alias{feature_names,ProjectProblem-method}
+\alias{feature_names,MultiObjProjectProblem-method}
 \title{Feature names}
 \usage{
 feature_names(x)
 
 \S4method{feature_names}{ProjectProblem}(x)
+
+\S4method{feature_names}{MultiObjProjectProblem}(x)
 }
 \arguments{
-\item{x}{\linkS4class{ProjectProblem}.}
+\item{x}{\code{\link[=problem]{problem()}} or \code{\link[=multi_problem]{multi_problem()}} object.}
 }
 \value{
-\code{character} feature names.
+A \code{character} vector or \code{list} of \code{character} vectors.
 }
 \description{
-Extract the names of the features in an object.
+Get the names of the features in an object.
 }
 \examples{
 # load data
 data(sim_projects, sim_features, sim_actions)
 
-# build problem with default solver
-p <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-     add_max_richness_objective(budget = 200) \%>\%
-     add_binary_decisions() \%>\%
-     add_default_solver()
+# build problem
+p <-
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) \%>\%
+  add_max_wtd_sum_objective(budget = 200) \%>\%
+  add_binary_decisions() \%>\%
+  add_default_solver()
 
 # print problem
 print(p)

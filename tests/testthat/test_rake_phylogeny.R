@@ -1,13 +1,11 @@
-context("rake_phylogeny")
-
-test_that("valid arguments", {
-  # make data
+test_that("works", {
+  # create data
   n <- letters[1:5]
   w <- round(runif(5), 2)
   b <- 100
   r <- rake_phylogeny(n, w, b)
   # run tests
-  expect_is(r, "phylo")
+  expect_s3_class(r, "phylo")
   expect_identical(r$tip.label, n)
   expect_identical(r$edge.length, c(w, b))
   expect_equal(r$edge[, 1][-6], rep(length(n) + 1, length(n)))

@@ -184,31 +184,33 @@ our goal.
 
 ``` r
 # build problem
-p <- problem(projects = sim_projects, actions = sim_actions,
-             features =  sim_features, project_name_column = "name",
-             project_success_column = "success", action_name_column = "name",
-             action_cost_column = "cost", feature_name_column = "name") %>%
-     add_max_richness_objective(budget = 400) %>%
-     add_feature_weights(weight = "weight") %>%
-     add_binary_decisions() %>%
-     add_default_solver(verbose = FALSE)
+p <- problem(
+  projects = sim_projects, actions = sim_actions,
+  features = sim_features, project_name_column = "name",
+  project_success_column = "success", action_name_column = "name",
+  action_cost_column = "cost", feature_name_column = "name"
+) %>%
+  add_max_richness_objective(budget = 400) %>%
+  add_feature_weights(weight = "weight") %>%
+  add_binary_decisions() %>%
+  add_default_solver(verbose = FALSE)
 
 # print problem
 print(p)
 ```
 
     ## Project Prioritization Problem
-    ##   actions          F1_action, F2_action, F3_action, ... (6 actions)
-    ##   projects         F1_project, F2_project, F3_project, ... (6 projects)
-    ##   features         F1, F2, F3, ... (5 features)
-    ##   action costs:    min: 0, max: 103.22583
-    ##   project success: min: 0.81379, max: 1
-    ##   objective:       Maximum richness objective [budget (400)]
-    ##   targets:         none
-    ##   weights:         min: 0.21136, max: 1.59167
-    ##   decisions        Binary decision 
-    ##   constraints:     <none>
-    ##   solver:          Gurobi [first_feasible (0), gap (0), number_solutions (1), presolve (2), solution_pool_method (2), threads (1), time_limit (2147483647), time_limit (2147483647), verbose (0)]
+    ## actions:         F1_action, F2_action, F3_action, ... (6 actions)
+    ## projects:        F1_project, F2_project, F3_project, ... (6 projects)
+    ## features:        F1, F2, F3, ... (5 features)
+    ## action costs:    continuous values (between 0 and 103.226)
+    ## project success: proportion values (between 0.814 and 1)
+    ## objective:       maximum richness objective
+    ## targets:         none specified
+    ## weights:         feature weights
+    ## constraints:     none specified
+    ## decisions:       binary decision
+    ## solver:          gurobi solver
 
 Next, we can solve this problem to obtain a solution. By default, we
 will obtain the optimal solution to our problem using an exact algorithm
@@ -226,15 +228,15 @@ print(s, width = Inf)
 ```
 
     ## # A tibble: 1 × 21
-    ##   solution status    obj  cost F1_action F2_action F3_action F4_action F5_action
-    ##      <int> <chr>   <dbl> <dbl>     <dbl>     <dbl>     <dbl>     <dbl>     <dbl>
-    ## 1        1 OPTIMAL  1.75  395.         1         1         0         1         1
+    ##   solution status   cost   obj F1_action F2_action F3_action F4_action F5_action
+    ##      <int> <chr>   <dbl> <dbl> <lgl>     <lgl>     <lgl>     <lgl>     <lgl>    
+    ## 1        1 OPTIMAL  395.  1.75 TRUE      TRUE      FALSE     TRUE      TRUE     
     ##   baseline_action F1_project F2_project F3_project F4_project F5_project
-    ##             <dbl>      <dbl>      <dbl>      <dbl>      <dbl>      <dbl>
-    ## 1               1          1          1          0          1          1
+    ##   <lgl>           <lgl>      <lgl>      <lgl>      <lgl>      <lgl>     
+    ## 1 TRUE            TRUE       TRUE       FALSE      TRUE       TRUE      
     ##   baseline_project    F1    F2     F3    F4    F5
-    ##              <dbl> <dbl> <dbl>  <dbl> <dbl> <dbl>
-    ## 1                1 0.808 0.865 0.0865 0.688 0.592
+    ##   <lgl>            <dbl> <dbl>  <dbl> <dbl> <dbl>
+    ## 1 TRUE             0.808 0.865 0.0865 0.688 0.592
 
 The `s` table contains the solution and also various statistics
 associated with the solution. Here, each row corresponds to a different
@@ -263,7 +265,7 @@ with an asterisk.
 plot(p, s)
 ```
 
-<img src="man/figures/README-readme-plot-1.png" style="display: block; margin: auto;" />
+<img src="man/figures/README-readme-plot-1.png" alt="" style="display: block; margin: auto;" />
 
 This has just been a taster of the *oppr R* package. For more
 information, see the [package

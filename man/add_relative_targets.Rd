@@ -13,70 +13,85 @@ add_relative_targets(x, targets)
 \S4method{add_relative_targets}{ProjectProblem,character}(x, targets)
 }
 \arguments{
-\item{x}{\linkS4class{ProjectProblem} object.}
+\item{x}{[problem() object.}
 
 \item{targets}{Object that specifies the targets for each feature. See the
 Details section for more information.}
 }
+\value{
+A \code{\link[=problem]{problem()}} object with the targets added to it.
+}
 \description{
-Set targets for a project prioritization \code{\link[=problem]{problem()}} as a proportion
-(between 0 and 1) of the maximum probability of
-persistence associated with the best project for feature. For instance,
-if the best project for a feature has an 80\% probability of persisting,
-setting a 50\% (i.e. \code{0.5}) relative target will correspond to a 40\%
-threshold probability of persisting.
+Add targets to a project prioritization problem that specify the
+desired expected outcome for each feature as a proportion of the
+the best possible outcome that could be achieved.
+For instance, if a feature is associated with three projects that
+would be expected to result in a 30\%, 60\%, and 80\% chance of persistence
+(adjusted for baseline outcomes), then setting a relative target of 0.5
+would correspond to a 40\% chance of persistence (i.e., 50\% times 80\%).
 }
 \details{
-Targets are used to specify the minimum probability of persistence
-for each feature in solutions. For minimum set objectives
-(i.e. \code{\link[=add_min_set_objective]{add_min_set_objective()}}, these targets
-specify the minimum probability of persistence required for each species
-in the solution. And for budget constrained objectives that use targets
-(i.e.\code{\link[=add_max_targets_met_objective]{add_max_targets_met_objective()}}), these targets
-specify the minimum threshold probability of persistence that needs to be
-achieved to count the benefits for conserving these species.
+Targets are used to specify a threshold minimum desirable
+expected outcome for each feature. These should ideally be set
+according to stakeholder requirements and expert knowledge.
 Please note that attempting to solve problems with objectives that require
 targets without specifying targets will throw an error.
 
-The targets for a problem can be specified in several different ways:
+The targets for a problem can be specified using the following options.
 
 \describe{
 
-\item{\code{numeric}}{\code{vector} of target values for each feature.
-The order of the target values should correspond to the order
-of the features in the data used to create the argument to \code{x}.
-Additionally, for convenience, this type of argument can be a single
-value to assign the same target to each feature.}
+\item{\code{numeric} value}{
+The value is used to set the target threshold for each feature.
+This option may be useful when all features should be assigned the same
+target threshold.
+}
 
-\item{\code{character}}{specifying the name of column in the
-feature data (i.e. the argument to \code{features} in the
-\code{\link[=problem]{problem()}} function) that contains the persistence targets.}
+\item{\code{numeric} vector}{
+Each value specifies a target threshold for each feature.
+The order of the values should correspond to the order
+of the features in \code{x}.
+}
+
+\item{\code{character} value}{
+The value specifies the name of a column in the
+feature data (i.e., the argument to \code{features} in the
+\code{\link[=problem]{problem()}} function). The target threshold for each feature
+is set according the column values.
+}
 
 }
 }
 \examples{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load data
 data(sim_projects, sim_features, sim_actions)
 
 # build problem with minimum set objective and targets that require each
 # feature to have a level of persistence that is greater than or equal to
 # 70\% of the best project for conserving it
-p1 <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-      add_min_set_objective() \%>\%
-      add_relative_targets(0.7) \%>\%
-      add_binary_decisions()
+p1 <-
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) \%>\%
+  add_min_set_objective() \%>\%
+  add_relative_targets(0.7) \%>\%
+  add_binary_decisions()
 
 # print problem
 print(p1)
 
 # build problem with minimum set objective and specify targets that require
 # different levels of persistence for each feature
-p2 <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-      add_min_set_objective() \%>\%
-      add_relative_targets(c(0.2, 0.3, 0.4, 0.5, 0.6)) \%>\%
-      add_binary_decisions()
+p2 <-
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) \%>\%
+  add_min_set_objective() \%>\%
+  add_relative_targets(c(0.2, 0.3, 0.4, 0.5, 0.6)) \%>\%
+  add_binary_decisions()
 
 # print problem
 print(p2)
@@ -86,13 +101,15 @@ sim_features$target <- c(0.2, 0.3, 0.4, 0.5, 0.6)
 
 # build problem with minimum set objective and specify targets using
 # column name in the feature data
-p3 <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-      add_min_set_objective() \%>\%
-      add_relative_targets("target") \%>\%
-      add_binary_decisions()
+p3 <-
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) \%>\%
+  add_min_set_objective() \%>\%
+  add_relative_targets("target") \%>\%
+  add_binary_decisions()
 
-\dontrun{
 # print problem
 print(p3)
 
@@ -110,8 +127,11 @@ print(s3)
 plot(p1, s1)
 plot(p2, s2)
 plot(p3, s3)
-}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
-\link{targets}.
+Other targets:
+\code{\link[=add_absolute_targets]{add_absolute_targets()}},
+\code{\link[=add_manual_targets]{add_manual_targets()}}
 }
+\concept{targets}

@@ -7,7 +7,7 @@
 add_random_solver(x, number_solutions = 1, verbose = TRUE)
 }
 \arguments{
-\item{x}{\linkS4class{ProjectProblem} object.}
+\item{x}{\code{\link[=problem]{problem()}} or \code{\link[=multi_problem]{multi_problem()}} object.}
 
 \item{number_solutions}{\code{integer} number of solutions desired.
 Defaults to 1. Note that the number of returned solutions can sometimes
@@ -16,26 +16,24 @@ argument to \code{solution_pool_method}, for example if 100
 solutions are requested but only 10 unique solutions exist, then only 10
 solutions will be returned.}
 
-\item{verbose}{\code{logical} should information be printed while solving
-optimization problems?}
+\item{verbose}{\code{logical} should information be printed during optimization?
+Defaults to \code{TRUE}.}
 }
 \value{
-\linkS4class{ProjectProblem} object with the solver added
-to it.
+A \code{\link[=problem]{problem()}} object with the solver added to it.
 }
 \description{
-Specify that solutions should be generated using random processes. Although
-prioritizations should be developed using optimization routines,
-a portfolio of randomly generated solutions can be useful for evaluating
-the effectiveness of solutions.
+Add a solver to generate solutions to a project prioritization problem
+based on random selection. Although prioritizations should be developed
+using optimization routines, a portfolio of randomly generated solutions can
+be useful for evaluating the effectiveness of an optimized solution.
 }
 \details{
 The algorithm used to randomly generate solutions depends on the
-the objective specified for the project prioritization
-\code{\link[=problem]{problem()}}.
+the objective specified for the project prioritization problem.
 
-For objectives which maximize benefit subject to budgetary constraints
-(e.g. \code{\link[=add_max_richness_objective]{add_max_richness_objective()}}):
+The following steps are used for objectives that maximize benefit subject to
+budgetary constraints (e.g., \code{\link[=add_max_wtd_sum_objective]{add_max_wtd_sum_objective()}}).
 
 \enumerate{
 
@@ -53,8 +51,8 @@ exceeding the budget.
 
 }
 
-For objectives which minimize cost subject to biodiversity constraints
-(i.e. \code{\link[=add_min_set_objective]{add_min_set_objective()}}:
+The following steps are used for objectives that  minimize cost subject to
+biodiversity constraints (i.e., \code{\link[=add_min_set_objective]{add_min_set_objective()}}.
 
 \enumerate{
 
@@ -72,15 +70,19 @@ are met.
 }
 }
 \examples{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load data
 data(sim_projects, sim_features, sim_actions)
 
 # build problem with random solver, and generate 100 random solutions
-p1 <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-     add_max_richness_objective(budget = 200) \%>\%
-     add_binary_decisions() \%>\%
-     add_random_solver(number_solutions = 100)
+p1 <-
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) \%>\%
+  add_max_wtd_sum_objective(budget = 200) \%>\%
+  add_binary_decisions() \%>\%
+  add_random_solver(number_solutions = 100)
 
 # print problem
 print(p1)
@@ -95,28 +97,43 @@ print(s1)
 plot(p1, s1)
 
 # plot histogram of the objective values for the random solutions
-hist(s1$obj, xlab = "Expected richness", xlim = c(0, 2.5),
-     main = "Histogram of random solutions")
+# according to the weighted sum objective
+hist(
+  s1$obj,
+  xlab = "Expected outcome", xlim = c(0, 2.5),
+  main = "Histogram of random solutions"
+)
 
 # since the objective values don't tell us much about the quality of the
 # solutions, we can find the optimal solution and calculate how different
 # each of the random solutions is from optimality
 
-\dontrun{
 # find the optimal objective value using an exact algorithms solver
 s2 <- p1 \%>\%
-      add_default_solver() \%>\%
-      solve()
+  add_default_solver() \%>\%
+  solve()
 
 # create new column in s1 with percent difference from optimality
 s1$optimality_diff <- ((s2$obj - s1$obj) / s1$obj) * 100
 
 # plot histogram showing the quality of the random solutions
 # higher numbers indicate worse solutions
-hist(s1$optimality_diff, xlab = "Difference from optimality (\%)",
-     main = "Histogram of random solutions", xlim = c(0, 50))
-}
+hist(
+  s1$optimality_diff,
+  xlab = "Difference from optimality (\%)",
+  main = "Histogram of random solutions", xlim = c(0, 50)
+)
+\dontshow{\}) # examplesIf}
 }
 \seealso{
-\link{solvers}.
+Other solvers:
+\code{\link[=add_cbc_solver]{add_cbc_solver()}},
+\code{\link[=add_default_solver]{add_default_solver()}},
+\code{\link[=add_gurobi_solver]{add_gurobi_solver()}},
+\code{\link[=add_heuristic_solver]{add_heuristic_solver()}},
+\code{\link[=add_highs_solver]{add_highs_solver()}},
+\code{\link[=add_lpsolveapi_solver]{add_lpsolveapi_solver()}},
+\code{\link[=add_lpsymphony_solver]{add_lpsymphony_solver()}},
+\code{\link[=add_rsymphony_solver]{add_rsymphony_solver()}}
 }
+\concept{solvers}

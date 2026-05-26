@@ -1,37 +1,46 @@
-context("add_feature_weights")
-
 test_that("numeric(5)", {
   # load data
   data(sim_projects, sim_actions, sim_features)
   # create problem
-  p <- problem(sim_projects, sim_actions, sim_features,
-               "name", "success", "name", "cost", "name", FALSE) %>%
-       add_feature_weights(seq_len(5))
+  p <-
+    problem(
+      sim_projects, sim_actions, sim_features,
+      "name", "success", "name", "cost", "name", FALSE
+    ) %>%
+    add_feature_weights(seq(1.1, 5.1))
   # calculate weights
   weights <- p$feature_weights()
   # run tests
-  expect_is(weights, "numeric")
-  expect_equal(weights, setNames(seq_len(5), sim_features$name))
+  expect_type(weights, "double")
+  expect_equal(weights, setNames(seq(1.1, 5.1), sim_features$name))
 })
 
 test_that("character(1)", {
   # load data
   data(sim_projects, sim_actions, sim_features)
   # create problem
-  p <- problem(sim_projects, sim_actions, sim_features,
-               "name", "success", "name", "cost", "name", FALSE) %>%
-       add_feature_weights("weight")
+  p <-
+    problem(
+      sim_projects, sim_actions, sim_features,
+      "name", "success", "name", "cost", "name", FALSE
+    ) %>%
+    add_feature_weights("weight")
   # calculate weights
   weights <- p$feature_weights()
   # run tests
-  expect_is(weights, "numeric")
+  expect_type(weights, "double")
   expect_equal(weights, setNames(sim_features$weight, sim_features$name))
 })
 
 test_that("invalid arguments", {
+  # load data
   data(sim_projects, sim_actions, sim_features)
-  p <- problem(sim_projects, sim_actions, sim_features,
-               "name", "success", "name", "cost", "name", FALSE)
+  # create problem
+  p <-
+    problem(
+      sim_projects, sim_actions, sim_features,
+      "name", "success", "name", "cost", "name", FALSE
+    )
   ## single numeric values
   expect_error({
     add_feature_weights(p, 2)

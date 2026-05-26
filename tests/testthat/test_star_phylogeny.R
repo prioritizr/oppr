@@ -1,12 +1,10 @@
-context("star_phylogeny")
-
-test_that("valid arguments", {
-  # make data
+test_that("works", {
+  # create data
   n <- letters[1:5]
   w <- round(runif(5), 2)
   s <- star_phylogeny(n, w)
   # run tests
-  expect_is(s, "phylo")
+  expect_s3_class(s, "phylo")
   expect_identical(s$tip.label, n)
   expect_identical(s$edge.length, w)
   expect_equal(s$edge[, 1], rep(length(n) + 1, length(n)))

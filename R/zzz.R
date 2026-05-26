@@ -21,8 +21,9 @@
     packageStartupMessage(cli::rule())
   }
   # print message if prioritizr already loaded
-  if ("prioritizr" %in% .packages())
-   msg()
+  if ("prioritizr" %in% .packages()) {
+    msg()
+  }
   # set hook to print message if prioritizr is loaded later on
   setHook(packageEvent("prioritizr", "attach"), function(...) {
     msg()

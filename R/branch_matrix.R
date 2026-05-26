@@ -14,20 +14,17 @@ NULL
 #'
 #' @param x [ape::phylo()] tree object.
 #'
-#' @param assert_validity `logical` value (i.e. `TRUE` or `FALSE`
+#' @param assert_validity `logical` value (i.e., `TRUE` or `FALSE`
 #'   indicating if the argument to `x` should be checked for validity.
 #'   Defaults to `TRUE`.
 #'
 #' @param ... not used.
 #'
 #'
-#' @return [Matrix::dgCMatrix-class] sparse matrix object. Each row
-#'   corresponds to a different species. Each column corresponds to a different
-#'   branch. Species that inherit from a given branch are indicated with a one.
-#'
-#' @name branch_matrix
-#'
-#' @rdname branch_matrix
+#' @return
+#' A [Matrix::dgCMatrix-class] sparse matrix object. Each row
+#' corresponds to a different species. Each column corresponds to a different
+#' branch. Species that inherit from a given branch are indicated with a one.
 #'
 #' @examples
 #' # load Matrix package to plot matrices
@@ -40,7 +37,7 @@ NULL
 #' m <- branch_matrix(sim_tree)
 #'
 #' # plot data
-#' par(mfrow = c(1,2))
+#' par(mfrow = c(1, 2))
 #' plot(sim_tree, main = "phylogeny")
 #' image(m, main = "branch matrix")
 #'
@@ -50,8 +47,9 @@ branch_matrix <- function(x, ...) UseMethod("branch_matrix")
 #' @rdname branch_matrix
 #' @method branch_matrix default
 #' @export
-branch_matrix.default <- function(x, ...)
+branch_matrix.default <- function(x, ...) {
   rcpp_branch_matrix(methods::as(x, "phylo"))
+}
 
 #' @rdname branch_matrix
 #' @method branch_matrix phylo
@@ -59,8 +57,9 @@ branch_matrix.default <- function(x, ...)
 branch_matrix.phylo <- function(x, assert_validity = TRUE, ...) {
   # check that tree is valid and return error if not
   assertthat::assert_that(assertthat::is.flag(assert_validity))
-  if (assert_validity)
+  if (assert_validity) {
     assertthat::assert_that(is_valid_phylo(x))
+  }
   # generate matrix
   rcpp_branch_matrix(x)
 }

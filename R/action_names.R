@@ -1,28 +1,31 @@
-#' @include internal.R
+#' @include internal.R ProjectProblem-class.R MultiObjProjectProblem-class.R
 NULL
 
 #' Action names
 #'
-#' Extract the names of the actions in an object.
+#' Get the names of actions in an object.
 #'
-#' @param x [ProjectProblem-class].
+#' @param x [problem()] or [multi_problem()] object.
 #'
-#' @return `character` action names.
+#' @return A `character` vector.
 #'
 #' @name action_names
 #'
-#' @aliases action_names,ProjectProblem-method
+#' @aliases action_names,ProjectProblem-method action_names,MultiObjProjectProblem-method
 #'
 #' @examples
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
-#' # build problem with default solver
-#' p <- problem(sim_projects, sim_actions, sim_features,
-#'              "name", "success", "name", "cost", "name") %>%
-#'      add_max_richness_objective(budget = 200) %>%
-#'      add_binary_decisions() %>%
-#'      add_default_solver()
+#' # build problem
+#' p <-
+#'   problem(
+#'     sim_projects, sim_actions, sim_features,
+#'     "name", "success", "name", "cost", "name"
+#'   ) %>%
+#'   add_max_wtd_sum_objective(budget = 200) %>%
+#'   add_binary_decisions() %>%
+#'   add_default_solver()
 #'
 #' # print problem
 #' print(p)
@@ -38,15 +41,27 @@ NULL
 #' @exportMethod action_names
 #'
 #' @usage action_names(x)
-#'
-methods::setGeneric("action_names",
-                    function(x) standardGeneric("action_names"))
+methods::setGeneric(
+  "action_names",
+  function(x) standardGeneric("action_names")
+)
 
 #' @name action_names
 #'
 #' @rdname action_names
 #'
 #' @usage \S4method{action_names}{ProjectProblem}(x)
+methods::setMethod(
+  "action_names", "ProjectProblem",
+  function(x) x$action_names()
+)
+
+#' @name action_names
 #'
-methods::setMethod("action_names", "ProjectProblem",
-  function(x) x$action_names())
+#' @rdname action_names
+#'
+#' @usage \S4method{action_names}{MultiObjProjectProblem}(x)
+methods::setMethod(
+  "action_names", "MultiObjProjectProblem",
+  function(x) x$action_names()
+)

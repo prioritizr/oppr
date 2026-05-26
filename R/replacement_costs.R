@@ -32,49 +32,57 @@ NULL
 #'  for large problems since it involves re-solving the problem for every
 #'  action selected for funding.
 #'
-#' @return A [tibble::tibble()] table containing the following
-#'   columns:
+#' @return
+#' A [tibble::tibble()] table containing the following columns.
 #'
-#'   \describe{
+#' \describe{
 #'
-#'   \item{`"action"`}{`character` name of each action.}
+#' \item{`"action"`}{
+#' `character` name of each action.
+#' }
 #'
-#'   \item{`"cost"`}{`numeric` cost of each solution when each
-#'     action is locked out.}
+#' \item{`"cost"`}{
+#' `numeric` cost of each solution when each action is locked out.
+#' }
 #'
-#'   \item{`"obj"`}{`numeric` objective value of each solution when
-#'     each action is locked out. This is calculated using the objective
-#'     function defined for the argument to `x`.}
+#' \item{`"obj"`}{
+#' `numeric` objective value of each solution when each action is locked out.
+#' This is calculated using the objective function defined for the argument to
+#' `x`.
+#' }
 #'
-#'   \item{`"rep_cost"`}{`numeric` replacement cost for each
-#'     action. Greater values indicate greater irreplaceability. Missing
-#'     (`NA`) values are assigned to actions which are not selected for
-#'     funding in the specified solution, infinite (`Inf`) values are
-#'     assigned to to actions which are required to meet feasibility
-#'     constraints, and negative values mean that superior solutions than
-#'     the specified solution exist.}
+#' \item{`"rep_cost"`}{
+#' `numeric` replacement cost for each
+#' action. Greater values indicate greater irreplaceability. Missing
+#' (`NA`) values are assigned to actions which are not selected for
+#' funding in the specified solution, infinite (`Inf`) values are
+#' assigned to to actions which are required to meet feasibility
+#' constraints, and negative values mean that superior solutions than
+#' the specified solution exist.
+#' }
 #'
-#'   }
+#' }
 #'
 #' @references
 #' Moilanen A, Arponen A, Stokland JN & Cabeza M (2009) Assessing replacement
 #' cost of conservation areas: how does habitat loss influence priorities?
 #' *Biological Conservation*, **142**, 575--585.
 #'
-#' @seealso [solution_statistics()],
-#'   [project_cost_effectiveness()].
+#' @family evaluation
 #'
-#' @examples
-#' \dontrun{
+#' @examplesIf oppr::run_example()
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
-#' # build problem with maximum richness objective and $400 budget
-#' p <- problem(sim_projects, sim_actions, sim_features,
-#'              "name", "success", "name", "cost", "name") %>%
-#'      add_max_richness_objective(budget = 400) %>%
-#'      add_feature_weights("weight") %>%
-#'      add_binary_decisions()
+#' # build problem with maximum weighted sum objective and $400 budget
+#' p <-
+#'   problem(
+#'     sim_projects, sim_actions, sim_features,
+#'     "name", "success", "name", "cost", "name"
+#'   ) %>%
+#'   add_max_wtd_sum_objective(budget = 400) %>%
+#'   add_feature_weights("weight") %>%
+#'   add_binary_decisions()
 #'
 #' # solve problem
 #' s <- solve(p)
@@ -91,7 +99,6 @@ NULL
 #' # plot histogram of replacement costs,
 #' # with this objective, greater values indicate greater irreplaceability
 #' hist(r$rep_cost, xlab = "Replacement cost", main = "")
-#' }
 #' @export
 replacement_costs <- function(x, solution, n = 1) {
   # assert arguments are valid
@@ -99,27 +106,36 @@ replacement_costs <- function(x, solution, n = 1) {
     inherits(x, "ProjectProblem"),
     inherits(solution, "data.frame"),
     all(assertthat::has_name(solution, x$action_names())),
-    is.numeric(c(as.matrix(solution[, x$action_names()]))),
+    is.logical(c(as.matrix(solution[, x$action_names()]))),
     assertthat::noNA(c(as.matrix(solution[, x$action_names()]))),
     assertthat::is.count(n),
     is.finite(n),
-    isTRUE(n <= nrow(solution)))
-  assertthat::assert_that(!is.Waiver(x$objective),
-    msg = "argument to x does not have an objective specified.")
-  if (!inherits(solution, "tbl_df"))
+    isTRUE(n <= nrow(solution))
+  )
+  assertthat::assert_that(
+    !is.Waiver(x$objective),
+    msg = "argument to x does not have an objective specified."
+  )
+  if (!inherits(solution, "tbl_df")) {
     solution <- tibble::as_tibble(solution)
+  }
   # over-write solver
-  suppressWarnings({x <- add_default_solver(x, gap = 0, verbose = FALSE)})
+  suppressWarnings({
+    x <- add_default_solver(x, gap = 0, verbose = FALSE)
+  })
   # calculate initial objective value
-  obj <- try(solution_statistics(x, solution[n, x$action_names()])$obj,
-             silent = TRUE)
-  if (inherits(obj, "try-error"))
+  obj <- try(
+    solution_statistics(x, solution[n, x$action_names()])$obj,
+    silent = TRUE
+  )
+  if (inherits(obj, "try-error")) {
     stop("issue solving argument to x, please verify that it can be solved.")
+  }
   # find priority actions
   a <- which(c(as.matrix(solution[n, x$action_names()])) > 0.5)
   # calculate cost and objective values
   out <- lapply(a, function(i) {
-    o <- try(solve(add_locked_out_constraints(x, i)), silent = TRUE)
+    o <- try(solve(add_locked_out_action_constraints(x, i)), silent = TRUE)
     if (inherits(o, "try-error")) {
       o <- data.frame(cost = Inf, obj = Inf)
     } else {
@@ -130,14 +146,20 @@ replacement_costs <- function(x, solution, n = 1) {
   out <- do.call(rbind, out)
   # prepare output
   out$name <- x$action_names()[a]
-  out <- rbind(out, tibble::tibble(name = x$action_names()[-a],
-                                   cost = NA_real_,
-                                   obj = NA_real_))
+  out <- rbind(
+    out,
+    tibble::tibble(
+      name = x$action_names()[-a],
+      cost = NA_real_,
+      obj = NA_real_
+    )
+  )
   out <- out[match(x$action_names(), out$name), , drop = FALSE]
   out$rep_cost <- obj - out$obj
   # multiply by -1 if minimum set objective
-  if (inherits(x$objective, "MinimumSetObjective"))
+  if (inherits(x$objective, "MinimumSetObjective")) {
     out$rep_cost <- out$rep_cost * -1
+  }
   # return output
   out[, c("name", "cost", "obj", "rep_cost")]
 }

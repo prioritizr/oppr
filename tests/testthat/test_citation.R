@@ -1,5 +1,3 @@
-context("package citation")
-
 test_that("citation", {
-  expect_is(citation("oppr"), "citation")
+  expect_s3_class(citation("oppr"), "citation")
 })

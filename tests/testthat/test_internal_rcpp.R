@@ -1,9 +1,9 @@
-context("internal rcpp")
-
 test_that("rcpp_branch_order (regular matrix)", {
-  m <- structure(c(1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1,
-                   0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0,
-                   0, 0, 1), .Dim = c(5L, 8L), .Dimnames = list(NULL, NULL))
+  m <- structure(c(
+    1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1,
+    0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0,
+    0, 0, 1
+  ), .Dim = c(5L, 8L), .Dimnames = list(NULL, NULL))
   m <- as_Matrix(m, "dgCMatrix")
   o <- rcpp_branch_order(m)
   expect_equal(o, c(2, 4, 5, 7, 8, 1, 3, 6))

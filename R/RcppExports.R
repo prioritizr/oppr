@@ -49,6 +49,10 @@ rcpp_get_optimization_problem_number_of_branches <- function(x) {
     .Call(`_oppr_rcpp_get_optimization_problem_number_of_branches`, x)
 }
 
+rcpp_get_optimization_problem_number_of_allocations <- function(x) {
+    .Call(`_oppr_rcpp_get_optimization_problem_number_of_allocations`, x)
+}
+
 rcpp_get_optimization_problem_vtype <- function(x) {
     .Call(`_oppr_rcpp_get_optimization_problem_vtype`, x)
 }
@@ -85,6 +89,10 @@ rcpp_get_optimization_problem_row_ids <- function(x) {
     .Call(`_oppr_rcpp_get_optimization_problem_row_ids`, x)
 }
 
+rcpp_copy_optimization_problem <- function(x) {
+    .Call(`_oppr_rcpp_copy_optimization_problem`, x)
+}
+
 rcpp_add_raw_data <- function(x, pa_matrix, pf_matrix, branch_matrix, branch_lengths, n_approx_points) {
     .Call(`_oppr_rcpp_add_raw_data`, x, pa_matrix, pf_matrix, branch_matrix, branch_lengths, n_approx_points)
 }
@@ -97,12 +105,16 @@ rcpp_apply_feature_weights <- function(x, weights, replace) {
     .Call(`_oppr_rcpp_apply_feature_weights`, x, weights, replace)
 }
 
-rcpp_apply_locked_constraints <- function(x, actions, status) {
-    .Call(`_oppr_rcpp_apply_locked_constraints`, x, actions, status)
+rcpp_apply_locked_action_constraints <- function(x, actions, status) {
+    .Call(`_oppr_rcpp_apply_locked_action_constraints`, x, actions, status)
 }
 
-rcpp_apply_max_phylo_div_objective <- function(x, costs, budget, feature_weights) {
-    .Call(`_oppr_rcpp_apply_max_phylo_div_objective`, x, costs, budget, feature_weights)
+rcpp_apply_locked_project_constraints <- function(x, projects, status) {
+    .Call(`_oppr_rcpp_apply_locked_project_constraints`, x, projects, status)
+}
+
+rcpp_apply_max_phylo_div_objective <- function(x, costs, budget, feature_weights, feature_ub) {
+    .Call(`_oppr_rcpp_apply_max_phylo_div_objective`, x, costs, budget, feature_weights, feature_ub)
 }
 
 rcpp_apply_max_targets_met_objective <- function(x, targets_list, costs, budget, feature_weights) {
@@ -119,6 +131,30 @@ rcpp_branch_matrix <- function(x) {
 
 rcpp_branch_order <- function(x) {
     .Call(`_oppr_rcpp_branch_order`, x)
+}
+
+rcpp_compile_multi_obj_problem <- function(x) {
+    .Call(`_oppr_rcpp_compile_multi_obj_problem`, x)
+}
+
+rcpp_convert_abs_constraint_approach <- function(x, mopt_modelsense, mopt_obj, goals) {
+    .Call(`_oppr_rcpp_convert_abs_constraint_approach`, x, mopt_modelsense, mopt_obj, goals)
+}
+
+rcpp_convert_pwlobj <- function(x) {
+    .Call(`_oppr_rcpp_convert_pwlobj`, x)
+}
+
+rcpp_convert_ref_point_method_step1 <- function(x, mopt_modelsense, mopt_obj, weights, goals, best, worst) {
+    .Call(`_oppr_rcpp_convert_ref_point_method_step1`, x, mopt_modelsense, mopt_obj, weights, goals, best, worst)
+}
+
+rcpp_convert_ref_point_method_step2 <- function(x, mopt_modelsense, mopt_obj, weights, goals, rhs) {
+    .Call(`_oppr_rcpp_convert_ref_point_method_step2`, x, mopt_modelsense, mopt_obj, weights, goals, rhs)
+}
+
+rcpp_convert_wtd_goal_method <- function(x, mopt_modelsense, mopt_obj, weights, goals) {
+    .Call(`_oppr_rcpp_convert_wtd_goal_method`, x, mopt_modelsense, mopt_obj, weights, goals)
 }
 
 rcpp_evaluate_max_phylo_div_objective <- function(costs, pa_matrix, pf_matrix, branch_matrix, branch_lengths, targets, weights, solutions) {

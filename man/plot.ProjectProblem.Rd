@@ -7,16 +7,16 @@
 \method{plot}{ProjectProblem}(x, solution, n = 1, symbol_hjust = 0.007, return_data = FALSE, ...)
 }
 \arguments{
-\item{x}{project prioritization \code{\link[=problem]{problem()}}.}
+\item{x}{\code{\link[=problem]{problem()}} or \code{\link[=multi_problem]{multi_problem()}} object.}
 
 \item{solution}{\code{\link[base:data.frame]{base::data.frame()}} or
-\code{\link[tibble:tibble]{tibble::tibble()}} table containing the solutions. Here,
+\code{\link[tibble:tibble]{tibble::tibble()}} containing the solutions. Here,
 rows correspond to different solutions and columns correspond to
 different actions. Each column in the argument to \code{solution} should
 be named according to a different action in \code{x}.
 Cell values indicate if an action is funded in a given solution or not,
 and should be either zero or one. Arguments to \code{solution} can
-contain additional columns, and they will be ignored.}
+contain additional columns, though they will be ignored.}
 
 \item{n}{\code{integer} solution number to visualize.
 Since each row in the argument to \code{solutions} corresponds to a
@@ -35,7 +35,8 @@ the plot be returned instead of the plot? Defaults to \code{FALSE}.}
 \item{...}{not used.}
 }
 \value{
-A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object.
+A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} object. If \code{return_data = TRUE}, then a \code{data.frame}
+is returned.
 }
 \description{
 Create a plot to visualize how well a solution to a project prioritization
@@ -45,55 +46,60 @@ Create a plot to visualize how well a solution to a project prioritization
 The type of plot that this function creates depends on the
 problem objective. If the problem objective contains phylogenetic data,
 then this function plots a phylogenetic tree where each branch
-is colored according to its probability of persistence. Otherwise,
+is colored according to its probability of persistence based on
+the projects selected for funding by the solution. Otherwise,
 if the problem does not contain phylogenetic data, then this function
 creates a bar plot where each bar corresponds to a different feature.
-The height of the bars indicate each feature's probability of
-persistence, and the width of the bars indicate each feature's weight.
-
-Features that directly benefit from at least a single
+The height of the bars indicate the expected outcome for each feature
+based on the projects selected for funding by the solution, and the
+color of the bars indicate each feature's weight.
+Additionally, regardless of the problem objective, features
+that directly benefit from at least a single
 completely funded project with a non-zero cost are depicted with an
 asterisk symbol. Additionally, features that indirectly benefit from funded
-projects---because they are associated with partially funded projects that
+projects -- because they are associated with partially funded projects that
 have non-zero costs and share actions with at least one funded
-project---are depicted with an open circle symbol.
+project -- are depicted with an open circle symbol.
 }
 \examples{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load data
 data(sim_projects, sim_features, sim_actions)
 
 # build problem without phylogenetic data
-p1 <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-      add_max_richness_objective(budget = 400) \%>\%
-      add_feature_weights("weight") \%>\%
-      add_binary_decisions()
+p1 <-
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) \%>\%
+  add_max_wtd_sum_objective(budget = 400) \%>\%
+  add_feature_weights("weight") \%>\%
+  add_binary_decisions()
 
-\dontrun{
 # solve problem without phylogenetic data
 s1 <- solve(p1)
 
 # visualize solution without phylogenetic data
 plot(p1, s1)
-}
 
 # build problem with phylogenetic data
-p2 <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-      add_max_phylo_div_objective(budget = 400, sim_tree) \%>\%
-      add_binary_decisions()
+p2 <-
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) \%>\%
+  add_max_phylo_div_objective(budget = 400, sim_tree) \%>\%
+  add_binary_decisions()
 
-\dontrun{
 # solve problem with phylogenetic data
 s2 <- solve(p2)
 
 # visualize solution with phylogenetic data
 plot(p2, s2)
-}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
-This function is essentially a wrapper for
-\code{\link[=plot_feature_persistence]{plot_feature_persistence()}} and
-\code{\link[=plot_phylo_persistence]{plot_phylo_persistence()}}, so refer to the documentation
+This function is a wrapper for \code{\link[=plot_solution_phylogram]{plot_solution_phylogram()}} and
+\code{\link[=plot_solution_barplot]{plot_solution_barplot()}}, so refer to the documentation
 for these functions for more information.
 }

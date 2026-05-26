@@ -7,33 +7,43 @@
 project_cost_effectiveness(x)
 }
 \arguments{
-\item{x}{project prioritization \code{\link[=problem]{problem()}}.}
+\item{x}{\code{\link[=problem]{problem()}} object.}
 }
 \value{
 A \code{\link[tibble:tibble]{tibble::tibble()}} table containing the following
-columns:
+columns.
 
 \describe{
 
-\item{\code{"project"}}{\code{character} name of each project}
+\item{\code{"project"}}{
+\code{character} name of each project
+}
 
-\item{\code{"cost"}}{\code{numeric} cost of each project.}
+\item{\code{"cost"}}{
+\code{numeric} cost of each project.
+}
 
-\item{\code{"benefit"}}{\code{numeric} benefit for each project. For a
+\item{\code{"benefit"}}{
+\code{numeric} benefit for each project. For a
 given project, this is calculated as the difference between (i) the
 objective value for a solution containing all of the management actions
 associated with the project and all zero cost actions, and (ii) the
-objective value for a solution containing the baseline project.}
+objective value for a solution containing the baseline project.
+}
 
-\item{\code{"ce"}}{\code{numeric} cost-effectiveness of each project.
+\item{\code{"ce"}}{
+\code{numeric} cost-effectiveness of each project.
 For a given project, this is calculated as the difference between the
 the benefit for the project and the benefit for the baseline project,
 divided by the cost of the project. Note that the baseline
-project will have a \code{NaN} value because it has a zero cost.}
+project will have a \code{NaN} value because it has a zero cost.
+}
 
-\item{\code{"rank"}}{\code{numeric} rank for each project according to
+\item{\code{"rank"}}{
+\code{numeric} rank for each project according to
 is cost-effectiveness value. The project with a rank of one is the
-most cost-effective project. Ties are accommodated using averages.}
+most cost-effective project. Ties are accommodated using averages.
+}
 
 }
 }
@@ -62,11 +72,14 @@ print(sim_features)
 print(sim_actions)
 
 # build problem
-p <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-     add_max_richness_objective(budget = 400) \%>\%
-     add_feature_weights("weight") \%>\%
-     add_binary_decisions()
+p <-
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) \%>\%
+  add_max_wtd_sum_objective(budget = 400) \%>\%
+  add_feature_weights("weight") \%>\%
+  add_binary_decisions()
 
 # print problem
 print(p)
@@ -79,6 +92,7 @@ print(pce)
 
 # plot histogram of cost-effectiveness values
 hist(pce$ce, xlab = "Cost effectiveness", main = "")
+
 }
 \references{
 Joseph LN, Maloney RF & Possingham HP (2009) Optimal allocation of
@@ -86,5 +100,9 @@ resources among threatened species: A project prioritization protocol.
 \emph{Conservation Biology}, \strong{23}, 328--338.
 }
 \seealso{
-\code{\link[=solution_statistics]{solution_statistics()}}, \code{\link[=replacement_costs]{replacement_costs()}}.
+Other functions for evaluating solutions:
+\code{\link[=rank_importance]{rank_importance()}},
+\code{\link[=replacement_costs]{replacement_costs()}},
+\code{\link[=solution_statistics]{solution_statistics()}}
 }
+\concept{evaluation}

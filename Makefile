@@ -8,6 +8,7 @@ docs: man readme vigns site
 
 data:
 	Rscript --slave inst/extdata/simulate_data.R
+	Rscript --slave inst/extdata/simulate_multi_data.R
 
 man:
 	R --slave -e "devtools::document()"
@@ -24,12 +25,14 @@ quicksite:
 	R --slave -e "pkgdown::build_site(run_dont_run = TRUE, lazy = TRUE)"
 	cp -Rf doc inst/
 	touch inst/doc/.gitkeep
+	rm -f docs/authors.md
 
 site:
 	R --slave -e "pkgdown::clean_site()"
 	R --slave -e "pkgdown::build_site(run_dont_run = TRUE, lazy = TRUE)"
 	cp -Rf doc inst/
 	touch inst/doc/.gitkeep
+	rm -f docs/authors.md
 
 test:
 	R --slave -e "devtools::test()" > test.log 2>&1
@@ -76,7 +79,18 @@ examples:
 	R --slave -e "devtools::run_examples(run_donttest = TRUE, run_dontrun = TRUE);warnings()" > examples.log 2>&1
 	rm -f Rplots.pdf
 
+purl_vigns:
+	R --slave -e "lapply(dir('vignettes', '^.*\\\\.Rmd$$'), function(x) knitr::purl(file.path('vignettes', x), gsub('.Rmd', '.R', x, fixed = TRUE)))"
+	rm -f Rplots.pdf
+
+purl_readme:
+	R --slave -e "knitr::purl('README.Rmd', 'README.R')"
+	rm -f Rplots.pdf
+
 install:
 	R --slave -e "devtools::install_local('.', force = TRUE, upgrade = 'never')"
 
-.PHONY: initc data docs readme site test check checkwb build install man
+search_errors:
+	@grep -rRnF --exclude="*.md" --exclude="*.R" --exclude=".Rd" --exclude="Makefile" --exclude="*.yaml" --exclude="*.js" --exclude="*.map" --exclude="*.json" --exclude="*.o" --exclude="*.so" --exclude-dir=".git" "Error"
+
+.PHONY: initc data docs readme site test check checkwb build install man purl_vigns purl_readme search_errors

@@ -5,7 +5,7 @@
 \title{Problem objective}
 \description{
 An objective is used to specify the overall goal of a project prioritization
-\code{\link[=problem]{problem()}}. All project prioritization problems involve
+problem. All project prioritization problems involve
 minimizing or maximizing some kind of objective. For instance, the decision
 maker may require a funding scheme that maximizes the total number of
 species that are expected to persist into the future whilst ensuring that
@@ -13,119 +13,92 @@ the total cost of the funded actions does not exceed a budget.
 Alternatively, the planner may require a solution that ensures that
 each species meets a target level of persistence whilst minimizing the cost
 of  the funded actions. A project prioritization
-\code{\link[=problem]{problem()}} \strong{must} have a specified objective before it can
+problem must have a specified objective before it can
 be solved, and attempting to solve a problem which does not have
 a specified objective will throw an error.
 }
 \details{
 The following objectives can be added to a conservation planning
-\code{\link[=problem]{problem()}}:
+problem.
 
 \describe{
 
 \item{\code{\link[=add_max_richness_objective]{add_max_richness_objective()}}}{
-Maximize the total number of features that are expected to persist,
-whilst ensuring that the cost of the solution is within a pre-specified
-budget (Joseph, Maloney & Possingham 2009).}
-
-\item{\code{\link[=add_max_targets_met_objective]{add_max_targets_met_objective()}}}{
-Maximize the total number of persistence targets met for the features,
-whilst ensuring that the cost of the solution is within a pre-specified
-budget (Chades \emph{et al.} 2015).}
+Maximize the total number of features expected to persist into the future
+(Joseph, Maloney & Possingham 2009).
+}
 
 \item{\code{\link[=add_max_phylo_div_objective]{add_max_phylo_div_objective()}}}{
 Maximize the phylogenetic diversity that is expected to persist into the
 future, whilst ensuring that the cost of the solution is within a
-pre-specified budget (Bennett \emph{et al.} 2014, Faith 2008).}
+pre-specified budget (Bennett \emph{et al.} 2014, Faith 2008).
+}
+
+\item{\code{\link[=add_max_targets_met_objective]{add_max_targets_met_objective()}}}{
+Maximize the total number of persistence targets met for the features,
+whilst ensuring that the cost of the solution is within a pre-specified
+budget (Chades \emph{et al.} 2015).
+}
 
 \item{\code{\link[=add_min_set_objective]{add_min_set_objective()}}}{
-Minimize the cost of the solution whilst ensuring that all targets are
-met. This objective is conceptually similar to that used in \emph{Marxan}
-(Ball, Possingham & Watts 2009).}
+Minimize the cost of the solution, whilst ensuring that all targets are
+met (Chadés \emph{et al.} 2015),
+}
+
+\item{\code{\link[=add_max_wtd_sum_objective]{add_max_wtd_sum_objective()}}}{
+Maximize the weighted sum of the expected outcomes of the features,
+whilst ensuring that the cost of the solution is within a pre-specified
+budget (Joseph, Maloney & Possingham 2009).
+}
 
 }
 }
 \examples{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load data
 data(sim_projects, sim_features, sim_actions, sim_tree)
 
+# build problem
+p1 <-
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) \%>\%
+  add_binary_decisions()
+
 # build problem with maximum richness objective and $200 budget
-p1 <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-     add_max_richness_objective(budget = 200) \%>\%
-     add_binary_decisions()
-
-\dontrun{
-# solve problem
-s1 <- solve(p1)
-
-# print solution
-print(s1)
-
-# plot solution
-plot(p1, s1)
-}
+p2 <- p1 \%>\% add_max_richness_objective(budget = 200)
 
 # build problem with maximum phylogenetic diversity objective and $200 budget
-p2 <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-     add_max_phylo_div_objective(budget = 200, tree = sim_tree) \%>\%
-     add_binary_decisions()
+p3 <- p1 \%>\% add_max_phylo_div_objective(budget = 200, tree = sim_tree)
 
-\dontrun{
-# solve problem
-s2 <- solve(p2)
-
-# print solution
-print(s2)
-
-# plot solution
-plot(p2, s2)
-}
 # build problem with maximum targets met objective, $200 budget, and
 # 40\% persistence targets
-p3 <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-     add_max_targets_met_objective(budget = 200) \%>\%
-     add_absolute_targets(0.4) \%>\%
-     add_binary_decisions()
+p4 <-
+  p1 \%>\%
+  add_max_targets_met_objective(budget = 200) \%>\%
+  add_absolute_targets(0.4)
 
-\dontrun{
-# solve problem
-s3 <- solve(p3)
+# build problem with minimum set objective and 40\% persistence targets
+p5 <-
+  p1 \%>\%
+  add_min_set_objective() \%>\%
+  add_absolute_targets(0.4)
 
-# print solution
-print(s3)
+# build problem with maximum weighted sum objective and $200 budget,
+# note that this is identical to the maximum richness objective
+# when using probability of persistence values, such as those
+# present in the simulated data
+p6 <- p1 \%>\% add_max_wtd_sum_objective(budget = 200)
 
-# plot solution
-plot(p3, s3)
-}
+# solve problems
+s <- rbind(solve(p2), solve(p3), solve(p4), solve(p5), solve(p6))
 
-# build problem with minimum set objective, $200 budget, and 40\%
-# persistence targets
-p4 <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-     add_min_set_objective() \%>\%
-     add_absolute_targets(0.4) \%>\%
-     add_binary_decisions()
-
-\dontrun{
-# solve problem
-s4 <- solve(p4)
-
-# print solution
-print(s4)
-
-# plot solution
-plot(p4, s4)
-}
+# print solutions
+print(s)
+\dontshow{\}) # examplesIf}
 }
 \references{
-Ball IR, Possingham HP & Watts M (2009) Marxan and relatives: software for
-spatial conservation prioritisation.
-\emph{Spatial conservation prioritisation: Quantitative methods and
-computational tools}, 185-195.
-
 Bennett JR, Elliott G, Mellish B, Joseph LN, Tulloch AI,
 Probert WJ, Di Fonzo MMI, Monks JM, Possingham HP & Maloney R (2014)
 Balancing phylogenetic diversity
@@ -147,7 +120,11 @@ resources among threatened species: A project prioritization protocol.
 \emph{Conservation Biology}, \strong{23}, 328--338.
 }
 \seealso{
-\link{constraints}, \link{decisions},
-\code{\link[=problem]{problem()}}, \link{solvers}, \link{targets},
-\link{weights}.
+Other overviews:
+\code{\link{approaches}},
+\code{\link{constraints}},
+\code{\link{solvers}},
+\code{\link{targets}},
+\code{\link{weights}}
 }
+\concept{overviews}

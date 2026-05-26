@@ -4,58 +4,74 @@
 \alias{solve}
 \alias{solve,OptimizationProblem,Solver-method}
 \alias{solve,ProjectProblem,missing-method}
+\alias{solve,MultiObjProjectProblem,missing-method}
 \title{Solve}
 \usage{
 \S4method{solve}{OptimizationProblem,Solver}(a, b, ...)
 
 \S4method{solve}{ProjectProblem,missing}(a, b, ...)
+
+\S4method{solve}{MultiObjProjectProblem,missing}(a, b, ...)
 }
 \arguments{
-\item{a}{\linkS4class{ProjectProblem} or an
-\linkS4class{OptimizationProblem} object.}
+\item{a}{\code{\link[=problem]{problem()}}, \code{\link[=multi_problem]{multi_problem()}}, or \link[=OptimizationProblem-class]{OptimizationProblem}
+object.}
 
-\item{b}{\linkS4class{Solver} object. Not used if \code{a} is an
-\linkS4class{ProjectProblem} object.}
+\item{b}{\link[=Solver-class]{Solver} object. Note that this parameter is only used
+if \code{a} is an \link[=OptimizationProblem-class]{OptimizationProblem} object.}
 
 \item{...}{arguments passed to \code{\link[=compile]{compile()}}.}
 }
 \value{
 The type of object returned from this function depends on the
 argument to \code{a}. If the argument to \code{a} is an
-\linkS4class{OptimizationProblem} object, then the
+\link[=OptimizationProblem-class]{OptimizationProblem} object, then the
 solution is returned as a \code{list} containing the prioritization and
-additional information (e.g. run time, solver status). On the other hand,
-if the argument
-to \code{a} is an \linkS4class{ProjectProblem} object,
-then a \code{\link[tibble:tibble]{tibble::tibble()}} table object will be returned. In this
+additional information (e.g., run time, solver status). On the other hand,
+if the argument to \code{a} is a \code{\link[=problem]{problem()}} or \code{\link[=multi_problem]{multi_problem()}} object,
+then a \code{\link[tibble:tibble]{tibble::tibble()}} object will be returned. In this
 table, each row row corresponds to a different solution and each column
-describes a different property or result associated with each solution:
+describes a different property or result associated with each solution.
+In particular, it will have the following columns.
 
 \describe{
 
-\item{\code{"solution"}}{\code{integer} solution identifier.}
+\item{\code{"solution"}}{
+This column contains \code{integer} identifiers for the solutions.
+}
 
-\item{\code{"status"}}{\code{character} describing each solution.
-For example, is the solution optimal, suboptimal, or was it returned
-because the solver ran out of time?}
+\item{\code{"status"}}{
+This column contains \code{character} values that describe the solver status.
+For example, these values may indicate if the solver returned
+an optimal or suboptimal solution.
+}
 
-\item{\code{"obj"}}{\code{numeric} objective value for each solution.
-This is calculated using the objective function defined for the
-argument to \code{x}.}
+\item{\code{"obj"}}{
+This column contains \code{numeric} values that contain the objective
+value for each solution. This is calculated using the objective function
+defined for the argument to \code{a}. Note that if \code{a} is a \code{\link[=multi_problem]{multi_problem()}}
+object, then an objective column will be created for each problem in \code{a}.
+}
 
-\item{\code{"cost"}}{\code{numeric} total cost associated with each
-solution.}
+\item{\code{"cost"}}{
+This column contains \code{numeric} values that describe the total cost
+associated with each solution.
+}
 
-\item{\code{x$action_names()}}{\code{numeric} column for each action
-indicating if they were funded in each solution or not.}
+\item{\code{x$action_names()}}{
+These columns contain \code{logical} (\code{TRUE}/\code{FALSE}) values that indicate if each
+for each action was selected for funding (or not) by each solution.
+}
 
-\item{\code{x$project_names()}}{\code{numeric} column for each
-project indicating if it was completely funded (with a value of 1)
-or not (with a value of 0).}
+\item{\code{x$project_names()}}{
+These columns contain \code{logical} (\code{TRUE}/\code{FALSE}) values that indicate if each
+for each project had all of its actions selected for funding (or not) by
+each solution.
+}
 
-\item{\code{x$feature_names()}}{\code{numeric} column for each
-feature indicating the probability that it will persist into
-the future given each solution.}
+\item{\code{x$feature_names()}}{\verb{These columns contain}numeric` values that describe the expected outcome
+for each feature based on the actions selected for funding.
+}
 
 }
 }
@@ -63,6 +79,7 @@ the future given each solution.}
 Solve a conservation planning \code{\link[=problem]{problem()}}.
 }
 \examples{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load data
 data(sim_projects, sim_features, sim_actions)
 
@@ -76,16 +93,18 @@ print(sim_features)
 print(sim_actions)
 
 # build problem
-p <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-     add_max_richness_objective(budget = 400) \%>\%
-     add_feature_weights("weight") \%>\%
-     add_binary_decisions()
+p <-
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) \%>\%
+  add_max_wtd_sum_objective(budget = 400) \%>\%
+  add_feature_weights("weight") \%>\%
+  add_binary_decisions()
 
 # print problem
 print(p)
 
-\dontrun{
 # solve problem
 s <- solve(p)
 
@@ -107,9 +126,11 @@ s[, sim_actions$name, drop = FALSE]
 # print the expected probability of persistence for each feature
 # if the solution were implemented
 s[, sim_features$name, drop = FALSE]
-}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
-\code{\link[=problem]{problem()}}, \code{\link[=solution_statistics]{solution_statistics()}},
-\link{solvers}.
+The \code{\link[=solution_statistics]{solution_statistics()}} function can be used to compute these
+statistics for solutions. This may be useful to evaluate the performance of
+solutions generated based on expert opinion, or solutions according
+to objectives that are different from those used to generate them.
 }

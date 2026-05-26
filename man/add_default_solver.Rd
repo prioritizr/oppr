@@ -7,40 +7,48 @@
 add_default_solver(x, ...)
 }
 \arguments{
-\item{x}{\linkS4class{ProjectProblem} object.}
+\item{x}{\code{\link[=problem]{problem()}} or \code{\link[=multi_problem]{multi_problem()}} object.}
 
 \item{...}{arguments passed to the solver.}
 }
+\value{
+A \code{\link[=problem]{problem()}} object with the solver added to it.
+}
 \description{
-Identify the best solver currently installed on the system and specify that
-it should be used to solve a project prioritization \code{\link[=problem]{problem()}}.
+Add the best solver currently installed to a project
+prioritization problem.
 }
 \details{
-Ranked from best to worst, the solvers that can be used are:
+The solvers that can be used are as follows (ordered best to worst):
 \pkg{gurobi}, (\code{\link[=add_gurobi_solver]{add_gurobi_solver()}}),
-\pkg{Rsymphony} (\code{\link[=add_rsymphony_solver]{add_rsymphony_solver()}}), \pkg{lpsymphony}
-(\code{\link[=add_lpsymphony_solver]{add_lpsymphony_solver()}}), and \pkg{lpSolveAPI}
+\pkg{highs}, (\code{\link[=add_highs_solver]{add_highs_solver()}}),
+\pkg{rcbc}, (\code{\link[=add_cbc_solver]{add_cbc_solver()}}),
+\pkg{Rsymphony} (\code{\link[=add_rsymphony_solver]{add_rsymphony_solver()}}),
+\pkg{lpsymphony} (\code{\link[=add_lpsymphony_solver]{add_lpsymphony_solver()}}), and \pkg{lpSolveAPI}
 (\code{\link[=add_lpsolveapi_solver]{add_lpsolveapi_solver()}}). This function does not consider
 solvers that generate solutions using heuristic algorithms (i.e.
 \code{\link[=add_heuristic_solver]{add_heuristic_solver()}}) or random processes
-(i.e. \code{\link[=add_random_solver]{add_random_solver()}}) because they cannot provide
+(i.e., \code{\link[=add_random_solver]{add_random_solver()}}) because they cannot provide
 any guarantees on solution quality.
 }
 \examples{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load data
 data(sim_projects, sim_features, sim_actions)
 
 # build problem with default solver
-p <- problem(sim_projects, sim_actions, sim_features,
-             "name", "success", "name", "cost", "name") \%>\%
-     add_max_richness_objective(budget = 200) \%>\%
-     add_binary_decisions() \%>\%
-     add_default_solver()
+p <-
+  problem(
+    sim_projects, sim_actions, sim_features,
+    "name", "success", "name", "cost", "name"
+  ) \%>\%
+  add_max_wtd_sum_objective(budget = 200) \%>\%
+  add_binary_decisions() \%>\%
+  add_default_solver()
 
 # print problem
 print(p)
 
-\dontrun{
 # solve problem
 s <- solve(p)
 
@@ -49,8 +57,17 @@ print(s)
 
 # plot solution
 plot(p, s)
-}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
-\link{solvers}.
+Other solvers:
+\code{\link[=add_cbc_solver]{add_cbc_solver()}},
+\code{\link[=add_gurobi_solver]{add_gurobi_solver()}},
+\code{\link[=add_heuristic_solver]{add_heuristic_solver()}},
+\code{\link[=add_highs_solver]{add_highs_solver()}},
+\code{\link[=add_lpsolveapi_solver]{add_lpsolveapi_solver()}},
+\code{\link[=add_lpsymphony_solver]{add_lpsymphony_solver()}},
+\code{\link[=add_random_solver]{add_random_solver()}},
+\code{\link[=add_rsymphony_solver]{add_rsymphony_solver()}}
 }
+\concept{solvers}

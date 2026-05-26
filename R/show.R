@@ -13,7 +13,7 @@ NULL
 #'
 #' @name show
 #'
-#' @aliases show,ProjectProblem-method show,ProjectModifier-method show,OptimizationProblem-method show,Id-method show,Parameter-method show,Solver-method
+#' @aliases show,ProjectProblem-method show,ProjectModifier-method show,OptimizationProblem-method show,MultiObjProjectProblem-method show,MultiObjApproach-method
 NULL
 
 #' @name show
@@ -21,50 +21,47 @@ NULL
 #' @rdname show
 #'
 #' @usage \S4method{show}{ProjectModifier}(x)
-#'
-methods::setMethod("show", "ProjectModifier",
-                   function(object) object$show())
+methods::setMethod(
+  "show", "ProjectModifier",
+  function(object) object$show()
+)
 
 #' @name show
 #'
 #' @rdname show
 #'
 #' @usage \S4method{show}{ProjectProblem}(x)
-#'
-methods::setMethod("show", "ProjectProblem",
-                   function(object) object$show())
-
-#' @name show
-#'
-#' @rdname show
-#'
-#' @usage \S4method{show}{Id}(x)
-#'
-methods::setMethod("show", "Id",
-                   function(object) print.Id(object))
+methods::setMethod(
+  "show", "ProjectProblem",
+  function(object) object$show()
+)
 
 #' @name show
 #'
 #' @rdname show
 #'
 #' @usage \S4method{show}{OptimizationProblem}(x)
-#'
-methods::setMethod("show", "OptimizationProblem",
-                   function(object) object$show())
+methods::setMethod(
+  "show", "OptimizationProblem",
+  function(object) object$show()
+)
 
 #' @name show
 #'
 #' @rdname show
 #'
-#' @usage \S4method{show}{Parameter}(x)
-#'
-methods::setMethod("show", "Parameter",
-                   function(object) object$show())
+#' @usage \S4method{show}{MultiObjProjectProblem}(x)
+methods::setMethod(
+  "show", "MultiObjProjectProblem",
+  function(object) object$show()
+)
 
 #' @name show
 #'
 #' @rdname show
 #'
-#' @usage \S4method{show}{Solver}(x)
-#'
-methods::setMethod("show", "Solver", function(object) object$show())
+#' @usage \S4method{show}{MultiObjApproach}(x)
+methods::setMethod(
+  "show", "MultiObjApproach",
+  function(object) object$show()
+)
