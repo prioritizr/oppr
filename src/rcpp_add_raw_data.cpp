@@ -123,6 +123,7 @@ bool rcpp_add_raw_data(SEXP x, arma::sp_mat pa_matrix, arma::sp_mat pf_matrix,
 
   /// constraints for persistence probabilities for features
   counter = 0;
+  bool is_val_finite;
   ++r;
   for (auto pitr = pf_matrix.begin(); pitr != pf_matrix.end(); ++pitr) {
     if ((*pitr) > SMALL_TOL) {
@@ -134,7 +135,8 @@ bool rcpp_add_raw_data(SEXP x, arma::sp_mat pa_matrix, arma::sp_mat pf_matrix,
       );
       // note infinite pf_matrix values are used to encode projects
       // that should have a zero outcome
-      ptr->_A_x.push_back((std::isfinite(*pitr) ? *pitr : 0.0));
+      is_val_finite = std::isfinite(static_cast<double>(*pitr));
+      ptr->_A_x.push_back(is_val_finite ? *pitr : 0.0);
       ++counter;
     }
   }
@@ -154,7 +156,6 @@ bool rcpp_add_raw_data(SEXP x, arma::sp_mat pa_matrix, arma::sp_mat pf_matrix,
   double curr_max_value;
   double curr_abs_min_value;
   double curr_abs_max_value;
-  double curr_pad_value;
   double curr_frac;
   double curr_tmp_value;
   double curr_pwl_x;
