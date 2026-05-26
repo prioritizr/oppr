@@ -151,6 +151,7 @@ Collate:
     'reexports.R'
     'replacement_costs.R'
     'repr.R'
+    'run_example.R'
     'show.R'
     'sim_data.R'
     'sim_multi_data.R'

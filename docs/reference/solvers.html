@@ -109,8 +109,7 @@ funding.</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \dontrun{</span></span></span>
-<span class="r-in"><span><span class="co"># load data</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># load data</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">sim_projects</span>, <span class="va">sim_features</span>, <span class="va">sim_actions</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># build problem</span></span></span>
@@ -326,7 +325,7 @@ funding.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Dual bound        2.19038073725</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Gap               0%</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   P-D integral      0.000162522161071</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   P-D integral      0.000147660837744</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Solution status   feasible</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -373,8 +372,8 @@ funding.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       The largest [LUSOL v2.2.1.0] fact(B) had 64 NZ entries, 1.0x largest basis.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       The maximum B&amp;B level was 6, 0.1x MIP order, 4 at the optimal solution.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       The constraint matrix inf-norm is 103.226, with a dynamic range of 1193.9.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Time to load data was 1.000 seconds, presolve used 0.000 seconds,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        ... 0.000 seconds in simplex solver, in total 1.000 seconds.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Time to load data was 0.000 seconds, presolve used 0.000 seconds,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        ... 0.000 seconds in simplex solver, in total 0.000 seconds.</span>
 <span class="r-in"><span><span class="va">s</span><span class="op">$</span><span class="va">solver</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="st">"default"</span>, <span class="st">"gurobi"</span>, <span class="st">"highs"</span>, <span class="st">"cbc"</span>, <span class="st">"Rsymphony"</span>, <span class="st">"lpsymphony"</span>,</span></span>
 <span class="r-in"><span>  <span class="st">"lpSolveAPI"</span>, <span class="st">"heuristic"</span>, <span class="st">"random"</span></span></span>
@@ -422,7 +421,6 @@ funding.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 7 0.0864612 0.2489246 0.1820005 lpSolveAPI</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 8 0.0864612 0.2489246 0.1820005  heuristic</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 9 0.0864612 0.2489246 0.5924880     random</span>
-<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

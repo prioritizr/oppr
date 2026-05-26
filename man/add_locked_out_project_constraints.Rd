@@ -28,7 +28,7 @@ For example, it may be desirable to lock out specific projects to examine
 their importance to the optimal funding scheme.
 }
 \examples{
-\dontrun{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load data
 data(sim_projects, sim_features, sim_actions)
 
@@ -82,7 +82,7 @@ print(s1[, sim_projects$name])
 print(s2[, sim_projects$name])
 print(s3[, sim_projects$name])
 print(s4[, sim_projects$name])
-}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other constraints:

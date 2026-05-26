@@ -80,7 +80,6 @@ Other weights:
 ## Examples
 
 ``` r
-# \dontrun{
 # load data
 data(sim_projects, sim_features, sim_actions)
 
@@ -375,6 +374,4 @@ plot(p1, s1)
 plot(p2, s2)
 
 plot(p3, s3)
-
-# }
 ```

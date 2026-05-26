@@ -102,8 +102,7 @@ NULL
 #' @seealso
 #' See [solvers] for an overview of functions for adding solvers.
 #'
-#' @examples
-#' \dontrun{
+#' @examplesIf oppr::run_example()
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
@@ -144,8 +143,6 @@ NULL
 #'
 #' # print solutions
 #' print(s3)
-#' }
-#'
 #' @export
 add_gurobi_solver <- function(x, gap = 0, number_solutions = 1,
                               solution_pool_method = 2,

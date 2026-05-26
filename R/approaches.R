@@ -41,8 +41,8 @@ NULL
 #' Vanderpooten D (1990) _Multiobjective programming: Basic concepts and_
 #' _approaches_. In: Stochastic Versus Fuzzy Approaches to Multiobjective
 #' Mathematical Programming Under Uncertainty. Springer, Berlin.
-#' @examples
-#' \dontrun{
+#'
+#' @examplesIf oppr::run_example()
 #' # load data
 #' data(sim_multi_projects)
 #' data(sim_multi_features)
@@ -110,5 +110,4 @@ NULL
 #'
 #' # print solutions
 #' print(as.data.frame(s))
-#' }
 NULL

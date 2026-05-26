@@ -60,7 +60,7 @@ be easier to install to install on Windows and Mac OSX systems than the
 \pkg{Rsymphony} package.
 }
 \examples{
-\dontrun{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load data
 data(sim_projects, sim_features, sim_actions)
 
@@ -85,7 +85,7 @@ print(s)
 
 # plot solution
 plot(p, s)
-}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other solvers:

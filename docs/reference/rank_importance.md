@@ -101,7 +101,6 @@ Other functions for evaluating solutions:
 ## Examples
 
 ``` r
-# \dontrun{
 # load data
 data(sim_projects, sim_features, sim_actions)
 
@@ -143,5 +142,4 @@ print(r)
 #> 4 F4_project           8  0.222
 #> 5 F5_project           3  0.778
 #> 6 baseline_project     1  1    
-# }
 ```

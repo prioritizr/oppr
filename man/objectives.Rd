@@ -54,7 +54,7 @@ budget (Joseph, Maloney & Possingham 2009).
 }
 }
 \examples{
-\dontrun{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load data
 data(sim_projects, sim_features, sim_actions, sim_tree)
 
@@ -96,7 +96,7 @@ s <- rbind(solve(p2), solve(p3), solve(p4), solve(p5), solve(p6))
 
 # print solutions
 print(s)
-}
+\dontshow{\}) # examplesIf}
 }
 \references{
 Bennett JR, Elliott G, Mellish B, Joseph LN, Tulloch AI,

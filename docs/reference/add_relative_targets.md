@@ -144,7 +144,6 @@ p3 <-
   add_relative_targets("target") %>%
   add_binary_decisions()
 
-# \dontrun{
 # print problem
 print(p3)
 #> Project Prioritization Problem
@@ -347,6 +346,4 @@ plot(p1, s1)
 plot(p2, s2)
 
 plot(p3, s3)
-
-# }
 ```

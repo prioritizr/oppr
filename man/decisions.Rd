@@ -19,6 +19,7 @@ either prioritized for funding or not.}
 }
 }
 \examples{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load data
 data(sim_projects, sim_features, sim_actions)
 
@@ -35,7 +36,6 @@ p <-
 # print problem
 print(p)
 
-\dontrun{
 # solve problem
 s <- solve(p)
 
@@ -44,7 +44,7 @@ print(s)
 
 # plot solution
 plot(p, s)
-}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \link{constraints}, \link{objectives},

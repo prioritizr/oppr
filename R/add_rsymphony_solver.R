@@ -23,8 +23,7 @@ NULL
 #'
 #' @family solvers
 #'
-#' @examples
-#' \dontrun{
+#' @examplesIf oppr::run_example()
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
@@ -49,7 +48,6 @@ NULL
 #'
 #' # plot solution
 #' plot(p, s)
-#' }
 #' @export
 add_rsymphony_solver <- function(x, gap = 0, time_limit = .Machine$integer.max,
                                  first_feasible = FALSE, verbose = TRUE) {

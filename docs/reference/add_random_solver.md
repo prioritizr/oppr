@@ -90,7 +90,6 @@ Other solvers:
 ## Examples
 
 ``` r
-# \dontrun{
 # load data
 data(sim_projects, sim_features, sim_actions)
 
@@ -234,6 +233,4 @@ hist(
   xlab = "Difference from optimality (%)",
   main = "Histogram of random solutions", xlim = c(0, 50)
 )
-
-# }
 ```

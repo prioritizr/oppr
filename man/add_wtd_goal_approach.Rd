@@ -62,7 +62,7 @@ Minimize sum o^O W_o * (V_o / G_o)
 }
 }
 \examples{
-\dontrun{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load data
 data(sim_multi_projects)
 data(sim_multi_features)
@@ -110,7 +110,7 @@ s <- solve(p)
 
 # print solution
 print(s)
-}
+\dontshow{\}) # examplesIf}
 }
 \references{
 Jones D and Tamiz M (2010) \emph{Goal Programming Variants}.

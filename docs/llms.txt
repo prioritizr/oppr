@@ -514,6 +514,8 @@ Assorted functions distributed with the package
   : Compile a problem
 - [`branch_matrix()`](https://prioritizr.github.io/oppr/reference/branch_matrix.md)
   : Branch matrix
+- [`run_example()`](https://prioritizr.github.io/oppr/reference/run_example.md)
+  : Run example?
 
 ## Deprecated functions
 

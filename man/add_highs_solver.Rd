@@ -68,7 +68,7 @@ This function can also be used to customize the behavior of the solver.
 It requires the \pkg{highs} package to be installed.
 }
 \examples{
-\dontrun{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load data
 data(sim_projects, sim_features, sim_actions)
 
@@ -93,7 +93,7 @@ print(s)
 
 # plot solution
 plot(p, s)
-}
+\dontshow{\}) # examplesIf}
 }
 \references{
 Huangfu Q and Hall JAJ (2018). Parallelizing the dual revised simplex

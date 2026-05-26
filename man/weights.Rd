@@ -26,7 +26,7 @@ Add different weights for each feature.
 }
 }
 \examples{
-\dontrun{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load data
 data(sim_projects, sim_features, sim_actions)
 
@@ -51,7 +51,7 @@ s$weights <- c("default", "weights")
 
 # print solutions
 print(as.data.frame(s))
-}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other overviews:

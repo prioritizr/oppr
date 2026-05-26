@@ -151,8 +151,7 @@ NULL
 #' Formerly available at <https://github.com/p-robot>
 #' (copy available at <https://github.com/jeffreyhanson/ppp>).
 #'
-#' @examples
-#' \dontrun{
+#' @examplesIf oppr::run_example()
 #' # load ggplot2 package for making plots
 #' library(ggplot2)
 #'
@@ -180,8 +179,6 @@ NULL
 #'
 #' # plot solution
 #' plot(p1, s1)
-#' }
-#'
 #' @export
 add_heuristic_solver <- function(x, number_solutions = 1,
                                  initial_sweep = TRUE, verbose = TRUE) {

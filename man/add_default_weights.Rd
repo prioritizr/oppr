@@ -16,7 +16,7 @@ A \code{\link[=problem]{problem()}} with the weights added to it.
 Add the default weights to a project prioritization problem.
 }
 \examples{
-\dontrun{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load data
 data(sim_projects, sim_features, sim_actions)
 
@@ -42,7 +42,7 @@ print(s)
 
 # plot solution
 plot(p, s)
-}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other weights:

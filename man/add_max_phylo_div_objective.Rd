@@ -160,7 +160,7 @@ probabilities and using piecewise linear approximations (described in
 Hillier & Price 2005 pp. 390--392) to approximate the exponent of this term.
 }
 \examples{
-\dontrun{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load data
 data(sim_projects, sim_features, sim_actions, sim_tree)
 
@@ -196,7 +196,7 @@ print(s2)
 
 # plot solution based on feature weights
 plot(p2, s2)
-}
+\dontshow{\}) # examplesIf}
 }
 \references{
 Bennett JR, Elliott G, Mellish B, Joseph LN, Tulloch AI,

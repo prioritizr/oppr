@@ -175,7 +175,6 @@ Other objectives:
 ## Examples
 
 ``` r
-# \dontrun{
 # load data
 data(sim_projects, sim_features, sim_actions, sim_tree)
 
@@ -361,6 +360,4 @@ print(s2)
 
 # plot solution based on feature weights
 plot(p2, s2)
-
-# }
 ```

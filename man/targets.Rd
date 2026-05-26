@@ -39,6 +39,7 @@ target.}
 }
 }
 \examples{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load data
 data(sim_projects, sim_features, sim_actions)
 
@@ -71,7 +72,6 @@ p2 <-
 # print problem
 print(p2)
 
-\dontrun{
 # solve problems
 s1 <- solve(p1)
 s2 <- solve(p2)
@@ -83,7 +83,7 @@ print(s2)
 # plot solutions
 plot(p1, s1)
 plot(p2, s2)
-}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other overviews:

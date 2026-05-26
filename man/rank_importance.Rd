@@ -69,7 +69,7 @@ score. Missing (\code{NA}) values are assigned to
 projects which are not selected for funding in the specified solution.
 }
 \examples{
-\dontrun{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load data
 data(sim_projects, sim_features, sim_actions)
 
@@ -95,7 +95,7 @@ r <- rank_importance(p, s)
 
 # print output
 print(r)
-}
+\dontshow{\}) # examplesIf}
 }
 \references{
 Jung M, Arnell A, de Lamo X, et al. (2021) Areas of global importance for

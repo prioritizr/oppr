@@ -56,8 +56,7 @@ NULL
 #' Methods, and Applications (pp. 257--277). INFORMS, Catonsville, MD.
 #' \doi{10.1287/educ.1053.0020}.
 #'
-#' @examples
-#' \dontrun{
+#' @examplesIf oppr::run_example()
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
@@ -82,7 +81,6 @@ NULL
 #'
 #' # plot solution
 #' plot(p, s)
-#' }
 #' @name add_cbc_solver
 NULL
 

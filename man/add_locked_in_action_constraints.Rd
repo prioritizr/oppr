@@ -59,7 +59,7 @@ values are used to indicate which actions are locked (or not).
 }
 }
 \examples{
-\dontrun{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load data
 data(sim_projects, sim_features, sim_actions)
 
@@ -109,7 +109,7 @@ print(s1[, sim_actions$name])
 print(s2[, sim_actions$name])
 print(s3[, sim_actions$name])
 print(s4[, sim_actions$name])
-}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 See \link{constraints} for an overview of functions for adding constraints.

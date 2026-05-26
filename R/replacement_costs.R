@@ -70,8 +70,7 @@ NULL
 #'
 #' @family evaluation
 #'
-#' @examples
-#' \dontrun{
+#' @examplesIf oppr::run_example()
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
@@ -100,7 +99,6 @@ NULL
 #' # plot histogram of replacement costs,
 #' # with this objective, greater values indicate greater irreplaceability
 #' hist(r$rep_cost, xlab = "Replacement cost", main = "")
-#' }
 #' @export
 replacement_costs <- function(x, solution, n = 1) {
   # assert arguments are valid

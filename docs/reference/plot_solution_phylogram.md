@@ -124,7 +124,6 @@ p <-
   add_binary_decisions() %>%
   add_heuristic_solver(number_solutions = 10)
 
-# \dontrun{
 # solve problem
 s <- solve(p)
 
@@ -213,5 +212,4 @@ print(plot_data)
 #> 7     7 "   NA" FALSE NA      0.993 
 #> 8     8 "   NA" FALSE NA      0.976 
 #> 9     9 "   NA" FALSE NA      0.974 
-# }
 ```

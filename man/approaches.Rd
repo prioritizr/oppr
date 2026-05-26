@@ -31,7 +31,7 @@ Add an approach to generate solutions with the reference point method
 }
 }
 \examples{
-\dontrun{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load data
 data(sim_multi_projects)
 data(sim_multi_features)
@@ -99,7 +99,7 @@ s$approach <- c("abs epsilon", "wtd goal", "ref point")
 
 # print solutions
 print(as.data.frame(s))
-}
+\dontshow{\}) # examplesIf}
 }
 \references{
 Jones D and Tamiz M (2010) \emph{Goal Programming Variants}.

@@ -75,8 +75,7 @@ NULL
 #'
 #' @family overviews
 #'
-#' @examples
-#' \dontrun{
+#' @examplesIf oppr::run_example()
 #' # load data
 #' data(sim_projects, sim_features, sim_actions, sim_tree)
 #'
@@ -118,7 +117,6 @@ NULL
 #'
 #' # print solutions
 #' print(s)
-#' }
 #' @name objectives
 NULL
 

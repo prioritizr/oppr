@@ -44,7 +44,7 @@ NULL
 #'
 #' @family overviews
 #'
-#' @examples
+#' @examplesIf oppr::run_example()
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
@@ -84,7 +84,6 @@ NULL
 #' # print problem
 #' print(p5)
 #'
-#' \dontrun{
 #' # solve problems
 #' s1 <- solve(p1)
 #' s2 <- solve(p2)
@@ -98,6 +97,5 @@ NULL
 #' print(s3[, sim_actions$name])
 #' print(s4[, sim_actions$name])
 #' print(s5[, sim_actions$name])
-#' }
 #' @name constraints
 NULL

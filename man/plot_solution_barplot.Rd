@@ -59,6 +59,7 @@ projects that have non-zero costs and share actions with at least one
 completely funded project -- are depicted with an open circle symbol.
 }
 \examples{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # set seed for reproducibility
 set.seed(500)
 
@@ -79,7 +80,6 @@ p <-
   add_binary_decisions() \%>\%
   add_heuristic_solver(n = 10)
 
-\dontrun{
 # solve problem
 s <- solve(p)
 
@@ -97,5 +97,5 @@ plot(p, s) + ggtitle("solution")
 # we can also obtain the raw plotting data using return_data=TRUE
 plot_data <- plot(p, s, return_data = TRUE)
 print(plot_data)
-}
+\dontshow{\}) # examplesIf}
 }

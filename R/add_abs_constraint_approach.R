@@ -53,8 +53,7 @@ NULL
 #'
 #' @family approaches
 #'
-#' @examples
-#' \dontrun{
+#' @examplesIf oppr::run_example()
 #' # load data
 #' data(sim_multi_projects)
 #' data(sim_multi_features)
@@ -102,7 +101,6 @@ NULL
 #'
 #' # print solution
 #' print(s)
-#' }
 #' @export
 add_abs_constraint_approach <- function(x, goals, verbose = TRUE) {
   # assert arguments are valid

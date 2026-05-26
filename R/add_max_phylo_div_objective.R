@@ -168,8 +168,7 @@ NULL
 #' Hillier FS & Price CC (2005) *International series in operations
 #' research & management science*. Springer.
 #'
-#' @examples
-#' \dontrun{
+#' @examplesIf oppr::run_example()
 #' # load data
 #' data(sim_projects, sim_features, sim_actions, sim_tree)
 #'
@@ -205,7 +204,6 @@ NULL
 #'
 #' # plot solution based on feature weights
 #' plot(p2, s2)
-#' }
 #' @name add_max_phylo_div_objective
 NULL
 

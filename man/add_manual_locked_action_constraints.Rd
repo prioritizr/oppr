@@ -43,7 +43,7 @@ be selected for funding (with a value of 1) or not (with a value of zero).
 }
 }
 \examples{
-\dontrun{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load data
 data(sim_projects, sim_features, sim_actions)
 
@@ -75,8 +75,7 @@ s <- solve(p)
 
 # print solution
 print(s)
-}
-
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other constraints:

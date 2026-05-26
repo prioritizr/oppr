@@ -48,8 +48,7 @@ NULL
 #'
 #' @family constraints
 #'
-#' @examples
-#' \dontrun{
+#' @examplesIf oppr::run_example()
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
@@ -99,7 +98,6 @@ NULL
 #' print(s2[, sim_actions$name])
 #' print(s3[, sim_actions$name])
 #' print(s4[, sim_actions$name])
-#' }
 #' @name add_locked_in_action_constraints
 #'
 #' @exportMethod add_locked_in_action_constraints

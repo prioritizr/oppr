@@ -133,7 +133,7 @@ NULL
 #' @seealso
 #' See [objectives] for an overview of functions for adding objectives.
 #'
-#' @examples
+#' @examplesIf oppr::run_example()
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
@@ -146,7 +146,6 @@ NULL
 #'   add_max_wtd_sum_objective(budget = 200) %>%
 #'   add_binary_decisions()
 #'
-#' \dontrun{
 #' # solve problem
 #' s1 <- solve(p1)
 #'
@@ -155,12 +154,10 @@ NULL
 #'
 #' # plot solution
 #' plot(p1, s1)
-#' }
 #'
 #' # build another problem that includes feature weights
 #' p2 <- p1 %>% add_feature_weights("weight")
 #'
-#' \dontrun{
 #' # solve problem with feature weights
 #' s2 <- solve(p2)
 #'
@@ -169,7 +166,6 @@ NULL
 #'
 #' # plot solution based on feature weights
 #' plot(p2, s2)
-#' }
 #' @name add_max_wtd_sum_objective
 NULL
 

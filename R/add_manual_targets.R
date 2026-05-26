@@ -53,7 +53,7 @@ NULL
 #' @seealso
 #' See [targets] for an overview for functions for adding targets.
 #'
-#' @examples
+#' @examplesIf oppr::run_example()
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
@@ -81,13 +81,11 @@ NULL
 #' # print problem
 #' print(p)
 #'
-#' \dontrun{
 #' # solve problem
 #' s <- solve(p)
 #'
 #' # print solution
 #' print(s)
-#' }
 #' @aliases add_manual_targets-method add_manual_targets,ProjectProblem,data.frame-method add_manual_targets,ProjectProblem,tbl_df-method
 #'
 #' @name add_manual_targets

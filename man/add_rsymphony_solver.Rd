@@ -57,7 +57,7 @@ provides an interface to COIN-OR and is available on \emph{CRAN}.
 This solver uses the \pkg{Rsymphony} package to solve problems.
 }
 \examples{
-\dontrun{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load data
 data(sim_projects, sim_features, sim_actions)
 
@@ -82,7 +82,7 @@ print(s)
 
 # plot solution
 plot(p, s)
-}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other solvers:

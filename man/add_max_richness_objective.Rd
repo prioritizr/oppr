@@ -129,6 +129,7 @@ that the action funding (\eqn{X_i}), project funding (\eqn{Y_j}), and project
 allocation (\eqn{Z_{fj}}) variables are binary.
 }
 \examples{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load data
 data(sim_projects, sim_features, sim_actions)
 
@@ -141,7 +142,6 @@ p1 <-
   add_max_richness_objective(budget = 200) \%>\%
   add_binary_decisions()
 
-\dontrun{
 # solve problem
 s1 <- solve(p1)
 
@@ -150,12 +150,10 @@ print(s1)
 
 # plot solution
 plot(p1, s1)
-}
 
 # build another problem that includes feature weights
 p2 <- p1 \%>\% add_feature_weights("weight")
 
-\dontrun{
 # solve problem with feature weights
 s2 <- solve(p2)
 
@@ -164,7 +162,7 @@ print(s2)
 
 # plot solution based on feature weights
 plot(p2, s2)
-}
+\dontshow{\}) # examplesIf}
 }
 \references{
 Joseph LN, Maloney RF & Possingham HP (2009) Optimal allocation of

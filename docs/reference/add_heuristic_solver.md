@@ -186,7 +186,6 @@ Other solvers:
 ## Examples
 
 ``` r
-# \dontrun{
 # load ggplot2 package for making plots
 library(ggplot2)
 
@@ -233,6 +232,4 @@ print(s1)
 
 # plot solution
 plot(p1, s1)
-
-# }
 ```

@@ -92,6 +92,7 @@ reference:
       - show
       - compile
       - branch_matrix
+      - run_example
   - title: Deprecated functions
     desc: Functions that are no longer distributed with the package
     contents:

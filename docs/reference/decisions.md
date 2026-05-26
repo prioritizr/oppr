@@ -52,7 +52,6 @@ print(p)
 #> decisions:       binary decision
 #> solver:          none specified
 
-# \dontrun{
 # solve problem
 s <- solve(p)
 #> Set parameter Username
@@ -127,6 +126,4 @@ print(s)
 
 # plot solution
 plot(p, s)
-
-# }
 ```

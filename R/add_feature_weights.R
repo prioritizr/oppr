@@ -54,8 +54,7 @@ NULL
 #' @seealso
 #' See [weights] for an overview of functions for adding weights.
 #'
-#' @examples
-#' \dontrun{
+#' @examplesIf oppr::run_example()
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
@@ -106,7 +105,6 @@ NULL
 #' plot(p1, s1)
 #' plot(p2, s2)
 #' plot(p3, s3)
-#' }
 #' @aliases add_feature_weights,ProjectProblem,numeric-method add_feature_weights,ProjectProblem,character-method
 #'
 #' @name add_feature_weights

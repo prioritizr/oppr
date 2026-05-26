@@ -77,6 +77,7 @@ If the installation process fails, please consult the package's
 }
 
 \examples{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # set seed for reproducibility
 set.seed(500)
 
@@ -95,7 +96,6 @@ p <-
   add_binary_decisions() \%>\%
   add_heuristic_solver(number_solutions = 10)
 
-\dontrun{
 # solve problem
 s <- solve(p)
 
@@ -143,7 +143,7 @@ plot(p, s) +
 # we can also obtain the raw plotting data using return_data=TRUE
 plot_data <- plot(p, s, return_data = TRUE)
 print(plot_data)
-}
+\dontshow{\}) # examplesIf}
 }
 \references{
 Faith DP (2008) Threatened species and the potential loss of

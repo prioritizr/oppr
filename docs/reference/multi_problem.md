@@ -40,7 +40,6 @@ names).
 ## Examples
 
 ``` r
-# \dontrun{
 # load data
 data(sim_multi_projects)
 data(sim_multi_features)
@@ -244,5 +243,4 @@ print(s)
 #> #   F1_project <lgl>, F2_project <lgl>, F8_project <lgl>,
 #> #   baseline_project_obj1 <lgl>, F3_project <lgl>, F4_project <lgl>,
 #> #   baseline_project_obj2 <lgl>, F5_project <lgl>, F6_project <lgl>, …
-# }
 ```

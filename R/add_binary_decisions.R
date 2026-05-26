@@ -19,8 +19,7 @@ NULL
 #'
 #' @family decisions
 #'
-#' @examples
-#' \dontrun{
+#' @examplesIf oppr::run_example()
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
@@ -45,7 +44,6 @@ NULL
 #'
 #' # plot solution
 #' plot(p, s)
-#' }
 #' @name add_binary_decisions
 NULL
 

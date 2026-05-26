@@ -44,7 +44,6 @@ Other overviews:
 ## Examples
 
 ``` r
-# \dontrun{
 # load data
 data(sim_multi_projects)
 data(sim_multi_features)
@@ -326,7 +325,7 @@ s <- rbind(solve(p2), solve(p3), solve(p4))
 #>   RHS range        [1e+00, 1e+03]
 #> 
 #> Presolve removed 244 rows and 80 columns
-#> Presolve time: 0.00s
+#> Presolve time: 0.01s
 #> Presolved: 290 rows, 282 columns, 927 nonzeros
 #> Variable types: 102 continuous, 180 integer (180 binary)
 #> Found heuristic solution: objective 1.0478287
@@ -397,9 +396,9 @@ s <- rbind(solve(p2), solve(p3), solve(p4))
 #>   Bounds range     [6e-01, 3e+00]
 #>   RHS range        [5e-01, 1e+03]
 #> 
-#> User MIP start produced solution with objective 0.996685 (0.05s)
+#> User MIP start produced solution with objective 0.996685 (0.06s)
 #> User MIP start produced solution with objective 0.995088 (0.07s)
-#> User MIP start produced solution with objective 0.99366 (0.08s)
+#> User MIP start produced solution with objective 0.99366 (0.09s)
 #> User MIP start produced solution with objective 0.99366 (0.09s)
 #> Loaded user MIP start with objective 0.99366
 #> 
@@ -443,7 +442,7 @@ s <- rbind(solve(p2), solve(p3), solve(p4))
 #>   MIR: 7
 #>   Flow cover: 1
 #> 
-#> Explored 95 nodes (797 simplex iterations) in 0.14 seconds (0.11 work units)
+#> Explored 95 nodes (797 simplex iterations) in 0.15 seconds (0.11 work units)
 #> Thread count was 1 (of 8 available processors)
 #> 
 #> Solution count 1: 0.99366 
@@ -487,5 +486,4 @@ print(as.data.frame(s))
 #> 1 abs epsilon
 #> 2    wtd goal
 #> 3   ref point
-# }
 ```

@@ -70,7 +70,6 @@ Other approaches:
 ## Examples
 
 ``` r
-# \dontrun{
 # load data
 data(sim_multi_projects)
 data(sim_multi_features)
@@ -234,7 +233,7 @@ s <- solve(p)
 #>   Implied bound: 2
 #>   MIR: 24
 #> 
-#> Explored 123 nodes (552 simplex iterations) in 0.07 seconds (0.05 work units)
+#> Explored 123 nodes (552 simplex iterations) in 0.08 seconds (0.05 work units)
 #> Thread count was 1 (of 8 available processors)
 #> 
 #> Solution count 1: 0.711386 
@@ -256,5 +255,4 @@ print(s)
 #> #   F1_project <lgl>, F2_project <lgl>, F8_project <lgl>,
 #> #   baseline_project_obj1 <lgl>, F3_project <lgl>, F4_project <lgl>,
 #> #   baseline_project_obj2 <lgl>, F5_project <lgl>, F6_project <lgl>, …
-# }
 ```

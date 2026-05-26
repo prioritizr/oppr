@@ -44,6 +44,7 @@ funding.
 }
 }
 \examples{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load data
 data(sim_projects, sim_features, sim_actions)
 
@@ -83,7 +84,6 @@ p5 <- p1 \%>\% add_locked_out_project_constraints(c(2))
 # print problem
 print(p5)
 
-\dontrun{
 # solve problems
 s1 <- solve(p1)
 s2 <- solve(p2)
@@ -97,7 +97,7 @@ print(s2[, sim_actions$name])
 print(s3[, sim_actions$name])
 print(s4[, sim_actions$name])
 print(s5[, sim_actions$name])
-}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other overviews:

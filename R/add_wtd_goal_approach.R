@@ -45,8 +45,7 @@ NULL
 # 'In: Practical Goal Programming. International Series in Operations Research
 #' and Management Science, volume 141. Springer, Boston, MA.
 #'
-#' @examples
-#' \dontrun{
+#' @examplesIf oppr::run_example()
 #' # load data
 #' data(sim_multi_projects)
 #' data(sim_multi_features)
@@ -94,7 +93,6 @@ NULL
 #'
 #' # print solution
 #' print(s)
-#' }
 #' @export
 add_wtd_goal_approach <- function(x, weights, goals, verbose = TRUE) {
   # assert arguments are valid

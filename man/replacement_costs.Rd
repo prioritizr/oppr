@@ -79,7 +79,7 @@ for large problems since it involves re-solving the problem for every
 action selected for funding.
 }
 \examples{
-\dontrun{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load data
 data(sim_projects, sim_features, sim_actions)
 
@@ -108,7 +108,7 @@ print(r)
 # plot histogram of replacement costs,
 # with this objective, greater values indicate greater irreplaceability
 hist(r$rep_cost, xlab = "Replacement cost", main = "")
-}
+\dontshow{\}) # examplesIf}
 }
 \references{
 Moilanen A, Arponen A, Stokland JN & Cabeza M (2009) Assessing replacement

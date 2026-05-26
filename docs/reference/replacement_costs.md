@@ -104,7 +104,6 @@ Other functions for evaluating solutions:
 ## Examples
 
 ``` r
-# \dontrun{
 # load data
 data(sim_projects, sim_features, sim_actions)
 
@@ -208,6 +207,4 @@ print(r)
 # plot histogram of replacement costs,
 # with this objective, greater values indicate greater irreplaceability
 hist(r$rep_cost, xlab = "Replacement cost", main = "")
-
-# }
 ```

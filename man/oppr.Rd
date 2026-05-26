@@ -57,7 +57,7 @@ prioritizing conservation projects. \emph{Methods in Ecology & Evolution},
 }
 
 \examples{
-\dontrun{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load data
 data(sim_projects, sim_features, sim_actions)
 
@@ -98,8 +98,7 @@ s[, sim_features$name, drop = FALSE]
 
 # visualize solution
 plot(p, s)
-}
-
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Useful links:

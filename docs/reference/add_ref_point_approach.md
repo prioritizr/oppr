@@ -110,7 +110,6 @@ Other approaches:
 ## Examples
 
 ``` r
-# \dontrun{
 # load data
 data(sim_multi_projects)
 data(sim_multi_features)
@@ -225,7 +224,7 @@ s <- solve(p)
 #>   RHS range        [1e+00, 1e+03]
 #> 
 #> Presolve removed 242 rows and 80 columns
-#> Presolve time: 0.00s
+#> Presolve time: 0.01s
 #> Presolved: 292 rows, 282 columns, 934 nonzeros
 #> Variable types: 102 continuous, 180 integer (180 binary)
 #> Found heuristic solution: objective 11.0000000
@@ -334,5 +333,4 @@ print(s)
 #> #   F1_project <lgl>, F2_project <lgl>, F8_project <lgl>,
 #> #   baseline_project_obj1 <lgl>, F3_project <lgl>, F4_project <lgl>,
 #> #   baseline_project_obj2 <lgl>, F5_project <lgl>, F6_project <lgl>, …
-# }
 ```

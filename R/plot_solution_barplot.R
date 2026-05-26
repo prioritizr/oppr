@@ -22,7 +22,7 @@ NULL
 #'
 #' @inherit plot.ProjectProblem return
 #'
-#' @examples
+#' @examplesIf oppr::run_example()
 #' # set seed for reproducibility
 #' set.seed(500)
 #'
@@ -43,7 +43,6 @@ NULL
 #'   add_binary_decisions() %>%
 #'   add_heuristic_solver(n = 10)
 #'
-#' \dontrun{
 #' # solve problem
 #' s <- solve(p)
 #'
@@ -61,7 +60,6 @@ NULL
 #' # we can also obtain the raw plotting data using return_data=TRUE
 #' plot_data <- plot(p, s, return_data = TRUE)
 #' print(plot_data)
-#' }
 #' @export
 plot_solution_barplot <- function(x, solution, n = 1, symbol_hjust = 0.007,
                                   return_data = FALSE) {

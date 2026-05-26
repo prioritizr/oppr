@@ -56,8 +56,7 @@ NULL
 #'
 #' @family evaluation
 #'
-#' @examples
-#' \dontrun{
+#' @examplesIf oppr::run_example()
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
@@ -83,7 +82,6 @@ NULL
 #'
 #' # print output
 #' print(r)
-#' }
 #' @export
 rank_importance <- function(x, solution, n = 1, ranks = 10,
                             budgets = NULL, ...) {

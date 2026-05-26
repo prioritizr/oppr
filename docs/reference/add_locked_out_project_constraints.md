@@ -44,7 +44,6 @@ Other constraints:
 ## Examples
 
 ``` r
-# \dontrun{
 # load data
 data(sim_projects, sim_features, sim_actions)
 
@@ -409,5 +408,4 @@ print(s4[, sim_projects$name])
 #>   F1_project F2_project F3_project F4_project F5_project baseline_project
 #>   <lgl>      <lgl>      <lgl>      <lgl>      <lgl>      <lgl>           
 #> 1 FALSE      TRUE       FALSE      FALSE      FALSE      TRUE            
-# }
 ```

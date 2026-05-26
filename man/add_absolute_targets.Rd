@@ -62,6 +62,7 @@ is set according the column values.
 }
 }
 \examples{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load data
 data(sim_projects, sim_features, sim_actions)
 
@@ -110,7 +111,6 @@ p3 <-
 # print problem
 print(p3)
 
-\dontrun{
 # solve problems
 s1 <- solve(p1)
 s2 <- solve(p2)
@@ -125,7 +125,7 @@ print(s3)
 plot(p1, s1)
 plot(p2, s2)
 plot(p3, s3)
-}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other targets:

@@ -61,7 +61,7 @@ Maximize V_1, Subject to V_o >= G_o, for all o in O
 }
 }
 \examples{
-\dontrun{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load data
 data(sim_multi_projects)
 data(sim_multi_features)
@@ -109,7 +109,7 @@ s <- solve(p)
 
 # print solution
 print(s)
-}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other approaches:

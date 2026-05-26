@@ -63,6 +63,7 @@ default to \code{">="} values.
 }
 }
 \examples{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load data
 data(sim_projects, sim_features, sim_actions)
 
@@ -90,13 +91,12 @@ p <-
 # print problem
 print(p)
 
-\dontrun{
 # solve problem
 s <- solve(p)
 
 # print solution
 print(s)
-}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 See \link{targets} for an overview for functions for adding targets.

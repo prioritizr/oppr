@@ -52,7 +52,7 @@ NULL
 #' [plot_solution_barplot()], so refer to the documentation
 #' for these functions for more information.
 #'
-#' @examples
+#' @examplesIf oppr::run_example()
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
@@ -66,13 +66,11 @@ NULL
 #'   add_feature_weights("weight") %>%
 #'   add_binary_decisions()
 #'
-#' \dontrun{
 #' # solve problem without phylogenetic data
 #' s1 <- solve(p1)
 #'
 #' # visualize solution without phylogenetic data
 #' plot(p1, s1)
-#' }
 #'
 #' # build problem with phylogenetic data
 #' p2 <-
@@ -83,13 +81,11 @@ NULL
 #'   add_max_phylo_div_objective(budget = 400, sim_tree) %>%
 #'   add_binary_decisions()
 #'
-#' \dontrun{
 #' # solve problem with phylogenetic data
 #' s2 <- solve(p2)
 #'
 #' # visualize solution with phylogenetic data
 #' plot(p2, s2)
-#' }
 #' @export
 plot.ProjectProblem <- function(x, solution, n = 1, symbol_hjust = 0.007,
                                 return_data = FALSE, ...) {

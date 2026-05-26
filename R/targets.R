@@ -39,7 +39,7 @@ NULL
 #'
 #' @family overviews
 #'
-#' @examples
+#' @examplesIf oppr::run_example()
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
@@ -72,7 +72,6 @@ NULL
 #' # print problem
 #' print(p2)
 #'
-#' \dontrun{
 #' # solve problems
 #' s1 <- solve(p1)
 #' s2 <- solve(p2)
@@ -84,7 +83,6 @@ NULL
 #' # plot solutions
 #' plot(p1, s1)
 #' plot(p2, s2)
-#' }
 #' @name targets
 NULL
 

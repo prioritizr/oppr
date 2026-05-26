@@ -106,7 +106,6 @@ p1 <-
   add_feature_weights("weight") %>%
   add_binary_decisions()
 
-# \dontrun{
 # solve problem without phylogenetic data
 s1 <- solve(p1)
 #> Set parameter Username
@@ -172,7 +171,6 @@ s1 <- solve(p1)
 # visualize solution without phylogenetic data
 plot(p1, s1)
 
-# }
 
 # build problem with phylogenetic data
 p2 <-
@@ -183,7 +181,6 @@ p2 <-
   add_max_phylo_div_objective(budget = 400, sim_tree) %>%
   add_binary_decisions()
 
-# \dontrun{
 # solve problem with phylogenetic data
 s2 <- solve(p2)
 #> Set parameter Username
@@ -240,7 +237,7 @@ s2 <- solve(p2)
 #> 
 #> *    0     0               0       3.1123237    3.11232  0.00%     -    0s
 #> 
-#> Explored 1 nodes (13 simplex iterations) in 0.00 seconds (0.00 work units)
+#> Explored 1 nodes (13 simplex iterations) in 0.01 seconds (0.00 work units)
 #> Thread count was 1 (of 8 available processors)
 #> 
 #> Solution count 1: 3.11232 
@@ -251,6 +248,4 @@ s2 <- solve(p2)
 
 # visualize solution with phylogenetic data
 plot(p2, s2)
-
-# }
 ```

@@ -21,7 +21,7 @@ NULL
 #'  [problem()], [solvers], [targets],
 #'  [weights].
 #'
-#' @examples
+#' @examplesIf oppr::run_example()
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
@@ -38,7 +38,6 @@ NULL
 #' # print problem
 #' print(p)
 #'
-#' \dontrun{
 #' # solve problem
 #' s <- solve(p)
 #'
@@ -47,7 +46,6 @@ NULL
 #'
 #' # plot solution
 #' plot(p, s)
-#' }
 #' @name decisions
 NULL
 

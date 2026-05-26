@@ -24,7 +24,7 @@ If no decision is added to a problem then this decision type will
 be used by default. Currently, this is the only supported decision type.
 }
 \examples{
-\dontrun{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load data
 data(sim_projects, sim_features, sim_actions)
 
@@ -49,6 +49,6 @@ print(s)
 
 # plot solution
 plot(p, s)
-}
+\dontshow{\}) # examplesIf}
 }
 \concept{decisions}

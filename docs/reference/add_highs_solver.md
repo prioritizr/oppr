@@ -103,7 +103,6 @@ Other solvers:
 ## Examples
 
 ``` r
-# \dontrun{
 # load data
 data(sim_projects, sim_features, sim_actions)
 
@@ -188,7 +187,7 @@ s <- solve(p)
 #>   Dual bound        2.19038073725
 #>   Gap               0%
 #> 
-#>   P-D integral      0.000153037346024
+#>   P-D integral      0.000156960239398
 #> 
 #>   Solution status   feasible
 #> 
@@ -219,6 +218,4 @@ print(s)
 
 # plot solution
 plot(p, s)
-
-# }
 ```

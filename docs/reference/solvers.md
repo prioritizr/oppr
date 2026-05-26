@@ -68,7 +68,6 @@ Other overviews:
 ## Examples
 
 ``` r
-# \dontrun{
 # load data
 data(sim_projects, sim_features, sim_actions)
 
@@ -285,7 +284,7 @@ s <- rbind(
 #>   Dual bound        2.19038073725
 #>   Gap               0%
 #> 
-#>   P-D integral      0.000162522161071
+#>   P-D integral      0.000147660837744
 #> 
 #>   Solution status   feasible
 #> 
@@ -332,8 +331,8 @@ s <- rbind(
 #>       The largest [LUSOL v2.2.1.0] fact(B) had 64 NZ entries, 1.0x largest basis.
 #>       The maximum B&B level was 6, 0.1x MIP order, 4 at the optimal solution.
 #>       The constraint matrix inf-norm is 103.226, with a dynamic range of 1193.9.
-#>       Time to load data was 1.000 seconds, presolve used 0.000 seconds,
-#>        ... 0.000 seconds in simplex solver, in total 1.000 seconds.
+#>       Time to load data was 0.000 seconds, presolve used 0.000 seconds,
+#>        ... 0.000 seconds in simplex solver, in total 0.000 seconds.
 s$solver <- c(
   "default", "gurobi", "highs", "cbc", "Rsymphony", "lpsymphony",
   "lpSolveAPI", "heuristic", "random"
@@ -381,5 +380,4 @@ print(as.data.frame(s))
 #> 7 0.0864612 0.2489246 0.1820005 lpSolveAPI
 #> 8 0.0864612 0.2489246 0.1820005  heuristic
 #> 9 0.0864612 0.2489246 0.5924880     random
-# }
 ```

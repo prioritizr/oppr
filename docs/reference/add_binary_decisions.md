@@ -32,7 +32,6 @@ this is the only supported decision type.
 ## Examples
 
 ``` r
-# \dontrun{
 # load data
 data(sim_projects, sim_features, sim_actions)
 
@@ -135,6 +134,4 @@ print(s)
 
 # plot solution
 plot(p, s)
-
-# }
 ```

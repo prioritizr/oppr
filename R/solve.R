@@ -81,8 +81,7 @@ NULL
 #'
 #' @aliases solve,OptimizationProblem,Solver-method solve,ProjectProblem,missing-method solve,MultiObjProjectProblem,missing-method
 #'
-#' @examples
-#' \dontrun{
+#' @examplesIf oppr::run_example()
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
@@ -129,7 +128,6 @@ NULL
 #' # print the expected probability of persistence for each feature
 #' # if the solution were implemented
 #' s[, sim_features$name, drop = FALSE]
-#' }
 #' @export
 NULL
 

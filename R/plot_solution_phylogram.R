@@ -51,7 +51,7 @@ NULL
 #'   [tidytree::treedata()] object if `return_data` is
 #'   `TRUE`.
 #'
-#' @examples
+#' @examplesIf oppr::run_example()
 #' # set seed for reproducibility
 #' set.seed(500)
 #'
@@ -70,7 +70,6 @@ NULL
 #'   add_binary_decisions() %>%
 #'   add_heuristic_solver(number_solutions = 10)
 #'
-#' \dontrun{
 #' # solve problem
 #' s <- solve(p)
 #'
@@ -118,7 +117,6 @@ NULL
 #' # we can also obtain the raw plotting data using return_data=TRUE
 #' plot_data <- plot(p, s, return_data = TRUE)
 #' print(plot_data)
-#' }
 #' @export
 plot_solution_phylogram <- function(x, solution, n = 1, symbol_hjust = 0.007,
                                     return_data = FALSE) {

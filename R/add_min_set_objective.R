@@ -126,8 +126,7 @@ NULL
 #' @seealso
 #' See [targets] for an overview of functions for adding targets.
 #'
-#' @examples
-#' \dontrun{
+#' @examplesIf oppr::run_example()
 #' # load the ggplot2 R package to customize plot
 #' library(ggplot2)
 #'
@@ -153,7 +152,6 @@ NULL
 #'
 #' # plot solution, and add a dashed line to indicate the feature targets
 #' plot(p, s) + geom_hline(yintercept = 0.3, linetype = "dashed")
-#' }
 #' @name add_min_set_objective
 NULL
 

@@ -150,7 +150,6 @@ print(p5)
 #> decisions:       binary decision
 #> solver:          none specified
 
-# \dontrun{
 # solve problems
 s1 <- solve(p1)
 #> Set parameter Username
@@ -470,5 +469,4 @@ print(s5[, sim_actions$name])
 #>   F1_action F2_action F3_action F4_action F5_action baseline_action
 #>   <lgl>     <lgl>     <lgl>     <lgl>     <lgl>     <lgl>          
 #> 1 TRUE      FALSE     FALSE     FALSE     FALSE     TRUE           
-# }
 ```

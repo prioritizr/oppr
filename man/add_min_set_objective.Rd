@@ -123,7 +123,7 @@ that the action funding (\eqn{X_i}), project funding (\eqn{Y_j}), and
 project allocation (\eqn{Z_{fj}}) variables are binary.
 }
 \examples{
-\dontrun{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load the ggplot2 R package to customize plot
 library(ggplot2)
 
@@ -149,7 +149,7 @@ print(s)
 
 # plot solution, and add a dashed line to indicate the feature targets
 plot(p, s) + geom_hline(yintercept = 0.3, linetype = "dashed")
-}
+\dontshow{\}) # examplesIf}
 }
 \references{
 Chadés I, Nicol S, van Leeuwen S, Walters B, Firn J, Reeson A, Martin TG &

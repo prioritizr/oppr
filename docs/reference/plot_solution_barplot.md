@@ -97,7 +97,6 @@ p <-
   add_binary_decisions() %>%
   add_heuristic_solver(n = 10)
 
-# \dontrun{
 # solve problem
 s <- solve(p)
 
@@ -126,5 +125,4 @@ print(plot_data)
 #> 3 F3     0.0865  0.221 NA    
 #> 4 F2     0.865   0.211 Funded
 #> 5 F1     0.808   0.211 Funded
-# }
 ```

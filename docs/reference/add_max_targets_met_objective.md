@@ -138,7 +138,6 @@ Other objectives:
 ## Examples
 
 ``` r
-# \dontrun{
 # load the ggplot2 R package to customize plot
 library(ggplot2)
 
@@ -325,6 +324,4 @@ print(s2)
 # specifically, the projects for the feature F3 is now funded
 # to enhance its probability of persistence
 plot(p2, s2) + geom_hline(yintercept = 0.2, linetype = "dashed")
-
-# }
 ```

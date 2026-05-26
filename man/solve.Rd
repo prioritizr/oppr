@@ -79,7 +79,7 @@ for each feature based on the actions selected for funding.
 Solve a conservation planning \code{\link[=problem]{problem()}}.
 }
 \examples{
-\dontrun{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load data
 data(sim_projects, sim_features, sim_actions)
 
@@ -126,7 +126,7 @@ s[, sim_actions$name, drop = FALSE]
 # print the expected probability of persistence for each feature
 # if the solution were implemented
 s[, sim_features$name, drop = FALSE]
-}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 The \code{\link[=solution_statistics]{solution_statistics()}} function can be used to compute these

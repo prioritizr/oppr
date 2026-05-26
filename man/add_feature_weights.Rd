@@ -62,7 +62,7 @@ have \code{numeric} values, and these used to weight the features.
 }
 }
 \examples{
-\dontrun{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load data
 data(sim_projects, sim_features, sim_actions)
 
@@ -113,7 +113,7 @@ print(s3)
 plot(p1, s1)
 plot(p2, s2)
 plot(p3, s3)
-}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 See \link{weights} for an overview of functions for adding weights.

@@ -152,7 +152,7 @@ NULL
 #'
 #' @name problem
 #'
-#' @examples
+#' @examplesIf oppr::run_example()
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
@@ -178,7 +178,6 @@ NULL
 #' # print problem
 #' print(p)
 #'
-#' \dontrun{
 #' # solve problem
 #' s <- solve(p)
 #'
@@ -194,7 +193,6 @@ NULL
 #'
 #' # visualize solution
 #' plot(p, s)
-#' }
 #' @export
 problem <- function(projects, actions, features, project_name_column,
                     project_success_column, action_name_column,

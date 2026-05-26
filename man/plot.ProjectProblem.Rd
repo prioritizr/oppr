@@ -62,6 +62,7 @@ have non-zero costs and share actions with at least one funded
 project -- are depicted with an open circle symbol.
 }
 \examples{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load data
 data(sim_projects, sim_features, sim_actions)
 
@@ -75,13 +76,11 @@ p1 <-
   add_feature_weights("weight") \%>\%
   add_binary_decisions()
 
-\dontrun{
 # solve problem without phylogenetic data
 s1 <- solve(p1)
 
 # visualize solution without phylogenetic data
 plot(p1, s1)
-}
 
 # build problem with phylogenetic data
 p2 <-
@@ -92,13 +91,12 @@ p2 <-
   add_max_phylo_div_objective(budget = 400, sim_tree) \%>\%
   add_binary_decisions()
 
-\dontrun{
 # solve problem with phylogenetic data
 s2 <- solve(p2)
 
 # visualize solution with phylogenetic data
 plot(p2, s2)
-}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 This function is a wrapper for \code{\link[=plot_solution_phylogram]{plot_solution_phylogram()}} and

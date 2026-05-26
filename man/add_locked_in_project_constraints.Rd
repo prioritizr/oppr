@@ -59,7 +59,7 @@ values are used to indicate which projects are locked (or not).
 }
 }
 \examples{
-\dontrun{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load data
 data(sim_projects, sim_features, sim_actions)
 
@@ -113,7 +113,7 @@ print(s1[, sim_projects$name])
 print(s2[, sim_projects$name])
 print(s3[, sim_projects$name])
 print(s4[, sim_projects$name])
-}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other constraints:

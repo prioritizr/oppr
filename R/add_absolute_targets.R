@@ -51,7 +51,7 @@ NULL
 #'
 #' @family targets
 #'
-#' @examples
+#' @examplesIf oppr::run_example()
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
@@ -100,7 +100,6 @@ NULL
 #' # print problem
 #' print(p3)
 #'
-#' \dontrun{
 #' # solve problems
 #' s1 <- solve(p1)
 #' s2 <- solve(p2)
@@ -115,7 +114,6 @@ NULL
 #' plot(p1, s1)
 #' plot(p2, s2)
 #' plot(p3, s3)
-#' }
 #' @aliases add_absolute_targets,ProjectProblem,numeric-method add_absolute_targets,ProjectProblem,character-method
 #'
 #' @name add_absolute_targets

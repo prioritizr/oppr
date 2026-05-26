@@ -55,8 +55,7 @@ NULL
 #'
 #' @family solvers
 #'
-#' @examples
-#' \dontrun{
+#' @examplesIf oppr::run_example()
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
@@ -109,7 +108,6 @@ NULL
 #'   xlab = "Difference from optimality (%)",
 #'   main = "Histogram of random solutions", xlim = c(0, 50)
 #' )
-#' }
 #' @export
 add_random_solver <- function(x, number_solutions = 1, verbose = TRUE) {
   # assert that arguments are valid

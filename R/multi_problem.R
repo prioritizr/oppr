@@ -22,8 +22,7 @@ NULL
 #'
 #' @return A [MultiObjProjectProblem-class] object.
 #'
-#' @examples
-#' \dontrun{
+#' @examplesIf oppr::run_example()
 #' # load data
 #' data(sim_multi_projects)
 #' data(sim_multi_features)
@@ -71,7 +70,6 @@ NULL
 #'
 #' # print solution
 #' print(s)
-#' }
 #' @export
 multi_problem <- function(..., problem_names = NULL) {
   # parse arguments

@@ -20,7 +20,7 @@ NULL
 #'
 #' @family targets
 #'
-#' @examples
+#' @examplesIf oppr::run_example()
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
@@ -67,7 +67,6 @@ NULL
 #'   add_relative_targets("target") %>%
 #'   add_binary_decisions()
 #'
-#' \dontrun{
 #' # print problem
 #' print(p3)
 #'
@@ -85,7 +84,6 @@ NULL
 #' plot(p1, s1)
 #' plot(p2, s2)
 #' plot(p3, s3)
-#' }
 #' @aliases add_relative_targets,ProjectProblem,numeric-method add_relative_targets,ProjectProblem,character-method
 #'
 #' @name add_relative_targets

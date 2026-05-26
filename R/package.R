@@ -66,8 +66,7 @@ NULL
 #' * Joseph Bennett \email{joseph.bennett@carleton.ca} ([ORCID](https://orcid.org/0000-0002-3901-9513))
 #'
 #'
-#' @examples
-#' \dontrun{
+#' @examplesIf oppr::run_example()
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
@@ -108,8 +107,6 @@ NULL
 #'
 #' # visualize solution
 #' plot(p, s)
-#' }
-#'
 #' @name oppr
 #' @docType package
 #' @aliases oppr-package

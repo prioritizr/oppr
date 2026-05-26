@@ -70,7 +70,7 @@ are met.
 }
 }
 \examples{
-\dontrun{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load data
 data(sim_projects, sim_features, sim_actions)
 
@@ -123,7 +123,7 @@ hist(
   xlab = "Difference from optimality (\%)",
   main = "Histogram of random solutions", xlim = c(0, 50)
 )
-}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 Other solvers:

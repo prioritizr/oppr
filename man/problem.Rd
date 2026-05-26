@@ -163,6 +163,7 @@ formulations used in this package, please refer to the manual entries for
 the available objectives (listed in \link{objectives}).
 }
 \examples{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load data
 data(sim_projects, sim_features, sim_actions)
 
@@ -188,7 +189,6 @@ p <-
 # print problem
 print(p)
 
-\dontrun{
 # solve problem
 s <- solve(p)
 
@@ -204,7 +204,7 @@ s[, sim_features$name, drop = FALSE]
 
 # visualize solution
 plot(p, s)
-}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \link{constraints}, \link{decisions},

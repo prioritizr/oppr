@@ -125,7 +125,6 @@ print(p)
 #> decisions:       binary decision
 #> solver:          none specified
 
-# \dontrun{
 # solve problem
 s <- solve(p)
 #> Set parameter Username
@@ -197,5 +196,4 @@ print(s)
 #> # ℹ 12 more variables: baseline_action <lgl>, F1_project <lgl>,
 #> #   F2_project <lgl>, F3_project <lgl>, F4_project <lgl>, F5_project <lgl>,
 #> #   baseline_project <lgl>, F1 <dbl>, F2 <dbl>, F3 <dbl>, F4 <dbl>, F5 <dbl>
-# }
 ```

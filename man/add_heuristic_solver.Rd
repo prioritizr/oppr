@@ -153,7 +153,7 @@ is deselected.
 }
 }
 \examples{
-\dontrun{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load ggplot2 package for making plots
 library(ggplot2)
 
@@ -181,8 +181,7 @@ print(s1)
 
 # plot solution
 plot(p1, s1)
-}
-
+\dontshow{\}) # examplesIf}
 }
 \references{
 Rodrigues AS & Gaston KJ (2002) Optimisation in reserve selection

@@ -31,7 +31,6 @@ Other overviews:
 ## Examples
 
 ``` r
-# \dontrun{
 # load data
 data(sim_projects, sim_features, sim_actions)
 
@@ -186,5 +185,4 @@ print(as.data.frame(s))
 #>   weights
 #> 1 default
 #> 2 weights
-# }
 ```

@@ -265,7 +265,6 @@ print(p)
 #> decisions:       binary decision
 #> solver:          none specified
 
-# \dontrun{
 # solve problem
 s <- solve(p)
 #> Set parameter Username
@@ -355,6 +354,4 @@ s[, sim_features$name, drop = FALSE]
 
 # visualize solution
 plot(p, s)
-
-# }
 ```

@@ -108,7 +108,6 @@ from those used to generate them.
 ## Examples
 
 ``` r
-# \dontrun{
 # load data
 data(sim_projects, sim_features, sim_actions)
 
@@ -272,5 +271,4 @@ s[, sim_features$name, drop = FALSE]
 #>      F1    F2     F3    F4    F5
 #>   <dbl> <dbl>  <dbl> <dbl> <dbl>
 #> 1 0.808 0.865 0.0865 0.688 0.592
-# }
 ```

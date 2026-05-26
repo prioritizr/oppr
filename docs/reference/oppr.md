@@ -85,7 +85,6 @@ Authors:
 ## Examples
 
 ``` r
-# \dontrun{
 # load data
 data(sim_projects, sim_features, sim_actions)
 
@@ -240,6 +239,4 @@ s[, sim_features$name, drop = FALSE]
 
 # visualize solution
 plot(p, s)
-
-# }
 ```

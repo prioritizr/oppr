@@ -25,8 +25,7 @@ NULL
 #' Huangfu Q and Hall JAJ (2018). Parallelizing the dual revised simplex
 #' method. *Mathematical Programming Computation*, 10: 119-142.
 #'
-#' @examples
-#' \dontrun{
+#' @examplesIf oppr::run_example()
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
@@ -51,7 +50,6 @@ NULL
 #'
 #' # plot solution
 #' plot(p, s)
-#' }
 #' @name add_highs_solver
 NULL
 

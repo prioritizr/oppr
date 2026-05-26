@@ -80,8 +80,7 @@ NULL
 #' _approaches_. In: Stochastic Versus Fuzzy Approaches to Multiobjective
 #' Mathematical Programming Under Uncertainty. Springer, Berlin.
 #'
-#' @examples
-#' \dontrun{
+#' @examplesIf oppr::run_example()
 #' # load data
 #' data(sim_multi_projects)
 #' data(sim_multi_features)
@@ -129,7 +128,6 @@ NULL
 #'
 #' # print solution
 #' print(s)
-#' }
 #' @export
 add_ref_point_approach <- function(x, weights, goals, best = NULL, worst = NULL,
                                    verbose = TRUE) {

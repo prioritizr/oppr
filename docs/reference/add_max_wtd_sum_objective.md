@@ -146,7 +146,6 @@ p1 <-
   add_max_wtd_sum_objective(budget = 200) %>%
   add_binary_decisions()
 
-# \dontrun{
 # solve problem
 s1 <- solve(p1)
 #> Set parameter Username
@@ -222,12 +221,10 @@ print(s1)
 # plot solution
 plot(p1, s1)
 
-# }
 
 # build another problem that includes feature weights
 p2 <- p1 %>% add_feature_weights("weight")
 
-# \dontrun{
 # solve problem with feature weights
 s2 <- solve(p2)
 #> Set parameter Username
@@ -302,6 +299,4 @@ print(s2)
 
 # plot solution based on feature weights
 plot(p2, s2)
-
-# }
 ```

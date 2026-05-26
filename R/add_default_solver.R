@@ -27,8 +27,7 @@ NULL
 #'
 #' @family solvers
 #'
-#' @examples
-#' \dontrun{
+#' @examplesIf oppr::run_example()
 #' # load data
 #' data(sim_projects, sim_features, sim_actions)
 #'
@@ -53,7 +52,6 @@ NULL
 #'
 #' # plot solution
 #' plot(p, s)
-#' }
 #' @export
 add_default_solver <- function(x, ...) {
   ds <- default_solver_name()

@@ -141,7 +141,7 @@ that the target met (\eqn{G_f}), action funding (\eqn{X_i}), project funding
 (\eqn{Y_j}), and project allocation (\eqn{Z_{fj}}) variables are binary.
 }
 \examples{
-\dontrun{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load the ggplot2 R package to customize plot
 library(ggplot2)
 
@@ -190,7 +190,7 @@ print(s2)
 # specifically, the projects for the feature F3 is now funded
 # to enhance its probability of persistence
 plot(p2, s2) + geom_hline(yintercept = 0.2, linetype = "dashed")
-}
+\dontshow{\}) # examplesIf}
 }
 \references{
 Chades I, Nicol S, van Leeuwen S, Walters B, Firn J, Reeson A, Martin TG &

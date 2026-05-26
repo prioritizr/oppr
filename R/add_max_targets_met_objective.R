@@ -138,8 +138,7 @@ NULL
 #'
 #' @family objectives
 #'
-#' @examples
-#' \dontrun{
+#' @examplesIf oppr::run_example()
 #' # load the ggplot2 R package to customize plot
 #' library(ggplot2)
 #'
@@ -188,7 +187,6 @@ NULL
 #' # specifically, the projects for the feature F3 is now funded
 #' # to enhance its probability of persistence
 #' plot(p2, s2) + geom_hline(yintercept = 0.2, linetype = "dashed")
-#' }
 #' @name add_max_targets_met_objective
 NULL
 

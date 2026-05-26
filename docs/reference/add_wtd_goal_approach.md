@@ -79,7 +79,6 @@ Other approaches:
 ## Examples
 
 ``` r
-# \dontrun{
 # load data
 data(sim_multi_projects)
 data(sim_multi_features)
@@ -194,7 +193,7 @@ s <- solve(p)
 #>   RHS range        [1e+00, 1e+03]
 #> 
 #> Presolve removed 242 rows and 80 columns
-#> Presolve time: 0.00s
+#> Presolve time: 0.01s
 #> Presolved: 289 rows, 281 columns, 928 nonzeros
 #> Variable types: 101 continuous, 180 integer (180 binary)
 #> Found heuristic solution: objective 25.5700391
@@ -243,7 +242,7 @@ s <- solve(p)
 #>   RLT: 2
 #>   Relax-and-lift: 1
 #> 
-#> Explored 29 nodes (696 simplex iterations) in 0.07 seconds (0.06 work units)
+#> Explored 29 nodes (696 simplex iterations) in 0.08 seconds (0.06 work units)
 #> Thread count was 1 (of 8 available processors)
 #> 
 #> Solution count 1: 24.6995 
@@ -265,5 +264,4 @@ print(s)
 #> #   F1_project <lgl>, F2_project <lgl>, F8_project <lgl>,
 #> #   baseline_project_obj1 <lgl>, F3_project <lgl>, F4_project <lgl>,
 #> #   baseline_project_obj2 <lgl>, F5_project <lgl>, F6_project <lgl>, …
-# }
 ```

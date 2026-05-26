@@ -116,7 +116,7 @@ can obtain a \href{https://www.gurobi.com/downloads/end-user-license-agreement-a
 package can then be installed (see \url{https://support.gurobi.com/hc/en-us/articles/14462206790033-How-do-I-install-Gurobi-for-R} for instructions).
 }
 \examples{
-\dontrun{
+\dontshow{if (oppr::run_example()) withAutoprint(\{ # examplesIf}
 # load data
 data(sim_projects, sim_features, sim_actions)
 
@@ -157,8 +157,7 @@ s3 <- solve(p3)
 
 # print solutions
 print(s3)
-}
-
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 See \link{solvers} for an overview of functions for adding solvers.

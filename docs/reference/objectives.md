@@ -79,7 +79,6 @@ Other overviews:
 ## Examples
 
 ``` r
-# \dontrun{
 # load data
 data(sim_projects, sim_features, sim_actions, sim_tree)
 
@@ -428,5 +427,4 @@ print(s)
 #> # ℹ 12 more variables: baseline_action <lgl>, F1_project <lgl>,
 #> #   F2_project <lgl>, F3_project <lgl>, F4_project <lgl>, F5_project <lgl>,
 #> #   baseline_project <lgl>, F1 <dbl>, F2 <dbl>, F3 <dbl>, F4 <dbl>, F5 <dbl>
-# }
 ```
