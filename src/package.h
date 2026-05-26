@@ -8,6 +8,8 @@
 // [[Rcpp::depends(RcppProgress)]]
 #include <progress.hpp>
 #include <progress_bar.hpp>
+#include <cmath>
+
 // [[Rcpp::plugins(cpp11)]]
 using namespace Rcpp;
 
